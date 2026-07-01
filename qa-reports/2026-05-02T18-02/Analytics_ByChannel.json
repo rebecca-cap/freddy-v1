@@ -1,0 +1,16 @@
+{
+  "path": "/Analytics/ByChannel",
+  "title": "By Channel",
+  "finalUrl": "http://localhost:3001/Analytics/ByChannel",
+  "rootLen": 82845,
+  "crashed": false,
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 429 ()"
+  ],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [
+    "PricePerformance/ByChannel"
+  ],
+  "consoleEventCount": 14
+}

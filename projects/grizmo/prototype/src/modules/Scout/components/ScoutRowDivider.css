@@ -1,0 +1,54 @@
+/*
+ * ScoutRowDivider — block boundary header in the message list.
+ * One label per run of same-row/same-mode messages. Quiet rule on each side of
+ * a centered label + change-note. Lower weight than any answer chrome.
+ */
+
+.scout-row-divider {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  /* The block wrapper has no internal gap, so this bottom margin is the only
+     space between the divider and the bubble it heads — give it real air. */
+  margin: 4px 0 12px;
+  user-select: none;
+}
+
+/* Tight variant — no own margin; spacing comes from the surrounding item
+   rhythm (used for the in-turn "Processing…" separator). */
+.scout-row-divider--tight {
+  margin: 0;
+}
+
+.scout-row-divider__rule {
+  flex: 1;
+  height: 1px;
+  background: var(--scout-border);
+}
+
+.scout-row-divider__center {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  min-width: 0;
+  max-width: 80%;
+}
+
+.scout-row-divider__label {
+  font-size: var(--scout-font-size-sm);
+  font-weight: var(--scout-font-weight-semibold);
+  color: var(--scout-text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  cursor: default;
+}
+
+.scout-row-divider__note {
+  flex-shrink: 0;
+  font-size: var(--scout-font-size-xs);
+  color: var(--scout-text-muted);
+  opacity: 0.8;
+  font-style: italic;
+}

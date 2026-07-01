@@ -1,0 +1,14 @@
+[
+  {
+    "path": "/",
+    "title": "Home"
+  },
+  {
+    "path": "/PricingEngine/CommandCenter",
+    "title": "Command Center"
+  },
+  {
+    "path": "/Admin/Counterparties",
+    "title": "Manage Counterparties"
+  }
+]

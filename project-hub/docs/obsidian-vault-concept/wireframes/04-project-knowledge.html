@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>04 · Project ↔ Knowledge bridge — Every project shows its why</title>
+<link rel="stylesheet" href="wf-base.css" />
+</head>
+<body>
+<div class="wfp wfp-wide">
+  <div class="wf-banner">Concept wireframe · <b>04 / Project ↔ Knowledge</b> · rough &amp; low-fi — layout and idea, not final visuals. Obsidian-purple = the vault; Hub-green/blue = the app.</div>
+
+  <p class="scr-eyebrow">Move 3 · The bridge</p>
+  <h1 class="scr-title">Every project shows its why</h1>
+  <p class="scr-sub">A project's detail page surfaces the <b>Decisions</b>, <b>Patterns</b>, and <b>Learnings</b> linked to it — pulled live from the vault via the <span class="wf-mono" style="font-size:12px;">project: [[..]]</span> frontmatter join key. The same Key Decisions / Active Patterns / Known Issues a teammate would scroll past in Obsidian now sit right next to the running prototype, no Obsidian required.</p>
+
+  <!-- ===== the join-key callout ===== -->
+  <div class="callout callout-obsidian">
+    <b>The join key</b> — each vault note's frontmatter carries <span class="wf-mono" style="font-size:12px;">project: [[Grizmo]]</span>. The Hub reads that field across the whole vault and groups every matching note under the project. Reverse direction: the vault note links back to the Hub project URL. One field, both directions.
+  </div>
+
+  <!-- ===== Hub project-detail mock ===== -->
+  <div class="frame-label">◇ Hub · project detail — Knowledge tab</div>
+  <div class="frame">
+    <div style="background:var(--wf-color-neutral-50);padding:var(--wf-space-5) var(--wf-space-6);">
+
+      <!-- breadcrumb -->
+      <div class="row" style="margin-bottom:var(--wf-space-4);">
+        <button class="wf-button wf-button-ghost wf-button-sm">← All projects</button>
+        <span class="wf-tert" style="font-size:var(--wf-text-xs);">Project Hub / Projects / <b class="wf-sec">Grizmo</b></span>
+      </div>
+
+      <!-- title + meta -->
+      <h2 style="font-size:var(--wf-text-xl);font-weight:var(--wf-font-bold);letter-spacing:-.01em;margin:0 0 6px;">Grizmo</h2>
+      <div class="row" style="margin-bottom:var(--wf-space-5);">
+        <span class="wf-badge wf-badge-primary">Hi-fi</span>
+        <span class="wf-tert" style="font-size:var(--wf-text-sm);">·&nbsp;&nbsp;<span class="wf-mono">project/grizmo</span>&nbsp;&nbsp;·&nbsp;&nbsp;<span class="wf-mono">:5181</span></span>
+      </div>
+
+      <!-- tab bar -->
+      <div class="row" style="gap:0;border-bottom:1px solid var(--wf-color-border);margin-bottom:var(--wf-space-5);">
+        <button class="wf-button wf-button-ghost" style="border-radius:0;">Overview</button>
+        <button class="wf-button wf-button-ghost" style="border-radius:0;">Lo-fi</button>
+        <button class="wf-button wf-button-ghost" style="border-radius:0;">Hi-fi</button>
+        <button class="wf-button wf-button-ghost" style="border-radius:0;color:var(--wf-color-primary);font-weight:var(--wf-font-semibold);box-shadow:inset 0 -2px 0 var(--wf-color-primary);">Knowledge</button>
+        <button class="wf-button wf-button-ghost" style="border-radius:0;">Resources</button>
+      </div>
+
+      <!-- Knowledge tab content -->
+      <div class="stack" style="gap:var(--wf-space-4);">
+
+        <!-- 1. Decisions -->
+        <div class="wf-card">
+          <div class="wf-card-header">
+            <div class="row">
+              <h3 class="wf-card-title" style="font-size:var(--wf-text-base);">Decisions</h3>
+              <span class="wf-badge wf-badge-sm">3</span>
+            </div>
+            <span class="wf-tert" style="font-size:var(--wf-text-xs);">from <span class="wf-mono">/Decisions</span></span>
+          </div>
+          <div class="wf-card-body stack" style="gap:var(--wf-space-2);">
+            <div class="spread">
+              <div class="row">
+                <span class="wf-dot wf-dot-obsidian"></span>
+                <span style="font-size:var(--wf-text-sm);font-weight:var(--wf-font-medium);">Use Excalibrr Over Raw Antd</span>
+                <span class="wf-badge wf-badge-success wf-badge-sm">accepted</span>
+              </div>
+              <div class="row" style="gap:6px;">
+                <button class="wf-button wf-button-obsidian wf-button-sm">↗ Obsidian</button>
+                <button class="wf-button wf-button-secondary wf-button-sm">Open here</button>
+              </div>
+            </div>
+            <hr class="soft" />
+            <div class="spread">
+              <div class="row">
+                <span class="wf-dot wf-dot-obsidian"></span>
+                <span style="font-size:var(--wf-text-sm);font-weight:var(--wf-font-medium);">Context-Based State Management</span>
+                <span class="wf-badge wf-badge-success wf-badge-sm">accepted</span>
+              </div>
+              <div class="row" style="gap:6px;">
+                <button class="wf-button wf-button-obsidian wf-button-sm">↗ Obsidian</button>
+                <button class="wf-button wf-button-secondary wf-button-sm">Open here</button>
+              </div>
+            </div>
+            <hr class="soft" />
+            <div class="spread">
+              <div class="row">
+                <span class="wf-dot wf-dot-obsidian"></span>
+                <span style="font-size:var(--wf-text-sm);font-weight:var(--wf-font-medium);">Two-Surface Profile Architecture</span>
+                <span class="wf-badge wf-badge-warning wf-badge-sm">proposed</span>
+              </div>
+              <div class="row" style="gap:6px;">
+                <button class="wf-button wf-button-obsidian wf-button-sm">↗ Obsidian</button>
+                <button class="wf-button wf-button-secondary wf-button-sm">Open here</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Active Patterns -->
+        <div class="wf-card">
+          <div class="wf-card-header">
+            <div class="row">
+              <h3 class="wf-card-title" style="font-size:var(--wf-text-base);">Active Patterns</h3>
+              <span class="wf-badge wf-badge-sm">4</span>
+            </div>
+            <span class="wf-tert" style="font-size:var(--wf-text-xs);">from <span class="wf-mono">/Patterns</span></span>
+          </div>
+          <div class="wf-card-body stack" style="gap:var(--wf-space-2);">
+            <div class="spread">
+              <div class="row">
+                <span class="wf-dot wf-dot-obsidian"></span>
+                <span style="font-size:var(--wf-text-sm);font-weight:var(--wf-font-medium);">GraviGrid Configuration</span>
+              </div>
+              <div class="row" style="gap:6px;">
+                <button class="wf-button wf-button-obsidian wf-button-sm">↗ Obsidian</button>
+                <button class="wf-button wf-button-secondary wf-button-sm">Open here</button>
+              </div>
+            </div>
+            <hr class="soft" />
+            <div class="spread">
+              <div class="row">
+                <span class="wf-dot wf-dot-obsidian"></span>
+                <span style="font-size:var(--wf-text-sm);font-weight:var(--wf-font-medium);">Feature API Hook</span>
+              </div>
+              <div class="row" style="gap:6px;">
+                <button class="wf-button wf-button-obsidian wf-button-sm">↗ Obsidian</button>
+                <button class="wf-button wf-button-secondary wf-button-sm">Open here</button>
+              </div>
+            </div>
+            <hr class="soft" />
+            <div class="spread">
+              <div class="row">
+                <span class="wf-dot wf-dot-obsidian"></span>
+                <span style="font-size:var(--wf-text-sm);font-weight:var(--wf-font-medium);">Boolean State Naming</span>
+              </div>
+              <div class="row" style="gap:6px;">
+                <button class="wf-button wf-button-obsidian wf-button-sm">↗ Obsidian</button>
+                <button class="wf-button wf-button-secondary wf-button-sm">Open here</button>
+              </div>
+            </div>
+            <hr class="soft" />
+            <div class="spread">
+              <div class="row">
+                <span class="wf-dot wf-dot-obsidian"></span>
+                <span style="font-size:var(--wf-text-sm);font-weight:var(--wf-font-medium);">Named Exports Only</span>
+              </div>
+              <div class="row" style="gap:6px;">
+                <button class="wf-button wf-button-obsidian wf-button-sm">↗ Obsidian</button>
+                <button class="wf-button wf-button-secondary wf-button-sm">Open here</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Learnings & gotchas -->
+        <div class="wf-card">
+          <div class="wf-card-header">
+            <div class="row">
+              <h3 class="wf-card-title" style="font-size:var(--wf-text-base);">Learnings &amp; gotchas</h3>
+              <span class="wf-badge wf-badge-sm">3</span>
+            </div>
+            <span class="wf-tert" style="font-size:var(--wf-text-xs);">from <span class="wf-mono">/Learnings</span></span>
+          </div>
+          <div class="wf-card-body stack" style="gap:var(--wf-space-2);">
+            <div class="spread">
+              <div class="row">
+                <span class="wf-dot wf-dot-obsidian"></span>
+                <span style="font-size:var(--wf-text-sm);font-weight:var(--wf-font-medium);">Cell Editor Stale Closure</span>
+                <span class="wf-badge wf-badge-warning wf-badge-sm">high</span>
+              </div>
+              <div class="row" style="gap:6px;">
+                <button class="wf-button wf-button-obsidian wf-button-sm">↗ Obsidian</button>
+                <button class="wf-button wf-button-secondary wf-button-sm">Open here</button>
+              </div>
+            </div>
+            <hr class="soft" />
+            <div class="spread">
+              <div class="row">
+                <span class="wf-dot wf-dot-obsidian"></span>
+                <span style="font-size:var(--wf-text-sm);font-weight:var(--wf-font-medium);">AG Grid onSelectionChanged Placement</span>
+                <span class="wf-badge wf-badge-sm">med</span>
+              </div>
+              <div class="row" style="gap:6px;">
+                <button class="wf-button wf-button-obsidian wf-button-sm">↗ Obsidian</button>
+                <button class="wf-button wf-button-secondary wf-button-sm">Open here</button>
+              </div>
+            </div>
+            <hr class="soft" />
+            <div class="spread">
+              <div class="row">
+                <span class="wf-dot wf-dot-obsidian"></span>
+                <span style="font-size:var(--wf-text-sm);font-weight:var(--wf-font-medium);">Tailwind Merge Class Conflicts</span>
+                <span class="wf-badge wf-badge-warning wf-badge-sm">high</span>
+              </div>
+              <div class="row" style="gap:6px;">
+                <button class="wf-button wf-button-obsidian wf-button-sm">↗ Obsidian</button>
+                <button class="wf-button wf-button-secondary wf-button-sm">Open here</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="muted-box">Decisions follow the MADR status lifecycle: <b class="wf-sec">proposed → accepted → superseded</b>. The Hub mirrors whatever status the vault note's frontmatter declares — no separate state to keep in sync.</div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== why this matters ===== -->
+  <div class="callout callout-why">
+    This is the <b>Excalibrr Demo project-note</b> rendered as a Hub panel — the same Key Decisions / Active Patterns / Known Issues sections that already exist in the vault, now visible right next to the running prototype. Nobody re-types the rationale; the page is just a read of what the vault already holds.
+  </div>
+
+  <!-- ===== how the join works ===== -->
+  <h2 class="scr-section-h">How the field becomes a panel</h2>
+  <div class="d-wrap">
+    <div class="d-row" style="align-items:stretch;">
+      <!-- vault note -->
+      <div class="d-node d-node-obsidian" style="flex:1.2;text-align:left;">
+        <h4>🧠 Vault note frontmatter</h4>
+        <div class="fm" style="margin-top:8px;text-align:left;"><span class="k">type:</span> <span class="v">learning</span>
+<span class="k">status:</span> <span class="v">active</span>
+<span class="k">severity:</span> <span class="v">high</span>
+<span class="k">tags:</span> <span class="v">[aggrid, closure]</span>
+<span class="k">project:</span> <span class="vl">"[[Grizmo]]"</span>
+<span class="k">date:</span> <span class="v">2026-05-29</span></div>
+        <span class="d-tag">Learnings/Cell Editor Stale Closure.md</span>
+      </div>
+      <div class="d-arrow d-arrow-r" title="Hub reads project field"></div>
+      <!-- hub reads -->
+      <div class="d-node d-node-repo" style="flex:1;text-align:left;">
+        <h4>📦 Hub scans the vault</h4>
+        <p style="margin-top:6px;">On load, the Hub walks every note's frontmatter and buckets each one by its <span class="wf-mono" style="font-size:11px;">project:</span> wikilink + <span class="wf-mono" style="font-size:11px;">type:</span>.</p>
+        <span class="d-tag">project: [[Grizmo]] → Grizmo bucket</span>
+      </div>
+      <div class="d-arrow d-arrow-r" title="renders panel"></div>
+      <!-- hub panel -->
+      <div class="d-node d-node-primary" style="flex:1.1;text-align:left;">
+        <h4>🗂️ Knowledge tab</h4>
+        <p style="margin-top:6px;">Notes group into Decisions / Patterns / Learnings cards. Each row links <span class="wl">↗ Obsidian</span> and <b>Open here</b>.</p>
+        <span class="d-tag">/projects/grizmo · Knowledge</span>
+      </div>
+    </div>
+    <div class="row" style="justify-content:center;margin:var(--wf-space-5) 0 var(--wf-space-2);">
+      <span class="muted-box" style="border-style:solid;border-color:var(--wf-obsidian);background:var(--wf-obsidian-bg);color:var(--wf-obsidian-text);">
+        Reverse direction → the vault note's <span class="wf-mono" style="font-weight:600;">project: [[Grizmo]]</span> link round-trips to the Hub project URL. Edit in either place; the field is the single bind.
+      </span>
+    </div>
+  </div>
+
+  <p class="wf-tert" style="font-size:var(--wf-text-xs);margin-top:var(--wf-space-3);">Counts (3 / 4 / 3) are the Grizmo-linked subset of the real vault — Decisions(6) · Patterns(9) · Learnings(7) across all projects. The Hub filters to whatever carries <span class="wf-mono">project: [[Grizmo]]</span>.</p>
+</div>
+</body>
+</html>

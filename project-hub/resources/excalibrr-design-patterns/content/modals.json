@@ -1,0 +1,148 @@
+{
+  "slug": "modals",
+  "title": "Modals",
+  "order": 6,
+  "group": "Surfaces",
+  "intro": "Every modal maps to one of four width tiers, one internal spacing rhythm, and one footer layout. The content varies; the frame never does.",
+  "demoPath": "/DesignSystem/Modals",
+  "searchTerms": ["Modal", "dialog", "confirm", "popup", "Modal.confirm", "destroyOnHidden", "open", "size tiers", "antd Modal"],
+  "blocks": [
+    {
+      "type": "rules",
+      "title": "The Laws of Modals",
+      "items": [
+        {
+          "rule": "Pick the smallest named tier that fits: sm 480px, md 640px, lg 800px, xl 1080px — never an arbitrary width.",
+          "why": "Widths 20-40px apart are visually indistinguishable, but every one-off (500px, 520px) becomes another variant to maintain. Content either fits a tier or it needs the next one up."
+        },
+        {
+          "rule": "Every modal is three zones — header, body, footer — in that order.",
+          "why": "A fixed anatomy lets users parse any modal instantly: the title says where they are, the footer says how they leave."
+        },
+        {
+          "rule": "Body padding is 24px on all sides; fields sit 16px apart; logical sections sit 24px apart.",
+          "why": "This matches the page-level form rhythm, so content moved into a modal keeps its proportions."
+        },
+        {
+          "rule": "Footer buttons right-align in a flex row with an 8px gap — secondary first, primary (theme1) last.",
+          "why": "Bottom-right is where users expect the affirmative action; an identical footer in every modal builds muscle memory."
+        },
+        {
+          "rule": "One theme1 button per modal.",
+          "why": "Two themed buttons split attention and stall the exact decision the modal exists to force."
+        },
+        {
+          "rule": "Drive visibility with `open`, reset state with `destroyOnHidden`, listen with `afterOpenChange` — never the antd v4 names (`visible`, `destroyOnClose`, `afterVisibleChange`).",
+          "why": "antd v5 keeps `visible` and `destroyOnClose` only as deprecated fallbacks (`open ?? visible`, `destroyOnHidden ?? destroyOnClose`) that log dev-console warnings and lose whenever the v5 prop is also set; `afterVisibleChange` is removed from Modal entirely. The repo CLAUDE.md mistakes table bans the v4 names outright."
+        },
+        {
+          "rule": "Submit forms from the footer with `onClick={() => form.submit()}`, never `htmlType='submit'`.",
+          "why": "The footer renders outside the <Form> element in the DOM, so native submit never fires."
+        },
+        {
+          "rule": "Modals are for blocking decisions; reach for a Drawer or inline panel when users need the page behind.",
+          "why": "The mask removes all context. If the task requires referencing background content or scrolling past a viewport, the modal is fighting the user."
+        }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "Size tiers",
+      "image": "specimens/modals/01-size-tiers.png",
+      "caption": "The four named width tiers at relative scale — sm 480, md 640, lg 800, xl 1080 — with the use case each tier exists for. The jumps between tiers are deliberate: content fits or it moves up a tier."
+    },
+    {
+      "type": "specimen",
+      "title": "Internal spacing zones",
+      "image": "specimens/modals/02-internal-spacing.png",
+      "caption": "The body rhythm: 24px padding on all sides, 16px between fields within a section, 24px between sections. One annotated wireframe covers every spacing decision inside a modal body."
+    },
+    {
+      "type": "specimen",
+      "title": "Standard footer",
+      "image": "specimens/modals/03-footer-pattern.png",
+      "caption": "The only footer layout: flex row, justify-content flex-end, 8px gap, secondary (no theme) then primary (theme1). Secondary first in DOM, primary last."
+    },
+    {
+      "type": "specimen",
+      "title": "Full modal anatomy",
+      "image": "specimens/modals/04-modal-anatomy.png",
+      "caption": "The canonical three-zone structure assembled: header title bar, 24px-padded body with 16px field gaps and a 24px section gap, right-aligned footer with 8px button gap."
+    },
+    {
+      "type": "specimen",
+      "title": "Do's and don'ts",
+      "image": "specimens/modals/05-dos-donts.png",
+      "caption": "Named tiers vs arbitrary widths, and the standard footer vs mixed space-between footers — the two ways modals most often drift off pattern."
+    },
+    {
+      "type": "tokens",
+      "title": "Modal Tokens",
+      "intro": "Four width tiers plus four internal spacing tokens. Every dimension in a modal comes from this table.",
+      "rows": [
+        { "token": "--modal-width-sm", "value": "480px", "use": "Confirmations, 1-3 field forms" },
+        { "token": "--modal-width-md", "value": "640px", "use": "Standard forms, file upload" },
+        { "token": "--modal-width-lg", "value": "800px", "use": "Complex multi-section forms" },
+        { "token": "--modal-width-xl", "value": "1080px", "use": "Data-heavy modals, grids inside modals" },
+        { "token": "--modal-body-padding", "value": "24px", "use": "Body content area padding, all sides" },
+        { "token": "--modal-field-gap", "value": "16px", "use": "Gap between form fields within a section" },
+        { "token": "--modal-section-gap", "value": "24px", "use": "Gap between logical sections in the body" },
+        { "token": "--modal-footer-gap", "value": "8px", "use": "Gap between footer action buttons" }
+      ]
+    },
+    {
+      "type": "code",
+      "title": "Canonical Modal Skeleton",
+      "code": "import { useState } from 'react'\nimport { Modal, Form } from 'antd'\nimport { GraviButton, Horizontal, Vertical } from '@gravitate-js/excalibrr'\n\nexport function EditCounterpartyModal() {\n  const [open, setOpen] = useState(false)\n  const [form] = Form.useForm()\n\n  const handleSave = (values) => {\n    // persist values, then close\n    setOpen(false)\n  }\n\n  return (\n    <Modal\n      title='Edit Counterparty'\n      open={open}                  // antd v5: `open` — `visible` is deprecated\n      width={640}                  // md tier: smallest that fits\n      destroyOnHidden              // antd v5: not `destroyOnClose`\n      onCancel={() => setOpen(false)}\n      footer={\n        <Horizontal justifyContent='flex-end' gap={8}>\n          <GraviButton buttonText='Cancel' onClick={() => setOpen(false)} />\n          <GraviButton theme1 buttonText='Save' onClick={() => form.submit()} />\n        </Horizontal>\n      }\n    >\n      <Form form={form} layout='vertical' onFinish={handleSave}>\n        <Vertical gap={16}>\n          {/* fields — 16px apart; separate sections by 24px */}\n        </Vertical>\n      </Form>\n    </Modal>\n  )\n}",
+      "note": "Width is a tier value, never a guess. The explicit footer override locks in secondary-then-primary order and the 8px gap; `form.submit()` from onClick is required because the footer renders outside the <Form> DOM."
+    },
+    {
+      "type": "dosdonts",
+      "title": "Do's & Don'ts",
+      "items": [
+        {
+          "do": "Map every modal to a named tier — sm 480, md 640, lg 800, xl 1080 — and pick the smallest that fits.",
+          "dont": "Invent widths like 500px or 520px because the content almost fits.",
+          "why": "Tiers 20-40px apart look identical on screen but multiply variants in code. If content doesn't fit, jump a full tier."
+        },
+        {
+          "do": "Right-align footer buttons at an 8px gap: Cancel, then the single theme1 primary.",
+          "dont": "Use space-between footers, 16px button gaps, or per-modal button arrangements.",
+          "why": "One footer layout across the app means users never hunt for the confirm button."
+        },
+        {
+          "do": "Lay out body content with Vertical gap={16} inside sections and 24px between sections.",
+          "dont": "Eyeball margins on individual fields.",
+          "why": "Tokenized gaps survive refactors; ad-hoc margins drift modal by modal."
+        }
+      ]
+    },
+    {
+      "type": "gotchas",
+      "title": "Gotchas",
+      "items": [
+        {
+          "title": "antd v5: `open`, not `visible`",
+          "detail": "antd v5 keeps `visible` only as a deprecated fallback — Modal resolves `open ?? visible`, logs a dev-console deprecation warning, and ignores `visible` entirely once `open` is present. Write open={isOpen}; the repo CLAUDE.md mistakes table bans `visible`."
+        },
+        {
+          "title": "antd v5: `destroyOnHidden`, not `destroyOnClose`",
+          "detail": "antd v5 resolves `destroyOnHidden ?? destroyOnClose`, so the v4 name still works but logs a deprecation warning and is banned by the repo CLAUDE.md mistakes table. Without destroyOnHidden, form state survives close and the next open shows stale values."
+        },
+        {
+          "title": "antd v5: `onOpenChange`, not `onVisibleChange`",
+          "detail": "Applies to the open-state surfaces around a modal (Dropdown, Popover, Tooltip) — Modal itself listens with `afterOpenChange`. In antd v5 the v4 callback still fires as a deprecated alias with a console warning; write all handlers against onOpenChange."
+        },
+        {
+          "title": "GraviButton renders `buttonText`, not children",
+          "detail": "A footer written as <GraviButton>Cancel</GraviButton> renders an empty button. Self-close and pass buttonText='Cancel'."
+        }
+      ]
+    },
+    {
+      "type": "usage",
+      "title": "Choosing the Surface and the Tier",
+      "body": "Reach for a modal when the user must make a focused, blocking decision — confirm a delete, fill a short form, resolve a conflict — and the page behind is irrelevant until they do. When the user needs to reference the page behind, or the content scrolls past a viewport, use a Drawer or an inline panel instead (see Panels).\n\nTier choice is a content question, not a taste question: count fields and sections. One to three fields is `sm`; a standard single-section form is `md`; a multi-section form is `lg`; anything embedding a grid is `xl` — and a grid inside a modal is itself a signal to consider a dedicated page.\n\n`Modal.confirm` and its siblings are fine for one-line confirmations with no inputs. The moment a modal collects data, it gets the full three-zone layout: titled header, 24px-padded body, standard footer."
+    }
+  ]
+}

@@ -1,0 +1,206 @@
+.alert-card {
+  background: var(--gray-100);
+  border: solid 1px var(--gray-200);
+  border-radius: 3px;
+}
+.alert-card.warning {
+  border: solid 1px var(--theme-warning-dim);
+}
+.alert-card.critical {
+  border: solid 1px var(--theme-error-dim);
+}
+.alert-card.error {
+  border: solid 1px var(--theme-color-3-dim);
+}
+.alert-icon {
+  background: var(--gray-700);
+  height: 24px;
+  width: 24px;
+  color: var(--gray-100);
+  border-radius: 5px;
+}
+.alert-icon.resolved {
+  background: var(--gray-300);
+  color: var(--gray-600);
+}
+.alert-icon.warning {
+  background: var(--theme-warning-dim);
+  color: var(--theme-warning);
+}
+.notification-icon {
+  font-size: 1.4em;
+}
+.alert-button {
+  font-size: 0.9em;
+  height: 25px;
+  padding: 0;
+}
+
+/* --- Scout cross-page chrome (ALR-3, ALR-4) ------------------------------ */
+/* These render OUTSIDE .scout-scope, so use theme tokens (:root level). */
+
+.scout-name-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  margin-right: 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  border: 1px solid var(--gray-300);
+  background: var(--gray-100);
+  color: var(--gray-700);
+}
+.scout-name-tag--thinking {
+  border-color: #dfd4f0;
+  color: #715daa;
+}
+.scout-name-tag--ready {
+  border-color: #dfd4f0;
+  color: #715daa;
+}
+.scout-name-tag__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+  background: var(--gray-500);
+}
+.scout-name-tag__dot--thinking {
+  background: #715daa;
+  animation: scout-name-pulse 1.1s ease-in-out infinite;
+}
+.scout-name-tag__dot--ready {
+  background: #715daa;
+}
+.scout-name-tag__label {
+  display: inline-block;
+}
+@keyframes scout-name-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.7);
+  }
+}
+
+.scout-name-indicator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  margin-left: 6px;
+  border-radius: 999px;
+  background: #715daa;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+/* --- Scout drawer thread cards (ALR-1, ALR-2) ---------------------------- */
+
+.scout-alert-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0 16px 16px;
+}
+.alert-card.scout-alert-card {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  text-align: left;
+  padding: 12px;
+  cursor: pointer;
+  background: var(--gray-100);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.alert-card.scout-alert-card:hover {
+  border-color: var(--gray-400);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+.alert-card.scout-alert-card--ready {
+  border-color: #715daa;
+}
+.scout-alert-icon {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.scout-alert-icon--thinking {
+  background: #efe9f8;
+  color: #715daa;
+}
+.scout-alert-icon--ready {
+  background: #715daa;
+  color: #fff;
+}
+.scout-alert-card__body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.scout-alert-card__head {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.scout-alert-card__title {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gray-800, var(--gray-700));
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.scout-alert-card__time {
+  flex: 0 0 auto;
+  font-size: 11px;
+  color: var(--gray-500);
+}
+.scout-alert-card__preview {
+  margin-top: 3px;
+  font-size: 12px;
+  color: var(--gray-600);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.scout-alert-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+.scout-alert-card__status {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.scout-alert-card__status--in-progress {
+  color: #715daa;
+}
+.scout-alert-card__status--ready {
+  color: #715daa;
+}
+.scout-alert-card__eta {
+  font-size: 11px;
+  color: var(--gray-500);
+  font-variant-numeric: tabular-nums;
+}

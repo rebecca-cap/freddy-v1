@@ -1,0 +1,180 @@
+{
+  "slug": "bottom-drawers",
+  "title": "Bottom Drawers",
+  "order": 8,
+  "group": "Surfaces",
+  "intro": "Bottom drawers slide up from the page footer and run the full viewport width — the editing surface for grid-anchored workflows. Three viewport-height tiers, one header recipe, and a sticky footer make every drawer identical.",
+  "demoPath": "/DesignSystem/BottomDrawers",
+  "searchTerms": [
+    "Drawer",
+    "placement bottom",
+    "bottom sheet",
+    "antd Drawer",
+    "drawer height",
+    "50vh",
+    "70vh",
+    "85vh",
+    "sticky footer",
+    "drawer header",
+    "CloseOutlined"
+  ],
+  "blocks": [
+    {
+      "type": "rules",
+      "title": "The Laws of Bottom Drawers",
+      "intro": "Eight rules govern every bottom drawer. Follow all of them and any two drawers in the product are interchangeable.",
+      "items": [
+        {
+          "rule": "Heights come from the tier system — compact 50vh, standard 70vh, full 85vh. Never invent a fourth value.",
+          "why": "Viewport-height units keep drawers proportional on every screen; arbitrary px or % heights make sibling drawers visibly inconsistent."
+        },
+        {
+          "rule": "Pick the smallest tier that fits the content without scrolling the primary action area.",
+          "why": "Every extra vh hides the grid context the user is editing against. Upgrade a tier only when the content genuinely needs it."
+        },
+        {
+          "rule": "Every drawer is three zones: custom header, scrollable body (`flex: 1`, `overflow-y: auto`), sticky footer.",
+          "why": "Only the body scrolls — the title and commit actions stay visible no matter how long the content gets."
+        },
+        {
+          "rule": "Disable antd's default chrome — `title={null}`, `closable={false}`, body padding 0 — and build the header yourself.",
+          "why": "antd's built-in header renders differently from the house pattern; nulling it is the only way every drawer ships the same header."
+        },
+        {
+          "rule": "Header: padding `12px 24px`, `Texto` h5 title on the left, `CloseOutlined` on the right, 1px bottom border.",
+          "why": "One header recipe means users find the title and the close affordance in the same place in every drawer."
+        },
+        {
+          "rule": "Footer: sticky, padding `12px 24px`, 1px top border, actions right-aligned with an 8px gap — Cancel before the primary.",
+          "why": "Sticky placement keeps commit actions reachable while the body scrolls; fixed ordering means muscle memory transfers between drawers."
+        },
+        {
+          "rule": "An open drawer must never push the grid below usability — cumulative non-grid chrome stays at or under 320px.",
+          "why": "A drawer that shoves the grid offscreen forces users to close it just to see the result of their edit. Budget the chrome or use overlay placement."
+        },
+        {
+          "rule": "Use the antd v5 API: `open`, `afterOpenChange`, `destroyOnHidden` — never `visible`, `afterVisibleChange`, or `destroyOnClose`. Drawer's close handler is `onClose` in both versions.",
+          "why": "The old names survive only as deprecated shims — they warn in console today and disappear on a future antd upgrade."
+        }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "Size tiers",
+      "image": "specimens/bottom-drawers/01-size-tiers.png",
+      "caption": "The three height tiers — compact 50vh, standard 70vh, full 85vh — with the workloads each is sized for. Choose the smallest tier that fits without scrolling the primary action area."
+    },
+    {
+      "type": "specimen",
+      "title": "Drawer anatomy",
+      "image": "specimens/bottom-drawers/02-drawer-anatomy.png",
+      "caption": "Three-zone anatomy — custom header, scrollable body, sticky footer — plus the four props that disable antd's default chrome so the custom header can take over."
+    },
+    {
+      "type": "specimen",
+      "title": "Header pattern",
+      "image": "specimens/bottom-drawers/03-header-pattern.png",
+      "caption": "The custom header spec: 12px vertical and 24px horizontal padding, Texto h5 title left, CloseOutlined right, 1px bottom border separating header from body."
+    },
+    {
+      "type": "specimen",
+      "title": "Tier and chrome discipline",
+      "image": "specimens/bottom-drawers/04-dos-donts.png",
+      "caption": "Tier discipline (three vh values, nothing else) and chrome nulling (one header recipe) shown side by side with the violations they replace."
+    },
+    {
+      "type": "usage",
+      "title": "When to reach for a bottom drawer",
+      "body": "Bottom drawers are the grid's editing surface. They run the full viewport width, so they fit wide forms, tab sets, and embedded grids that a 400-520px side drawer cannot. Use one when the user edits something anchored to a row while the column context stays visible above — scenario editors, exception drawers, profile managers.\n\nUse a side drawer for narrow inspection and detail panes, and a modal for blocking confirmations. If the editor needs the entire screen, it is a page, not a drawer."
+    },
+    {
+      "type": "tokens",
+      "title": "Sizing and spacing tokens",
+      "intro": "Three height tokens plus the fixed chrome constants. These are the only dimensional decisions a bottom drawer is allowed to make.",
+      "rows": [
+        {
+          "token": "--drawer-height-compact",
+          "value": "50vh",
+          "use": "Compact tier — single form, confirmation, quick-edit panels"
+        },
+        {
+          "token": "--drawer-height-standard",
+          "value": "70vh",
+          "use": "Standard tier — scenario and formula editors, multi-field forms, tabbed content"
+        },
+        {
+          "token": "--drawer-height-full",
+          "value": "85vh",
+          "use": "Full tier — split views, grid + detail layouts, profile managers"
+        },
+        {
+          "token": "header / footer padding",
+          "value": "12px 24px",
+          "use": "Vertical and horizontal padding on the header bar and sticky footer"
+        },
+        {
+          "token": "footer action gap",
+          "value": "8px",
+          "use": "Gap between right-aligned footer buttons; Cancel sits left of the primary"
+        },
+        {
+          "token": "zone divider",
+          "value": "1px solid #f0f0f0",
+          "use": "border-bottom under the header, border-top above the footer"
+        },
+        {
+          "token": "non-grid chrome budget",
+          "value": "≤ 320px",
+          "use": "Hard ceiling on cumulative non-grid chrome while a drawer is open against a grid"
+        }
+      ]
+    },
+    {
+      "type": "code",
+      "title": "Canonical bottom drawer",
+      "code": "<Drawer\n  placement='bottom'\n  height='70vh' // standard tier — always one of 50vh / 70vh / 85vh\n  open={isOpen}\n  onClose={onClose}\n  title={null}\n  closable={false}\n  destroyOnHidden\n  styles={{ body: { padding: 0, display: 'flex', flexDirection: 'column' } }}\n>\n  {/* Header — custom bar replaces antd chrome */}\n  <Horizontal\n    justifyContent='space-between'\n    alignItems='center'\n    style={{ padding: '12px 24px', borderBottom: '1px solid #f0f0f0' }}\n  >\n    <Texto category='h5'>Edit Scenario</Texto>\n    <CloseOutlined onClick={onClose} style={{ cursor: 'pointer', fontSize: 14 }} />\n  </Horizontal>\n\n  {/* Body — the only zone that scrolls */}\n  <div style={{ flex: 1, overflowY: 'auto' }}>{children}</div>\n\n  {/* Footer — sticky, actions right-aligned */}\n  <Horizontal\n    justifyContent='flex-end'\n    gap={8}\n    style={{ padding: '12px 24px', borderTop: '1px solid #f0f0f0' }}\n  >\n    <GraviButton buttonText='Cancel' onClick={onClose} />\n    <GraviButton theme1 buttonText='Save' onClick={onSave} />\n  </Horizontal>\n</Drawer>",
+      "note": "This exact skeleton is the starting point for every bottom drawer. Note the v5 props (open, destroyOnHidden), GraviButton's buttonText prop, and theme1 for the primary action — not type='primary'."
+    },
+    {
+      "type": "dosdonts",
+      "items": [
+        {
+          "do": "Pull heights from the three tiers: height=\"50vh\", \"70vh\", or \"85vh\".",
+          "dont": "Mix units or invent values — height=\"70%\", \"80vh\", \"720px\".",
+          "why": "The tier system is what makes sibling drawers feel like one product; arbitrary heights drift immediately."
+        },
+        {
+          "do": "Null the default chrome (title={null}, closable={false}) and render the standard custom header bar.",
+          "dont": "Pass a string or node to antd's title prop, or leave closable={true} alongside a custom close icon.",
+          "why": "Mixing antd chrome with custom headers produces three different-looking drawers on one screen — and sometimes two close buttons."
+        },
+        {
+          "do": "Keep Cancel and the primary action in the sticky footer, right-aligned, 8px apart.",
+          "dont": "Put commit actions in the header or let them scroll away inside the body.",
+          "why": "Users commit from the same corner in every drawer; scrolling to find Save is a defect, not a style choice."
+        }
+      ]
+    },
+    {
+      "type": "gotchas",
+      "items": [
+        {
+          "title": "Drawer chrome can bury the grid",
+          "detail": "When a drawer stays open while the user works against a grid, every pixel of non-grid chrome counts. Keep the cumulative total — page header, control bar, drawer header and footer, notices — at or under 320px. If even the compact tier buries the grid, switch to overlay placement or rethink the surface; never ship a drawer the user must close to see the result of their own edit."
+        },
+        {
+          "title": "Deprecated antd prop names still compile",
+          "detail": "visible, destroyOnClose, and afterVisibleChange are deprecated names. Use open, destroyOnHidden, and afterOpenChange — the deprecated names still compile and emit console warnings today, and disappear on a future antd upgrade. Drawer has no onOpenChange; wire close through onClose."
+        },
+        {
+          "title": "GraviButton takes buttonText, not children",
+          "detail": "GraviButton's contract is the buttonText prop. Excalibrr 4.x drops React children silently — <GraviButton>Save</GraviButton> renders an empty button; 5.x falls back to children, but buttonText always wins when both are set. Self-close the element and pass buttonText='Save' in every version."
+        },
+        {
+          "title": "Skipping the body padding reset",
+          "detail": "antd gives the drawer body 24px padding by default. Without styles={{ body: { padding: 0, display: 'flex', flexDirection: 'column' } }}, content double-pads, the footer floats mid-drawer instead of pinning to the bottom, and edge-to-edge content like tabs and grids shows a white gutter."
+        }
+      ]
+    }
+  ]
+}

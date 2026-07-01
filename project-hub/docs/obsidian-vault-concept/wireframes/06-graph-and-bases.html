@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>06 · Graph as team memory + Decisions as ADRs</title>
+<link rel="stylesheet" href="wf-base.css" />
+</head>
+<body>
+<div class="wfp wfp-wide">
+  <div class="wf-banner">Concept wireframe · <b>06 / Graph &amp; Bases</b> · rough &amp; low-fi — layout and idea, not final visuals. Obsidian-purple = the vault; Hub-green/blue = the app.</div>
+
+  <p class="scr-eyebrow">Moves 5 &amp; 6 · Compounding</p>
+  <h1 class="scr-title">The graph is the institutional memory</h1>
+  <p class="scr-sub">The linked graph turns scattered notes into a navigable map of <b>how the product got here</b> — which decisions and patterns each project leans on, and which ones quietly get reused everywhere. Conforming the <b>Decisions</b> folder to ADRs (one decision per file, numbered, immutable once accepted) makes that map <i>trustworthy</i>: you can hand it to a new teammate and they'll believe it.</p>
+
+  <!-- ===== A · portfolio graph ===== -->
+  <div class="frame-label">◇ Portfolio graph (illustrative)</div>
+  <div class="frame" style="padding:var(--wf-space-5);margin-bottom:var(--wf-space-4);">
+    <div class="spread" style="margin-bottom:var(--wf-space-3);">
+      <span class="wf-mono wf-tert" style="font-size:11px;">Graph view — filtered to Projects + linked Decisions / Patterns / Learnings</span>
+      <span class="row" style="gap:var(--wf-space-4);font-size:var(--wf-text-xs);color:var(--wf-color-text-secondary);">
+        <span class="row" style="gap:6px;"><span class="wf-dot wf-dot-primary"></span> project</span>
+        <span class="row" style="gap:6px;"><span class="wf-dot wf-dot-obsidian"></span> decision / pattern / learning</span>
+        <span class="row" style="gap:6px;"><span class="wf-mono" style="font-size:10px;">shared</span> = linked by both</span>
+      </span>
+    </div>
+    <svg viewBox="0 0 900 360" width="100%" role="img" aria-label="Portfolio knowledge graph">
+      <!-- edges (draw first, under nodes) -->
+      <!-- Grizmo -->
+      <line x1="270" y1="120" x2="120" y2="60"  stroke="#c4b5fd" stroke-width="1.5"/>
+      <line x1="270" y1="120" x2="110" y2="180" stroke="#c4b5fd" stroke-width="1.5"/>
+      <line x1="270" y1="120" x2="150" y2="300" stroke="#c4b5fd" stroke-width="1.5"/>
+      <line x1="270" y1="120" x2="450" y2="200" stroke="#a78bfa" stroke-width="2"/>
+      <!-- Quote Filter Bar -->
+      <line x1="630" y1="240" x2="790" y2="300" stroke="#c4b5fd" stroke-width="1.5"/>
+      <line x1="630" y1="240" x2="800" y2="170" stroke="#c4b5fd" stroke-width="1.5"/>
+      <line x1="630" y1="240" x2="700" y2="90"  stroke="#c4b5fd" stroke-width="1.5"/>
+      <line x1="630" y1="240" x2="450" y2="200" stroke="#a78bfa" stroke-width="2"/>
+      <!-- shared GDS bridges both -->
+      <!-- secondary cross-links -->
+      <line x1="450" y1="200" x2="700" y2="90"  stroke="#ddd6fe" stroke-width="1.5"/>
+      <line x1="450" y1="200" x2="110" y2="180" stroke="#ddd6fe" stroke-width="1.5"/>
+
+      <!-- satellite nodes (purple) -->
+      <circle cx="120" cy="60"  r="30" fill="#ede9fe" stroke="#c4b5fd" stroke-width="1.5"/>
+      <text x="120" y="57" text-anchor="middle" font-size="11" fill="#5b21b6" font-family="sans-serif">Use</text>
+      <text x="120" y="70" text-anchor="middle" font-size="11" fill="#5b21b6" font-family="sans-serif">Excalibrr…</text>
+
+      <circle cx="110" cy="180" r="30" fill="#ede9fe" stroke="#c4b5fd" stroke-width="1.5"/>
+      <text x="110" y="177" text-anchor="middle" font-size="11" fill="#5b21b6" font-family="sans-serif">Context</text>
+      <text x="110" y="190" text-anchor="middle" font-size="11" fill="#5b21b6" font-family="sans-serif">State Mgmt</text>
+
+      <circle cx="150" cy="300" r="30" fill="#ede9fe" stroke="#c4b5fd" stroke-width="1.5"/>
+      <text x="150" y="297" text-anchor="middle" font-size="11" fill="#5b21b6" font-family="sans-serif">GraviGrid</text>
+      <text x="150" y="310" text-anchor="middle" font-size="11" fill="#5b21b6" font-family="sans-serif">Config</text>
+
+      <circle cx="700" cy="90"  r="30" fill="#ede9fe" stroke="#c4b5fd" stroke-width="1.5"/>
+      <text x="700" y="87" text-anchor="middle" font-size="11" fill="#5b21b6" font-family="sans-serif">Feature</text>
+      <text x="700" y="100" text-anchor="middle" font-size="11" fill="#5b21b6" font-family="sans-serif">API Hook</text>
+
+      <circle cx="800" cy="170" r="30" fill="#ede9fe" stroke="#c4b5fd" stroke-width="1.5"/>
+      <text x="800" y="167" text-anchor="middle" font-size="11" fill="#5b21b6" font-family="sans-serif">Tailwind</text>
+      <text x="800" y="180" text-anchor="middle" font-size="11" fill="#5b21b6" font-family="sans-serif">Merge</text>
+
+      <circle cx="790" cy="300" r="30" fill="#ede9fe" stroke="#c4b5fd" stroke-width="1.5"/>
+      <text x="790" y="297" text-anchor="middle" font-size="11" fill="#5b21b6" font-family="sans-serif">Cell Editor</text>
+      <text x="790" y="310" text-anchor="middle" font-size="11" fill="#5b21b6" font-family="sans-serif">Stale</text>
+
+      <!-- shared bridging node (purple, larger, emphasized) -->
+      <circle cx="450" cy="200" r="42" fill="#ddd6fe" stroke="#7c3aed" stroke-width="2.5"/>
+      <text x="450" y="195" text-anchor="middle" font-size="11" fill="#5b21b6" font-family="sans-serif" font-weight="600">GDS</text>
+      <text x="450" y="208" text-anchor="middle" font-size="11" fill="#5b21b6" font-family="sans-serif" font-weight="600">Design System</text>
+
+      <!-- project nodes (blue) -->
+      <circle cx="270" cy="120" r="38" fill="#2563eb" stroke="#1d4ed8" stroke-width="2"/>
+      <text x="270" y="124" text-anchor="middle" font-size="12" fill="#ffffff" font-family="sans-serif" font-weight="600">Grizmo</text>
+
+      <circle cx="630" cy="240" r="40" fill="#2563eb" stroke="#1d4ed8" stroke-width="2"/>
+      <text x="630" y="237" text-anchor="middle" font-size="11.5" fill="#ffffff" font-family="sans-serif" font-weight="600">Quote</text>
+      <text x="630" y="250" text-anchor="middle" font-size="11.5" fill="#ffffff" font-family="sans-serif" font-weight="600">Filter Bar</text>
+    </svg>
+    <p class="anno" style="display:none;"></p>
+  </div>
+  <p class="wf-tert" style="font-size:var(--wf-text-xs);margin:0 0 var(--wf-space-4);">Nodes &amp; edges are illustrative — Obsidian renders the real graph live from <span class="wf-mono">[[wikilinks]]</span>. The point isn't the picture; it's that <b>GDS Design System</b> sits in the middle because <i>both</i> projects link it — cross-project reuse you didn't plan for, made visible.</p>
+
+  <div class="callout callout-why">
+    <b>Why this matters.</b> The shared node is the payoff. A new teammate opens the graph, sees that one decision or pattern touches half the portfolio, and knows where to start reading. Reuse that lived only in someone's head becomes a node anyone can click.
+  </div>
+
+  <!-- ===== B · Bases dashboard ===== -->
+  <h2 class="scr-section-h">A dashboard the team actually trusts</h2>
+  <div class="frame-label">◇ Bases dashboard — Open Decisions</div>
+  <div class="frame" style="margin-bottom:var(--wf-space-3);">
+    <div style="padding:var(--wf-space-3) var(--wf-space-4);border-bottom:1px solid var(--wf-color-border-light);background:var(--wf-color-neutral-50);">
+      <span class="wf-mono wf-sec" style="font-size:12px;">Decisions/_index.md</span>
+    </div>
+    <div style="padding:var(--wf-space-4) var(--wf-space-5);">
+      <p class="wf-tert" style="font-size:var(--wf-text-xs);margin:0 0 var(--wf-space-3);">Embedded with <span class="wf-mono wf-sec">![[Decisions.base#Open]]</span> — a saved view that filters the folder by frontmatter and renders as a live table.</p>
+      <table class="t">
+        <thead><tr><th>Decision</th><th style="width:110px;">Status</th><th style="width:170px;">Project</th><th style="width:96px;">Date</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="wl">Use Excalibrr Over Raw Antd</span></td>
+            <td><span class="wf-badge wf-badge-success wf-badge-sm">accepted</span></td>
+            <td class="wf-sec">Excalibrr Demo</td>
+            <td class="wf-mono wf-tert" style="font-size:11px;">2026-03-06</td>
+          </tr>
+          <tr>
+            <td><span class="wl">Centralized Page Configuration</span></td>
+            <td><span class="wf-badge wf-badge-success wf-badge-sm">accepted</span></td>
+            <td class="wf-sec">Excalibrr Demo</td>
+            <td class="wf-mono wf-tert" style="font-size:11px;">2026-03-06</td>
+          </tr>
+          <tr>
+            <td><span class="wl">Two-Surface Profile Architecture</span></td>
+            <td><span class="wf-badge wf-badge-warning wf-badge-sm">proposed</span></td>
+            <td class="wf-sec">Exception Profiles</td>
+            <td class="wf-mono wf-tert" style="font-size:11px;">2026-03</td>
+          </tr>
+          <tr>
+            <td><span class="wl">Hard Soft Severity Model</span></td>
+            <td><span class="wf-badge wf-badge-success wf-badge-sm">accepted</span></td>
+            <td class="wf-sec">Exception Profiles</td>
+            <td class="wf-mono wf-tert" style="font-size:11px;">2026-03</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <p class="wf-tert" style="font-size:var(--wf-text-xs);margin:0 0 var(--wf-space-3);">Same view renders inside the Hub's read-only KB page and in Obsidian — one <span class="wf-mono">.base</span> file, two surfaces.</p>
+
+  <div class="callout callout-obsidian">
+    <b>Bases is a NATIVE core plugin</b> — it ships with Obsidian (since v1.9), so <span class="wf-mono">.base</span> files are plain text, version-control cleanly in the repo, and render for every teammate with <b>zero install</b>. Dataview (a community plugin that runs JS) stays the power-user escape hatch for queries Bases can't express — but the shared dashboards default to Bases so nobody has to set anything up.
+  </div>
+
+  <!-- ===== C · Decisions as MADR ADRs ===== -->
+  <h2 class="scr-section-h">Decisions as MADR ADRs</h2>
+  <div class="frame-label">◇ One decision per file — numbered &amp; immutable</div>
+  <div class="grid2">
+    <!-- LEFT: ADR note skeleton -->
+    <div class="wf-card">
+      <div class="wf-card-header">
+        <div>
+          <h3 class="wf-card-title" style="font-size:var(--wf-text-base);">0008-two-surface-profile-architecture.md</h3>
+          <p class="wf-card-subtitle">MADR template · Decisions/</p>
+        </div>
+        <span class="wf-badge wf-badge-warning wf-badge-sm">proposed</span>
+      </div>
+      <div class="wf-card-body">
+        <div class="fm"><span class="k">type:</span> <span class="v">decision</span>
+<span class="k">status:</span> <span class="v">accepted</span>
+<span class="k">supersedes:</span> <span class="vl">"[[0007-single-profile-surface]]"</span>
+<span class="k">project:</span> <span class="vl">"[[Exception Profiles]]"</span>
+<span class="k">date:</span> <span class="v">2026-03-09</span>
+<span class="k">deciders:</span> <span class="v">[frank, reece]</span></div>
+        <div class="stack" style="gap:6px;font-size:var(--wf-text-sm);">
+          <div class="row"><span class="wf-dot wf-dot-obsidian"></span> <b>Context</b> <span class="wf-tert" style="font-size:var(--wf-text-xs);">— what forced the choice</span></div>
+          <div class="row"><span class="wf-dot wf-dot-obsidian"></span> <b>Decision Drivers</b></div>
+          <div class="row"><span class="wf-dot wf-dot-obsidian"></span> <b>Considered Options</b> <span class="wf-tert" style="font-size:var(--wf-text-xs);">— incl. rejected</span></div>
+          <div class="row"><span class="wf-dot wf-dot-obsidian"></span> <b>Decision</b></div>
+          <div class="row"><span class="wf-dot wf-dot-obsidian"></span> <b>Consequences</b> <span class="wf-tert" style="font-size:var(--wf-text-xs);">— good &amp; bad</span></div>
+          <div class="row"><span class="wf-dot wf-dot-obsidian"></span> <b>Related</b> <span class="wf-tert" style="font-size:var(--wf-text-xs);">— <span class="wl">Patterns</span>, <span class="wl">Learnings</span></span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: the rules -->
+    <div class="callout callout-why" style="margin:0;">
+      <p style="margin:0 0 var(--wf-space-3);"><b>The rules that make the log trustworthy:</b></p>
+      <div class="stack" style="gap:8px;">
+        <div class="row" style="align-items:flex-start;"><span class="anno">1</span> <span><b>One decision per file.</b> No mega-docs — each ADR answers exactly one question.</span></div>
+        <div class="row" style="align-items:flex-start;"><span class="anno">2</span> <span><b>Numbered</b> <span class="wf-mono" style="font-size:11px;">NNNN-title.md</span> — order is the timeline, no reshuffling.</span></div>
+        <div class="row" style="align-items:flex-start;"><span class="anno">3</span> <span><b>Immutable once accepted.</b> Don't edit history — write a new ADR that <span class="wf-mono" style="font-size:11px;">supersedes:</span> the old one.</span></div>
+        <div class="row" style="align-items:flex-start;"><span class="anno">4</span> <span><b>Reviewed in a PR, like code.</b> A decision lands the same way a change does.</span></div>
+      </div>
+      <hr class="soft" />
+      <p style="margin:0;">That audit trail is what turns the log into <b>trustworthy memory</b> — and kills the bus-factor. The <i>why</i> survives the person who decided it.</p>
+    </div>
+  </div>
+
+  <!-- ===== hygiene footer ===== -->
+  <div class="muted-box" style="margin-top:var(--wf-space-6);">
+    <b style="color:var(--wf-color-text-secondary);">Hygiene</b> — pick a small, controlled tag vocabulary and prune it in retros. Shared vaults rot faster than personal ones because no single owner feels responsible; the ADR rules and a tight tag set are the guardrails that keep the graph readable a year from now.
+  </div>
+</div>
+</body>
+</html>

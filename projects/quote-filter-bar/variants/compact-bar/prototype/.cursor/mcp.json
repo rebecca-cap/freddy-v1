@@ -1,0 +1,35 @@
+{
+  "mcpServers": {
+    "context7": {
+      "command": "npx -y @upstash/context7-mcp",
+      "env": {}
+    },
+    "Notion": {
+      "url": "https://mcp.notion.com/mcp"
+    },
+    "time": {
+      "command": "docker run -i --rm mcp/time"
+    },
+    "sequential-thinking": {
+      "command": "npx -y @modelcontextprotocol/server-sequential-thinking"
+    },
+    "jira": {
+      "url": "https://mcp.atlassian.com/v1/sse"
+    },
+    "local_pe_db": {
+      "command": "npx @bytebase/dbhub",
+      "env": {
+        "TRANSPORT": "stdio",
+        "DSN": "sqlserver://sa:Atleast8@localhost:1433/PE_local?sslmode=disable",
+        "READONLY": "true"
+      }
+    },
+    "excalibrr-mcp-server": {
+      "command": "node ${import.meta.env.VITE_EXCALIBRR_MCP_SERVER_PATH}",
+      "env": {
+        "EXCALIBRR_PATH": "${import.meta.env.VITE_EXCALIBRR_PATH}",
+        "USAGE_EXAMPLES_PATH": "${import.meta.env.VITE_USAGE_EXAMPLES_PATH}"
+      }
+    }
+  }
+}

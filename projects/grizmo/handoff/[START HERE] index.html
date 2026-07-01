@@ -1,0 +1,1071 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scout — Developer Handoff</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --brand:#715DAA; --brand-ink:#5C4A91; --brand-soft:#F1EDF8; --brand-soft-2:#E3DBF2;
+  --ink:#1d1c24; --ink-2:#4b4960; --ink-3:#76748a; --line:#e7e5ef; --line-2:#efedf6;
+  --bg:#ffffff; --bg-2:#faf9fd; --bg-3:#f4f2fa;
+  --ok:#1f9d57; --warn:#c98a00; --danger:#d4453b;
+  --sidebar-w:268px; --maxw:880px; --radius:14px;
+  --shadow:0 1px 2px rgba(20,18,40,.05),0 8px 28px rgba(20,18,40,.07);
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Lato',system-ui,sans-serif;color:var(--ink);background:var(--bg-2);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--brand-ink);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* sidebar */
+.sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg);border-right:1px solid var(--line);padding:26px 20px;overflow-y:auto;z-index:30}
+.brand{display:flex;align-items:center;gap:10px}
+.brand__mark{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--brand),#9b86d6);box-shadow:0 2px 8px rgba(113,93,170,.4)}
+.brand__name{font-weight:900;font-size:21px;letter-spacing:-.01em}
+.brand__sub{margin:4px 0 22px 36px;font-size:11.5px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;line-height:1.4}
+.nav{display:flex;flex-direction:column;gap:1px}
+.nav a{display:flex;align-items:baseline;gap:10px;padding:8px 11px;border-radius:9px;color:var(--ink-2);font-size:14px;font-weight:700;line-height:1.3}
+.nav a:hover{background:var(--bg-3);text-decoration:none;color:var(--ink)}
+.nav a.active{background:var(--brand-soft);color:var(--brand-ink)}
+.nav__num{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--ink-3);min-width:18px}
+.nav a.active .nav__num{color:var(--brand)}
+.sidebar__meta{margin-top:24px;padding-top:16px;border-top:1px solid var(--line-2);font-size:11.5px;color:var(--ink-3);line-height:1.5}
+
+/* main */
+.main{margin-left:var(--sidebar-w);max-width:var(--maxw);padding:64px 56px 120px}
+.doc-head h1{font-size:46px;font-weight:900;letter-spacing:-.025em;margin:0 0 12px}
+.doc-head__tagline{font-size:20px;color:var(--ink);margin:0 0 14px;max-width:62ch}
+.doc-head__note{font-size:14.5px;color:var(--ink-2);background:var(--bg);border:1px solid var(--line);border-left:3px solid var(--brand);border-radius:10px;padding:14px 18px;max-width:70ch}
+
+/* sections */
+.section{padding-top:64px;margin-top:24px;border-top:1px solid var(--line-2)}
+.section:first-of-type{border-top:none}
+.section__eyebrow{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--brand);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.section h2{font-size:30px;font-weight:900;letter-spacing:-.02em;margin:0 0 18px}
+.section h3{font-size:19px;font-weight:800;margin:34px 0 10px}
+.section h4{font-size:15px;font-weight:800;margin:22px 0 6px;color:var(--ink)}
+.section p{font-size:15.5px;color:var(--ink-2);max-width:72ch}
+.section p b,.section li b{color:var(--ink)}
+.lead{font-size:17.5px!important;color:var(--ink)!important;max-width:70ch}
+.section ul,.section ol{font-size:15.5px;color:var(--ink-2);max-width:72ch;padding-left:22px}
+.section li{margin:5px 0}
+.section li::marker{color:var(--brand)}
+
+/* callouts */
+.callout{border-radius:12px;padding:14px 18px;margin:20px 0;font-size:14.5px;border:1px solid var(--line);background:var(--bg)}
+.callout--info{border-left:3px solid var(--brand);background:var(--brand-soft)}
+.callout--warn{border-left:3px solid var(--warn);background:#fdf6e7}
+.callout--note{border-left:3px solid var(--ink-3);background:var(--bg-3)}
+.callout b{display:block;margin-bottom:3px}
+
+/* pills / kbd / tokens */
+.pill{display:inline-block;font-size:12px;font-weight:700;padding:2px 9px;border-radius:999px;background:var(--brand-soft);color:var(--brand-ink);border:1px solid var(--brand-soft-2)}
+.kbd{font-family:var(--mono);font-size:12.5px;background:var(--bg);border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;padding:1px 6px;color:var(--ink)}
+.tok{font-family:var(--mono);font-size:13px;background:var(--bg-3);border:1px solid var(--line);border-radius:5px;padding:1px 6px;color:var(--brand-ink)}
+
+/* tables */
+table{border-collapse:collapse;width:100%;margin:18px 0;font-size:14px;background:var(--bg);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line-2);vertical-align:top}
+th{background:var(--bg-3);font-weight:800;color:var(--ink);font-size:12.5px;text-transform:uppercase;letter-spacing:.03em}
+tr:last-child td{border-bottom:none}
+td b{color:var(--ink)}
+
+/* state-list (chips of states) */
+.stategrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin:18px 0}
+.stategrid a{display:block;padding:9px 12px;border:1px solid var(--line);border-radius:9px;background:var(--bg);font-size:13px;font-weight:700;color:var(--ink-2)}
+.stategrid a:hover{border-color:var(--brand);color:var(--brand-ink);text-decoration:none}
+
+/* figures + annotation overlay */
+.shot{margin:26px 0;background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+.shot__media{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(220px,1fr);gap:0}
+.shot__frame{position:relative;background:var(--bg-3);display:flex;align-items:flex-start;justify-content:center;padding:18px;cursor:zoom-in;border-right:1px solid var(--line-2)}
+.shot__frame img{max-width:100%;height:auto;border-radius:8px;box-shadow:0 4px 18px rgba(20,18,40,.12);display:block}
+.shot__marker{position:absolute;width:23px;height:23px;margin:-11px 0 0 -11px;border-radius:999px;background:var(--brand);color:#fff;font-family:var(--mono);font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 3px rgba(255,255,255,.92),0 2px 6px rgba(20,18,40,.35);z-index:2}
+/* marker offset is set inline via left/top against the frame's image box */
+.shot__legend{margin:0;padding:18px 20px;list-style:none;display:flex;flex-direction:column;gap:10px}
+.shot__legend li{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--ink-2);margin:0}
+.shot__n{flex:0 0 auto;width:20px;height:20px;border-radius:999px;background:var(--brand-soft);color:var(--brand-ink);border:1px solid var(--brand-soft-2);font-family:var(--mono);font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.shot__txt b{color:var(--ink)}
+figcaption{padding:11px 18px;border-top:1px solid var(--line-2);font-size:13px;color:var(--ink-3);background:var(--bg-2)}
+.shot__cap-id{font-family:var(--mono);font-size:11px;color:var(--brand);background:var(--brand-soft);border-radius:5px;padding:1px 6px;margin-right:6px}
+.missing{color:var(--danger);font-size:13px;font-family:var(--mono)}
+
+/* the marker frame must be positioned relative to the IMAGE, not the padded frame */
+.shot__imgwrap{position:relative;display:inline-block}
+
+/* gallery */
+.gallery{display:flex;flex-direction:column;gap:18px}
+.gallery .shot{margin:0}
+
+/* lightbox */
+.lightbox{position:fixed;inset:0;background:rgba(18,16,30,.86);display:none;align-items:center;justify-content:center;z-index:100;padding:40px;cursor:zoom-out}
+.lightbox.open{display:flex}
+.lightbox img{max-width:94vw;max-height:92vh;border-radius:10px;box-shadow:0 20px 70px rgba(0,0,0,.5)}
+.lightbox__close{position:fixed;top:22px;right:26px;width:42px;height:42px;border-radius:999px;border:none;background:rgba(255,255,255,.14);color:#fff;font-size:18px;cursor:pointer}
+.lightbox__close:hover{background:rgba(255,255,255,.26)}
+
+/* responsive */
+.nav-fab{display:none}
+@media (max-width:1080px){
+  .shot__media{grid-template-columns:1fr}
+  .shot__frame{border-right:none;border-bottom:1px solid var(--line-2)}
+}
+@media (max-width:860px){
+  .sidebar{transform:translateX(-100%);transition:transform .2s ease}
+  #nav-toggle:checked ~ .sidebar{transform:none}
+  .nav-fab{display:flex;align-items:center;justify-content:center;position:fixed;top:14px;left:14px;width:44px;height:44px;border-radius:12px;background:var(--brand);color:#fff;font-size:20px;z-index:40;box-shadow:var(--shadow);cursor:pointer}
+  .main{margin-left:0;padding:72px 22px 100px}
+  .doc-head h1{font-size:34px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<input type="checkbox" id="nav-toggle" hidden>
+<label for="nav-toggle" class="nav-fab" aria-label="Toggle navigation">☰</label>
+<aside class="sidebar">
+  <div class="brand"><span class="brand__mark"></span><span class="brand__name">Scout</span></div>
+  <div class="brand__sub">Developer handoff<br>design-intent spec</div>
+  <nav class="nav"><a href="#overview" data-target="overview"><span class="nav__num">01</span>Overview</a>
+<a href="#ia" data-target="ia"><span class="nav__num">02</span>Information architecture</a>
+<a href="#anatomy" data-target="anatomy"><span class="nav__num">03</span>Panel anatomy & layout</a>
+<a href="#conversation" data-target="conversation"><span class="nav__num">04</span>Conversation lifecycle</a>
+<a href="#threading" data-target="threading"><span class="nav__num">05</span>Threading & background work</a>
+<a href="#scoping" data-target="scoping"><span class="nav__num">06</span>Scoping & context</a>
+<a href="#library" data-target="library"><span class="nav__num">07</span>Library, Save & Share</a>
+<a href="#crosspage" data-target="crosspage"><span class="nav__num">08</span>Cross-page chrome</a>
+<a href="#motion" data-target="motion"><span class="nav__num">09</span>Motion & micro-interactions</a>
+<a href="#copy" data-target="copy"><span class="nav__num">10</span>Copy & lexicon</a>
+<a href="#considerations" data-target="considerations"><span class="nav__num">11</span>Considerations & open questions</a>
+<a href="#gallery" data-target="gallery"><span class="nav__num">12</span>Screenshot index</a></nav>
+  <div class="sidebar__meta">32 annotated states · spec is implementation-agnostic by design</div>
+</aside>
+<main class="main">
+  <header class="doc-head">
+    <h1>Scout</h1>
+    <p class="doc-head__tagline">An embedded AI pricing co-pilot. This is the complete behavioral specification — every surface, state, transition, and consideration needed to build it.</p>
+    <p class="doc-head__note">Written as <b>design intent</b>: it describes what the product does and how it behaves, not how the prototype was coded. Numbers (timings, sizes) are intended behavior, not implementation mandates. 32 states are captured with annotated screenshots — click any image to enlarge.</p>
+  </header>
+  <section id="overview" class="section">
+<div class="section__eyebrow">Overview</div>
+<h2>Overview</h2>
+
+<p class="lead">Scout is an embedded AI pricing co-pilot that lives inside a dense pricing grid — the surface where an analyst sets and publishes fuel prices per customer, location, and product. It answers questions about the rows on screen: why a row is flagged, where margin is being left on the table, how the market moved, and how a price ranks against a benchmark. Every answer explains its reasoning, cites its sources, and states a confidence level, and the analyst can save reusable questions and multi-step paths, share them with teammates, and let Scout work in the background across many rows at once.</p>
+
+<p>The mental model fits in one line: <b>ask in plain language → get an explainable, scoped answer → save it for reuse → let Scout work in the background and tell you when it's done.</b> Everything that follows is in service of keeping that loop calm and legible.</p>
+
+<h3>Entry points</h3>
+
+<p>Scout is reachable four ways, each tuned to a different moment in the analyst's work.</p>
+
+<ul>
+  <li><b>Toolbar trigger.</b> A control in the grid's toolbar labelled <span class="tok">Ask Scout</span>, carrying a small 8-bit mascot head, opens the panel. On first visit a one-time intro bubble points at it (see <b>2</b>): <span class="tok">Hi, I'm Scout 👋 — Your pricing co-pilot. Ask about any row — costs, margins, deltas. Click to start, or press ⌘G.</span></li>
+  <li><b>Keyboard shortcut.</b> Pressing <span class="kbd">⌘G</span> / <span class="kbd">Ctrl+G</span> opens the panel from anywhere. It is open-only — it never toggles the panel closed — and is ignored while the analyst is typing in another input.</li>
+  <li><b>Per-row ready indicator.</b> A small three-dot marker in a pinned grid column lights up when a background answer for that row is ready; selecting it jumps straight into that row's conversation.</li>
+  <li><b>Cross-page alert.</b> When Scout finishes thinking while the analyst is on another page, a name tag reading <span class="tok">Scout is ready</span> and alert cards in the app's Control Panel invite them back.</li>
+</ul>
+
+<figure class="shot" id="shot-c1-trigger">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c1-trigger.png" alt="Trigger &amp; first-run intro bubble"><span class="shot__marker" style="left:86.05%;top:12.67%">1</span><span class="shot__marker" style="left:77.65%;top:19.98%">2</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Ask Scout trigger</b> — Toolbar entry point; also opens on ⌘G.</span></li><li><span class="shot__n">2</span><span class="shot__txt"><b>First-run intro bubble</b> — One-time tip anchored to the trigger.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c1-trigger</span>Trigger &amp; first-run intro bubble</figcaption>
+</figure>
+
+<h3>Design tone</h3>
+
+<p>The intended feel is calm, trustworthy, and quietly intelligent — "a thinking machine." The brand color is a deep violet (<span class="tok">#715DAA</span>) and the type is Lato. Motion is present but restrained: a slow shimmer while Scout thinks, gentle slides between views, never anything bouncy.</p>
+
+<div class="callout callout--note"><b>Trust is structural, not decorative.</b> Confidence and sources accompany every answer by design. They are core to why an analyst would act on what Scout says, not visual garnish.</div>
+
+</section>
+
+<section id="ia" class="section">
+<div class="section__eyebrow">Information architecture</div>
+<h2>Information architecture</h2>
+
+<p class="lead">Scout lives in a single panel that holds two top-level views, reached through a tab strip: <span class="tok">Chats</span> and <span class="tok">Library</span>. Everything the analyst does — asking, reviewing past conversations, and reusing saved questions — happens inside this one surface, so navigation never leaves the pricing grid behind.</p>
+
+<p>The tab strip is the panel's primary wayfinding control (see 1). <span class="tok">Chats</span> is <b>list-first</b>: it opens onto the full set of conversations rather than a single thread. Each conversation appears as a card; selecting one slides into that conversation, and a back affordance labeled <span class="tok">‹ All Chats</span> returns to the list. There is no separate inbox view — the Chats list <i>is</i> the inbox, carrying an unseen-count badge when background answers are ready.</p>
+
+<figure class="shot" id="shot-c1-viewnav">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c1-viewnav.png" alt="View navigation"><span class="shot__marker" style="left:13.36%;top:49.22%">1</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Tabs</b> — Chats / Library.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c1-viewnav</span>View navigation</figcaption>
+</figure>
+
+<p>The <span class="tok">Library</span> view holds reusable saved items: <span class="tok">Prompt</span> (one question) and <span class="tok">Path</span> (an ordered sequence of questions). It offers search, a starred-only filter, and an ownership filter spanning <span class="pill">All</span>, <span class="pill">Yours</span>, and <span class="pill">Shared with you</span>.</p>
+
+<h3>Scoping</h3>
+<p>Scoping is the cross-cutting concept: whatever the analyst selects in the grid — a row, a single cell, or a multi-cell selection — becomes the conversation's <span class="tok">context</span>, and Scout answers about that scope; with nothing in focus, it answers about the whole view.</p>
+
+<h3>Panel modes</h3>
+<p>The panel presents in one of two modes, switched by a single control. It can <b>float</b> as a draggable, resizable card docked top-right, or <b>dock as a sidebar</b> at full height, pushing the grid leftward to make room.</p>
+
+<table>
+<thead><tr><th>Surface</th><th>Purpose</th></tr></thead>
+<tbody>
+<tr><td><span class="tok">Chats</span> view</td><td>List-first home for every conversation; opening a card slides into that thread.</td></tr>
+<tr><td><span class="tok">Library</span> view</td><td>Saved Prompts and Paths, with search, starred-only, and ownership filters.</td></tr>
+<tr><td>Floating mode</td><td>Draggable, height-resizable card docked top-right, overlaying the grid.</td></tr>
+<tr><td>Sidebar mode</td><td>Full-height dock that pushes the grid left for a side-by-side layout.</td></tr>
+</tbody>
+</table>
+
+</section>
+
+<section id="anatomy" class="section">
+<div class="section__eyebrow">Panel anatomy &amp; layout</div>
+<h2>Panel anatomy &amp; layout</h2>
+
+<p class="lead">The panel is a single vertical stack of five regions, ordered top to bottom, that stays consistent whether Scout floats as a card or docks as a full-height sidebar. Everything an analyst can do to Scout itself lives in these regions; a handful of supporting surfaces deliberately render outside the panel.</p>
+
+<h3>Top-to-bottom chrome</h3>
+<ol>
+<li><b>Title row</b> — the mascot mark and <span class="tok">Scout</span> wordmark sit on the left; a control cluster sits on the right, in order: <span class="tok">Save as path</span>, <span class="tok">Clear</span>, <span class="tok">Mode</span> (float/dock), <span class="tok">Minimize</span>, and <span class="tok">Close</span>. Save-as-path and Clear appear greyed and inert when there is nothing to act on (see 2, 3). In floating mode this whole row doubles as the drag handle (see 1).</li>
+<li><b>View nav</b> — the <span class="tok">Chats</span> / <span class="tok">Library</span> tab strip. The Chats tab carries an unseen-count badge when background answers are ready. Inside an open conversation, a <span class="tok">‹ All Chats</span> back control replaces the tab strip.</li>
+<li><b>Context-chips bar</b> (Chats only) — the current scope shown as removable pills, or, when empty, the hint <span class="tok">Nothing in focus · click a cell</span> alongside a <span class="tok">+ Add a cell</span> affordance.</li>
+<li><b>Body</b> — the active view: welcome, conversation, chats list, or library. It slides horizontally when switching views, the push/pop direction matching the nav direction.</li>
+<li><b>Composer footer</b> (Chats only) — a multi-line input that grows with content, placeholder <span class="tok">Ask Scout about your quote book…</span>, a <span class="tok">Send</span> button (inert while empty or busy), and a circular <span class="tok">Undo</span> affordance to the left that reverses the last turn.</li>
+</ol>
+
+<figure class="shot" id="shot-c1-header">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c1-header.png" alt="Panel header &amp; controls"><span class="shot__marker" style="left:7.93%;top:50.88%">1</span><span class="shot__marker" style="left:68.27%;top:50.88%">2</span><span class="shot__marker" style="left:74.52%;top:50.88%">3</span><span class="shot__marker" style="left:80.77%;top:50.88%">4</span><span class="shot__marker" style="left:87.02%;top:50.88%">5</span><span class="shot__marker" style="left:93.27%;top:50.88%">6</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Mark + wordmark</b> — Drag handle in floating mode.</span></li><li><span class="shot__n">2</span><span class="shot__txt"><b>Save as path</b> — Disabled until saveable.</span></li><li><span class="shot__n">3</span><span class="shot__txt"><b>Clear</b> — Archive + empty (undoable).</span></li><li><span class="shot__n">4</span><span class="shot__txt"><b>Mode</b> — Float ↔ dock.</span></li><li><span class="shot__n">5</span><span class="shot__txt"><b>Minimize</b> — Collapse to mini-bubble.</span></li><li><span class="shot__n">6</span><span class="shot__txt"><b>Close</b> — Opens discard confirm.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c1-header</span>Panel header &amp; controls</figcaption>
+</figure>
+
+<figure class="shot" id="shot-c1-composer">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c1-composer.png" alt="Composer"><span class="shot__marker" style="left:46.56%;top:50.86%">1</span><span class="shot__marker" style="left:89.83%;top:54.24%">2</span><span class="shot__marker" style="left:6.73%;top:50%">3</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Input</b> — Grows to multi-line; ⌘Enter sends.</span></li><li><span class="shot__n">2</span><span class="shot__txt"><b>Send</b> — Disabled while empty/busy.</span></li><li><span class="shot__n">3</span><span class="shot__txt"><b>Undo</b> — Reverses the last turn.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c1-composer</span>Composer</figcaption>
+</figure>
+
+<h3>Geometry &amp; behavior</h3>
+<p>In floating mode the panel anchors top-right with a margin and auto-fits to its content height, growing until it reaches a cap of roughly <span class="pill">80vh</span>, after which the body scrolls and the chrome stays put. A resize grip at the bottom-right adjusts <b>height only</b> — width is fixed in floating mode and the cursor reads as a vertical-resize. Dragging the title row repositions the floating card; that position persists across a minimize and resets only on discard.</p>
+
+<p>The <span class="tok">Mode</span> control toggles between floating and docked. Docked, the panel becomes a full-height sidebar that pushes the grid left rather than overlaying it (see 1).</p>
+
+<figure class="shot" id="shot-c3-sidebar">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c3-sidebar.png" alt="Sidebar-docked mode"><span class="shot__marker" style="left:88.69%;top:50%">1</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Docked panel</b> — Full height; pushes the grid left.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c3-sidebar</span>Sidebar-docked mode</figcaption>
+</figure>
+
+<h3>Surfaces that render outside the panel</h3>
+<p>Several elements live beyond the panel frame and persist as the analyst works:</p>
+<ul>
+<li>the <span class="tok">Ask Scout</span> trigger and its first-run intro bubble</li>
+<li>the minimized mini-bubble (<span class="tok">Resume conversation</span>)</li>
+<li>grid cell highlighting and the per-row ready dots</li>
+<li>the cross-page name tag and the Control-Panel alert cards</li>
+<li>toasts</li>
+<li>the bottom prototype-timer bar</li>
+</ul>
+
+<div class="callout callout--note"><b>One ring, always on</b> An animated shimmer border rings the panel in both modes; it signals "a thinking machine" and is detailed under Motion.</div>
+
+</section>
+
+<section id="conversation" class="section">
+<div class="section__eyebrow">Conversation lifecycle</div>
+<h2>Conversation lifecycle</h2>
+
+<p class="lead">Every exchange with Scout moves through three phases — <span class="tok">ask</span>, <span class="tok">thinking</span>, and <span class="tok">answered</span> — and each phase paints a distinct surface so the analyst always knows whether Scout is waiting, working, or done.</p>
+
+<h3>The three phases</h3>
+<p>A turn begins when the analyst clicks a suggestion chip, types a question in the composer, or runs a saved prompt or path. The empty conversation opens on the welcome surface — a greeting plus closed suggestion chips and a free-text composer.</p>
+
+<figure class="shot" id="shot-c1-welcome">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c1-welcome.png" alt="Welcome / zero-chats state"><span class="shot__marker" style="left:50%;top:11.49%">1</span><span class="shot__marker" style="left:50%;top:77.69%">2</span><span class="shot__marker" style="left:48.25%;top:94.08%">3</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Chats / Library tabs</b> — Two-tab nav; Chats is list-first.</span></li><li><span class="shot__n">2</span><span class="shot__txt"><b>Suggestion chips</b> — Closed prompts to get started.</span></li><li><span class="shot__n">3</span><span class="shot__txt"><b>Composer</b> — Free-text ask.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c1-welcome</span>Welcome / zero-chats state</figcaption>
+</figure>
+
+<p><b>Ask.</b> The question appears immediately as a right-aligned <span class="tok">user bubble</span> carrying the analyst's exact wording.</p>
+<p><b>Thinking.</b> A left-aligned Scout bubble appears showing <b>live thinking steps</b> — for example <span class="tok">Reading flagged rows → Clustering causes → Checking policy bands</span>. Steps reveal progressively under a gentle shimmer. When reasoning completes, the steps <b>auto-collapse</b> into a <span class="tok">Show details</span> disclosure (see 1).</p>
+
+<figure class="shot" id="shot-c1-thinking">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c1-thinking.png" alt="Thinking — live reasoning steps"><span class="shot__marker" style="left:50%;top:71.79%">1</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Scout is thinking</b> — Steps reveal progressively, then auto-collapse.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c1-thinking</span>Thinking — live reasoning steps</figcaption>
+</figure>
+
+<p><b>Answered.</b> The bubble fills in top to bottom, in a fixed order described below.</p>
+
+<figure class="shot" id="shot-c1-answered">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c1-answered.png" alt="Answered — full Scout answer"><span class="shot__marker" style="left:23.52%;top:16.73%">1</span><span class="shot__marker" style="left:50.9%;top:20.39%">2</span><span class="shot__marker" style="left:54%;top:41.91%">3</span><span class="shot__marker" style="left:54%;top:56.34%">4</span><span class="shot__marker" style="left:54%;top:63.44%">5</span><span class="shot__marker" style="left:54%;top:68.52%">6</span><span class="shot__marker" style="left:50%;top:82.63%">7</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Scope tag</b> — What rows the answer covers.</span></li><li><span class="shot__n">2</span><span class="shot__txt"><b>Confidence</b> — High / Medium / Low + caveat.</span></li><li><span class="shot__n">3</span><span class="shot__txt"><b>Breakdown block</b> — One of: paragraph, list, table, breakdown, CSV-link.</span></li><li><span class="shot__n">4</span><span class="shot__txt"><b>Action chips</b> — Scenario-specific next steps.</span></li><li><span class="shot__n">5</span><span class="shot__txt"><b>Details disclosure</b> — Steps + sources, collapsed.</span></li><li><span class="shot__n">6</span><span class="shot__txt"><b>Feedback footer</b> — 👍/👎 + ⋯ overflow.</span></li><li><span class="shot__n">7</span><span class="shot__txt"><b>Follow-ups</b> — “TRY A FOLLOW-UP”.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c1-answered</span>Answered — full Scout answer</figcaption>
+</figure>
+
+<h3>Answer bubble anatomy</h3>
+<p>Reading down the answered bubble (see 1–7):</p>
+<ul>
+<li><b>Scope tag</b> — an <span class="tok">All rows</span> / <span class="tok">This row</span> indicator of what the answer covers.</li>
+<li><b>Confidence line</b> — a colored dot plus label, often with a short caveat such as <span class="tok">Medium confidence · Cluster counts are estimated</span>.</li>
+<li><b>Answer body</b> — one or more typed blocks (see below).</li>
+<li><b>Action chips</b> — scenario-specific next steps, e.g. <span class="tok">Open 11 margin-guard rows</span>, <span class="tok">Open 8 over-band rows</span>.</li>
+<li><b>Details disclosure</b> — collapsed reasoning and sources.</li>
+<li><b>Answer footer</b> — feedback controls and an overflow menu.</li>
+<li><b>Follow-up chips</b> — suggested next questions.</li>
+</ul>
+
+<h4>Answer-body block types</h4>
+<p>The body supports several block types, mixed as the answer requires:</p>
+<ul>
+<li><b>Paragraph</b> — free prose.</li>
+<li><b>Bullet list</b> — enumerated points.</li>
+<li><b>Table</b> — rows and columns.</li>
+<li><b>Breakdown</b> — a labeled tally, e.g. <span class="tok">FLAGS BY CLUSTER — Margin guard 11, Above peer band 8, Stale benchmark 4, Total flagged 23</span>.</li>
+<li><b>CSV-link</b> — an export affordance for the underlying data.</li>
+</ul>
+
+<h3>Confidence &amp; sources</h3>
+<p>Confidence and sources are first-class, never decoration. The confidence line maps one of three levels to a color:</p>
+<table>
+<thead><tr><th>Level</th><th>Dot color</th></tr></thead>
+<tbody>
+<tr><td>High</td><td>Green</td></tr>
+<tr><td>Medium</td><td>Amber</td></tr>
+<tr><td>Low</td><td>Red</td></tr>
+</tbody>
+</table>
+<p>The <span class="tok">Show details · N steps · M sources</span> disclosure expands to reveal the full thinking steps and the cited sources, each rendered as a clickable pill.</p>
+
+<figure class="shot" id="shot-c1-details">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c1-details.png" alt="Details expanded — steps &amp; sources"><span class="shot__marker" style="left:54%;top:75.97%">1</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Reasoning + sources</b> — Transparency: how Scout got here.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c1-details</span>Details expanded — steps &amp; sources</figcaption>
+</figure>
+
+<h3>Feedback flow</h3>
+<p>The answer footer carries a thumbs-up / thumbs-down rating and a <span class="tok">⋯</span> overflow menu (copy, export, save, and similar).</p>
+
+<figure class="shot" id="shot-c1-footer">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c1-footer.png" alt="Answer footer — feedback &amp; overflow"><span class="shot__marker" style="left:7.71%;top:57.63%">1</span><span class="shot__marker" style="left:92.28%;top:57.63%">2</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Thumbs</b> — 👍 / 👎 rating.</span></li><li><span class="shot__n">2</span><span class="shot__txt"><b>Overflow ⋯</b> — Copy, export, save…</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c1-footer</span>Answer footer — feedback &amp; overflow</figcaption>
+</figure>
+
+<p>Choosing thumbs-down opens an inline <b>feedback form</b>: a reason picker — <span class="tok">wrong data</span> / <span class="tok">misread</span> / <span class="tok">made up</span> — plus an optional note.</p>
+
+<figure class="shot" id="shot-c1-feedback-form">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c1-feedback-form.png" alt="Feedback form (after 👎)"><span class="shot__marker" style="left:54%;top:57.71%">1</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Inline feedback</b> — Reason picker + optional note.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c1-feedback-form</span>Feedback form (after 👎)</figcaption>
+</figure>
+
+<p>Submitting swaps the form for a <b>receipt</b> reading <span class="tok">Thanks — this helps Scout improve</span>.</p>
+
+<figure class="shot" id="shot-c1-feedback-receipt">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c1-feedback-receipt.png" alt="Feedback receipt"><span class="shot__marker" style="left:54%;top:67.36%">1</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Receipt</b> — Confirms feedback logged.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c1-feedback-receipt</span>Feedback receipt</figcaption>
+</figure>
+
+<h3>Follow-ups</h3>
+<p>Under the heading <span class="tok">TRY A FOLLOW-UP</span>, Scout offers suggested next questions such as <span class="tok">Where am I leaving margin?</span>. Tapping one continues the conversation as a fresh ask.</p>
+
+<figure class="shot" id="shot-c1-followups">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c1-followups.png" alt="Follow-up suggestions"><span class="shot__marker" style="left:50%;top:50%">1</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Suggested follow-ups</b> — Tap to continue the thread.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c1-followups</span>Follow-up suggestions</figcaption>
+</figure>
+
+<h3>Clearing &amp; undo</h3>
+<p>The <span class="tok">Clear</span> control archives the current conversation and empties the surface; an <b>Undo</b> affordance restores it. Starting a new question after clearing retires the undo buffer, so the restore is no longer available.</p>
+
+<h3>Toast</h3>
+<p>At most one <b>toast</b> is shown at a time, anchored at the bottom of the viewport. It auto-dismisses and carries a success, warning, or error tone depending on the event.</p>
+
+<figure class="shot" id="shot-c2-toast">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c2-toast.png" alt="Toast notification"><span class="shot__marker" style="left:50%;top:95.77%">1</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Toast</b> — Single, auto-dismiss; success/warn/error.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c2-toast</span>Toast notification</figcaption>
+</figure>
+
+<div class="callout callout--note"><b>Build note</b> The phase order — ask, thinking, answered — and the fixed top-to-bottom order of the answered bubble are product rules. Every answer must carry an explicit confidence level and citable sources.</div>
+
+</section>
+
+<section id="threading" class="section">
+<div class="section__eyebrow">Threading &amp; background work</div>
+<h2>Threading &amp; background work</h2>
+
+<p class="lead">Scout is multi-threaded: every row — and the whole-view stream — can hold its own conversation that keeps working in the background while the analyst does other things. Each conversation moves through a small, well-defined state machine, and the moment any one of them finishes, a coordinated set of surfaces lights up together so the answer is impossible to miss.</p>
+
+<h3>Three thread states</h3>
+<p>A conversation is always in exactly one of three states. State drives every status affordance described below.</p>
+<table>
+  <thead>
+    <tr><th>State</th><th>Meaning</th><th>How it reads</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><span class="pill">in-progress</span></td><td>Scout is still thinking on this conversation</td><td>Animated dots, a quiet shimmer</td></tr>
+    <tr><td><span class="pill">ready</span></td><td>An answer is waiting but has not been opened</td><td>Solid dot plus an accent rail; counted as unseen</td></tr>
+    <tr><td><span class="pill">viewed</span></td><td>The answer has been opened and seen</td><td>Muted; no longer counted</td></tr>
+  </tbody>
+</table>
+<p>An <b>unseen count</b> aggregates every conversation currently in the <span class="pill">ready</span> state. Opening a ready conversation moves it to <span class="pill">viewed</span> and decrements that count.</p>
+
+<h3>Simulated think time &amp; the single clock</h3>
+<p>In the prototype, a question takes a fixed <b>~20 seconds</b> to move from <span class="pill">in-progress</span> to <span class="pill">ready</span> — a stand-in for real model latency. One global clock drives every surface, so countdowns and status flips stay in lockstep no matter which page the analyst is on.</p>
+<div class="callout callout--note"><b>Prototype-only</b> The fixed 20-second delay and the shared clock are demo scaffolding. A production build replaces them with real streaming and live status; the lockstep behavior is what matters, not the number.</div>
+
+<h3>Surfaces that flip together on ready</h3>
+<p>When a thread crosses into <span class="pill">ready</span>, all of these update in the same beat:</p>
+<ul>
+  <li>The <b>per-row dot</b> for that row lights and begins pulsing.</li>
+  <li>The <b>Chats unseen badge</b> increments.</li>
+  <li>The cross-page <b>name tag</b> reads <span class="tok">Scout is ready</span>.</li>
+  <li>A <b>card appears in the Control Panel</b> for that thread.</li>
+</ul>
+
+<h3>Chats inbox</h3>
+<p>The Chats tab lists conversations as <b>question-led cards</b> (see 1, 2). Each card shows the lead question, a one-line answer preview, a timestamp (for example <span class="tok">Jun 1 · 4:41 PM</span>), a <b>status badge</b> (animated dots while thinking, a solid dot with an accent rail when ready, muted once viewed), a <b>star</b> toggle, and a <b>⋯ menu</b> (favorite, delete, save). The tab itself carries the unseen count badge (see 3), and a control to start a fresh conversation sits at the top (see 4). Clicking a card slides into that conversation.</p>
+
+<figure class="shot" id="shot-c2-chats-inbox">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c2-chats-inbox.png" alt="Chats inbox"><span class="shot__marker" style="left:50%;top:59.52%">1</span><span class="shot__marker" style="left:50.25%;top:55.8%">2</span><span class="shot__marker" style="left:8.88%;top:15.34%">3</span><span class="shot__marker" style="left:80.5%;top:33.63%">4</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Conversation card</b> — Question-led; preview + timestamp.</span></li><li><span class="shot__n">2</span><span class="shot__txt"><b>Lead question</b> — What was asked.</span></li><li><span class="shot__n">3</span><span class="shot__txt"><b>Unseen badge</b> — Counts ready answers.</span></li><li><span class="shot__n">4</span><span class="shot__txt"><b>New chat</b> — Start a fresh conversation.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c2-chats-inbox</span>Chats inbox</figcaption>
+</figure>
+
+<h3>Per-row ready indicator</h3>
+<p>A pinned left-gutter marker of three dots signals each row's background state (see 1): lit and pulsing when that row's answer is ready, a quiet shimmer while in-progress, and absent when the row has been viewed or has no conversation at all. Clicking the marker jumps straight into that row's conversation.</p>
+
+<figure class="shot" id="shot-c3-ready-dots">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c3-ready-dots.png" alt="Per-row ready indicator"><span class="shot__marker" style="left:8.81%;top:34.44%">1</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Ready dots</b> — Lights when that row’s background answer is ready.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c3-ready-dots</span>Per-row ready indicator</figcaption>
+</figure>
+
+<div class="callout callout--info"><b>Open question</b> Whether the per-row dot should appear for every backgrounded row or only for rows the analyst explicitly asked about is an unresolved product decision.</div>
+
+</section>
+
+<section id="scoping" class="section">
+<div class="section__eyebrow">Scoping &amp; context</div>
+<h2>Scoping &amp; context</h2>
+
+<p class="lead">Every conversation is anchored to a <span class="tok">context</span> — the slice of the grid the analyst is asking about. Context is captured as removable chips in a bar at the top of the Chats view, set by clicking cells in the grid, and mirrored back as colored highlighting on the grid itself. With nothing in focus, Scout answers about the whole view.</p>
+
+<h3>Context chips</h3>
+<p>The context bar holds one or more chips describing the current scope. Three kinds exist:</p>
+<ul>
+  <li><b>Row chip</b> — a whole row (one customer / location / product line).</li>
+  <li><b>Cell chip</b> — one specific value, such as a single proposed price.</li>
+  <li><b>Selection chip</b> — a multi-cell pick made within the scoping rules.</li>
+</ul>
+<p>When empty, the bar shows the hint <span class="tok">Nothing in focus · click a cell</span> alongside a <span class="tok">+ Add a cell</span> affordance (see 1, 2). When populated, each chip is a removable pill.</p>
+
+<figure class="shot" id="shot-c1-context-empty">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c1-context-empty.png" alt="Context bar — empty"><span class="shot__marker" style="left:20.12%;top:49.2%">1</span><span class="shot__marker" style="left:46.2%;top:49.19%">2</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Empty hint</b> — “Nothing in focus · click a cell.”</span></li><li><span class="shot__n">2</span><span class="shot__txt"><b>+ Add a cell</b> — Enters focused pick mode.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c1-context-empty</span>Context bar — empty</figcaption>
+</figure>
+
+<figure class="shot" id="shot-c1-context-populated">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c1-context-populated.png" alt="Context bar — populated"><span class="shot__marker" style="left:20.08%;top:49.2%">1</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Context chip</b> — Removable scope pill (row / cell / selection).</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c1-context-populated</span>Context bar — populated</figcaption>
+</figure>
+
+<h3>Default click behavior</h3>
+<p>While the panel is open, clicking a grid cell <b>replaces</b> the current non-pinned context with a fresh chip — a cell chip for a data column, a row chip for an identity column. Once any chip is <b>explicitly pinned</b>, further clicks <b>append</b> instead of replace. Clicking a chip's own target toggles that chip off. With the panel open, Scout's scoping <b>intercepts</b> the grid's normal click so a click scopes Scout rather than opening the row's drawer.</p>
+
+<div class="callout callout--note"><b>Click interception</b> Interception applies only while the panel is open. When Scout is closed, grid clicks behave normally. A rebuild must scope Scout without breaking the grid's own row interactions.</div>
+
+<h3>+Add mode and the no-diagonal rule</h3>
+<p>The <span class="tok">+ Add a cell</span> affordance enters a focused picking mode: the cursor becomes a copy cursor and eligible cells gain a dashed outline. A multi-cell pick must share <b>one row</b> <i>or</i> <b>one scope-group column</b> — never a diagonal. Off-axis cells and identity cells are disabled while picking (see 1, 2). Pressing <span class="kbd">Esc</span> exits the mode.</p>
+
+<figure class="shot" id="shot-c3-cell-addmode">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c3-cell-addmode.png" alt="Grid +Add pick mode"><span class="shot__marker" style="left:50.9%;top:34.44%">1</span><span class="shot__marker" style="left:8.81%;top:41.3%">2</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Picked / eligible</b> — Same row OR one scope-group column.</span></li><li><span class="shot__n">2</span><span class="shot__txt"><b>Disabled</b> — Off-axis / identity cells can’t be picked.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c3-cell-addmode</span>Grid +Add pick mode</figcaption>
+</figure>
+
+<h3>Grid cell highlighting</h3>
+<p>Highlighting appears only while Scout is open, and it encodes scope at a glance:</p>
+<table>
+  <thead><tr><th>Treatment</th><th>Meaning</th></tr></thead>
+  <tbody>
+    <tr><td>Soft <b>green</b> tint, inset outline, accented text</td><td>Scope cells — what the current context covers</td></tr>
+    <tr><td>Faint <b>grey</b> overlay</td><td>Identity cells — the row's descriptive columns</td></tr>
+    <tr><td>Subtle background tint per group</td><td>Column-group tints — Cost, Proposed, Margin, Δ-vs-prior, Flags</td></tr>
+    <tr><td><b>Violet</b> outline badge</td><td>An explicit cell chip, marking its exact cell</td></tr>
+  </tbody>
+</table>
+
+<figure class="shot" id="shot-c3-cell-scope">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c3-cell-scope.png" alt="Grid cell highlighting — scope"></span></div>
+    <ol class="shot__legend"><li><span class="shot__txt">See caption.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c3-cell-scope</span>Grid cell highlighting — scope</figcaption>
+</figure>
+
+<h3>The "How cell colors work" tour</h3>
+<p>A <span class="tok">How cell colors work</span> text link near the grid's toolbar opens a popover explaining identity versus scope coloring (see 1). It replaces an earlier color-key legend strip, which was retired in favor of this lighter affordance.</p>
+
+<figure class="shot" id="shot-c3-tour">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c3-tour.png" alt="How cell colors work"><span class="shot__marker" style="left:61.05%;top:12.67%">1</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Cell-color help</b> — Explains identity vs scope coloring.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c3-tour</span>How cell colors work</figcaption>
+</figure>
+
+</section>
+
+<section id="library" class="section">
+<div class="section__eyebrow">Library, Save &amp; Share</div>
+<h2>Library, Save &amp; Share</h2>
+
+<p class="lead">The Library is where reusable questions live, and where in-the-moment conversations get promoted into durable, shareable assets. It holds two kinds of saved item and gives the analyst a calm path from "I just asked this twice" to "this is now a one-click routine my team can run."</p>
+
+<h3>Two kinds of saved item</h3>
+<p>Every saved item is either a <span class="tok">Prompt</span> — a single reusable question — or a <span class="tok">Path</span> — an ordered list of questions that run in sequence. Both carry a name, a description, a <b>scope</b> (row-level versus aggregate/whole-view), a <b>subject tag</b>, a <b>star</b> for favoriting, and optional sharing.</p>
+
+<h3>Library cards, search &amp; filters</h3>
+<p>The Library is list-first. A toolbar across the top offers a search field, a <b>starred-only</b> toggle, and an ownership filter with three states: <span class="pill">All</span> <span class="pill">Yours</span> <span class="pill">Shared with you</span> (see 1). Each card stacks a title with an actions row, then a meta row of pills — a kind pill reading <span class="tok">Path · N steps</span> or <span class="tok">Prompt</span> alongside scope and subject (see 2) — then a description clamped to two lines (see 5), then a footer carrying provenance on the left and the primary action on the right. <b>Edit</b> and <b>Share</b> reveal on hover; the star stays visible at all times (see 4).</p>
+<figure class="shot" id="shot-c2-library">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c2-library.png" alt="Library — saved prompts &amp; paths"><span class="shot__marker" style="left:50%;top:14.64%">1</span><span class="shot__marker" style="left:20.46%;top:33.58%">2</span><span class="shot__marker" style="left:84.17%;top:43.44%">3</span><span class="shot__marker" style="left:86.25%;top:30.02%">4</span><span class="shot__marker" style="left:50%;top:37.77%">5</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Search &amp; filters</b> — Search, starred-only, ownership filter.</span></li><li><span class="shot__n">2</span><span class="shot__txt"><b>Kind pill</b> — “Path · N steps” or “Prompt”.</span></li><li><span class="shot__n">3</span><span class="shot__txt"><b>Run / Open</b> — Run a path; open a prompt.</span></li><li><span class="shot__n">4</span><span class="shot__txt"><b>Star</b> — Favorite (always visible).</span></li><li><span class="shot__n">5</span><span class="shot__txt"><b>Description</b> — 2-line clamp.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c2-library</span>Library — saved prompts &amp; paths</figcaption>
+</figure>
+<p>Two empty states cover the surface: a "nothing saved in this tab" state when a tab has no items, and a "no matches" state when filters or search exclude everything, paired with a <span class="tok">Clear filters</span> affordance.</p>
+<figure class="shot" id="shot-c2-library-empty">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c2-library-empty.png" alt="Library — no matches"><span class="shot__marker" style="left:50%;top:73.62%">1</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Empty state</b> — “No matches · Clear filters.”</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c2-library-empty</span>Library — no matches</figcaption>
+</figure>
+
+<h3>Running: Run vs Open</h3>
+<p>The card footer's action depends on the item kind (see 3). <span class="tok">Run</span> executes a path's steps sequentially — Scout switches to the chat view and streams each answer in turn. <span class="tok">Open</span> drops a prompt's text into a new ask, ready to send. A row-scoped item carries a guard: if it is run with no row in context, Scout surfaces a warning to <span class="tok">Pick a row first</span> rather than answering against the wrong scope.</p>
+
+<h3>The Save modal</h3>
+<p>Saving opens a two-tab modal. The <b>Details</b> tab collects a required name, an optional description, a subject, and the step list. Save stays disabled until there is both a name and at least one kept step.</p>
+<figure class="shot" id="shot-c2-save-details">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c2-save-details.png" alt="Save modal — Details"><span class="shot__marker" style="left:50%;top:11.5%">1</span><span class="shot__marker" style="left:50%;top:20.75%">2</span><span class="shot__marker" style="left:50%;top:65.84%">3</span><span class="shot__marker" style="left:50%;top:77.84%">4</span><span class="shot__marker" style="left:90.46%;top:93.58%">5</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Details / Share tabs</b> — Two-tab save.</span></li><li><span class="shot__n">2</span><span class="shot__txt"><b>Name &amp; description</b> — Name required.</span></li><li><span class="shot__n">3</span><span class="shot__txt"><b>Step list</b> — Rename / reorder / drop.</span></li><li><span class="shot__n">4</span><span class="shot__txt"><b>Flatten on save</b> — Collapse to a single prompt.</span></li><li><span class="shot__n">5</span><span class="shot__txt"><b>Save</b> — Disabled until valid.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c2-save-details</span>Save modal — Details</figcaption>
+</figure>
+<p>The <b>Share</b> tab carries an audience picker built from scope cards — <span class="pill">Only me</span> <span class="pill">Team</span> <span class="pill">Specific people</span> — with a scrollable avatar list revealed when "Specific people" is chosen. The same picker control powers both this tab and the standalone Share modal, so the audience experience is identical in both places.</p>
+<figure class="shot" id="shot-c2-save-share">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c2-save-share.png" alt="Save modal — Share"><span class="shot__marker" style="left:50%;top:53.35%">1</span><span class="shot__marker" style="left:50%;top:39.16%">2</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Audience scope</b> — Only me / Team / Specific people.</span></li><li><span class="shot__n">2</span><span class="shot__txt"><b>Scope card</b> — Pick who can see it.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c2-save-share</span>Save modal — Share</figcaption>
+</figure>
+
+<h3>The inline path editor</h3>
+<p>Within the Details tab, a path's steps are directly editable: each step can be <b>renamed inline</b>, <b>reordered</b> up or down, or <b>dropped</b>. A dropped step renders struck-through and can be restored rather than vanishing. A <span class="tok">Flatten on save</span> option collapses the whole sequence into a single prompt for analysts who want one question instead of a multi-step run.</p>
+<figure class="shot" id="shot-c2-path-editor">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c2-path-editor.png" alt="Inline path editor"><span class="shot__marker" style="left:44.73%;top:32.31%">1</span><span class="shot__marker" style="left:86.33%;top:32.31%">2</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Inline rename</b> — Edit each step’s text.</span></li><li><span class="shot__n">2</span><span class="shot__txt"><b>Reorder / drop</b> — Up · down · remove (restorable).</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c2-path-editor</span>Inline path editor</figcaption>
+</figure>
+
+<h3>The path-candidate nudge</h3>
+<p>After the analyst runs two or more questions of the same scope in a row, Scout offers an inline prompt beneath the latest answer: <span class="tok">Save these N questions on this row as a path?</span> (or "on the quote book" for whole-view scope). It previews the step labels, offers a <span class="tok">Save as path</span> button, and a dismiss control.</p>
+<figure class="shot" id="shot-c2-path-candidate">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c2-path-candidate.png" alt="Path-candidate nudge"><span class="shot__marker" style="left:50%;top:69.19%">1</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Save-as-path nudge</b> — Appears after ≥2 same-scope questions.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c2-path-candidate</span>Path-candidate nudge</figcaption>
+</figure>
+<div class="callout callout--note"><b>Appears once per qualifying run.</b> The nudge collapses after saving or dismissing, and questions already saved are excluded from later candidates so the same group is never re-suggested.</div>
+
+<h3>The standalone Share modal</h3>
+<p>Opened from a card's overflow menu, the Share modal headers with the item name (see 1), presents the shared audience picker (see 2), and confirms with a <span class="tok">Share</span> action (see 3). One difference from the Save modal's Share tab: the standalone modal omits the "Only me" option, since sharing nothing privately is not a meaningful action here.</p>
+<figure class="shot" id="shot-c2-share-modal">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c2-share-modal.png" alt="Share modal"><span class="shot__marker" style="left:18.27%;top:29.43%">1</span><span class="shot__marker" style="left:50%;top:56.23%">2</span><span class="shot__marker" style="left:88.98%;top:85.9%">3</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Item being shared</b> — Saved prompt / path.</span></li><li><span class="shot__n">2</span><span class="shot__txt"><b>Audience</b> — Same picker as Save → Share.</span></li><li><span class="shot__n">3</span><span class="shot__txt"><b>Share</b> — Confirm.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c2-share-modal</span>Share modal</figcaption>
+</figure>
+
+</section>
+
+<section id="crosspage" class="section">
+<div class="section__eyebrow">Cross-page chrome</div>
+<h2>Cross-page chrome</h2>
+<p class="lead">Scout keeps working after the analyst leaves the Quote Book, so a thin layer of status surfaces lives outside the panel and persists across navigation. Each one reflects the same underlying activity state — idle, thinking, or ready — and each offers a path back into the conversation that produced it.</p>
+
+<h3>Trigger and activity badge</h3>
+<p>The <span class="tok">Ask Scout</span> toolbar control carries a small status badge that mirrors Scout's current activity: <b>idle</b>, <b>thinking</b>, or <b>ready</b>. The badge gives the analyst an at-a-glance read on whether background work is in flight or an answer is waiting, without opening the panel. The trigger also opens the panel via <span class="kbd">⌘G</span> / <span class="kbd">Ctrl+G</span>.</p>
+
+<h3>Name tag</h3>
+<p>A compact tag sits near the user's name in the app header and reads <span class="tok">Scout is thinking</span>, <span class="tok">Scout is ready</span>, or an idle state, accompanied by an unseen dot when answers are waiting. It updates in lockstep with every other ready surface the moment a conversation finishes.</p>
+<figure class="shot" id="shot-c3-name-tag">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c3-name-tag.png" alt="Cross-page name tag"><span class="shot__marker" style="left:85.91%;top:3.14%">1</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Scout status</b> — “Scout is thinking / ready”.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c3-name-tag</span>Cross-page name tag</figcaption>
+</figure>
+
+<h3>Control-Panel alert cards</h3>
+<p>Scout replaces the app's "Recent Alerts" empty state with a card for each ready conversation. Clicking a card (see 1) navigates back to the Quote Book and opens that exact conversation, so an analyst who wandered off can return to a finished answer in one move.</p>
+<figure class="shot" id="shot-c3-control-panel">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c3-control-panel.png" alt="Control Panel alert cards"><span class="shot__marker" style="left:86.61%;top:56.98%">1</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Ready alert cards</b> — Click jumps back into the thread.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c3-control-panel</span>Control Panel alert cards</figcaption>
+</figure>
+
+<h3>Minimized mini-bubble</h3>
+<p>Minimizing collapses the panel to a small violet pill anchored just above the trigger, labelled <span class="tok">Resume conversation</span>, with a gentle sheen. Clicking it reopens the full panel with all state intact — context, conversation, and position preserved.</p>
+<figure class="shot" id="shot-c1-mini">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c1-mini.png" alt="Minimized mini-bubble"><span class="shot__marker" style="left:50%;top:50%">1</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Resume pill</b> — Anchored above the trigger; reopens with state intact.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c1-mini</span>Minimized mini-bubble</figcaption>
+</figure>
+
+<h3>First-run intro bubble</h3>
+<p>On first visit a one-time tip points at the trigger: <span class="tok">Hi, I'm Scout 👋 — Your pricing co-pilot. Ask about any row — costs, margins, deltas. Click to start, or press ⌘G.</span> It appears once and does not return on later visits.</p>
+
+<h3>Bottom prototype-timer bar</h3>
+<p>A deliberately utilitarian fixed strip spans the bottom of the viewport — dashed top border, monospace type, neutral greys with an amber accent — reading <span class="tok">PROTOTYPE TIMER (simulated latency — not part of Scout)</span> alongside a soonest-ready countdown (see 1, 2).</p>
+<figure class="shot" id="shot-c3-timer-bar">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c3-timer-bar.png" alt="Prototype timer bar"><span class="shot__marker" style="left:11.47%;top:52.76%">1</span><span class="shot__marker" style="left:39.18%;top:52.76%">2</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Label</b> — “PROTOTYPE TIMER (simulated latency)”.</span></li><li><span class="shot__n">2</span><span class="shot__txt"><b>Countdown</b> — Soonest ready answer.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c3-timer-bar</span>Prototype timer bar</figcaption>
+</figure>
+<div class="callout callout--warn"><b>Demo-only — do not build.</b> The timer bar exists solely to make the simulated think-time legible during demos. It is <b>not part of the product</b>. A real build wires conversations to live streaming and status; the simulated latency and this bar both disappear.</div>
+
+</section>
+
+<section id="motion" class="section">
+<div class="section__eyebrow">Motion &amp; micro-interactions</div>
+<h2>Motion &amp; micro-interactions</h2>
+<p class="lead">Motion is present but restrained — it signals a calm "thinking machine," never bounces or distracts. Every effect is slow, low-contrast, and purposeful; together they make the empty state feel alive, the work-in-progress feel legible, and view changes feel spatially grounded.</p>
+
+<p>The signature effect is the <span class="tok">shimmer border</span> that rings the panel: a multi-color ring sweeping indigo into violet into magenta, with two glints orbiting the edge at different rates and directions so the panel reads as actively reasoning. At rest it stays a crisp 2px ring with no heavy glow. The same restraint governs the thinking state inside the body: live thinking steps and the inter-message <span class="tok">thinking…</span> divider play a gentle gradient sweep only while a turn is active, settling to static once the answer resolves.</p>
+
+<p>Spatial transitions reinforce the panel's information architecture. The panel enters with a short upward translate plus fade. Switching between views animates as a horizontal push/pop whose direction matches the nav direction, so moving deeper and backing out feel like physical movement. Two small ambient touches add warmth: the welcome mascot drifts in a slow idle sway, and suggestion chips fire a one-shot diagonal gradient glimmer on hover.</p>
+
+<table>
+  <thead>
+    <tr><th>Motion</th><th>Where</th><th>Purpose</th><th>Approx timing</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Shimmer border</td><td>Panel edge (always while open)</td><td>Conveys "a thinking machine"; two glints orbit at differing rates/directions</td><td>Continuous loop; 2px ring at rest</td></tr>
+    <tr><td>Thinking shimmer / divider</td><td>Live thinking steps + inter-message "thinking…" divider</td><td>Marks an active, in-progress turn</td><td>Continuous while thinking; stops on resolve</td></tr>
+    <tr><td>Panel slide-in</td><td>Panel on open</td><td>Establishes arrival without a jolt</td><td>~200ms translate-up + fade</td></tr>
+    <tr><td>View push / pop</td><td>Switching between views in the body</td><td>Spatial mapping; direction matches nav</td><td>Short horizontal slide</td></tr>
+    <tr><td>Idle mascot sway</td><td>Welcome mascot, empty state</td><td>Keeps the zero state feeling alive</td><td>~4.5s slow sway, looping</td></tr>
+    <tr><td>Chip glimmer</td><td>Suggestion chips on hover</td><td>Invites interaction</td><td>One-shot diagonal gradient sweep</td></tr>
+  </tbody>
+</table>
+
+<div class="callout callout--note"><b>Reduced motion</b> Every effect above must honor the user's reduced-motion preference. When reduced motion is requested, the shimmer border, thinking sweep, slide-in, push/pop, idle sway, and chip glimmer all fall back to static states — the surfaces stay fully functional and legible without any animation.</div>
+
+</section>
+
+<section id="copy" class="section">
+<div class="section__eyebrow">Copy &amp; lexicon</div>
+<h2>Copy &amp; lexicon</h2>
+
+<p class="lead">Every surface speaks with one consistent vocabulary. The terms below are canonical: use them verbatim in labels, headings, and instructional copy, and never substitute near-synonyms. The product is named <span class="tok">Scout</span>, and a single conversation is always a <span class="tok">chat</span> in user-facing copy — never a "thread," even though threads are the internal mental model for background work.</p>
+
+<h3>Lexicon</h3>
+
+<p>These are the load-bearing nouns and verbs of the product. Keep capitalization as shown when a term names a feature or an item type.</p>
+
+<table>
+  <thead>
+    <tr><th>Term</th><th>Meaning</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><span class="tok">Scout</span></td><td>The product — the embedded AI pricing co-pilot.</td></tr>
+    <tr><td><span class="tok">chat</span></td><td>A single conversation. The user-facing word for what is internally a thread; never say "thread" in copy.</td></tr>
+    <tr><td><span class="tok">Ask Scout</span></td><td>The trigger action and toolbar label that opens the panel.</td></tr>
+    <tr><td><span class="tok">context</span> / <span class="tok">in focus</span></td><td>The current scope — the row, cell, or selection the answer is about.</td></tr>
+    <tr><td><span class="tok">Prompt</span></td><td>A saved item that is one reusable question.</td></tr>
+    <tr><td><span class="tok">Path</span></td><td>A saved item that is an ordered sequence of questions.</td></tr>
+    <tr><td><span class="tok">Run</span></td><td>The verb for executing a Path's steps in sequence.</td></tr>
+    <tr><td><span class="tok">Open</span></td><td>The verb for dropping a Prompt's text into a new ask.</td></tr>
+    <tr><td><span class="tok">confidence</span></td><td>The High / Medium / Low rating every answer carries.</td></tr>
+    <tr><td><span class="tok">sources</span></td><td>The citable references behind an answer.</td></tr>
+    <tr><td><span class="tok">follow-up</span></td><td>A suggested next question offered beneath an answer.</td></tr>
+  </tbody>
+</table>
+
+<h3>Key strings</h3>
+
+<p>Reproduce these exactly, including punctuation, casing, the middot separator, and the ellipsis. Strings shown with <span class="tok">N</span> or <span class="tok">M</span> interpolate live counts.</p>
+
+<table>
+  <thead>
+    <tr><th>Location</th><th>Exact string</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Trigger button</td><td><span class="tok">Ask Scout</span></td></tr>
+    <tr><td>Welcome greeting</td><td><span class="tok">Hey, I'm Scout!</span></td></tr>
+    <tr><td>Context empty hint</td><td><span class="tok">Nothing in focus · click a cell</span></td></tr>
+    <tr><td>Add-context affordance</td><td><span class="tok">+ Add a cell</span></td></tr>
+    <tr><td>Composer placeholder</td><td><span class="tok">Ask Scout about your quote book…</span></td></tr>
+    <tr><td>Send button</td><td><span class="tok">Send</span></td></tr>
+    <tr><td>Confidence example</td><td><span class="tok">Medium confidence · Cluster counts are estimated</span></td></tr>
+    <tr><td>Follow-up heading</td><td><span class="tok">TRY A FOLLOW-UP</span></td></tr>
+    <tr><td>Details disclosure</td><td><span class="tok">Show details · N steps · M sources</span></td></tr>
+    <tr><td>Chats list back control</td><td><span class="tok">‹ All Chats</span></td></tr>
+    <tr><td>View tabs</td><td><span class="tok">Chats</span> / <span class="tok">Library</span></td></tr>
+    <tr><td>Minimized pill</td><td><span class="tok">Resume conversation</span></td></tr>
+    <tr><td>Prototype timer bar</td><td><span class="tok">PROTOTYPE TIMER (simulated latency — not part of Scout)</span></td></tr>
+  </tbody>
+</table>
+
+<div class="callout callout--note"><b>Open with the shortcut</b> The open shortcut is <span class="kbd">⌘G</span> / <span class="kbd">Ctrl+G</span>; reference it in onboarding copy exactly as the intro bubble does. A full UX-copy audit is the standing authority for tone and exact microcopy beyond the strings listed here.</div>
+
+</section>
+
+<section id="considerations" class="section">
+<div class="section__eyebrow">Considerations &amp; open questions</div>
+<h2>Considerations &amp; open questions</h2>
+
+<p class="lead">Scout is specified as a working behavioral prototype, which means several seams between the demo and a production build are deliberate. The items below are the decisions a rebuild must own, followed by the behavioral questions still open from review.</p>
+
+<h3>Production considerations a rebuild must decide</h3>
+
+<h4>Real model swap</h4>
+<p>In the prototype every answer, thinking step, source, and confidence rating is canned, and each question takes a fixed simulated delay (~20 seconds) driven by a single global demo clock so that every surface flips status in lockstep. A real build wires the ask path to a live model or service: the fixed latency and the global clock both disappear, replaced by genuine streaming output and real per-request status. The three-phase turn (<span class="tok">ask → thinking → answered</span>) and its surfaces stay; only what fills them becomes real.</p>
+
+<h4>Real data-grid integration</h4>
+<p>Cell highlighting, the scope-group tints, the per-row ready indicator, and click interception all assume tight coupling to the real grid's column model and event handling. The hard constraint here is click interception: while Scout is open, a click on a cell must <b>scope Scout</b> rather than triggering the grid's own row interaction (e.g. opening a row drawer), and that interception must be reversible the moment Scout closes — without permanently breaking native grid behavior.</p>
+
+<h4>Persistence, identity &amp; team roster</h4>
+<p>Saved <span class="tok">Prompts</span> and <span class="tok">Paths</span>, sharing, stars, and conversation history are all in-memory in the prototype and vanish on reload. A real build needs durable storage, an authenticated user to own saved items, and a team roster to populate the share picker's <span class="tok">Specific people</span> avatar list.</p>
+
+<h4>Preserve the scope &amp; append rules</h4>
+<p>Two interaction rules are product decisions, not prototype artifacts, and must survive a rebuild: the pick constraint (a multi-cell selection shares <b>one row OR one scope-group column, never a diagonal</b>) and the chip behavior (clicks <b>replace</b> the active context until a chip is explicitly pinned, after which clicks <b>append</b>).</p>
+
+<div class="callout callout--info"><b>Confidence &amp; sources are first-class.</b> Every answer must carry an explicit confidence rating and citable sources. This is core to Scout's trustworthiness, not visual decoration — an answer that cannot state how sure it is or where it looked should be treated as incomplete.</div>
+
+<h4>Always-on provider above navigation</h4>
+<p>Scout's background work and its status clock must persist as the analyst moves between pages. The state that owns threads and timing therefore has to live <b>above</b> the app's navigation layer; scoping it per-page resets in-flight background work every time the analyst navigates away.</p>
+
+<h3>Open behavioral questions surfaced in review</h3>
+<ul>
+  <li>Whether the per-row ready indicator should appear for <b>every</b> backgrounded row, or only for rows the analyst explicitly asked about.</li>
+  <li>Whether the prototype timer bar should be hidden on authentication / login surfaces.</li>
+  <li>Whether running a <span class="tok">Path</span> should let the analyst choose scope at save time, or always inherit the scope of the source conversation.</li>
+  <li>Whether negative feedback should ever suppress or retract the answer, or only log the signal.</li>
+</ul>
+
+<div class="callout callout--warn"><b>Not part of the product.</b> The bottom prototype-timer bar and the simulated latency it counts down exist only to make the fake delay legible during demos. Neither ships — both are removed once real model latency replaces the simulation.</div>
+
+</section>
+
+<section id="gallery" class="section">
+<div class="section__eyebrow">Screenshot index</div>
+<h2>Screenshot index</h2>
+<p class="lead">Every captured state, annotated — click any image to enlarge. The gallery below collects each surface referenced throughout this spec: the trigger and intro bubble, welcome and composer, the full thinking-to-answered turn, follow-ups and feedback, context chips, the Chats inbox, Library, Save and Share modals, grid highlighting, per-row ready dots, the timer bar, and cross-page chrome.</p>
+<div class="gallery"><figure class="shot" id="shot-c1-trigger">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c1-trigger.png" alt="Trigger &amp; first-run intro bubble"><span class="shot__marker" style="left:86.05%;top:12.67%">1</span><span class="shot__marker" style="left:77.65%;top:19.98%">2</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Ask Scout trigger</b> — Toolbar entry point; also opens on ⌘G.</span></li><li><span class="shot__n">2</span><span class="shot__txt"><b>First-run intro bubble</b> — One-time tip anchored to the trigger.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c1-trigger</span>Trigger &amp; first-run intro bubble</figcaption>
+</figure>
+<figure class="shot" id="shot-c1-welcome">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c1-welcome.png" alt="Welcome / zero-chats state"><span class="shot__marker" style="left:50%;top:11.49%">1</span><span class="shot__marker" style="left:50%;top:77.69%">2</span><span class="shot__marker" style="left:48.25%;top:94.08%">3</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Chats / Library tabs</b> — Two-tab nav; Chats is list-first.</span></li><li><span class="shot__n">2</span><span class="shot__txt"><b>Suggestion chips</b> — Closed prompts to get started.</span></li><li><span class="shot__n">3</span><span class="shot__txt"><b>Composer</b> — Free-text ask.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c1-welcome</span>Welcome / zero-chats state</figcaption>
+</figure>
+<figure class="shot" id="shot-c1-thinking">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c1-thinking.png" alt="Thinking — live reasoning steps"><span class="shot__marker" style="left:50%;top:71.79%">1</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Scout is thinking</b> — Steps reveal progressively, then auto-collapse.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c1-thinking</span>Thinking — live reasoning steps</figcaption>
+</figure>
+<figure class="shot" id="shot-c1-answered">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c1-answered.png" alt="Answered — full Scout answer"><span class="shot__marker" style="left:23.52%;top:16.73%">1</span><span class="shot__marker" style="left:50.9%;top:20.39%">2</span><span class="shot__marker" style="left:54%;top:41.91%">3</span><span class="shot__marker" style="left:54%;top:56.34%">4</span><span class="shot__marker" style="left:54%;top:63.44%">5</span><span class="shot__marker" style="left:54%;top:68.52%">6</span><span class="shot__marker" style="left:50%;top:82.63%">7</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Scope tag</b> — What rows the answer covers.</span></li><li><span class="shot__n">2</span><span class="shot__txt"><b>Confidence</b> — High / Medium / Low + caveat.</span></li><li><span class="shot__n">3</span><span class="shot__txt"><b>Breakdown block</b> — One of: paragraph, list, table, breakdown, CSV-link.</span></li><li><span class="shot__n">4</span><span class="shot__txt"><b>Action chips</b> — Scenario-specific next steps.</span></li><li><span class="shot__n">5</span><span class="shot__txt"><b>Details disclosure</b> — Steps + sources, collapsed.</span></li><li><span class="shot__n">6</span><span class="shot__txt"><b>Feedback footer</b> — 👍/👎 + ⋯ overflow.</span></li><li><span class="shot__n">7</span><span class="shot__txt"><b>Follow-ups</b> — “TRY A FOLLOW-UP”.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c1-answered</span>Answered — full Scout answer</figcaption>
+</figure>
+<figure class="shot" id="shot-c1-followups">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c1-followups.png" alt="Follow-up suggestions"><span class="shot__marker" style="left:50%;top:50%">1</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Suggested follow-ups</b> — Tap to continue the thread.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c1-followups</span>Follow-up suggestions</figcaption>
+</figure>
+<figure class="shot" id="shot-c1-footer">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c1-footer.png" alt="Answer footer — feedback &amp; overflow"><span class="shot__marker" style="left:7.71%;top:57.63%">1</span><span class="shot__marker" style="left:92.28%;top:57.63%">2</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Thumbs</b> — 👍 / 👎 rating.</span></li><li><span class="shot__n">2</span><span class="shot__txt"><b>Overflow ⋯</b> — Copy, export, save…</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c1-footer</span>Answer footer — feedback &amp; overflow</figcaption>
+</figure>
+<figure class="shot" id="shot-c1-feedback-form">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c1-feedback-form.png" alt="Feedback form (after 👎)"><span class="shot__marker" style="left:54%;top:57.71%">1</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Inline feedback</b> — Reason picker + optional note.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c1-feedback-form</span>Feedback form (after 👎)</figcaption>
+</figure>
+<figure class="shot" id="shot-c1-feedback-receipt">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c1-feedback-receipt.png" alt="Feedback receipt"><span class="shot__marker" style="left:54%;top:67.36%">1</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Receipt</b> — Confirms feedback logged.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c1-feedback-receipt</span>Feedback receipt</figcaption>
+</figure>
+<figure class="shot" id="shot-c1-details">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c1-details.png" alt="Details expanded — steps &amp; sources"><span class="shot__marker" style="left:54%;top:75.97%">1</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Reasoning + sources</b> — Transparency: how Scout got here.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c1-details</span>Details expanded — steps &amp; sources</figcaption>
+</figure>
+<figure class="shot" id="shot-c1-context-empty">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c1-context-empty.png" alt="Context bar — empty"><span class="shot__marker" style="left:20.12%;top:49.2%">1</span><span class="shot__marker" style="left:46.2%;top:49.19%">2</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Empty hint</b> — “Nothing in focus · click a cell.”</span></li><li><span class="shot__n">2</span><span class="shot__txt"><b>+ Add a cell</b> — Enters focused pick mode.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c1-context-empty</span>Context bar — empty</figcaption>
+</figure>
+<figure class="shot" id="shot-c1-context-populated">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c1-context-populated.png" alt="Context bar — populated"><span class="shot__marker" style="left:20.08%;top:49.2%">1</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Context chip</b> — Removable scope pill (row / cell / selection).</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c1-context-populated</span>Context bar — populated</figcaption>
+</figure>
+<figure class="shot" id="shot-c1-viewnav">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c1-viewnav.png" alt="View navigation"><span class="shot__marker" style="left:13.36%;top:49.22%">1</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Tabs</b> — Chats / Library.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c1-viewnav</span>View navigation</figcaption>
+</figure>
+<figure class="shot" id="shot-c1-header">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c1-header.png" alt="Panel header &amp; controls"><span class="shot__marker" style="left:7.93%;top:50.88%">1</span><span class="shot__marker" style="left:68.27%;top:50.88%">2</span><span class="shot__marker" style="left:74.52%;top:50.88%">3</span><span class="shot__marker" style="left:80.77%;top:50.88%">4</span><span class="shot__marker" style="left:87.02%;top:50.88%">5</span><span class="shot__marker" style="left:93.27%;top:50.88%">6</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Mark + wordmark</b> — Drag handle in floating mode.</span></li><li><span class="shot__n">2</span><span class="shot__txt"><b>Save as path</b> — Disabled until saveable.</span></li><li><span class="shot__n">3</span><span class="shot__txt"><b>Clear</b> — Archive + empty (undoable).</span></li><li><span class="shot__n">4</span><span class="shot__txt"><b>Mode</b> — Float ↔ dock.</span></li><li><span class="shot__n">5</span><span class="shot__txt"><b>Minimize</b> — Collapse to mini-bubble.</span></li><li><span class="shot__n">6</span><span class="shot__txt"><b>Close</b> — Opens discard confirm.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c1-header</span>Panel header &amp; controls</figcaption>
+</figure>
+<figure class="shot" id="shot-c1-composer">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c1-composer.png" alt="Composer"><span class="shot__marker" style="left:46.56%;top:50.86%">1</span><span class="shot__marker" style="left:89.83%;top:54.24%">2</span><span class="shot__marker" style="left:6.73%;top:50%">3</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Input</b> — Grows to multi-line; ⌘Enter sends.</span></li><li><span class="shot__n">2</span><span class="shot__txt"><b>Send</b> — Disabled while empty/busy.</span></li><li><span class="shot__n">3</span><span class="shot__txt"><b>Undo</b> — Reverses the last turn.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c1-composer</span>Composer</figcaption>
+</figure>
+<figure class="shot" id="shot-c1-mini">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c1-mini.png" alt="Minimized mini-bubble"><span class="shot__marker" style="left:50%;top:50%">1</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Resume pill</b> — Anchored above the trigger; reopens with state intact.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c1-mini</span>Minimized mini-bubble</figcaption>
+</figure>
+<figure class="shot" id="shot-c2-chats-inbox">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c2-chats-inbox.png" alt="Chats inbox"><span class="shot__marker" style="left:50%;top:59.52%">1</span><span class="shot__marker" style="left:50.25%;top:55.8%">2</span><span class="shot__marker" style="left:8.88%;top:15.34%">3</span><span class="shot__marker" style="left:80.5%;top:33.63%">4</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Conversation card</b> — Question-led; preview + timestamp.</span></li><li><span class="shot__n">2</span><span class="shot__txt"><b>Lead question</b> — What was asked.</span></li><li><span class="shot__n">3</span><span class="shot__txt"><b>Unseen badge</b> — Counts ready answers.</span></li><li><span class="shot__n">4</span><span class="shot__txt"><b>New chat</b> — Start a fresh conversation.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c2-chats-inbox</span>Chats inbox</figcaption>
+</figure>
+<figure class="shot" id="shot-c2-library">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c2-library.png" alt="Library — saved prompts &amp; paths"><span class="shot__marker" style="left:50%;top:14.64%">1</span><span class="shot__marker" style="left:20.46%;top:33.58%">2</span><span class="shot__marker" style="left:84.17%;top:43.44%">3</span><span class="shot__marker" style="left:86.25%;top:30.02%">4</span><span class="shot__marker" style="left:50%;top:37.77%">5</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Search &amp; filters</b> — Search, starred-only, ownership filter.</span></li><li><span class="shot__n">2</span><span class="shot__txt"><b>Kind pill</b> — “Path · N steps” or “Prompt”.</span></li><li><span class="shot__n">3</span><span class="shot__txt"><b>Run / Open</b> — Run a path; open a prompt.</span></li><li><span class="shot__n">4</span><span class="shot__txt"><b>Star</b> — Favorite (always visible).</span></li><li><span class="shot__n">5</span><span class="shot__txt"><b>Description</b> — 2-line clamp.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c2-library</span>Library — saved prompts &amp; paths</figcaption>
+</figure>
+<figure class="shot" id="shot-c2-library-empty">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c2-library-empty.png" alt="Library — no matches"><span class="shot__marker" style="left:50%;top:73.62%">1</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Empty state</b> — “No matches · Clear filters.”</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c2-library-empty</span>Library — no matches</figcaption>
+</figure>
+<figure class="shot" id="shot-c2-save-details">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c2-save-details.png" alt="Save modal — Details"><span class="shot__marker" style="left:50%;top:11.5%">1</span><span class="shot__marker" style="left:50%;top:20.75%">2</span><span class="shot__marker" style="left:50%;top:65.84%">3</span><span class="shot__marker" style="left:50%;top:77.84%">4</span><span class="shot__marker" style="left:90.46%;top:93.58%">5</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Details / Share tabs</b> — Two-tab save.</span></li><li><span class="shot__n">2</span><span class="shot__txt"><b>Name &amp; description</b> — Name required.</span></li><li><span class="shot__n">3</span><span class="shot__txt"><b>Step list</b> — Rename / reorder / drop.</span></li><li><span class="shot__n">4</span><span class="shot__txt"><b>Flatten on save</b> — Collapse to a single prompt.</span></li><li><span class="shot__n">5</span><span class="shot__txt"><b>Save</b> — Disabled until valid.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c2-save-details</span>Save modal — Details</figcaption>
+</figure>
+<figure class="shot" id="shot-c2-save-share">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c2-save-share.png" alt="Save modal — Share"><span class="shot__marker" style="left:50%;top:53.35%">1</span><span class="shot__marker" style="left:50%;top:39.16%">2</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Audience scope</b> — Only me / Team / Specific people.</span></li><li><span class="shot__n">2</span><span class="shot__txt"><b>Scope card</b> — Pick who can see it.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c2-save-share</span>Save modal — Share</figcaption>
+</figure>
+<figure class="shot" id="shot-c2-path-editor">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c2-path-editor.png" alt="Inline path editor"><span class="shot__marker" style="left:44.73%;top:32.31%">1</span><span class="shot__marker" style="left:86.33%;top:32.31%">2</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Inline rename</b> — Edit each step’s text.</span></li><li><span class="shot__n">2</span><span class="shot__txt"><b>Reorder / drop</b> — Up · down · remove (restorable).</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c2-path-editor</span>Inline path editor</figcaption>
+</figure>
+<figure class="shot" id="shot-c2-share-modal">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c2-share-modal.png" alt="Share modal"><span class="shot__marker" style="left:18.27%;top:29.43%">1</span><span class="shot__marker" style="left:50%;top:56.23%">2</span><span class="shot__marker" style="left:88.98%;top:85.9%">3</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Item being shared</b> — Saved prompt / path.</span></li><li><span class="shot__n">2</span><span class="shot__txt"><b>Audience</b> — Same picker as Save → Share.</span></li><li><span class="shot__n">3</span><span class="shot__txt"><b>Share</b> — Confirm.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c2-share-modal</span>Share modal</figcaption>
+</figure>
+<figure class="shot" id="shot-c2-path-candidate">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c2-path-candidate.png" alt="Path-candidate nudge"><span class="shot__marker" style="left:50%;top:69.19%">1</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Save-as-path nudge</b> — Appears after ≥2 same-scope questions.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c2-path-candidate</span>Path-candidate nudge</figcaption>
+</figure>
+<figure class="shot" id="shot-c2-toast">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c2-toast.png" alt="Toast notification"><span class="shot__marker" style="left:50%;top:95.77%">1</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Toast</b> — Single, auto-dismiss; success/warn/error.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c2-toast</span>Toast notification</figcaption>
+</figure>
+<figure class="shot" id="shot-c3-cell-scope">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c3-cell-scope.png" alt="Grid cell highlighting — scope"></span></div>
+    <ol class="shot__legend"><li><span class="shot__txt">See caption.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c3-cell-scope</span>Grid cell highlighting — scope</figcaption>
+</figure>
+<figure class="shot" id="shot-c3-cell-addmode">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c3-cell-addmode.png" alt="Grid +Add pick mode"><span class="shot__marker" style="left:50.9%;top:34.44%">1</span><span class="shot__marker" style="left:8.81%;top:41.3%">2</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Picked / eligible</b> — Same row OR one scope-group column.</span></li><li><span class="shot__n">2</span><span class="shot__txt"><b>Disabled</b> — Off-axis / identity cells can’t be picked.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c3-cell-addmode</span>Grid +Add pick mode</figcaption>
+</figure>
+<figure class="shot" id="shot-c3-ready-dots">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c3-ready-dots.png" alt="Per-row ready indicator"><span class="shot__marker" style="left:8.81%;top:34.44%">1</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Ready dots</b> — Lights when that row’s background answer is ready.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c3-ready-dots</span>Per-row ready indicator</figcaption>
+</figure>
+<figure class="shot" id="shot-c3-timer-bar">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c3-timer-bar.png" alt="Prototype timer bar"><span class="shot__marker" style="left:11.47%;top:52.76%">1</span><span class="shot__marker" style="left:39.18%;top:52.76%">2</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Label</b> — “PROTOTYPE TIMER (simulated latency)”.</span></li><li><span class="shot__n">2</span><span class="shot__txt"><b>Countdown</b> — Soonest ready answer.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c3-timer-bar</span>Prototype timer bar</figcaption>
+</figure>
+<figure class="shot" id="shot-c3-sidebar">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c3-sidebar.png" alt="Sidebar-docked mode"><span class="shot__marker" style="left:88.69%;top:50%">1</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Docked panel</b> — Full height; pushes the grid left.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c3-sidebar</span>Sidebar-docked mode</figcaption>
+</figure>
+<figure class="shot" id="shot-c3-name-tag">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c3-name-tag.png" alt="Cross-page name tag"><span class="shot__marker" style="left:85.91%;top:3.14%">1</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Scout status</b> — “Scout is thinking / ready”.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c3-name-tag</span>Cross-page name tag</figcaption>
+</figure>
+<figure class="shot" id="shot-c3-control-panel">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c3-control-panel.png" alt="Control Panel alert cards"><span class="shot__marker" style="left:86.61%;top:56.98%">1</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Ready alert cards</b> — Click jumps back into the thread.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c3-control-panel</span>Control Panel alert cards</figcaption>
+</figure>
+<figure class="shot" id="shot-c3-tour">
+  <div class="shot__media">
+    <div class="shot__frame"><span class="shot__imgwrap"><img loading="lazy" src="assets/screenshots/c3-tour.png" alt="How cell colors work"><span class="shot__marker" style="left:61.05%;top:12.67%">1</span></span></div>
+    <ol class="shot__legend"><li><span class="shot__n">1</span><span class="shot__txt"><b>Cell-color help</b> — Explains identity vs scope coloring.</span></li></ol>
+  </div>
+  <figcaption><span class="shot__cap-id">c3-tour</span>How cell colors work</figcaption>
+</figure></div>
+
+</section>
+  <footer class="doc-foot" style="margin-top:80px;padding-top:24px;border-top:1px solid var(--line-2);color:var(--ink-3);font-size:13px">Generated for developer handoff · screenshots captured live from the running prototype.</footer>
+</main>
+<div class="lightbox" id="lightbox"><img id="lightbox-img" alt=""><button class="lightbox__close" aria-label="Close">✕</button></div>
+<script>
+// scrollspy
+const links=[...document.querySelectorAll('.nav a')];
+const map=Object.fromEntries(links.map(a=>[a.dataset.target,a]));
+const io=new IntersectionObserver((es)=>{
+  es.forEach(e=>{ if(e.isIntersecting){ links.forEach(l=>l.classList.remove('active')); map[e.target.id]?.classList.add('active'); }});
+},{rootMargin:'-10% 0px -80% 0px',threshold:0});
+document.querySelectorAll('section.section').forEach(s=>io.observe(s));
+// close mobile nav on link click
+links.forEach(a=>a.addEventListener('click',()=>{const t=document.getElementById('nav-toggle');if(t)t.checked=false;}));
+// lightbox
+const lb=document.getElementById('lightbox'),lbi=document.getElementById('lightbox-img');
+document.querySelectorAll('.shot__frame img').forEach(img=>img.addEventListener('click',()=>{lbi.src=img.src;lb.classList.add('open');}));
+lb.addEventListener('click',()=>lb.classList.remove('open'));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('open');});
+</script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invite — progressive modes · Round 2</title>
+  <link rel="stylesheet" href="assets/wireframe.css">
+  <link rel="stylesheet" href="assets/lofi-chrome.css">
+</head>
+<body>
+
+  <div class="lf-topbar">
+    <a class="lf-topbar-x" href="02-quick-create-index.html" title="Close">&times;</a>
+    <span class="lf-topbar-title">Create New Offer</span>
+    <a class="lf-backlink" href="../index.html">Round 2 index</a>
+  </div>
+
+  <div class="lf-offer-page">
+    <a class="lf-backtolist" href="02-quick-create-index.html">&#8592; Back to the offer</a>
+
+    <div class="lf-offer-grid">
+      <div class="lf-offer-main">
+        <div class="wf-card">
+          <div class="wf-card-header">
+            <div>
+              <h1 class="wf-text-h1">Invite</h1>
+              <p class="wf-text-helper">Pick how you want to reach customers — the mode changes what you select from</p>
+            </div>
+            <span class="wf-badge wf-badge-primary">Index Special</span>
+          </div>
+
+          <div class="wf-card-body">
+
+            <div class="wf-tabs wf-tabs-pill" style="margin-bottom: var(--wf-space-2);">
+              <div class="wf-tabs-list">
+                <button class="wf-tab wf-tab-active">Groups</button>
+                <button class="wf-tab">Authorized to lift</button>
+                <button class="wf-tab">Credit</button>
+                <button class="wf-tab">All customers</button>
+              </div>
+            </div>
+            <p class="wf-text wf-text-helper">All four shown below for review. In product, the mode tab swaps the panel.</p>
+
+            <!-- Mode: Groups (active / 80%) -->
+            <div class="lf-group">
+              <h3 class="wf-text wf-text-h3 lf-group-title">Groups <span class="wf-badge wf-badge-success">Active</span></h3>
+              <p class="wf-text wf-text-helper lf-group-desc">Pinned groups show as tiles. "Show more" opens the full table where you can select rows and pin favorites to keep as tiles.</p>
+              <p class="lf-pinned-label">&#11088; Favorites</p>
+              <div class="lf-chiprow">
+                <span class="lf-chip is-selected" tabindex="0">Gulf Coast <span class="lf-chip-count">3</span></span>
+                <span class="lf-chip" tabindex="0">Midcon <span class="lf-chip-count">5</span></span>
+                <span class="lf-chip" tabindex="0">Chicago lifting <span class="lf-chip-count">4</span></span>
+              </div>
+
+              <details class="lf-more">
+                <summary>Show 22 more groups</summary>
+                <div class="lf-searchrow">
+                  <input type="search" class="wf-input" placeholder="Search all groups… (type CHI → Chicago lifting)">
+                </div>
+                <div class="wf-datagrid wf-datagrid-compact">
+                  <div class="wf-datagrid-header">
+                    <div class="wf-datagrid-cell" style="flex:0 0 40px" title="Pin to keep as a tile">&#9733;</div>
+                    <div class="wf-datagrid-cell wf-datagrid-cell-checkbox"><input type="checkbox" class="wf-checkbox-input"></div>
+                    <div class="wf-datagrid-cell" style="flex:3">Group</div>
+                    <div class="wf-datagrid-cell wf-datagrid-cell-number" style="flex:1">Customers</div>
+                    <div class="wf-datagrid-cell" style="flex:2">Region</div>
+                  </div>
+                  <div class="wf-datagrid-body">
+                    <div class="wf-datagrid-row">
+                      <div class="wf-datagrid-cell" style="flex:0 0 40px"><button class="lf-pin" title="Pin">&#9734;</button></div>
+                      <div class="wf-datagrid-cell wf-datagrid-cell-checkbox"><input type="checkbox" class="wf-checkbox-input"></div>
+                      <div class="wf-datagrid-cell" style="flex:3">West Texas</div>
+                      <div class="wf-datagrid-cell wf-datagrid-cell-number" style="flex:1">8</div>
+                      <div class="wf-datagrid-cell" style="flex:2">West TX</div>
+                    </div>
+                    <div class="wf-datagrid-row">
+                      <div class="wf-datagrid-cell" style="flex:0 0 40px"><button class="lf-pin" title="Pin">&#9734;</button></div>
+                      <div class="wf-datagrid-cell wf-datagrid-cell-checkbox"><input type="checkbox" class="wf-checkbox-input"></div>
+                      <div class="wf-datagrid-cell" style="flex:3">Rack — Tulsa</div>
+                      <div class="wf-datagrid-cell wf-datagrid-cell-number" style="flex:1">6</div>
+                      <div class="wf-datagrid-cell" style="flex:2">Midcon</div>
+                    </div>
+                    <div class="wf-datagrid-row">
+                      <div class="wf-datagrid-cell" style="flex:0 0 40px"><button class="lf-pin" title="Pin">&#9734;</button></div>
+                      <div class="wf-datagrid-cell wf-datagrid-cell-checkbox"><input type="checkbox" class="wf-checkbox-input"></div>
+                      <div class="wf-datagrid-cell" style="flex:3">Plains</div>
+                      <div class="wf-datagrid-cell wf-datagrid-cell-number" style="flex:1">5</div>
+                      <div class="wf-datagrid-cell" style="flex:2">South Central</div>
+                    </div>
+                    <div class="wf-datagrid-row">
+                      <div class="wf-datagrid-cell" style="flex:0 0 40px"><button class="lf-pin is-pinned" title="Pinned">&#11088;</button></div>
+                      <div class="wf-datagrid-cell wf-datagrid-cell-checkbox"><input type="checkbox" class="wf-checkbox-input" checked></div>
+                      <div class="wf-datagrid-cell" style="flex:3">Gulf Coast</div>
+                      <div class="wf-datagrid-cell wf-datagrid-cell-number" style="flex:1">3</div>
+                      <div class="wf-datagrid-cell" style="flex:2">Gulf Coast</div>
+                    </div>
+                  </div>
+                </div>
+                <p class="wf-text wf-text-helper" style="margin-top: var(--wf-space-2);">Check a row to add it to this offer; tap the &#9734; to pin it as a tile next time.</p>
+              </details>
+            </div>
+
+            <!-- Mode: Authorized to lift -->
+            <div class="lf-group">
+              <h3 class="wf-text wf-text-h3 lf-group-title">Authorized to lift</h3>
+              <p class="wf-text wf-text-helper lf-group-desc">Customers authorized for <strong>Group 3 Suboctane @ Tulsa</strong> — a property we already know, no grouping needed.</p>
+              <div class="wf-datagrid wf-datagrid-compact">
+                <div class="wf-datagrid-header">
+                  <div class="wf-datagrid-cell wf-datagrid-cell-checkbox"><input type="checkbox" class="wf-checkbox-input"></div>
+                  <div class="wf-datagrid-cell" style="flex:3">Customer</div>
+                  <div class="wf-datagrid-cell" style="flex:2">Authorized product</div>
+                  <div class="wf-datagrid-cell" style="flex:2">Location</div>
+                </div>
+                <div class="wf-datagrid-body">
+                  <div class="wf-datagrid-row wf-datagrid-row-selected"><div class="wf-datagrid-cell wf-datagrid-cell-checkbox"><input type="checkbox" class="wf-checkbox-input" checked></div><div class="wf-datagrid-cell" style="flex:3">QuikTrip</div><div class="wf-datagrid-cell" style="flex:2">G3 Suboctane</div><div class="wf-datagrid-cell" style="flex:2">Tulsa</div></div>
+                  <div class="wf-datagrid-row"><div class="wf-datagrid-cell wf-datagrid-cell-checkbox"><input type="checkbox" class="wf-checkbox-input"></div><div class="wf-datagrid-cell" style="flex:3">Casey's</div><div class="wf-datagrid-cell" style="flex:2">G3 Suboctane</div><div class="wf-datagrid-cell" style="flex:2">Tulsa</div></div>
+                  <div class="wf-datagrid-row"><div class="wf-datagrid-cell wf-datagrid-cell-checkbox"><input type="checkbox" class="wf-checkbox-input"></div><div class="wf-datagrid-cell" style="flex:3">Love's</div><div class="wf-datagrid-cell" style="flex:2">G3 Suboctane</div><div class="wf-datagrid-cell" style="flex:2">Tulsa</div></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mode: Credit -->
+            <div class="lf-group">
+              <h3 class="wf-text wf-text-h3 lf-group-title">Credit</h3>
+              <p class="wf-text wf-text-helper lf-group-desc">Ranked by available credit — who actually has the financial capacity to lift this.</p>
+              <div class="wf-datagrid wf-datagrid-compact">
+                <div class="wf-datagrid-header">
+                  <div class="wf-datagrid-cell wf-datagrid-cell-checkbox"><input type="checkbox" class="wf-checkbox-input"></div>
+                  <div class="wf-datagrid-cell" style="flex:3">Customer</div>
+                  <div class="wf-datagrid-cell wf-datagrid-cell-number" style="flex:2">Available credit</div>
+                  <div class="wf-datagrid-cell" style="flex:2">Utilization</div>
+                </div>
+                <div class="wf-datagrid-body">
+                  <div class="wf-datagrid-row"><div class="wf-datagrid-cell wf-datagrid-cell-checkbox"><input type="checkbox" class="wf-checkbox-input"></div><div class="wf-datagrid-cell" style="flex:3">Love's</div><div class="wf-datagrid-cell wf-datagrid-cell-number wf-mono" style="flex:2">$4.2M</div><div class="wf-datagrid-cell" style="flex:2">31%</div></div>
+                  <div class="wf-datagrid-row"><div class="wf-datagrid-cell wf-datagrid-cell-checkbox"><input type="checkbox" class="wf-checkbox-input"></div><div class="wf-datagrid-cell" style="flex:3">QuikTrip</div><div class="wf-datagrid-cell wf-datagrid-cell-number wf-mono" style="flex:2">$2.8M</div><div class="wf-datagrid-cell" style="flex:2">58%</div></div>
+                  <div class="wf-datagrid-row"><div class="wf-datagrid-cell wf-datagrid-cell-checkbox"><input type="checkbox" class="wf-checkbox-input"></div><div class="wf-datagrid-cell" style="flex:3">Casey's</div><div class="wf-datagrid-cell wf-datagrid-cell-number wf-mono" style="flex:2">$0.9M</div><div class="wf-datagrid-cell" style="flex:2"><span class="wf-text wf-text-warning">86%</span></div></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mode: All customers (20% fallback) -->
+            <div class="lf-group">
+              <h3 class="wf-text wf-text-h3 lf-group-title">All customers <span class="wf-badge">fallback</span></h3>
+              <p class="wf-text wf-text-helper lf-group-desc">The 20% case — see everyone, search, and pick individually.</p>
+              <div class="lf-searchrow">
+                <input type="search" class="wf-input" placeholder="Search all customers…">
+              </div>
+              <div class="wf-datagrid wf-datagrid-compact">
+                <div class="wf-datagrid-header">
+                  <div class="wf-datagrid-cell wf-datagrid-cell-checkbox"><input type="checkbox" class="wf-checkbox-input"></div>
+                  <div class="wf-datagrid-cell" style="flex:3">Customer</div>
+                  <div class="wf-datagrid-cell" style="flex:2">Region</div>
+                </div>
+                <div class="wf-datagrid-body">
+                  <div class="wf-datagrid-row"><div class="wf-datagrid-cell wf-datagrid-cell-checkbox"><input type="checkbox" class="wf-checkbox-input"></div><div class="wf-datagrid-cell" style="flex:3">7-Eleven</div><div class="wf-datagrid-cell" style="flex:2">South Central</div></div>
+                  <div class="wf-datagrid-row"><div class="wf-datagrid-cell wf-datagrid-cell-checkbox"><input type="checkbox" class="wf-checkbox-input"></div><div class="wf-datagrid-cell" style="flex:3">Murphy USA</div><div class="wf-datagrid-cell" style="flex:2">Gulf Coast</div></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="lf-offer-footer">
+          <a class="wf-button wf-button-secondary" href="02-quick-create-index.html">Back</a>
+          <span class="lf-footer-mid">3 customers selected</span>
+          <a class="wf-button wf-button-primary" href="02-quick-create-index.html">Use selection</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

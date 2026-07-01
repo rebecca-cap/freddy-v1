@@ -1,0 +1,32 @@
+<h2>Considerations &amp; open questions</h2>
+
+<p class="lead">Scout is specified as a working behavioral prototype, which means several seams between the demo and a production build are deliberate. The items below are the decisions a rebuild must own, followed by the behavioral questions still open from review.</p>
+
+<h3>Production considerations a rebuild must decide</h3>
+
+<h4>Real model swap</h4>
+<p>In the prototype every answer, thinking step, source, and confidence rating is canned, and each question takes a fixed simulated delay (~20 seconds) driven by a single global demo clock so that every surface flips status in lockstep. A real build wires the ask path to a live model or service: the fixed latency and the global clock both disappear, replaced by genuine streaming output and real per-request status. The three-phase turn (<span class="tok">ask → thinking → answered</span>) and its surfaces stay; only what fills them becomes real.</p>
+
+<h4>Real data-grid integration</h4>
+<p>Cell highlighting, the scope-group tints, the per-row ready indicator, and click interception all assume tight coupling to the real grid's column model and event handling. The hard constraint here is click interception: while Scout is open, a click on a cell must <b>scope Scout</b> rather than triggering the grid's own row interaction (e.g. opening a row drawer), and that interception must be reversible the moment Scout closes — without permanently breaking native grid behavior.</p>
+
+<h4>Persistence, identity &amp; team roster</h4>
+<p>Saved <span class="tok">Prompts</span> and <span class="tok">Paths</span>, sharing, stars, and conversation history are all in-memory in the prototype and vanish on reload. A real build needs durable storage, an authenticated user to own saved items, and a team roster to populate the share picker's <span class="tok">Specific people</span> avatar list.</p>
+
+<h4>Preserve the scope &amp; append rules</h4>
+<p>Two interaction rules are product decisions, not prototype artifacts, and must survive a rebuild: the pick constraint (a multi-cell selection shares <b>one row OR one scope-group column, never a diagonal</b>) and the chip behavior (clicks <b>replace</b> the active context until a chip is explicitly pinned, after which clicks <b>append</b>).</p>
+
+<div class="callout callout--info"><b>Confidence &amp; sources are first-class.</b> Every answer must carry an explicit confidence rating and citable sources. This is core to Scout's trustworthiness, not visual decoration — an answer that cannot state how sure it is or where it looked should be treated as incomplete.</div>
+
+<h4>Always-on provider above navigation</h4>
+<p>Scout's background work and its status clock must persist as the analyst moves between pages. The state that owns threads and timing therefore has to live <b>above</b> the app's navigation layer; scoping it per-page resets in-flight background work every time the analyst navigates away.</p>
+
+<h3>Open behavioral questions surfaced in review</h3>
+<ul>
+  <li>Whether the per-row ready indicator should appear for <b>every</b> backgrounded row, or only for rows the analyst explicitly asked about.</li>
+  <li>Whether the prototype timer bar should be hidden on authentication / login surfaces.</li>
+  <li>Whether running a <span class="tok">Path</span> should let the analyst choose scope at save time, or always inherit the scope of the source conversation.</li>
+  <li>Whether negative feedback should ever suppress or retract the answer, or only log the signal.</li>
+</ul>
+
+<div class="callout callout--warn"><b>Not part of the product.</b> The bottom prototype-timer bar and the simulated latency it counts down exist only to make the fake delay legible during demos. Neither ships — both are removed once real model latency replaces the simulation.</div>

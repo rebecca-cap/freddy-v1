@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Breadcrumb Component - Gravitate Wireframe Design System</title>
+  <link rel="stylesheet" href="../../tokens/tokens.css">
+  <link rel="stylesheet" href="../controls/controls.css">
+  <link rel="stylesheet" href="navigation.css">
+  <style>
+    body {
+      font-family: var(--wf-font-family);
+      padding: 40px;
+      background-color: var(--wf-color-gray-50);
+    }
+    .demo-section {
+      background: white;
+      padding: 24px;
+      border-radius: 8px;
+      margin-bottom: 24px;
+      border: 1px solid var(--wf-color-border);
+    }
+    .demo-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--wf-color-text-muted);
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .demo-row {
+      margin-bottom: 16px;
+    }
+    .demo-row:last-child {
+      margin-bottom: 0;
+    }
+  </style>
+</head>
+<body>
+  <h1 style="margin-bottom: 32px; color: var(--wf-color-text);">Breadcrumb Component</h1>
+
+  <!-- Basic Breadcrumb -->
+  <div class="demo-section">
+    <div class="demo-title">Basic Breadcrumb</div>
+    <nav class="wf-breadcrumb">
+      <a href="#" class="wf-breadcrumb-item">Home</a>
+      <span class="wf-breadcrumb-separator">/</span>
+      <a href="#" class="wf-breadcrumb-item">Contracts</a>
+      <span class="wf-breadcrumb-separator">/</span>
+      <span class="wf-breadcrumb-item wf-breadcrumb-current">CNT-2024-001</span>
+    </nav>
+  </div>
+
+  <!-- Two Level Breadcrumb -->
+  <div class="demo-section">
+    <div class="demo-title">Two Level Breadcrumb</div>
+    <nav class="wf-breadcrumb">
+      <a href="#" class="wf-breadcrumb-item">Dashboard</a>
+      <span class="wf-breadcrumb-separator">/</span>
+      <span class="wf-breadcrumb-item wf-breadcrumb-current">Analytics</span>
+    </nav>
+  </div>
+
+  <!-- Deep Breadcrumb -->
+  <div class="demo-section">
+    <div class="demo-title">Deep Breadcrumb</div>
+    <nav class="wf-breadcrumb">
+      <a href="#" class="wf-breadcrumb-item">Home</a>
+      <span class="wf-breadcrumb-separator">/</span>
+      <a href="#" class="wf-breadcrumb-item">Products</a>
+      <span class="wf-breadcrumb-separator">/</span>
+      <a href="#" class="wf-breadcrumb-item">Electronics</a>
+      <span class="wf-breadcrumb-separator">/</span>
+      <a href="#" class="wf-breadcrumb-item">Computers</a>
+      <span class="wf-breadcrumb-separator">/</span>
+      <span class="wf-breadcrumb-item wf-breadcrumb-current">Laptops</span>
+    </nav>
+  </div>
+
+  <!-- Breadcrumb with Chevron Separator -->
+  <div class="demo-section">
+    <div class="demo-title">Breadcrumb with Chevron Separator</div>
+    <nav class="wf-breadcrumb">
+      <a href="#" class="wf-breadcrumb-item">Home</a>
+      <span class="wf-breadcrumb-separator">›</span>
+      <a href="#" class="wf-breadcrumb-item">Settings</a>
+      <span class="wf-breadcrumb-separator">›</span>
+      <a href="#" class="wf-breadcrumb-item">Account</a>
+      <span class="wf-breadcrumb-separator">›</span>
+      <span class="wf-breadcrumb-item wf-breadcrumb-current">Profile</span>
+    </nav>
+  </div>
+
+  <!-- Breadcrumb with Arrow Separator -->
+  <div class="demo-section">
+    <div class="demo-title">Breadcrumb with Arrow Separator</div>
+    <nav class="wf-breadcrumb">
+      <a href="#" class="wf-breadcrumb-item">Home</a>
+      <span class="wf-breadcrumb-separator">→</span>
+      <a href="#" class="wf-breadcrumb-item">Orders</a>
+      <span class="wf-breadcrumb-separator">→</span>
+      <span class="wf-breadcrumb-item wf-breadcrumb-current">ORD-12345</span>
+    </nav>
+  </div>
+
+  <!-- Breadcrumb with Icons -->
+  <div class="demo-section">
+    <div class="demo-title">Breadcrumb with Icons</div>
+    <nav class="wf-breadcrumb">
+      <a href="#" class="wf-breadcrumb-item wf-breadcrumb-icon">
+        <span>🏠</span>
+        <span>Home</span>
+      </a>
+      <span class="wf-breadcrumb-separator">/</span>
+      <a href="#" class="wf-breadcrumb-item wf-breadcrumb-icon">
+        <span>📁</span>
+        <span>Documents</span>
+      </a>
+      <span class="wf-breadcrumb-separator">/</span>
+      <span class="wf-breadcrumb-item wf-breadcrumb-current wf-breadcrumb-icon">
+        <span>📄</span>
+        <span>Report.pdf</span>
+      </span>
+    </nav>
+  </div>
+
+  <!-- Collapsed Breadcrumb with Ellipsis -->
+  <div class="demo-section">
+    <div class="demo-title">Collapsed Breadcrumb (Ellipsis)</div>
+    <nav class="wf-breadcrumb">
+      <a href="#" class="wf-breadcrumb-item">Home</a>
+      <span class="wf-breadcrumb-separator">/</span>
+      <span class="wf-breadcrumb-ellipsis" title="Click to expand">...</span>
+      <span class="wf-breadcrumb-separator">/</span>
+      <a href="#" class="wf-breadcrumb-item">Sub-Category</a>
+      <span class="wf-breadcrumb-separator">/</span>
+      <span class="wf-breadcrumb-item wf-breadcrumb-current">Current Page</span>
+    </nav>
+  </div>
+
+  <!-- Breadcrumb in Context (Page Header) -->
+  <div class="demo-section">
+    <div class="demo-title">Breadcrumb in Page Header Context</div>
+    <div style="padding: 16px; background: var(--wf-color-bg-hover); border-radius: 8px;">
+      <nav class="wf-breadcrumb" style="margin-bottom: 8px;">
+        <a href="#" class="wf-breadcrumb-item">Contracts</a>
+        <span class="wf-breadcrumb-separator">/</span>
+        <a href="#" class="wf-breadcrumb-item">Active</a>
+        <span class="wf-breadcrumb-separator">/</span>
+        <span class="wf-breadcrumb-item wf-breadcrumb-current">CNT-2024-001</span>
+      </nav>
+      <h2 style="margin: 0; font-size: 24px; color: var(--wf-color-text);">Contract Details</h2>
+    </div>
+  </div>
+
+  <!-- Usage Examples -->
+  <div class="demo-section">
+    <div class="demo-title">Code Examples</div>
+    <pre style="background: var(--wf-color-gray-100); padding: 16px; border-radius: 6px; overflow-x: auto; font-size: 13px;"><code>&lt;!-- Basic Breadcrumb --&gt;
+&lt;nav class="wf-breadcrumb"&gt;
+  &lt;a href="#" class="wf-breadcrumb-item"&gt;Home&lt;/a&gt;
+  &lt;span class="wf-breadcrumb-separator"&gt;/&lt;/span&gt;
+  &lt;a href="#" class="wf-breadcrumb-item"&gt;Contracts&lt;/a&gt;
+  &lt;span class="wf-breadcrumb-separator"&gt;/&lt;/span&gt;
+  &lt;span class="wf-breadcrumb-item wf-breadcrumb-current"&gt;CNT-2024-001&lt;/span&gt;
+&lt;/nav&gt;
+
+&lt;!-- With Chevron Separator --&gt;
+&lt;nav class="wf-breadcrumb"&gt;
+  &lt;a href="#" class="wf-breadcrumb-item"&gt;Home&lt;/a&gt;
+  &lt;span class="wf-breadcrumb-separator"&gt;›&lt;/span&gt;
+  &lt;span class="wf-breadcrumb-item wf-breadcrumb-current"&gt;Page&lt;/span&gt;
+&lt;/nav&gt;
+
+&lt;!-- With Icons --&gt;
+&lt;nav class="wf-breadcrumb"&gt;
+  &lt;a href="#" class="wf-breadcrumb-item wf-breadcrumb-icon"&gt;
+    &lt;span&gt;🏠&lt;/span&gt;
+    &lt;span&gt;Home&lt;/span&gt;
+  &lt;/a&gt;
+  &lt;span class="wf-breadcrumb-separator"&gt;/&lt;/span&gt;
+  &lt;span class="wf-breadcrumb-item wf-breadcrumb-current"&gt;Page&lt;/span&gt;
+&lt;/nav&gt;
+
+&lt;!-- Collapsed with Ellipsis --&gt;
+&lt;nav class="wf-breadcrumb"&gt;
+  &lt;a href="#" class="wf-breadcrumb-item"&gt;Home&lt;/a&gt;
+  &lt;span class="wf-breadcrumb-separator"&gt;/&lt;/span&gt;
+  &lt;span class="wf-breadcrumb-ellipsis"&gt;...&lt;/span&gt;
+  &lt;span class="wf-breadcrumb-separator"&gt;/&lt;/span&gt;
+  &lt;span class="wf-breadcrumb-item wf-breadcrumb-current"&gt;Current Page&lt;/span&gt;
+&lt;/nav&gt;</code></pre>
+  </div>
+</body>
+</html>

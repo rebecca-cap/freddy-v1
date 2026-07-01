@@ -1,0 +1,42 @@
+<h2>Threading &amp; background work</h2>
+
+<p class="lead">Scout is multi-threaded: every row — and the whole-view stream — can hold its own conversation that keeps working in the background while the analyst does other things. Each conversation moves through a small, well-defined state machine, and the moment any one of them finishes, a coordinated set of surfaces lights up together so the answer is impossible to miss.</p>
+
+<h3>Three thread states</h3>
+<p>A conversation is always in exactly one of three states. State drives every status affordance described below.</p>
+<table>
+  <thead>
+    <tr><th>State</th><th>Meaning</th><th>How it reads</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><span class="pill">in-progress</span></td><td>Scout is still thinking on this conversation</td><td>Animated dots, a quiet shimmer</td></tr>
+    <tr><td><span class="pill">ready</span></td><td>An answer is waiting but has not been opened</td><td>Solid dot plus an accent rail; counted as unseen</td></tr>
+    <tr><td><span class="pill">viewed</span></td><td>The answer has been opened and seen</td><td>Muted; no longer counted</td></tr>
+  </tbody>
+</table>
+<p>An <b>unseen count</b> aggregates every conversation currently in the <span class="pill">ready</span> state. Opening a ready conversation moves it to <span class="pill">viewed</span> and decrements that count.</p>
+
+<h3>Simulated think time &amp; the single clock</h3>
+<p>In the prototype, a question takes a fixed <b>~20 seconds</b> to move from <span class="pill">in-progress</span> to <span class="pill">ready</span> — a stand-in for real model latency. One global clock drives every surface, so countdowns and status flips stay in lockstep no matter which page the analyst is on.</p>
+<div class="callout callout--note"><b>Prototype-only</b> The fixed 20-second delay and the shared clock are demo scaffolding. A production build replaces them with real streaming and live status; the lockstep behavior is what matters, not the number.</div>
+
+<h3>Surfaces that flip together on ready</h3>
+<p>When a thread crosses into <span class="pill">ready</span>, all of these update in the same beat:</p>
+<ul>
+  <li>The <b>per-row dot</b> for that row lights and begins pulsing.</li>
+  <li>The <b>Chats unseen badge</b> increments.</li>
+  <li>The cross-page <b>name tag</b> reads <span class="tok">Scout is ready</span>.</li>
+  <li>A <b>card appears in the Control Panel</b> for that thread.</li>
+</ul>
+
+<h3>Chats inbox</h3>
+<p>The Chats tab lists conversations as <b>question-led cards</b> (see 1, 2). Each card shows the lead question, a one-line answer preview, a timestamp (for example <span class="tok">Jun 1 · 4:41 PM</span>), a <b>status badge</b> (animated dots while thinking, a solid dot with an accent rail when ready, muted once viewed), a <b>star</b> toggle, and a <b>⋯ menu</b> (favorite, delete, save). The tab itself carries the unseen count badge (see 3), and a control to start a fresh conversation sits at the top (see 4). Clicking a card slides into that conversation.</p>
+
+{{figure:c2-chats-inbox}}
+
+<h3>Per-row ready indicator</h3>
+<p>A pinned left-gutter marker of three dots signals each row's background state (see 1): lit and pulsing when that row's answer is ready, a quiet shimmer while in-progress, and absent when the row has been viewed or has no conversation at all. Clicking the marker jumps straight into that row's conversation.</p>
+
+{{figure:c3-ready-dots}}
+
+<div class="callout callout--info"><b>Open question</b> Whether the per-row dot should appear for every backgrounded row or only for rows the analyst explicitly asked about is an unresolved product decision.</div>

@@ -1,0 +1,151 @@
+/**
+ * Gravitate Wireframe Design System - Design Tokens
+ * ================================================
+ * Core design tokens for consistent wireframe styling
+ */
+
+:root {
+  /* ============================================
+   * SPACING TOKENS
+   * ============================================ */
+  --wf-space-0: 0;
+  --wf-space-1: 0.25rem;   /* 4px */
+  --wf-space-2: 0.5rem;    /* 8px */
+  --wf-space-3: 0.75rem;   /* 12px */
+  --wf-space-4: 1rem;      /* 16px */
+  --wf-space-5: 1.25rem;   /* 20px */
+  --wf-space-6: 1.5rem;    /* 24px */
+  --wf-space-8: 2rem;      /* 32px */
+  --wf-space-10: 2.5rem;   /* 40px */
+  --wf-space-12: 3rem;     /* 48px */
+  --wf-space-16: 4rem;     /* 64px */
+  --wf-space-20: 5rem;     /* 80px */
+  --wf-space-24: 6rem;     /* 96px */
+
+  /* ============================================
+   * COLOR TOKENS - Wireframe Palette
+   * ============================================ */
+
+  /* Grayscale - Primary wireframe colors */
+  --wf-color-white: #ffffff;
+  --wf-color-gray-50: #f9fafb;
+  --wf-color-gray-100: #f3f4f6;
+  --wf-color-gray-200: #e5e7eb;
+  --wf-color-gray-300: #d1d5db;
+  --wf-color-gray-400: #9ca3af;
+  --wf-color-gray-500: #6b7280;
+  --wf-color-gray-600: #4b5563;
+  --wf-color-gray-700: #374151;
+  --wf-color-gray-800: #1f2937;
+  --wf-color-gray-900: #111827;
+  --wf-color-black: #000000;
+
+  /* Semantic colors */
+  --wf-color-background: var(--wf-color-white);
+  --wf-color-background-alt: var(--wf-color-gray-50);
+  --wf-color-background-elevated: var(--wf-color-white);
+  --wf-color-surface: var(--wf-color-white);
+  --wf-color-border: var(--wf-color-gray-200);
+  --wf-color-border-strong: var(--wf-color-gray-300);
+  --wf-color-text-primary: var(--wf-color-gray-900);
+  --wf-color-text-secondary: var(--wf-color-gray-600);
+  --wf-color-text-tertiary: var(--wf-color-gray-400);
+  --wf-color-text-disabled: var(--wf-color-gray-300);
+
+  /* Accent colors for annotations/highlights */
+  --wf-color-accent-blue: #3b82f6;
+  --wf-color-accent-green: #10b981;
+  --wf-color-accent-yellow: #f59e0b;
+  --wf-color-accent-red: #ef4444;
+  --wf-color-accent-purple: #8b5cf6;
+
+  /* ============================================
+   * TYPOGRAPHY TOKENS
+   * ============================================ */
+
+  /* Font families */
+  --wf-font-family-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --wf-font-family-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Font sizes */
+  --wf-font-size-xs: 0.75rem;    /* 12px */
+  --wf-font-size-sm: 0.875rem;   /* 14px */
+  --wf-font-size-base: 1rem;     /* 16px */
+  --wf-font-size-lg: 1.125rem;   /* 18px */
+  --wf-font-size-xl: 1.25rem;    /* 20px */
+  --wf-font-size-2xl: 1.5rem;    /* 24px */
+  --wf-font-size-3xl: 1.875rem;  /* 30px */
+  --wf-font-size-4xl: 2.25rem;   /* 36px */
+
+  /* Font weights */
+  --wf-font-weight-normal: 400;
+  --wf-font-weight-medium: 500;
+  --wf-font-weight-semibold: 600;
+  --wf-font-weight-bold: 700;
+
+  /* Line heights */
+  --wf-line-height-tight: 1.25;
+  --wf-line-height-normal: 1.5;
+  --wf-line-height-relaxed: 1.75;
+
+  /* ============================================
+   * BORDER TOKENS
+   * ============================================ */
+  --wf-border-width-thin: 1px;
+  --wf-border-width-medium: 2px;
+  --wf-border-width-thick: 4px;
+
+  --wf-border-radius-none: 0;
+  --wf-border-radius-sm: 0.25rem;   /* 4px */
+  --wf-border-radius-md: 0.375rem;  /* 6px */
+  --wf-border-radius-lg: 0.5rem;    /* 8px */
+  --wf-border-radius-xl: 0.75rem;   /* 12px */
+  --wf-border-radius-2xl: 1rem;     /* 16px */
+  --wf-border-radius-full: 9999px;
+
+  /* ============================================
+   * SHADOW TOKENS
+   * ============================================ */
+  --wf-shadow-none: none;
+  --wf-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --wf-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --wf-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --wf-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+  /* ============================================
+   * LAYOUT TOKENS
+   * ============================================ */
+
+  /* Container max-widths */
+  --wf-container-sm: 640px;
+  --wf-container-md: 768px;
+  --wf-container-lg: 1024px;
+  --wf-container-xl: 1280px;
+  --wf-container-2xl: 1536px;
+
+  /* Sidebar widths */
+  --wf-sidebar-width: 256px;
+  --wf-sidebar-width-collapsed: 64px;
+
+  /* Header heights */
+  --wf-header-height: 64px;
+  --wf-header-height-sm: 48px;
+
+  /* ============================================
+   * TRANSITION TOKENS
+   * ============================================ */
+  --wf-transition-fast: 150ms ease;
+  --wf-transition-normal: 200ms ease;
+  --wf-transition-slow: 300ms ease;
+
+  /* ============================================
+   * Z-INDEX TOKENS
+   * ============================================ */
+  --wf-z-dropdown: 100;
+  --wf-z-sticky: 200;
+  --wf-z-fixed: 300;
+  --wf-z-modal-backdrop: 400;
+  --wf-z-modal: 500;
+  --wf-z-popover: 600;
+  --wf-z-tooltip: 700;
+}

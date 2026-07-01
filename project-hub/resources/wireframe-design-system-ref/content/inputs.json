@@ -1,0 +1,117 @@
+{
+  "slug": "inputs",
+  "title": "Text Inputs & Select",
+  "order": 6,
+  "group": "Controls",
+  "intro": "`wf-input` and `wf-select` are the two text-entry primitives of the wireframe kit. Both lean on a shared `wf-field` wrapper for their label, helper, and error scaffolding, so a field's structure stays identical whether it holds a free-text input or a dropdown.",
+  "searchTerms": ["wf-input", "wf-select", "wf-field", "wf-field-label", "wf-field-helper", "wf-field-error", "wf-field-error-message", "wf-required", "input", "text field", "select", "dropdown", "form field", "error state", "disabled"],
+  "blocks": [
+    {
+      "type": "usage",
+      "body": "Reach for `wf-input` for any single-line text entry and `wf-select` for a fixed set of choices. Neither is meant to stand alone — wrap each in a `wf-field` div so the label, helper text, and error message stack in the right order with the right spacing.\n\n`wf-input` is a bare `<input>` that fills its container (`width: 100%`) and accepts any HTML input `type` — `text`, `email`, `password`, `number`, `date`, `search` all inherit the same look. `wf-select` is a native `<select>` with its OS chevron suppressed (`appearance: none`) and replaced by an inline SVG caret, plus `36px` of right padding so option text never collides with it.\n\nState is expressed three ways: native attributes (`disabled`), native pseudo-classes (`:focus`, `:hover`), and one wrapper modifier — `wf-field-error` on the parent `wf-field` — which restyles the control and is the only state that is a class rather than an attribute."
+    },
+    {
+      "type": "specimen",
+      "title": "Input — Basic with Label",
+      "image": "specimens/inputs/01-input-basic.png",
+      "caption": "`wf-input` text fields in their default rest state, each paired with a `wf-field-label` — shown with a placeholder and without."
+    },
+    {
+      "type": "variants",
+      "title": "wf-input states",
+      "intro": "There is one base class — `wf-input` — and state comes from native attributes, native pseudo-classes, or the parent `wf-field-error` modifier. The wrapper structure never changes.",
+      "rows": [
+        { "name": "wf-input", "when": "The resting default. White fill, 1px #cbd5e1 border, 6px radius. Always inside a wf-field.", "code": "<div class=\"wf-field\">\n  <label class=\"wf-field-label\">Field Label</label>\n  <input type=\"text\" class=\"wf-input\" placeholder=\"Enter value...\">\n</div>" },
+        { "name": "wf-field-helper", "when": "Supporting guidance beneath the field — 11px muted grey, lives after the input inside the same wf-field.", "code": "<div class=\"wf-field\">\n  <label class=\"wf-field-label\">Email <span class=\"wf-required\">*</span></label>\n  <input type=\"email\" class=\"wf-input\" placeholder=\"you@example.com\">\n  <span class=\"wf-field-helper\">We'll never share your email</span>\n</div>" },
+        { "name": ":focus", "when": "Automatic on keyboard or click focus. Border turns to --wf-color-border-focus (#2563eb) with a 3px focus ring; never style this manually.", "code": "<!-- native :focus — no extra class needed -->\n<input type=\"text\" class=\"wf-input\">" },
+        { "name": ":disabled", "when": "Set the native disabled attribute. Fill greys to #f1f5f9, text to #94a3b8, cursor becomes not-allowed.", "code": "<input type=\"text\" class=\"wf-input\" disabled value=\"Cannot edit\">" },
+        { "name": "wf-field-error (on parent)", "when": "Add to the wf-field wrapper to flag a validation error. Repaints the input red-bordered with a pink fill and pairs with wf-field-error-message.", "code": "<div class=\"wf-field wf-field-error\">\n  <label class=\"wf-field-label\">Username</label>\n  <input type=\"text\" class=\"wf-input\" value=\"john_doe\">\n  <span class=\"wf-field-error-message\">Username is already taken</span>\n</div>" }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "Input — Error State",
+      "image": "specimens/inputs/02-input-error-state.png",
+      "caption": "The `wf-field-error` modifier on the wrapper: red border (#dc2626), pink fill (#fef2f2), and a `wf-field-error-message` line beneath the field."
+    },
+    {
+      "type": "specimen",
+      "title": "Input — Disabled State",
+      "image": "specimens/inputs/03-input-disabled-state.png",
+      "caption": "Disabled `wf-input` fields with a greyed value (#94a3b8) on a #f1f5f9 fill, optionally followed by `wf-field-helper` text."
+    },
+    {
+      "type": "specimen",
+      "title": "Select — Basic Dropdown",
+      "image": "specimens/inputs/04-select-basic.png",
+      "caption": "`wf-select` dropdowns in both the placeholder/unselected state and a pre-selected value state, each with the custom SVG chevron affordance."
+    },
+    {
+      "type": "variants",
+      "title": "wf-select states",
+      "intro": "`wf-select` mirrors `wf-input` exactly — same border, radius, focus ring, disabled treatment, and the same `wf-field-error` wrapper modifier. It adds a native-chevron suppression and a custom caret.",
+      "rows": [
+        { "name": "wf-select", "when": "The resting default. Use an empty-value first option as the placeholder prompt.", "code": "<div class=\"wf-field\">\n  <label class=\"wf-field-label\">Product Type</label>\n  <select class=\"wf-select\">\n    <option value=\"\">Select an option...</option>\n    <option value=\"1\">Unleaded 87</option>\n    <option value=\"2\">Unleaded 93</option>\n  </select>\n</div>" },
+        { "name": "selected option", "when": "Mark a default-selected choice with the native selected attribute on its option.", "code": "<select class=\"wf-select\">\n  <option value=\"active\" selected>Active</option>\n  <option value=\"pending\">Pending</option>\n  <option value=\"inactive\">Inactive</option>\n</select>" },
+        { "name": "optgroup", "when": "Group long option lists with native optgroup — the chevron and padding accommodate them unchanged.", "code": "<select class=\"wf-select\">\n  <option value=\"\">Select a terminal...</option>\n  <optgroup label=\"East Coast\">\n    <option value=\"nyc\">New York</option>\n    <option value=\"bos\">Boston</option>\n  </optgroup>\n</select>" },
+        { "name": ":disabled", "when": "Native disabled attribute — same #f1f5f9 fill, #94a3b8 text, not-allowed cursor as wf-input.", "code": "<select class=\"wf-select\" disabled>\n  <option value=\"1\">Fixed Value</option>\n</select>" },
+        { "name": "wf-field-error (on parent)", "when": "Add to the wf-field wrapper to flag a missing/invalid selection; pairs with wf-field-error-message.", "code": "<div class=\"wf-field wf-field-error\">\n  <label class=\"wf-field-label\">Region <span class=\"wf-required\">*</span></label>\n  <select class=\"wf-select\">\n    <option value=\"\">Select a region...</option>\n    <option value=\"north\">North</option>\n  </select>\n  <span class=\"wf-field-error-message\">Please select a region</span>\n</div>" }
+      ]
+    },
+    {
+      "type": "tokens",
+      "title": "Tokens these controls consume",
+      "intro": "Both controls are built entirely from `--wf-*` variables — restyle by overriding the token, not the control class.",
+      "rows": [
+        { "token": "--wf-color-border", "value": "#cbd5e1", "use": "Resting 1px border on both wf-input and wf-select." },
+        { "token": "--wf-color-border-hover", "value": "#94a3b8", "use": "Border on hover, only when not disabled and not focused." },
+        { "token": "--wf-color-border-focus", "value": "#2563eb", "use": "Border color on :focus for both controls." },
+        { "token": "--wf-color-border-error", "value": "#dc2626", "use": "Border color applied by the wf-field-error wrapper modifier." },
+        { "token": "--wf-color-error-bg", "value": "#fef2f2", "use": "Pink fill applied to the control inside wf-field-error." },
+        { "token": "--wf-color-bg-disabled", "value": "#f1f5f9", "use": "Fill of a disabled input or select." },
+        { "token": "--wf-color-text-disabled", "value": "#94a3b8", "use": "Text color of a disabled control." },
+        { "token": "--wf-color-text-muted", "value": "#64748b", "use": "Placeholder text and wf-field-helper text." },
+        { "token": "--wf-shadow-focus", "value": "0 0 0 3px rgba(37, 99, 235, 0.2)", "use": "Focus ring on a healthy control." },
+        { "token": "--wf-shadow-focus-error", "value": "0 0 0 3px rgba(220, 38, 38, 0.2)", "use": "Focus ring when the field is in error." },
+        { "token": "--wf-radius-md", "value": "6px", "use": "Corner radius shared by both controls." }
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "title": "Canonical field markup",
+      "code": "<!-- A required text field with helper text -->\n<div class=\"wf-field\">\n  <label class=\"wf-field-label\">Email <span class=\"wf-required\">*</span></label>\n  <input type=\"email\" class=\"wf-input\" placeholder=\"you@example.com\">\n  <span class=\"wf-field-helper\">We'll never share your email</span>\n</div>\n\n<!-- The same field, failing validation -->\n<div class=\"wf-field wf-field-error\">\n  <label class=\"wf-field-label\">Email <span class=\"wf-required\">*</span></label>\n  <input type=\"email\" class=\"wf-input\" value=\"invalid-email\">\n  <span class=\"wf-field-error-message\">Please enter a valid email address</span>\n</div>\n\n<!-- A select with a placeholder first option -->\n<div class=\"wf-field\">\n  <label class=\"wf-field-label\">Category <span class=\"wf-required\">*</span></label>\n  <select class=\"wf-select\" required>\n    <option value=\"\">Choose a category...</option>\n    <option value=\"fuel\">Fuel</option>\n    <option value=\"lubricant\">Lubricant</option>\n  </select>\n  <span class=\"wf-field-helper\">Required for inventory classification</span>\n</div>",
+      "note": "Order inside wf-field is fixed: label first, control second, then exactly one of wf-field-helper or wf-field-error-message."
+    },
+    {
+      "type": "rules",
+      "title": "Field construction",
+      "items": [
+        { "rule": "Always wrap a control in wf-field.", "why": "wf-field supplies the 4px label-to-control gap and the 16px bottom margin; a bare wf-input has no label slot and collides with its neighbors." },
+        { "rule": "Error state lives on the wrapper, not the control.", "why": "The repaint is keyed off `.wf-field-error .wf-input` / `.wf-field-error .wf-select` — adding a class to the input itself does nothing." },
+        { "rule": "Use a wf-field-error-message in error, a wf-field-helper otherwise — not both.", "why": "Stacking both doubles the gap and competes for the user's eye; the error message replaces the helper while the field is invalid." },
+        { "rule": "Mark required fields with a wf-required asterisk in the label.", "why": "It's the only required-state affordance the kit ships; the native required attribute alone is invisible until submit." },
+        { "rule": "Never restyle :focus by hand.", "why": "Both controls already swap to the #2563eb border plus a 3px ring — a custom outline fights the token-driven one and breaks the error-focus ring." }
+      ]
+    },
+    {
+      "type": "dosdonts",
+      "title": "Error state",
+      "items": [
+        { "do": "<div class=\"wf-field wf-field-error\">...</div>", "dont": "<input class=\"wf-input wf-field-error\">", "why": "The error styles target the control as a descendant of .wf-field-error — putting the modifier on the input itself selects nothing and the field stays neutral." },
+        { "do": "Pair wf-field-error with a wf-field-error-message", "dont": "Turn the field red with no message", "why": "The red border and pink fill say 'something is wrong' but not what — wf-field-error-message is the only place the reason gets stated." },
+        { "do": "Swap the helper out for the error message in the error state", "dont": "Keep wf-field-helper and add wf-field-error-message below it", "why": "Two stacked lines of micro-copy crowd the field; the error supersedes the helper until the value is valid again." },
+        { "do": "Let :focus paint the red focus ring while in error", "dont": "Override the focus box-shadow on errored fields", "why": "wf-field-error scopes its own --wf-shadow-focus-error ring; a manual override loses the red tint and the field looks healthy on focus." }
+      ]
+    },
+    {
+      "type": "gotchas",
+      "items": [
+        { "title": "wf-select hides the native chevron", "detail": "appearance: none (with -webkit- and -moz- prefixes) suppresses the OS caret and an inline SVG polyline draws the replacement at right 10px center. The 36px of right padding reserves room for it — don't shrink the padding or option text overlaps the caret." },
+        { "title": "Hover is suppressed while focused or disabled", "detail": "Both hover rules are scoped :hover:not(:disabled):not(:focus). A focused or disabled control deliberately won't pick up the #94a3b8 hover border — that's intended, not a bug." },
+        { "title": "wf-input fills its container", "detail": "width: 100% with box-sizing: border-box means the field is exactly as wide as its parent. Control width by sizing the wf-field (or its container), not the input." },
+        { "title": "Placeholder and helper share one muted grey", "detail": "Both --wf-color-text-muted (#64748b). An empty input with placeholder text and its helper line read at the same weight — rely on position (inside vs. below) to tell them apart." }
+      ]
+    }
+  ]
+}

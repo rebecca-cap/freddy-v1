@@ -1,0 +1,819 @@
+/**
+ * Gravitate Wireframe Design System - Specialized Components CSS
+ * Higher-level patterns that combine multiple base components
+ */
+
+/* ============================================
+   ACTION BAR COMPONENT
+   Grid/table toolbar for managing data views
+   ============================================ */
+.wf-action-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background-color: #ffffff;
+  border: 1px solid var(--wf-color-border, #d1d5db);
+  border-radius: 8px;
+  gap: 16px;
+  font-family: var(--wf-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+}
+
+.wf-action-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.wf-action-bar-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-width: 0;
+}
+
+.wf-action-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.wf-action-bar-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--wf-color-text-primary, #111827);
+  line-height: 1.4;
+}
+
+.wf-action-bar-count {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--wf-color-text-secondary, #374151);
+  padding: 2px 8px;
+  background-color: var(--wf-color-neutral-100, #f3f4f6);
+  border-radius: 9999px;
+}
+
+.wf-action-bar-filters {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Action Bar Selection Mode */
+.wf-action-bar-selection {
+  background-color: #eff6ff;
+  border-color: var(--wf-color-primary, #2563eb);
+}
+
+.wf-action-bar-selection .wf-action-bar-left {
+  gap: 8px;
+}
+
+/* Action Bar Variants */
+.wf-action-bar-compact {
+  padding: 8px 12px;
+}
+
+.wf-action-bar-borderless {
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid var(--wf-color-border, #d1d5db);
+}
+
+.wf-action-bar-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+/* ============================================
+   FILTER BAR COMPONENT
+   Filter controls for data filtering
+   ============================================ */
+.wf-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background-color: var(--wf-color-neutral-50, #f9fafb);
+  border: 1px solid var(--wf-color-border, #d1d5db);
+  border-radius: 8px;
+  gap: 16px;
+  font-family: var(--wf-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+}
+
+.wf-filter-bar-filters {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.wf-filter-bar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.wf-filter-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.wf-filter-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--wf-color-text-secondary, #374151);
+  white-space: nowrap;
+}
+
+.wf-filter-item span {
+  font-size: 13px;
+  color: var(--wf-color-text-tertiary, #6b7280);
+}
+
+/* Active Filters Pills */
+.wf-active-filters {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 8px 0;
+}
+
+.wf-active-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px 4px 12px;
+  background-color: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--wf-color-primary, #2563eb);
+}
+
+.wf-active-filter-remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--wf-color-primary, #2563eb);
+  transition: all 150ms ease;
+}
+
+.wf-active-filter-remove:hover {
+  background-color: var(--wf-color-primary, #2563eb);
+  color: #ffffff;
+}
+
+.wf-clear-filters {
+  padding: 4px 12px;
+  background: none;
+  border: none;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--wf-color-text-secondary, #374151);
+  cursor: pointer;
+  transition: color 150ms ease;
+}
+
+.wf-clear-filters:hover {
+  color: var(--wf-color-text-primary, #111827);
+}
+
+/* Filter Bar Variants */
+.wf-filter-bar-vertical {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.wf-filter-bar-vertical .wf-filter-bar-filters {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.wf-filter-bar-vertical .wf-filter-item {
+  justify-content: space-between;
+}
+
+.wf-filter-bar-inline {
+  padding: 8px 12px;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+}
+
+/* ============================================
+   DETAIL PANEL COMPONENT
+   Side panel for master-detail views
+   ============================================ */
+.wf-detail-panel {
+  display: flex;
+  flex-direction: column;
+  width: 480px;
+  height: 100%;
+  background-color: #ffffff;
+  border-left: 1px solid var(--wf-color-border, #d1d5db);
+  font-family: var(--wf-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  transform: translateX(100%);
+  transition: transform 300ms ease;
+}
+
+.wf-detail-panel-open {
+  transform: translateX(0);
+}
+
+/* Detail Panel Widths */
+.wf-detail-panel-narrow {
+  width: 320px;
+}
+
+.wf-detail-panel-wide {
+  width: 640px;
+}
+
+.wf-detail-panel-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--wf-color-border, #d1d5db);
+  flex-shrink: 0;
+}
+
+.wf-detail-panel-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.wf-detail-panel-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--wf-color-text-primary, #111827);
+  line-height: 1.4;
+}
+
+.wf-detail-panel-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 300;
+  color: var(--wf-color-text-secondary, #374151);
+  transition: all 150ms ease;
+  flex-shrink: 0;
+}
+
+.wf-detail-panel-close:hover {
+  background-color: var(--wf-color-neutral-100, #f3f4f6);
+  color: var(--wf-color-text-primary, #111827);
+}
+
+.wf-detail-panel-tabs {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 0 20px;
+  border-bottom: 1px solid var(--wf-color-border, #d1d5db);
+  flex-shrink: 0;
+}
+
+.wf-detail-panel-tabs .wf-tab {
+  padding: 12px 16px;
+  border: none;
+  border-bottom: 2px solid transparent;
+  background: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--wf-color-text-secondary, #374151);
+  cursor: pointer;
+  transition: all 150ms ease;
+  margin-bottom: -1px;
+}
+
+.wf-detail-panel-tabs .wf-tab:hover {
+  color: var(--wf-color-text-primary, #111827);
+}
+
+.wf-detail-panel-tabs .wf-tab-active {
+  color: var(--wf-color-primary, #2563eb);
+  border-bottom-color: var(--wf-color-primary, #2563eb);
+}
+
+.wf-detail-panel-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.wf-detail-panel-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 16px 20px;
+  border-top: 1px solid var(--wf-color-border, #d1d5db);
+  background-color: var(--wf-color-neutral-50, #f9fafb);
+  flex-shrink: 0;
+}
+
+/* Detail Panel with Shadow */
+.wf-detail-panel-elevated {
+  border-left: none;
+  box-shadow: -4px 0 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Detail Panel Overlay for mobile */
+.wf-detail-panel-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+}
+
+.wf-detail-panel-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(17, 24, 39, 0.5);
+  z-index: 99;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 300ms ease;
+}
+
+.wf-detail-panel-open + .wf-detail-panel-backdrop {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ============================================
+   FORM SECTION COMPONENT
+   Form organization with header and body
+   ============================================ */
+.wf-form-section {
+  margin-bottom: 32px;
+  font-family: var(--wf-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+}
+
+.wf-form-section:last-child {
+  margin-bottom: 0;
+}
+
+.wf-form-section-header {
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--wf-color-border, #d1d5db);
+}
+
+.wf-form-section-title {
+  margin: 0 0 4px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--wf-color-text-primary, #111827);
+  line-height: 1.4;
+}
+
+.wf-form-section-description {
+  margin: 0;
+  font-size: 14px;
+  color: var(--wf-color-text-secondary, #374151);
+  line-height: 1.5;
+}
+
+.wf-form-section-body {
+  /* Placeholder for form content */
+}
+
+/* Form Grid */
+.wf-form-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.wf-form-grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.wf-form-grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.wf-form-grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* Responsive form grid */
+@media (max-width: 768px) {
+  .wf-form-grid-2,
+  .wf-form-grid-3,
+  .wf-form-grid-4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Form Section Variants */
+.wf-form-section-card {
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid var(--wf-color-border, #d1d5db);
+  border-radius: 8px;
+}
+
+.wf-form-section-card .wf-form-section-header {
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+}
+
+.wf-form-section-collapsible .wf-form-section-header {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wf-form-section-collapsible .wf-form-section-header::after {
+  content: '\25BC';
+  font-size: 10px;
+  color: var(--wf-color-text-secondary, #374151);
+  transition: transform 200ms ease;
+}
+
+.wf-form-section-collapsed .wf-form-section-header::after {
+  transform: rotate(-90deg);
+}
+
+.wf-form-section-collapsed .wf-form-section-body {
+  display: none;
+}
+
+/* Form Row */
+.wf-form-row {
+  display: flex;
+  gap: 16px;
+}
+
+.wf-form-row > * {
+  flex: 1;
+}
+
+/* Full Width Field */
+.wf-form-row .wf-field-full {
+  flex: 0 0 100%;
+}
+
+/* ============================================
+   WIZARD FOOTER COMPONENT
+   Navigation footer for wizard/stepper flows
+   ============================================ */
+.wf-wizard-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background-color: #ffffff;
+  border-top: 1px solid var(--wf-color-border, #d1d5db);
+  font-family: var(--wf-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+}
+
+.wf-wizard-progress {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--wf-color-text-secondary, #374151);
+}
+
+/* Wizard Footer Variants */
+.wf-wizard-footer-centered {
+  justify-content: center;
+  gap: 24px;
+}
+
+.wf-wizard-footer-compact {
+  padding: 12px 16px;
+}
+
+.wf-wizard-footer-sticky {
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+}
+
+/* Wizard Footer with Progress Bar */
+.wf-wizard-footer-with-progress {
+  flex-direction: column;
+  gap: 12px;
+}
+
+.wf-wizard-footer-with-progress .wf-wizard-progress-bar {
+  width: 100%;
+  height: 4px;
+  background-color: var(--wf-color-neutral-200, #e5e7eb);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.wf-wizard-footer-with-progress .wf-wizard-progress-fill {
+  height: 100%;
+  background-color: var(--wf-color-primary, #2563eb);
+  border-radius: 2px;
+  transition: width 300ms ease;
+}
+
+.wf-wizard-footer-with-progress .wf-wizard-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* ============================================
+   PAGE HEADER COMPONENT
+   Top section of a page with title and actions
+   ============================================ */
+.wf-page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 24px 0;
+  margin-bottom: 24px;
+  font-family: var(--wf-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+}
+
+.wf-page-header-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.wf-page-header-title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--wf-color-text-primary, #111827);
+  line-height: 1.3;
+}
+
+.wf-page-header-description {
+  margin: 0;
+  font-size: 14px;
+  color: var(--wf-color-text-secondary, #374151);
+  line-height: 1.5;
+}
+
+.wf-page-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* Page Header with Breadcrumb */
+.wf-page-header-with-breadcrumb {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.wf-page-header-with-breadcrumb .wf-page-header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* Page Header with Tabs */
+.wf-page-header-with-tabs {
+  padding-bottom: 0;
+  margin-bottom: 0;
+  border-bottom: 1px solid var(--wf-color-border, #d1d5db);
+}
+
+.wf-page-header-with-tabs .wf-tabs-list {
+  margin-top: 16px;
+}
+
+/* ============================================
+   TOOLBAR COMPONENT
+   Horizontal toolbar with grouped actions
+   ============================================ */
+.wf-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  background-color: #ffffff;
+  border: 1px solid var(--wf-color-border, #d1d5db);
+  border-radius: 8px;
+  font-family: var(--wf-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+}
+
+.wf-toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.wf-toolbar-divider {
+  width: 1px;
+  height: 24px;
+  background-color: var(--wf-color-border, #d1d5db);
+  margin: 0 4px;
+}
+
+.wf-toolbar-spacer {
+  flex: 1;
+}
+
+/* Toolbar Button */
+.wf-toolbar-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  color: var(--wf-color-text-secondary, #374151);
+  transition: all 150ms ease;
+}
+
+.wf-toolbar-btn:hover {
+  background-color: var(--wf-color-neutral-100, #f3f4f6);
+  color: var(--wf-color-text-primary, #111827);
+}
+
+.wf-toolbar-btn:active {
+  background-color: var(--wf-color-neutral-200, #e5e7eb);
+}
+
+.wf-toolbar-btn-active {
+  background-color: #eff6ff;
+  color: var(--wf-color-primary, #2563eb);
+}
+
+.wf-toolbar-btn-active:hover {
+  background-color: #dbeafe;
+}
+
+/* Toolbar Variants */
+.wf-toolbar-vertical {
+  flex-direction: column;
+  padding: 8px;
+  width: fit-content;
+}
+
+.wf-toolbar-vertical .wf-toolbar-group {
+  flex-direction: column;
+}
+
+.wf-toolbar-vertical .wf-toolbar-divider {
+  width: 24px;
+  height: 1px;
+  margin: 4px 0;
+}
+
+.wf-toolbar-compact {
+  padding: 4px;
+  gap: 4px;
+}
+
+.wf-toolbar-compact .wf-toolbar-btn {
+  width: 28px;
+  height: 28px;
+  font-size: 14px;
+}
+
+/* ============================================
+   SPLIT VIEW COMPONENT
+   Container for master-detail layout
+   ============================================ */
+.wf-split-view {
+  display: flex;
+  height: 100%;
+  background-color: #ffffff;
+  font-family: var(--wf-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+}
+
+.wf-split-view-master {
+  flex: 1;
+  min-width: 0;
+  overflow: auto;
+}
+
+.wf-split-view-detail {
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.wf-split-view-divider {
+  width: 1px;
+  background-color: var(--wf-color-border, #d1d5db);
+  flex-shrink: 0;
+}
+
+/* Resizable Split View */
+.wf-split-view-resizable .wf-split-view-divider {
+  width: 5px;
+  cursor: col-resize;
+  background-color: transparent;
+  position: relative;
+}
+
+.wf-split-view-resizable .wf-split-view-divider::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 2px;
+  width: 1px;
+  background-color: var(--wf-color-border, #d1d5db);
+}
+
+.wf-split-view-resizable .wf-split-view-divider:hover::before {
+  background-color: var(--wf-color-primary, #2563eb);
+}
+
+/* ============================================
+   UTILITY CLASSES FOR SPECIALIZED COMPONENTS
+   ============================================ */
+
+/* Flex utilities for action bars */
+.wf-flex-start {
+  justify-content: flex-start;
+}
+
+.wf-flex-end {
+  justify-content: flex-end;
+}
+
+.wf-flex-center {
+  justify-content: center;
+}
+
+.wf-flex-between {
+  justify-content: space-between;
+}
+
+/* Gap utilities */
+.wf-gap-sm {
+  gap: 8px;
+}
+
+.wf-gap-md {
+  gap: 12px;
+}
+
+.wf-gap-lg {
+  gap: 16px;
+}
+
+.wf-gap-xl {
+  gap: 24px;
+}
+
+/* Hide on small screens */
+@media (max-width: 768px) {
+  .wf-hide-mobile {
+    display: none !important;
+  }
+}
+
+/* Show only on small screens */
+@media (min-width: 769px) {
+  .wf-show-mobile {
+    display: none !important;
+  }
+}

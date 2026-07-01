@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create New Offer — Index Special (quick) · Round 1</title>
+  <link rel="stylesheet" href="assets/wireframe.css">
+  <link rel="stylesheet" href="assets/lofi-chrome.css">
+</head>
+<body>
+
+  <!-- ===== Production-style full-screen create chrome (no app sidebar) ===== -->
+  <div class="lf-topbar">
+    <a class="lf-topbar-x" href="01-launchpad.html" title="Close">&times;</a>
+    <span class="lf-topbar-title">Create New Offer</span>
+    <a class="lf-backlink" href="../index.html">Round 1 index</a>
+  </div>
+
+  <div class="lf-offer-page">
+    <a class="lf-backtolist" href="01-launchpad.html">&#8592; Back to Offers</a>
+
+    <div class="lf-offer-grid">
+
+      <!-- ============ LEFT: content card ============ -->
+      <div class="lf-offer-main">
+        <div class="wf-card">
+          <div class="wf-card-header">
+            <div>
+              <h1 class="wf-text-h1">Create New Offer</h1>
+              <p class="wf-text-helper">Index Special &middot; quick create — fill the whole offer in one view</p>
+            </div>
+            <span class="wf-badge wf-badge-primary">Index Special</span>
+          </div>
+
+          <div class="wf-card-body">
+
+            <!-- A. Start -->
+            <div class="lf-group">
+              <h3 class="wf-text wf-text-h3 lf-group-title">Start</h3>
+              <p class="wf-text wf-text-helper lf-group-desc">Pick a template or clone a prior offer — everything below prefills.</p>
+              <div class="wf-row wf-gap-3 wf-align-end">
+                <div class="wf-field wf-flex-1">
+                  <label class="wf-field-label">Template</label>
+                  <select class="wf-select">
+                    <option>Group 3 Suboctane — OPIS index</option>
+                    <option>Group 3 Premium — OPIS index</option>
+                    <option>ULSD — Platts index</option>
+                    <option value="">No template (start blank)</option>
+                  </select>
+                </div>
+                <div class="wf-field">
+                  <label class="wf-field-label" style="visibility:hidden;" aria-hidden="true">&nbsp;</label>
+                  <button class="wf-button wf-button-secondary" style="min-height:39px;">Create from prior <span style="margin-left:var(--wf-space-2); color:var(--wf-color-text-tertiary); font-family:var(--wf-font-mono, ui-monospace, monospace); font-size:var(--wf-text-xs);">&#8984;P</span></button>
+                </div>
+              </div>
+            </div>
+
+            <!-- B. Product & volume -->
+            <div class="lf-group">
+              <h3 class="wf-text wf-text-h3 lf-group-title">Product &amp; volume</h3>
+              <div class="wf-form-grid wf-form-grid-3">
+                <div class="wf-field">
+                  <label class="wf-field-label">Product</label>
+                  <select class="wf-select">
+                    <option>Group 3 Suboctane (87)</option>
+                    <option>Group 3 Premium (91)</option>
+                    <option>ULSD</option>
+                  </select>
+                </div>
+                <div class="wf-field">
+                  <label class="wf-field-label">Terminal / location</label>
+                  <select class="wf-select">
+                    <option>Tulsa — Magellan</option>
+                    <option>Kansas City</option>
+                    <option>Wichita</option>
+                  </select>
+                </div>
+                <div class="wf-field">
+                  <label class="wf-field-label">Volume (gal)</label>
+                  <input type="text" class="wf-input" value="42,000">
+                </div>
+              </div>
+            </div>
+
+            <!-- C. Price formula — the meat -->
+            <div class="lf-group">
+              <h3 class="wf-text wf-text-h3 lf-group-title">Price formula</h3>
+              <p class="wf-text wf-text-helper lf-group-desc">Index-based pricing, invoiced at lift time. This is the decision that matters most.</p>
+              <div class="wf-form-grid wf-form-grid-3">
+                <div class="wf-field">
+                  <label class="wf-field-label">Index</label>
+                  <select class="wf-select">
+                    <option>OPIS Group 3</option>
+                    <option>Platts Group 3</option>
+                    <option>Argus Group 3</option>
+                  </select>
+                </div>
+                <div class="wf-field">
+                  <label class="wf-field-label">Index product</label>
+                  <select class="wf-select">
+                    <option>Suboctane Gross</option>
+                    <option>Suboctane Net</option>
+                    <option>Premium Gross</option>
+                  </select>
+                </div>
+                <div class="wf-field">
+                  <label class="wf-field-label">Differential ($/gal)</label>
+                  <input type="text" class="wf-input wf-mono" value="+0.0250">
+                  <span class="wf-field-helper">+/&minus; vs. the index, per gallon</span>
+                </div>
+              </div>
+              <div class="lf-readout" style="margin-top: var(--wf-space-4);">
+                <span class="lf-readout-label">Resulting price</span>
+                <span class="lf-readout-formula wf-mono"><strong>OPIS Group 3 Suboctane Gross</strong> + <strong>$0.0250</strong>/gal</span>
+                <span class="lf-readout-note">&#9202; Settles &amp; invoices at <strong>lift time</strong> against the day's posted index.</span>
+              </div>
+            </div>
+
+            <!-- D. Timing -->
+            <div class="lf-group">
+              <h3 class="wf-text wf-text-h3 lf-group-title">Timing</h3>
+              <p class="wf-text wf-text-helper lf-group-desc">Set durations, not dates — the offer windows roll from "now."</p>
+              <div class="wf-form-grid wf-form-grid-2">
+                <div class="wf-field">
+                  <label class="wf-field-label">Visible for</label>
+                  <div class="lf-chiprow">
+                    <span class="lf-chip" tabindex="0">2h</span>
+                    <span class="lf-chip is-selected" tabindex="0">4h</span>
+                    <span class="lf-chip" tabindex="0">Until close</span>
+                    <span class="lf-chip" tabindex="0">Custom&#8230;</span>
+                  </div>
+                </div>
+                <div class="wf-field">
+                  <label class="wf-field-label">Pickup window</label>
+                  <div class="lf-chiprow">
+                    <span class="lf-chip" tabindex="0">24h</span>
+                    <span class="lf-chip is-selected" tabindex="0">48h</span>
+                    <span class="lf-chip" tabindex="0">3 days</span>
+                    <span class="lf-chip" tabindex="0">Custom&#8230;</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- E. Invite -->
+            <div class="lf-group">
+              <h3 class="wf-text wf-text-h3 lf-group-title">Invite</h3>
+              <p class="wf-text wf-text-helper lf-group-desc">Pick existing groups. Tap a group to add everyone in it.</p>
+              <div class="lf-chiprow">
+                <span class="lf-chip is-selected" tabindex="0">Gulf Coast <span class="lf-chip-count">3</span></span>
+                <span class="lf-chip" tabindex="0">Midcon <span class="lf-chip-count">5</span></span>
+                <span class="lf-chip" tabindex="0">Chicago <span class="lf-chip-count">4</span></span>
+                <span class="lf-chip" tabindex="0">Rack — Tulsa <span class="lf-chip-count">6</span></span>
+                <span class="lf-chip" tabindex="0">+ Add customer</span>
+              </div>
+              <p class="wf-text wf-text-helper" style="margin-top: var(--wf-space-3);">3 customers selected &middot; Gulf Coast group</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- footer action bar (mirrors wizard footer position; single-view, so no step counter) -->
+        <div class="lf-offer-footer">
+          <a class="wf-button wf-button-secondary" href="01-launchpad.html">Cancel</a>
+          <span class="lf-footer-mid">Quick create &middot; target &#8804; 12 clicks &middot; &#8804; 30s</span>
+          <button class="wf-button wf-button-primary">Send offer <span class="kbd">&#8984;&#8629;</span></button>
+        </div>
+      </div>
+
+      <!-- ============ RIGHT: customer preview ============ -->
+      <div class="lf-offer-side">
+        <div class="wf-card">
+          <div class="wf-card-header">
+            <div>
+              <h3 class="wf-card-title">Index Special</h3>
+              <p class="wf-card-subtitle">What customers will see</p>
+            </div>
+          </div>
+          <div class="wf-card-body">
+            <div class="lf-preview">
+              <div class="lf-preview-sec">
+                <div class="lf-preview-label">Product &amp; Location</div>
+                <div class="lf-preview-value">Group 3 Suboctane (87) &middot; Tulsa — Magellan</div>
+                <div class="lf-preview-value lf-muted">42,000 gal</div>
+              </div>
+              <div class="lf-preview-sec is-key">
+                <div class="lf-preview-label">Pricing Strategy</div>
+                <div class="lf-preview-strategy">Index Pricing</div>
+                <div class="lf-preview-value wf-mono">OPIS G3 Suboctane Gross + $0.0250/gal</div>
+                <div class="lf-preview-value lf-muted">Invoices at lift time</div>
+              </div>
+              <div class="lf-preview-sec">
+                <div class="lf-preview-label">Timing Windows</div>
+                <div class="lf-preview-value">Visible 4h &middot; Pickup 48h</div>
+              </div>
+              <div class="lf-preview-sec">
+                <div class="lf-preview-label">Target Customers</div>
+                <div class="lf-preview-value">Gulf Coast group &middot; 3 customers</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lf-anno" style="margin-top: var(--wf-space-4);">
+          <b>Same surface as the wizard.</b> This is the standard Create New Offer page — top bar, Back to Offers, left content, right "what customers will see." The only change for an index special is that the steps collapse into one view, so the rep tweaks the few cells that matter (mainly the price formula) and sends.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,120 @@
+/* ScoutGlobalSurfaces — PROTOTYPE TIMER bar (TMR-2).
+ *
+ * Intentionally utilitarian / non-product. This must read as scaffolding, NOT
+ * as Scout UI: dashed border, monospace, muted neutral system grays. NO brand
+ * purple, no scout-* tokens, no rounded product chrome. Hard-coded neutral
+ * values on purpose so it can never be mistaken for the real design and never
+ * inherits page/theme styling.
+ *
+ * Body-portaled + position:fixed at the very bottom of the viewport, full
+ * width, high z-index but below modals (antd modals sit ~1000+). */
+
+.scout-proto-timer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /* Above app chrome (left sidebar, QuoteBook publisher footer) so the
+   * scaffolding bar is never hidden. antd modals/drawers also sit at 1000 but
+   * mount later in the DOM, so they still paint above this at equal z. */
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  box-sizing: border-box;
+  min-height: 34px;
+  /* Caution-tape stripe on the far left so it reads instantly as a temporary
+   * scaffold; normal text padding after it. */
+  padding: 6px 16px 6px 18px;
+
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12px;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+
+  /* Deep Scout-purple bar — branded + high-contrast against the light app so
+   * it is impossible to miss. */
+  color: #e8e4f2;
+  background: #2a2342;
+  border-top: 3px solid #715daa; /* Scout brand purple */
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.28);
+
+  pointer-events: none; /* scaffolding overlay — never intercept product clicks */
+  user-select: none;
+}
+
+/* Diagonal caution hatching running the full width, faint, behind the text. */
+.scout-proto-timer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 12px,
+    rgba(113, 93, 170, 0.16) 12px,
+    rgba(113, 93, 170, 0.16) 24px
+  );
+  pointer-events: none;
+}
+
+.scout-proto-timer > * {
+  position: relative; /* sit above the hatching */
+}
+
+.scout-proto-timer__label {
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #c9b8f0; /* light Scout lavender */
+  white-space: nowrap;
+}
+
+.scout-proto-timer__sub {
+  font-weight: 400;
+  text-transform: none;
+  color: #a7adba;
+}
+
+.scout-proto-timer__divider {
+  color: #5b6172;
+}
+
+.scout-proto-timer__count {
+  white-space: nowrap;
+}
+
+.scout-proto-timer__count--idle {
+  color: #a7adba;
+}
+
+.scout-proto-timer__num {
+  display: inline-block;
+  min-width: 2.6ch;
+  text-align: right;
+  font-weight: 700;
+  color: #ffffff;
+  font-variant-numeric: tabular-nums;
+}
+
+.scout-proto-timer__summary {
+  color: #c4c9d4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Thinking: light up the countdown number in caution amber so the live
+ * countdown reads as active without animation. prefers-reduced-motion safe. */
+.scout-proto-timer[data-state='thinking'] .scout-proto-timer__num {
+  color: #c9b8f0;
+}
+
+/* The bar is small; on narrow viewports let the summary truncate first. */
+@media (max-width: 720px) {
+  .scout-proto-timer__sub {
+    display: none;
+  }
+}

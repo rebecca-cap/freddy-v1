@@ -1,0 +1,12 @@
+.border-success {
+    border: 1px solid var(--theme-success) ;
+}
+.border-warning {
+    border: 1px solid #F8B12CFF ;
+}
+.border-error {
+    border: 1px solid var(--theme-error) ;
+}
+.border-top {
+    border-top: solid 1px var(--gray-200);
+}

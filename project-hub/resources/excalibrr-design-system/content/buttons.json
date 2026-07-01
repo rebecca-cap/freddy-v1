@@ -1,0 +1,126 @@
+{
+  "slug": "buttons",
+  "title": "Buttons",
+  "order": 4,
+  "group": "Controls",
+  "intro": "Buttons carry the action hierarchy of every Gravitate surface. GraviButton is the standard — boolean color flags plus an antd v5 appearance axis — with IconButton and EditSaveButton covering the icon-only and inline-edit niches.",
+  "demoPath": "/DesignSystem/Buttons",
+  "searchTerms": ["GraviButton", "IconButton", "EditSaveButton", "BigButton", "button", "CTA", "primary button", "icon button", "submit"],
+  "blocks": [
+    {
+      "type": "usage",
+      "body": "`GraviButton` is the only button most surfaces need. It wraps antd's Button with Gravitate's color flags (`theme1`, `theme2`, `success`, `error`) and an `appearance` axis that maps to antd v5 variants — reach for it anywhere you'd reach for antd Button and let the flags carry hierarchy.\n\nThe supporting cast is narrow: `IconButton` is a circular, tooltip-wrapped icon button for toolbars and row actions; `EditSaveButton` is a two-state pencil/save toggle for inline-editable sections inside antd Forms. `BigButton` is legacy — its styles no longer ship in the package — keep it out of new prototypes."
+    },
+    {
+      "type": "specimen",
+      "title": "GraviButton color flags",
+      "image": "specimens/buttons/01-gravibutton-color-flags.png",
+      "caption": "Resting states: no flags (quiet outlined default), theme1 (solid brand primary), success (solid green), error (solid red), and the disabled treatment."
+    },
+    {
+      "type": "props",
+      "title": "GraviButton props",
+      "intro": "GraviButton extends antd ButtonProps — everything not listed here passes straight through (`loading`, `size`, `block`, `href`).",
+      "rows": [
+        { "prop": "buttonText", "type": "ReactNode", "notes": "The label. GraviButton renders buttonText, not React children — always self-close the tag." },
+        { "prop": "theme1", "type": "boolean", "default": "false", "notes": "The primary CTA. Solid brand-primary button with token-driven hover and active states. One per surface." },
+        { "prop": "theme2", "type": "boolean", "default": "false", "notes": "antd primary color, solid. Secondary emphasis when theme1 is already taken." },
+        { "prop": "success", "type": "boolean", "default": "false", "notes": "Solid green. Affirmative commits — Apply, Confirm." },
+        { "prop": "error", "type": "boolean", "default": "false", "notes": "Solid red. Destructive actions — Delete, Remove." },
+        { "prop": "appearance", "type": "'solid' | 'outlined' | 'filled' | 'dashed' | 'text' | 'link'", "default": "'solid' when flagged, 'outlined' bare", "notes": "Maps to antd's variant. Always write 'outlined' — the legacy 'outline' silently remaps to the tinted 'filled' variant." },
+        { "prop": "icon", "type": "ReactNode", "notes": "An antd icon element, e.g. icon={<PlusOutlined />}. Never a string — strings render as literal text. Omit buttonText for an icon-only button." },
+        { "prop": "color", "type": "antd preset color", "notes": "Direct antd color override; beats the boolean flags (except theme1). Reach for flags first." },
+        { "prop": "disabled", "type": "boolean", "default": "false", "notes": "Standard antd disabled treatment." },
+        { "prop": "onClick", "type": "(e: MouseEvent) => void", "notes": "Wrapped with a Google Analytics event before your handler runs. Submit forms here — htmlType='submit' passes through but is banned by house rule (EditSaveButton is the lone exception)." }
+      ]
+    },
+    {
+      "type": "variants",
+      "title": "Color flags",
+      "intro": "One boolean flag per button. Flags are mutually exclusive in spirit — when several are set, error wins over success, which wins over theme2.",
+      "rows": [
+        { "name": "default", "when": "Neutral and secondary actions — Cancel, Back, Reset.", "code": "<GraviButton buttonText='Cancel' onClick={onClose} />" },
+        { "name": "theme1", "when": "The single primary action on a surface.", "code": "<GraviButton buttonText='Publish' theme1 onClick={onPublish} />" },
+        { "name": "theme2", "when": "antd-primary emphasis when theme1 is already spent on this surface.", "code": "<GraviButton buttonText='New View' theme2 onClick={onNew} />" },
+        { "name": "success", "when": "Affirmative commits that close a workflow — Apply, Confirm.", "code": "<GraviButton buttonText='Apply Filters' success onClick={onApply} />" },
+        { "name": "error", "when": "Destructive commitments — Delete, Remove, Discard.", "code": "<GraviButton buttonText='Delete Tier' error onClick={confirmDelete} />" }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "GraviButton appearance axis",
+      "image": "specimens/buttons/02-gravibutton-appearance.png",
+      "caption": "The appearance values on a success-flagged button: solid (default when flagged), outlined, filled (tinted), dashed, and text. Each maps directly to an antd v5 variant."
+    },
+    {
+      "type": "specimen",
+      "title": "Icons in GraviButton",
+      "image": "specimens/buttons/03-gravibutton-icons.png",
+      "caption": "icon takes an antd icon element: paired with buttonText (left), or icon-only when buttonText is omitted (right — antd applies square icon-only sizing automatically)."
+    },
+    {
+      "type": "code",
+      "title": "Canonical GraviButton usage",
+      "code": "import { GraviButton } from '@gravitate-js/excalibrr'\nimport { PlusOutlined } from '@ant-design/icons'\n\n// Primary action — one per surface\n<GraviButton buttonText='Publish Prices' theme1 onClick={handlePublish} />\n\n// Neutral secondary\n<GraviButton buttonText='Cancel' onClick={onClose} />\n\n// Destructive, toned down with an outline\n<GraviButton buttonText='Delete Tier' error appearance='outlined' onClick={confirmDelete} />\n\n// Icon + label\n<GraviButton buttonText='Add Quote Row' icon={<PlusOutlined />} onClick={addRow} />\n\n// Submit an antd form — never htmlType='submit'\n<GraviButton buttonText='Save' theme1 onClick={() => form.submit()} />",
+      "note": "Every example self-closes: the label travels through buttonText, never children."
+    },
+    {
+      "type": "specimen",
+      "title": "Utility buttons — EditSaveButton and IconButton",
+      "image": "specimens/buttons/04-utility-buttons.png",
+      "caption": "EditSaveButton's two states — pencil (editing={false}) and save (editing={true}) — beside IconButton's circular, tooltip-wrapped icon button."
+    },
+    {
+      "type": "props",
+      "title": "EditSaveButton props",
+      "intro": "A small two-state toggle for inline-editable sections. It must live inside an antd <Form> — the save state submits the form.",
+      "rows": [
+        { "prop": "editing", "type": "boolean", "default": "false", "notes": "false renders the pencil button that fires onEdit. true renders the save button, which submits the enclosing antd Form via an internal htmlType submit." },
+        { "prop": "onEdit", "type": "() => void", "notes": "Fires from the pencil state only. There is no onSave — handle persistence in the Form's onFinish." },
+        { "prop": "extraClasses", "type": "string", "default": "''", "notes": "Concatenated with no separator — include a leading space (' my-class') or it fuses with the base class." }
+      ]
+    },
+    {
+      "type": "props",
+      "title": "IconButton props",
+      "intro": "A circular antd button inside a Tooltip. The wrapper div bakes in right padding (pr-3) — account for it when spacing toolbar neighbors.",
+      "rows": [
+        { "prop": "hoverTitle", "type": "string", "notes": "Tooltip text — bottom placement, 0.5 s enter delay. Required in practice: an unlabeled icon button is a usability hole." },
+        { "prop": "icon", "type": "ReactNode", "default": "<PaperClipOutlined />", "notes": "An antd icon element." },
+        { "prop": "onClick", "type": "(...args) => void", "notes": "Click handler." }
+      ]
+    },
+    {
+      "type": "rules",
+      "title": "Button hierarchy",
+      "items": [
+        { "rule": "One theme1 button per surface.", "why": "It marks the single primary action — two primaries cancel each other out." },
+        { "rule": "Default (no flags) is the workhorse for everything secondary.", "why": "The quiet outlined treatment keeps dense control bars readable." },
+        { "rule": "Reserve error for destructive commitments and success for affirmative commits — never decoratively.", "why": "Color is the warning; dilute it and users stop reading it." },
+        { "rule": "Demote buttons inside dense chrome with appearance='text' or 'filled' rather than shrinking labels.", "why": "Variant changes preserve hit targets and legibility; tiny type does not." },
+        { "rule": "Icon-only buttons always get a tooltip — use IconButton or pass hover text.", "why": "An unlabeled glyph forces users to click to find out what it does." }
+      ]
+    },
+    {
+      "type": "dosdonts",
+      "items": [
+        { "do": "<GraviButton buttonText='Save' theme1 />", "dont": "<GraviButton theme1>Save</GraviButton>", "why": "GraviButton renders the buttonText prop. Children are not the contract and render nothing in older releases." },
+        { "do": "Boolean flags: theme1, success, error", "dont": "type='primary' or theme='success'", "why": "theme is not a prop, and GraviButton always sets antd's color/variant pair, which overrides type — both silently do nothing." },
+        { "do": "appearance='outlined'", "dont": "appearance='outline'", "why": "'outline' is a legacy alias that remaps to the tinted 'filled' variant — you get a different button than you asked for." },
+        { "do": "onClick={() => form.submit()}", "dont": "htmlType='submit'", "why": "Explicit submits keep form wiring visible and survive the analytics-wrapped click path. EditSaveButton is the lone sanctioned exception." },
+        { "do": "icon={<PlusOutlined />}", "dont": "icon='add'", "why": "icon is an antd ReactNode slot — a string renders as literal text inside the button." }
+      ]
+    },
+    {
+      "type": "gotchas",
+      "items": [
+        { "title": "buttonText, not children", "detail": "GraviButton renders the buttonText prop and self-closes. Current releases fall back to children, but earlier ones drop them silently — and every library-internal caller uses buttonText. Treat children as off-limits." },
+        { "title": "warning, theme3, and theme4 are inert", "detail": "ThemeVariants declares them, but the current package never maps them to a style — they render identical to a bare outlined default. Use theme1, theme2, success, or error." },
+        { "title": "Every click reports to Google Analytics", "detail": "onClick is wrapped with a ReactGA event built from the first route segment and the button's text content. Button labels become analytics labels — keep them clean and free of sensitive data." },
+        { "title": "EditSaveButton needs an antd Form around it", "detail": "The save state is an internal htmlType submit with no onSave callback. Outside a Form, saving does nothing — wire persistence in the Form's onFinish." },
+        { "title": "BigButton ships unstyled in 5.x", "detail": "The .big-button CSS was dropped from the package stylesheet, so it renders as a bare div. Legacy — build promotional tiles with CheckCard or a styled card instead." },
+        { "title": "IconButton bakes in spacing and delay", "detail": "The wrapper div carries pr-3 right padding and the tooltip waits 0.5 s at bottom placement. Don't add extra margin to its right; don't expect instant hover labels." }
+      ]
+    }
+  ]
+}

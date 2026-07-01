@@ -1,0 +1,16 @@
+{
+  "path": "/Analytics/ByTerminal",
+  "title": "By Terminal",
+  "finalUrl": "http://localhost:3001/Analytics/ByTerminal",
+  "rootLen": 76385,
+  "crashed": false,
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 429 ()"
+  ],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [
+    "PricePerformance/ByTerminal"
+  ],
+  "consoleEventCount": 14
+}

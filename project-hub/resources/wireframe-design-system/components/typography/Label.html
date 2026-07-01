@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Label Component - Wireframe Design System</title>
+  <link rel="stylesheet" href="typography.css">
+  <style>
+    /* Demo page styles */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #f8fafc;
+      padding: 32px;
+      margin: 0;
+      color: #1a1a2e;
+    }
+
+    .demo-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .demo-section {
+      background: white;
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .demo-section-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .demo-grid {
+      display: grid;
+      gap: 24px;
+    }
+
+    .demo-row {
+      display: flex;
+      gap: 32px;
+    }
+
+    .demo-example {
+      background: #f8fafc;
+      padding: 16px;
+      border-radius: 6px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .code-block {
+      background: #f1f5f9;
+      border-radius: 4px;
+      padding: 12px 16px;
+      font-family: 'SF Mono', Monaco, monospace;
+      font-size: 12px;
+      color: #475569;
+      overflow-x: auto;
+      margin-top: 12px;
+      white-space: pre;
+    }
+
+    .example-card {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+
+    .divider {
+      height: 1px;
+      background: #e5e7eb;
+      margin: 16px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-container">
+
+    <!-- Page Title -->
+    <div class="demo-section">
+      <h1 class="wf-text wf-text-h1">Label Component</h1>
+      <p class="wf-text wf-text-body wf-text-secondary" style="margin-top: 8px;">
+        Key-value pair patterns for displaying labeled data.
+      </p>
+    </div>
+
+    <!-- Basic Label Groups -->
+    <div class="demo-section">
+      <div class="demo-section-title">Vertical Label (Stacked)</div>
+
+      <div class="demo-example">
+        <div class="wf-label-group">
+          <span class="wf-text wf-text-label">Contract ID</span>
+          <span class="wf-text wf-text-body wf-text-semibold">CNT-2024-001</span>
+        </div>
+      </div>
+
+      <div class="code-block">&lt;div class="wf-label-group"&gt;
+  &lt;span class="wf-text wf-text-label"&gt;Contract ID&lt;/span&gt;
+  &lt;span class="wf-text wf-text-body wf-text-semibold"&gt;CNT-2024-001&lt;/span&gt;
+&lt;/div&gt;</div>
+    </div>
+
+    <!-- Horizontal Label -->
+    <div class="demo-section">
+      <div class="demo-section-title">Horizontal Label (Inline)</div>
+
+      <div class="demo-example">
+        <div class="wf-label-group wf-label-horizontal">
+          <span class="wf-text wf-text-label">Status:</span>
+          <span class="wf-text wf-text-body">Active</span>
+        </div>
+      </div>
+
+      <div class="code-block">&lt;div class="wf-label-group wf-label-horizontal"&gt;
+  &lt;span class="wf-text wf-text-label"&gt;Status:&lt;/span&gt;
+  &lt;span class="wf-text wf-text-body"&gt;Active&lt;/span&gt;
+&lt;/div&gt;</div>
+    </div>
+
+    <!-- Spread Label -->
+    <div class="demo-section">
+      <div class="demo-section-title">Spread Label (Justified)</div>
+
+      <div class="demo-example" style="max-width: 400px;">
+        <div class="wf-label-group wf-label-spread">
+          <span class="wf-text wf-text-label">Total Amount</span>
+          <span class="wf-text wf-text-body wf-text-semibold">$12,500.00</span>
+        </div>
+      </div>
+
+      <div class="code-block">&lt;div class="wf-label-group wf-label-spread"&gt;
+  &lt;span class="wf-text wf-text-label"&gt;Total Amount&lt;/span&gt;
+  &lt;span class="wf-text wf-text-body wf-text-semibold"&gt;$12,500.00&lt;/span&gt;
+&lt;/div&gt;</div>
+    </div>
+
+    <!-- Page Header Pattern -->
+    <div class="demo-section">
+      <div class="demo-section-title">Page Header Pattern</div>
+
+      <div class="demo-example">
+        <div class="wf-page-header">
+          <div class="wf-page-header-row">
+            <h1 class="wf-text wf-text-h1">Contract Management</h1>
+            <button style="padding: 8px 16px; background: #2563eb; color: white; border: none; border-radius: 6px; font-size: 14px; cursor: pointer;">New Contract</button>
+          </div>
+          <p class="wf-page-subtitle">Manage and track all your active contracts</p>
+        </div>
+      </div>
+
+      <div class="code-block">&lt;div class="wf-page-header"&gt;
+  &lt;div class="wf-page-header-row"&gt;
+    &lt;h1 class="wf-text wf-text-h1"&gt;Contract Management&lt;/h1&gt;
+    &lt;button&gt;New Contract&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;p class="wf-page-subtitle"&gt;Manage and track all your active contracts&lt;/p&gt;
+&lt;/div&gt;</div>
+    </div>
+
+    <!-- Section Header Pattern -->
+    <div class="demo-section">
+      <div class="demo-section-title">Section Header Patterns</div>
+
+      <!-- With border -->
+      <div class="demo-example" style="margin-bottom: 16px;">
+        <div class="wf-section-header">
+          <h2 class="wf-text wf-text-h2">Contract Details</h2>
+          <a href="#" class="wf-text wf-text-link">Edit</a>
+        </div>
+        <p class="wf-text wf-text-body wf-text-secondary">Section content goes here...</p>
+      </div>
+
+      <!-- Simple (no border) -->
+      <div class="demo-example">
+        <div class="wf-section-header wf-section-header-simple">
+          <h3 class="wf-text wf-text-h3">Payment Information</h3>
+        </div>
+        <p class="wf-text wf-text-body wf-text-secondary">Section content goes here...</p>
+      </div>
+
+      <div class="code-block">&lt;!-- With border and action --&gt;
+&lt;div class="wf-section-header"&gt;
+  &lt;h2 class="wf-text wf-text-h2"&gt;Contract Details&lt;/h2&gt;
+  &lt;a href="#" class="wf-text wf-text-link"&gt;Edit&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;!-- Simple without border --&gt;
+&lt;div class="wf-section-header wf-section-header-simple"&gt;
+  &lt;h3 class="wf-text wf-text-h3"&gt;Payment Information&lt;/h3&gt;
+&lt;/div&gt;</div>
+    </div>
+
+    <!-- Form Field Labels -->
+    <div class="demo-section">
+      <div class="demo-section-title">Form Field Labels</div>
+
+      <div class="demo-example">
+        <div style="display: grid; gap: 20px; max-width: 400px;">
+          <!-- Required field -->
+          <div>
+            <label class="wf-text wf-text-label wf-required" style="display: block; margin-bottom: 6px;">Company Name</label>
+            <input type="text" placeholder="Enter company name" style="width: 100%; padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px;">
+          </div>
+
+          <!-- Optional field with helper -->
+          <div>
+            <label class="wf-text wf-text-label" style="display: block; margin-bottom: 6px;">Website</label>
+            <input type="url" placeholder="https://example.com" style="width: 100%; padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px;">
+            <span class="wf-text wf-text-helper" style="display: block; margin-top: 6px;">Optional - Your company website URL</span>
+          </div>
+
+          <!-- Error state -->
+          <div>
+            <label class="wf-text wf-text-label wf-required" style="display: block; margin-bottom: 6px;">Email Address</label>
+            <input type="email" value="invalid-email" style="width: 100%; padding: 10px 12px; border: 1px solid #dc2626; border-radius: 6px; font-size: 14px; background: #fef2f2;">
+            <span class="wf-text wf-text-helper wf-text-error" style="display: block; margin-top: 6px;">Please enter a valid email address</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-block">&lt;!-- Required field --&gt;
+&lt;label class="wf-text wf-text-label wf-required"&gt;Company Name&lt;/label&gt;
+&lt;input type="text" placeholder="Enter company name"&gt;
+
+&lt;!-- With helper text --&gt;
+&lt;label class="wf-text wf-text-label"&gt;Website&lt;/label&gt;
+&lt;input type="url" placeholder="https://example.com"&gt;
+&lt;span class="wf-text wf-text-helper"&gt;Optional - Your company website URL&lt;/span&gt;
+
+&lt;!-- Error state --&gt;
+&lt;label class="wf-text wf-text-label wf-required"&gt;Email Address&lt;/label&gt;
+&lt;input type="email" style="border-color: #dc2626;"&gt;
+&lt;span class="wf-text wf-text-helper wf-text-error"&gt;Please enter a valid email&lt;/span&gt;</div>
+    </div>
+
+    <!-- Data Display with Labels -->
+    <div class="demo-section">
+      <div class="demo-section-title">Data Display with Labels</div>
+
+      <!-- Using data rows -->
+      <div class="demo-example" style="margin-bottom: 16px;">
+        <h4 class="wf-text wf-text-h4" style="margin-bottom: 16px;">Contract Information</h4>
+
+        <div class="wf-data-row">
+          <span class="wf-data-label">Contract ID</span>
+          <span class="wf-data-value">CNT-2024-001</span>
+        </div>
+        <div class="wf-data-row">
+          <span class="wf-data-label">Client Name</span>
+          <span class="wf-data-value">Acme Corporation</span>
+        </div>
+        <div class="wf-data-row">
+          <span class="wf-data-label">Status</span>
+          <span class="wf-data-value">
+            <span class="wf-status-text wf-status-text-success">Active</span>
+          </span>
+        </div>
+        <div class="wf-data-row">
+          <span class="wf-data-label">Start Date</span>
+          <span class="wf-data-value">January 15, 2024</span>
+        </div>
+        <div class="wf-data-row">
+          <span class="wf-data-label">Total Value</span>
+          <span class="wf-data-value wf-text-semibold">$125,000.00</span>
+        </div>
+      </div>
+
+      <div class="code-block">&lt;div class="wf-data-row"&gt;
+  &lt;span class="wf-data-label"&gt;Contract ID&lt;/span&gt;
+  &lt;span class="wf-data-value"&gt;CNT-2024-001&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="wf-data-row"&gt;
+  &lt;span class="wf-data-label"&gt;Status&lt;/span&gt;
+  &lt;span class="wf-data-value"&gt;
+    &lt;span class="wf-status-text wf-status-text-success"&gt;Active&lt;/span&gt;
+  &lt;/span&gt;
+&lt;/div&gt;</div>
+    </div>
+
+    <!-- Data Grid -->
+    <div class="demo-section">
+      <div class="demo-section-title">Data Grid Layout</div>
+
+      <div class="demo-example">
+        <div class="wf-data-grid">
+          <div class="wf-label-group">
+            <span class="wf-text wf-text-label">Contract ID</span>
+            <span class="wf-text wf-text-body wf-text-semibold">CNT-2024-001</span>
+          </div>
+          <div class="wf-label-group">
+            <span class="wf-text wf-text-label">Client</span>
+            <span class="wf-text wf-text-body">Acme Corporation</span>
+          </div>
+          <div class="wf-label-group">
+            <span class="wf-text wf-text-label">Status</span>
+            <span class="wf-status-text wf-status-text-success">Active</span>
+          </div>
+          <div class="wf-label-group">
+            <span class="wf-text wf-text-label">Start Date</span>
+            <span class="wf-text wf-text-body">Jan 15, 2024</span>
+          </div>
+          <div class="wf-label-group">
+            <span class="wf-text wf-text-label">End Date</span>
+            <span class="wf-text wf-text-body">Jan 14, 2025</span>
+          </div>
+          <div class="wf-label-group">
+            <span class="wf-text wf-text-label">Value</span>
+            <span class="wf-text wf-text-body wf-text-semibold">$125,000</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-block">&lt;div class="wf-data-grid"&gt;
+  &lt;div class="wf-label-group"&gt;
+    &lt;span class="wf-text wf-text-label"&gt;Contract ID&lt;/span&gt;
+    &lt;span class="wf-text wf-text-body wf-text-semibold"&gt;CNT-2024-001&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="wf-label-group"&gt;
+    &lt;span class="wf-text wf-text-label"&gt;Client&lt;/span&gt;
+    &lt;span class="wf-text wf-text-body"&gt;Acme Corporation&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;!-- More items... --&gt;
+&lt;/div&gt;</div>
+    </div>
+
+    <!-- Status Text Examples -->
+    <div class="demo-section">
+      <div class="demo-section-title">Status Text with Colors</div>
+
+      <div class="demo-example">
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div class="wf-label-group wf-label-horizontal">
+            <span class="wf-text wf-text-label" style="min-width: 120px;">Payment:</span>
+            <span class="wf-status-text wf-status-text-success">Completed</span>
+          </div>
+          <div class="wf-label-group wf-label-horizontal">
+            <span class="wf-text wf-text-label" style="min-width: 120px;">Review:</span>
+            <span class="wf-status-text wf-status-text-warning">Pending Approval</span>
+          </div>
+          <div class="wf-label-group wf-label-horizontal">
+            <span class="wf-text wf-text-label" style="min-width: 120px;">Validation:</span>
+            <span class="wf-status-text wf-status-text-error">Failed</span>
+          </div>
+          <div class="wf-label-group wf-label-horizontal">
+            <span class="wf-text wf-text-label" style="min-width: 120px;">Processing:</span>
+            <span class="wf-status-text wf-status-text-info">In Progress</span>
+          </div>
+          <div class="wf-label-group wf-label-horizontal">
+            <span class="wf-text wf-text-label" style="min-width: 120px;">Document:</span>
+            <span class="wf-status-text wf-status-text-neutral">Draft</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-block">&lt;div class="wf-label-group wf-label-horizontal"&gt;
+  &lt;span class="wf-text wf-text-label"&gt;Payment:&lt;/span&gt;
+  &lt;span class="wf-status-text wf-status-text-success"&gt;Completed&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;div class="wf-label-group wf-label-horizontal"&gt;
+  &lt;span class="wf-text wf-text-label"&gt;Review:&lt;/span&gt;
+  &lt;span class="wf-status-text wf-status-text-warning"&gt;Pending Approval&lt;/span&gt;
+&lt;/div&gt;</div>
+    </div>
+
+    <!-- Real World Example: Detail Card -->
+    <div class="demo-section">
+      <div class="demo-section-title">Real World Example: Detail Card</div>
+
+      <div class="example-card">
+        <div class="wf-section-header">
+          <h3 class="wf-text wf-text-h3">Order Details</h3>
+          <span class="wf-status-text wf-status-text-success">Confirmed</span>
+        </div>
+
+        <div class="wf-data-grid" style="margin-top: 16px;">
+          <div class="wf-label-group">
+            <span class="wf-text wf-text-label">Order Number</span>
+            <span class="wf-text wf-text-body wf-text-semibold">ORD-2024-78542</span>
+          </div>
+          <div class="wf-label-group">
+            <span class="wf-text wf-text-label">Customer</span>
+            <span class="wf-text wf-text-body">John Smith</span>
+          </div>
+          <div class="wf-label-group">
+            <span class="wf-text wf-text-label">Order Date</span>
+            <span class="wf-text wf-text-body">Jan 25, 2024</span>
+          </div>
+          <div class="wf-label-group">
+            <span class="wf-text wf-text-label">Delivery</span>
+            <span class="wf-text wf-text-body">Express (2-3 days)</span>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="wf-label-group wf-label-spread" style="margin-bottom: 8px;">
+          <span class="wf-text wf-text-body wf-text-secondary">Subtotal</span>
+          <span class="wf-text wf-text-body">$245.00</span>
+        </div>
+        <div class="wf-label-group wf-label-spread" style="margin-bottom: 8px;">
+          <span class="wf-text wf-text-body wf-text-secondary">Shipping</span>
+          <span class="wf-text wf-text-body">$15.00</span>
+        </div>
+        <div class="wf-label-group wf-label-spread" style="margin-bottom: 8px;">
+          <span class="wf-text wf-text-body wf-text-secondary">Tax</span>
+          <span class="wf-text wf-text-body">$26.00</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="wf-label-group wf-label-spread">
+          <span class="wf-text wf-text-body wf-text-semibold">Total</span>
+          <span class="wf-text wf-text-h3">$286.00</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,109 @@
+{
+  "slug": "choice-controls",
+  "title": "Checkbox, Radio & Toggle",
+  "order": 7,
+  "group": "Controls",
+  "intro": "The three choice controls all use the same trick: a visually hidden native `<input>` carries the state, and a sibling span draws the box, circle, or track. That keeps them keyboard-accessible and form-submittable for free while every visual state is pure CSS off `:checked`, `:focus`, and `:disabled`.",
+  "searchTerms": ["wf-checkbox", "wf-radio", "wf-toggle", "checkbox", "radio", "radio button", "toggle", "switch", "wf-checkbox-box", "wf-radio-circle", "wf-toggle-track", "wf-checkbox-group", "wf-radio-group", "choice control"],
+  "blocks": [
+    {
+      "type": "usage",
+      "body": "Reach for `wf-checkbox` when each option is independent — any number can be on at once. Reach for `wf-radio` when the options are mutually exclusive and the user must land on exactly one; radios in a set share a `name` so the browser enforces the single-selection rule. Reach for `wf-toggle` when a single setting flips between two states (on/off, enabled/disabled) and the result takes effect immediately.\n\nAll three share one anatomy. A `<label>` wraps a hidden native input (`wf-checkbox-input`, `wf-radio-input`, or `wf-toggle-input`), a visual span (`wf-checkbox-box`, `wf-radio-circle`, or `wf-toggle-track`), and a text span (`*-label`). The input is hidden with `position: absolute; opacity: 0; width: 0; height: 0` — not `display: none` — so it stays focusable and keeps its native semantics. Wrapping the whole thing in a `<label>` means clicking the text toggles the control, and the box/circle/track is drawn by the sibling span reacting to the input's `:checked` state via the `+` combinator.\n\nStack checkboxes in a `wf-checkbox-group` and radios in a `wf-radio-group` — both are flex columns with a `--wf-space-sm` (8px) gap and an optional `wf-text wf-text-label` heading."
+    },
+    {
+      "type": "specimen",
+      "title": "Checkbox states",
+      "image": "specimens/choice-controls/01-checkbox-states.png",
+      "caption": "wf-checkbox across unchecked, checked, and disabled states. Checked fills the 18×18 box with --wf-color-primary (#2563eb) and reveals the SVG checkmark; disabled drops to the --wf-color-bg-disabled (#f1f5f9) fill and mutes the label."
+    },
+    {
+      "type": "specimen",
+      "title": "Radio states",
+      "image": "specimens/choice-controls/02-radio-states.png",
+      "caption": "A wf-radio group showing selected, unselected, and disabled options in one choice set. Selected fills the circle with --wf-color-primary and pops the 8px inner dot; the shared name attribute keeps only one selected at a time."
+    },
+    {
+      "type": "specimen",
+      "title": "Toggle states",
+      "image": "specimens/choice-controls/03-toggle-states.png",
+      "caption": "The wf-toggle switch in off, on, and disabled states. The 44×24 track turns --wf-color-primary when on and slides the 20px knob 20px to the right via translateX."
+    },
+    {
+      "type": "variants",
+      "title": "Checkbox markup",
+      "intro": "wf-checkbox state is driven entirely by attributes on the native input — add `checked`, add `disabled`, or pair them. There is no separate class per state.",
+      "rows": [
+        { "name": "wf-checkbox", "when": "The label wrapper. Click anywhere inside it — box or text — to toggle.", "code": "<label class=\"wf-checkbox\">\n  <input type=\"checkbox\" class=\"wf-checkbox-input\">\n  <span class=\"wf-checkbox-box\"></span>\n  <span class=\"wf-checkbox-label\">Remember me</span>\n</label>" },
+        { "name": "checked (attribute)", "when": "Pre-selected option. Adds the checked attribute; the box fills with --wf-color-primary and the SVG checkmark fades in.", "code": "<input type=\"checkbox\" class=\"wf-checkbox-input\" checked>" },
+        { "name": "disabled (attribute)", "when": "Non-interactive option. Add disabled to the input — the box drops to the disabled fill and the sibling label greys to --wf-color-text-disabled.", "code": "<input type=\"checkbox\" class=\"wf-checkbox-input\" checked disabled>" },
+        { "name": "wf-checkbox-group", "when": "Two or more related checkboxes. Flex column, 8px gap, with an optional wf-text wf-text-label heading.", "code": "<div class=\"wf-checkbox-group\">\n  <span class=\"wf-text wf-text-label\">Select Products</span>\n  <label class=\"wf-checkbox\">\n    <input type=\"checkbox\" class=\"wf-checkbox-input\" checked>\n    <span class=\"wf-checkbox-box\"></span>\n    <span class=\"wf-checkbox-label\">Product A</span>\n  </label>\n</div>" }
+      ]
+    },
+    {
+      "type": "variants",
+      "title": "Radio markup",
+      "intro": "Radios only behave as a single-selection set when every input in the group shares the same name attribute. Forget the name and each radio becomes independently checkable — the most common radio bug.",
+      "rows": [
+        { "name": "wf-radio", "when": "One option in a choice set. The circle is drawn by wf-radio-circle; the inner dot is its ::after.", "code": "<label class=\"wf-radio\">\n  <input type=\"radio\" name=\"contract-type\" class=\"wf-radio-input\">\n  <span class=\"wf-radio-circle\"></span>\n  <span class=\"wf-radio-label\">Buy</span>\n</label>" },
+        { "name": "shared name (attribute)", "when": "Always. Every radio in the same set carries the identical name so the browser enforces one selection.", "code": "<input type=\"radio\" name=\"contract-type\" class=\"wf-radio-input\" checked>" },
+        { "name": "disabled (attribute)", "when": "An option that exists but can't be picked — e.g. an unavailable shipping speed shown for completeness.", "code": "<input type=\"radio\" name=\"shipping\" class=\"wf-radio-input\" disabled>" },
+        { "name": "wf-radio-group", "when": "The required wrapper for a choice set. Flex column, 8px gap, optional wf-text wf-text-label heading.", "code": "<div class=\"wf-radio-group\">\n  <span class=\"wf-text wf-text-label\">Contract Type</span>\n  <label class=\"wf-radio\">\n    <input type=\"radio\" name=\"contract-type\" class=\"wf-radio-input\" checked>\n    <span class=\"wf-radio-circle\"></span>\n    <span class=\"wf-radio-label\">Sell</span>\n  </label>\n</div>" }
+      ]
+    },
+    {
+      "type": "variants",
+      "title": "Toggle markup",
+      "intro": "The toggle is a checkbox under the hood — the input is type=\"checkbox\", and on/off maps to the checked attribute. The visual difference is entirely the track-and-knob span.",
+      "rows": [
+        { "name": "wf-toggle", "when": "A single immediate-effect setting. The 44×24 track and sliding knob are both drawn by wf-toggle-track.", "code": "<label class=\"wf-toggle\">\n  <input type=\"checkbox\" class=\"wf-toggle-input\">\n  <span class=\"wf-toggle-track\"></span>\n  <span class=\"wf-toggle-label\">Enable notifications</span>\n</label>" },
+        { "name": "checked (attribute)", "when": "On state. The track turns --wf-color-primary and the knob slides 20px right via translateX(20px).", "code": "<input type=\"checkbox\" class=\"wf-toggle-input\" checked>" },
+        { "name": "disabled (attribute)", "when": "A setting that's locked — e.g. a feature flag gated behind an upgrade. Track drops to the disabled fill, knob recolors to the border grey.", "code": "<input type=\"checkbox\" class=\"wf-toggle-input\" disabled>" }
+      ]
+    },
+    {
+      "type": "tokens",
+      "title": "Shared state tokens",
+      "intro": "All three controls draw their selected, focus, and disabled treatments from the same handful of tokens, so a checked checkbox, a selected radio, and an on toggle all read as the same blue.",
+      "rows": [
+        { "token": "--wf-color-primary", "value": "#2563eb", "use": "The selected/on fill for all three — checkbox box, radio circle, toggle track." },
+        { "token": "--wf-color-border", "value": "#cbd5e1", "use": "Resting border on box and circle; the off-state toggle track fill." },
+        { "token": "--wf-color-border-hover", "value": "#94a3b8", "use": "Border on hover for box and circle; track fill on toggle hover." },
+        { "token": "--wf-color-border-focus", "value": "#2563eb", "use": "Border color when the hidden input is focused." },
+        { "token": "--wf-shadow-focus", "value": "0 0 0 3px rgba(37, 99, 235, 0.2)", "use": "The focus ring on all three controls, applied to the visual span via :focus + sibling." },
+        { "token": "--wf-color-bg-disabled", "value": "#f1f5f9", "use": "Fill for disabled box, circle, and track." },
+        { "token": "--wf-color-text-disabled", "value": "#94a3b8", "use": "Muted label color when the control is disabled." },
+        { "token": "--wf-radius-sm", "value": "4px", "use": "Checkbox box corner radius — the only square control." },
+        { "token": "--wf-radius-full", "value": "9999px", "use": "Radio circle, radio inner dot, toggle track, and toggle knob — everything round." }
+      ]
+    },
+    {
+      "type": "rules",
+      "title": "Sizing & accessibility floor",
+      "intro": "From DESIGN.md §5.3 and §6.6 — floor requirements, not suggestions. A wireframe that fails these is rejected even if it looks polished.",
+      "items": [
+        { "rule": "Interactive tap targets stay at 44×44 minimum, even at enterprise density.", "why": "DESIGN.md §5.3 / §6.6: compactness applies to spacing and text, never to hit boxes. The 18×18 box and circle and the 44×24 track are only the visual mark — the clickable target is the whole label, so keep the label height and padding at the 44×44 floor." },
+        { "rule": "Hide the native input with opacity/width/height, never display:none.", "why": "display:none removes the input from the tab order and the accessibility tree. The CSS uses position:absolute; opacity:0; width:0; height:0 precisely so the control stays keyboard-focusable and form-submittable." },
+        { "rule": "Every radio in a set shares one name attribute.", "why": "The name is what makes the browser enforce single-selection. Without it, each radio toggles independently and the choice set is broken." },
+        { "rule": "Keep the visible focus ring — don't strip it.", "why": "DESIGN.md §6.2: the :focus + span rule paints --wf-shadow-focus on the box, circle, or track. That ring is the only signal a keyboard user gets that the control is focused." }
+      ]
+    },
+    {
+      "type": "dosdonts",
+      "items": [
+        { "do": "Wrap the input, visual span, and label inside one <label>.", "dont": "Put the <input> and a separate <span> as siblings outside a label.", "why": "The label association is what makes the text clickable and what the + combinator relies on to draw the checked state. Break the order and the box never fills." },
+        { "do": "Order the children input → visual span → label span.", "dont": "Place the label span before the box/circle/track.", "why": "Every state rule uses the adjacent-sibling (+) and general-sibling (~) selectors, which only reach forward. The visual span must follow the input, and the label must follow both." },
+        { "do": "Use wf-checkbox for independent options, wf-radio for one-of-many.", "dont": "Use a row of radios when more than one can be true.", "why": "Radios enforce exactly one selection. If two answers can be valid at once, the user gets stuck — that's a checkbox group." },
+        { "do": "Use wf-toggle for an immediate-effect on/off setting.", "dont": "Use a toggle for a choice that only applies after a Save.", "why": "A toggle signals the change is live. If the setting needs confirmation, a checkbox inside a form reads more honestly." }
+      ]
+    },
+    {
+      "type": "gotchas",
+      "items": [
+        { "title": "No indeterminate state in CSS", "detail": "The checkbox stylesheet only handles :checked and :disabled — there is no rule for the indeterminate (mixed) state. Setting input.indeterminate = true in JS will not render a dash; the box stays visually unchecked. If you need a tri-state parent checkbox, you'll have to add the styling yourself." },
+        { "title": "The toggle track is 44px wide but only 24px tall", "detail": "wf-toggle-track is 44px × 24px, so the visual switch alone does NOT meet the 44×44 hit-target floor on the vertical axis. The 44px comes from the full label row — keep enough label height/padding around the track or the tap target falls short of DESIGN.md §6.6." },
+        { "title": "Toggle on-distance is hard-coded to 20px", "detail": "The knob is 20px and slides via transform: translateX(20px) when checked. The 20px slide is tuned to the 44px track and 2px inset — if you resize the track, the knob will stop short or overrun the edge unless you retune the translate value." },
+        { "title": "Disabled checkbox/radio keeps the resting border, not a darker one", "detail": "When disabled, the box and circle take --wf-color-bg-disabled fill but revert to the plain --wf-color-border (not border-hover). A disabled-and-checked control therefore loses its primary-blue fill entirely — it reads as a greyed empty box, so don't rely on color alone to show it was selected." }
+      ]
+    }
+  ]
+}

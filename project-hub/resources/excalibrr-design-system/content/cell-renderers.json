@@ -1,0 +1,277 @@
+{
+  "slug": "cell-renderers",
+  "title": "Cell Renderers & Editors",
+  "order": 11,
+  "group": "Data",
+  "intro": "GraviGrid ships seven default cell renderers and five pre-registered cell editors so column definitions stay declarative — tags, deltas, money, dates, and in-cell editing without bespoke components. Reach for a renderer only when a cell needs real markup; plain formatting belongs in valueFormatter.",
+  "demoPath": "/DesignSystem/CellRenderers",
+  "searchTerms": [
+    "TextCell",
+    "NumberCell",
+    "SingleDateCell",
+    "TagCell",
+    "DifferenceCell",
+    "NetValueCell",
+    "PriceDifferenceCell",
+    "SelectEditor",
+    "DatePickerEditor",
+    "NumericEditor",
+    "SwitchEditor",
+    "CustValSelectEditor",
+    "GraviSelectEditor",
+    "GraviDatePicker",
+    "GraviNumberEditor",
+    "GraviSwitchEditor",
+    "cellRenderer",
+    "cellEditor",
+    "valueFormatter",
+    "valueSetter",
+    "validators",
+    "validateInt",
+    "validateFloat",
+    "validateNotEmptyString"
+  ],
+  "blocks": [
+    {
+      "type": "usage",
+      "body": "These are the building blocks for GraviGrid columns: renderers (`TextCell`, `NumberCell`, `SingleDateCell`, `TagCell`, `DifferenceCell`, `NetValueCell`, `PriceDifferenceCell`) draw cell content, editors (`GraviSelectEditor`, `GraviDatePicker`, `GraviNumberEditor`, `GraviSwitchEditor`, `GraviCustValSelectEditor`) handle in-cell input, and validators (`validateNotEmptyString`, `validateInt`, `validateFloat`) guard `valueSetter`.\n\nThe decision rule: a `cellRenderer` mounts a React component in every cell — that is a real scroll-performance cost at grid scale. Use a renderer only when the cell needs markup (a tag, an icon, conditional color). Simple text, number, and date formatting goes in `valueFormatter`, which returns a string and mounts nothing.\n\nRenderers import from `@gravitate-js/excalibrr` and are passed as component references in `cellRenderer`. Editors are already registered inside GraviGrid under string keys — reference them by name in `cellEditor`, no import needed."
+    },
+    {
+      "type": "specimen",
+      "title": "TextCell",
+      "image": "specimens/cell-renderers/01-text-cell.png",
+      "caption": "TextCell wrapping string values in Texto — note both rows render uppercase regardless of input casing; the transform is always on."
+    },
+    {
+      "type": "specimen",
+      "title": "NumberCell",
+      "image": "specimens/cell-renderers/02-number-cell.png",
+      "caption": "NumberCell right-aligned with comma grouping. Default toFixed={0} rounds 2.4567 to 2 — the Price row shows why you always pass toFixed on prices."
+    },
+    {
+      "type": "specimen",
+      "title": "SingleDateCell",
+      "image": "specimens/cell-renderers/03-single-date-cell.png",
+      "caption": "SingleDateCell with no dateFormat prop — moment falls back to full ISO output (2024-01-15T00:00:00-08:00). Always pass dateFormat."
+    },
+    {
+      "type": "specimen",
+      "title": "TagCell",
+      "image": "specimens/cell-renderers/04-tag-cell.png",
+      "caption": "TagCell rendering neutral BBDTags for Status and Type. tagTheme props (success, error) recolor the tag; tipTitle adds a hover Tooltip."
+    },
+    {
+      "type": "variants",
+      "title": "The seven default renderers",
+      "intro": "All export from @gravitate-js/excalibrr and read AG Grid cell params (value, data).",
+      "rows": [
+        {
+          "name": "TextCell",
+          "when": "Plain string display with Texto typography control (category, appearance, weight pass through). Returns null on empty value. Always uppercases — see gotchas.",
+          "code": "cellRenderer: TextCell"
+        },
+        {
+          "name": "NumberCell",
+          "when": "Right-aligned numbers with comma grouping via addCommasToNumber. Pass toFixed for decimals, showNA to print N/A on empty.",
+          "code": "cellRenderer: NumberCell, cellRendererParams: { toFixed: 4 }"
+        },
+        {
+          "name": "SingleDateCell",
+          "when": "Single date formatted through moment. dateFormat is required in practice — omit it and you get raw ISO.",
+          "code": "cellRenderer: SingleDateCell, cellRendererParams: { dateFormat: 'MM/DD/YYYY' }"
+        },
+        {
+          "name": "TagCell",
+          "when": "Status-style values as a BBDTag with optional icon and Tooltip. tagTheme spreads onto BBDTag, so { success: true } renders the green theme.",
+          "code": "cellRenderer: TagCell, cellRendererParams: { tagTheme: { success: true }, tipTitle: 'Status' }"
+        },
+        {
+          "name": "DifferenceCell",
+          "when": "A value plus a signed delta read from data[comparisonKey], rendered with caret up/down and success/error color. showCheck swaps a zero delta for a green check; upIsError forces the delta to error red regardless of sign; isPercent formats the main value as a percentage.",
+          "code": "cellRenderer: DifferenceCell, cellRendererParams: { comparisonKey: 'volume_delta', showCheck: true }"
+        },
+        {
+          "name": "NetValueCell",
+          "when": "Dollar amounts colored by sign — green positive, red negative, N/A when zero or empty. Renders a leading $ with addCommasToNumber(value, precision).",
+          "code": "cellRenderer: NetValueCell, cellRendererParams: { precision: 2 }"
+        },
+        {
+          "name": "PriceDifferenceCell",
+          "when": "Competitive price comparison: BBDTag is green when data.is_best, red otherwise, with the gap shown as (data.price_difference to 4 decimals) or (Lowest).",
+          "code": "cellRenderer: PriceDifferenceCell, cellRendererParams: { precision: 4 }"
+        }
+      ]
+    },
+    {
+      "type": "props",
+      "title": "Renderer props that matter",
+      "intro": "Verified against DefaultCellRenderers.tsx. TextCell, NumberCell, SingleDateCell, NetValueCell, and PriceDifferenceCell spread remaining props onto their underlying Texto or BBDTag; TagCell and DifferenceCell accept only their named props.",
+      "rows": [
+        {
+          "prop": "NumberCell.toFixed",
+          "type": "number",
+          "default": "0",
+          "notes": "Decimal places via toLocaleString (min and max fraction digits) — values round, they do not truncate. Pass 4 for per-gallon prices, 2 for dollar totals."
+        },
+        {
+          "prop": "NumberCell.showNA",
+          "type": "boolean",
+          "default": "false",
+          "notes": "Prints N/A when the value is empty. Beware zero: the renderer appends rather than replaces, so showNA on a 0 value renders 0N/A. Without it, empty cells render blank."
+        },
+        {
+          "prop": "SingleDateCell.dateFormat",
+          "type": "string",
+          "notes": "moment format string. Required in practice — undefined yields full ISO output."
+        },
+        {
+          "prop": "TagCell.tagTheme",
+          "type": "object",
+          "notes": "Spread onto BBDTag — boolean theme props like { success: true } or { error: true }. Omit for the neutral tag."
+        },
+        {
+          "prop": "TagCell.tipTitle",
+          "type": "string",
+          "notes": "Wraps the tag in an antd Tooltip. icon + iconClass render a leading icon inside the tag."
+        },
+        {
+          "prop": "DifferenceCell.comparisonKey",
+          "type": "string",
+          "notes": "Field name on row data holding the delta — the cell reads data[comparisonKey], not value, for the caret and color."
+        },
+        {
+          "prop": "DifferenceCell.upIsError",
+          "type": "boolean",
+          "default": "false",
+          "notes": "Forces the delta to error red regardless of sign — the source returns 'error' before checking direction, so down-deltas go red too. Use when an increase is bad (cost, exceptions)."
+        },
+        {
+          "prop": "NetValueCell.precision",
+          "type": "number",
+          "default": "0",
+          "notes": "Decimal places on the $-prefixed amount. Zero and empty both render N/A."
+        },
+        {
+          "prop": "PriceDifferenceCell.precision",
+          "type": "number",
+          "default": "0",
+          "notes": "Decimal places on the price. Row data must supply is_best (drives green/red); price_difference renders to a fixed 4 decimals, and a missing or zero price_difference renders (Lowest)."
+        }
+      ]
+    },
+    {
+      "type": "variants",
+      "title": "Pre-registered editors",
+      "intro": "GraviGrid registers these under string keys in its components map — set cellEditor to the string, no import. All commit through AG Grid's getValue contract; every editor opens as a popup except GraviDatePicker, which declares no isPopup and edits inline.",
+      "rows": [
+        {
+          "name": "GraviSelectEditor",
+          "when": "Pick from a fixed list. Popup antd Select, opens immediately, supports multiple/tags modes. Not for booleans — see gotchas.",
+          "code": "cellEditor: 'GraviSelectEditor', cellEditorParams: { options: ['Rack', 'Contract'], mode: 'multiple' }"
+        },
+        {
+          "name": "GraviDatePicker",
+          "when": "Single date edits. Commits the moment a date is picked (calls stopEditing) and returns an ISO string — your valueFormatter or renderer must handle ISO input.",
+          "code": "cellEditor: 'GraviDatePicker'"
+        },
+        {
+          "name": "GraviNumberEditor",
+          "when": "Numeric edits with rails. antd InputNumber popup honoring min, max, precision, step.",
+          "code": "cellEditor: 'GraviNumberEditor', cellEditorParams: { min: 0, precision: 4, step: 0.0025 }"
+        },
+        {
+          "name": "GraviSwitchEditor",
+          "when": "Boolean fields. Centered antd Switch popup seeded from the current value.",
+          "code": "cellEditor: 'GraviSwitchEditor'"
+        },
+        {
+          "name": "GraviCustValSelectEditor",
+          "when": "Multi-select where users can append new values (built for counterparty email lists — validates new entries as emails before Add enables).",
+          "code": "cellEditor: 'GraviCustValSelectEditor'"
+        }
+      ]
+    },
+    {
+      "type": "props",
+      "title": "Validators (valueSetter guards)",
+      "intro": "Each writes params.data[field] itself on success and fires a NotificationMessage on failure — wire them directly as the column's valueSetter.",
+      "rows": [
+        {
+          "prop": "validateNotEmptyString",
+          "type": "(params) => boolean",
+          "notes": "Rejects empty string with a 'Field required' notification; any other value commits."
+        },
+        {
+          "prop": "validateInt",
+          "type": "(params, min, max) => boolean",
+          "notes": "parseInt with range checks — out-of-range and non-numeric input each get their own notification and the edit is rejected."
+        },
+        {
+          "prop": "validateFloat",
+          "type": "(params, min, max) => boolean",
+          "notes": "parseFloat with the same range/NaN guards. Use for prices and rates."
+        }
+      ]
+    },
+    {
+      "type": "code",
+      "title": "Canonical column definitions",
+      "code": "import { useMemo } from 'react'\nimport {\n  GraviGrid,\n  TagCell,\n  validateInt,\n  addCommasToNumber,\n} from '@gravitate-js/excalibrr'\n\nconst columnDefs = useMemo(\n  () => [\n    // Simple formatting — valueFormatter, never a renderer\n    {\n      field: 'price',\n      headerName: 'Price ($/gal)',\n      valueFormatter: ({ value }) => `$${addCommasToNumber(value, 4)}`,\n    },\n    // Rich markup — default renderer\n    {\n      field: 'status',\n      cellRenderer: TagCell,\n      cellRendererParams: { tagTheme: { success: true }, tipTitle: 'Contract status' },\n    },\n    // Editing — pre-registered editor by string key + validator valueSetter\n    {\n      field: 'volume',\n      editable: true,\n      isBulkEditable: true,\n      cellEditor: 'GraviNumberEditor',\n      cellEditorParams: { min: 0, precision: 0, step: 500 },\n      valueSetter: (params) => validateInt(params, 0, 100000),\n    },\n  ],\n  []\n)\n\nreturn <GraviGrid columnDefs={columnDefs} rowData={rows} agPropOverrides={{}} />",
+      "note": "columnDefs must be memoized — an unmemoized array recreates every render and resets grid state. Editors are referenced by registered string name; renderers and validators import from @gravitate-js/excalibrr."
+    },
+    {
+      "type": "dosdonts",
+      "items": [
+        {
+          "do": "Format plain text, numbers, and dates with valueFormatter",
+          "dont": "Mount a cellRenderer for simple formatting",
+          "why": "Every cellRenderer is a React mount per cell — at thousands of cells that is real scroll jank for zero visual gain."
+        },
+        {
+          "do": "Write money as decimal dollars — $0.0100/gal, precision 4 for per-gallon",
+          "dont": "Use cents symbols or cent units anywhere in grid copy",
+          "why": "Gravitate's standard is decimal dollars; NetValueCell and PriceDifferenceCell already prefix $."
+        },
+        {
+          "do": "Pair every editable column with a validator valueSetter and isBulkEditable: true",
+          "dont": "Ship editable: true alone",
+          "why": "Without a valueSetter edits can silently fail, and bulk edit skips columns missing isBulkEditable."
+        },
+        {
+          "do": "Pass toFixed/precision explicitly on every numeric renderer",
+          "dont": "Trust the defaults",
+          "why": "All numeric renderers default to 0 decimal places — a $2.4567 rack price renders as $2."
+        }
+      ]
+    },
+    {
+      "type": "gotchas",
+      "items": [
+        {
+          "title": "TextCell always uppercases",
+          "detail": "The source ternary resolves to 'uppercase' in both branches, so the toUpperCase prop is dead — every TextCell renders uppercase. For mixed-case display use valueFormatter or a plain Texto renderer."
+        },
+        {
+          "title": "SingleDateCell without dateFormat dumps raw ISO",
+          "detail": "moment(value).format(undefined) returns the full ISO string (2024-01-15T00:00:00-08:00). Always pass dateFormat, e.g. 'MM/DD/YYYY'."
+        },
+        {
+          "title": "GraviSelectEditor cannot commit yes/no options",
+          "detail": "Its change handler maps 'yes'/'no' strings to booleans but skips the state update in those branches, so the picked value never persists. Booleans belong in GraviSwitchEditor."
+        },
+        {
+          "title": "GraviDatePicker commits instantly and returns ISO",
+          "detail": "Picking a date calls api.stopEditing() immediately — there is no confirm step — and getValue returns moment(date).toISOString(). Format on display, not in the stored value."
+        },
+        {
+          "title": "DifferenceCell reads the delta from row data, not value",
+          "detail": "The caret, sign, and color come from data[comparisonKey]; value is only the headline number. Forgetting to populate the comparison field renders a misleading bare value."
+        },
+        {
+          "title": "cellRenderer is a per-cell React mount",
+          "detail": "This is the standing perf rule from the repo's mistakes table: simple text/number formatting must use valueFormatter. Reserve renderers for markup — tags, icons, conditional color."
+        }
+      ]
+    }
+  ]
+}

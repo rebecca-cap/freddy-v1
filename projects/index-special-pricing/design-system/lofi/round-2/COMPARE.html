@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Round 2 — Before / After (Audit edits)</title>
+<style>
+  :root {
+    --bg: oklch(0.985 0.004 250);
+    --surface: oklch(1 0 0);
+    --sunken: oklch(0.972 0.006 250);
+    --ink: oklch(0.24 0.02 255);
+    --ink-2: oklch(0.44 0.02 255);
+    --ink-3: oklch(0.60 0.015 255);
+    --line: oklch(0.91 0.008 255);
+    --accent: oklch(0.52 0.12 255);
+    --old: oklch(0.55 0.02 255);
+    --new: oklch(0.52 0.13 255);
+    --radius: 10px;
+    font-family: ui-sans-serif, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px 90px; }
+  header.mast { padding: 52px 0 24px; border-bottom: 1px solid var(--line); }
+  .eyebrow { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; margin: 0 0 12px; }
+  h1 { font-size: clamp(28px, 3.5vw, 38px); letter-spacing: -0.02em; margin: 0 0 12px; }
+  .lede { font-size: 17px; color: var(--ink-2); max-width: 70ch; margin: 0; }
+  .links { margin-top: 18px; font-size: 13.5px; color: var(--ink-3); }
+  .links a { color: var(--accent); text-decoration: none; }
+  .links a:hover { text-decoration: underline; }
+
+  .screen { margin: 48px 0 0; }
+  .screen-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 4px; }
+  .screen-head h2 { font-size: 22px; margin: 0; letter-spacing: -0.01em; }
+  .screen-head .tag { font-size: 12px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+  .changed { color: var(--ink-2); font-size: 15px; margin: 6px 0 18px; max-width: 80ch; }
+  .changed b { color: var(--ink); }
+
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media (max-width: 820px){ .pair { grid-template-columns: 1fr; } }
+  figure { margin: 0; }
+  .cap { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 8px; }
+  .cap.old { color: var(--old); }
+  .cap.new { color: var(--new); }
+  .cap .dot { width: 8px; height: 8px; border-radius: 999px; }
+  .cap.old .dot { background: var(--old); }
+  .cap.new .dot { background: var(--new); }
+  figure a { display: block; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--sunken); }
+  figure.new a { border-color: color-mix(in oklab, var(--new) 40%, var(--line)); box-shadow: 0 0 0 3px color-mix(in oklab, var(--new) 12%, transparent); }
+  figure img { display: block; width: 100%; height: auto; }
+  .open { font-size: 12.5px; margin-top: 7px; }
+  .open a { color: var(--accent); text-decoration: none; }
+  .open a:hover { text-decoration: underline; }
+
+  .note { font-size: 13.5px; color: var(--ink-3); margin-top: 40px; padding-top: 18px; border-top: 1px solid var(--line); max-width: 75ch; }
+  code { background: var(--sunken); border: 1px solid var(--line); border-radius: 5px; padding: 1px 6px; font-size: 12.5px; font-family: ui-monospace, Menlo, monospace; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="mast">
+    <p class="eyebrow">Index Special Offers · Lo-fi Round 2 · Audit edits</p>
+    <h1>Before / After</h1>
+    <p class="lede">The audit recommendations, built into separate <code>*.revised.html</code> screens so the originals are untouched and you can compare side by side. Click any image to open it full size; the live links open the actual wireframes.</p>
+    <p class="links">Read the full reasoning in the <a href="UX-AUDIT.html">UX audit report &rarr;</a></p>
+  </header>
+
+  <!-- ===== Screen 02 ===== -->
+  <section class="screen">
+    <div class="screen-head"><h2>02 · Create New Offer (Fast)</h2><span class="tag">the hero — most of the changes</span></div>
+    <p class="changed"><b>What changed:</b> "Template" → <b>Formula</b> (#1); the editable 21-cell grid is now a <b>read-only sanity-check table + Edit-formula drawer</b> (#2); the duplicate "Resulting price" input removed (#3); the <b>differential is promoted</b> into the focal point (#4); the preset bar drops Save (moved to footer) and keeps Load + Switch-to-full (#5); a <b>live recipient tally</b> sits by Invite (#7); both timing windows share one pattern with consistent keys (#8); side-stripe accents removed (#9); the click/time budget chip is back (#10).</p>
+    <div class="pair">
+      <figure class="old">
+        <span class="cap old"><span class="dot"></span>Before</span>
+        <a href="audit-assets/02-create-fast.png" target="_blank"><img src="audit-assets/02-create-fast.png" alt="Screen 02 before"></a>
+        <p class="open"><a href="wireframes/02-quick-create-index.html" target="_blank">Open original ↗</a></p>
+      </figure>
+      <figure class="new">
+        <span class="cap new"><span class="dot"></span>After</span>
+        <a href="audit-assets/02-revised.png" target="_blank"><img src="audit-assets/02-revised.png" alt="Screen 02 after"></a>
+        <p class="open"><a href="wireframes/02-quick-create-index.revised.html" target="_blank">Open revised ↗</a></p>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===== Screen 03 ===== -->
+  <section class="screen">
+    <div class="screen-head"><h2>03 · Formula picker</h2><span class="tag">#1 rename · #6 picker</span></div>
+    <p class="changed"><b>What changed:</b> "Formula Template Selector" → <b>Formula library</b> and "Select Template" → "Use this formula" (#1); filters arrive <b>pre-set to Group 3 Suboctane · Tulsa</b> instead of "All", with a "showing… clear filters" line (#6); the horizontal card scroll becomes a <b>wrapping grid</b> so every formula — including "+ Build a new formula" — is visible at once (#6).</p>
+    <div class="pair">
+      <figure class="old">
+        <span class="cap old"><span class="dot"></span>Before</span>
+        <a href="audit-assets/03-formula-sheet.png" target="_blank"><img src="audit-assets/03-formula-sheet.png" alt="Screen 03 before"></a>
+        <p class="open"><a href="wireframes/03-price-formula.html" target="_blank">Open original ↗</a></p>
+      </figure>
+      <figure class="new">
+        <span class="cap new"><span class="dot"></span>After</span>
+        <a href="audit-assets/03-revised.png" target="_blank"><img src="audit-assets/03-revised.png" alt="Screen 03 after"></a>
+        <p class="open"><a href="wireframes/03-price-formula.revised.html" target="_blank">Open revised ↗</a></p>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===== Screen 01 ===== -->
+  <section class="screen">
+    <div class="screen-head"><h2>01 · Offers launchpad</h2><span class="tag">navigation only</span></div>
+    <p class="changed"><b>What changed:</b> essentially unchanged — its only finding (#10) was the open menu overlapping the list title, which is a static-wireframe artifact, not a real-app issue. The revised copy exists so navigation stays inside the revised set; the entry menu is kept open because it communicates the <b>New → Fast / Full</b> decision.</p>
+    <div class="pair">
+      <figure class="old">
+        <span class="cap old"><span class="dot"></span>Before</span>
+        <a href="audit-assets/01-launchpad.png" target="_blank"><img src="audit-assets/01-launchpad.png" alt="Screen 01 before"></a>
+        <p class="open"><a href="wireframes/01-launchpad.html" target="_blank">Open original ↗</a></p>
+      </figure>
+      <figure class="new">
+        <span class="cap new"><span class="dot"></span>After</span>
+        <a href="audit-assets/01-revised.png" target="_blank"><img src="audit-assets/01-revised.png" alt="Screen 01 after"></a>
+        <p class="open"><a href="wireframes/01-launchpad.revised.html" target="_blank">Open revised ↗</a></p>
+      </figure>
+    </div>
+  </section>
+
+  <p class="note">Nothing in the original wireframes, <code>index.html</code>, or <code>lofi-chrome.css</code> was modified. The revised screens load a separate <code>assets/lofi-chrome.revised.css</code> (it imports the original, then overrides only what the audit calls for), so the two sets are fully isolated. Not yet folded into the round or documented with <code>/wireframe-index</code> — that's the next step if you want to keep these.</p>
+
+</div>
+</body>
+</html>

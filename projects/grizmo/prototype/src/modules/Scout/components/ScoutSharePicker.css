@@ -1,0 +1,129 @@
+/*
+ * ScoutSharePicker — shared scope-cards + avatar-list audience control.
+ *
+ * Selectors are scoped under `.scout-scope` (not a modal-specific wrap class)
+ * so the same styles apply inside both the Share modal
+ * (`.scout-share-modal-wrap`) and the Save/Edit modal
+ * (`.scout-save-modal-wrap`) — both carry `.scout-scope` on their wrapper.
+ */
+
+/* --- Scope choice rows --- */
+.scout-scope .scout-share-picker__scopes {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.scout-scope .scout-share-picker__scope {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+  text-align: left;
+  padding: 10px 12px;
+  border: 1px solid var(--scout-border);
+  border-radius: 8px;
+  background: var(--scout-surface);
+  cursor: pointer;
+  transition: border-color 100ms ease, background 100ms ease;
+}
+
+.scout-scope .scout-share-picker__scope:hover {
+  border-color: var(--scout-border-strong);
+}
+
+.scout-scope .scout-share-picker__scope.is-active {
+  border-color: var(--scout-brand);
+  background: var(--scout-brand-soft);
+}
+
+.scout-scope .scout-share-picker__scope-icon {
+  color: var(--scout-brand);
+  font-size: 16px;
+  line-height: 1;
+  margin-top: 1px;
+}
+
+.scout-scope .scout-share-picker__scope-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.scout-scope .scout-share-picker__scope-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--scout-text);
+}
+
+.scout-scope .scout-share-picker__scope-sub {
+  font-size: 11.5px;
+  color: var(--scout-text-muted);
+}
+
+/* --- People picker --- */
+.scout-scope .scout-share-picker__people {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid var(--scout-border);
+  border-radius: 8px;
+  padding: 6px;
+  background: var(--scout-surface);
+}
+
+.scout-scope .scout-share-picker__user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  text-align: left;
+  padding: 6px 8px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+  transition: background 100ms ease;
+}
+
+.scout-scope .scout-share-picker__user:hover {
+  background: var(--scout-surface-2);
+}
+
+.scout-scope .scout-share-picker__user.is-selected {
+  background: var(--scout-brand-soft);
+}
+
+.scout-scope .scout-share-picker__avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--scout-brand-soft-2);
+  color: var(--scout-brand);
+  font-size: 10px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.scout-scope .scout-share-picker__user.is-selected .scout-share-picker__avatar {
+  background: var(--scout-brand);
+  color: #ffffff;
+}
+
+.scout-scope .scout-share-picker__user-name {
+  flex: 1;
+  min-width: 0;
+  font-size: 13px;
+  color: var(--scout-text);
+}
+
+.scout-scope .scout-share-picker__user-check {
+  color: var(--scout-brand);
+  font-size: 13px;
+  flex-shrink: 0;
+}

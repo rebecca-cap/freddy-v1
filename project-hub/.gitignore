@@ -1,0 +1,10 @@
+node_modules
+dist
+.DS_Store
+*.log
+.env
+data/projects.json
+
+.claude/
+qa-reports
+.playwright-cli/

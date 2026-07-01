@@ -1,0 +1,14 @@
+{
+  "path": "/OnlineOrders",
+  "title": "Online Orders",
+  "finalUrl": "http://localhost:3001/OnlineOrders",
+  "rootLen": 49003,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [
+    "EntityReport/Read"
+  ],
+  "consoleEventCount": 13
+}

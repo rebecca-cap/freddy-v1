@@ -1,0 +1,5 @@
+.tag {
+  text-align: center;
+  background: color-mix(in srgb, var(--status-color) 70%, white);
+  color: white;
+}

@@ -1,0 +1,17 @@
+{
+  "path": "/Admin/AllocationAssociationManagement",
+  "title": "Allocation Management",
+  "finalUrl": "http://localhost:3001/Admin/AllocationAssociationManagement",
+  "rootLen": 147672,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [
+    "QuoteBook/Analytics/Allocation/Admin/GetAllocations",
+    "QuoteBook/Analytics/Allocation/Admin/GetAssociations",
+    "admin/allocation/reference/GetMetaDataForReferences",
+    "admin/allocation/reference/GetReferences"
+  ],
+  "consoleEventCount": 16
+}

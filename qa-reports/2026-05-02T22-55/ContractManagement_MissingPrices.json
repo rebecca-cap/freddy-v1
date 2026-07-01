@@ -1,0 +1,14 @@
+{
+  "path": "/ContractManagement/MissingPrices",
+  "title": "Missing Prices",
+  "finalUrl": "http://localhost:3001/ContractManagement/MissingPrices",
+  "rootLen": 145885,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 12,
+  "stuckLoaders": [],
+  "emptyGrids": []
+}

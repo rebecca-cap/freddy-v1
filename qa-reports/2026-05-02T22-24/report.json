@@ -1,0 +1,27 @@
+{
+  "generatedAt": "2026-05-02T22:24:54.863Z",
+  "summary": {
+    "total": 1,
+    "pass": 1,
+    "fail": 0,
+    "errors": 0,
+    "stuckLoaders": 0,
+    "emptyGrids": 0
+  },
+  "routes": {
+    "/": {
+      "status": "pass",
+      "rootLen": 212003,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": [
+        "MarketPlatform/OrderEntry/GetPricesForDashboard",
+        "MarketPlatform/OrderReporting/GetCreditWidget",
+        "MarketPlatform/OrderReporting/GetPendingOrders",
+        "MarketPlatform/OrderReporting/GetRecentlyProcessedOrders"
+      ]
+    }
+  }
+}

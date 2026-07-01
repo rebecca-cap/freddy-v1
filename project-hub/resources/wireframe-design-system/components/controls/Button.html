@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Button Component - Wireframe Design System</title>
+  <link rel="stylesheet" href="controls.css">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      padding: 32px;
+      background-color: #f8fafc;
+      margin: 0;
+    }
+    .demo-section {
+      background: white;
+      padding: 24px;
+      border-radius: 8px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .demo-section h2 {
+      margin-top: 0;
+      margin-bottom: 16px;
+      font-size: 16px;
+      color: #374151;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 8px;
+    }
+    .demo-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .demo-row:last-child {
+      margin-bottom: 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Button Component</h1>
+
+  <div class="demo-section">
+    <h2>Button Variants</h2>
+    <div class="demo-row">
+      <!-- Primary button -->
+      <button class="wf-button wf-button-primary">Primary Action</button>
+
+      <!-- Secondary button -->
+      <button class="wf-button wf-button-secondary">Secondary</button>
+
+      <!-- Success button -->
+      <button class="wf-button wf-button-success">Confirm</button>
+
+      <!-- Danger button -->
+      <button class="wf-button wf-button-danger">Delete</button>
+
+      <!-- Ghost/Text button -->
+      <button class="wf-button wf-button-ghost">Cancel</button>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Button Sizes</h2>
+    <div class="demo-row">
+      <!-- Small button -->
+      <button class="wf-button wf-button-primary wf-button-sm">Small</button>
+
+      <!-- Default button -->
+      <button class="wf-button wf-button-primary">Default</button>
+
+      <!-- Large button -->
+      <button class="wf-button wf-button-primary wf-button-lg">Large</button>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Button States</h2>
+    <div class="demo-row">
+      <!-- Normal state -->
+      <button class="wf-button wf-button-primary">Normal</button>
+
+      <!-- Disabled state -->
+      <button class="wf-button wf-button-primary" disabled>Disabled</button>
+
+      <!-- Loading state -->
+      <button class="wf-button wf-button-primary wf-button-loading">Loading...</button>
+    </div>
+    <div class="demo-row">
+      <!-- Disabled secondary -->
+      <button class="wf-button wf-button-secondary" disabled>Disabled Secondary</button>
+
+      <!-- Loading secondary -->
+      <button class="wf-button wf-button-secondary wf-button-loading">Loading...</button>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Buttons with Icons</h2>
+    <div class="demo-row">
+      <!-- Icon before text -->
+      <button class="wf-button wf-button-primary">
+        <span class="wf-icon">+</span> Add New
+      </button>
+
+      <!-- Icon only style -->
+      <button class="wf-button wf-button-secondary">
+        <span class="wf-icon">&#9998;</span> Edit
+      </button>
+
+      <!-- Icon after text -->
+      <button class="wf-button wf-button-success">
+        Save <span class="wf-icon">&#10003;</span>
+      </button>
+
+      <!-- Danger with icon -->
+      <button class="wf-button wf-button-danger">
+        <span class="wf-icon">&#10005;</span> Remove
+      </button>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>All Variants - Disabled State</h2>
+    <div class="demo-row">
+      <button class="wf-button wf-button-primary" disabled>Primary</button>
+      <button class="wf-button wf-button-secondary" disabled>Secondary</button>
+      <button class="wf-button wf-button-success" disabled>Success</button>
+      <button class="wf-button wf-button-danger" disabled>Danger</button>
+      <button class="wf-button wf-button-ghost" disabled>Ghost</button>
+    </div>
+  </div>
+
+</body>
+</html>

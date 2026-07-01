@@ -1,0 +1,14 @@
+{
+  "path": "/Admin/AppliedAllocationReport",
+  "title": "Applied Allocation Report",
+  "finalUrl": "http://localhost:3001/Admin/AppliedAllocationReport",
+  "rootLen": 137798,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 10,
+  "stuckLoaders": [],
+  "emptyGrids": []
+}

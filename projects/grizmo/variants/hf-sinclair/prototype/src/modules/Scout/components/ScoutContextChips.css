@@ -1,0 +1,197 @@
+/*
+ * ScoutContextChips — context strip at top of panel body.
+ *
+ * Visuals lifted from wireframe `.ctx-chips` + `.ctx-chip*` + `.add-mode-btn`.
+ * All selectors prefixed with `.scout-scope` so they inherit Scout tokens
+ * (Lato font, brand color, etc.) and never collide with antd defaults.
+ */
+
+.scout-scope.scout-ctx-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  min-height: 38px;
+  padding: 8px 12px;
+  background: var(--scout-surface-2);
+  border-bottom: 0.5px solid var(--scout-border);
+  font-family: var(--scout-font-family);
+  flex-shrink: 0;
+}
+
+/* Slide in from the right with the thread body on chat entry (this strip only
+   mounts inside a thread), matching the panel-body push. Reduced-motion safe. */
+@media (prefers-reduced-motion: no-preference) {
+  .scout-scope.scout-ctx-chips {
+    animation: scout-ctx-chips-in 300ms cubic-bezier(0.32, 0.72, 0, 1) both;
+  }
+}
+
+@keyframes scout-ctx-chips-in {
+  from {
+    transform: translateX(-40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.scout-scope .scout-ctx-chips__empty {
+  font-size: 11px;
+  color: var(--scout-text-subtle);
+  font-style: italic;
+}
+
+/* --- Chip pill --- */
+
+.scout-scope .scout-ctx-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 4px 4px 10px;
+  border-radius: var(--scout-radius-pill);
+  font-size: 11px;
+  font-weight: 500;
+  border: 0.5px solid var(--scout-border);
+  line-height: 1.2;
+  max-width: 220px;
+}
+
+.scout-scope .scout-ctx-chip__label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.scout-scope .scout-ctx-chip--row {
+  background: var(--scout-surface-3);
+  color: var(--scout-text);
+  border-color: var(--scout-border-strong);
+}
+
+.scout-scope .scout-ctx-chip--cell,
+.scout-scope .scout-ctx-chip--selection {
+  background: var(--scout-accent-bg);
+  color: var(--scout-accent-text);
+  border-color: rgba(29, 158, 117, 0.3);
+}
+
+.scout-scope .scout-ctx-chip.is-explicit {
+  border-style: solid;
+  border-color: var(--scout-brand);
+  box-shadow: 0 0 0 1px var(--scout-brand-soft);
+}
+
+.scout-scope .scout-ctx-chip__x {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.05);
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  color: currentColor;
+  cursor: pointer;
+  opacity: 0.7;
+  padding: 0;
+  transition: opacity 80ms, background 80ms;
+}
+
+.scout-scope .scout-ctx-chip__x:hover {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.scout-scope .scout-ctx-chip__x .anticon {
+  font-size: 9px;
+}
+
+/* --- + Add pill --- */
+
+.scout-scope .scout-ctx-chips__add {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 9px 3px 7px;
+  border-radius: var(--scout-radius-pill);
+  border: 1px dashed var(--scout-border-strong);
+  background: transparent;
+  color: var(--scout-text-muted);
+  font-size: 11px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 80ms, color 80ms, border-color 80ms,
+    box-shadow 80ms;
+}
+
+.scout-scope .scout-ctx-chips__add:hover {
+  background: var(--scout-brand-soft);
+  color: var(--scout-brand);
+  border-color: var(--scout-brand);
+}
+
+.scout-scope .scout-ctx-chips__add-plus {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--scout-surface-2);
+  color: var(--scout-text-muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1;
+  transition: background 80ms, color 80ms;
+}
+
+.scout-scope .scout-ctx-chips__add-plus .anticon {
+  font-size: 9px;
+}
+
+.scout-scope .scout-ctx-chips__add.is-active {
+  background: var(--scout-brand);
+  color: white;
+  border-color: var(--scout-brand);
+  border-style: solid;
+  animation: scoutAddModePulse 1.4s ease-in-out infinite;
+}
+
+.scout-scope .scout-ctx-chips__add.is-active .scout-ctx-chips__add-plus {
+  background: white;
+  color: var(--scout-brand);
+}
+
+@keyframes scoutAddModePulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(113, 93, 170, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(113, 93, 170, 0);
+  }
+}
+
+/* --- Clear-all --- */
+
+.scout-scope .scout-ctx-chips__clear-all {
+  padding: 3px 10px;
+  border: 0.5px dashed var(--scout-border-strong);
+  border-radius: var(--scout-radius-pill);
+  background: transparent;
+  color: var(--scout-text-muted);
+  font-size: 11px;
+  font-family: inherit;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.scout-scope .scout-ctx-chips__clear-all:hover {
+  background: var(--scout-surface);
+  color: var(--scout-text);
+}

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confirm Dialog Components - Gravitate Wireframe Design System</title>
+  <link rel="stylesheet" href="../../tokens/index.css">
+  <link rel="stylesheet" href="feedback.css">
+  <style>
+    /* Demo page styles */
+    .demo-section {
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--wf-color-border);
+    }
+    .demo-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--wf-color-text-primary);
+    }
+    .demo-description {
+      font-size: 0.875rem;
+      color: var(--wf-color-text-secondary);
+      margin-bottom: 1.5rem;
+    }
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+    .demo-item {
+      padding: 1.5rem;
+      background: var(--wf-color-surface);
+      border: 1px solid var(--wf-color-border);
+      border-radius: var(--wf-radius-md);
+    }
+    .demo-item h4 {
+      font-size: 0.875rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      color: var(--wf-color-text-secondary);
+    }
+    /* Static positioning for demo purposes */
+    .demo-static {
+      position: relative;
+      min-height: 280px;
+      background: var(--wf-color-neutral-100);
+      border-radius: var(--wf-radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .demo-static .wf-modal {
+      position: relative;
+      transform: none;
+    }
+    .demo-code {
+      padding: 1.5rem;
+      background: var(--wf-color-neutral-900);
+      color: var(--wf-color-neutral-100);
+      border-radius: var(--wf-radius-md);
+    }
+  </style>
+</head>
+<body style="padding: 2rem; background: var(--wf-color-background);">
+
+  <h1 style="margin-bottom: 0.5rem;">Confirm Dialog Components</h1>
+  <p style="color: var(--wf-color-text-secondary); margin-bottom: 2rem;">
+    Confirmation modals for destructive actions or important decisions. Uses the small modal size with centered content.
+  </p>
+
+  <!-- ============================================
+       CONFIRM DIALOG VARIANTS
+       ============================================ -->
+  <section class="demo-section">
+    <h2 class="demo-title">Confirm Dialog Variants</h2>
+    <p class="demo-description">
+      Different icon styles for various confirmation contexts: info, success, warning, and danger.
+    </p>
+
+    <div class="demo-grid">
+      <!-- Danger/Delete Confirmation -->
+      <div class="demo-item">
+        <h4>Danger - Delete Confirmation</h4>
+        <div class="demo-static">
+          <div class="wf-modal wf-modal-sm wf-modal-confirm">
+            <div class="wf-modal-body">
+              <div class="wf-confirm-icon wf-confirm-icon-danger">&#9888;</div>
+              <h3 class="wf-confirm-title">Delete Contract?</h3>
+              <p class="wf-confirm-message">This action cannot be undone. All associated data will be permanently removed.</p>
+            </div>
+            <div class="wf-modal-footer">
+              <button class="wf-button wf-button-secondary">Cancel</button>
+              <button class="wf-button wf-button-danger">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Warning Confirmation -->
+      <div class="demo-item">
+        <h4>Warning - Discard Changes</h4>
+        <div class="demo-static">
+          <div class="wf-modal wf-modal-sm wf-modal-confirm">
+            <div class="wf-modal-body">
+              <div class="wf-confirm-icon wf-confirm-icon-warning">&#9888;</div>
+              <h3 class="wf-confirm-title">Discard Changes?</h3>
+              <p class="wf-confirm-message">You have unsaved changes that will be lost if you leave this page.</p>
+            </div>
+            <div class="wf-modal-footer">
+              <button class="wf-button wf-button-secondary">Keep Editing</button>
+              <button class="wf-button wf-button-primary">Discard</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Info Confirmation -->
+      <div class="demo-item">
+        <h4>Info - Send Notification</h4>
+        <div class="demo-static">
+          <div class="wf-modal wf-modal-sm wf-modal-confirm">
+            <div class="wf-modal-body">
+              <div class="wf-confirm-icon wf-confirm-icon-info">&#8505;</div>
+              <h3 class="wf-confirm-title">Send Notification?</h3>
+              <p class="wf-confirm-message">This will send an email notification to 24 team members.</p>
+            </div>
+            <div class="wf-modal-footer">
+              <button class="wf-button wf-button-secondary">Cancel</button>
+              <button class="wf-button wf-button-primary">Send</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Success Confirmation -->
+      <div class="demo-item">
+        <h4>Success - Publish Confirmation</h4>
+        <div class="demo-static">
+          <div class="wf-modal wf-modal-sm wf-modal-confirm">
+            <div class="wf-modal-body">
+              <div class="wf-confirm-icon wf-confirm-icon-success">&#10003;</div>
+              <h3 class="wf-confirm-title">Ready to Publish?</h3>
+              <p class="wf-confirm-message">Your article will be visible to all users once published.</p>
+            </div>
+            <div class="wf-modal-footer">
+              <button class="wf-button wf-button-secondary">Save as Draft</button>
+              <button class="wf-button wf-button-primary">Publish</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       MORE EXAMPLES
+       ============================================ -->
+  <section class="demo-section">
+    <h2 class="demo-title">Common Use Cases</h2>
+    <p class="demo-description">
+      Additional confirmation dialog patterns for typical scenarios.
+    </p>
+
+    <div class="demo-grid">
+      <!-- Logout Confirmation -->
+      <div class="demo-item">
+        <h4>Logout</h4>
+        <div class="demo-static">
+          <div class="wf-modal wf-modal-sm wf-modal-confirm">
+            <div class="wf-modal-body">
+              <div class="wf-confirm-icon wf-confirm-icon-info">&#8634;</div>
+              <h3 class="wf-confirm-title">Sign Out?</h3>
+              <p class="wf-confirm-message">You will need to sign in again to access your account.</p>
+            </div>
+            <div class="wf-modal-footer">
+              <button class="wf-button wf-button-secondary">Cancel</button>
+              <button class="wf-button wf-button-primary">Sign Out</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Archive Confirmation -->
+      <div class="demo-item">
+        <h4>Archive</h4>
+        <div class="demo-static">
+          <div class="wf-modal wf-modal-sm wf-modal-confirm">
+            <div class="wf-modal-body">
+              <div class="wf-confirm-icon wf-confirm-icon-warning">&#128451;</div>
+              <h3 class="wf-confirm-title">Archive Project?</h3>
+              <p class="wf-confirm-message">Archived projects can be restored later from the archives section.</p>
+            </div>
+            <div class="wf-modal-footer">
+              <button class="wf-button wf-button-secondary">Cancel</button>
+              <button class="wf-button wf-button-primary">Archive</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Remove User -->
+      <div class="demo-item">
+        <h4>Remove User</h4>
+        <div class="demo-static">
+          <div class="wf-modal wf-modal-sm wf-modal-confirm">
+            <div class="wf-modal-body">
+              <div class="wf-confirm-icon wf-confirm-icon-danger">&#128100;</div>
+              <h3 class="wf-confirm-title">Remove User?</h3>
+              <p class="wf-confirm-message">John Smith will lose access to all projects and resources.</p>
+            </div>
+            <div class="wf-modal-footer">
+              <button class="wf-button wf-button-secondary">Cancel</button>
+              <button class="wf-button wf-button-danger">Remove</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cancel Subscription -->
+      <div class="demo-item">
+        <h4>Cancel Subscription</h4>
+        <div class="demo-static">
+          <div class="wf-modal wf-modal-sm wf-modal-confirm">
+            <div class="wf-modal-body">
+              <div class="wf-confirm-icon wf-confirm-icon-warning">&#128179;</div>
+              <h3 class="wf-confirm-title">Cancel Subscription?</h3>
+              <p class="wf-confirm-message">Your access will continue until the end of the billing period on Feb 28, 2026.</p>
+            </div>
+            <div class="wf-modal-footer">
+              <button class="wf-button wf-button-secondary">Keep Subscription</button>
+              <button class="wf-button wf-button-danger">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       LOADING STATE
+       ============================================ -->
+  <section class="demo-section">
+    <h2 class="demo-title">Loading State</h2>
+    <p class="demo-description">
+      Show a loading state while the action is being processed.
+    </p>
+
+    <div class="demo-grid">
+      <div class="demo-item">
+        <h4>Processing Action</h4>
+        <div class="demo-static">
+          <div class="wf-modal wf-modal-sm wf-modal-confirm">
+            <div class="wf-modal-body">
+              <div class="wf-loading">
+                <div class="wf-loading-spinner"></div>
+                <span class="wf-loading-text">Deleting...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       FULL OVERLAY EXAMPLE
+       ============================================ -->
+  <section class="demo-section">
+    <h2 class="demo-title">Full Overlay Example</h2>
+    <p class="demo-description">
+      How the confirm dialog looks within a full overlay context.
+    </p>
+
+    <div style="position: relative; height: 400px; background: var(--wf-color-neutral-100); border-radius: var(--wf-radius-md); overflow: hidden;">
+      <div class="wf-overlay wf-overlay-visible" style="position: absolute;">
+        <div class="wf-overlay-backdrop"></div>
+        <div class="wf-modal wf-modal-sm wf-modal-confirm">
+          <div class="wf-modal-body">
+            <div class="wf-confirm-icon wf-confirm-icon-danger">&#128465;</div>
+            <h3 class="wf-confirm-title">Delete Account?</h3>
+            <p class="wf-confirm-message">This will permanently delete your account and all associated data. This action cannot be undone.</p>
+          </div>
+          <div class="wf-modal-footer">
+            <button class="wf-button wf-button-secondary">Cancel</button>
+            <button class="wf-button wf-button-danger">Delete Account</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       USAGE CODE EXAMPLES
+       ============================================ -->
+  <section class="demo-section">
+    <h2 class="demo-title">Usage</h2>
+    <p class="demo-description">Copy and paste these patterns into your wireframes.</p>
+
+    <div class="demo-code">
+      <pre style="margin: 0; font-size: 0.8rem; overflow-x: auto; white-space: pre-wrap;"><code>&lt;!-- Confirm Dialog (within overlay) --&gt;
+&lt;div class="wf-overlay wf-overlay-visible"&gt;
+  &lt;div class="wf-overlay-backdrop"&gt;&lt;/div&gt;
+  &lt;div class="wf-modal wf-modal-sm wf-modal-confirm"&gt;
+    &lt;div class="wf-modal-body"&gt;
+      &lt;div class="wf-confirm-icon wf-confirm-icon-warning"&gt;&amp;#9888;&lt;/div&gt;
+      &lt;h3 class="wf-confirm-title"&gt;Delete Contract?&lt;/h3&gt;
+      &lt;p class="wf-confirm-message"&gt;This action cannot be undone.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="wf-modal-footer"&gt;
+      &lt;button class="wf-button wf-button-secondary"&gt;Cancel&lt;/button&gt;
+      &lt;button class="wf-button wf-button-danger"&gt;Delete&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Icon Variants --&gt;
+&lt;!-- wf-confirm-icon-info (blue background) --&gt;
+&lt;!-- wf-confirm-icon-success (green background) --&gt;
+&lt;!-- wf-confirm-icon-warning (yellow background) --&gt;
+&lt;!-- wf-confirm-icon-danger / wf-confirm-icon-error (red background) --&gt;
+
+&lt;!-- Loading State --&gt;
+&lt;div class="wf-modal wf-modal-sm wf-modal-confirm"&gt;
+  &lt;div class="wf-modal-body"&gt;
+    &lt;div class="wf-loading"&gt;
+      &lt;div class="wf-loading-spinner"&gt;&lt;/div&gt;
+      &lt;span class="wf-loading-text"&gt;Processing...&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Common Icons (HTML entities) --&gt;
+&lt;!-- Warning: &amp;#9888; --&gt;
+&lt;!-- Checkmark: &amp;#10003; --&gt;
+&lt;!-- X/Close: &amp;#10005; --&gt;
+&lt;!-- Info: &amp;#8505; --&gt;
+&lt;!-- Trash: &amp;#128465; --&gt;
+&lt;!-- User: &amp;#128100; --&gt;
+&lt;!-- Archive: &amp;#128451; --&gt;
+&lt;!-- Credit card: &amp;#128179; --&gt;</code></pre>
+    </div>
+  </section>
+
+</body>
+</html>

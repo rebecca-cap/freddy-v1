@@ -1,0 +1,6 @@
+- generic [ref=e2]:
+  - img "loading" [ref=e4]:
+    - img [ref=e5]
+  - generic [ref=e7]:
+    - generic:
+      - main

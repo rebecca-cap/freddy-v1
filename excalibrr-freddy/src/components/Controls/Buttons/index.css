@@ -1,0 +1,151 @@
+/* Gravi Button */
+
+.ant-btn.gravi-button {
+  border-radius: 30px;
+  font-weight: bold;
+}
+.ant-btn.gravi-button:disabled {
+  opacity: 0.3;
+}
+/* Filled Styles */
+.gravi-button.filled.default {
+  color: var(--gray-800);
+  background-color: var(--gray-200);
+}
+.gravi-button.filled.default:hover {
+  background-color: var(--gray-100);
+}
+
+.gravi-button.filled {
+  color: white;
+  border: none;
+}
+.gravi-button.filled.theme-1 {
+  background-color: var(--theme-color-1);
+  color: white;
+}
+.gravi-button.filled.theme-1:hover {
+  background-color: var(--gray-100);
+  color: var(--theme-color-1);
+}
+.gravi-button.filled.theme-2 {
+  background-color: var(--theme-color-2);
+  color: white;
+}
+.gravi-button.filled.theme-2:hover {
+  background-color: var(--gray-100);
+  color: var(--theme-color-2);
+}
+.gravi-button.filled.theme-3 {
+  color: white;
+  background-color: var(--theme-color-3);
+}
+.gravi-button.filled.theme-3:hover {
+  background-color: var(--gray-100);
+  color: var(--theme-color-3);
+}
+.gravi-button.filled.error {
+  color: white;
+  background-color: var(--theme-error);
+}
+.gravi-button.filled.error:hover {
+  background-color: var(--gray-100);
+  color: var(--theme-error);
+}
+.gravi-button.filled.warning {
+  color: white;
+  background-color: var(--theme-warning);
+}
+.gravi-button.filled.warning:hover {
+  background-color: var(--gray-100);
+  color: var(--theme-warning);
+}
+.gravi-button.filled.success {
+  color: white;
+  background-color: var(--theme-success);
+}
+.gravi-button.filled.success:hover {
+  background-color: var(--gray-100);
+  color: var(--theme-success);
+}
+
+/* OUTLINE Styles */
+.gravi-button.outline.theme-1 {
+  border: 1px solid var(--theme-color-1);
+  background-color: var(--theme-color-1-dim);
+  color: var(--theme-color-1);
+}
+.gravi-button.outline.theme-1:hover {
+  background-color: var(--gray-100);
+  color: var(--theme-color-1);
+}
+.gravi-button.outline.theme-2 {
+  border: 1px solid var(--theme-color-2);
+  background-color: var(--theme-color-2-dim);
+  color: var(--theme-color-2);
+}
+.gravi-button.outline.theme-2:hover {
+  background-color: var(--gray-100);
+  color: var(--theme-color-2);
+}
+.gravi-button.outline.theme-3 {
+  border: 1px solid var(--theme-color-3);
+  background-color: var(--theme-color-3-dim);
+  color: var(--theme-color-3);
+}
+.gravi-button.outline.theme-3:hover {
+  background-color: var(--gray-100);
+  color: var(--theme-color-3);
+}
+.gravi-button.outline.error {
+  border: 1px solid var(--theme-error);
+  background-color: var(--theme-error-dim);
+  color: var(--theme-error);
+}
+.gravi-button.outline.error:hover {
+  background-color: var(--gray-100);
+  color: var(--theme-error);
+}
+.gravi-button.outline.warning {
+  border: 1px solid var(--theme-warning);
+  background-color: var(--theme-warning-dim);
+  color: var(--theme-warning);
+}
+.gravi-button.outline.warning:hover {
+  background-color: var(--gray-100);
+  color: var(--theme-warning);
+}
+.gravi-button.outline.success {
+  border: 1px solid var(--theme-success);
+  background-color: var(--theme-success-dim);
+  color: var(--theme-success);
+}
+.gravi-button.outline.success:hover {
+  background-color: var(--gray-100);
+  color: var(--theme-success);
+}
+button.edit-save-button {
+  color: var(--gray-600);
+}
+button.gray {
+  background: var(--gray-300);
+}
+/* Big Button */
+.big-button {
+  background: var(--gray-100);
+  border-radius: 5px;
+  padding: 1em 0.5em;
+  margin: 3em;
+  cursor: pointer;
+  border: 2px solid var(--theme-color-2);
+  color: var(--theme-color-1);
+  width: 225px;
+}
+.big-button:hover {
+  color: var(--theme-color-2);
+}
+.big-button-label {
+  text-align: center;
+  font-size: 1.7em;
+  font-weight: 600;
+}

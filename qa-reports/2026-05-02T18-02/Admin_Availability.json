@@ -1,0 +1,19 @@
+{
+  "path": "/Admin/Availability",
+  "title": "Availability",
+  "finalUrl": "http://localhost:3001/Admin/Availability",
+  "rootLen": 52534,
+  "crashed": false,
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 429 ()"
+  ],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [
+    "AvailabilityMaintenance/GetAvailabilityMaintenanceGridData",
+    "admin/allocation/management/ReadManagementData",
+    "admin/allocation/reference/GetMetaDataForReferences",
+    "admin/allocation/reference/GetReferences"
+  ],
+  "consoleEventCount": 17
+}

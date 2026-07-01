@@ -1,0 +1,96 @@
+/*
+ * ScoutFeedbackForm — inline negative-feedback form.
+ * Spec `.ex-feedback`: a quiet surface-2 block inside the answer card with a
+ * prompt, radio list, optional note, and right-aligned Cancel / Submit.
+ */
+
+.scout-feedback {
+  padding: 10px 12px;
+  background: var(--scout-surface-2);
+  border: 0.5px solid var(--scout-border);
+  border-radius: var(--scout-radius);
+  font-size: var(--scout-font-size-md);
+  color: var(--scout-text-muted);
+}
+
+.scout-feedback__label {
+  font-weight: var(--scout-font-weight-semibold);
+  color: var(--scout-text);
+  font-size: var(--scout-font-size-body);
+  margin-bottom: 6px;
+}
+
+.scout-feedback__option {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 0;
+  cursor: pointer;
+}
+
+.scout-feedback__option input {
+  accent-color: var(--scout-brand);
+  cursor: pointer;
+}
+
+.scout-feedback__note {
+  width: 100%;
+  margin-top: 6px;
+  padding: 6px 8px;
+  border: 0.5px solid var(--scout-border);
+  border-radius: var(--scout-radius-sm);
+  background: var(--scout-surface);
+  font-family: inherit;
+  font-size: var(--scout-font-size-md);
+  color: var(--scout-text);
+  resize: vertical;
+  min-height: 36px;
+}
+
+.scout-feedback__note:focus {
+  outline: none;
+  border-color: var(--scout-brand);
+}
+
+.scout-feedback__buttons {
+  display: flex;
+  gap: 6px;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+.scout-feedback__btn {
+  padding: 4px 12px;
+  border-radius: var(--scout-radius-sm);
+  font-family: inherit;
+  font-size: var(--scout-font-size-md);
+  font-weight: var(--scout-font-weight-medium);
+  cursor: pointer;
+  transition:
+    background 80ms ease,
+    border-color 80ms ease;
+}
+
+.scout-feedback__btn--primary {
+  border: 0;
+  background: var(--scout-brand);
+  color: #fff;
+}
+.scout-feedback__btn--primary:hover {
+  background: var(--scout-brand-hover);
+}
+
+.scout-feedback__btn--secondary {
+  border: 0.5px solid var(--scout-border);
+  background: transparent;
+  color: var(--scout-text-muted);
+}
+.scout-feedback__btn--secondary:hover {
+  background: var(--scout-surface-3);
+}
+
+.scout-feedback__btn:focus,
+.scout-feedback__btn:focus-visible {
+  outline: 2px solid var(--scout-brand);
+  outline-offset: 1px;
+}

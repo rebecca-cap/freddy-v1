@@ -1,0 +1,26 @@
+.formulaDisplay {
+  margin: 0;
+  padding: 12px 16px;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.6;
+  background-color: var(--gravi-bg-2, #fafafa);
+  color: var(--gravi-text-color, #1f2937);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.function {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.functionLabel {
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+
+.highlighted {
+  background-color: rgba(0, 0, 0, 0.08);
+}

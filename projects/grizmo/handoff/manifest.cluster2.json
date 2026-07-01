@@ -1,0 +1,344 @@
+[
+  {
+    "id": "c2-chats-inbox",
+    "title": "Chats inbox",
+    "section": "threading",
+    "file": "c2-chats-inbox.png",
+    "target": ".scout-panel-frame",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Conversation card",
+        "note": "Question-led; preview + timestamp.",
+        "xPct": 7,
+        "yPct": 50.3,
+        "wPct": 86,
+        "hPct": 18.45
+      },
+      {
+        "n": 2,
+        "label": "Lead question",
+        "note": "What was asked.",
+        "xPct": 10.75,
+        "yPct": 53.26,
+        "wPct": 79,
+        "hPct": 5.07
+      },
+      {
+        "n": 3,
+        "label": "Unseen badge",
+        "note": "Counts ready answers.",
+        "xPct": 7,
+        "yPct": 13.32,
+        "wPct": 3.75,
+        "hPct": 4.04
+      },
+      {
+        "n": 4,
+        "label": "New chat",
+        "note": "Start a fresh conversation.",
+        "xPct": 68,
+        "yPct": 29.86,
+        "wPct": 25,
+        "hPct": 7.53
+      }
+    ]
+  },
+  {
+    "id": "c2-library",
+    "title": "Library — saved prompts & paths",
+    "section": "library",
+    "file": "c2-library.png",
+    "target": ".scout-panel-frame",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Search & filters",
+        "note": "Search, starred-only, ownership filter.",
+        "xPct": 4,
+        "yPct": 12.62,
+        "wPct": 92,
+        "hPct": 4.04
+      },
+      {
+        "n": 2,
+        "label": "Kind pill",
+        "note": "“Path · N steps” or “Prompt”.",
+        "xPct": 10.75,
+        "yPct": 32.48,
+        "wPct": 19.43,
+        "hPct": 2.21
+      },
+      {
+        "n": 3,
+        "label": "Run / Open",
+        "note": "Run a path; open a prompt.",
+        "xPct": 79.1,
+        "yPct": 41.97,
+        "wPct": 10.15,
+        "hPct": 2.94
+      },
+      {
+        "n": 4,
+        "label": "Star",
+        "note": "Favorite (always visible).",
+        "xPct": 83.25,
+        "yPct": 28.55,
+        "wPct": 6,
+        "hPct": 2.94
+      },
+      {
+        "n": 5,
+        "label": "Description",
+        "note": "2-line clamp.",
+        "xPct": 10.75,
+        "yPct": 35.66,
+        "wPct": 78.5,
+        "hPct": 4.23
+      }
+    ]
+  },
+  {
+    "id": "c2-library-empty",
+    "title": "Library — no matches",
+    "section": "library",
+    "file": "c2-library-empty.png",
+    "target": ".scout-panel-frame",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Empty state",
+        "note": "“No matches · Clear filters.”",
+        "xPct": 4,
+        "yPct": 49.04,
+        "wPct": 92,
+        "hPct": 49.16
+      }
+    ]
+  },
+  {
+    "id": "c2-save-details",
+    "title": "Save modal — Details",
+    "section": "library",
+    "file": "c2-save-details.png",
+    "target": ".scout-save-modal",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Details / Share tabs",
+        "note": "Two-tab save.",
+        "xPct": 0,
+        "yPct": 9.03,
+        "wPct": 100,
+        "hPct": 4.95
+      },
+      {
+        "n": 2,
+        "label": "Name & description",
+        "note": "Name required.",
+        "xPct": 3.46,
+        "yPct": 16.08,
+        "wPct": 93.08,
+        "hPct": 9.35
+      },
+      {
+        "n": 3,
+        "label": "Step list",
+        "note": "Rename / reorder / drop.",
+        "xPct": 3.46,
+        "yPct": 59.88,
+        "wPct": 93.08,
+        "hPct": 11.91
+      },
+      {
+        "n": 4,
+        "label": "Flatten on save",
+        "note": "Collapse to a single prompt.",
+        "xPct": 3.46,
+        "yPct": 73.88,
+        "wPct": 93.08,
+        "hPct": 7.92
+      },
+      {
+        "n": 5,
+        "label": "Save",
+        "note": "Disabled until valid.",
+        "xPct": 84.38,
+        "yPct": 91.6,
+        "wPct": 12.16,
+        "hPct": 3.97
+      }
+    ]
+  },
+  {
+    "id": "c2-save-share",
+    "title": "Save modal — Share",
+    "section": "library",
+    "file": "c2-save-share.png",
+    "target": ".scout-save-modal",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Audience scope",
+        "note": "Only me / Team / Specific people.",
+        "xPct": 3.46,
+        "yPct": 32.89,
+        "wPct": 93.08,
+        "hPct": 40.92
+      },
+      {
+        "n": 2,
+        "label": "Scope card",
+        "note": "Pick who can see it.",
+        "xPct": 3.46,
+        "yPct": 32.89,
+        "wPct": 93.08,
+        "hPct": 12.55
+      }
+    ]
+  },
+  {
+    "id": "c2-path-editor",
+    "title": "Inline path editor",
+    "section": "library",
+    "file": "c2-path-editor.png",
+    "target": ".scout-save-modal__steps",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Inline rename",
+        "note": "Edit each step’s text.",
+        "xPct": 12.11,
+        "yPct": 23.07,
+        "wPct": 65.24,
+        "hPct": 18.48
+      },
+      {
+        "n": 2,
+        "label": "Reorder / drop",
+        "note": "Up · down · remove (restorable).",
+        "xPct": 78.91,
+        "yPct": 23.08,
+        "wPct": 14.84,
+        "hPct": 18.46
+      }
+    ]
+  },
+  {
+    "id": "c2-share-modal",
+    "title": "Share modal",
+    "section": "library",
+    "file": "c2-share-modal.png",
+    "target": ".scout-share-modal",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Item being shared",
+        "note": "Saved prompt / path.",
+        "xPct": 6.3,
+        "yPct": 26.72,
+        "wPct": 23.94,
+        "hPct": 5.43
+      },
+      {
+        "n": 2,
+        "label": "Audience",
+        "note": "Same picker as Save → Share.",
+        "xPct": 3.48,
+        "yPct": 38.81,
+        "wPct": 93.04,
+        "hPct": 34.85
+      },
+      {
+        "n": 3,
+        "label": "Share",
+        "note": "Confirm.",
+        "xPct": 81.43,
+        "yPct": 81.37,
+        "wPct": 15.1,
+        "hPct": 9.05
+      }
+    ]
+  },
+  {
+    "id": "c2-path-candidate",
+    "title": "Path-candidate nudge",
+    "section": "library",
+    "file": "c2-path-candidate.png",
+    "target": ".scout-panel-frame",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Save-as-path nudge",
+        "note": "Appears after ≥2 same-scope questions.",
+        "xPct": 4.5,
+        "yPct": 61.65,
+        "wPct": 91,
+        "hPct": 15.07
+      }
+    ]
+  },
+  {
+    "id": "c2-toast",
+    "title": "Toast notification",
+    "section": "conversation",
+    "file": "c2-toast.png",
+    "target": "viewport",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Toast",
+        "note": "Single, auto-dismiss; success/warn/error.",
+        "xPct": 42.71,
+        "yPct": 93.9,
+        "wPct": 14.57,
+        "hPct": 3.74
+      }
+    ]
+  }
+]

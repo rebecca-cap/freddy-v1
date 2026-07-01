@@ -1,0 +1,157 @@
+{
+  "slug": "layout-grid",
+  "title": "Grid: Row, Column & Container",
+  "order": 13,
+  "group": "Layout",
+  "intro": "Three flex primitives carry every wireframe layout: `wf-row` lays children out horizontally, `wf-column` stacks them vertically, and `wf-container` constrains and centers a page's width. Spacing between children always comes from the `wf-gap-*` scale on the 8px grid — never an inline literal.",
+  "searchTerms": ["wf-row", "wf-column", "wf-container", "wf-gap", "wf-justify", "wf-align", "wf-flex-1", "wf-grow", "wf-wrap", "flex", "grid", "row", "column", "container", "layout", "8px grid", "Horizontal", "Vertical"],
+  "blocks": [
+    {
+      "type": "usage",
+      "body": "`wf-row` and `wf-column` are the same flexbox primitive with the axis swapped — `wf-row` sets `flex-direction: row`, `wf-column` sets `flex-direction: column`. Everything else (gaps, justify, align) is shared utility classes, so once you know one you know both. Reach for them anywhere you'd otherwise reach for a bare `display: flex` div; in production they map to Excalibrr's `<Horizontal>` and `<Vertical>`.\n\nThe one axis gotcha to internalize: `wf-justify-*` is the main axis and `wf-align-*` is the cross axis, so they flip meaning between the two. In a `wf-row`, `wf-justify-*` distributes horizontally and `wf-align-*` aligns vertically; in a `wf-column` it's the reverse. Same classes, swapped result.\n\n`wf-container` is structural, not decorative — it's a `width: 100%` wrapper with auto side margins and horizontal padding whose only job is to cap and center content width on wide screens. It carries no border, background, or shadow on its own. When you want a card-like surface, that's `wf-container-elevated` (or `wf-card`), not a plain container."
+    },
+    {
+      "type": "specimen",
+      "title": "Row with gap",
+      "image": "specimens/layout-grid/01-row-with-gap.png",
+      "caption": "`wf-row` arranges children horizontally; `wf-gap-*` adds the 8px-grid spacing between them. Shown: wf-gap-2, wf-gap-6, and wf-gap-10."
+    },
+    {
+      "type": "specimen",
+      "title": "Row justify-content",
+      "image": "specimens/layout-grid/02-row-justify-content.png",
+      "caption": "Main-axis distribution on a row: wf-justify-start (default), -center, -end, -between, and -around."
+    },
+    {
+      "type": "variants",
+      "title": "Row & column structure",
+      "intro": "The two direction primitives. Compose them freely — a column of rows is the backbone of most page layouts.",
+      "rows": [
+        { "name": "wf-row", "when": "Lay children out horizontally (display: flex; flex-direction: row). Maps to Excalibrr <Horizontal>.", "code": "<div class=\"wf-row wf-gap-4\">\n  <div>Item 1</div>\n  <div>Item 2</div>\n</div>" },
+        { "name": "wf-column", "when": "Stack children vertically (display: flex; flex-direction: column). Maps to Excalibrr <Vertical>.", "code": "<div class=\"wf-column wf-gap-4\">\n  <div>Item 1</div>\n  <div>Item 2</div>\n</div>" }
+      ]
+    },
+    {
+      "type": "variants",
+      "title": "Gap scale",
+      "intro": "Spacing between children comes from `wf-gap-*` only — never an inline margin or padding literal. Each step resolves to a `--wf-space-*` token on the 8px grid. The base steps (wf-gap-1 through wf-gap-8) live in the token utilities; layout.css adds the two large steps below for page-level spacing.",
+      "rows": [
+        { "name": "wf-gap-2", "when": "Tight spacing between closely related items — toolbar buttons, chips.", "code": "<div class=\"wf-row wf-gap-2\">…</div>" },
+        { "name": "wf-gap-4", "when": "The workhorse default for most rows and stacks (gap: var(--wf-space-4)).", "code": "<div class=\"wf-column wf-gap-4\">…</div>" },
+        { "name": "wf-gap-6", "when": "Looser separation between distinct groups in a row, e.g. nav links.", "code": "<div class=\"wf-row wf-gap-6\">…</div>" },
+        { "name": "wf-gap-10", "when": "Large layout spacing (gap: var(--wf-space-10)). Defined in layout.css, not the base utilities.", "code": "<div class=\"wf-row wf-gap-10\">…</div>" },
+        { "name": "wf-gap-12", "when": "Largest layout spacing (gap: var(--wf-space-12)). Defined in layout.css.", "code": "<div class=\"wf-row wf-gap-12\">…</div>" }
+      ]
+    },
+    {
+      "type": "variants",
+      "title": "Justify (main axis)",
+      "intro": "Distribution along the flex direction — horizontal in a row, vertical in a column. wf-justify-start is the implicit default.",
+      "rows": [
+        { "name": "wf-justify-start", "when": "Pack children to the start (justify-content: flex-start). The default — usually omit it.", "code": "<div class=\"wf-row wf-justify-start wf-gap-2\">…</div>" },
+        { "name": "wf-justify-center", "when": "Center the group on the main axis (justify-content: center).", "code": "<div class=\"wf-row wf-justify-center\">…</div>" },
+        { "name": "wf-justify-end", "when": "Pack children to the end (justify-content: flex-end). Right-aligned actions.", "code": "<div class=\"wf-row wf-justify-end wf-gap-2\">…</div>" },
+        { "name": "wf-justify-between", "when": "First/last to the edges, equal space between (justify-content: space-between). The header pattern: logo left, actions right.", "code": "<div class=\"wf-row wf-justify-between wf-align-center\">…</div>" },
+        { "name": "wf-justify-around", "when": "Equal space around each child (justify-content: space-around).", "code": "<div class=\"wf-row wf-justify-around\">…</div>" },
+        { "name": "wf-justify-evenly", "when": "Equal space between and at the ends (justify-content: space-evenly).", "code": "<div class=\"wf-row wf-justify-evenly\">…</div>" }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "Column with gap",
+      "image": "specimens/layout-grid/03-column-with-gap.png",
+      "caption": "`wf-column` stacks children vertically with the same `wf-gap-*` scale. Shown: wf-gap-2, wf-gap-4, wf-gap-6."
+    },
+    {
+      "type": "variants",
+      "title": "Align (cross axis)",
+      "intro": "Alignment across the flex direction — vertical in a row, horizontal in a column. `wf-align-baseline` is row-only (it's scoped to `.wf-row` in the CSS).",
+      "rows": [
+        { "name": "wf-align-start", "when": "Align children to the cross-axis start (align-items: flex-start).", "code": "<div class=\"wf-row wf-align-start wf-gap-4\">…</div>" },
+        { "name": "wf-align-center", "when": "Center on the cross axis (align-items: center). The most common pairing with wf-justify-between in headers.", "code": "<div class=\"wf-row wf-align-center wf-gap-4\">…</div>" },
+        { "name": "wf-align-end", "when": "Align to the cross-axis end (align-items: flex-end).", "code": "<div class=\"wf-row wf-align-end wf-gap-4\">…</div>" },
+        { "name": "wf-align-stretch", "when": "Stretch children to fill the cross axis (align-items: stretch). Equal-width cards in a column, equal-height in a row.", "code": "<div class=\"wf-column wf-align-stretch wf-gap-2\">…</div>" },
+        { "name": "wf-align-baseline", "when": "Align children to their text baseline (align-items: baseline). Row only.", "code": "<div class=\"wf-row wf-align-baseline\">…</div>" }
+      ]
+    },
+    {
+      "type": "variants",
+      "title": "Wrap & flex-item utilities",
+      "intro": "Control overflow on a row and how individual children grow or shrink within either primitive.",
+      "rows": [
+        { "name": "wf-wrap", "when": "Let row children wrap to the next line when they exceed the container (flex-wrap: wrap). Row only.", "code": "<div class=\"wf-row wf-wrap wf-gap-4\">…</div>" },
+        { "name": "wf-nowrap", "when": "Force a single line (flex-wrap: nowrap). Row only.", "code": "<div class=\"wf-row wf-nowrap\">…</div>" },
+        { "name": "wf-flex-1", "when": "Make a child take all remaining space (flex: 1 1 0%). The growing main region in a header/content/footer column.", "code": "<div class=\"wf-column\" style=\"height: 400px;\">\n  <header>Header</header>\n  <main class=\"wf-flex-1\">Content grows</main>\n  <footer>Footer</footer>\n</div>" },
+        { "name": "wf-grow", "when": "Grow to fill without zeroing the basis (flex-grow: 1).", "code": "<main class=\"wf-grow\">…</main>" },
+        { "name": "wf-shrink-0", "when": "Stop a child from shrinking — fixed-width sidebars, icons (flex-shrink: 0).", "code": "<aside class=\"wf-column wf-shrink-0\" style=\"width: 180px;\">…</aside>" }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "Container size variants",
+      "image": "specimens/layout-grid/04-container-size-variants.png",
+      "caption": "`wf-container` max-width modifiers center and cap page content: sm (640px), md (768px), lg (1024px), xl (1280px)."
+    },
+    {
+      "type": "variants",
+      "title": "Container width & padding",
+      "intro": "`wf-container` alone is full-width with 16px side padding and auto margins. Add a size modifier to cap the width, or a padding modifier to change the side gutter.",
+      "rows": [
+        { "name": "wf-container", "when": "Base wrapper: width 100%, auto side margins, 16px (--wf-space-4) horizontal padding. No border or background.", "code": "<div class=\"wf-container\">…</div>" },
+        { "name": "wf-container-sm", "when": "Cap content at max-width: 640px and center it.", "code": "<div class=\"wf-container wf-container-sm\">…</div>" },
+        { "name": "wf-container-md", "when": "Cap at max-width: 768px. Comfortable reading width for forms and prose.", "code": "<div class=\"wf-container wf-container-md\">…</div>" },
+        { "name": "wf-container-lg", "when": "Cap at max-width: 1024px. The default app content width.", "code": "<div class=\"wf-container wf-container-lg\">…</div>" },
+        { "name": "wf-container-xl", "when": "Cap at max-width: 1280px for wide dashboards.", "code": "<div class=\"wf-container wf-container-xl\">…</div>" },
+        { "name": "wf-container-2xl", "when": "Cap at max-width: 1536px — the widest constraint.", "code": "<div class=\"wf-container wf-container-2xl\">…</div>" },
+        { "name": "wf-container-full", "when": "max-width: 100% — explicitly opt out of any width cap.", "code": "<div class=\"wf-container wf-container-full\">…</div>" },
+        { "name": "wf-container-tight", "when": "Reduce side padding to 8px (--wf-space-2).", "code": "<div class=\"wf-container wf-container-md wf-container-tight\">…</div>" },
+        { "name": "wf-container-relaxed", "when": "Widen side padding to 24px (--wf-space-6).", "code": "<div class=\"wf-container wf-container-relaxed\">…</div>" },
+        { "name": "wf-container-spacious", "when": "Widen side padding to 32px (--wf-space-8).", "code": "<div class=\"wf-container wf-container-spacious\">…</div>" },
+        { "name": "wf-container-elevated", "when": "Card-like surface: surface background, border, radius, and shadow. Use when you want a container that also reads as a card.", "code": "<div class=\"wf-container wf-container-md wf-container-elevated\">…</div>" }
+      ]
+    },
+    {
+      "type": "code",
+      "title": "Header layout — row composition",
+      "code": "<!-- Logo left, nav center, actions right -->\n<div class=\"wf-row wf-justify-between wf-align-center wf-gap-4\">\n  <div class=\"logo\">Logo</div>\n  <div class=\"wf-row wf-gap-6\">\n    <a href=\"#\">Home</a>\n    <a href=\"#\">About</a>\n    <a href=\"#\">Contact</a>\n  </div>\n  <div class=\"wf-row wf-gap-2\">\n    <button>Login</button>\n    <button>Sign Up</button>\n  </div>\n</div>",
+      "note": "wf-justify-between pushes the three groups to edges and center; wf-align-center vertically centers them. Nested rows carry their own gaps.",
+      "lang": "html"
+    },
+    {
+      "type": "code",
+      "title": "App shell — container + sidebar + main",
+      "code": "<!-- Width-capped page with a fixed sidebar and a growing main column -->\n<div class=\"wf-container wf-container-lg\">\n  <div class=\"wf-row wf-gap-6\">\n    <aside class=\"wf-column wf-gap-4 wf-shrink-0\" style=\"width: 180px;\">\n      <!-- fixed-width nav -->\n    </aside>\n    <main class=\"wf-column wf-gap-4 wf-flex-1\">\n      <!-- grows to fill remaining width -->\n    </main>\n  </div>\n</div>",
+      "note": "Container caps and centers the page; wf-shrink-0 holds the sidebar width while wf-flex-1 lets main absorb the rest.",
+      "lang": "html"
+    },
+    {
+      "type": "rules",
+      "title": "The 8px grid",
+      "intro": "From DESIGN.md §5.2 — non-negotiable.",
+      "items": [
+        { "rule": "All spacing between elements comes from the spacing scale via wf-gap-* — never a raw px gap.", "why": "There are no 7px gaps, 10px paddings, or 18px margins. Every wf-gap-* resolves to a --wf-space-* token that sits on the 8px grid." },
+        { "rule": "When the gap you want isn't on the scale, step one up or one down — don't invent a custom value.", "why": "If the scale doesn't have a token at the size you want, that's the signal to pick the nearest step, not to write a literal (DESIGN.md §5.2 + §7.6)." },
+        { "rule": "Default vertical rhythm is tight: related rows stack at --wf-space-stack-sm (8px), groups at --wf-space-stack-lg.", "why": "Gravitate is enterprise data-density. A region using 3+ different vertical rhythms is broken (DESIGN.md §5.4)." },
+        { "rule": "wf-container is for width control only — never use it as a styled box.", "why": "It has no border, padding-beyond-gutter, or background by design. Reach for wf-container-elevated or wf-card when you need a visible surface (DESIGN.md §7.1)." }
+      ]
+    },
+    {
+      "type": "dosdonts",
+      "items": [
+        { "do": "<div class=\"wf-row wf-gap-4\">", "dont": "<div class=\"wf-row\" style=\"gap: 18px\">", "why": "Spacing must come from the wf-gap-* scale on the 8px grid, not an inline literal (DESIGN.md §5.2)." },
+        { "do": "wf-justify-between for main-axis distribution, wf-align-center for the cross axis", "dont": "wf-align-between or wf-justify-stretch", "why": "justify is the main axis and align is the cross axis — the modifiers are not interchangeable, and the wrong-axis class simply doesn't exist in the CSS." },
+        { "do": "<div class=\"wf-container wf-container-md\">", "dont": "<div class=\"wf-container\" style=\"max-width: 700px; border: 1px solid\">", "why": "Use the size modifier for width and wf-container-elevated for a surface; a plain container is structural and carries no visual weight (DESIGN.md §7.1)." },
+        { "do": "<div class=\"wf-column wf-gap-4\">", "dont": "<div class=\"wf-col wf-gap-4\">", "why": "The class is wf-column (mapping to Excalibrr <Vertical>). wf-col is not defined in layout.css and applies nothing." }
+      ]
+    },
+    {
+      "type": "gotchas",
+      "items": [
+        { "title": "justify and align flip meaning between row and column", "detail": "Both primitives share the same wf-justify-* and wf-align-* classes. In a wf-row, justify is horizontal and align is vertical; in a wf-column it's the reverse. The class name never tells you which screen axis you're moving — the parent's direction does." },
+        { "title": "Gap classes are split across two files", "detail": "wf-gap-1 through wf-gap-8 live in the base token utilities; only wf-gap-10 and wf-gap-12 are defined in layout.css. If a wf-gap-* step renders no spacing, confirm the token utilities stylesheet is linked alongside layout.css — both are required." },
+        { "title": "Alignment modifiers are scoped to their primitive", "detail": "The CSS writes .wf-row.wf-align-center and .wf-column.wf-align-center as compound selectors, and wf-align-baseline + wf-wrap/wf-nowrap exist only under .wf-row. An align or wrap class on a plain div (no wf-row/wf-column) does nothing." },
+        { "title": "wf-container centers via auto margins, not flex", "detail": "It applies margin-left/right: auto with width: 100% — so it centers itself within its parent's width. It only visibly centers once a max-width modifier (wf-container-sm…2xl) caps the width; without one it's full-bleed and there's nothing to center." }
+      ]
+    }
+  ]
+}

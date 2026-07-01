@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Badge Component - Gravitate Wireframe Design System</title>
+  <link rel="stylesheet" href="../../tokens/tokens.css">
+  <link rel="stylesheet" href="../controls/controls.css">
+  <link rel="stylesheet" href="data-display.css">
+  <style>
+    body {
+      font-family: var(--wf-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+      background-color: var(--wf-color-background, #f9fafb);
+      margin: 0;
+      padding: 32px;
+      color: var(--wf-color-text-primary, #111827);
+    }
+    .demo-section {
+      margin-bottom: 48px;
+    }
+    .demo-section h2 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--wf-color-text-primary, #111827);
+    }
+    .demo-section p {
+      font-size: 14px;
+      color: var(--wf-color-text-secondary, #374151);
+      margin-bottom: 16px;
+    }
+    .demo-container {
+      background: white;
+      border-radius: 8px;
+      padding: 24px;
+      border: 1px solid var(--wf-color-border, #d1d5db);
+    }
+    .demo-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .demo-row + .demo-row {
+      margin-top: 16px;
+    }
+    .demo-label {
+      font-size: 12px;
+      color: var(--wf-color-text-secondary);
+      min-width: 80px;
+    }
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      font-size: 16px;
+      color: var(--wf-color-text-secondary, #374151);
+      margin-bottom: 32px;
+    }
+    .demo-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .demo-table th,
+    .demo-table td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--wf-color-border);
+    }
+    .demo-table th {
+      font-weight: 600;
+      font-size: 13px;
+      color: var(--wf-color-text-secondary);
+      background: var(--wf-color-neutral-50);
+    }
+  </style>
+</head>
+<body>
+  <h1>Badge Component</h1>
+  <p class="subtitle">Small labels for status indicators, tags, and categorization.</p>
+
+  <!-- Basic Badges -->
+  <section class="demo-section">
+    <h2>Basic Badges</h2>
+    <p>Standard badge variants for different statuses and contexts.</p>
+    <div class="demo-container">
+      <div class="demo-row">
+        <span class="wf-badge">Default</span>
+        <span class="wf-badge wf-badge-primary">Primary</span>
+        <span class="wf-badge wf-badge-success">Success</span>
+        <span class="wf-badge wf-badge-warning">Warning</span>
+        <span class="wf-badge wf-badge-error">Error</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Badge Sizes -->
+  <section class="demo-section">
+    <h2>Badge Sizes</h2>
+    <p>Small, default, and large badge sizes.</p>
+    <div class="demo-container">
+      <div class="demo-row">
+        <span class="demo-label">Small:</span>
+        <span class="wf-badge wf-badge-sm">Default</span>
+        <span class="wf-badge wf-badge-primary wf-badge-sm">Primary</span>
+        <span class="wf-badge wf-badge-success wf-badge-sm">Success</span>
+        <span class="wf-badge wf-badge-warning wf-badge-sm">Warning</span>
+        <span class="wf-badge wf-badge-error wf-badge-sm">Error</span>
+      </div>
+      <div class="demo-row">
+        <span class="demo-label">Default:</span>
+        <span class="wf-badge">Default</span>
+        <span class="wf-badge wf-badge-primary">Primary</span>
+        <span class="wf-badge wf-badge-success">Success</span>
+        <span class="wf-badge wf-badge-warning">Warning</span>
+        <span class="wf-badge wf-badge-error">Error</span>
+      </div>
+      <div class="demo-row">
+        <span class="demo-label">Large:</span>
+        <span class="wf-badge wf-badge-lg">Default</span>
+        <span class="wf-badge wf-badge-primary wf-badge-lg">Primary</span>
+        <span class="wf-badge wf-badge-success wf-badge-lg">Success</span>
+        <span class="wf-badge wf-badge-warning wf-badge-lg">Warning</span>
+        <span class="wf-badge wf-badge-error wf-badge-lg">Error</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dot Badges -->
+  <section class="demo-section">
+    <h2>Dot Badges</h2>
+    <p>Simple dot indicators for status without text.</p>
+    <div class="demo-container">
+      <div class="demo-row">
+        <span class="demo-label">Dots only:</span>
+        <span class="wf-badge-dot"></span>
+        <span class="wf-badge-dot wf-badge-dot-primary"></span>
+        <span class="wf-badge-dot wf-badge-dot-success"></span>
+        <span class="wf-badge-dot wf-badge-dot-warning"></span>
+        <span class="wf-badge-dot wf-badge-dot-error"></span>
+      </div>
+      <div class="demo-row" style="margin-top: 24px;">
+        <span class="demo-label">With text:</span>
+        <span class="wf-badge-with-dot">
+          <span class="wf-badge-dot"></span>
+          Offline
+        </span>
+        <span class="wf-badge-with-dot">
+          <span class="wf-badge-dot wf-badge-dot-success"></span>
+          Online
+        </span>
+        <span class="wf-badge-with-dot">
+          <span class="wf-badge-dot wf-badge-dot-warning"></span>
+          Away
+        </span>
+        <span class="wf-badge-with-dot">
+          <span class="wf-badge-dot wf-badge-dot-error"></span>
+          Busy
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Common Use Cases -->
+  <section class="demo-section">
+    <h2>Common Use Cases</h2>
+    <p>Practical examples of badge usage in context.</p>
+    <div class="demo-container">
+      <!-- Status Badges -->
+      <div style="margin-bottom: 24px;">
+        <h4 style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600;">Status Badges</h4>
+        <div class="demo-row">
+          <span class="wf-badge wf-badge-success">Active</span>
+          <span class="wf-badge wf-badge-warning">Pending</span>
+          <span class="wf-badge wf-badge-error">Expired</span>
+          <span class="wf-badge">Draft</span>
+          <span class="wf-badge wf-badge-primary">In Review</span>
+        </div>
+      </div>
+
+      <!-- Contract Status -->
+      <div style="margin-bottom: 24px;">
+        <h4 style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600;">Contract Status</h4>
+        <div class="demo-row">
+          <span class="wf-badge wf-badge-success">Executed</span>
+          <span class="wf-badge wf-badge-primary">In Progress</span>
+          <span class="wf-badge wf-badge-warning">Pending Signature</span>
+          <span class="wf-badge wf-badge-error">Cancelled</span>
+          <span class="wf-badge">Archived</span>
+        </div>
+      </div>
+
+      <!-- Priority Badges -->
+      <div style="margin-bottom: 24px;">
+        <h4 style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600;">Priority Levels</h4>
+        <div class="demo-row">
+          <span class="wf-badge wf-badge-error">Critical</span>
+          <span class="wf-badge wf-badge-warning">High</span>
+          <span class="wf-badge wf-badge-primary">Medium</span>
+          <span class="wf-badge">Low</span>
+        </div>
+      </div>
+
+      <!-- Tags/Categories -->
+      <div>
+        <h4 style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600;">Tags / Categories</h4>
+        <div class="demo-row">
+          <span class="wf-badge">Natural Gas</span>
+          <span class="wf-badge">Pipeline</span>
+          <span class="wf-badge">Storage</span>
+          <span class="wf-badge">Transportation</span>
+          <span class="wf-badge">Retail</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Badges in Tables -->
+  <section class="demo-section">
+    <h2>Badges in Tables</h2>
+    <p>How badges appear in data tables and lists.</p>
+    <div class="demo-container" style="padding: 0; overflow: hidden;">
+      <table class="demo-table">
+        <thead>
+          <tr>
+            <th>Contract ID</th>
+            <th>Customer</th>
+            <th>Status</th>
+            <th>Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>CNT-2024-001</td>
+            <td>Acme Corporation</td>
+            <td><span class="wf-badge wf-badge-success">Active</span></td>
+            <td><span class="wf-badge">Supply</span></td>
+          </tr>
+          <tr>
+            <td>CNT-2024-002</td>
+            <td>Global Industries</td>
+            <td><span class="wf-badge wf-badge-warning">Pending</span></td>
+            <td><span class="wf-badge">Transportation</span></td>
+          </tr>
+          <tr>
+            <td>CNT-2024-003</td>
+            <td>Tech Solutions Inc</td>
+            <td><span class="wf-badge wf-badge-error">Expired</span></td>
+            <td><span class="wf-badge">Storage</span></td>
+          </tr>
+          <tr>
+            <td>CNT-2024-004</td>
+            <td>Energy Partners LLC</td>
+            <td><span class="wf-badge wf-badge-primary">In Review</span></td>
+            <td><span class="wf-badge">Supply</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Badges with Count -->
+  <section class="demo-section">
+    <h2>Badges with Numbers</h2>
+    <p>Badges can display counts or numeric values.</p>
+    <div class="demo-container">
+      <div class="demo-row">
+        <span class="wf-badge">12</span>
+        <span class="wf-badge wf-badge-primary">99+</span>
+        <span class="wf-badge wf-badge-error">3</span>
+        <span class="wf-badge wf-badge-warning">24</span>
+        <span class="wf-badge wf-badge-success">156</span>
+      </div>
+      <div class="demo-row" style="margin-top: 24px;">
+        <h4 style="margin: 0; font-size: 14px; font-weight: 500;">
+          Messages
+          <span class="wf-badge wf-badge-primary" style="margin-left: 8px;">5</span>
+        </h4>
+        <h4 style="margin: 0; font-size: 14px; font-weight: 500; margin-left: 24px;">
+          Notifications
+          <span class="wf-badge wf-badge-error" style="margin-left: 8px;">12</span>
+        </h4>
+        <h4 style="margin: 0; font-size: 14px; font-weight: 500; margin-left: 24px;">
+          Tasks
+          <span class="wf-badge wf-badge-warning" style="margin-left: 8px;">3</span>
+        </h4>
+      </div>
+    </div>
+  </section>
+
+  <!-- Badge Combinations -->
+  <section class="demo-section">
+    <h2>Badge Combinations</h2>
+    <p>Multiple badges can be combined to show multiple attributes.</p>
+    <div class="demo-container">
+      <div class="wf-card" style="max-width: 400px;">
+        <div class="wf-card-header">
+          <div>
+            <h3 class="wf-card-title">Contract CNT-2024-001</h3>
+            <div style="display: flex; gap: 8px; margin-top: 8px;">
+              <span class="wf-badge wf-badge-success wf-badge-sm">Active</span>
+              <span class="wf-badge wf-badge-sm">Supply Agreement</span>
+              <span class="wf-badge wf-badge-primary wf-badge-sm">High Value</span>
+            </div>
+          </div>
+        </div>
+        <div class="wf-card-body">
+          <p style="margin: 0; font-size: 14px; color: var(--wf-color-text-secondary);">
+            Natural gas supply contract with Acme Corporation for Q1 2024 delivery.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Usage Guidelines -->
+  <section class="demo-section">
+    <h2>Usage Guidelines</h2>
+    <div class="demo-container">
+      <div style="display: grid; gap: 16px; font-size: 14px;">
+        <div>
+          <strong>Default (Gray)</strong> - Use for neutral information, categories, or inactive states
+        </div>
+        <div>
+          <strong>Primary (Blue)</strong> - Use for informational states, in-progress items, or highlighting
+        </div>
+        <div>
+          <strong>Success (Green)</strong> - Use for positive states: active, completed, approved, online
+        </div>
+        <div>
+          <strong>Warning (Yellow/Orange)</strong> - Use for attention-needed states: pending, review required
+        </div>
+        <div>
+          <strong>Error (Red)</strong> - Use for negative states: failed, expired, errors, offline
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

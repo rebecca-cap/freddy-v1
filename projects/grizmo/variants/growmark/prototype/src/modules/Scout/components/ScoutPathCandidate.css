@@ -1,0 +1,99 @@
+/*
+ * ScoutPathCandidate — inline save-as-path prompt (Phase 6.1).
+ *
+ * Visual reference: wireframe `.save-path-prompt` (gizmo-demo.html line 1751).
+ * Brand "could-do" tone (purple) so it reads as a Scout-offered opportunity,
+ * not a warning. Sits in the message stream just under the latest bubble —
+ * same horizontal inset as the rest of the conversation.
+ */
+
+.scout-scope .scout-path-candidate {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  margin: 4px 0 0;
+  background: var(--scout-brand-soft);
+  border: 1px solid color-mix(in srgb, var(--scout-brand) 30%, transparent);
+  border-radius: 8px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--scout-text);
+}
+
+.scout-scope .scout-path-candidate__icon {
+  color: var(--scout-brand);
+  font-size: 16px;
+  line-height: 1;
+  margin-top: 1px;
+  flex-shrink: 0;
+}
+
+.scout-scope .scout-path-candidate__text {
+  flex: 1;
+  min-width: 0;
+}
+
+.scout-scope .scout-path-candidate__lede {
+  font-size: 12px;
+  color: var(--scout-text);
+  margin-bottom: 3px;
+}
+
+.scout-scope .scout-path-candidate__lede b {
+  color: var(--scout-brand);
+  font-weight: 600;
+}
+
+.scout-scope .scout-path-candidate__preview {
+  font-size: 11px;
+  color: var(--scout-text-muted);
+  font-style: italic;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.scout-scope .scout-path-candidate__actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+/* Save button — solid brand-tinted to match the prompt's tone. */
+.scout-scope .ant-btn.gravi-button.scout-path-candidate__save,
+.scout-scope .ant-btn.gravi-button.scout-path-candidate__save:hover,
+.scout-scope .ant-btn.gravi-button.scout-path-candidate__save:focus {
+  background: var(--scout-brand);
+  border-color: var(--scout-brand);
+  color: #ffffff;
+  font-size: 11px;
+  height: 26px;
+  min-width: auto;
+  padding: 0 10px;
+  border-radius: 6px;
+}
+
+.scout-scope .ant-btn.gravi-button.scout-path-candidate__save:hover {
+  filter: brightness(0.95);
+}
+
+/* Dismiss button — quiet ghost. */
+.scout-scope .ant-btn.gravi-button.scout-path-candidate__dismiss {
+  background: transparent;
+  border-color: transparent;
+  color: var(--scout-text-muted);
+  width: 26px;
+  height: 26px;
+  min-width: 26px;
+  padding: 0;
+  border-radius: 6px;
+}
+
+.scout-scope .ant-btn.gravi-button.scout-path-candidate__dismiss:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--scout-text);
+}

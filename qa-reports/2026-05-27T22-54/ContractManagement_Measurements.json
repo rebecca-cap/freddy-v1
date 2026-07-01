@@ -1,0 +1,14 @@
+{
+  "path": "/ContractManagement/Measurements",
+  "title": "Contract Measurement",
+  "finalUrl": "http://localhost:5173/ContractManagement/Measurements",
+  "rootLen": 216379,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 8,
+  "stuckLoaders": [],
+  "emptyGrids": []
+}

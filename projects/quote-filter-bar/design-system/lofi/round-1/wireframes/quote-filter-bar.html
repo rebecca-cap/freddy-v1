@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>R1 — QuoteBook Filter Bar</title>
+<style>
+  /* --- WireframeDesignSystem tokens (subset, inlined for file:// + iframe) --- */
+  :root{
+    --wf-color-primary:#2563eb; --wf-color-primary-dim:#1e40af;
+    --wf-color-success:#16a34a; --wf-color-warning:#d97706; --wf-color-error:#dc2626;
+    --wf-color-neutral-900:#111827; --wf-color-neutral-700:#374151; --wf-color-neutral-500:#6b7280;
+    --wf-color-neutral-300:#d1d5db; --wf-color-neutral-100:#f3f4f6; --wf-color-neutral-50:#f9fafb;
+    --wf-color-border:#d1d5db; --wf-color-surface:#fff; --wf-color-bg:#f9fafb;
+    --wf-text-xs:.6875rem; --wf-text-sm:.75rem; --wf-text-base:.875rem; --wf-text-lg:1.125rem; --wf-text-xl:1.5rem;
+    --wf-space-1:4px; --wf-space-2:8px; --wf-space-3:12px; --wf-space-4:16px; --wf-space-6:24px;
+    --wf-radius-sm:4px; --wf-radius-md:8px; --wf-radius-full:9999px;
+    --wf-font:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:var(--wf-font);color:var(--wf-color-neutral-900);background:var(--wf-color-neutral-100);font-size:var(--wf-text-base);}
+  .wf-canvas{max-width:1180px;margin:0 auto;padding:32px 24px 64px;}
+  .wf-frame-label{font-size:var(--wf-text-sm);font-weight:600;color:var(--wf-color-neutral-500);text-transform:uppercase;letter-spacing:.04em;margin:32px 0 8px;}
+  .wf-screen{background:var(--wf-color-surface);border:1px solid var(--wf-color-border);border-radius:var(--wf-radius-md);overflow:hidden;}
+  /* page header */
+  .wf-pagehead{display:flex;align-items:flex-end;justify-content:space-between;padding:var(--wf-space-4) var(--wf-space-6);border-bottom:1px solid var(--wf-color-neutral-100);}
+  .wf-pagehead h1{font-size:var(--wf-text-xl);margin:0;}
+  .wf-pagehead .sub{font-size:var(--wf-text-sm);color:var(--wf-color-neutral-500);margin-top:2px;}
+  .wf-btn{font:inherit;font-size:var(--wf-text-sm);border:1px solid var(--wf-color-border);background:var(--wf-color-surface);border-radius:var(--wf-radius-sm);padding:6px 12px;cursor:pointer;color:var(--wf-color-neutral-700);}
+  .wf-btn-primary{background:var(--wf-color-primary);border-color:var(--wf-color-primary);color:#fff;}
+</style>
+</head>
+<body>
+<div class="wf-canvas">
+  <div style="font-size:1.5rem;font-weight:700;">QuoteBook Filter Bar — Round 1</div>
+  <div style="font-size:.875rem;color:#6b7280;margin-top:4px;">Lo-fi · interaction model. Status = one-click chips · Product/Date = dropdowns · additive (AND) filters · always-visible result count + Clear all. Built from the Wireframe Design System.</div>
+
+<style>
+  /* filter bar */
+  .wf-filterbar{display:flex;align-items:center;gap:var(--wf-space-3);flex-wrap:wrap;padding:var(--wf-space-3) var(--wf-space-6);background:var(--wf-color-neutral-50);border-bottom:1px solid var(--wf-color-neutral-100);}
+  .wf-fb-label{font-size:var(--wf-text-xs);text-transform:uppercase;letter-spacing:.04em;color:var(--wf-color-neutral-500);font-weight:600;margin-right:2px;}
+  .wf-chips{display:inline-flex;gap:var(--wf-space-1);}
+  .wf-chip{font-size:var(--wf-text-sm);border:1px solid var(--wf-color-border);background:var(--wf-color-surface);border-radius:var(--wf-radius-full);padding:4px 12px;cursor:pointer;color:var(--wf-color-neutral-700);white-space:nowrap;}
+  .wf-chip-active{background:var(--wf-color-neutral-900);border-color:var(--wf-color-neutral-900);color:#fff;}
+  .wf-select{font:inherit;font-size:var(--wf-text-sm);border:1px solid var(--wf-color-border);background:var(--wf-color-surface);border-radius:var(--wf-radius-sm);padding:5px 10px;color:var(--wf-color-neutral-700);min-width:130px;}
+  .wf-select.is-set{border-color:var(--wf-color-primary);color:var(--wf-color-neutral-900);font-weight:500;}
+  .wf-spacer{flex:1;}
+  .wf-count{font-size:var(--wf-text-sm);color:var(--wf-color-neutral-700);}
+  .wf-count b{color:var(--wf-color-neutral-900);}
+  .wf-clear{font-size:var(--wf-text-sm);color:var(--wf-color-primary);background:none;border:none;cursor:pointer;padding:4px 6px;}
+  .wf-clear[disabled]{color:var(--wf-color-neutral-300);cursor:default;}
+  /* table */
+  table.wf-table{width:100%;border-collapse:collapse;font-size:var(--wf-text-sm);}
+  .wf-table th{text-align:left;font-size:var(--wf-text-xs);text-transform:uppercase;letter-spacing:.03em;color:var(--wf-color-neutral-500);font-weight:600;padding:8px 16px;border-bottom:1px solid var(--wf-color-neutral-300);background:var(--wf-color-neutral-50);}
+  .wf-table td{padding:9px 16px;border-bottom:1px solid var(--wf-color-neutral-100);color:var(--wf-color-neutral-700);}
+  .wf-table td.num{font-variant-numeric:tabular-nums;color:var(--wf-color-neutral-900);}
+  .wf-badge{display:inline-block;font-size:var(--wf-text-xs);font-weight:600;padding:2px 8px;border-radius:var(--wf-radius-full);border:1px solid var(--wf-color-border);}
+  .wf-badge-pending{color:#b45309;border-color:#f59e0b;background:#fffbeb;}
+  .wf-badge-quoted{color:#1e40af;border-color:#93c5fd;background:#eff6ff;}
+  .wf-badge-accepted{color:#15803d;border-color:#86efac;background:#f0fdf4;}
+  .wf-badge-expired{color:#6b7280;border-color:#d1d5db;background:#f9fafb;}
+  .wf-sortcaret{color:var(--wf-color-primary);font-size:var(--wf-text-xs);}
+  /* annotations */
+  .wf-note{display:flex;gap:8px;margin-top:10px;font-size:var(--wf-text-sm);color:var(--wf-color-neutral-700);}
+  .wf-note .pin{flex:none;width:18px;height:18px;border-radius:50%;background:var(--wf-color-primary);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+</style>
+
+  <!-- FRAME A — default, no filters -->
+  <div class="wf-frame-label">Frame A · Default — no filters applied</div>
+  <div class="wf-screen">
+    <div class="wf-pagehead">
+      <div><h1>QuoteBook</h1><div class="sub">Wholesale Rack · Houston Terminal &amp; Dallas Hub</div></div>
+      <div><button class="wf-btn">Export</button> <button class="wf-btn wf-btn-primary">New quote</button></div>
+    </div>
+    <div class="wf-filterbar">
+      <span class="wf-fb-label">Status</span>
+      <span class="wf-chips">
+        <button class="wf-chip wf-chip-active">All</button>
+        <button class="wf-chip">Pending</button>
+        <button class="wf-chip">Quoted</button>
+        <button class="wf-chip">Accepted</button>
+        <button class="wf-chip">Expired</button>
+      </span>
+      <select class="wf-select"><option>Product: All</option></select>
+      <select class="wf-select"><option>Date: All</option></select>
+      <span class="wf-spacer"></span>
+      <select class="wf-select"><option>Sort: Date ↓ (newest)</option></select>
+      <span class="wf-count"><b>24</b> quotes</span>
+      <button class="wf-clear" disabled>Clear all</button>
+    </div>
+    <table class="wf-table">
+      <thead><tr><th>Status</th><th>Product</th><th>Location</th><th>Counterparty</th><th>Proposed price</th><th>Quote date <span class="wf-sortcaret">↓</span></th></tr></thead>
+      <tbody>
+        <tr><td><span class="wf-badge wf-badge-pending">Pending</span></td><td>ULSD</td><td>Houston Terminal</td><td>Demo Trucking Co.</td><td class="num">$2.7459</td><td>Jun 12</td></tr>
+        <tr><td><span class="wf-badge wf-badge-pending">Pending</span></td><td>Gasoline 87</td><td>Houston Terminal</td><td>Demo Trucking Co.</td><td class="num">$2.5821</td><td>Jun 12</td></tr>
+        <tr><td><span class="wf-badge wf-badge-quoted">Quoted</span></td><td>Gasoline 91</td><td>Houston Terminal</td><td>Demo Trucking Co.</td><td class="num">$2.8154</td><td>Jun 12</td></tr>
+        <tr><td><span class="wf-badge wf-badge-accepted">Accepted</span></td><td>ULSD</td><td>Dallas Hub</td><td>Frontier Fuel Services</td><td class="num">$2.7512</td><td>Jun 11</td></tr>
+        <tr><td><span class="wf-badge wf-badge-quoted">Quoted</span></td><td>Gasoline 87</td><td>Dallas Hub</td><td>Frontier Fuel Services</td><td class="num">$2.5874</td><td>Jun 11</td></tr>
+        <tr><td><span class="wf-badge wf-badge-expired">Expired</span></td><td>Biodiesel B20</td><td>Dallas Hub</td><td>Demo Trucking Co.</td><td class="num">$3.1245</td><td>Jun 10</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="wf-note"><span class="pin">1</span><span><b>Status as chips, not a dropdown.</b> It's the control traders touch constantly (the kickoff "80% case"). One click, no menu. "All" is the default selected chip.</span></div>
+  <div class="wf-note"><span class="pin">2</span><span><b>Product &amp; Date are dropdowns.</b> More options, set less often — they don't earn permanent horizontal space as chips.</span></div>
+  <div class="wf-note"><span class="pin">3</span><span><b>Count + Clear all live on the right, always visible.</b> With no filters, the count shows the full set and Clear all is disabled — establishing the anchor before anything is filtered.</span></div>
+
+  <!-- FRAME B — filtered: Pending + Gasoline + Today -->
+  <div class="wf-frame-label">Frame B · Filtered — Pending + Gasoline + Today (additive / AND)</div>
+  <div class="wf-screen">
+    <div class="wf-pagehead">
+      <div><h1>QuoteBook</h1><div class="sub">Wholesale Rack · Houston Terminal &amp; Dallas Hub</div></div>
+      <div><button class="wf-btn">Export</button> <button class="wf-btn wf-btn-primary">New quote</button></div>
+    </div>
+    <div class="wf-filterbar">
+      <span class="wf-fb-label">Status</span>
+      <span class="wf-chips">
+        <button class="wf-chip">All</button>
+        <button class="wf-chip wf-chip-active">Pending</button>
+        <button class="wf-chip">Quoted</button>
+        <button class="wf-chip">Accepted</button>
+        <button class="wf-chip">Expired</button>
+      </span>
+      <select class="wf-select is-set"><option>Product: Gasoline 87 ▾</option></select>
+      <select class="wf-select is-set"><option>Date: Today ▾</option></select>
+      <span class="wf-spacer"></span>
+      <select class="wf-select"><option>Sort: Date ↓ (newest)</option></select>
+      <span class="wf-count"><b>1</b> of 24 quotes</span>
+      <button class="wf-clear">Clear all</button>
+    </div>
+    <table class="wf-table">
+      <thead><tr><th>Status</th><th>Product</th><th>Location</th><th>Counterparty</th><th>Proposed price</th><th>Quote date <span class="wf-sortcaret">↓</span></th></tr></thead>
+      <tbody>
+        <tr><td><span class="wf-badge wf-badge-pending">Pending</span></td><td>Gasoline 87</td><td>Houston Terminal</td><td>Demo Trucking Co.</td><td class="num">$2.5821</td><td>Jun 12</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="wf-note"><span class="pin">4</span><span><b>Filters are additive (AND).</b> Pending <i>and</i> Gasoline 87 <i>and</i> Today narrows to one row — the kickoff's "today's pending gasoline" task in three clicks, no scrolling.</span></div>
+  <div class="wf-note"><span class="pin">5</span><span><b>The count reframes to "1 of 24".</b> The trader always knows the list is filtered, not empty — and Clear all is now enabled to escape in one click. (True zero-results state is a Round 2 question.)</span></div>
+  <div class="wf-note"><span class="pin">6</span><span><b>Set dropdowns get a primary-colored border.</b> A glance tells you which filters are active without reading the labels.</span></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "path": "/Admin/VolumeThresholds",
+  "title": "Volume Thresholds",
+  "finalUrl": "http://localhost:3001/Admin/VolumeThresholds",
+  "rootLen": 109766,
+  "crashed": false,
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 429 ()"
+  ],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [
+    "MarketPlatform/Admin/TradeEntrySetupVolumeConstraints/ReadTradeEntrySetupVolumeThresholds"
+  ],
+  "consoleEventCount": 14
+}

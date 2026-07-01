@@ -1,0 +1,181 @@
+.side-detail-header-background {
+  background: var(--third-gradient);
+}
+
+.order-quantity .ant-form-item,
+.order-quantity .ant-form-item * {
+  margin-bottom: 0;
+}
+
+.form-text-area {
+  resize: none;
+}
+
+.order-form .ant-input-number-input,
+.order-form .ant-input-number-prefix {
+  font-size: 1.2em;
+}
+.additional-options-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 5px;
+}
+
+.checkable-button.ant-btn {
+  border-radius: 15px;
+  padding-left: 8px;
+  justify-content: flex-start;
+}
+.checkable-unchecked-button.ant-btn {
+  background-color: var(--gray-200) !important;
+  border: none !important;
+}
+
+.checkable-unchecked-button.ant-btn:hover {
+  background-color: var(--gray-100) !important;
+  border: none !important;
+  color: var(--theme-success);
+}
+
+.checkable-success-button.ant-btn:hover {
+  background: var(--theme-success-dim) !important;
+  color: var(--theme-success) !important;
+  border-color: var(--theme-success) !important;
+}
+.checkable-success-button.ant-btn {
+  background: var(--theme-success) !important;
+  color: white !important;
+  filter: opacity(0.9);
+}
+
+.checkable-button-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 12px;
+}
+.checkable-button-text.selected-text {
+  color: inherit;
+}
+/* Disable cell outlining */
+.ag-cell-focus {
+  outline: none !important;
+}
+
+/* Disable cell selection */
+.ag-cell-selected,
+.ag-cell-range-selected {
+  color: inherit !important;
+}
+
+.buy-now-drawer .ant-drawer-body {
+  padding: 0;
+}
+.w-full {
+  width: 100%;
+}
+
+.red-banner {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 36px;
+  background: #e30613;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  color: #fff;
+  font-weight: 600;
+  z-index: 2;
+}
+
+.grid-wrap {
+  position: relative;
+}
+
+.grid-action-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 8px;
+}
+
+.credit-balance-wrapper {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  padding: 4px 12px;
+  border-radius: 4px;
+}
+
+.credit-balance-wrapper.hold {
+  border: 1px solid #b5050f;
+  background-color: rgba(181, 5, 15, 0.1);
+}
+
+.credit-balance-wrapper.warning {
+  border: 1px solid #d48806;
+  background-color: rgba(212, 136, 6, 0.1);
+}
+
+.credit-balance-wrapper.normal {
+  border: 1px solid #008517;
+  background-color: rgba(0, 133, 23, 0.1);
+}
+
+.credit-balance-icon {
+  display: flex;
+  align-items: center;
+}
+
+.credit-balance-icon.normal {
+  color: #008517;
+}
+
+.credit-balance-icon.hold {
+  color: #e30613;
+}
+.credit-balance-icon.warning {
+  color: #faad14;
+}
+
+.control-bar-banner {
+  color: #fff;
+  opacity: 0.85;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.control-bar-banner.hold {
+  background-color: #e30613;
+  border: 1px solid #b5050f;
+}
+
+.control-bar-banner.warning {
+  background-color: rgba(250, 173, 20, 0.25);
+  border: 1px solid #d48806;
+}
+
+.banner-warning-icon {
+  display: flex;
+  align-items: center;
+}
+
+.banner-warning-icon.hold {
+  color: #faad14;
+}
+
+.banner-warning-icon.warning {
+  color: #faad14;
+}
+
+.banner-warning-icon.normal {
+  color: #008517;
+}

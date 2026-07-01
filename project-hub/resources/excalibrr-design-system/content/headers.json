@@ -1,0 +1,284 @@
+{
+  "slug": "headers",
+  "title": "Headers",
+  "order": 7,
+  "group": "Data",
+  "intro": "Section headers carve detail panels, drawers, and widgets into scannable bands. Three live on a tinted full-width band (DataSectionHeader, DataSectionValueHeader, EditSectionHeader); two are lightweight widget titles with an underline flair (UnderlineHeader, WidgetHeader). Pick by job, not by looks.",
+  "demoPath": "/DesignSystem/Headers",
+  "searchTerms": [
+    "DataSectionHeader",
+    "DataSectionValueHeader",
+    "EditSectionHeader",
+    "UnderlineHeader",
+    "WidgetHeader",
+    "SearchGridHeader",
+    "EditSaveButton",
+    "section header",
+    "detail-section-header",
+    "widget title"
+  ],
+  "blocks": [
+    {
+      "type": "usage",
+      "body": "Reach for a header component whenever a panel or drawer holds more than one cluster of fields — the tinted band is the visual contract that says \"new section starts here.\" `DataSectionHeader` is the plain label band; `DataSectionValueHeader` adds a headline metric to the band; `EditSectionHeader` adds an edit/save toggle that drives a view↔edit mode for the fields below it. `UnderlineHeader` and `WidgetHeader` are a different species: no band, just an uppercase title with a short SVG underline, meant for dashboard widgets and cards — `WidgetHeader` is `UnderlineHeader` plus a right column for controls and a bottom border.\n\nAll five render their title uppercase at 600 weight in `--gray-600`. Never hand-roll an uppercase `<div>` to fake a section break — the band components keep spacing, casing, and theme tint consistent across every detail surface."
+    },
+    {
+      "type": "variants",
+      "title": "Which header",
+      "intro": "One decision: what does the section need beyond a label?",
+      "rows": [
+        {
+          "name": "DataSectionHeader",
+          "when": "Plain labeled band — read-only section, no metric, no actions.",
+          "code": "<DataSectionHeader title='Contract Overview' />"
+        },
+        {
+          "name": "DataSectionValueHeader",
+          "when": "Band that leads with a headline number (totals, averages). Value renders 1.8em bold in `--theme-option`.",
+          "code": "<DataSectionValueHeader title='Total' value='$45,230.00' />"
+        },
+        {
+          "name": "EditSectionHeader",
+          "when": "Section whose fields toggle between read-only and editable. The header owns the pencil/save toggle.",
+          "code": "<EditSectionHeader title='Terms' editing={editing} onEdit={() => setEditing(true)} />"
+        },
+        {
+          "name": "UnderlineHeader",
+          "when": "Widget or card title with the underline flair, nothing else.",
+          "code": "<UnderlineHeader title='Performance Metrics' />"
+        },
+        {
+          "name": "WidgetHeader",
+          "when": "Widget title plus right-aligned controls, with a bottom border separating header from widget body.",
+          "code": "<WidgetHeader title='Volume' controls={<DateSkipper startDate={date} daysToSkip={1} onChange={onDateChange} />} alignControls='right' />"
+        },
+        {
+          "name": "SearchGridHeader",
+          "when": "Never. Deprecated and flagged for removal — it still uses antd `visible` APIs. Use `GridControlBar` and GraviGrid's own header slots for grid pages."
+        }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "DataSectionHeader",
+      "image": "specimens/headers/01-data-section-header.png",
+      "caption": "The plain band: full-width tint from --theme-color-2-dim, 1.2em padding, title forced uppercase at 600 weight in --gray-600."
+    },
+    {
+      "type": "specimen",
+      "title": "DataSectionValueHeader",
+      "image": "specimens/headers/02-data-section-value-header.png",
+      "caption": "Same band, two halves: title in the left antd Col (span 12), headline value in the right — 1.8em bold in --theme-option. The value column starts at the 50% mark; it is not right-aligned."
+    },
+    {
+      "type": "props",
+      "title": "DataSectionHeader / DataSectionValueHeader",
+      "rows": [
+        {
+          "prop": "title",
+          "type": "string | ReactNode",
+          "notes": "Section label. `DataSectionHeader` types it as `string`; `DataSectionValueHeader` accepts any node. CSS uppercases it either way — write it in normal case."
+        },
+        {
+          "prop": "value",
+          "type": "ReactNode",
+          "notes": "DataSectionValueHeader only. The headline metric. Money is decimal dollars — `$0.0100/gal`, never cents. The title beside it carries an inline `marginTop: '4%'` to sit on the value's baseline."
+        },
+        {
+          "prop": "className",
+          "type": "string",
+          "notes": "Appended to `detail-section-header` on the outer antd Col. Both components span 24 — the band always fills its container."
+        }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "EditSectionHeader — view state",
+      "image": "specimens/headers/03-edit-section-header.png",
+      "caption": "View state: title band with the EditSaveButton pencil right-aligned (title Col span 18, button Col span 6). With editing={true} the pencil swaps to a save icon that submits the enclosing antd Form."
+    },
+    {
+      "type": "props",
+      "title": "EditSectionHeader",
+      "intro": "Verified against source — the props are `editing` and `onEdit`. There is no `isEditing`, `onSave`, or `onCancel`; passing them does nothing and the header stays in view state.",
+      "rows": [
+        {
+          "prop": "title",
+          "type": "string",
+          "notes": "Section label, uppercased by CSS."
+        },
+        {
+          "prop": "editing",
+          "type": "boolean",
+          "notes": "Drives the EditSaveButton: false renders a pencil that fires `onEdit`; true renders a save icon with `htmlType='submit'` — it submits the nearest enclosing antd Form."
+        },
+        {
+          "prop": "onEdit",
+          "type": "() => void",
+          "notes": "Fires on pencil click. Flip your `editing` state here. Exiting edit mode happens in the Form's `onFinish` — there is no `onSave` prop."
+        },
+        {
+          "prop": "success",
+          "type": "boolean",
+          "default": "false",
+          "notes": "Adds the `.success` class: band turns `--gray-300` with white bold text. Used as a saved/confirmed flash on the section."
+        },
+        {
+          "prop": "leftAlignToggle",
+          "type": "boolean",
+          "default": "false",
+          "notes": "Moves the toggle button next to the title instead of the far right, and renders `children` in the remaining Row space — the slot for extra header controls."
+        },
+        {
+          "prop": "titleSpan",
+          "type": "number",
+          "default": "12",
+          "notes": "Title Col width, only honored when `leftAlignToggle` is true. Default layout is fixed at 18/6."
+        }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "UnderlineHeader",
+      "image": "specimens/headers/04-underline-header.png",
+      "caption": "Uppercase widget title with the WidgetUnderline SVG flair (#002140 navy, 41×2) anchored under the first characters. Captured with the title in a positioned wrapper — required, see gotchas."
+    },
+    {
+      "type": "props",
+      "title": "WidgetHeader / UnderlineHeader",
+      "rows": [
+        {
+          "prop": "title",
+          "type": "string",
+          "notes": "Widget title, uppercased at 600 weight in `--gray-600`."
+        },
+        {
+          "prop": "useWhiteIcon",
+          "type": "boolean",
+          "default": "false",
+          "notes": "Renders the underline in white instead of #002140 — for titles sitting on dark fills."
+        },
+        {
+          "prop": "controls",
+          "type": "ReactNode",
+          "notes": "WidgetHeader only. Right-column slot for pickers, buttons, toggles."
+        },
+        {
+          "prop": "titleSpan / controlSpan",
+          "type": "number",
+          "default": "12 / 12",
+          "notes": "WidgetHeader only. antd Col spans for the two halves — must sum to 24."
+        },
+        {
+          "prop": "alignControls",
+          "type": "string",
+          "default": "''",
+          "notes": "WidgetHeader only. Passed to the controls Col as `align`; set `'right'` to push controls to the edge."
+        }
+      ]
+    },
+    {
+      "type": "code",
+      "title": "Canonical section with an editable header",
+      "code": "import { useState } from 'react'\nimport { Form } from 'antd'\nimport {\n  DataSectionValueHeader,\n  EditSectionHeader,\n  Vertical,\n} from '@gravitate-js/excalibrr'\n\nexport function ContractTermsSection({ contract, onSave }) {\n  const [form] = Form.useForm()\n  const [editing, setEditing] = useState(false)\n\n  return (\n    <Vertical gap={12}>\n      <DataSectionValueHeader title='Avg Margin' value='$0.0425/gal' />\n\n      <Form\n        form={form}\n        initialValues={contract}\n        onFinish={(values) => {\n          onSave(values)\n          setEditing(false) // exit edit mode here — there is no onSave prop\n        }}\n      >\n        {/* save icon is htmlType='submit'; it fires this Form's onFinish */}\n        <EditSectionHeader\n          title='Contract Terms'\n          editing={editing}\n          onEdit={() => setEditing(true)}\n        />\n        {/* section fields: inputs when editing, read-only values otherwise */}\n      </Form>\n    </Vertical>\n  )\n}",
+      "note": "The header must sit inside the Form it saves — the save button is a plain HTML submit, not a callback."
+    },
+    {
+      "type": "tokens",
+      "title": "Source CSS values",
+      "intro": "From `DataDisplay/Headers/index.css` and `Layout/Widgets/index.css` in the library source.",
+      "rows": [
+        {
+          "token": "--theme-color-2-dim",
+          "value": "theme-dependent tint",
+          "use": "Band background for all `.detail-section-header` components. Swings green↔blue with the active theme — never assume a fixed hue."
+        },
+        {
+          "token": ".detail-section-header padding",
+          "value": "1.2em",
+          "use": "Band inset on all four sides."
+        },
+        {
+          "token": ".detail-section-text",
+          "value": "600 / uppercase / --gray-600",
+          "use": "Title styling shared by every band header."
+        },
+        {
+          "token": ".detail-section-value",
+          "value": "1.8em / bold / --theme-option",
+          "use": "Headline value in DataSectionValueHeader."
+        },
+        {
+          "token": ".detail-section-header.success",
+          "value": "--gray-300 bg, white bold text",
+          "use": "EditSectionHeader `success` state."
+        },
+        {
+          "token": ".widget-header",
+          "value": "0.75em padding, 1px bottom border --gray-300",
+          "use": "WidgetHeader row; the border separates header from widget body."
+        },
+        {
+          "token": "WidgetUnderline",
+          "value": "#002140, 41×2 SVG, stroke 2",
+          "use": "Underline flair; absolutely positioned at left 0 / top 1.5em of the nearest positioned ancestor."
+        }
+      ]
+    },
+    {
+      "type": "dosdonts",
+      "items": [
+        {
+          "do": "Drive EditSectionHeader with `editing` and `onEdit`.",
+          "dont": "Pass `isEditing`, `onSave`, or `onCancel`.",
+          "why": "Those props don't exist — React drops them silently and the header never leaves view state. The save path is the enclosing Form's onFinish."
+        },
+        {
+          "do": "Wrap EditSectionHeader and its fields in one antd `<Form onFinish={...}>`.",
+          "dont": "Wire saving through a click handler on the header.",
+          "why": "The save icon is `htmlType='submit'` — outside a Form it submits nothing and the click is a no-op."
+        },
+        {
+          "do": "Use DataSectionHeader for every section break in a panel or drawer.",
+          "dont": "Hand-roll uppercase `<div>` labels with custom backgrounds.",
+          "why": "The band carries the theme tint and consistent 1.2em rhythm; ad-hoc labels drift on both."
+        },
+        {
+          "do": "Write money values in decimal dollars — `$0.0100/gal`.",
+          "dont": "Use cents (¢) anywhere in a value header.",
+          "why": "Gravitate copy standard: decimal dollars across all surfaces."
+        },
+        {
+          "do": "Build grid pages with `GridControlBar` and GraviGrid's header slots.",
+          "dont": "Reach for SearchGridHeader.",
+          "why": "It's deprecated, flagged for removal, and built on antd APIs (`visible`, `dropdownClassName`) that are themselves deprecated."
+        }
+      ]
+    },
+    {
+      "type": "gotchas",
+      "items": [
+        {
+          "title": "The published package ships without header CSS",
+          "detail": "excalibrr 5.2.1's `dist/index.css` contains none of the `.detail-section-*` or `.widget-*` rules — the components mount unstyled (no band, no uppercase, inline underline). The specimens above were captured with the library-source CSS applied. Before building on these components, verify the styles exist in your build; if not, port `DataDisplay/Headers/index.css` and `Layout/Widgets/index.css` into the app until the package build is fixed."
+        },
+        {
+          "title": "`editing`, not `isEditing`",
+          "detail": "EditSectionHeader's mode prop is `editing`. The demo showcase itself passes `isEditing`/`onSave`/`onCancel` — which is why both of its specimens render the pencil. Wrong prop names fail silently; the header just never shows the save state."
+        },
+        {
+          "title": "Save is a form submit, not a callback",
+          "detail": "In edit state the EditSaveButton renders with `htmlType='submit'`. It only works inside an antd Form; exit edit mode in `onFinish`. There is no cancel affordance — if the section needs one, render it via `leftAlignToggle` + `children`."
+        },
+        {
+          "title": "WidgetUnderline needs a positioned ancestor",
+          "detail": "The underline SVG is `position: absolute; left: 0; top: 1.5em`. If no ancestor establishes a positioning context, it anchors to the page and escapes the header entirely. Give the title an `inline-block`/`relative` wrapper (production usage puts it inside a positioned Col)."
+        },
+        {
+          "title": "DataSectionValueHeader's value is not right-aligned",
+          "detail": "The value sits in the right half-Col and starts at the 50% mark, which reads as roughly centered on wide bands. Pass a styled node as `value` if the layout needs edge alignment."
+        }
+      ]
+    }
+  ]
+}

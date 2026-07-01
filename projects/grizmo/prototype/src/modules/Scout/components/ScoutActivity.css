@@ -1,0 +1,389 @@
+/*
+ * ScoutActivity — THREAD INBOX (THR-3..6)
+ *
+ * The repurposed Activity view. A full-width stacked list of threads with
+ * status badges. Tapping a card slides into the conversation (chat view); the
+ * inbox itself slides in from the left on mount to read as the "text-messages"
+ * inbox → conversation transition. There is NO persistent side-by-side list,
+ * so docked/sidebar width is never forced wider (THR-3 critical).
+ */
+
+/* Strip ScoutPanel body's default padding + gap so the inbox manages its own
+   spacing and the slide animation fills the body edge-to-edge. */
+.scout-panel__body--activity {
+  padding: 0;
+  gap: 0;
+  overflow: hidden; /* inner list owns the scroll; clips the slide-in */
+}
+
+.scout-inbox {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  background: var(--scout-surface);
+  /* No mount animation here: the panel-level push/pop (ScoutPanel) owns the
+     transition and is direction-aware, so the inbox only slides when returning
+     FROM a chat — not when switching tabs or coming from the Library. */
+}
+
+/* ------------------------------------------------------------------------ */
+/* Toolbar — heading + New thread (THR-4)                                   */
+/* ------------------------------------------------------------------------ */
+
+.scout-inbox__toolbar {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  /* 12px gutter + tight vertical rhythm to match the Library. */
+  padding: 8px 12px 4px;
+  background: transparent;
+}
+
+.scout-scope .scout-inbox__heading {
+  flex-shrink: 0;
+  margin: 0;
+  color: var(--scout-text);
+  font-size: 14px;
+  font-weight: var(--scout-font-weight-bold);
+}
+
+/* Filter row — search (grows) + the ★ Favorites toggle to its right, vertically
+   centered. (Favorites reuses the Library chip styles.) */
+.scout-inbox__filter {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 12px 8px;
+}
+
+.scout-inbox__filter .scout-view-search {
+  flex: 1 1 auto;
+  min-width: 0;
+  /* Drop the component's own padding so spacing is governed by the filter row
+     and the search pill's left edge lines up with the title + cards (12px). */
+  padding: 0;
+}
+
+/* New chat — brand-purple pill with white text. Uses the same 4-class
+   specificity override as the composer Send button to beat Excalibrr's
+   `.gravi-button.filled.default { background }`. */
+.scout-scope .ant-btn.gravi-button.scout-inbox__new {
+  flex-shrink: 0;
+  height: 28px;
+  min-width: 0;
+  padding: 0 12px;
+  border-radius: var(--scout-radius-pill);
+  background: var(--scout-brand);
+  border: 0;
+  color: #ffffff;
+  font-weight: var(--scout-font-weight-semibold);
+  box-shadow: none;
+  transition: background 80ms ease;
+}
+.scout-scope .ant-btn.gravi-button.scout-inbox__new:hover,
+.scout-scope .ant-btn.gravi-button.scout-inbox__new:focus,
+.scout-scope .ant-btn.gravi-button.scout-inbox__new:focus-visible {
+  background: var(--scout-brand-hover);
+  color: #ffffff;
+}
+/* Keep the icon + label white and tight. */
+.scout-scope .ant-btn.gravi-button.scout-inbox__new .anticon {
+  color: #ffffff;
+}
+
+/* ------------------------------------------------------------------------ */
+/* List                                                                     */
+/* ------------------------------------------------------------------------ */
+
+.scout-inbox__list {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  /* 12px gutter aligns card left edges with the title + search; small top so the
+     filter row above provides the gap (mirrors the Library body). */
+  padding: 2px 12px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ------------------------------------------------------------------------ */
+/* Card                                                                     */
+/* ------------------------------------------------------------------------ */
+
+/* Card wrapper — positioning context for the overlaid ⋯ menu so the menu
+   trigger isn't a button nested inside the card button. */
+.scout-inbox__card-wrap {
+  position: relative;
+}
+
+/* ⋯ menu trigger — top-right corner, matches the answer footer's __more. */
+.scout-inbox__card-menu {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 26px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--scout-text-subtle);
+  font-size: 17px;
+  border-radius: var(--scout-radius-sm);
+  cursor: pointer;
+  transition: background 80ms ease, color 80ms ease;
+}
+.scout-inbox__card-menu:hover,
+.scout-inbox__card-menu.ant-dropdown-open {
+  background: var(--scout-surface-2);
+  color: var(--scout-text-muted);
+}
+.scout-inbox__card-menu:focus-visible {
+  outline: 2px solid var(--scout-brand);
+  outline-offset: 1px;
+}
+
+.scout-inbox__card {
+  appearance: none;
+  text-align: left;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 12px;
+  border: 0.5px solid var(--scout-border);
+  border-radius: var(--scout-radius-md);
+  background: var(--scout-surface);
+  cursor: pointer;
+  font-family: var(--scout-font-family);
+  transition: filter 100ms ease, border-color 100ms ease,
+    box-shadow 100ms ease;
+}
+
+/* Uniform hover for every card regardless of base fill (white ready cards,
+   gray viewed/active cards): just dim 3% so both feel identical. */
+.scout-inbox__card:hover {
+  filter: brightness(0.97);
+}
+
+.scout-inbox__card:focus-visible {
+  outline: 2px solid var(--scout-brand);
+  outline-offset: 1px;
+}
+
+/* Empty — a new chat with no questions asked yet recedes to the lightest gray.
+   Cards that have queries stay white (and ready cards keep their rail), so gray
+   reads purely as "nothing here yet." Text stays full-contrast. */
+.scout-inbox__card.is-empty {
+  background: var(--scout-surface-2);
+}
+
+/* Unseen/ready — left accent rail so a ready thread pops while scanning. */
+.scout-inbox__card.is-unseen {
+  border-left: 3px solid var(--scout-brand);
+}
+
+/* Question-led card (Concept A): the QUESTION is the headline. Right padding
+   keeps long questions clear of the overlaid ⋯ menu. */
+.scout-inbox__card-question {
+  padding-right: 22px;
+  font-size: var(--scout-font-size-body);
+  font-weight: var(--scout-font-weight-semibold);
+  color: var(--scout-text);
+  line-height: var(--scout-line-height-tight);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.scout-inbox__card-question--empty {
+  font-weight: var(--scout-font-weight-regular);
+  color: var(--scout-text-subtle);
+  font-style: italic;
+}
+
+.scout-inbox__card-answer {
+  font-size: var(--scout-font-size-md);
+  color: var(--scout-text-muted);
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Meta row — scope chip on the left, time + status badge on the right. */
+.scout-inbox__card-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.scout-inbox__card-meta-end {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Scope chip — the data the chat is about (a row label, or "General" for the
+   stream). Neutral so it never competes with the purple ready rail/badge. */
+.scout-inbox__card-scope {
+  min-width: 0;
+  max-width: 55%;
+  flex-shrink: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--scout-font-size-xs);
+  font-weight: var(--scout-font-weight-medium);
+  color: var(--scout-text-muted);
+  background: var(--scout-surface-3);
+  padding: 2px 8px;
+  border-radius: var(--scout-radius-pill);
+}
+
+/* Date + time of the chat's last activity. */
+.scout-inbox__card-time {
+  flex-shrink: 0;
+  font-size: var(--scout-font-size-xs);
+  color: var(--scout-text-subtle);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.01em;
+}
+
+/* ------------------------------------------------------------------------ */
+/* Status badges (OBJ-4)                                                    */
+/* ------------------------------------------------------------------------ */
+
+.scout-inbox__badge {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: var(--scout-font-size-xs);
+  font-weight: var(--scout-font-weight-medium);
+  line-height: 1;
+  padding: 3px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+/* In progress — animated thinking dots + soft accent fill. */
+.scout-inbox__badge--thinking {
+  color: var(--scout-brand-hover);
+  background: var(--scout-brand-soft);
+}
+
+.scout-inbox__thinking-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.scout-inbox__thinking-dots span {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: scout-inbox-think 1s ease-in-out infinite;
+}
+
+.scout-inbox__thinking-dots span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.scout-inbox__thinking-dots span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes scout-inbox-think {
+  0%,
+  60%,
+  100% {
+    opacity: 0.3;
+    transform: translateY(0);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scout-inbox__thinking-dots span {
+    animation: none;
+    opacity: 0.7;
+  }
+}
+
+/* Ready/unseen — solid dot + brand text so it reads as "look at me". */
+.scout-inbox__badge--ready {
+  color: var(--scout-brand-hover);
+  background: var(--scout-brand-soft);
+}
+
+.scout-inbox__ready-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--scout-brand);
+}
+
+/* Viewed — neutral pill. Uses the regular text color (not subtle) so it clears
+   a11y contrast on the gray fill. */
+.scout-inbox__badge--viewed {
+  color: var(--scout-text);
+  background: var(--scout-surface-3);
+}
+
+/* New chat — empty session. Outlined (not filled) so it reads as "fresh /
+   nothing yet" and stays distinct from the filled Viewed/Ready pills. */
+.scout-inbox__badge--new {
+  color: var(--scout-text-muted);
+  background: transparent;
+  box-shadow: inset 0 0 0 1px var(--scout-border-strong);
+}
+
+/* ------------------------------------------------------------------------ */
+/* Empty state                                                              */
+/* ------------------------------------------------------------------------ */
+
+.scout-inbox__empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 24px;
+  text-align: center;
+  gap: 6px;
+  color: var(--scout-text-muted);
+}
+
+.scout-inbox__empty-emoji {
+  font-size: 32px;
+  line-height: 1;
+  margin-bottom: 4px;
+  user-select: none;
+}
+
+.scout-inbox__empty-title {
+  margin: 0;
+  color: var(--scout-text);
+}
+
+.scout-inbox__empty-sub {
+  font-size: var(--scout-font-size-sm-plus);
+  color: var(--scout-text-muted);
+  font-family: var(--scout-font-family);
+  line-height: var(--scout-line-height-base);
+  max-width: 240px;
+}

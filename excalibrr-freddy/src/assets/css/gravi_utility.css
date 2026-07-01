@@ -1,0 +1,163 @@
+/** CONTAINER CLASSES ***/
+
+.text-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.vertical-flex-center {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+}
+.flex,
+.flex-div {
+  display: flex;
+}
+
+.vertical-flex-div,
+.vertical-flex {
+  display: flex !important;
+  flex-direction: column;
+  height: 100%;
+}
+.flex-1 {
+  flex: 1;
+}
+.flex-2 {
+  flex: 2;
+}
+.flex-3 {
+  flex: 3;
+}
+.flex-column {
+  flex-direction: column;
+}
+.flex-row {
+  flex-direction: row;
+}
+.items-center {
+  align-items: center;
+}
+.items-end {
+  align-items: flex-end;
+}
+.items-start {
+  align-items: flex-start;
+}
+.content-center {
+  align-content: center;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-start {
+  justify-content: flex-start;
+}
+.justify-end {
+  justify-content: flex-end;
+}
+.justify-sb {
+  justify-content: space-between;
+}
+.justify-sa {
+  justify-content: space-around;
+}
+.float-left {
+  float: left;
+}
+.float-right {
+  float: right;
+}
+.h-100 {
+  height: 100%;
+}
+.bg-1 {
+  background: var(--bg-1);
+}
+.bg-2 {
+  background: var(--bg-2);
+}
+.bg-3 {
+  background: var(--bg-3);
+}
+.bg-theme1 {
+  background: var(--theme-color-1);
+}
+.bg-theme2 {
+  background: var(--theme-color-2);
+}
+.bg-theme3 {
+  background: var(--theme-color-3);
+}
+.bg-warning {
+  background: var(--theme-warning);
+}
+.bg-success {
+  background: var(--theme-success);
+}
+.bg-error {
+  background: var(--theme-error);
+}
+.bg-warning-dim {
+  background: var(--theme-warning-dim);
+}
+.bg-success-dim {
+  background: var(--theme-success-dim);
+}
+.bg-error-dim {
+  background: var(--theme-error-dim);
+}
+.bordered {
+  border: solid 1px var(--gray-200);
+}
+.border-right {
+  border-right: solid 1px var(--gray-200);
+}
+.border-left {
+  border-left: solid 1px var(--gray-200);
+}
+.border-bottom {
+  border-bottom: solid 1px var(--gray-200);
+}
+.round-border {
+  border-radius: 3px;
+}
+
+.dirty-grid-edited {
+  /* position: relative; */
+  background-color: var(--theme-color-4-trans);
+  overflow: hidden;
+}
+
+.dirty-grid-edited:before {
+  content: '';
+  overflow: hidden;
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  height: 20px;
+  width: 20px;
+  background: var(--theme-optimal);
+  border: 7px solid var(--theme-optimal);
+  transform: rotate(45deg);
+}
+
+.multi-select-checkbox {
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  padding: 7px;
+  border-radius: 1px;
+}
+
+.multi-select-checkbox:hover {
+  cursor: pointer;
+  background-color: #eee;
+}
+
+.multi-select-dropdown .ant-select-selection-item {
+  background-color: inherit !important;
+  color: inherit !important;
+  border: none;
+}

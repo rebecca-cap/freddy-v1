@@ -1,0 +1,14 @@
+{
+  "path": "/Admin/FormulaTemplates",
+  "title": "Formula Templates",
+  "finalUrl": "http://localhost:3001/Admin/FormulaTemplates",
+  "rootLen": 114835,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 11,
+  "stuckLoaders": [],
+  "emptyGrids": []
+}

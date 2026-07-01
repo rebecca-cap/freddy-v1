@@ -1,0 +1,15 @@
+{
+  "path": "/Admin/PriceConfiguration",
+  "title": "Price Configurations",
+  "finalUrl": "http://localhost:3001/Admin/PriceConfiguration",
+  "rootLen": 31349,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [
+    "MarketPlatform/Admin/PriceConfiguration/GetAll",
+    "MarketPlatform/Admin/PriceConfiguration/MetaData"
+  ],
+  "consoleEventCount": 10
+}

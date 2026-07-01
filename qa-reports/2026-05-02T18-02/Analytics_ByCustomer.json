@@ -1,0 +1,16 @@
+{
+  "path": "/Analytics/ByCustomer",
+  "title": "By Customer",
+  "finalUrl": "http://localhost:3001/Analytics/ByCustomer",
+  "rootLen": 76388,
+  "crashed": false,
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 429 ()"
+  ],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [
+    "PricePerformance/ByCustomer"
+  ],
+  "consoleEventCount": 14
+}

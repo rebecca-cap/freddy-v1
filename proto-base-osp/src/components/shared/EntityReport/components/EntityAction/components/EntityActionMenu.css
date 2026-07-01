@@ -1,0 +1,8 @@
+/* Scoped to the entity-action popover — zero out antd v5 padding */
+.entity-action-popover.ant-popover .ant-popover-inner {
+  padding: 0 !important;
+}
+
+.entity-action-popover .ant-menu {
+  padding: 0 !important;
+}

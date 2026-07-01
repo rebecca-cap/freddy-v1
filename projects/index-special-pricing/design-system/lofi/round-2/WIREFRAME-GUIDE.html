@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Index Special Offers — Round 2 Wireframe Guide</title>
+  <link rel="stylesheet" href="wireframes/assets/wireframe.css">
+  <style>
+    :root { --iso-accent: var(--wf-color-primary); --iso-sidebar-bg: #0f172a; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--wf-color-background); color: var(--wf-color-text-primary); font-family: var(--wf-font-family); line-height: 1.5; }
+
+    .toc { position: fixed; top: 0; left: 0; width: 260px; height: 100vh; background: var(--iso-sidebar-bg); color: #cbd5e1; overflow-y: auto; padding: 28px 22px 60px; }
+    .toc .toc-brand { color: #fff; font-size: var(--wf-text-base); font-weight: var(--wf-font-bold); letter-spacing: .02em; margin-bottom: 4px; }
+    .toc .toc-sub { color: #64748b; font-size: var(--wf-text-xs); margin-bottom: 26px; }
+    .toc h4 { color: #64748b; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; margin: 22px 0 8px; }
+    .toc a { display: block; color: #cbd5e1; text-decoration: none; font-size: var(--wf-text-sm); padding: 4px 0; }
+    .toc a:hover { color: #fff; }
+    .toc a.mono { font-family: var(--wf-font-mono, ui-monospace, monospace); font-size: var(--wf-text-xs); color: #94a3b8; }
+    .toc a.mono:hover { color: var(--iso-accent); }
+
+    main { margin-left: 260px; max-width: 1040px; padding: 56px 72px 120px; }
+    .eyebrow { text-transform: uppercase; letter-spacing: .1em; font-size: 12px; font-weight: var(--wf-font-bold); color: var(--iso-accent); }
+    h1.doc-title { font-size: 34px; line-height: 1.15; margin: 10px 0 14px; }
+    .lead { font-size: 15px; color: var(--wf-color-text-secondary); max-width: 720px; }
+    .meta { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin: 28px 0 6px; padding-bottom: 26px; border-bottom: 3px solid #111; }
+    .meta .k { font-size: 11px; text-transform: uppercase; letter-spacing: .07em; color: var(--wf-color-text-tertiary); }
+    .meta .v { font-size: var(--wf-text-sm); font-weight: var(--wf-font-medium); margin-top: 3px; }
+
+    h2 { font-size: 22px; margin: 52px 0 16px; padding-bottom: 8px; border-bottom: 2px solid var(--wf-color-border); scroll-margin-top: 24px; }
+    h3 { scroll-margin-top: 24px; }
+    p { margin: 10px 0; }
+    main a { color: var(--iso-accent); }
+
+    .file-card { border: 1px solid var(--wf-color-border); border-radius: 8px; background: var(--wf-color-surface); padding: 20px 22px; margin: 18px 0; scroll-margin-top: 24px; }
+    .file-card-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+    .file-card-head h3 { font-family: var(--wf-font-mono, ui-monospace, monospace); font-size: 15px; color: var(--iso-accent); margin: 0; }
+    .file-card-head .scr { color: var(--wf-color-text-tertiary); font-size: var(--wf-text-sm); }
+    .file-card-head .open { margin-left: auto; font-size: 12px; text-decoration: none; color: var(--iso-accent); border: 1px solid var(--iso-accent); border-radius: 5px; padding: 4px 10px; }
+    .file-card-head .open:hover { background: var(--iso-accent); color: #fff; }
+    .file-card h4 { margin: 14px 0 4px; font-size: var(--wf-text-sm); }
+
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; border: 1px solid var(--wf-color-border); border-radius: 8px; overflow: hidden; font-size: var(--wf-text-sm); }
+    thead th { background: var(--wf-color-neutral-100, #f1f5f9); text-align: left; text-transform: uppercase; letter-spacing: .05em; font-size: 11px; color: var(--wf-color-text-secondary); padding: 9px 12px; }
+    td { padding: 9px 12px; border-top: 1px solid var(--wf-color-border); vertical-align: top; }
+    tbody tr:hover { background: var(--wf-color-surface-sunken); }
+    code { font-family: var(--wf-font-mono, ui-monospace, monospace); font-size: .92em; background: var(--wf-color-surface-sunken); padding: 1px 5px; border-radius: 4px; }
+
+    .callout { border-left: 4px solid var(--iso-accent); background: #f0f9ff; border-radius: 0 6px 6px 0; padding: 12px 16px; margin: 16px 0; }
+    .callout.decision { border-left-color: #16a34a; background: #ecfdf5; }
+    .callout.warn { border-left-color: #d97706; background: #fffbeb; }
+    .callout-label { text-transform: uppercase; letter-spacing: .07em; font-size: 11px; font-weight: var(--wf-font-bold); color: var(--iso-accent); }
+    .callout.decision .callout-label { color: #16a34a; }
+    .callout.warn .callout-label { color: #d97706; }
+    .callout p { margin: 4px 0 0; font-size: var(--wf-text-sm); }
+
+    ol.decisions { padding-left: 20px; }
+    ol.decisions li { margin: 12px 0; line-height: 1.55; }
+    ol.open-questions { list-style: none; padding: 0; }
+    ol.open-questions li { background: #fffbeb; border-left: 3px solid #d97706; border-radius: 0 6px 6px 0; padding: 10px 14px; margin: 10px 0; font-size: var(--wf-text-sm); }
+    ol.open-questions li b { color: #92400e; }
+
+    ul.changes { list-style: none; padding: 0; }
+    ul.changes li { border: 1px solid var(--wf-color-border); border-left: 3px solid #16a34a; border-radius: 0 6px 6px 0; padding: 10px 14px; margin: 10px 0; font-size: var(--wf-text-sm); }
+    ul.changes li b { color: var(--wf-color-text-primary); }
+
+    @media (max-width: 900px) {
+      .toc { display: none; }
+      main { margin-left: 0; padding: 32px 24px 80px; }
+      .meta { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="toc">
+    <div class="toc-brand">Index Special Offers</div>
+    <div class="toc-sub">Lo-fi · Round 2 guide</div>
+
+    <h4>Introduction</h4>
+    <a href="#overview">Overview</a>
+    <a href="#changes">Changes from Round 1</a>
+    <a href="#flow">The user flow</a>
+    <a href="#layout">Shared layout</a>
+    <a href="#language">Color &amp; status language</a>
+    <a href="#inventory">File inventory</a>
+
+    <h4>Per-screen docs</h4>
+    <a href="#s01">01 · Offers launchpad</a>
+    <a href="#s02">02 · Create New Offer (fast)</a>
+    <a href="#s03">03 · Price formula</a>
+    <a href="#s04">04 · Invite modes</a>
+    <a href="#s05">05 · Offer sent</a>
+
+    <h4>Rationale</h4>
+    <a href="#decisions">Design decisions</a>
+    <a href="#open">Open for R3</a>
+    <a href="#view">How to view</a>
+
+    <h4>Wireframes</h4>
+    <a class="mono" href="wireframes/01-launchpad.html" target="_blank">01-launchpad.html</a>
+    <a class="mono" href="wireframes/02-quick-create-index.html" target="_blank">02-quick-create-index.html</a>
+    <a class="mono" href="wireframes/03-price-formula.html" target="_blank">03-price-formula.html</a>
+    <a class="mono" href="wireframes/04-invite-modes.html" target="_blank">04-invite-modes.html</a>
+    <a class="mono" href="wireframes/05-review-send.html" target="_blank">05-review-send.html</a>
+    <a class="mono" href="../round-1/WIREFRAME-GUIDE.html" target="_blank">← Round 1 guide</a>
+  </nav>
+
+  <main>
+    <div class="eyebrow">Wireframe Index &amp; Guide · Round 2</div>
+    <h1 class="doc-title">Index Special Offers — Quick Create</h1>
+    <p class="lead">Round 2 keeps round 1's confirmed direction — a one-page <strong>Create New Offer</strong> surface, no stepper — and rebuilds the parts the review flagged. The headline fix: the <strong>price formula</strong> is no longer "one index + a product." It's the real model — choose a <strong>formula template</strong> (three variables, seven columns each), then edit the variable lines straight in the table, with the resulting price and differential above it.</p>
+
+    <div class="meta">
+      <div><div class="k">Project</div><div class="v">Index Special Offers (OSP)</div></div>
+      <div><div class="k">Round</div><div class="v">2 · post round-1 review (Reece, Jun 18)</div></div>
+      <div><div class="k">Designer</div><div class="v">Frank Overland</div></div>
+      <div><div class="k">Date</div><div class="v">June 2026</div></div>
+    </div>
+
+    <!-- OVERVIEW -->
+    <h2 id="overview">Overview</h2>
+    <p>These five static HTML wireframes iterate on round 1 for the Index Special Offers quick-create flow, built from the vendored Gravitate <code>WireframeDesignSystem</code> (<code>wf-</code> components, <code>--wf-</code> tokens; lo-fi scaffolding isolated under <code>lf-</code>). Round 1 proved the one-page direction and the production "Create New Offer" chrome; the review confirmed both and concentrated feedback on <em>what lives inside</em> the page — chiefly the price formula and the invite step.</p>
+    <div class="callout">
+      <div class="callout-label">The review in one line</div>
+      <p>"We want all the sections on one page, no scroll — yes. The price formula is the bulk of what we need to keep thinking through." Everything in round 2 follows from getting the formula right and making invite scale.</p>
+    </div>
+
+    <!-- CHANGES -->
+    <h2 id="changes">Changes from Round 1</h2>
+    <ul class="changes">
+      <li><b>Price formula rebuilt (the big one).</b> R1 reduced pricing to Index + Index product + Differential — which the review called "just not correct." R2 models a formula as <b>three variables</b>, each with <b>seven columns</b> (name, publisher, instrument, type, date rule, operator, weight). You don't author from scratch; you <b>choose a formula template</b> (from a bottom-sheet chooser, disabled until product &amp; location are set), then <b>edit the variable lines straight in the table</b>. The <b>resulting price</b> (editable) and <b>formula differential</b> sit on separate lines above the table. See <a href="#s03">screen 03</a>.</li>
+      <li><b>Flow reordered.</b> The first selection is now <b>Product &amp; location → Volume</b> (the review's "what am I selling, how much"), which then <b>drives which formulas you see</b>. The R1 "Start / Template" row at the top is deferred.</li>
+      <li><b>Invite is now progressive &amp; intent-based.</b> R1 assumed everyone was grouped. R2 adds a <b>mode</b> switch — Groups (with <b>pinning</b> + free-text search for 25+ groups), <b>Authorized to lift</b>, <b>Credit</b> (ranked), and an <b>All customers</b> search fallback. See <a href="#s04">screen 04</a>.</li>
+      <li><b>Entry = New → Fast or Full.</b> The launchpad menu now mirrors Reece's words ("new fast or new full") instead of "Quick create / Full setup," and the fast page keeps a <b>Switch to full</b> escape hatch.</li>
+      <li><b>"Template" renamed to "Preset."</b> The word was overloaded (a real template sets offer/auction + fixed/index). The saved-offer-configuration — "my good stuff, the way I do business" — is now a <b>Preset</b>, kept distinct from <b>create-from-prior</b>. Note this is distinct from <b>formula templates</b> — the price-formula building blocks keep their real product name ("Formula Template Selector"); only the offer-level saved config is renamed to Preset.</li>
+      <li><b>Timing custom wired to the day-deal picker.</b> Presets stay; "Custom" reuses Rebecca &amp; Abdul's day-deal "now / +1 / +2 / +6" date-time picker.</li>
+      <li><b>R1's live click-budget meter is gone.</b> It was already dropped late in R1 when the rail became the customer preview; R2 doesn't reintroduce it.</li>
+      <li><b>Mobile not re-cut.</b> R1 had a mobile screen; R2 holds it until the desktop formula/invite patterns settle (noted as open).</li>
+    </ul>
+
+    <!-- FLOW -->
+    <h2 id="flow">The user flow</h2>
+    <table>
+      <thead><tr><th>Step</th><th>Screen</th><th>What happens</th></tr></thead>
+      <tbody>
+        <tr><td>Launch</td><td>01 · Launchpad</td><td>New → Fast / Full; or reuse via Preset / Create from prior.</td></tr>
+        <tr><td>Author fast</td><td>02 · Create New Offer (fast)</td><td>One page: product/location/volume → price formula → timing → invite.</td></tr>
+        <tr><td>Price</td><td>03 · Price formula</td><td>Choose a formula template (bottom sheet); edit the variable table inline.</td></tr>
+        <tr><td>Reach customers</td><td>04 · Invite modes</td><td>Groups / Authorized / Credit / All — pick the mode that's fastest.</td></tr>
+        <tr><td>Payoff</td><td>05 · Offer sent</td><td>Confirmation; reuse via Save as Preset vs Create from prior.</td></tr>
+      </tbody>
+    </table>
+
+    <!-- LAYOUT -->
+    <h2 id="layout">Shared layout structure</h2>
+    <p>Carried forward from round 1. The create screens (02, 03, 04) use the production <strong>Create New Offer</strong> surface — a full-screen takeover, no app sidebar:</p>
+    <ul>
+      <li><strong>Top app bar</strong> (<code>lf-topbar</code>) — <code>&times;</code> close + bold "Create New Offer" title; a small dashed "Round 2 index" reviewer link at the right.</li>
+      <li><strong>"Back to Offers"</strong> link (<code>lf-backtolist</code>) above the content.</li>
+      <li><strong>Wide left content card</strong> (<code>wf-card</code>) holding the offer; groups separated by hairlines (<code>lf-group</code>), not nested <code>wf-form-section</code> cards.</li>
+      <li><strong>Right "What customers will see" preview</strong> (<code>lf-preview</code>) on the hero — the four labelled sections (Product &amp; Location, Pricing Strategy, Timing Windows, Target Customers).</li>
+      <li><strong>Footer action bar</strong> (<code>lf-offer-footer</code>) — Cancel · reuse/▸full note · Send offer.</li>
+      <li><strong>Bottom-sheet template chooser</strong> — the Formula Template Selector shown via <code>lf-bottomsheet</code> (≈85vh) over a dimmed page for the static "choose template" state.</li>
+    </ul>
+    <p>Screens 01 (offers list) and 05 (sent) keep the app shell (<code>wf-page-with-sidebar</code>) since they aren't the create surface; both gain a <strong>Presets</strong> nav item.</p>
+
+    <!-- LANGUAGE -->
+    <h2 id="language">Color &amp; status language</h2>
+    <p>Unchanged from round 1 — status colors mean status, primary blue means interactive intent / current selection, everything else neutral.</p>
+    <ul>
+      <li><strong>Primary blue</strong> — Send CTA, selected chip / tab (<code>wf-tab-active</code>), selected formula card (<code>wf-card-selected</code>), pinned-group pin, and the left edge of the formula readout &amp; key preview section.</li>
+      <li><strong>Success green</strong> — real status only: <code>wf-badge-success</code> "Live" / "Active", the sent toast.</li>
+      <li><strong>Warning amber</strong> — "Closing" badge; a stretched credit utilization (86%).</li>
+      <li><strong>Error red</strong> — reserved for validation; not used decoratively this round.</li>
+      <li><strong>Monospace</strong> (<code>wf-mono</code>) — formula variable cells, differentials, volumes, credit figures.</li>
+    </ul>
+
+    <!-- INVENTORY -->
+    <h2 id="inventory">File inventory</h2>
+    <table>
+      <thead><tr><th>File</th><th>Screen</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td><code>wireframes/assets/wireframe.css</code></td><td>—</td><td>Vendored design-system bundle (carried from round 1).</td></tr>
+        <tr><td><code>wireframes/assets/lofi-chrome.css</code></td><td>—</td><td>Lo-fi chrome; extended this round with formula-table, bottom-sheet, pin and invite helpers.</td></tr>
+        <tr><td><code>wireframes/01-launchpad.html</code></td><td>Offers launchpad</td><td>New → Fast / Full entry; Presets + Create from prior.</td></tr>
+        <tr><td><code>wireframes/02-quick-create-index.html</code></td><td>Create New Offer — Fast <strong>(hero)</strong></td><td>Reordered one-page flow; real formula step inline.</td></tr>
+        <tr><td><code>wireframes/03-price-formula.html</code></td><td>Price formula</td><td>Bottom-sheet formula template chooser (cards) → editable table on 02.</td></tr>
+        <tr><td><code>wireframes/04-invite-modes.html</code></td><td>Invite modes</td><td>Progressive Groups / Authorized / Credit / All.</td></tr>
+        <tr><td><code>wireframes/05-review-send.html</code></td><td>Offer sent</td><td>Confirmation + Preset-vs-prior reuse.</td></tr>
+        <tr><td><code>index.html</code></td><td>Round gallery</td><td>Launcher for the round.</td></tr>
+      </tbody>
+    </table>
+
+    <!-- PER-SCREEN -->
+    <h2 id="s01">Per-screen documentation</h2>
+
+    <div class="file-card" id="card01">
+      <div class="file-card-head"><h3>01-launchpad.html</h3><span class="scr">— Offers launchpad</span><a class="open" href="wireframes/01-launchpad.html" target="_blank">Open wireframe →</a></div>
+      <h4>Screen purpose</h4>
+      <p>The offers list and entry point, in the app shell (with a new <strong>Presets</strong> nav item). The "+ New offer" button opens a menu reflecting the review's language.</p>
+      <h4>Component breakdown</h4>
+      <p>The Create menu (shown open) lists <strong>New — Fast (Index Special)</strong> → screen 02, <strong>New — Full (Index Special)</strong>, then below a divider <strong>Start from a Preset</strong> and <strong>Create from prior</strong>. Below an annotation, a <code>wf-action-bar</code> over a <code>wf-datagrid</code> of recent offers whose Price-formula column now shows real saved-formula names (<code>OPIS/Platts blend +$0.0250</code>) and whose Recipients column shows the different invite modes (Gulf Coast group, Authorized (8), Top credit (5)).</p>
+    </div>
+
+    <div class="file-card" id="s02">
+      <div class="file-card-head"><h3>02-quick-create-index.html</h3><span class="scr">— Create New Offer, Fast (hero)</span><a class="open" href="wireframes/02-quick-create-index.html" target="_blank">Open wireframe →</a></div>
+      <h4>Screen purpose</h4>
+      <p>The whole offer on one page, reordered per the review. A "New — Fast" alert at the top carries the <em>Switch to full setup</em> escape hatch.</p>
+      <h4>Left content card — four groups</h4>
+      <p><strong>1 · Product &amp; location</strong> (now first): Product, Terminal/location, Volume — and the helper notes this drives which formulas appear.<br>
+      <strong>2 · Price formula</strong> (revised): a <strong>Template</strong> chooser (disabled until product &amp; location are set) that opens the bottom-sheet selector on screen 03; then the <strong>Resulting price</strong> (editable) and the <strong>Formula differential</strong> on their own lines <em>above</em> the table so neither is pushed down; then the <strong>editable variable table</strong> with the production formula columns (%, Publisher, Instrument, Type, Diff, Date Rule, Display, row options), edited inline, plus <em>Add row</em> / <em>Choose another template</em>. No separate edit mode — editing the resulting price reflects into the table.<br>
+      <strong>3 · Timing</strong>: Visible-for and Lifting-window duration chips, with a note that Custom opens the day-deal picker.<br>
+      <strong>4 · Invite</strong>: the mode pill tabs (Groups active), a search field, <strong>pinned</strong> groups, then more groups + "22 more," with a link to the full invite screen.</p>
+      <h4>Right preview</h4>
+      <p>"What customers will see" with the formula summarized (blend name + "formula + $0.0250/gal", invoices at lift).</p>
+      <div class="callout decision"><div class="callout-label">Centerpiece, corrected</div><p>The formula step shows the real structure inline: choose a template from a bottom sheet, then edit the variables in the table — fast for the common case, accurate to the model, no separate edit mode.</p></div>
+    </div>
+
+    <div class="file-card" id="s03">
+      <div class="file-card-head"><h3>03-price-formula.html</h3><span class="scr">— Formula Template Selector (bottom sheet)</span><a class="open" href="wireframes/03-price-formula.html" target="_blank">Open wireframe →</a></div>
+      <h4>Screen purpose</h4>
+      <p>The <strong>template chooser</strong>, modelled on the production <code>FormulaTemplateSelector</code> in the prototype. It opens as a <strong>bottom-sheet drawer</strong> (≈85vh) over the dimmed Create New Offer page when you choose a template from screen 02.</p>
+      <h4>Structure (mirrors the real component)</h4>
+      <p>Header: an "Effective …" eyebrow, the title <strong>Formula Template Selector</strong>, the subtitle "Select a pre-built formula template…," and right-aligned <em>Manage Formula Templates</em> / <em>Exit Templates</em>. A <strong>filters bar</strong> with a Cards/List segmented toggle plus Search, Category, Products, Locations, Price Type. Then a <strong>horizontal scroll of template cards</strong> — each card shows the template name, Category / Products / Location metadata, a "Select Components — N selected" count, the component lines (e.g. "50% + OPIS · G3 Suboctane Gross / Prior day · Low"), a "Display Name" formula-preview box, and a <strong>Select Template</strong> button. A "+ Build a new formula" card ends the row.</p>
+      <div class="callout decision"><div class="callout-label">Match the real surface</div><p>Choosing a template loads its variable lines into the <em>editable table on screen 02</em>, where the seller finishes filling them out. There is no separate edit drawer — the table itself is the editor. The chooser visually echoes the existing prototype component so it reads as the same product.</p></div>
+    </div>
+
+    <div class="file-card" id="s04">
+      <div class="file-card-head"><h3>04-invite-modes.html</h3><span class="scr">— Invite: progressive modes</span><a class="open" href="wireframes/04-invite-modes.html" target="_blank">Open wireframe →</a></div>
+      <h4>Screen purpose</h4>
+      <p>Makes invite scale past the small-group case. A pill-tab mode switch; all four modes are shown stacked for review (in product the tab swaps the panel).</p>
+      <h4>The four modes</h4>
+      <p><strong>Groups</strong> (active / the 80%): search ("type CHI → Chicago lifting") + <strong>pinned</strong> groups floating to the top + the rest, with "+22 more." <strong>Authorized to lift</strong>: a <code>wf-datagrid</code> of customers authorized for G3 Suboctane @ Tulsa. <strong>Credit</strong>: a datagrid <strong>ranked by available credit</strong> with utilization (Casey's 86% flagged amber). <strong>All customers</strong> (the 20% fallback): search + datagrid of everyone.</p>
+      <div class="callout decision"><div class="callout-label">Abstractions to customers</div><p>Per Reece's 80/20: the baseline is "see customers, pick them"; the speed-ups are the abstractions that get you there fastest — group, authorization, or credit.</p></div>
+    </div>
+
+    <div class="file-card" id="s05">
+      <div class="file-card-head"><h3>05-review-send.html</h3><span class="scr">— Offer sent</span><a class="open" href="wireframes/05-review-send.html" target="_blank">Open wireframe →</a></div>
+      <h4>Screen purpose</h4>
+      <p>The payoff, plus the place that resolves the Preset-vs-prior question. A success toast, the created offer's detail card (now showing the real formula name + differential, invoices at lift, and the <strong>invite method</strong> used), and a "Reuse this" panel.</p>
+      <h4>Reuse panel</h4>
+      <p><strong>Save as Preset</strong> (primary) — "my good stuff," named, one-click — above a note on <strong>Create from prior</strong> ("the one I did before"), making the deliberate distinction concrete. An annotation flags that the final name is still open.</p>
+    </div>
+
+    <!-- DECISIONS -->
+    <h2 id="decisions">Design decisions reflected</h2>
+    <ol class="decisions">
+      <li><strong>A price formula is variables, not a single index.</strong> Three variable lines × seven columns (%, Publisher, Instrument, Type, Diff, Date Rule, Display), surfaced as an editable table loaded from a chosen template.</li>
+      <li><strong>Choose a template, then edit in the table.</strong> The quick path never authors from scratch; it picks a formula template (bottom-sheet chooser) and edits the variables inline — no separate edit drawer. The resulting price and differential sit above the table so they're never pushed down.</li>
+      <li><strong>Product drives the formula set.</strong> Choosing product/location first filters which formulas are offered — hence the reordered flow.</li>
+      <li><strong>Invite is a progressive choice of abstraction.</strong> Groups / Authorized / Credit / All, because not every seller invites by group and "fast" depends on the mental model.</li>
+      <li><strong>Pinning + search keep groups fast at scale.</strong> Chips alone break down past ~25 groups.</li>
+      <li><strong>Entry is Fast vs Full, with a live escape hatch.</strong> The fast page can always switch to the full wizard mid-flight.</li>
+      <li><strong>"Preset" replaces "template," and is distinct from create-from-prior.</strong> Preset = deliberate/repeated; prior = one-off recall; they feed each other.</li>
+      <li><strong>Reuse existing components.</strong> Day-deal time picker for custom timing; the existing Formula Template Selector (bottom sheet + cards); card/list pickers — no new patterns invented.</li>
+      <li><strong>Carry the one-page Create New Offer chrome forward.</strong> The confirmed R1 direction is unchanged; only the contents deepened.</li>
+    </ol>
+
+    <!-- OPEN -->
+    <h2 id="open">Open for round 3</h2>
+    <ol class="open-questions">
+      <li><b>Naming:</b> confirm <b>Preset</b> (vs Playbook / Starting point) for the saved-offer configuration.</li>
+      <li><b>Preset vs prior:</b> keep both as designed, or collapse one into the other? (Current lean: keep both.)</li>
+      <li><b>Formula Template Selector:</b> confirm the existing production chooser can be reused as-is here, and how "Build a new formula" differs from picking + editing a template.</li>
+      <li><b>Invite mode:</b> explicit switch (as shown) or inferred from behavior? What is each seller's default mode, and can modes be combined (e.g. authorized <em>and</em> credit)?</li>
+      <li><b>Variants for customer feedback:</b> Reece asked for a couple of versions of the formula step to test — do we branch options in R3?</li>
+      <li><b>Mobile:</b> re-cut the flow for mobile once the formula + invite patterns are settled.</li>
+    </ol>
+
+    <!-- VIEW -->
+    <h2 id="view">How to view</h2>
+    <p>Open any file in <code>wireframes/</code> directly in a browser — self-contained static HTML, no build step. Start from <code>index.html</code>.</p>
+    <ol>
+      <li><code>01-launchpad.html</code> — see the New → Fast/Full menu and the reuse paths.</li>
+      <li><code>02-quick-create-index.html</code> — the hero; read top-to-bottom and note the formula step's variable grid.</li>
+      <li><code>03-price-formula.html</code> — the bottom-sheet formula template chooser (cards); selecting one loads the editable table on 02.</li>
+      <li><code>04-invite-modes.html</code> — the four invite modes; note pinning and the credit ranking.</li>
+      <li><code>05-review-send.html</code> — the payoff and the Preset-vs-prior reuse panel.</li>
+    </ol>
+    <div class="callout"><div class="callout-label">Provenance</div><p>Rationale mined from the Jun 18 2026 round-1 review — transcript at <code>context/2026-06-18-round-1-review-transcript.md</code>, distilled brief at <code>context/insights.md</code>. Round 1 guide: <a href="../round-1/WIREFRAME-GUIDE.html">../round-1/WIREFRAME-GUIDE.html</a>.</p></div>
+
+  </main>
+</body>
+</html>

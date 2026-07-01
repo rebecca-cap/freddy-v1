@@ -1,0 +1,9 @@
+.placeholder {
+  --placeholder-color: #722ed1;
+  color: var(--placeholder-color) !important;
+}
+.placeholder-cell {
+  --placeholder-color-dim: #f3e8ff;
+  background-color: var(--placeholder-color-dim);
+  font-weight: 600;
+}

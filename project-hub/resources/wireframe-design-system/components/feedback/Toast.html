@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toast Components - Gravitate Wireframe Design System</title>
+  <link rel="stylesheet" href="../../tokens/index.css">
+  <link rel="stylesheet" href="feedback.css">
+  <style>
+    /* Demo page styles */
+    .demo-section {
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--wf-color-border);
+    }
+    .demo-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--wf-color-text-primary);
+    }
+    .demo-description {
+      font-size: 0.875rem;
+      color: var(--wf-color-text-secondary);
+      margin-bottom: 1.5rem;
+    }
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .demo-item {
+      padding: 1.5rem;
+      background: var(--wf-color-surface);
+      border: 1px solid var(--wf-color-border);
+      border-radius: var(--wf-radius-md);
+    }
+    .demo-item h4 {
+      font-size: 0.875rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      color: var(--wf-color-text-secondary);
+    }
+    /* Static toast container for demo */
+    .demo-toast-static {
+      position: relative;
+    }
+    .demo-toast-static .wf-toast-container {
+      position: relative;
+      top: auto;
+      right: auto;
+      bottom: auto;
+      left: auto;
+    }
+    .demo-toast-static .wf-toast {
+      animation: none;
+    }
+    /* Position demo */
+    .demo-position-container {
+      position: relative;
+      height: 300px;
+      background: var(--wf-color-neutral-100);
+      border-radius: var(--wf-radius-md);
+      overflow: hidden;
+    }
+    .demo-position-container .wf-toast-container {
+      max-width: 250px;
+    }
+    .demo-position-container .wf-toast {
+      animation: none;
+      font-size: 0.75rem;
+    }
+  </style>
+</head>
+<body style="padding: 2rem; background: var(--wf-color-background);">
+
+  <h1 style="margin-bottom: 0.5rem;">Toast Components</h1>
+  <p style="color: var(--wf-color-text-secondary); margin-bottom: 2rem;">
+    Non-blocking notification messages that appear temporarily.
+  </p>
+
+  <!-- ============================================
+       TOAST VARIANTS
+       ============================================ -->
+  <section class="demo-section">
+    <h2 class="demo-title">Toast Variants</h2>
+    <p class="demo-description">
+      Four semantic variants for different types of feedback: info, success, warning, and error.
+    </p>
+
+    <div class="demo-toast-static">
+      <div class="wf-toast-container" style="gap: 1rem;">
+        <!-- Info Toast -->
+        <div class="wf-toast wf-toast-info">
+          <span class="wf-toast-icon">&#8505;</span>
+          <span class="wf-toast-message">Information message - something to be aware of.</span>
+          <button class="wf-toast-close">&times;</button>
+        </div>
+
+        <!-- Success Toast -->
+        <div class="wf-toast wf-toast-success">
+          <span class="wf-toast-icon">&#10003;</span>
+          <span class="wf-toast-message">Changes saved successfully!</span>
+          <button class="wf-toast-close">&times;</button>
+        </div>
+
+        <!-- Warning Toast -->
+        <div class="wf-toast wf-toast-warning">
+          <span class="wf-toast-icon">&#9888;</span>
+          <span class="wf-toast-message">Warning: Your session will expire in 5 minutes.</span>
+          <button class="wf-toast-close">&times;</button>
+        </div>
+
+        <!-- Error Toast -->
+        <div class="wf-toast wf-toast-error">
+          <span class="wf-toast-icon">&#10005;</span>
+          <span class="wf-toast-message">Error: Unable to save changes. Please try again.</span>
+          <button class="wf-toast-close">&times;</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       TOAST WITHOUT CLOSE BUTTON
+       ============================================ -->
+  <section class="demo-section">
+    <h2 class="demo-title">Auto-dismiss Toasts</h2>
+    <p class="demo-description">
+      Toasts without a close button auto-dismiss after a timeout.
+    </p>
+
+    <div class="demo-toast-static">
+      <div class="wf-toast-container" style="gap: 1rem;">
+        <!-- Success without close -->
+        <div class="wf-toast wf-toast-success">
+          <span class="wf-toast-icon">&#10003;</span>
+          <span class="wf-toast-message">File uploaded successfully</span>
+        </div>
+
+        <!-- Info without close -->
+        <div class="wf-toast wf-toast-info">
+          <span class="wf-toast-icon">&#8505;</span>
+          <span class="wf-toast-message">Syncing in progress...</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       TOAST WITH LONG CONTENT
+       ============================================ -->
+  <section class="demo-section">
+    <h2 class="demo-title">Long Content</h2>
+    <p class="demo-description">
+      Toasts gracefully handle longer messages.
+    </p>
+
+    <div class="demo-toast-static" style="max-width: 400px;">
+      <div class="wf-toast-container">
+        <div class="wf-toast wf-toast-warning">
+          <span class="wf-toast-icon">&#9888;</span>
+          <span class="wf-toast-message">Your subscription will expire on January 31, 2026. Please update your payment method to avoid service interruption.</span>
+          <button class="wf-toast-close">&times;</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       TOAST POSITIONS
+       ============================================ -->
+  <section class="demo-section">
+    <h2 class="demo-title">Toast Positions</h2>
+    <p class="demo-description">
+      Toasts can appear in different corners or centered at top/bottom.
+    </p>
+
+    <div class="demo-grid">
+      <!-- Top Right -->
+      <div class="demo-item">
+        <h4>Top Right (default)</h4>
+        <div class="demo-position-container">
+          <div class="wf-toast-container wf-toast-container-top-right">
+            <div class="wf-toast wf-toast-success" style="animation: none;">
+              <span class="wf-toast-icon">&#10003;</span>
+              <span class="wf-toast-message">Saved</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Top Left -->
+      <div class="demo-item">
+        <h4>Top Left</h4>
+        <div class="demo-position-container">
+          <div class="wf-toast-container wf-toast-container-top-left">
+            <div class="wf-toast wf-toast-info" style="animation: none;">
+              <span class="wf-toast-icon">&#8505;</span>
+              <span class="wf-toast-message">Info</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Right -->
+      <div class="demo-item">
+        <h4>Bottom Right</h4>
+        <div class="demo-position-container">
+          <div class="wf-toast-container">
+            <div class="wf-toast wf-toast-warning" style="animation: none;">
+              <span class="wf-toast-icon">&#9888;</span>
+              <span class="wf-toast-message">Warning</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Left -->
+      <div class="demo-item">
+        <h4>Bottom Left</h4>
+        <div class="demo-position-container">
+          <div class="wf-toast-container wf-toast-container-bottom-left">
+            <div class="wf-toast wf-toast-error" style="animation: none;">
+              <span class="wf-toast-icon">&#10005;</span>
+              <span class="wf-toast-message">Error</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Top Center -->
+      <div class="demo-item">
+        <h4>Top Center</h4>
+        <div class="demo-position-container">
+          <div class="wf-toast-container wf-toast-container-top-center">
+            <div class="wf-toast wf-toast-success" style="animation: none;">
+              <span class="wf-toast-icon">&#10003;</span>
+              <span class="wf-toast-message">Centered</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Center -->
+      <div class="demo-item">
+        <h4>Bottom Center</h4>
+        <div class="demo-position-container">
+          <div class="wf-toast-container wf-toast-container-bottom-center">
+            <div class="wf-toast wf-toast-info" style="animation: none;">
+              <span class="wf-toast-icon">&#8505;</span>
+              <span class="wf-toast-message">Centered</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       STACKED TOASTS
+       ============================================ -->
+  <section class="demo-section">
+    <h2 class="demo-title">Stacked Toasts</h2>
+    <p class="demo-description">
+      Multiple toasts stack vertically in the container.
+    </p>
+
+    <div class="demo-toast-static" style="max-width: 400px;">
+      <div class="wf-toast-container" style="gap: 0.75rem;">
+        <div class="wf-toast wf-toast-success">
+          <span class="wf-toast-icon">&#10003;</span>
+          <span class="wf-toast-message">Draft saved</span>
+        </div>
+        <div class="wf-toast wf-toast-info">
+          <span class="wf-toast-icon">&#8505;</span>
+          <span class="wf-toast-message">Uploading file...</span>
+        </div>
+        <div class="wf-toast wf-toast-success">
+          <span class="wf-toast-icon">&#10003;</span>
+          <span class="wf-toast-message">Email sent</span>
+          <button class="wf-toast-close">&times;</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       USAGE CODE EXAMPLES
+       ============================================ -->
+  <section class="demo-section">
+    <h2 class="demo-title">Usage</h2>
+    <p class="demo-description">Copy and paste these patterns into your wireframes.</p>
+
+    <div class="demo-item" style="background: var(--wf-color-neutral-900); color: var(--wf-color-neutral-100);">
+      <pre style="margin: 0; font-size: 0.8rem; overflow-x: auto; white-space: pre-wrap;"><code>&lt;!-- Toast Container (position at bottom-right by default) --&gt;
+&lt;div class="wf-toast-container"&gt;
+
+  &lt;!-- Info Toast --&gt;
+  &lt;div class="wf-toast wf-toast-info"&gt;
+    &lt;span class="wf-toast-icon"&gt;&amp;#8505;&lt;/span&gt;
+    &lt;span class="wf-toast-message"&gt;Information message&lt;/span&gt;
+    &lt;button class="wf-toast-close"&gt;&amp;times;&lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Success Toast --&gt;
+  &lt;div class="wf-toast wf-toast-success"&gt;
+    &lt;span class="wf-toast-icon"&gt;&amp;#10003;&lt;/span&gt;
+    &lt;span class="wf-toast-message"&gt;Changes saved successfully&lt;/span&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Warning Toast --&gt;
+  &lt;div class="wf-toast wf-toast-warning"&gt;
+    &lt;span class="wf-toast-icon"&gt;&amp;#9888;&lt;/span&gt;
+    &lt;span class="wf-toast-message"&gt;Warning message&lt;/span&gt;
+    &lt;button class="wf-toast-close"&gt;&amp;times;&lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Error Toast --&gt;
+  &lt;div class="wf-toast wf-toast-error"&gt;
+    &lt;span class="wf-toast-icon"&gt;&amp;#10005;&lt;/span&gt;
+    &lt;span class="wf-toast-message"&gt;Error message&lt;/span&gt;
+    &lt;button class="wf-toast-close"&gt;&amp;times;&lt;/button&gt;
+  &lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;!-- Position Classes --&gt;
+&lt;!-- wf-toast-container-top-right --&gt;
+&lt;!-- wf-toast-container-top-left --&gt;
+&lt;!-- wf-toast-container-bottom-left --&gt;
+&lt;!-- wf-toast-container-top-center --&gt;
+&lt;!-- wf-toast-container-bottom-center --&gt;</code></pre>
+    </div>
+  </section>
+
+</body>
+</html>

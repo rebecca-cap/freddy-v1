@@ -1,0 +1,19 @@
+{
+  "path": "/OrderDashboard",
+  "title": "Dashboard",
+  "finalUrl": "http://localhost:3001/OrderDashboard",
+  "rootLen": 186002,
+  "crashed": false,
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 429 ()"
+  ],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [
+    "MarketPlatform/OrderEntry/GetPricesForDashboard",
+    "MarketPlatform/OrderReporting/GetCreditWidget",
+    "MarketPlatform/OrderReporting/GetPendingOrders",
+    "MarketPlatform/OrderReporting/GetRecentlyProcessedOrders"
+  ],
+  "consoleEventCount": 25
+}

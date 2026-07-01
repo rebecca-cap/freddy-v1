@@ -1,0 +1,260 @@
+- generic [ref=e2]:
+  - img "loading" [ref=e4]:
+    - img [ref=e5]
+  - generic [ref=e8]:
+    - complementary [ref=e9]:
+      - generic [ref=e12]:
+        - generic [ref=e13]:
+          - generic:
+            - img "search" [ref=e15]:
+              - img [ref=e16]
+            - text: Search
+            - img "mac-command" [ref=e20]:
+              - img [ref=e21]
+            - generic [ref=e24]: K
+        - generic [ref=e25]:
+          - link "dashboard Dashboard" [ref=e27] [cursor=pointer]:
+            - /url: /OrderDashboard
+            - img "dashboard" [ref=e29]:
+              - img [ref=e30]
+            - paragraph [ref=e32]: Dashboard
+          - link "sliders Admin Dashboard" [ref=e34] [cursor=pointer]:
+            - /url: /AdminDashboard
+            - img "sliders" [ref=e36]:
+              - img [ref=e37]
+            - paragraph [ref=e39]: Admin Dashboard
+          - link "tag Manage Offers" [ref=e41] [cursor=pointer]:
+            - /url: /SpecialOffers
+            - img "tag" [ref=e43]:
+              - img [ref=e44]
+            - paragraph [ref=e46]: Manage Offers
+          - link "money-collect Online Orders" [ref=e48] [cursor=pointer]:
+            - /url: /OnlineOrders
+            - img "money-collect" [ref=e50]:
+              - img [ref=e51]
+            - paragraph [ref=e53]: Online Orders
+          - generic [ref=e54]:
+            - generic [ref=e55] [cursor=pointer]:
+              - img "file" [ref=e57]:
+                - img [ref=e58]
+              - paragraph [ref=e60]: Buy Now
+            - generic:
+              - link "Prompt" [ref=e63] [cursor=pointer]:
+                - /url: /BuyNow/Prompt
+                - paragraph: Prompt
+              - link "Forward" [ref=e65] [cursor=pointer]:
+                - /url: /BuyNow/Forward
+                - paragraph: Forward
+              - link "Offers" [ref=e67] [cursor=pointer]:
+                - /url: /BuyNow/Offers
+                - paragraph: Offers
+          - generic [ref=e68]:
+            - generic [ref=e69] [cursor=pointer]:
+              - img "file-sync" [ref=e71]:
+                - img [ref=e72]
+              - paragraph [ref=e74]: Pricing Engine
+            - generic:
+              - paragraph [ref=e76]: Quote Book
+              - link "Daily" [ref=e78] [cursor=pointer]:
+                - /url: /PricingEngine/QuoteBookEOD
+                - paragraph: Daily
+              - link "Midday" [ref=e80] [cursor=pointer]:
+                - /url: /PricingEngine/QuoteBookMidday
+                - paragraph: Midday
+              - paragraph [ref=e81]: Command Center
+              - link "Command Center" [ref=e83] [cursor=pointer]:
+                - /url: /PricingEngine/CommandCenter
+                - paragraph: Command Center
+              - paragraph [ref=e84]: Calculations
+              - link "Formula Management" [ref=e86] [cursor=pointer]:
+                - /url: /PricingEngine/FormulaManagement
+                - paragraph: Formula Management
+              - link "Quote Rows" [ref=e88] [cursor=pointer]:
+                - /url: /PricingEngine/Quotes
+                - paragraph: Quote Rows
+              - paragraph [ref=e89]: Prices
+              - link "All Prices" [ref=e91] [cursor=pointer]:
+                - /url: /PricingEngine/AllPrices
+                - paragraph: All Prices
+          - generic [ref=e92]:
+            - generic [ref=e93] [cursor=pointer]:
+              - img "diff" [ref=e95]:
+                - img [ref=e96]
+              - paragraph [ref=e98]: Admin
+            - generic:
+              - paragraph [ref=e100]: Pricing Engine
+              - link "Net / Gross Defaults" [ref=e102] [cursor=pointer]:
+                - /url: /Admin/NetGrossDefaults
+                - paragraph: Net / Gross Defaults
+              - link "Allocation Management" [ref=e104] [cursor=pointer]:
+                - /url: /Admin/AllocationAssociationManagement
+                - paragraph: Allocation Management
+              - link "Price Notifications" [ref=e106] [cursor=pointer]:
+                - /url: /Admin/PriceNotifications
+                - paragraph: Price Notifications
+              - link "Calendar Management" [ref=e108] [cursor=pointer]:
+                - /url: /Admin/CalendarManagement
+                - paragraph: Calendar Management
+              - paragraph [ref=e109]: Price Setup
+              - link "Price Publishers" [ref=e111] [cursor=pointer]:
+                - /url: /Admin/Publishers
+                - paragraph: Price Publishers
+              - link "Price Instruments" [ref=e113] [cursor=pointer]:
+                - /url: /Admin/Instruments
+                - paragraph: Price Instruments
+              - paragraph [ref=e114]: Reference Data
+              - link "Products" [ref=e116] [cursor=pointer]:
+                - /url: /Admin/Products
+                - paragraph: Products
+              - link "Locations" [ref=e118] [cursor=pointer]:
+                - /url: /Admin/Locations
+                - paragraph: Locations
+              - link "Users" [ref=e120] [cursor=pointer]:
+                - /url: /Admin/Users
+                - paragraph: Users
+              - link "Manage Counterparties" [ref=e122] [cursor=pointer]:
+                - /url: /Admin/Counterparties
+                - paragraph: Manage Counterparties
+              - link "Counterparty Hierarchy" [ref=e124] [cursor=pointer]:
+                - /url: /Admin/CounterpartyHierarchy
+                - paragraph: Counterparty Hierarchy
+              - paragraph [ref=e125]: Integrations
+              - link "Price Import Mappings" [ref=e127] [cursor=pointer]:
+                - /url: /Admin/PriceImportMappings
+                - paragraph: Price Import Mappings
+              - link "Price Translations" [ref=e129] [cursor=pointer]:
+                - /url: /Admin/PriceTranslations
+                - paragraph: Price Translations
+              - link "Allocation Mappings" [ref=e131] [cursor=pointer]:
+                - /url: /Admin/AllocationMappings
+                - paragraph: Allocation Mappings
+              - link "Manage OPIS Curves" [ref=e133] [cursor=pointer]:
+                - /url: /Admin/ManageOpisPrices
+                - paragraph: Manage OPIS Curves
+              - paragraph [ref=e134]: Application
+              - link "Extract Status Report" [ref=e136] [cursor=pointer]:
+                - /url: /Admin/IntegrationStatus
+                - paragraph: Extract Status Report
+              - paragraph [ref=e137]: Market Platform
+              - link "Applied Allocation Report" [ref=e139] [cursor=pointer]:
+                - /url: /Admin/AppliedAllocationReport
+                - paragraph: Applied Allocation Report
+              - link "Authorization Allocations" [ref=e141] [cursor=pointer]:
+                - /url: /Admin/AuthorizationAllocationAssociations
+                - paragraph: Authorization Allocations
+              - link "Availability" [ref=e143] [cursor=pointer]:
+                - /url: /Admin/Availability
+                - paragraph: Availability
+              - link "Market Platform Setups" [ref=e145] [cursor=pointer]:
+                - /url: /Admin/MarketPlatformSetups
+                - paragraph: Market Platform Setups
+              - link "Price Configurations" [ref=e147] [cursor=pointer]:
+                - /url: /Admin/PriceConfiguration
+                - paragraph: Price Configurations
+              - link "Formula Templates" [ref=e149] [cursor=pointer]:
+                - /url: /Admin/FormulaTemplates
+                - paragraph: Formula Templates
+              - link "Placeholder Management" [ref=e151] [cursor=pointer]:
+                - /url: /Admin/PlaceholderManagement
+                - paragraph: Placeholder Management
+              - link "Delivery Periods" [ref=e153] [cursor=pointer]:
+                - /url: /Admin/DeliveryPeriods
+                - paragraph: Delivery Periods
+              - link "Current Prices" [ref=e155] [cursor=pointer]:
+                - /url: /Admin/CalculatedValueReport
+                - paragraph: Current Prices
+              - link "Calendar Periods" [ref=e157] [cursor=pointer]:
+                - /url: /Admin/CalendarPeriods
+                - paragraph: Calendar Periods
+              - link "Quantity Distribution" [ref=e159] [cursor=pointer]:
+                - /url: /Admin/QuantityDistributionManagement
+                - paragraph: Quantity Distribution
+              - link "Volume Thresholds" [ref=e161] [cursor=pointer]:
+                - /url: /Admin/VolumeThresholds
+                - paragraph: Volume Thresholds
+    - main [ref=e162]:
+      - generic [ref=e164]:
+        - generic [ref=e165]:
+          - generic [ref=e167]:
+            - paragraph [ref=e168]: Customer Dashboard
+            - heading "Welcome Freddy" [level=3] [ref=e169]
+          - generic [ref=e173]:
+            - heading [level=3] [ref=e174]
+            - list [ref=e175]:
+              - listitem [ref=e176]
+              - listitem [ref=e177]
+              - listitem [ref=e178]
+        - generic [ref=e179]:
+          - generic [ref=e184]:
+            - heading [level=3] [ref=e185]
+            - list [ref=e186]:
+              - listitem [ref=e187]
+              - listitem [ref=e188]
+              - listitem [ref=e189]
+          - generic [ref=e191]:
+            - tablist [ref=e192]:
+              - generic [ref=e194]:
+                - tab "bar-chart Pending" [selected] [ref=e196] [cursor=pointer]:
+                  - generic [ref=e197]:
+                    - img "bar-chart" [ref=e198]:
+                      - img [ref=e199]
+                    - text: Pending
+                - tab "bar-chart Processed" [ref=e202] [cursor=pointer]:
+                  - generic [ref=e203]:
+                    - img "bar-chart" [ref=e204]:
+                      - img [ref=e205]
+                    - text: Processed
+            - tabpanel [ref=e209]:
+              - generic [ref=e211]:
+                - generic [ref=e214]:
+                  - generic [ref=e215]:
+                    - generic [ref=e218]:
+                      - heading "Pending Prompts" [level=4] [ref=e219]
+                      - heading "0 Results" [level=6] [ref=e220]
+                    - generic [ref=e225]:
+                      - img "search" [ref=e227]:
+                        - img [ref=e228]
+                      - textbox "Search here" [ref=e230]
+                  - generic [ref=e233]:
+                    - text:  
+                    - treegrid [ref=e234]:
+                      - rowgroup:
+                        - row
+                    - generic [ref=e236]:
+                      - tablist [ref=e237]:
+                        - tab "Filters" [ref=e238] [cursor=pointer]:
+                          - generic [ref=e239]: 
+                          - generic [ref=e240]: Filters
+                        - tab "Columns" [ref=e241] [cursor=pointer]:
+                          - generic [ref=e242]: 
+                          - generic [ref=e243]: Columns
+                        - tab "Grid Views" [ref=e244] [cursor=pointer]:
+                          - generic [ref=e245]: Grid Views
+                      - text:       
+                    - text:    
+                - generic [ref=e248]:
+                  - generic [ref=e249]:
+                    - generic [ref=e252]:
+                      - heading "Pending Forwards" [level=4] [ref=e253]
+                      - heading "0 Results" [level=6] [ref=e254]
+                    - generic [ref=e259]:
+                      - img "search" [ref=e261]:
+                        - img [ref=e262]
+                      - textbox "Search here" [ref=e264]
+                  - generic [ref=e267]:
+                    - text:  
+                    - treegrid [ref=e268]:
+                      - rowgroup:
+                        - row
+                    - generic [ref=e270]:
+                      - tablist [ref=e271]:
+                        - tab "Filters" [ref=e272] [cursor=pointer]:
+                          - generic [ref=e273]: 
+                          - generic [ref=e274]: Filters
+                        - tab "Columns" [ref=e275] [cursor=pointer]:
+                          - generic [ref=e276]: 
+                          - generic [ref=e277]: Columns
+                        - tab "Grid Views" [ref=e278] [cursor=pointer]:
+                          - generic [ref=e279]: Grid Views
+                      - text:       
+                    - text:    

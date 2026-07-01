@@ -1,0 +1,29 @@
+/*
+ * ScoutRowTag — quiet identity pill at the top of an answer card.
+ * Spec `.row-tag`: neutral surface, muted ink, small pill. Quieter than the
+ * confidence badge that sits below it.
+ */
+
+.scout-row-tag {
+  display: inline-block;
+  align-self: flex-start;
+  max-width: 100%;
+  font-size: var(--scout-font-size-sm);
+  font-weight: var(--scout-font-weight-semibold);
+  color: var(--scout-brand);
+  background: var(--scout-brand-soft);
+  padding: 2px 8px;
+  border-radius: var(--scout-radius-pill);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: default;
+}
+
+/* When the answer is about the currently active row the label is redundant
+   with the grid selection, so render it quiet rather than brand-tinted. */
+.scout-row-tag--muted {
+  font-weight: 400;
+  color: var(--scout-text-muted);
+  background: var(--scout-surface-3);
+}

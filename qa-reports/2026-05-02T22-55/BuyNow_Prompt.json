@@ -1,0 +1,16 @@
+{
+  "path": "/BuyNow/Prompt",
+  "title": "Prompt",
+  "finalUrl": "http://localhost:3001/BuyNow/Prompt",
+  "rootLen": 98264,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [
+    "MarketPlatform/OrderEntry/GetItemsAvailableForOrder"
+  ],
+  "consoleEventCount": 12,
+  "stuckLoaders": [],
+  "emptyGrids": []
+}

@@ -1,0 +1,17 @@
+{
+  "path": "/Admin/NetGrossDefaults",
+  "title": "Net / Gross Defaults",
+  "finalUrl": "http://localhost:3001/Admin/NetGrossDefaults",
+  "rootLen": 27068,
+  "crashed": false,
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 429 ()"
+  ],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [
+    "Admin/NetGrossRules/GetAll",
+    "Admin/NetGrossRules/Metadata"
+  ],
+  "consoleEventCount": 13
+}

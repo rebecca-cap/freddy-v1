@@ -1,0 +1,14 @@
+{
+  "path": "/Analytics/ByChannel",
+  "title": "By Channel",
+  "finalUrl": "http://localhost:3001/Analytics/ByChannel",
+  "rootLen": 82857,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [
+    "PricePerformance/ByChannel"
+  ],
+  "consoleEventCount": 11
+}

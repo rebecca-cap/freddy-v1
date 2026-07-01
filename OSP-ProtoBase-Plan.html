@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plan — OSP Proto-base + Prototype Independence</title>
+<style>
+  :root{
+    --bg:#0d1217; --panel:#141b22; --panel-2:#1a232c; --line:#243039;
+    --ink:#e7edf2; --ink-dim:#9fb0bd; --ink-faint:#6c7d8a;
+    --green:#6ac08b; --green-deep:#16a34a; --amber:#e7b450; --red:#e0736b; --blue:#6aa6e0; --cyan:#4BADE9;
+    --mono:"SF Mono",ui-monospace,Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6;}
+  a{color:var(--green);text-decoration:none}
+  a:hover{text-decoration:underline}
+  code{font-family:var(--mono);font-size:.86em;background:#0b0f13;border:1px solid var(--line);border-radius:4px;padding:1px 5px;color:#cfe3d6}
+  .wrap{display:flex;max-width:1280px;margin:0 auto;align-items:flex-start}
+  nav{position:sticky;top:0;height:100vh;min-width:256px;width:256px;padding:28px 18px;border-right:1px solid var(--line);overflow-y:auto}
+  nav .brand{font-weight:700;font-size:15px;letter-spacing:.2px;margin-bottom:4px}
+  nav .brand .dot{display:inline-block;width:10px;height:10px;border-radius:3px;background:var(--green);margin-right:8px;vertical-align:middle}
+  nav .sub{color:var(--ink-faint);font-size:12px;margin-bottom:22px}
+  nav a{display:block;color:var(--ink-dim);font-size:13.5px;padding:6px 10px;border-radius:6px;margin:1px 0;border-left:2px solid transparent}
+  nav a:hover{background:var(--panel);text-decoration:none;color:var(--ink)}
+  nav a.active{color:var(--green);background:var(--panel);border-left-color:var(--green)}
+  nav .gap{height:14px}
+  main{flex:1;padding:48px 56px 140px;min-width:0;max-width:940px}
+  header.page{margin-bottom:40px}
+  header.page .kick{color:var(--green);font-weight:600;font-size:12.5px;letter-spacing:1.4px;text-transform:uppercase}
+  header.page h1{font-size:30px;line-height:1.2;margin:10px 0 8px;letter-spacing:-.4px}
+  header.page .meta{color:var(--ink-faint);font-size:13px}
+  header.page .meta b{color:var(--ink-dim);font-weight:600}
+  section{margin:0 0 46px;scroll-margin-top:24px}
+  h2{font-size:20px;margin:0 0 4px;letter-spacing:-.2px;display:flex;align-items:center;gap:10px}
+  h2 .n{font-family:var(--mono);font-size:12px;color:var(--green);border:1px solid var(--line);background:var(--panel);border-radius:6px;padding:2px 8px}
+  h3{font-size:15.5px;margin:24px 0 6px;color:var(--ink)}
+  .lead{color:var(--ink-dim);margin-top:2px;margin-bottom:18px}
+  p{margin:10px 0}
+  ul,ol{margin:10px 0;padding-left:22px} li{margin:5px 0}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin:16px 0}
+  .card h3:first-child{margin-top:0}
+  .call{border-radius:10px;padding:14px 16px 14px 18px;margin:16px 0;border:1px solid var(--line);background:var(--panel-2)}
+  .call .lbl{font-size:11.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:5px}
+  .call.rec{border-left:3px solid var(--green)} .call.rec .lbl{color:var(--green)}
+  .call.note{border-left:3px solid var(--blue)} .call.note .lbl{color:var(--blue)}
+  .call.warn{border-left:3px solid var(--amber)} .call.warn .lbl{color:var(--amber)}
+  .call.fork{border-left:3px solid var(--red)} .call.fork .lbl{color:var(--red)}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+  th,td{text-align:left;padding:9px 11px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--ink-faint);font-weight:600;font-size:11.5px;letter-spacing:.6px;text-transform:uppercase;background:var(--panel)}
+  td code{white-space:nowrap}
+  tr:hover td{background:#10171d}
+  .tag{display:inline-block;font-size:11px;font-weight:600;padding:1px 8px;border-radius:20px;border:1px solid var(--line)}
+  .tag.core{color:var(--green);border-color:#2c4636;background:#14201a}
+  .tag.opt{color:var(--amber);border-color:#4a3f23;background:#1f1a10}
+  .tag.admin{color:var(--ink-dim)}
+  .phase{display:flex;gap:16px;margin:16px 0}
+  .phase .num{flex:none;width:34px;height:34px;border-radius:9px;background:var(--panel);border:1px solid var(--line);color:var(--green);font-family:var(--mono);font-weight:700;display:flex;align-items:center;justify-content:center}
+  .phase .body{flex:1;border-bottom:1px solid var(--line);padding-bottom:14px}
+  .phase .body h3{margin:4px 0 2px}
+  .phase .out{color:var(--ink-faint);font-size:13px;margin-top:6px}
+  .phase .out b{color:var(--green);font-weight:600}
+  .kvs{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;font-size:13.5px;margin:8px 0}
+  .kvs dt{color:var(--ink-faint)} .kvs dd{margin:0;color:var(--ink)}
+  .swatch{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:middle;margin-right:6px;border:1px solid #0006}
+  hr{border:0;border-top:1px solid var(--line);margin:30px 0}
+  .myrec{font-size:13px;color:var(--ink-dim);margin-top:8px;border-top:1px dashed var(--line);padding-top:8px}
+  .myrec b{color:var(--green)}
+  footer{color:var(--ink-faint);font-size:12.5px;border-top:1px solid var(--line);padding-top:20px;margin-top:40px}
+  .runline{font-family:var(--mono);font-size:13px;background:#0b0f13;border:1px solid var(--green);border-left:3px solid var(--green);border-radius:8px;padding:12px 14px;color:#cfe3d6;white-space:pre-wrap}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav>
+  <div class="brand"><span class="dot"></span>OSP Proto-base</div>
+  <div class="sub">Plan v2 · independence-first · 2026-06-17</div>
+  <a href="#tldr" class="active">TL;DR &amp; goals</a>
+  <a href="#what">1 · What the OSP is</a>
+  <a href="#surfaces">2 · Surfaces to build</a>
+  <a href="#persona">3 · The OSP persona (verified)</a>
+  <a href="#state">4 · Feasibility &amp; current state</a>
+  <div class="gap"></div>
+  <a href="#independence">5 · The independence problem</a>
+  <a href="#architecture">6 · Recommended architecture</a>
+  <a href="#hub">7 · Hub changes</a>
+  <div class="gap"></div>
+  <a href="#phases">8 · Execution plan</a>
+  <a href="#decisions">9 · Decisions &amp; open items</a>
+  <a href="#handoff">10 · Execute after /clear</a>
+</nav>
+
+<main>
+<header class="page">
+  <div class="kick">Execution-ready · nothing built yet</div>
+  <h1>OSP proto-base + permanent prototype independence</h1>
+  <div class="meta">
+    Single source of truth for this work — written to survive a <code>/clear</code>.<br>
+    <b>Researched &amp; verified live:</b> prod repo, proto-base, project-hub, OSP knowledge docs (multiple dynamic workflows + a live proof on :5173).
+  </div>
+</header>
+
+<section id="tldr">
+  <h2><span class="n">TL;DR</span> Two goals, one core fix</h2>
+  <div class="card">
+    <p><b>Goal 1 — A separate proto-base for the OSP</b> (Online Selling Platform / "Selling Platform" / "Buy Now"), selectable in the Project Hub alongside the Pricing Engine.</p>
+    <p><b>Goal 2 — Permanent independence:</b> any prototype or proto-base must keep working no matter what changes in another. (The grizmo :5181 break exposed that they're currently coupled.)</p>
+    <p style="margin-bottom:0"><b>The key realization:</b> both goals are the <i>same</i> fix — <b>stop sharing <code>node_modules</code></b>. Every prototype and proto-base should own its dependencies, frozen to its own lockfile. The OSP becomes its own clone; existing prototypes get their own installed deps; the Hub stops symlinking. After that, a dependency change in one place can never break another.</p>
+  </div>
+</section>
+
+<section id="what">
+  <h2><span class="n">1</span> What the OSP is</h2>
+  <p class="lead">From the <code>Gravitate_OSP_AI_Knowledge</code> docs + the live prod code.</p>
+  <p>A <b>B2B fuel e-commerce system</b>. Buyers (counterparties) log in, see a filtered grid of fuel products at terminals/racks, enter gallon orders against real-time available volume, and get a TABS-generated loading number on confirmation. Sellers manage volume allocations; price marketers build index-based formulas that drive the live display prices. Hard rules: never oversell inventory, lock the price at order time, only show products the buyer's relationship allows.</p>
+  <div class="kvs">
+    <dt>Buyer</dt><dd>browses products, places gallon orders, gets loading numbers</dd>
+    <dt>Order</dt><dd>created → validated → confirmed → allocated → loaded</dd>
+    <dt>Allocation</dt><dd>available volume pool; decrements per order</dd>
+    <dt>Product × Location</dt><dd>one grid row = a fuel SKU at a terminal/rack</dd>
+    <dt>Market indices</dt><dd>OPIS/Platts/NYMEX feeds driving formulas</dd>
+  </div>
+</section>
+
+<section id="surfaces">
+  <h2><span class="n">2</span> Surfaces to build</h2>
+  <p class="lead">The real OSP menu (matches your screenshot), in pageConfig order. It spans two module folders.</p>
+  <table>
+    <thead><tr><th>Menu item</th><th>pageConfig key</th><th>Prod folder</th><th></th></tr></thead>
+    <tbody>
+      <tr><td>Dashboard</td><td><code>OrderDashboard</code></td><td>modules/Dashboard/OrderDashboard/</td><td><span class="tag core">core</span></td></tr>
+      <tr><td>Admin Dashboard</td><td><code>AdminDashboard</code></td><td>modules/Dashboard/AdminDashboard/</td><td><span class="tag core">core</span></td></tr>
+      <tr><td>Manage Offers</td><td><code>ManageOffers</code></td><td>modules/Dashboard/SpecialOffers/</td><td><span class="tag core">core</span></td></tr>
+      <tr><td>Online Orders</td><td><code>OnlineOrders</code></td><td>modules/SellingPlatform/OnlineOrders/</td><td><span class="tag core">core</span></td></tr>
+      <tr><td>Buy Now ▾</td><td><code>BuyNow</code></td><td>modules/SellingPlatform/BuyNow/ (Prompt/Forward/Offers)</td><td><span class="tag core">core</span></td></tr>
+      <tr><td>Pricing Engine ▾</td><td><code>PricingEngine</code></td><td>modules/PricingEngine/</td><td><span class="tag opt">reuse</span></td></tr>
+      <tr><td>Admin ▾</td><td><code>Admin</code></td><td>modules/Admin/ (+ Market Platform group)</td><td><span class="tag admin">deeper</span></td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:13px;color:var(--ink-faint)">Note: Dashboard, Admin Dashboard and Manage Offers live under <code>modules/Dashboard/</code> — not <code>SellingPlatform/</code>. "Current Prices" (<code>CalculatedValueReport</code>) sits in the Admin → Market Platform group.</p>
+  <div class="call rec"><span class="lbl">Scope recommendation</span>
+    Build the <b>5 front-of-house surfaces first</b> (Dashboard · Admin Dashboard · Manage Offers · Online Orders · Buy Now) — that reproduces the screenshot and is a complete demo. Treat the ~13 deeper Market Platform admin pages as an explicit later phase. <span class="tag opt">defer admin tier</span></div>
+</section>
+
+<section id="persona">
+  <h2><span class="n">3</span> The OSP persona — theme + scope (verified live ✓)</h2>
+  <p class="lead">The OSP looks different because of a <b>theme</b> + a <b>trimmed scope set</b>. Both confirmed in code and proven on screen.</p>
+
+  <h3>Theme → <code>OSP</code></h3>
+  <p>A real named theme in <code>src/components/shared/Theming/themeconfigs.ts</code>:</p>
+  <div class="kvs">
+    <dt>Sidebar (nav1)</dt><dd><span class="swatch" style="background:#0F1121"></span><code>#0F1121</code> — dark navy</dd>
+    <dt>Accent (primary)</dt><dd><span class="swatch" style="background:#4BADE9"></span><code>#4BADE9</code> — cyan</dd>
+    <dt>Logo</dt><dd><code>src/assets/osp/logos/osp-logo-dark.png</code> (hexagon) + login bg <code>osp-auth-background.jpg</code></dd>
+    <dt>Selected by</dt><dd>deployment config (the OSP build ships <code>DEFAULT_THEME=OSP</code>); not a per-user field</dd>
+  </div>
+
+  <h3>Scope set → 7 keys</h3>
+  <p>The menu is built from the user's DB roles (DomainMember + Prompt/Forward/SpecialOffer purchaser + admin/pricing). The concrete tree to grant in a prototype:</p>
+  <p><code>OrderDashboard · AdminDashboard · ManageOffers · OnlineOrders · BuyNow.{Prompt,Forward,Offers} · PricingEngine · Admin</code> — and nothing else.</p>
+
+  <div class="call rec"><span class="lbl">✓ Proven live on the proto-base (2026-06-16)</span>
+    Two switches turned the proto-base into the OSP: (1) <code>fixtures/configuration.ts</code> → <code>Theme.Default:'OSP'</code>; (2) <code>fixtures/menuItems.ts</code> → trim to the 7-key set. Plus commenting out the <code>Options</code> filter in <code>themeconfigs.ts</code> exposes all themes regardless of backend config. The OSP <b>Order Dashboard</b> rendered with the navy theme, hexagon logo, and realistic mock data (Welcome Freddy · Credit $3,250,000 · Product Listings · Pending Prompts/Forwards). Caveat: that was the <i>stale</i> baseline — the real build re-syncs from current prod.</div>
+</section>
+
+<section id="state">
+  <h2><span class="n">4</span> Feasibility &amp; current proto-base state</h2>
+  <table>
+    <thead><tr><th></th><th>Pricing Engine (done)</th><th>OSP / Selling Platform</th></tr></thead>
+    <tbody>
+      <tr><td>Rough closure</td><td>~208 files</td><td><b>~150–180 files</b> (smaller; reuses PE's plumbing)</td></tr>
+      <tr><td>Front-of-house surfaces</td><td>6</td><td>5 (Dashboard, Admin Dashboard, Manage Offers, Online Orders, Buy Now×3)</td></tr>
+      <tr><td>Websockets / upload</td><td>none</td><td>none (only client-side timers)</td></tr>
+      <tr><td>Net effort</td><td>baseline</td><td>≈ 0.8–1.0×</td></tr>
+    </tbody>
+  </table>
+  <div class="call warn"><span class="lbl">What's actually in the current proto-base (stale)</span>
+    The <code>SellingPlatform/</code> + <code>Dashboard/</code> folders exist but are the frozen ~2025-12 baseline: <b>Online Orders is a generic stub</b> (real folder missing), "Manage Offers" is still keyed/labelled the old "SpecialOffers / Offers", and it boots in the default theme with all scopes. So the OSP build = fresh sync from current prod + fixtures + the persona switches — not "it's already there."</div>
+</section>
+
+<section id="independence">
+  <h2><span class="n">5</span> The independence problem (root cause of the grizmo break)</h2>
+  <p>The Hub symlinks <b>every</b> prototype's <code>node_modules</code> to the <b>one</b> proto-base <code>node_modules</code> (<code>project-hub/server/node-modules.ts → ensureNodeModulesSymlink</code>, called at scaffold + before each run). It's a speed/disk shortcut, but it creates two coupling points:</p>
+  <ul>
+    <li><b>Shared dependency versions</b> — every prototype runs on the proto-base's <i>current</i> versions, ignoring its own lockfile.</li>
+    <li><b>Shared Vite cache</b> (<code>node_modules/.vite/deps</code>) — one dev server's re-optimization can corrupt another's.</li>
+  </ul>
+  <p>What happened: grizmo's own lockfile pins <b>react-router 6.16</b> (has <code>unstable_useBlocker</code>); the symlink fed it the proto-base's June-bumped <b>6.28.1</b> (removed it). grizmo coasted on a stale Vite cache until a second dev server rebuilt that shared cache and exposed the mismatch. test-3 + test-1 carry the same latent issue. <b>The symlink is the coupling; the version bump was the landmine.</b></p>
+</section>
+
+<section id="architecture">
+  <h2><span class="n">6</span> Recommended architecture</h2>
+  <div class="call rec"><span class="lbl">The principle</span>
+    <b>Every prototype and every proto-base owns its own dependencies, frozen to its own committed lockfile. Nothing shared at runtime.</b></div>
+  <ol>
+    <li><b>Retire the <code>node_modules</code> symlink.</b> Replace it with a real per-project install (<code>yarn install --immutable</code> from each project's own lockfile). One install at scaffold; complete isolation thereafter. This alone makes the grizmo class of break impossible — a base bump can't reach an existing prototype, and separate <code>node_modules</code> = separate Vite caches.</li>
+    <li><b>OSP = a separate proto-base clone</b> (e.g. <code>~/freddy/proto-base-osp</code>) with its own deps + lockfile. PE and OSP then evolve fully independently; syncing OSP from prod can never touch PE or its prototypes.</li>
+    <li><b>Guardrail: a "smoke-test all prototypes" Hub command</b> that boots each one and confirms it renders — run after any base change so regressions surface immediately.</li>
+  </ol>
+  <h3>Disk / speed trade-off (why the symlink existed)</h3>
+  <p>Per-project installs cost ~1–2&nbsp;GB and a few minutes each. Options, ranked:</p>
+  <table>
+    <thead><tr><th>Option</th><th>Independence</th><th>Cost</th><th></th></tr></thead>
+    <tbody>
+      <tr><td>Per-project <code>yarn install</code></td><td>full</td><td>~1–2 GB each, zero toolchain risk</td><td><span class="tag core">recommended now</span></td></tr>
+      <tr><td>pnpm (shared content store)</td><td>full</td><td>tiny disk, small migration</td><td><span class="tag opt">if many prototypes</span></td></tr>
+      <tr><td>APFS copy-on-write clone</td><td>isolation only</td><td>instant/cheap, but freezes at base's <i>current</i> versions</td><td><span class="tag admin">new projects only</span></td></tr>
+    </tbody>
+  </table>
+  <div class="myrec"><b>Recommendation:</b> plain per-project installs now (no toolchain risk, proven). Consider pnpm later if the prototype count grows.</div>
+</section>
+
+<section id="hub">
+  <h2><span class="n">7</span> Hub changes</h2>
+  <p>The Hub already manages one proto-base as a start/stoppable runtime (<code>__proto-base__</code>, :5173) and already has a disabled <b>"Selling Platform"</b> sidebar stub. Adding the OSP is small because the runner is generic:</p>
+  <ul>
+    <li><code>server/node-modules.ts</code> — <code>ensureNodeModulesSymlink</code> → <code>ensureNodeModulesInstalled</code> (real <code>yarn install --immutable</code>). Callers: <code>dev-server.ts:90</code>, <code>projects.ts:51</code>.</li>
+    <li><code>server/paths.ts</code> + <code>server/dev-server.ts</code> — generalize the single proto-base into a small registry (<code>pe</code>, <code>ss</code>, later <code>sdi</code>); add <code>SELLING_PLATFORM_PATH</code> + a new port (e.g. 5175).</li>
+    <li><code>server/index.ts</code> + <code>src/lib/api.ts</code> — parameterize the <code>/api/proto-base/:id/...</code> routes + client calls by id.</li>
+    <li><code>src/components/Sidebar.tsx</code> — flip the disabled "Selling Platform" stub into a live <code>ProtoBaseControl</code> (its product dot is already <code>ss</code>).</li>
+    <li>New: a smoke-test script/command that boots every prototype + proto-base and checks it renders.</li>
+  </ul>
+  <p style="font-size:13px;color:var(--ink-faint)">A registry (vs copy-pasting a second set) makes the third product, S&amp;D, a one-line entry later.</p>
+</section>
+
+<section id="phases">
+  <h2><span class="n">8</span> Execution plan</h2>
+  <p class="lead">Independence first (locks in safety), then the OSP. Each phase ends verifiable. Nothing committed/pushed without Frank's word.</p>
+
+  <div class="phase"><div class="num">0</div><div class="body">
+    <h3>Reset the proof edits + tag rollback points</h3>
+    <p>Revert the temporary OSP-demo edits left on the <b>PE proto-base</b> (<code>fixtures/configuration.ts</code>, <code>fixtures/menuItems.ts</code>, <code>themeconfigs.ts</code>) so it goes back to normal. <b>Keep</b> the real react-router fixes in grizmo + test-3. Tag rollback points before touching repos.</p>
+    <div class="out"><b>Outcome:</b> clean starting state; PE proto-base back to its normal menu/theme.</div>
+  </div></div>
+
+  <div class="phase"><div class="num">1</div><div class="body">
+    <h3>Decouple existing prototypes (independence)</h3>
+    <p>For each existing prototype (grizmo, test-1, test-3, quote-filter-bar, variants): remove the <code>node_modules</code> symlink and run <code>yarn install --immutable</code> from its own lockfile (the <code>file:../excalibrr-freddy</code> dep resolves to its sibling symlink). Then boot each and verify it renders.</p>
+    <div class="out"><b>Outcome:</b> every existing prototype frozen to its own deps + own Vite cache — provably independent.</div>
+  </div></div>
+
+  <div class="phase"><div class="num">2</div><div class="body">
+    <h3>Make independence systemic in the Hub</h3>
+    <p>Swap <code>ensureNodeModulesSymlink</code> → <code>ensureNodeModulesInstalled</code> (real install). Add the "smoke-test all prototypes" command. So every <i>future</i> project is born independent.</p>
+    <div class="out"><b>Outcome:</b> the grizmo class of break can't recur; one command verifies the whole fleet.</div>
+  </div></div>
+
+  <div class="phase"><div class="num">3</div><div class="body">
+    <h3>Create the OSP proto-base clone <span style="color:var(--ink-faint);font-weight:400">(check in before starting)</span></h3>
+    <p>Clone proto-base → <code>~/freddy/proto-base-osp</code> with its own installed deps + lockfile. Sync the OSP surfaces from current prod (<code>Dashboard/{OrderDashboard,AdminDashboard,SpecialOffers}</code> + <code>SellingPlatform/{BuyNow,OnlineOrders,CalculatedValueReport}</code>, incl. the "Manage Offers" rename) using the proven PE-sync recipe (closure → wholesale replace → shared tail → bump only what blocks boot → freddy mock seam).</p>
+    <div class="out"><b>Outcome:</b> a standalone OSP app that boots; surfaces mount (grids may be empty).</div>
+  </div></div>
+
+  <div class="phase"><div class="num">4</div><div class="body">
+    <h3>Pin the OSP persona + fixtures</h3>
+    <p>In the OSP clone: set <code>configuration.ts</code> Default <code>'OSP'</code> (+ filter off), trim <code>menuItems.ts</code> to the 7-key set, and write realistic fixtures for the OSP endpoints (product×location grid, offers, order entry/confirm → loading number, online orders, current prices).</p>
+    <div class="out"><b>Outcome:</b> the OSP clone boots as the OSP — navy theme, trimmed menu, a buyer can browse → order → loading number on mock data.</div>
+  </div></div>
+
+  <div class="phase"><div class="num">5</div><div class="body">
+    <h3>Wire OSP into the Hub</h3>
+    <p>Generalize the proto-base registry (pe + ss), add the OSP port + parameterized routes/client, flip the "Selling Platform" sidebar stub to a live control.</p>
+    <div class="out"><b>Outcome:</b> "Selling Platform" is selectable in the Hub, start/stoppable, opens the OSP — next to Pricing Engine.</div>
+  </div></div>
+
+  <div class="phase"><div class="num">6</div><div class="body">
+    <h3>Verify &amp; document</h3>
+    <p>Smoke-test the whole fleet (PE proto-base, OSP proto-base, every prototype). Update memory. Commit per chunk only when Frank says so.</p>
+    <div class="out"><b>Outcome:</b> verified, documented, independent. Ready for review.</div>
+  </div></div>
+
+  <div class="phase" style="opacity:.7"><div class="num">7</div><div class="body">
+    <h3>Optional later</h3>
+    <p>The ~13 Market Platform admin pages; pnpm migration for disk; codify the sync into a reusable <code>/sync-protobase-module</code> skill (makes S&amp;D push-button).</p>
+  </div></div>
+</section>
+
+<section id="decisions">
+  <h2><span class="n">9</span> Decisions &amp; open items</h2>
+  <h3>Resolved (your direction)</h3>
+  <ul>
+    <li><b>Independence model:</b> each prototype/proto-base owns its deps; retire the symlink. ✓</li>
+    <li><b>OSP = separate clone</b> (not a profile of the PE proto-base). ✓</li>
+    <li><b>Scope first phase</b> to the 5 front-of-house surfaces; defer the admin tier. ✓</li>
+    <li><b>Disk approach:</b> plain per-project installs now. ✓ (pnpm reconsidered later if needed.)</li>
+  </ul>
+  <h3>Still worth a quick call (can decide during execution)</h3>
+  <ul>
+    <li>Sync ref for the OSP surfaces — default to the same prod mainline the PE sync used (<code>origin/main/dev</code>) unless you say otherwise.</li>
+    <li>Run the heavy sync/verify as a dynamic Workflow (like the PE sync) — recommended.</li>
+    <li>Fixture richness — populate the core buyer flow richly, keep secondary surfaces lighter.</li>
+  </ul>
+</section>
+
+<section id="handoff">
+  <h2><span class="n">10</span> How to execute after <code>/clear</code></h2>
+  <p>This file + the saved memory are the handoff. After clearing, paste this:</p>
+  <div class="runline">Execute the plan in ~/freddy/OSP-ProtoBase-Plan.html. Read it first, then start at Phase 0 and work through Phase 2 (reset proof edits, decouple existing prototypes, make the Hub install instead of symlink). Stop and check in with me before Phase 3 (creating the OSP clone). Don't commit or push anything without my OK.</div>
+
+  <div class="call note"><span class="lbl">Current on-disk state the next session must know</span>
+    <b>Temporary OSP-demo edits live on the PE proto-base</b> (revert in Phase 0): <code>proto-base/src/freddy/fixtures/configuration.ts</code> (Default OSP), <code>proto-base/src/freddy/fixtures/menuItems.ts</code> (trimmed), <code>proto-base/src/components/shared/Theming/themeconfigs.ts:167</code> (Options filter commented out).<br>
+    <b>Real fixes to KEEP:</b> <code>react-router unstable_useBlocker → useBlocker</code> in <code>grizmo</code> + <code>test-3</code> <code>src/hooks/useNavigationBlock.ts</code>. <code>test-1</code> still has the old import (not yet running) — fix it during Phase 1.<br>
+    <b>Repos:</b> proto-base <code>~/freddy/proto-base</code>; projects <code>~/freddy/projects/&lt;slug&gt;/prototype</code>; hub <code>~/freddy/project-hub</code>; prod source <code>~/Documents/Gravitate Repo/Gravitate.Dotnet.Next/frontend/src</code>. Nothing in this work is committed.
+  </div>
+  <footer>
+    Plan v2 · 2026-06-17 · independence-first. Supersedes v1's "one app, two profiles" recommendation. Research (surfaces, theme, scope) verified; OSP persona proven live on :5173. Nothing built or committed.
+  </footer>
+</section>
+
+</main>
+</div>
+<script>
+  const links=[...document.querySelectorAll('nav a')];
+  const map=new Map(links.map(a=>[a.getAttribute('href').slice(1),a]));
+  const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));const a=map.get(e.target.id);if(a)a.classList.add('active');}});},{rootMargin:'-10% 0px -80% 0px',threshold:0});
+  document.querySelectorAll('section[id]').forEach(s=>obs.observe(s));
+</script>
+</body>
+</html>

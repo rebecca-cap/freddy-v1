@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Project Hub × Obsidian Vault — Concept Wireframe Guide</title>
+<style>
+:root{
+  --wf-color-primary:#2563eb; --wf-color-primary-dim:#1e40af;
+  --wf-color-success:#16a34a; --wf-color-warning:#d97706; --wf-color-error:#dc2626;
+  --wf-obsidian:#7c3aed; --wf-obsidian-text:#5b21b6; --wf-obsidian-bg:#f5f3ff;
+  --wf-color-neutral-900:#111827; --wf-color-neutral-700:#374151; --wf-color-neutral-500:#6b7280;
+  --wf-color-neutral-300:#d1d5db; --wf-color-neutral-200:#e5e7eb; --wf-color-neutral-100:#f3f4f6; --wf-color-neutral-50:#f9fafb;
+  --wf-color-border:#d1d5db; --wf-color-border-light:#e5e7eb;
+  --wf-text-primary:#111827; --wf-text-secondary:#374151; --wf-text-tertiary:#6b7280;
+  --wf-font:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+  --wf-font-mono:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace;
+  --wf-radius-sm:.25rem; --wf-radius-md:.5rem;
+}
+*,*::before,*::after{box-sizing:border-box;}
+body{margin:0;font-family:var(--wf-font);color:var(--wf-text-primary);background:#fff;line-height:1.55;-webkit-font-smoothing:antialiased;font-size:15px;}
+a{color:var(--wf-color-primary);}
+
+/* ---- sidebar ---- */
+.sb{position:fixed;top:0;left:0;width:260px;height:100vh;background:#0f172a;color:#cbd5e1;overflow-y:auto;padding:24px 18px 48px;}
+.sb-brand{display:flex;align-items:center;gap:9px;font-weight:700;color:#fff;font-size:15px;margin-bottom:4px;}
+.sb-brand .mark{width:22px;height:22px;border-radius:6px;background:#6AC08B;color:#0D1217;display:grid;place-items:center;font-size:14px;font-weight:800;}
+.sb-tag{font-size:11px;color:#64748b;margin:0 0 22px 31px;}
+.sb h4{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:#64748b;margin:20px 0 7px;}
+.sb a{display:block;color:#cbd5e1;text-decoration:none;font-size:13px;padding:4px 8px;border-radius:5px;margin-bottom:1px;}
+.sb a:hover{background:rgba(148,163,184,.12);color:#fff;}
+.sb a.mono{font-family:var(--wf-font-mono);font-size:12px;color:#a5b4fc;}
+.sb a.wfopen{color:#c4b5fd;}
+
+/* ---- main ---- */
+.main{margin-left:260px;max-width:1040px;padding:56px 72px 120px;}
+.eyebrow{text-transform:uppercase;letter-spacing:.08em;font-size:12px;font-weight:700;color:var(--wf-color-primary);margin:0 0 10px;}
+h1.title{font-size:34px;line-height:1.15;letter-spacing:-.02em;margin:0 0 14px;}
+.lead{font-size:16px;color:var(--wf-text-secondary);margin:0 0 26px;max-width:74ch;}
+.meta{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;padding-bottom:22px;border-bottom:3px solid #111;}
+.meta dt{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--wf-text-tertiary);margin:0 0 3px;}
+.meta dd{margin:0;font-size:14px;font-weight:500;}
+h2{font-size:22px;letter-spacing:-.01em;margin:52px 0 16px;padding-bottom:9px;border-bottom:2px solid var(--wf-color-neutral-200);scroll-margin-top:24px;}
+h3{scroll-margin-top:24px;}
+p{margin:0 0 14px;} ul,ol{margin:0 0 14px;padding-left:22px;} li{margin-bottom:7px;}
+code{font-family:var(--wf-font-mono);font-size:.86em;background:var(--wf-color-neutral-100);padding:1px 5px;border-radius:4px;}
+.wl{color:var(--wf-obsidian-text);background:var(--wf-obsidian-bg);border-bottom:1px solid #c4b5fd;border-radius:2px;padding:0 3px;font-weight:500;font-size:.92em;white-space:nowrap;}
+
+/* file cards */
+.file-card{background:#fff;border:1px solid var(--wf-color-border);border-radius:8px;padding:0;margin:18px 0;overflow:hidden;}
+.fc-head{display:flex;align-items:center;gap:10px;padding:13px 18px;border-bottom:1px solid var(--wf-color-border-light);background:var(--wf-color-neutral-50);}
+.fc-head h3{margin:0;font-family:var(--wf-font-mono);font-size:14px;color:var(--wf-color-primary);}
+.fc-head .scr{color:var(--wf-text-tertiary);font-size:13px;}
+.fc-head .open{margin-left:auto;font-size:12px;font-weight:600;text-decoration:none;color:var(--wf-color-primary);border:1px solid var(--wf-color-primary);border-radius:5px;padding:4px 11px;white-space:nowrap;}
+.fc-head .open:hover{background:var(--wf-color-primary);color:#fff;}
+.fc-body{padding:16px 18px;}
+.fc-body h4{margin:16px 0 6px;font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:var(--wf-text-tertiary);}
+.fc-body h4:first-child{margin-top:0;}
+.fc-body p,.fc-body li{font-size:14px;}
+
+/* tables */
+table{width:100%;border-collapse:collapse;border:1px solid var(--wf-color-border);border-radius:8px;overflow:hidden;margin:14px 0;font-size:14px;}
+thead th{text-align:left;text-transform:uppercase;font-size:11px;letter-spacing:.04em;color:var(--wf-text-secondary);background:var(--wf-color-neutral-100);padding:9px 12px;border-bottom:1px solid var(--wf-color-border);}
+td{padding:9px 12px;border-bottom:1px solid var(--wf-color-border-light);vertical-align:top;}
+tbody tr:last-child td{border-bottom:none;} tbody tr:hover{background:var(--wf-color-neutral-50);}
+
+/* callouts */
+.callout{background:#f0f9ff;border:1px solid #bae6fd;border-left:3px solid var(--wf-color-primary);border-radius:6px;padding:12px 16px;margin:16px 0;}
+.callout.decision{background:#ecfdf5;border-color:#a7f3d0;border-left-color:var(--wf-color-success);}
+.callout.warn{background:#fffbeb;border-color:#fde68a;border-left-color:var(--wf-color-warning);}
+.callout.obs{background:var(--wf-obsidian-bg);border-color:#ddd6fe;border-left-color:var(--wf-obsidian);}
+.callout-label{font-size:10px;text-transform:uppercase;letter-spacing:.06em;font-weight:700;color:var(--wf-text-tertiary);margin-bottom:4px;}
+.callout p{margin:0;font-size:14px;color:var(--wf-text-secondary);}
+.callout p+p{margin-top:8px;}
+
+ol.decisions li{margin-bottom:12px;line-height:1.55;}
+ol.open-questions{list-style:none;padding-left:0;}
+ol.open-questions li{background:#fffbeb;border-left:3px solid var(--wf-color-warning);border-radius:0 4px 4px 0;padding:10px 14px;margin-bottom:10px;}
+ol.open-questions li b{color:#92400e;}
+
+.swatch{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:-2px;margin-right:4px;border:1px solid rgba(0,0,0,.1);}
+.cite{font-size:13px;}
+.cite li{margin-bottom:5px;}
+
+@media(max-width:900px){.sb{display:none;}.main{margin-left:0;padding:32px 22px 80px;}.meta{grid-template-columns:repeat(2,1fr);}}
+</style>
+</head>
+<body>
+
+<nav class="sb">
+  <div class="sb-brand"><span class="mark">P</span> Project Hub</div>
+  <p class="sb-tag">× Obsidian Vault — concept</p>
+
+  <h4>Introduction</h4>
+  <a href="#overview">Overview</a>
+  <a href="#surfaces">The two surfaces</a>
+  <a href="#color">Color language</a>
+  <a href="#inventory">File inventory</a>
+
+  <h4>Per-screen docs</h4>
+  <a href="#s01">01 · Concept overview</a>
+  <a href="#s02">02 · Repo &amp; vault toggle</a>
+  <a href="#s03">03 · Live KB page</a>
+  <a href="#s04">04 · Project ↔ Knowledge</a>
+  <a href="#s05">05 · Capture loop</a>
+  <a href="#s06">06 · Graph &amp; ADRs</a>
+
+  <h4>Rationale</h4>
+  <a href="#decisions">Design decisions</a>
+  <a href="#research">Research basis</a>
+  <a href="#open">Open questions</a>
+  <a href="#view">How to view</a>
+
+  <h4>Open wireframes</h4>
+  <a class="wfopen" href="01-concept-overview.html" target="_blank">↗ 01 overview</a>
+  <a class="wfopen" href="02-repo-and-toggle.html" target="_blank">↗ 02 repo &amp; toggle</a>
+  <a class="wfopen" href="03-kb-browser.html" target="_blank">↗ 03 KB page</a>
+  <a class="wfopen" href="04-project-knowledge.html" target="_blank">↗ 04 project knowledge</a>
+  <a class="wfopen" href="05-capture-loop.html" target="_blank">↗ 05 capture loop</a>
+  <a class="wfopen" href="06-graph-and-bases.html" target="_blank">↗ 06 graph &amp; ADRs</a>
+</nav>
+
+<main class="main">
+  <p class="eyebrow">Concept Wireframes · Exploration</p>
+  <h1 class="title">Bringing the Obsidian vault into Project Hub</h1>
+  <p class="lead">Six low-fi screens that pitch one idea: move Frank's product-design Obsidian vault into the shared Project Hub repo, and bridge it with the Hub so the team inherits the reasoning behind the work — not just the prototypes. These are rough wireframes for a conversation, not a build spec. The rationale is backed by research; sources are listed at the end.</p>
+  <dl class="meta">
+    <div><dt>Project</dt><dd>Project Hub — Knowledge layer</dd></div>
+    <div><dt>Type</dt><dd>Concept exploration</dd></div>
+    <div><dt>Designer</dt><dd>Frank Overland</dd></div>
+    <div><dt>Date</dt><dd>June 2026</dd></div>
+  </dl>
+
+  <h2 id="overview">Overview</h2>
+  <p>Frank keeps two things. The <b>Project Hub</b> is a React + Express app that manages design prototype projects through their life — lo-fi, hi-fi, handoff — and renders the design system as live reference pages. The <b>Obsidian vault</b> is a personal knowledge base: folders for Decisions, Patterns, Learnings, Projects, Retros, and Syncs, with per-type templates and <code>[[wikilinks]]</code> that tie the notes into a graph. The Hub is shared on GitHub. The vault is not — it lives on one machine.</p>
+  <p>These hold the same knowledge in two modes. The Hub is operational: what exists and whether it runs. The vault is cognitive: why it was built that way and what was learned. This set of wireframes proposes co-locating the vault in the repo so it ships with the Hub, then connecting the two so each project shows its own decisions and learnings, and so teammates who never open Obsidian can still read the second brain in the browser.</p>
+  <p>Each screen is a self-contained HTML file. They share one stylesheet, <code>wf-base.css</code>, built from the Hub's WireframeDesignSystem tokens, so the wireframes match the look of the app they describe. No build step, no server, no JavaScript.</p>
+
+  <h2 id="surfaces">The two surfaces</h2>
+  <p>One rule runs through every screen: split the work by how fast it changes, not by topic. Markdown is great for durable, written knowledge and bad as a design-system spec, because it can't sync token or component values from code and silently goes stale. So the vault owns the durable narrative and the Hub owns the generated, live specs.</p>
+  <table>
+    <thead><tr><th style="width:50%">The vault owns (durable, narrative)</th><th>The Hub owns (generated, live)</th></tr></thead>
+    <tbody>
+      <tr><td>Decisions — why we chose X, what we rejected</td><td>Token &amp; component values, from the JSON source</td></tr>
+      <tr><td>Patterns — reusable how-to conventions</td><td>Interactive specimens (<code>/design-system</code>, <code>/wireframe-system</code>)</td></tr>
+      <tr><td>Learnings — gotchas, root cause, how to avoid</td><td>Runtime — which prototypes run, on which port</td></tr>
+      <tr><td>Projects, Retros, Syncs — the story and the graph</td><td>Project lifecycle — phase, versions, covers, handoff</td></tr>
+      <tr><td>Design-system <i>narrative</i> — principles, do/don't</td><td>—</td></tr>
+    </tbody>
+  </table>
+  <p>The bridge between them is one frontmatter field. Every note can carry <code>project: "[[Grizmo]]"</code>. That single link is the join key: the Hub reads it to group a project's notes, and the note links back to the project. One field, both directions.</p>
+
+  <h2 id="color">Color language</h2>
+  <p>The wireframes use color to mark which surface you're looking at.</p>
+  <ul>
+    <li><span class="swatch" style="background:#7c3aed"></span><b>Obsidian purple</b> (<code>#7c3aed</code>) — the vault: wikilink pills, "Open in Obsidian" buttons, vault nodes, vault-mechanics callouts.</li>
+    <li><span class="swatch" style="background:#2563eb"></span><b>Hub blue</b> (<code>#2563eb</code>) — the app: primary actions, project nodes, the active KB nav item.</li>
+    <li><span class="swatch" style="background:#6AC08B"></span><b>Hub green</b> (<code>#6AC08B</code>) — the Project Hub brand mark in the sidebar.</li>
+    <li><span class="swatch" style="background:#16a34a"></span> accepted / shipped &nbsp; <span class="swatch" style="background:#d97706"></span> proposed / high-severity &nbsp; <span class="swatch" style="background:#dc2626"></span> today's gap.</li>
+  </ul>
+  <p>Callouts come in three flavors: blue for general notes, <span style="color:var(--wf-obsidian-text)">purple</span> for how the vault mechanics work, amber for the "why this matters" reasoning.</p>
+
+  <h2 id="inventory">File inventory</h2>
+  <table>
+    <thead><tr><th>File</th><th>Screen</th><th>Purpose</th></tr></thead>
+    <tbody>
+      <tr><td><code>wf-base.css</code></td><td>—</td><td>Shared low-fi stylesheet (Hub WireframeDesignSystem tokens). Every screen links it.</td></tr>
+      <tr><td><code>01-concept-overview.html</code></td><td>Two surfaces, one brain</td><td>The thesis: architecture diagram, who-owns-what, before/after, the six moves.</td></tr>
+      <tr><td><code>02-repo-and-toggle.html</code></td><td>Co-locate the vault</td><td>Where the vault sits in the repo, the gitignore, and the second-vault toggle.</td></tr>
+      <tr><td><code>03-kb-browser.html</code></td><td>The KB stub goes live</td><td>The disabled "Obsidian KB" sidebar item as a read-only vault browser in the Hub.</td></tr>
+      <tr><td><code>04-project-knowledge.html</code></td><td>Project ↔ Knowledge</td><td>A project's detail page showing its linked Decisions, Patterns, and Learnings.</td></tr>
+      <tr><td><code>05-capture-loop.html</code></td><td>The vault fills itself</td><td>How Hub events, PD-sync, and Claude Code keep notes current as a side effect.</td></tr>
+      <tr><td><code>06-graph-and-bases.html</code></td><td>Graph &amp; ADRs</td><td>The portfolio graph as team memory, a Bases dashboard, and Decisions as ADRs.</td></tr>
+      <tr><td><code>WIREFRAME-GUIDE.html</code></td><td>This guide</td><td>Catalog, rationale, and research basis.</td></tr>
+    </tbody>
+  </table>
+
+  <!-- ============ PER-SCREEN ============ -->
+  <h2 id="s01" style="border:none;margin-bottom:6px;">Per-screen documentation</h2>
+
+  <div class="file-card">
+    <div class="fc-head"><h3>01-concept-overview.html</h3><span class="scr">— Two surfaces, one brain</span><a class="open" href="01-concept-overview.html" target="_blank">Open wireframe →</a></div>
+    <div class="fc-body">
+      <h4>What it shows</h4>
+      <p>The thesis screen. It sets up the whole pitch so the other five have context. Read this first.</p>
+      <h4>On the screen</h4>
+      <ul>
+        <li><b>Architecture diagram</b> — three boxes left to right: Project Hub (operational), the shared GitHub repo in the middle (where both the app and the vault live), and the Obsidian vault (cognitive), with two-way arrows. Below it, the join-key note: <code>project: [[Quote Filter Bar]]</code>.</li>
+        <li><b>Who owns what</b> — two cards splitting durable/narrative (vault) from generated/live (Hub), with the line that vault DS notes link to the Hub specs instead of restating values.</li>
+        <li><b>What changes</b> — a today (siloed, red) vs after (shared, green) comparison.</li>
+        <li><b>Six moves</b> — a table of the proposed moves with a rough value and lift read, and the screen number that wireframes each.</li>
+      </ul>
+      <h4>Why it leads</h4>
+      <p>The volatility split is the one idea most likely to be argued, so it goes up front. It also answers the obvious objection — "isn't this just docs?" — by showing the vault and Hub doing different jobs.</p>
+    </div>
+  </div>
+
+  <div class="file-card" id="s02">
+    <div class="fc-head"><h3>02-repo-and-toggle.html</h3><span class="scr">— Co-locate the vault</span><a class="open" href="02-repo-and-toggle.html" target="_blank">Open wireframe →</a></div>
+    <div class="fc-body">
+      <h4>What it shows</h4>
+      <p>Move 1: where the vault physically goes, and how a teammate gets to it. The cheapest move and the precondition for all the others.</p>
+      <h4>On the screen</h4>
+      <ul>
+        <li><b>Repo tree</b> — the <code>project-hub</code> repo with a new top-level <code>vault/</code> next to <code>server/</code>, <code>src/</code>, <code>resources/</code>, <code>docs/</code>. The vault holds the existing folders (Decisions, Patterns, Learnings, Projects, Retros, Syncs, Design System, Templates), a <code>.obsidian/</code> config, and a <code>README.md</code>.</li>
+        <li><b>The gitignore</b> — an allowlist: ignore <code>.obsidian/*</code>, then re-include the shareable config (<code>app.json</code>, <code>appearance.json</code>, <code>community-plugins.json</code>, <code>core-plugins.json</code>, <code>hotkeys.json</code>, <code>snippets/</code>). Always ignore <code>workspace.json</code>, <code>workspace-mobile.json</code>, <code>cache</code>, <code>.trash/</code>, <code>.DS_Store</code>.</li>
+        <li><b>Vault switcher</b> — a mock of Obsidian's "Open vault" panel listing "Frank's Vault" and an active "Project Hub Vault," plus "Open folder as vault…". A hotkey toggles between them.</li>
+        <li><b>Onboarding</b> — a three-step list for the repo README: clone, open the folder as a vault, toggle.</li>
+      </ul>
+      <h4>The one gotcha</h4>
+      <p>The Obsidian Git plugin needs the vault root to be the git root — one repo, one vault. Here the vault is a subfolder, so that plugin won't drive it. The screen says to skip the plugin and let the repo's normal commit and push be the sync path, which is the flow the team already uses for the Hub code. The gitignore matters because <code>workspace.json</code> is per-person pane layout and would conflict on nearly every pull.</p>
+    </div>
+  </div>
+
+  <div class="file-card" id="s03">
+    <div class="fc-head"><h3>03-kb-browser.html</h3><span class="scr">— The KB stub goes live</span><a class="open" href="03-kb-browser.html" target="_blank">Open wireframe →</a></div>
+    <div class="fc-body">
+      <h4>What it shows</h4>
+      <p>Move 2, and the highest-value one. The Hub sidebar already has an "Obsidian KB" item that's a disabled stub. This makes it a real page: a read-only vault browser inside the Hub.</p>
+      <h4>On the screen</h4>
+      <ul>
+        <li><b>Hub chrome</b> — the real sidebar (Project Hub mark, Projects, and the System section: Design System, Design Patterns, Wireframe DS, and Obsidian KB now active).</li>
+        <li><b>Three-pane browser</b> — a folder rail with live counts (Decisions 6, Patterns 9, Learnings 7, Projects 5, Design System 15, Retros 1, Syncs 2, Templates 7); a note list for the open folder; and the rendered note.</li>
+        <li><b>Rendered note</b> — "Tailwind Merge Class Conflicts" with its frontmatter shown (type, tags, severity: high, <code>project: "[[GDS Design System]]"</code>), the Problem / Root Cause / Fix headings, and a Related section with two wikilink pills.</li>
+        <li><b>Open in Obsidian</b> — a purple button that fires an <code>obsidian://</code> deep link for anyone who wants the graph or wants to edit.</li>
+      </ul>
+      <h4>How it works</h4>
+      <p>Because the vault is markdown files in the same repo, the Express side reads them directly. It globs <code>vault/</code>, parses each note with gray-matter into frontmatter and body, and serves JSON. A markdown renderer with a wikilink plugin turns <code>[[links]]</code> into in-Hub <code>/kb/:slug</code> anchors. No Obsidian install and no running app are needed to read. This reuses the exact pattern the Hub already uses for its generated design-system reference pages.</p>
+      <h4>Why it matters</h4>
+      <p>Engineers and PMs read the second brain in a browser tab. The vault stops being a tool only one person opens.</p>
+    </div>
+  </div>
+
+  <div class="file-card" id="s04">
+    <div class="fc-head"><h3>04-project-knowledge.html</h3><span class="scr">— Project ↔ Knowledge</span><a class="open" href="04-project-knowledge.html" target="_blank">Open wireframe →</a></div>
+    <div class="fc-body">
+      <h4>What it shows</h4>
+      <p>Move 3: the bridge. A project's detail page gets a Knowledge tab that lists the Decisions, Patterns, and Learnings linked to it.</p>
+      <h4>On the screen</h4>
+      <ul>
+        <li><b>Project header</b> — "Grizmo," a Hi-fi phase badge, branch and port. A tab bar (Overview / Lo-fi / Hi-fi / Knowledge / Resources) with Knowledge active.</li>
+        <li><b>Three cards</b> — Decisions (3), Active Patterns (4), Learnings &amp; gotchas (3). Each row has a status or severity badge and two small buttons: "↗ Obsidian" (deep link) and "Open here" (renders in the Hub).</li>
+        <li><b>Real content</b> — Decisions like "Use Excalibrr Over Raw Antd" (accepted) and "Two-Surface Profile Architecture" (proposed); patterns like "GraviGrid Configuration" and "Feature API Hook"; learnings like "Cell Editor Stale Closure" (high).</li>
+        <li><b>Join diagram</b> — frontmatter → scan → panel, showing how the Hub finds a project's notes.</li>
+      </ul>
+      <h4>Why it matters</h4>
+      <p>This is the existing Excalibrr Demo project note — which already lists Key Decisions, Active Patterns, and Known Issues — rendered as a Hub panel next to the running prototype. The reasoning sits where the work is.</p>
+    </div>
+  </div>
+
+  <div class="file-card" id="s05">
+    <div class="fc-head"><h3>05-capture-loop.html</h3><span class="scr">— The vault fills itself</span><a class="open" href="05-capture-loop.html" target="_blank">Open wireframe →</a></div>
+    <div class="fc-body">
+      <h4>What it shows</h4>
+      <p>Move 4: how the vault stays current without anyone remembering to write notes.</p>
+      <h4>On the screen</h4>
+      <ul>
+        <li><b>Three-lane flow</b> — Triggers (Hub events, the PD-sync skill, Claude Code) → Write path (scaffold from templates, patch frontmatter with gray-matter, seed a note) → the Vault → back into the Hub's KB and Project → Knowledge pages.</li>
+        <li><b>Worked example</b> — Grizmo moves to hi-fi: Frank promotes it in the Hub; the Hub patches <code>Projects/Grizmo.md</code> to <code>status: hifi</code> and leaves the body alone; the KB and project pages reflect it right away.</li>
+      </ul>
+      <h4>The rule</h4>
+      <p>Pick one write path. Write to files on disk when Obsidian may be closed; use the Local REST API only when it's guaranteed open. Never both at once, or Obsidian's in-memory copy overwrites the disk edit. The point of the loop is to beat the main failure mode of any knowledge base — notes nobody maintains — by making capture a side effect of work that already happens.</p>
+    </div>
+  </div>
+
+  <div class="file-card" id="s06">
+    <div class="fc-head"><h3>06-graph-and-bases.html</h3><span class="scr">— Graph &amp; ADRs</span><a class="open" href="06-graph-and-bases.html" target="_blank">Open wireframe →</a></div>
+    <div class="fc-body">
+      <h4>What it shows</h4>
+      <p>Moves 5 and 6, the ones that compound. The graph turns scattered notes into a map of how the product got here; ADR discipline makes that map trustworthy.</p>
+      <h4>On the screen</h4>
+      <ul>
+        <li><b>Portfolio graph</b> — an illustrative node graph (inline SVG) where two project nodes, Grizmo and Quote Filter Bar, both link to a shared "GDS Design System" node. The shared node is the point: the graph reveals reuse across projects you didn't plan.</li>
+        <li><b>Bases dashboard</b> — an "Open Decisions" table (Decision / Status / Project / Date) embedded in an index note with <code>![[Decisions.base#Open]]</code>. Bases is a native core plugin, so the table renders for every teammate with no install. Dataview stays the power-user fallback.</li>
+        <li><b>ADR skeleton</b> — a Decision note's frontmatter (type, status, supersedes, deciders) and the MADR headings: Context, Decision Drivers, Considered Options, Decision, Consequences, Related.</li>
+      </ul>
+      <h4>The discipline</h4>
+      <p>One decision per file, numbered, immutable once accepted. To change a decision you write a new note that supersedes the old one; you don't edit history. Decisions get reviewed in a PR like code. That audit trail is what makes the log trustworthy, and it's the direct answer to the bus-factor risk of one designer holding all the context.</p>
+    </div>
+  </div>
+
+  <!-- ============ RATIONALE ============ -->
+  <h2 id="decisions">Design decisions reflected</h2>
+  <ol class="decisions">
+    <li><b>Split by volatility, not topic.</b> The vault owns durable narrative (decisions, patterns, learnings). The Hub's generated JSON stays the source of truth for token and component values. Vault design-system notes link to the Hub specs rather than restate them, so they can't drift.</li>
+    <li><b>One join key.</b> A note's <code>project: "[[..]]"</code> frontmatter is the only link the Hub needs to connect a note to a project. It works both directions and needs no database.</li>
+    <li><b>Read without Obsidian.</b> Every bridge feature works off the markdown files on disk, so a teammate who never installs Obsidian still reads the whole knowledge base in the Hub. Deep links to Obsidian are an upgrade, not a requirement.</li>
+    <li><b>Sync through the repo, not the plugin.</b> The vault is a subfolder, so the Obsidian Git plugin can't drive it. The repo's normal commit and push is the sync path — one mechanism the team already runs.</li>
+    <li><b>Ship a curated config.</b> An allowlist gitignore sends teammates one consistent theme and plugin set while ignoring per-person workspace state. The shared vault should depend on as few plugins as possible.</li>
+    <li><b>Capture as a side effect.</b> Notes are created and updated by Hub events, the PD-sync skill, and Claude Code, so the vault stays current without a discipline nobody keeps.</li>
+    <li><b>Decisions are immutable ADRs.</b> Numbered, one per file, superseded rather than edited, reviewed in PRs. This is the format generic tools handle worst and the strongest reason to keep design knowledge as markdown in the repo.</li>
+  </ol>
+
+  <h2 id="research">Research basis</h2>
+  <p>The recommendations come from a fact-checked scan of how product teams actually use Obsidian, keep vaults in Git, and integrate it with other tools. The load-bearing findings:</p>
+  <ul>
+    <li><b>Obsidian is free for work</b> since Feb 20, 2025 — the commercial license is optional and adds no features. No licensing blocker.</li>
+    <li><b>Bases is a native core plugin</b> (shipped v1.9, 2025). <code>.base</code> files are plain text, version-control cleanly, and render with no install — the right default over Dataview for a non-developer team.</li>
+    <li><b>Obsidian Git needs vault-root == git-root.</b> A vault in a subfolder can't use the plugin; the supported escape hatches are a submodule or plain repo git. Confirmed against the plugin docs and forum.</li>
+    <li><b>Gitignore <code>workspace.json</code></b> (and other per-user state); commit the shared config via an allowlist. This is the documented fix for constant merge conflicts.</li>
+    <li><b>ADRs / docs-as-code</b> (MADR, Diátaxis) — keep decision records in the repo, numbered and immutable, organized by reader need. The Decisions folder is already an ADR system in spirit.</li>
+    <li><b>Markdown loses as a design-system spec</b> — no Figma/code sync means token values drift ("Stale Documentation Syndrome"), which is why the vault references the Hub's generated specs.</li>
+    <li><b>Integration seams</b> — the <code>obsidian://</code> URI scheme (plus the Advanced URI plugin for rename-stable links), reading notes on disk with gray-matter, and rendering wikilinks with markdown-it for an in-Hub read-only view.</li>
+  </ul>
+  <p><b>Sources</b></p>
+  <ul class="cite">
+    <li>Obsidian — Free for work (2025-02-20): <code>obsidian.md/blog/free-for-work</code></li>
+    <li>Obsidian — Bases: <code>obsidian.md/help/bases</code></li>
+    <li>Obsidian — URI scheme: <code>obsidian.md/help/Extending+Obsidian/Obsidian+URI</code></li>
+    <li>Obsidian Git (Vinzent03) + "one repo = one vault" forum thread: <code>github.com/Vinzent03/obsidian-git</code>; <code>forum.obsidian.md/t/.../93902</code></li>
+    <li>What to gitignore for a vault repo: <code>forum.obsidian.md/t/.../101077</code></li>
+    <li>MADR — Markdown decision records: <code>adr.github.io/madr</code> · Diátaxis: <code>diataxis.fr</code></li>
+    <li>Advanced URI (Vinzent03): <code>github.com/Vinzent03/obsidian-advanced-uri</code> · gray-matter; markdown-it-wikilinks-plus; Local REST API (coddingtonbear)</li>
+    <li>Obsidian for designers (Hack Design): <code>hackdesign.org/toolkit/obsidian</code> · zeroheight on stale docs / DS drift</li>
+  </ul>
+
+  <h2 id="open">Open questions</h2>
+  <ol class="open-questions">
+    <li><b>Vault location and name.</b> <code>vault/</code> at the repo root, or <code>docs/vault/</code>? The vault name is hard-coded in every <code>obsidian://</code> deep link, so it needs to be stable and documented in the README. Pick one before any link is persisted.</li>
+    <li><b>How much to move.</b> The current vault has test notes and design-system stubs mixed with real content. Move the whole thing, or curate first? A shared vault rots faster than a personal one, so a clean starting set may be worth the effort.</li>
+    <li><b>Hub render depth.</b> Does the in-Hub KB page need full graph navigation and search, or is folder + note + wikilinks enough for v1? The design-refs browser pattern already covers most of it.</li>
+    <li><b>Write-back scope.</b> Which Hub events should patch the vault automatically — just phase changes, or new-project scaffolding and decision seeding too? More automation means more value and more chances to write a note someone didn't want.</li>
+    <li><b>Design-system narrative overlap.</b> The Hub already has <code>/design-system</code>, <code>/design-patterns</code>, and <code>/wireframe-system</code> reference pages. Where does the vault's design-system narrative stop and the generated reference begin, so they don't duplicate?</li>
+    <li><b>Teammate adoption.</b> Will engineers actually open a second vault, or only ever read the Hub KB page? If it's read-only-in-Hub for everyone but Frank, that's fine — but it changes which features matter.</li>
+  </ol>
+
+  <h2 id="view">How to view</h2>
+  <p>Open any <code>.html</code> file in this folder in a browser. Each is self-contained — no build step or server. They share <code>wf-base.css</code>, so keep that file alongside them.</p>
+  <p>Recommended order:</p>
+  <ol>
+    <li><code>01-concept-overview.html</code> — start here for the thesis and the map of moves.</li>
+    <li><code>02-repo-and-toggle.html</code> — where the vault goes and how teammates reach it.</li>
+    <li><code>03-kb-browser.html</code> — the highest-value move: the KB page inside the Hub.</li>
+    <li><code>04-project-knowledge.html</code> — the bridge, per project.</li>
+    <li><code>05-capture-loop.html</code> — how it stays current.</li>
+    <li><code>06-graph-and-bases.html</code> — what compounds over time.</li>
+  </ol>
+</main>
+</body>
+</html>

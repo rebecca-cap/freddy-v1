@@ -1,0 +1,12 @@
+/*
+ * Scout — module-wide styles entry point.
+ *
+ * Consumers should import only this file; it pulls in the Scout design
+ * tokens (scoped under `.scout-scope`) and is the place to add any
+ * additional module-wide rules. Component-local CSS lives next to its
+ * component. Excalibrr theme tokens (--theme-color-2, --gray-100, etc.)
+ * remain available from the ThemeContextProvider wrapping the app.
+ */
+
+@import './scout-tokens.css';
+@import './scout-grid.css';

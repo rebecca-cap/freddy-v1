@@ -1,0 +1,15 @@
+{
+  "path": "/Admin/MarketPlatformSetups",
+  "title": "Market Platform Setups",
+  "finalUrl": "http://localhost:3001/Admin/MarketPlatformSetups",
+  "rootLen": 84089,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [
+    "MarketPlatform/Admin/TradeEntrySetup/GetMetaData",
+    "MarketPlatform/Admin/TradeEntrySetup/Read"
+  ],
+  "consoleEventCount": 14
+}

@@ -1,0 +1,16 @@
+{
+  "path": "/ContractManagement/Contracts",
+  "title": "Contracts",
+  "finalUrl": "http://localhost:3001/ContractManagement/Contracts",
+  "rootLen": 142442,
+  "crashed": false,
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 429 ()"
+  ],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [
+    "ContractManagement/report/GetAll"
+  ],
+  "consoleEventCount": 14
+}

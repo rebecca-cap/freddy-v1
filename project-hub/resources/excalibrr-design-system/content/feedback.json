@@ -1,0 +1,301 @@
+{
+  "slug": "feedback",
+  "title": "Feedback & Notifications",
+  "order": 12,
+  "group": "Communication",
+  "intro": "Every async action answers back through one of five channels: NotificationMessage toasts for outcomes, antd message pills for split-second acknowledgements, Modal.confirm for consent, Overlay for in-place blocking, and LoadingAnimation for first loads. Pick the channel by consequence, not by taste.",
+  "demoPath": "/DesignSystem/Feedback",
+  "searchTerms": [
+    "NotificationMessage",
+    "ErrorNotification",
+    "notification",
+    "toast",
+    "message",
+    "Modal",
+    "Modal.confirm",
+    "confirm dialog",
+    "Overlay",
+    "Spin",
+    "LoadingAnimation",
+    "Alert",
+    "loading",
+    "feedback"
+  ],
+  "blocks": [
+    {
+      "type": "usage",
+      "body": "Feedback is how the app answers the user after an action or while one is in flight. Excalibrr ships two thin wrappers over antd's notification API — `NotificationMessage` (titled success/error toasts) and `ErrorNotification` (form-validation toast) — and two loading primitives: `Overlay` (antd Spin around in-place content) and `LoadingAnimation` (Lottie illustration for first loads). Everything else comes straight from antd: `message` for pills, `Modal`/`Modal.confirm` for dialogs, `Alert` for persistent inline warnings.\n\nToasts confirm what already happened; modals gather consent before it happens; overlays and loading states cover the time in between. Never substitute one for another — a toast after a silent delete is not a confirmation flow."
+    },
+    {
+      "type": "specimen",
+      "title": "NotificationMessage — success and error toasts",
+      "image": "specimens/feedback/01-notification-toasts.png",
+      "caption": "Top-right toast stack. Error state (showErrorMessage=true) renders WarningFilled in --theme-error; success state (false) renders CheckCircleFilled in --theme-success. Both auto-dismiss after antd's default 4.5s."
+    },
+    {
+      "type": "props",
+      "title": "NotificationMessage(message, description, showErrorMessage)",
+      "intro": "A function call, not a component — invoke it from event handlers. It wraps `notification.open` and adds the themed status icon.",
+      "rows": [
+        {
+          "prop": "message",
+          "type": "ReactNode",
+          "notes": "Toast title. Short outcome statements: 'Save Successful', 'Error Saving'."
+        },
+        {
+          "prop": "description",
+          "type": "ReactNode",
+          "notes": "Body copy. Accepts strings or JSX — ErrorNotification passes a list of <li> elements."
+        },
+        {
+          "prop": "showErrorMessage",
+          "type": "boolean",
+          "default": "true",
+          "notes": "true = red WarningFilled (--theme-error); false = green CheckCircleFilled (--theme-success). The default is the ERROR icon — always pass this argument explicitly."
+        }
+      ]
+    },
+    {
+      "type": "variants",
+      "title": "Toast variants",
+      "intro": "One function, three intents. The third argument is the only axis — there is no warning or info toast; use an inline Alert for those.",
+      "rows": [
+        {
+          "name": "Success",
+          "when": "An action completed: save, publish, upload, delete.",
+          "code": "NotificationMessage('Save Successful', '4 record(s) saved successfully', false)"
+        },
+        {
+          "name": "Error",
+          "when": "An action failed and the user should retry or escalate.",
+          "code": "NotificationMessage('Error Saving', 'Failed to save changes. Please try again.', true)"
+        },
+        {
+          "name": "Validation failure",
+          "when": "antd Form submit fails validation — wire ErrorNotification directly, it formats errorFields into one deduplicated 'Oops!' toast.",
+          "code": "<Form onFinishFailed={ErrorNotification} />"
+        }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "ErrorNotification — form validation toast",
+      "image": "specimens/feedback/02-error-notification.png",
+      "caption": "The 'Oops!' toast produced by passing antd's onFinishFailed payload to ErrorNotification: one line per distinct field error, duplicate messages dropped."
+    },
+    {
+      "type": "code",
+      "title": "Canonical toast wiring",
+      "code": "import { ErrorNotification, GraviButton, NotificationMessage } from '@gravitate-js/excalibrr'\nimport { Form } from 'antd'\n\nconst [form] = Form.useForm()\n\nconst handleSave = async (values: QuoteFormValues) => {\n  try {\n    await saveQuotes(values)\n    NotificationMessage('Save Successful', '4 record(s) saved successfully', false)\n  } catch {\n    NotificationMessage('Error Saving', 'Failed to save changes. Please try again.', true)\n  }\n}\n\n<Form form={form} layout='vertical' onFinish={handleSave} onFinishFailed={ErrorNotification}>\n  {/* fields */}\n</Form>\n<GraviButton theme1 buttonText='Save' onClick={() => form.submit()} />",
+      "note": "ErrorNotification plugs straight into onFinishFailed — no wrapper needed. Submit via GraviButton onClick={() => form.submit()}; htmlType='submit' is on the repo's banned-mistakes list."
+    },
+    {
+      "type": "specimen",
+      "title": "antd message — pill states",
+      "image": "specimens/feedback/03-message-pills.png",
+      "caption": "Top-center message pills: success, error, warning, and loading states. No title, no body — a single line that earns at most three seconds of attention."
+    },
+    {
+      "type": "rules",
+      "title": "Choose the channel",
+      "items": [
+        {
+          "rule": "Use a NotificationMessage toast for action outcomes — saves, publishes, uploads, deletes.",
+          "why": "Titled, top-right, auto-dismissing: visible without interrupting flow."
+        },
+        {
+          "rule": "Use a message pill only for split-second acknowledgements with no title and no consequence.",
+          "why": "If the user might need to act on it, it deserves a toast with a description."
+        },
+        {
+          "rule": "Use Modal.confirm before destructive or irreversible actions — never confirm after the fact.",
+          "why": "Toasts report outcomes; they cannot gather consent."
+        },
+        {
+          "rule": "Use Overlay to block an in-place region during async work; the content stays mounted and dims.",
+          "why": "Layout holds steady — no flash of empty space when the work finishes."
+        },
+        {
+          "rule": "Use LoadingAnimation for first loads where there is nothing to dim yet.",
+          "why": "An empty region with a bare spinner reads as broken; the illustration plus title reads as working."
+        },
+        {
+          "rule": "Use an inline antd Alert for warnings that must persist until resolved — validation summaries, range warnings, banner notices.",
+          "why": "Toasts vanish in 4.5 seconds; unresolved problems must not."
+        }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "Modal.confirm — destructive confirmation",
+      "image": "specimens/feedback/04-modal-confirm.png",
+      "caption": "Confirmation dialog: title states the action as a question, body states the consequence, and the destructive button carries danger styling beside a plain Cancel escape. antd focuses the OK button by default."
+    },
+    {
+      "type": "code",
+      "title": "Canonical controlled Modal",
+      "code": "const [open, setOpen] = useState(false)\n\n<Modal\n  open={open}            // antd v5 — `visible` silently does nothing\n  destroyOnHidden        // antd v5 — `destroyOnClose` is deprecated\n  title='Delete Contract?'\n  okText='Delete'\n  okButtonProps={{ danger: true }}\n  onOk={handleDelete}\n  onCancel={() => setOpen(false)}\n>\n  This will permanently remove CTR-2024-001 and all associated data. This action cannot be undone.\n</Modal>",
+      "note": "For one-shot confirmations with no local state, Modal.confirm({ title, content, okText, okButtonProps: { danger: true } }) renders the same dialog imperatively."
+    },
+    {
+      "type": "specimen",
+      "title": "Overlay — renderOverlay off and on",
+      "image": "specimens/feedback/05-overlay-spin.png",
+      "caption": "renderOverlay={false} renders children untouched with zero wrapper DOM; renderOverlay={true} wraps them in antd Spin — content dims, the spinner and overlayContent tip center over it."
+    },
+    {
+      "type": "props",
+      "title": "Overlay",
+      "intro": "A conditional antd Spin wrapper. The type accepts all SpinProps, but the implementation reads exactly four props — `spinning`, `size`, and `delay` are ignored.",
+      "rows": [
+        {
+          "prop": "children",
+          "type": "ReactNode",
+          "notes": "The region being blocked. Always rendered — dimmed when the overlay is on, bare when off."
+        },
+        {
+          "prop": "renderOverlay",
+          "type": "boolean",
+          "notes": "Required. true wraps children in <Spin>; false returns children in a Fragment with no extra DOM. Drive it from your loading/saving state."
+        },
+        {
+          "prop": "overlayContent",
+          "type": "SpinProps['tip']",
+          "notes": "Label under the spinner — 'Saving…', 'Loading…'. Keep it to one word plus ellipsis."
+        },
+        {
+          "prop": "overlayIndicator",
+          "type": "SpinProps['indicator']",
+          "notes": "Custom spinner element. Omit for the standard antd dot spinner."
+        }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "LoadingAnimation — first-load state",
+      "image": "specimens/feedback/06-loading-animation.png",
+      "caption": "LoadingAnimation with required animationData, title, and message: Lottie illustration above a left-aligned bold h5 title and p1 message in the empty region."
+    },
+    {
+      "type": "props",
+      "title": "LoadingAnimation",
+      "intro": "Lottie illustration plus Texto title and message. All three content props are required — a bare <LoadingAnimation /> renders nothing visible.",
+      "rows": [
+        {
+          "prop": "animationData",
+          "type": "Options['animationData'] (react-lottie)",
+          "notes": "Required. Imported Lottie JSON (e.g. from src/assets/Animation/). There is no built-in default animation."
+        },
+        {
+          "prop": "title",
+          "type": "string",
+          "notes": "Required. Bold headline under the animation — 'Loading Quotes'."
+        },
+        {
+          "prop": "message",
+          "type": "string",
+          "notes": "Required. Supporting line — 'Fetching the latest quote book…'."
+        },
+        {
+          "prop": "large",
+          "type": "boolean",
+          "notes": "Bumps the type scale to h1 title + h5 message for full-page loads. Default scale is h5 + p1."
+        },
+        {
+          "prop": "loop",
+          "type": "boolean",
+          "default": "true",
+          "notes": "Loop the animation while waiting."
+        },
+        {
+          "prop": "width",
+          "type": "number",
+          "default": "355",
+          "notes": "Animation width in px."
+        },
+        {
+          "prop": "height",
+          "type": "number",
+          "default": "245",
+          "notes": "Animation height in px."
+        }
+      ]
+    },
+    {
+      "type": "tokens",
+      "title": "Status tokens",
+      "intro": "Values shown are the light-theme resolution (ThemeBase/light.less); each theme stylesheet redefines them. Always reference the variable, never the hex.",
+      "rows": [
+        {
+          "token": "--theme-error",
+          "value": "#f22939",
+          "use": "Error toast icon (WarningFilled), destructive accents."
+        },
+        {
+          "token": "--theme-success",
+          "value": "#64d28d",
+          "use": "Success toast icon (CheckCircleFilled), positive confirmations."
+        },
+        {
+          "token": "--theme-error-dim",
+          "value": "#FCD1D5",
+          "use": "Error tint backgrounds for inline alert surfaces and tags."
+        },
+        {
+          "token": "--theme-success-dim",
+          "value": "#DBF4E4",
+          "use": "Success tint backgrounds for inline alert surfaces and tags."
+        }
+      ]
+    },
+    {
+      "type": "dosdonts",
+      "items": [
+        {
+          "do": "Pass NotificationMessage's third argument explicitly: false for success, true for error.",
+          "dont": "Omit it on a success toast.",
+          "why": "showErrorMessage defaults to true — your success copy ships under a red warning icon."
+        },
+        {
+          "do": "Gate destructive actions behind Modal.confirm with okButtonProps={{ danger: true }}.",
+          "dont": "Delete on click and announce it with a toast afterward.",
+          "why": "A toast reports an outcome; it cannot collect consent for an irreversible one."
+        },
+        {
+          "do": "Wrap a saving or refreshing region in <Overlay renderOverlay={isSaving}>.",
+          "dont": "Hand-roll absolutely-positioned spinner divs over content.",
+          "why": "Spin handles dimming, centering, and pointer blocking consistently; custom overlays drift per page."
+        }
+      ]
+    },
+    {
+      "type": "gotchas",
+      "items": [
+        {
+          "title": "antd v5: `open`, never `visible`",
+          "detail": "A Modal or Drawer given visible={true} simply never appears — no error, no warning in some versions. Every open-state prop in v5 is `open`."
+        },
+        {
+          "title": "`destroyOnClose` is deprecated — use `destroyOnHidden`",
+          "detail": "v5 logs a console deprecation warning per render (the demo app currently emits one). Same behavior, new name: unmount modal children when hidden."
+        },
+        {
+          "title": "`onVisibleChange` is gone — use `onOpenChange`",
+          "detail": "Popover, Dropdown, and Tooltip all take onOpenChange in v5; the old callback silently never fires. Modal's equivalent is afterOpenChange."
+        },
+        {
+          "title": "NotificationMessage defaults to the error icon",
+          "detail": "showErrorMessage defaults to true. NotificationMessage('Saved', '…') renders a red WarningFilled next to success copy. Always pass the third argument."
+        },
+        {
+          "title": "Do not copy props from the Feedback showcase page",
+          "detail": "Both showcase specimens render empty: <LoadingAnimation /> is missing the required animationData/title/message, and <Overlay open={true} /> uses a prop that does not exist — the real prop is renderOverlay, with children required."
+        },
+        {
+          "title": "NotificationMessage's @deprecated tag is stale",
+          "detail": "The library source flags it 'unused', yet it is the standard toast across the codebase — grid save flows, contract creation, file uploads all call it. Keep using it until a replacement actually ships."
+        }
+      ]
+    }
+  ]
+}

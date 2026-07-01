@@ -1,0 +1,13 @@
+/*
+ * ScoutFeedbackReceipt — one-line "feedback logged" confirmation.
+ * Spec `.ex-feedback-done`: quiet accent-tinted block, no controls.
+ */
+
+.scout-feedback-receipt {
+  padding: 8px 12px;
+  background: var(--scout-accent-bg);
+  color: var(--scout-accent-text);
+  border: 0.5px solid var(--scout-accent);
+  border-radius: var(--scout-radius);
+  font-size: var(--scout-font-size-md);
+}

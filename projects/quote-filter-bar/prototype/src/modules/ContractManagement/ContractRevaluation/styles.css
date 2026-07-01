@@ -1,0 +1,28 @@
+.custom-popover-no-padding .ant-popover-inner-content {
+    padding: 0;
+}
+
+.manual-revaluation-modal {
+    width: 200vw;
+}
+
+.manual-revaluation-modal .ant-modal-body {
+    /*height: 30vh;*/
+    padding: 0;
+}
+
+.manual-revaluation-modal .ant-modal-title {
+    font-weight: normal !important; /* or 400 */
+}
+
+.revaluation-step-header {
+    width: 100%;
+}
+
+.revaluation-step-header .ant-progress-inner {
+    border-radius: 8px;
+}
+
+.content-container {
+    padding: 25px;
+}

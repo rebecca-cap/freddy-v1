@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UX Audit — Zero → Create Index Special Offer (Round 2)</title>
+<style>
+  :root {
+    /* neutrals tinted toward the brand slate-blue */
+    --bg: oklch(0.985 0.004 250);
+    --surface: oklch(1 0 0);
+    --sunken: oklch(0.972 0.006 250);
+    --ink: oklch(0.24 0.02 255);
+    --ink-2: oklch(0.44 0.02 255);
+    --ink-3: oklch(0.60 0.015 255);
+    --line: oklch(0.91 0.008 255);
+    --line-strong: oklch(0.84 0.01 255);
+    --accent: oklch(0.52 0.12 255);
+    /* severity */
+    --p0: oklch(0.55 0.16 25);
+    --p0-bg: oklch(0.96 0.03 25);
+    --p1: oklch(0.62 0.12 65);
+    --p1-bg: oklch(0.965 0.04 80);
+    --p2: oklch(0.55 0.05 255);
+    --p2-bg: oklch(0.96 0.015 255);
+    --good: oklch(0.55 0.1 155);
+    --good-bg: oklch(0.96 0.04 155);
+    --radius: 10px;
+    --maxw: 920px;
+    font-family: ui-sans-serif, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    line-height: 1.55; font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px 96px; }
+
+  /* ---- masthead ---- */
+  header.mast { padding: 56px 0 28px; border-bottom: 1px solid var(--line); }
+  .eyebrow { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; margin: 0 0 14px; }
+  h1 { font-size: clamp(30px, 4vw, 42px); line-height: 1.08; letter-spacing: -0.02em; margin: 0 0 14px; font-weight: 700; }
+  .lede { font-size: 18px; color: var(--ink-2); max-width: 64ch; margin: 0; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 22px; font-size: 13px; color: var(--ink-3); }
+  .meta b { color: var(--ink-2); font-weight: 600; }
+  .readonly {
+    margin-top: 22px; display: inline-flex; align-items: center; gap: 10px;
+    background: var(--good-bg); color: oklch(0.4 0.09 155);
+    border: 1px solid oklch(0.85 0.06 155); border-radius: 999px;
+    padding: 7px 15px; font-size: 13.5px; font-weight: 600;
+  }
+  .readonly::before { content: "●"; color: var(--good); font-size: 10px; }
+
+  /* ---- section headings ---- */
+  h2 { font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); font-weight: 700; margin: 56px 0 18px; }
+  h3 { font-size: 21px; letter-spacing: -0.01em; margin: 0 0 6px; font-weight: 650; }
+
+  /* ---- summary table ---- */
+  .summary { width: 100%; border-collapse: collapse; font-size: 14.5px; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+  .summary th, .summary td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+  .summary th { background: var(--sunken); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); font-weight: 700; }
+  .summary tr:last-child td { border-bottom: none; }
+  .summary td a { color: var(--ink); text-decoration: none; font-weight: 550; }
+  .summary td a:hover { color: var(--accent); text-decoration: underline; }
+  .summary .col-id { color: var(--ink-3); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+  /* ---- severity pill ---- */
+  .pill { display: inline-block; font-size: 11.5px; font-weight: 700; letter-spacing: .04em; padding: 3px 9px; border-radius: 6px; white-space: nowrap; }
+  .pill.p0 { background: var(--p0-bg); color: var(--p0); }
+  .pill.p1 { background: var(--p1-bg); color: oklch(0.5 0.12 65); }
+  .pill.p2 { background: var(--p2-bg); color: var(--p2); }
+  .pill.good { background: var(--good-bg); color: oklch(0.42 0.09 155); }
+
+  /* ---- finding cards ---- */
+  .finding { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 24px; margin: 16px 0; scroll-margin-top: 20px; }
+  .finding-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+  .finding-head .num { font-variant-numeric: tabular-nums; color: var(--ink-3); font-weight: 700; font-size: 14px; }
+  .finding-head h3 { flex: 1 1 auto; min-width: 50%; }
+  .finding .where { font-size: 13px; color: var(--ink-3); margin: 0 0 16px; }
+  .finding .where b { color: var(--ink-2); font-weight: 600; }
+  .block { margin: 14px 0; }
+  .block .lbl { font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; font-weight: 700; color: var(--ink-3); margin: 0 0 5px; }
+  .block p { margin: 0; color: var(--ink-2); }
+  .block.do { background: var(--sunken); border: 1px solid var(--line); border-radius: 8px; padding: 13px 15px; }
+  .block.do .lbl { color: var(--accent); }
+  .block.do p { color: var(--ink); }
+  .block.do ul { margin: 6px 0 0; padding-left: 20px; }
+  .block.do li { margin: 3px 0; color: var(--ink); }
+  code { background: var(--sunken); border: 1px solid var(--line); border-radius: 5px; padding: 1px 6px; font-size: 13px; font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+
+  /* ---- figures ---- */
+  figure { margin: 22px 0; }
+  figure a { display: block; border: 1px solid var(--line-strong); border-radius: var(--radius); overflow: hidden; background: var(--sunken); }
+  figure img { display: block; width: 100%; height: auto; }
+  figcaption { font-size: 13px; color: var(--ink-3); margin-top: 9px; }
+  figcaption b { color: var(--ink-2); font-weight: 600; }
+
+  /* ---- "what's working" ---- */
+  .good-list { display: grid; gap: 10px; }
+  .good-item { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 13px 16px; font-size: 15px; color: var(--ink-2); }
+  .good-item b { color: var(--ink); font-weight: 650; }
+
+  .note { font-size: 14px; color: var(--ink-3); max-width: 70ch; }
+  a.up { color: var(--accent); text-decoration: none; font-size: 13px; }
+  .divider { height: 1px; background: var(--line); margin: 0; border: 0; }
+  .lens { font-size: 13px; color: var(--ink-3); font-style: italic; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="mast">
+    <p class="eyebrow">Impeccable UX Audit · Index Special Offers · Lo-fi Round 2</p>
+    <h1>Zero → Create an Index Special Offer</h1>
+    <p class="lede">A read-only critique of the fast create flow (launchpad → create page → formula picker), measured against this round's own brief and the kickoff goal of ~10–12 clicks in ≤30 seconds.</p>
+    <div class="meta">
+      <span><b>Screens audited:</b> 01 launchpad · 02 create-fast (hero) · 03 formula picker</span>
+      <span><b>Lens:</b> impeccable skill — applied to enterprise lo-fi</span>
+      <span><b>Date:</b> 2026-06-22</span>
+    </div>
+    <div class="readonly">Nothing was changed. This is a list of suggestions for your call.</div>
+  </header>
+
+  <h2>The short version</h2>
+  <p class="note" style="margin-bottom:22px;">The bones are right — one page, no stepper, a live customer preview, progressive invite. The friction is concentrated in the <b>price-formula step</b>, which is the centerpiece and also where the round contradicts its own decisions. The two P0s below are about making the formula step match what Round 2 set out to do. Everything else is friction-trimming and polish.</p>
+
+  <table class="summary">
+    <thead><tr><th class="col-id">#</th><th>Finding</th><th>Severity</th></tr></thead>
+    <tbody>
+      <tr><td class="col-id">1</td><td><a href="#f1">"Template" is still everywhere — the word Round 2 set out to retire</a></td><td><span class="pill p0">P0</span></td></tr>
+      <tr><td class="col-id">2</td><td><a href="#f2">Two competing formula models on one page (editable grid + readout + drawer)</a></td><td><span class="pill p0">P0</span></td></tr>
+      <tr><td class="col-id">3</td><td><a href="#f3">The formula is stated three or four times on the create page</a></td><td><span class="pill p1">P1</span></td></tr>
+      <tr><td class="col-id">4</td><td><a href="#f4">The differential — "the important lever" — is the least prominent field</a></td><td><span class="pill p1">P1</span></td></tr>
+      <tr><td class="col-id">5</td><td><a href="#f5">The preset bar mixes "load" and "save" and pushes Save to the top</a></td><td><span class="pill p1">P1</span></td></tr>
+      <tr><td class="col-id">6</td><td><a href="#f6">Formula picker: full-screen sheet + horizontal scroll + filters ignore the product you just picked</a></td><td><span class="pill p1">P1</span></td></tr>
+      <tr><td class="col-id">7</td><td><a href="#f7">No running "who's getting this" count at the Invite control</a></td><td><span class="pill p1">P1</span></td></tr>
+      <tr><td class="col-id">8</td><td><a href="#f8">Timing: three controls for one number, and the two windows behave differently</a></td><td><span class="pill p2">P2</span></td></tr>
+      <tr><td class="col-id">9</td><td><a href="#f9">Side-stripe accent borders will carry the #1 AI tell into hi-fi</a></td><td><span class="pill p2">P2</span></td></tr>
+      <tr><td class="col-id">10</td><td><a href="#f10">Small stuff: menu overlap, the dropped click meter, a read-only-but-editable field</a></td><td><span class="pill p2">P2</span></td></tr>
+    </tbody>
+  </table>
+
+  <h2>The hero screen, as it renders today</h2>
+  <figure>
+    <a href="audit-assets/02-create-fast.png" target="_blank"><img src="audit-assets/02-create-fast.png" alt="Create New Offer — Fast, full page"></a>
+    <figcaption><b>Screen 02 · Create New Offer (Fast).</b> Preset bar → Product &amp; location → Price formula (chosen line + resulting-price input + differential + editable 3×7 grid) → Timing → Invite, with the live customer preview on the right. Click to open full size.</figcaption>
+  </figure>
+
+  <!-- ============ FINDINGS ============ -->
+  <h2>Findings &amp; what I'd do</h2>
+
+  <div class="finding" id="f1">
+    <div class="finding-head"><span class="num">01</span><h3>"Template" is still everywhere — the word Round 2 set out to retire</h3><span class="pill p0">P0</span></div>
+    <p class="where"><b>Where:</b> Screen 02 formula section ("Template", "Choose another template") · Screen 03 ("Formula Template Selector", "Manage Formula Templates", "Select Template").</p>
+    <div class="block">
+      <p class="lbl">What's there now</p>
+      <p>The top preset bar correctly says <b>Preset</b>, but the formula step still calls the saved formula a <b>Template</b> — the exact word the round decided was overloaded and wanted gone. So the same screen uses both vocabularies a few inches apart.</p>
+    </div>
+    <div class="block">
+      <p class="lbl">Why it matters <span class="lens">— round-2 intent</span></p>
+      <p>Renaming "template" was a <em>named deliverable</em> of this round (<code>insights.md</code>: "the price-formula pick list is called <b>saved formulas / Formula library</b>, not templates"). Shipping the wireframe with "Template" all over the formula step quietly undoes the decision and will reintroduce the exact ambiguity Reece flagged — a Preset (whole-offer config) vs. a saved formula vs. a real "template" (offer/auction + fixed/index).</p>
+    </div>
+    <div class="block do">
+      <p class="lbl">What I'd do</p>
+      <ul>
+        <li>Rename the formula picker to <b>Formula library</b> / "saved formulas." Buttons: "Choose a formula", "Manage formulas".</li>
+        <li>Reserve <b>Preset</b> strictly for the whole-offer config (top bar) and keep the two visually distinct so they never read as the same thing.</li>
+        <li>One sweep across 02 + 03 — this is copy-only, no layout change.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="finding" id="f2">
+    <div class="finding-head"><span class="num">02</span><h3>Two competing formula models live on one page</h3><span class="pill p0">P0</span></div>
+    <p class="where"><b>Where:</b> Screen 02, Price formula section — the "Resulting price" input, the differential, and the fully editable 3×7 grid all stacked; plus the edit-drawer concept that exists in the CSS.</p>
+    <div class="block">
+      <p class="lbl">What's there now</p>
+      <p>After you pick a formula you get: (1) a chosen-formula line, (2) a <b>"Resulting price" text input</b> holding the long formula string, (3) a differential input, then (4) a <b>fully editable grid</b> where every one of the 21 cells is a live select/input, then (5) "+ Add row". The brief's model was different: pick a saved formula → see the 3×7 lines <em>as a read-only sanity check</em> → add the differential → and only if it's "90% right," hit <b>Edit</b> to open the drawer.</p>
+    </div>
+    <div class="block">
+      <p class="lbl">Why it matters <span class="lens">— impeccable: progressive disclosure; round-2 intent</span></p>
+      <p>An always-editable 21-cell grid on the "fast" page invites fiddling and works against the ≤30-second goal — the whole point of picking a saved formula is that you <em>don't</em> author it here. It also creates two edit paths (inline grid <em>and</em> the drawer the brief says to reuse), so it's unclear which is the real one. And "Resulting price" rendered as a freehand <code>&lt;input&gt;</code> implies you can retype a derived value — which contradicts "a formula is structured variables."</p>
+    </div>
+    <div class="block do">
+      <p class="lbl">What I'd do</p>
+      <ul>
+        <li>Make the picked formula a <b>read-only readout</b> on this page — the 3 lines × 7 columns shown for a glance-and-confirm, not as editors.</li>
+        <li>Put a single <b>Edit formula</b> button on that readout that opens the existing edit drawer (the one the brief says to reuse). One edit path, not two.</li>
+        <li>Drop the separate "Resulting price" input; the readout <em>is</em> the resulting price. Keep the differential as its own real input (see #4).</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="finding" id="f3">
+    <div class="finding-head"><span class="num">03</span><h3>The formula is stated three or four times on the create page</h3><span class="pill p1">P1</span></div>
+    <p class="where"><b>Where:</b> Screen 02 — chosen line, "Resulting price" input, the grid rows, and the right-hand preview all spell out the same blend.</p>
+    <div class="block">
+      <p class="lbl">What's there now</p>
+      <p>"G3 Suboctane — OPIS/Platts blend" and its three legs appear in the chosen-formula line, again in the Resulting-price input, again as the three grid rows, and a fourth time in the customer preview ("…(3 vars) · formula + $0.0250/gal").</p>
+    </div>
+    <div class="block">
+      <p class="lbl">Why it matters <span class="lens">— impeccable: don't repeat what the user can already see</span></p>
+      <p>Redundancy reads as clutter and makes the seller hunt for the one field that's actually editable (the differential). The right-hand preview is the correct place for the "this is what it becomes" restatement; the left card shouldn't echo it twice more.</p>
+    </div>
+    <div class="block do">
+      <p class="lbl">What I'd do</p>
+      <p>Collapse to <b>one authoritative representation</b> on the left (the read-only readout from #2) plus the customer preview on the right. Removing #2's duplicate input does most of this automatically.</p>
+    </div>
+  </div>
+
+  <div class="finding" id="f4">
+    <div class="finding-head"><span class="num">04</span><h3>The differential — "the important lever" — is the least prominent field</h3><span class="pill p1">P1</span></div>
+    <p class="where"><b>Where:</b> Screen 02, a 200px <code>+0.0250</code> input wedged between the resulting-price line and the grid.</p>
+    <div class="block">
+      <p class="lbl">What's there now</p>
+      <p>The differential looks identical to every other input and is easy to skim past, even though it's the number the rep actually tunes per deal. The brief explicitly calls it out as important ("then add the formula differential (important)").</p>
+    </div>
+    <div class="block">
+      <p class="lbl">Why it matters <span class="lens">— impeccable: vary weight for hierarchy</span></p>
+      <p>On the fast path, the formula is usually a reused constant and the <b>differential is the variable</b>. The thing you change most should be the thing your eye lands on first — right now it's the opposite.</p>
+    </div>
+    <div class="block do">
+      <p class="lbl">What I'd do</p>
+      <ul>
+        <li>Promote it: a larger stepper field, set as the visual focal point of the formula block.</li>
+        <li>Frame it as the equation it is — e.g. <code>formula&nbsp;+&nbsp;[ &nbsp;0.0250&nbsp; ]&nbsp;=&nbsp;your price</code> — so the readout and the lever read as one sentence.</li>
+        <li>$/gal in decimal dollars (4 places), never cents — consistent with the rest of the platform.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="finding" id="f5">
+    <div class="finding-head"><span class="num">05</span><h3>The preset bar mixes "load" and "save," and pushes Save to the top</h3><span class="pill p1">P1</span></div>
+    <p class="where"><b>Where:</b> Screen 02, the top bar: Preset select · "Save as preset" name + button · "Switch to full setup".</p>
+    <div class="block">
+      <p class="lbl">What's there now</p>
+      <p>One row does three unrelated jobs: <em>load</em> a preset (consume), <em>save</em> the current offer as a preset (produce, with the name field pre-filled), and <em>switch to full</em>. A solid "Save preset" button sits at the very top, before anything's been built — implying "name and save" is step one.</p>
+    </div>
+    <div class="block">
+      <p class="lbl">Why it matters <span class="lens">— impeccable: button hierarchy + progressive disclosure</span></p>
+      <p>Load is an <em>entry</em> decision; save is an <em>exit</em> decision. Crammed together they fight each other, and a prominent Save up top draws the eye to the one action you can't meaningfully take yet. (The launchpad menu already offers "Start from a Preset," so the load case has a home.)</p>
+    </div>
+    <div class="block do">
+      <p class="lbl">What I'd do</p>
+      <ul>
+        <li>Keep <b>load preset</b> + <b>Switch to full</b> at the top (both are "how do I start" choices).</li>
+        <li>Move <b>Save as preset</b> down to the footer next to Send, as a quiet ghost/text action — it belongs after the offer is shaped. Screen 05 already frames "Save as Preset vs Create from prior" as the post-send reuse moment; this is the same idea, surfaced earlier but demoted.</li>
+      </ul>
+    </div>
+  </div>
+
+  <figure>
+    <a href="audit-assets/03-formula-sheet.png" target="_blank"><img src="audit-assets/03-formula-sheet.png" alt="Formula Template Selector bottom sheet"></a>
+    <figcaption><b>Screen 03 · the formula picker.</b> An 85vh bottom-sheet over the create page, a horizontal card scroll, and a filter row (Category / Products / Locations / Price Type) all defaulting to "All" — even though Group 3 Suboctane · Tulsa is already chosen behind it.</figcaption>
+  </figure>
+
+  <div class="finding" id="f6">
+    <div class="finding-head"><span class="num">06</span><h3>Formula picker: full-screen sheet, horizontal scroll, and filters that ignore the product you just picked</h3><span class="pill p1">P1</span></div>
+    <p class="where"><b>Where:</b> Screen 03 — the bottom-sheet, the <code>lf-cardscroll</code> row, the filter bar.</p>
+    <div class="block">
+      <p class="lbl">What's there now</p>
+      <p>Picking a formula takes over the whole page with an 85vh sheet — which breaks the "one page, no wizard" promise. Candidates sit in a <b>horizontal scroll</b>, so the 4th card and "+ Build a new formula" are off-screen with no hint they exist. And the five filters all say <b>"All"</b>, despite the header note that the picker is "enabled because Product &amp; location are set."</p>
+    </div>
+    <div class="block">
+      <p class="lbl">Why it matters <span class="lens">— impeccable: modals are lazy + self-adjusting grids; round-2 intent ("product drives which formulas show")</span></p>
+      <p>For the fast path you almost always want <em>your</em> saved formula for <em>this</em> product. A full takeover plus horizontal scroll plus "All" filters makes the common case do extra work, and hides options behind a scroll. The round explicitly wanted the product to pre-filter the list.</p>
+    </div>
+    <div class="block do">
+      <p class="lbl">What I'd do</p>
+      <ul>
+        <li>For the fast path, make the formula a <b>compact inline picker</b> in the formula section — a short list of saved formulas already filtered to Group 3 Suboctane · Tulsa. Most of the time you never leave the page.</li>
+        <li>Reserve the big sheet for "Browse the full library" — escalation, not the default.</li>
+        <li>If the sheet stays, swap the horizontal scroll for a <b>wrapping grid</b> (<code>auto-fit, minmax(300px, 1fr)</code>) so every option is visible, and arrive with filters <b>pre-set to the chosen product/location</b> with a "showing formulas for G3 Suboctane · Tulsa — clear filters" line.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="finding" id="f7">
+    <div class="finding-head"><span class="num">07</span><h3>No running "who's getting this" count at the Invite control</h3><span class="pill p1">P1</span></div>
+    <p class="where"><b>Where:</b> Screen 02, Invite section (mode tabs + Favorites chips + "Show 22 more groups").</p>
+    <div class="block">
+      <p class="lbl">What's there now</p>
+      <p>The mode switch and favorites are good, but the only place you see the real impact ("Gulf Coast group · 3 customers") is the right-hand preview. And with multiple chips selectable, it's unclear whether picking Gulf Coast + Midcon adds up — the preview reflects one group.</p>
+    </div>
+    <div class="block">
+      <p class="lbl">Why it matters <span class="lens">— impeccable: close the loop at the point of action</span></p>
+      <p>"How many customers am I about to blast?" is the question this step answers. On a fast send, that number should sit <em>next to the control you're touching</em>, not only in a side panel, and it should sum across selections.</p>
+    </div>
+    <div class="block do">
+      <p class="lbl">What I'd do</p>
+      <ul>
+        <li>Add a live tally by the Invite heading: e.g. <b>"Inviting 3 customers · 1 group"</b>, updating as chips toggle and summing across groups.</li>
+        <li>Make multi-select explicit (selected chips read as additive) and reflect the total in both the control and the preview.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="finding" id="f8">
+    <div class="finding-head"><span class="num">08</span><h3>Timing: three controls for one number, and the two windows behave differently</h3><span class="pill p2">P2</span></div>
+    <p class="where"><b>Where:</b> Screen 02, Timing — "Visible for" vs "Lifting window".</p>
+    <div class="block">
+      <p class="lbl">What's there now</p>
+      <p>"Visible for" offers quick chips (1h/2h/6h), a free-text input, <em>and</em> a focus-revealed increment list. "Lifting window" offers only chips + input — no list. So one duration has three ways in and the other has two. The keyboard mnemonics also drift: <code>6h → key 6</code> but <code>3d → key 3</code>, so the number on the key sometimes means the value and sometimes means the position.</p>
+    </div>
+    <div class="block">
+      <p class="lbl">Why it matters <span class="lens">— impeccable: consistency + don't stack redundant affordances</span></p>
+      <p>Two controls that do the same job should look and behave the same. And three input methods for a single duration is more chooser than a 30-second flow wants.</p>
+    </div>
+    <div class="block do">
+      <p class="lbl">What I'd do</p>
+      <ul>
+        <li>Pick one pattern for both windows: quick chips for the common presets + a "Custom…" that opens the day-deal style picker (the "now / 1 / 2 / 6" control the brief points to). Drop the always-present free-text field as a third path.</li>
+        <li>Make the key hints consistent — either always the value or always the position, not a mix.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="finding" id="f9">
+    <div class="finding-head"><span class="num">09</span><h3>Side-stripe accent borders will carry the #1 AI tell into hi-fi</h3><span class="pill p2">P2</span></div>
+    <p class="where"><b>Where:</b> <code>lofi-chrome.css</code> — <code>.lf-readout</code>, <code>.lf-formula-chosen</code>, <code>.lf-preview-sec.is-key</code> all use <code>border-left: 3px solid primary</code>.</p>
+    <div class="block">
+      <p class="lbl">What's there now</p>
+      <p>The "key" surfaces are marked with a 3px colored left stripe. Harmless in a lo-fi, but these wireframes seed the hi-fi build and the design-system reference — so the pattern tends to propagate.</p>
+    </div>
+    <div class="block">
+      <p class="lbl">Why it matters <span class="lens">— impeccable: the side-stripe is the single most overused "design touch"</span></p>
+      <p>It's the one pattern impeccable bans outright because it never reads as intentional. Worth catching now so it doesn't become the house style for "this part is important."</p>
+    </div>
+    <div class="block do">
+      <p class="lbl">What I'd do</p>
+      <p>For emphasis, use a <b>full border + a faint surface tint</b>, or a small label/leading element — not a colored side rail. Low effort, and it keeps the hi-fi from inheriting the tell.</p>
+    </div>
+  </div>
+
+  <div class="finding" id="f10">
+    <div class="finding-head"><span class="num">10</span><h3>Small stuff worth a pass</h3><span class="pill p2">P2</span></div>
+    <div class="block">
+      <p class="lbl">Menu overlaps the list title (Screen 01)</p>
+      <p>The forced-open "+ New offer" menu sits on top of the "Recent offers · 12 active" bar. Just a static-wireframe z-index artifact, but it makes the screenshot read as a layout bug — worth nudging the menu down or the bar's stacking so the review copy stays clean.</p>
+    </div>
+    <div class="block">
+      <p class="lbl">The click / time meter got dropped</p>
+      <p>Round 1's chrome had a click-budget meter; Screen 02 doesn't. The kickoff sets a hard north star (~10–12 clicks, ≤30s). A small "~10 clicks · ~25s" chip — even as designer chrome — keeps the team honest. (My rough count of the happy path is ~10–12 <em>if</em> the default formula is accepted; the formula-sheet detour in #6 is the main thing that blows the budget.)</p>
+    </div>
+    <div class="block">
+      <p class="lbl">"Resulting price" is editable but shouldn't be</p>
+      <p>It renders as a focusable, editable <code>&lt;input&gt;</code> for a value that's derived — confusing for keyboard and screen-reader users. Resolved for free if #2's readout replaces it.</p>
+    </div>
+  </div>
+
+  <!-- ============ WHAT'S WORKING ============ -->
+  <h2>What's working — keep it</h2>
+  <div class="good-list">
+    <div class="good-item"><b>One page, no stepper.</b> The hero genuinely fits the scrollless, no-wizard promise. This is the hardest part and it's right.</div>
+    <div class="good-item"><b>The live "What customers will see" preview.</b> Right call — it closes the loop and takes the anxiety out of Send. Lean on it harder (it can absorb the redundancy from #3).</div>
+    <div class="good-item"><b>Progressive, intent-based Invite.</b> Mode tabs + favorites + pin + "show 22 more" is exactly the 80/20 the brief asked for.</div>
+    <div class="good-item"><b>New → Fast / Full entry on the launchpad menu.</b> Clean, and the "Switch to full setup" escape hatch on the page backs it up.</div>
+    <div class="good-item"><b>Keyboard-first touches.</b> ⌘N, ⌘↵, chip mnemonics — fits the power-user, muscle-memory audience. (Just make the mnemonics consistent — see #8.)</div>
+    <div class="good-item"><b>Duration-as-presets for timing.</b> Matches how reps think ("visible 4h, lift 48h") instead of clock math.</div>
+  </div>
+
+  <h2>If you want to act on this</h2>
+  <p class="note">The two P0s (#1 rename, #2 single read-only-formula + Edit-drawer) are the ones that make the centerpiece match the round's own decisions — I'd do those first, and #3/#4 fall out of #2 almost for free. #5–#7 are the next layer of friction. #8–#10 are polish. Say the word and I'll turn any subset into a build pass on the Round 2 wireframes (and re-run <code>/wireframe-index</code> afterward, since the guide is already a little stale).</p>
+
+  <hr class="divider" style="margin-top:40px;">
+  <p class="note" style="margin-top:18px;">Audit is read-only — no wireframe files were modified. Screenshots captured live from the Round 2 files at 1440px.</p>
+
+</div>
+</body>
+</html>

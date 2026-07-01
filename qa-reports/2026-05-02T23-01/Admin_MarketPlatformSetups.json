@@ -1,0 +1,14 @@
+{
+  "path": "/Admin/MarketPlatformSetups",
+  "title": "Market Platform Setups",
+  "finalUrl": "http://localhost:3001/Admin/MarketPlatformSetups",
+  "rootLen": 124497,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 12,
+  "stuckLoaders": [],
+  "emptyGrids": []
+}

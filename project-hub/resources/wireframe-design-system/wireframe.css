@@ -1,0 +1,113 @@
+/**
+ * Gravitate Wireframe Design System
+ * Main CSS Entry Point
+ *
+ * This file imports all design system styles in the correct order.
+ * Include this single file in your HTML to get the complete design system.
+ *
+ * Usage:
+ *   <link rel="stylesheet" href="wireframe.css">
+ *
+ * Or import individual files if you need only specific components.
+ */
+
+/* ==========================================================================
+   1. DESIGN TOKENS (Foundation)
+   ========================================================================== */
+
+/* Colors - Primary, status, and neutral scale */
+@import url('./tokens/colors.css');
+
+/* Typography - Font families, sizes, weights */
+@import url('./tokens/typography.css');
+
+/* Spacing - Margins, padding, gaps */
+@import url('./tokens/spacing.css');
+
+/* Borders - Radius, widths, elevation */
+@import url('./tokens/borders.css');
+
+/* Utility Classes - Helper classes */
+@import url('./tokens/utilities.css');
+
+/* Token Index - Base styles */
+@import url('./tokens/index.css');
+
+
+/* ==========================================================================
+   2. CORE COMPONENTS
+   ========================================================================== */
+
+/* Layout - Row, Column, Container, Page */
+@import url('./components/layout/layout.css');
+
+/* Typography - Text, Label */
+@import url('./components/typography/typography.css');
+
+/* Controls - Button, Input, Select, Checkbox, Radio, Toggle */
+@import url('./components/controls/controls.css');
+
+
+/* ==========================================================================
+   3. DATA DISPLAY COMPONENTS
+   ========================================================================== */
+
+/* Data Display - DataGrid, Card, MetricCard, Badge, Avatar */
+@import url('./components/data-display/data-display.css');
+
+
+/* ==========================================================================
+   4. NAVIGATION COMPONENTS
+   ========================================================================== */
+
+/* Navigation - Tabs, Breadcrumb, Sidebar, Menu, Stepper */
+@import url('./components/navigation/navigation.css');
+
+
+/* ==========================================================================
+   5. FEEDBACK COMPONENTS
+   ========================================================================== */
+
+/* Feedback - Modal, Drawer, Toast, Alert, Tooltip */
+@import url('./components/feedback/feedback.css');
+
+
+/* ==========================================================================
+   6. STATUS COMPONENTS
+   ========================================================================== */
+
+/* Status - Progress, Loader, Skeleton, EmptyState */
+@import url('./components/status/status.css');
+
+
+/* ==========================================================================
+   7. SPECIALIZED COMPONENTS
+   ========================================================================== */
+
+/* Specialized - ActionBar, FilterBar, DetailPanel, FormSection, WizardFooter */
+@import url('./components/specialized/specialized.css');
+
+
+/* ==========================================================================
+   GRAVITATE WIREFRAME DESIGN SYSTEM
+
+   Version: 1.0.0
+   Created: January 2026
+
+   For documentation, see:
+   - docs/getting-started.md
+   - docs/component-guide.md
+   - docs/token-reference.md
+   - docs/pattern-guide.md
+
+   Component Preview Files:
+   - components/[category]/[Component].html
+
+   Full Page Patterns:
+   - patterns/DashboardLayout.html
+   - patterns/MasterDetailLayout.html
+   - patterns/FormWizard.html
+   - patterns/SettingsPage.html
+   - patterns/DataTablePage.html
+   - patterns/ComparisonMatrix.html
+   ========================================================================== */

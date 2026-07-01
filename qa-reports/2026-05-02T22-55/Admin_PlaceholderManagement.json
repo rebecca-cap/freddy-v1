@@ -1,0 +1,14 @@
+{
+  "path": "/Admin/PlaceholderManagement",
+  "title": "Placeholder Management",
+  "finalUrl": "http://localhost:3001/Admin/PlaceholderManagement",
+  "rootLen": 153582,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 10,
+  "stuckLoaders": [],
+  "emptyGrids": []
+}

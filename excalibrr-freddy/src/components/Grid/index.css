@@ -1,0 +1,207 @@
+.search-control {
+  display: flex;
+}
+.search-control .ant-select .ant-select-selector {
+  padding-left: 0;
+}
+.search-control .filter-toggle-button {
+  border-radius: 0;
+}
+.search-control .ant-input-affix-wrapper {
+  background: var(--bg-2);
+}
+.filter-toggle-button {
+  height: 100%;
+  background: var(--gray-100);
+}
+.filter-toggle-button > span {
+  margin-top: 0.25em;
+}
+.filter-toggle-button.active {
+  background: var(--theme-color-2);
+  color: var(--gray-100);
+}
+.grid-count {
+  font-size: 1.3em;
+  color: var(--gray-800);
+  font-weight: bold;
+  margin-bottom: 2em;
+  margin-right: 1em;
+}
+.grid-container {
+  padding: 1em;
+}
+.grid-header-control {
+  padding: 1em;
+  border-radius: 5px 5px 0 0;
+}
+.grid-header {
+  font-weight: bold;
+  text-transform: uppercase;
+  vertical-align: sub;
+  font-size: 1.2em;
+}
+.grid-results {
+  padding-left: 0.75em;
+  vertical-align: sub;
+  color: var(--theme-color-2);
+  font-weight: 600;
+}
+.filter-drawer {
+  background: var(--bg-2);
+  padding: 1em;
+  border-left: solid 1px var(--gray-300);
+  border-right: solid 1px var(--gray-300);
+  border-bottom: solid 1px var(--gray-300);
+  margin-top: 0.1em;
+  margin-right: 0.1em;
+}
+.filter-drawer label {
+  color: var(--gray-600);
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.option-drawer .ant-drawer-body {
+  padding: 0px;
+}
+
+.option-drawer .ant-drawer-title {
+  font-weight: bold;
+}
+.option-drawer .option-header {
+  background: var(--theme-color-2-dim);
+  font-weight: bold;
+  padding: 1em;
+  font-size: 0.9em;
+  color: var(--theme-option);
+}
+
+.option-container {
+  padding: 1.5em;
+}
+
+.option-check {
+  background: var(--gray-100);
+  border-radius: 5px;
+  padding: 1em 0.5em;
+  margin: 0.5em;
+  cursor: pointer;
+}
+.checkbox-label {
+  color: var(--theme-option);
+}
+.option-check.checked {
+  background: var(--theme-color-2);
+}
+.option-check.checked .checkbox-label {
+  color: var(--gray-100);
+}
+.option-checkbox {
+  margin: auto;
+}
+.price-limit-input {
+  margin-left: 0.5em;
+}
+.price-limit-input .ant-input-number-input {
+  font-weight: bold;
+}
+.price-limit-label {
+  font-weight: bold;
+  padding-top: 0.5em;
+  margin-left: 1em;
+}
+.option-container .ant-radio-group {
+  padding: 0.5em;
+  width: 100%;
+  font-weight: bold;
+  color: var(--gray-700);
+}
+.ant-tag.filter-tag {
+  margin-left: 1em;
+  vertical-align: text-top;
+  padding: 0.1em 1em;
+  color: white;
+  background:var(--theme-color-2);
+  border:none;
+}
+.filter-tag-label {
+  font-weight: bold;
+  text-transform: capitalize;
+}
+.filter-tag-value {
+  padding-left: 0.5em;
+}
+.filter-tag button.ant-btn.ant-btn-icon-only {
+  border: none;
+  padding: 0.25em;
+  width: 24px;
+  height: 24px;
+  background: transparent;
+  padding-left: 1em;
+  color:white;
+}
+
+.edit-smart-grid-error {
+  font-size: 1.25em;
+  font-weight: bold;
+}
+.ant-table-wrapper.single-select .ant-table-thead th {
+  padding-left: 0.75em;
+}
+.ant-table-wrapper.single-select .ant-table-tbody td {
+  padding-left: 1em;
+}
+.ant-table-wrapper.single-select .ant-table-selection-column .ant-checkbox {
+  display: none;
+}
+.ant-table-wrapper.ant-checkbox-visible
+  .ant-table-selection-column
+  .ant-checkbox {
+  display: inherit;
+}
+
+.date-range-select {
+  background: var(--bg-2);
+  padding: 1em 1.5em;
+  margin-left: 1em;
+  min-width: 150px;
+  border: solid 1px var(--gray-300);
+  border-radius: var(--container-border-radius);
+  color: var(--gray-100);
+  background: var(--theme-color-1);
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+
+.date-range-select.not-set {
+  color: var(--gray-600);
+  font-weight: 500;
+  background: var(--gray-100);
+}
+
+.ant-dropdown-open.date-range-select.not-set {
+  color: var(--theme-color-1);
+  border-color: var(--theme-color-1);
+}
+
+.admin-sider {
+  background: white;
+}
+
+.ant-form-item-control-input-content:has(> .right-aligned-percent-input) {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.percent-range-input::before {
+    content: "";
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    border-bottom: 1px solid var(--gray-500);
+    display: block;
+    width: 15px;
+    transform: translateX(-50%);
+    height: 0px;
+}

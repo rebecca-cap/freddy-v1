@@ -1,0 +1,15 @@
+.secondary-gradient-background {
+    background: var(--theme-color-1)
+}
+
+.no-ant-modal-body-padding .ant-modal-body {
+    padding: 0;
+}
+
+.flex-half {
+    flex: 0 0 calc(50% - 20px); /* Adjust gap as needed */
+    box-sizing: border-box;
+}
+
+
+

@@ -1,0 +1,73 @@
+.index-offer-drawer .ant-drawer-body {
+    padding: 0 0 0 4px;
+}
+.index-offer-drawer .ant-drawer-header {
+    margin: 0;
+    padding: 0 40px 0 0;
+    background: rgb(101, 170, 225);
+    background: var(--secondary-gradient);
+}
+
+.index-offer-drawer .ant-drawer-footer {
+    margin: 0;
+    padding: 0;
+}
+
+.index-offer-purchase-type {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.hint-text-color {
+    color: #8c8c8c
+}
+
+.index-offer-pricing-formula-differential {
+    background: var(--bg-2);
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 25%;
+    min-width: 180px;
+    min-height: 110px;
+    margin-top: 3em !important;
+}
+
+.formula-component-percentage--negative {
+    color: var(--theme-error) !important;
+}
+
+.formula-components-list .ant-list-item {
+    justify-content: flex-start;
+    gap: 8px;
+    border: 1px solid #f0f0f0;
+    padding-left: 12px;
+}
+
+.formula-components-list .ant-list-item:first-child {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.formula-components-list .ant-list-footer {
+    border: 1px solid #f0f0f0;
+    padding-left: 12px;
+    background: var(--bg-2);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.index-offer-terms-container {
+    padding: 12px;
+    background: var(--bg-2);
+    border-radius: 5px;
+    margin-top: 12px;
+}
+
+.index-offer-drawer-footer {
+    width: 100%;
+    min-height: 60px;
+    padding: 12px 30px;
+    background: var(--bg-2);
+}

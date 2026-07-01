@@ -1,0 +1,17 @@
+{
+  "path": "/ContractManagement/ContractRevaluation",
+  "title": "Contract Revaluation",
+  "finalUrl": "http://localhost:3001/ContractManagement/ContractRevaluation",
+  "rootLen": 112922,
+  "crashed": false,
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 429 ()"
+  ],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [
+    "ContractRevaluation/GetContractValuations",
+    "ContractRevaluation/GetMetaData"
+  ],
+  "consoleEventCount": 15
+}

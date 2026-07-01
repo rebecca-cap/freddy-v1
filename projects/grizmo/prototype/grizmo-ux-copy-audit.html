@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Grizmo UX Copy Audit</title>
+<style>
+  :root {
+    --bg: #0e0d13;
+    --panel: #17151f;
+    --panel-2: #1e1b29;
+    --line: #2c2838;
+    --ink: #e9e6f2;
+    --ink-soft: #b3acc6;
+    --ink-faint: #7e7791;
+    --brand: #8b6df0;
+    --brand-soft: #b9a6f7;
+    --p0: #ff5d6c;
+    --p1: #ff9e4a;
+    --p2: #ffd24a;
+    --p3: #6fb8ff;
+    --good: #4ad6a0;
+    --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--brand-soft); }
+  .wrap { max-width: 1140px; margin: 0 auto; padding: 0 28px 120px; }
+
+  /* Header */
+  header.hero {
+    padding: 56px 28px 36px;
+    background:
+      radial-gradient(900px 360px at 12% -10%, rgba(139,109,240,0.22), transparent 60%),
+      radial-gradient(700px 300px at 95% 0%, rgba(74,214,160,0.10), transparent 55%);
+    border-bottom: 1px solid var(--line);
+  }
+  .hero-inner { max-width: 1140px; margin: 0 auto; }
+  .kicker {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--brand-soft);
+    margin: 0 0 10px;
+  }
+  h1 { font-size: 40px; line-height: 1.08; margin: 0 0 14px; letter-spacing: -0.02em; }
+  .sub { font-size: 16px; color: var(--ink-soft); max-width: 720px; margin: 0; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 22px; font-size: 13px; color: var(--ink-faint); }
+  .meta b { color: var(--ink-soft); font-weight: 600; }
+
+  /* Stat strip */
+  .stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin: 34px 0 8px; }
+  .stat {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 14px;
+    padding: 16px 16px 14px; position: relative; overflow: hidden;
+  }
+  .stat .n { font-size: 30px; font-weight: 700; letter-spacing: -0.02em; }
+  .stat .l { font-size: 12px; color: var(--ink-faint); margin-top: 2px; }
+  .stat::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; }
+  .stat.s-total::before { background: var(--brand); }
+  .stat.s-p0::before { background: var(--p0); }
+  .stat.s-p1::before { background: var(--p1); }
+  .stat.s-p2::before { background: var(--p2); }
+  .stat.s-p3::before { background: var(--p3); }
+
+  section { margin-top: 52px; }
+  h2 { font-size: 24px; letter-spacing: -0.01em; margin: 0 0 6px; }
+  h2 .num { color: var(--brand); font-family: var(--mono); font-size: 16px; margin-right: 10px; }
+  .section-lead { color: var(--ink-soft); margin: 0 0 22px; max-width: 760px; }
+  h3 { font-size: 17px; margin: 30px 0 12px; color: var(--ink); }
+
+  /* Theme cards */
+  .themes { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .theme {
+    background: linear-gradient(180deg, var(--panel-2), var(--panel));
+    border: 1px solid var(--line); border-radius: 16px; padding: 20px 20px 18px;
+  }
+  .theme h4 { margin: 0 0 8px; font-size: 16px; display: flex; align-items: center; gap: 9px; }
+  .theme .tag {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 3px 8px; border-radius: 999px; border: 1px solid var(--line); color: var(--ink-faint);
+  }
+  .theme p { margin: 0 0 10px; color: var(--ink-soft); font-size: 14px; }
+  .theme ul { margin: 0; padding-left: 18px; color: var(--ink-soft); font-size: 13.5px; }
+  .theme li { margin-bottom: 5px; }
+  .theme code { font-family: var(--mono); font-size: 12px; background: #000; color: var(--brand-soft); padding: 1px 6px; border-radius: 5px; }
+
+  /* Lexicon table */
+  table.lex { width: 100%; border-collapse: collapse; font-size: 13.5px; margin-top: 6px; }
+  table.lex th, table.lex td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.lex th { color: var(--ink-faint); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
+  table.lex td.concept { font-weight: 600; color: var(--ink); white-space: nowrap; }
+  table.lex .variants code { font-family: var(--mono); font-size: 11.5px; background: #221c30; color: var(--ink-soft); padding: 1px 6px; border-radius: 5px; margin: 0 4px 4px 0; display: inline-block; }
+  table.lex .pick { color: var(--good); font-weight: 600; }
+
+  /* Filter bar */
+  .filterbar {
+    position: sticky; top: 0; z-index: 20; display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    padding: 14px 0; margin-bottom: 8px;
+    background: linear-gradient(180deg, var(--bg) 70%, rgba(14,13,19,0));
+  }
+  .filterbar .lbl { font-size: 12px; color: var(--ink-faint); margin-right: 4px; }
+  .fbtn {
+    font-family: var(--sans); font-size: 13px; cursor: pointer; user-select: none;
+    background: var(--panel); color: var(--ink-soft); border: 1px solid var(--line);
+    border-radius: 999px; padding: 6px 13px; transition: all .15s;
+  }
+  .fbtn:hover { border-color: var(--brand); color: var(--ink); }
+  .fbtn.active { background: var(--brand); border-color: var(--brand); color: #fff; }
+  .fbtn .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+  .fbtn[data-sev="P0"] .dot { background: var(--p0); }
+  .fbtn[data-sev="P1"] .dot { background: var(--p1); }
+  .fbtn[data-sev="P2"] .dot { background: var(--p2); }
+  .fbtn[data-sev="P3"] .dot { background: var(--p3); }
+
+  /* Findings */
+  .area-head { display: flex; align-items: baseline; gap: 12px; margin: 38px 0 4px; }
+  .area-head h3 { margin: 0; font-size: 19px; }
+  .area-head .count { font-size: 12px; color: var(--ink-faint); font-family: var(--mono); }
+  .finding {
+    background: var(--panel); border: 1px solid var(--line); border-left-width: 4px;
+    border-radius: 12px; padding: 16px 18px; margin-bottom: 12px;
+  }
+  .finding.P0 { border-left-color: var(--p0); }
+  .finding.P1 { border-left-color: var(--p1); }
+  .finding.P2 { border-left-color: var(--p2); }
+  .finding.P3 { border-left-color: var(--p3); }
+  .finding.good { border-left-color: var(--good); }
+  .f-top { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .sev {
+    font-family: var(--mono); font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 6px; letter-spacing: 0.04em;
+  }
+  .sev.P0 { background: rgba(255,93,108,0.16); color: var(--p0); }
+  .sev.P1 { background: rgba(255,158,74,0.16); color: var(--p1); }
+  .sev.P2 { background: rgba(255,210,74,0.15); color: var(--p2); }
+  .sev.P3 { background: rgba(111,184,255,0.15); color: var(--p3); }
+  .sev.good { background: rgba(74,214,160,0.15); color: var(--good); }
+  .f-surface { font-weight: 600; font-size: 14.5px; }
+  .f-loc { font-family: var(--mono); font-size: 12px; color: var(--ink-faint); margin-left: auto; }
+  .f-conf { font-size: 11px; color: var(--ink-faint); font-family: var(--mono); border: 1px solid var(--line); padding: 2px 7px; border-radius: 999px; }
+  .f-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 22px; margin-top: 4px; }
+  @media (max-width: 760px) { .f-grid, .themes, .stats { grid-template-columns: 1fr; } .stats { grid-template-columns: 1fr 1fr; } }
+  .f-block .h { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-faint); margin-bottom: 3px; }
+  .f-block .v { font-size: 13.5px; color: var(--ink-soft); }
+  .quote { font-family: var(--mono); font-size: 12.5px; background: #000; border: 1px solid var(--line); border-radius: 7px; padding: 7px 10px; color: var(--ink); display: block; }
+  .arrow { color: var(--good); }
+  .f-status { display: flex; align-items: center; gap: 10px; margin: 0 0 10px; flex-wrap: wrap; }
+  .st-badge { font-family: var(--mono); font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 6px; letter-spacing: 0.03em; }
+  .st-done .st-badge { background: rgba(74,214,160,0.16); color: var(--good); }
+  .st-partial .st-badge { background: rgba(255,210,74,0.16); color: var(--p2); }
+  .st-skipped .st-badge { background: rgba(126,119,145,0.18); color: var(--ink-faint); }
+  .st-pending .st-badge { background: rgba(126,119,145,0.12); color: var(--ink-faint); }
+  .st-note { font-size: 12.5px; color: var(--ink-soft); }
+  .impl-banner {
+    margin: 16px 0 0; padding: 12px 18px; border-radius: 12px; font-size: 14px;
+    background: linear-gradient(90deg, rgba(74,214,160,0.10), rgba(139,109,240,0.08));
+    border: 1px solid var(--line); color: var(--ink-soft); display: flex; align-items: center; gap: 14px;
+  }
+  .impl-banner .bar { flex: 1; height: 8px; border-radius: 999px; background: var(--panel-2); overflow: hidden; min-width: 120px; }
+  .impl-banner .bar > i { display: block; height: 100%; background: linear-gradient(90deg, var(--good), var(--brand)); transition: width .4s; }
+  .impl-banner b { color: var(--ink); }
+  .f-issue { font-size: 13px; color: var(--ink-soft); margin: 0 0 10px; }
+  .f-issue .pill { font-family: var(--mono); font-size: 11px; background: #221c30; color: var(--brand-soft); padding: 1px 7px; border-radius: 5px; margin-right: 5px; }
+  .hidden { display: none !important; }
+  .empty-note { color: var(--ink-faint); padding: 30px; text-align: center; font-size: 14px; }
+
+  footer { margin-top: 70px; padding-top: 24px; border-top: 1px solid var(--line); color: var(--ink-faint); font-size: 13px; }
+  .nb { background: rgba(139,109,240,0.08); border: 1px solid rgba(139,109,240,0.3); border-radius: 12px; padding: 14px 18px; color: var(--ink-soft); font-size: 14px; margin-top: 18px; }
+  .nb b { color: var(--brand-soft); }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <p class="kicker">UX Copy Audit · Read-only · No changes implemented</p>
+    <h1>Grizmo — Interface Copy Audit</h1>
+    <p class="sub">A clarity, consistency, and guidance review of every user-facing string in the Grizmo assistant module — answer cards, header controls, onboarding, the save-path flow, library, and scoping. Each item lists the location, what the user sees, why it's a problem, and a recommended rewrite.</p>
+    <div class="meta">
+      <span><b>Scope:</b> <code style="font-family:var(--mono);font-size:12px">src/modules/Grizmo</code></span>
+      <span><b>Page:</b> /PricingEngine/QuoteBookEOD</span>
+      <span><b>Audience:</b> pricing analysts</span>
+      <span><b>Method:</b> 4 parallel audit passes · clarify (UX-writing) rubric</span>
+      <span><b>Date:</b> 2026-05-27</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="stats" id="stats"></div>
+  <div class="impl-banner" id="impl-banner"></div>
+
+  <!-- CROSS-CUTTING THEMES -->
+  <section id="themes">
+    <h2><span class="num">01</span>Cross-cutting themes</h2>
+    <p class="section-lead">Most individual findings ladder up to five recurring patterns. Fixing these at the theme level resolves the long tail below and is where the biggest clarity gains live.</p>
+    <div class="themes">
+      <div class="theme">
+        <h4>Terminology fragmentation <span class="tag">highest impact</span></h4>
+        <p>The same concept is named differently across surfaces, so users can't tell that the legend hint, the context chips, and the modal badge all describe one thing.</p>
+        <ul>
+          <li>Scoping a question: <code>scope Grizmo</code> · <code>set context</code> · <code>Row-scoped</code> · <code>this row</code></li>
+          <li>Reusable sequence: <code>path</code> · <code>multi-step investigation</code> · <code>walkthrough</code></li>
+          <li>The conversation: <code>session</code> · <code>conversation</code> · <code>chat</code> · <code>your context</code></li>
+          <li>Closing: <code>Close</code> · <code>End session</code> · <code>discard</code> · <code>Keep going</code></li>
+          <li>Saving an item: <code>Bookmark</code> vs <code>Saved</code> (same button)</li>
+        </ul>
+      </div>
+      <div class="theme">
+        <h4>Unit convention violated <span class="tag">house standard</span></h4>
+        <p>Gravitate's standard is decimal dollars (<code>$0.0100/gal</code>), never cents. Grizmo's answer bodies, follow-ups, saved prompts, and activity feed use <code>¢</code> throughout — and sometimes mix <code>¢</code>, <code>$/gal</code>, and <code>bps</code> in one sentence.</p>
+        <ul>
+          <li>Pervasive in <code>fakeLlm.ts</code> answer bodies &amp; action chips</li>
+          <li>Baked into reusable saved prompts users re-read</li>
+          <li>Bare prices with no unit (<code>2.6620</code>) clash with <code>$1.9420/gal</code> elsewhere</li>
+        </ul>
+      </div>
+      <div class="theme">
+        <h4>Onboarding &amp; discovery gaps <span class="tag">P0 cluster</span></h4>
+        <p>The moments meant to teach the product don't. New users can't learn what Grizmo does, what a "path" is, or how to populate the library.</p>
+        <ul>
+          <li>Intro bubble: "Your new pricing co-pilot. Click the G" — never says what it answers, and "the G" doesn't match the visible <b>Ask Grizmo</b> button</li>
+          <li>"path" is the central feature but is never defined before first use</li>
+          <li>Paths empty state tells users to <b>bookmark</b> to populate it — but paths are created via <b>Save as path</b></li>
+        </ul>
+      </div>
+      <div class="theme">
+        <h4>Destructive actions under-explained <span class="tag">trust/safety</span></h4>
+        <p>Consequential controls name the object but not the consequence or recoverability, and the close flow uses four verbs for two outcomes.</p>
+        <ul>
+          <li>Close confirm: title "End this session?" vs button "Close &amp; discard" — mismatched</li>
+          <li>Clear conversation doesn't mention Undo exists</li>
+          <li>Apply-price action chips don't state scope (which/how many rows)</li>
+        </ul>
+      </div>
+      <div class="theme" style="grid-column:1 / -1">
+        <h4>Tooltip / aria-label drift &amp; placeholder-only labels <span class="tag">a11y + polish</span></h4>
+        <p>Header controls' tooltips drop the object ("Minimize", "End session") while their aria-labels add it ("Minimize Grizmo", "End Grizmo session") — an inconsistent pattern across the five controls. Several inputs (feedback note, path name/description) rely on placeholders as their only label, which disappear on focus and aren't announced to screen readers. Confirmation toasts vary in register for one flow: <code>Thanks</code> · <code>Saved</code> · <code>Feedback received</code> · <code>Feedback logged</code>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEXICON -->
+  <section id="lexicon">
+    <h2><span class="num">02</span>Recommended canonical lexicon</h2>
+    <p class="section-lead">A single agreed vocabulary unblocks most P1 consistency findings. Suggested picks below are advisory — the point is to choose one term per concept and use it everywhere.</p>
+    <table class="lex">
+      <thead><tr><th style="width:20%">Concept</th><th style="width:52%">Terms currently in use</th><th style="width:28%">Suggested single term</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="concept">Focus Grizmo on data</td>
+          <td class="variants"><code>scope Grizmo</code><code>set context</code><code>Row-scoped</code><code>this row</code></td>
+          <td class="pick">"focus" — e.g. "Click a cell to focus Grizmo on it"</td>
+        </tr>
+        <tr>
+          <td class="concept">Scope value</td>
+          <td class="variants"><code>Aggregate / Row-scoped</code><code>Aggregate / Row</code><code>the quote book / this row</code><code>Whole row</code></td>
+          <td class="pick">"Whole quote book" vs "This row"</td>
+        </tr>
+        <tr>
+          <td class="concept">Reusable sequence</td>
+          <td class="variants"><code>path</code><code>multi-step investigation</code><code>walkthrough</code></td>
+          <td class="pick">"path" — but <b>define it</b> at first use</td>
+        </tr>
+        <tr>
+          <td class="concept">Single saved question</td>
+          <td class="variants"><code>Prompt</code><code>one-shot question</code><code>path</code> (via Activity)</td>
+          <td class="pick">"saved question" / "prompt"</td>
+        </tr>
+        <tr>
+          <td class="concept">The conversation</td>
+          <td class="variants"><code>session</code><code>conversation</code><code>chat</code><code>your context</code></td>
+          <td class="pick">"conversation" (reserve "session" for lifecycle)</td>
+        </tr>
+        <tr>
+          <td class="concept">Money / margin deltas</td>
+          <td class="variants"><code>0.5¢</code><code>$0.0050/gal</code><code>8 bps</code><code>2.6620</code></td>
+          <td class="pick">"$0.00XX/gal" everywhere</td>
+        </tr>
+        <tr>
+          <td class="concept">Save / favorite an item</td>
+          <td class="variants"><code>Bookmark</code><code>Saved</code></td>
+          <td class="pick">"Bookmark" (and toast "Bookmarked")</td>
+        </tr>
+        <tr>
+          <td class="concept">Send a question</td>
+          <td class="variants"><code>Ask</code> (button)<code>Ask Grizmo…</code> (placeholder)</td>
+          <td class="pick">"Send"</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- FINDINGS -->
+  <section id="findings">
+    <h2><span class="num">03</span>Detailed findings</h2>
+    <p class="section-lead">Every flagged string, grouped by surface and sorted P0-first. Filter by severity below. Suggested rewrites are recommendations only — nothing has been changed in the code.</p>
+
+    <div class="filterbar" id="filterbar">
+      <span class="lbl">Filter:</span>
+      <span class="fbtn active" data-sev="ALL">All</span>
+      <span class="fbtn" data-sev="P0"><span class="dot"></span>P0 blocking</span>
+      <span class="fbtn" data-sev="P1"><span class="dot"></span>P1 friction</span>
+      <span class="fbtn" data-sev="P2"><span class="dot"></span>P2 polish</span>
+      <span class="fbtn" data-sev="P3"><span class="dot"></span>P3 nit</span>
+    </div>
+
+    <div id="findings-root"></div>
+    <p class="empty-note hidden" id="empty-note">No findings at this severity.</p>
+  </section>
+
+  <div class="nb">
+    <b>Note on severity ratings:</b> P0 = blocks understanding, misleads, or risks data loss · P1 = notable friction or inconsistency · P2 = clarity / concision / tone polish · P3 = minor nit. Confidence reflects how certain the audit is that the surface text reaches users as described (some aria/label inferences are marked <i>med</i>/<i>low</i>).
+  </div>
+
+  <footer>
+    Grizmo UX copy audit · generated 2026-05-27 · read-only review, no source files modified. Method: four parallel audit passes over the data layer, conversation surface, panel/lifecycle, and save-path/library/scoping surfaces, applying the clarify (UX-writing) rubric. Verify any rewrite against the live UI before implementing.
+  </footer>
+
+</div>
+
+<script>
+const F = [
+  /* ---------- PANEL & LIFECYCLE (Agent C) ---------- */
+  {area:"Panel, Lifecycle & Onboarding", sev:"P0", surface:"First-run intro bubble — body", loc:"GrizmoIntroBubble.tsx:144", conf:"high",
+   current:`Your new pricing co-pilot. Click the G to start, or hit ⌘G.`,
+   issue:[["assumed knowledge"],["missing guidance"],["label mismatch"]],
+   impact:"Never says what Grizmo does; \"the G\" doesn't match the visible \"Ask Grizmo\" button, so onboarding fails its one job.",
+   sugg:`I answer questions about your pricing rows — costs, margins, deltas. Click "Ask Grizmo" to start, or press ⌘G.`},
+  {area:"Panel, Lifecycle & Onboarding", sev:"P0", surface:"Close confirmation — title vs destructive button", loc:"GrizmoCloseConfirm.tsx:108,119", conf:"high",
+   current:`Title "End this session?" · button "Close & discard" · cancel "Keep going"`,
+   issue:[["inconsistent terminology"],["destructive: consequence not at action"]],
+   impact:"Four verbs (End / Close / Discard / Keep going) for two outcomes; the destructive button doesn't restate what's lost. Risk of unintended data loss.",
+   sugg:`Pick one verb: title "Discard this conversation?", destructive "Discard", safe "Minimize instead", cancel "Cancel". Align header aria/tooltip to match.`},
+  {area:"Panel, Lifecycle & Onboarding", sev:"P1", surface:"Close confirm (empty state) — destructive button still says \"discard\"", loc:"GrizmoCloseConfirm.tsx:70,119", conf:"med",
+   current:`Closing ends this session. Minimize keeps Grizmo nearby for later.` ,
+   issue:[["misleading"]],
+   impact:"With no content, the button still reads \"Close & discard\" — discard what? Users hesitate or distrust the control.",
+   sugg:`When empty, relabel the destructive button to just "Close" (drop "& discard").`},
+  {area:"Panel, Lifecycle & Onboarding", sev:"P1", surface:"Save-path control — tooltip & aria", loc:"GrizmoPanel.tsx:338,347", conf:"med",
+   current:`tooltip "Save as path" / "Nothing to save yet" · aria "Save conversation as path"`,
+   issue:[["jargon"],["aria≠tooltip"],["missing guidance"]],
+   impact:"\"path\" is undefined; \"Nothing to save yet\" gives no hint what makes it saveable; tooltip and aria word it differently.",
+   sugg:`Define the term or use "Save these steps to reuse"; make tooltip and aria identical.`},
+  {area:"Panel, Lifecycle & Onboarding", sev:"P1", surface:"Clear control — tooltip & aria", loc:"GrizmoPanel.tsx:368,377", conf:"med",
+   current:`tooltip "Clear conversation" / "Nothing to clear" · aria "Clear conversation"`,
+   issue:[["destructive: recoverability not stated"]],
+   impact:"Undo exists but the user isn't told, so they avoid Clear or clear and panic.",
+   sugg:`"Clear conversation (you can undo)" — or have the post-action toast say so.`},
+  {area:"Panel, Lifecycle & Onboarding", sev:"P1", surface:"End-session control — tooltip vs aria vs trigger", loc:"GrizmoPanel.tsx:391,396", conf:"high",
+   current:`tooltip "End session" · aria "End Grizmo session" · trigger aria "Close Grizmo"`,
+   issue:[["inconsistent terminology"],["aria≠tooltip"]],
+   impact:"Different verbs for the same close gesture across trigger, header, and modal.",
+   sugg:`Standardize one verb across trigger + header + confirm modal.`},
+  {area:"Panel, Lifecycle & Onboarding", sev:"P1", surface:"Minimized pill — label", loc:"GrizmoMini.tsx:125", conf:"med",
+   current:`1 active chat`,
+   issue:[["placeholder-as-label"],["inconsistent terminology"]],
+   impact:"Hardcoded \"1\" reads as a real count; \"chat\" is a third synonym for session/conversation.",
+   sugg:`"Grizmo (minimized)" or "Resume conversation" — match the canonical noun, drop the fake count.`},
+  {area:"Panel, Lifecycle & Onboarding", sev:"P2", surface:"Minimized pill — aria vs visible", loc:"GrizmoMini.tsx:115", conf:"med",
+   current:`aria "Restore Grizmo" (visible label "active chat")`,
+   issue:[["inconsistent terminology"],["aria≠visible"]],
+   impact:"\"Restore\" is yet another verb; aria and visible label diverge.",
+   sugg:`"Reopen Grizmo conversation".`},
+  {area:"Panel, Lifecycle & Onboarding", sev:"P2", surface:"Post-undo toast", loc:"GrizmoPanel.tsx:298", conf:"high",
+   current:`Restored`,
+   issue:[["too terse"]],
+   impact:"Doesn't say what came back — conversation, context, or both?",
+   sugg:`"Conversation restored" (mirrors "Conversation cleared").`},
+  {area:"Panel, Lifecycle & Onboarding", sev:"P2", surface:"Intro bubble — aria vs visible title", loc:"GrizmoIntroBubble.tsx:130,142,154", conf:"med",
+   current:`aria "Meet Grizmo" · title "Hi, I'm Grizmo 👋" · dismiss aria "Dismiss"`,
+   issue:[["aria≠visible"],["ambiguous"]],
+   impact:"SR users hear a different heading; bare \"Dismiss\" — dismiss what?",
+   sugg:`Set dismiss aria to "Dismiss intro".`},
+  {area:"Panel, Lifecycle & Onboarding", sev:"P2", surface:"Tour popover — identity row", loc:"GrizmoTourTrigger.tsx:76", conf:"low",
+   current:`Customer, Location, Product — describe the row, don't change scope.`,
+   issue:[["circular: uses \"scope\" mid-teaching"]],
+   impact:"Assumes the user already knows \"scope\" before the popover finishes explaining it.",
+   sugg:`"…these describe the row; clicking them won't refocus Grizmo."`},
+  {area:"Panel, Lifecycle & Onboarding", sev:"P3", surface:"Minimize control — tooltip vs aria", loc:"GrizmoPanel.tsx:382,388", conf:"high",
+   current:`tooltip "Minimize" · aria "Minimize Grizmo"`,
+   issue:[["aria≠tooltip"]],
+   impact:"Same object-dropping inconsistency as the other header controls.",
+   sugg:`Decide whether tooltips include "Grizmo" and apply to all five controls.`},
+
+  /* ---------- SAVE-PATH, LIBRARY & SCOPING (Agent D) ---------- */
+  {area:"Save-Path, Library & Scoping", sev:"P0", surface:"Paths tab — empty state (factually wrong)", loc:"GrizmoLibrary.tsx:283", conf:"high",
+   current:`Bookmark a multi-step investigation and it will show up here, ready to re-run.`,
+   issue:[["misleading"],["wrong instruction"]],
+   impact:"Paths are created via \"Save as path\", NOT bookmarking. Users follow this, find no bookmark action that populates Paths, and conclude it's broken.",
+   sugg:`"Save a sequence of questions as a path and it shows up here. Look for 'Save as path' after Grizmo answers a few related questions."`},
+  {area:"Save-Path, Library & Scoping", sev:"P0", surface:"\"path\" never defined before first use", loc:"GrizmoPathModal.tsx:132", conf:"high",
+   current:`Save as path`,
+   issue:[["jargon"],["assumed knowledge"]],
+   impact:"\"path\" is the feature's core concept; an analyst reads it as a file/route, not a re-runnable question sequence. Feature goes undiscovered.",
+   sugg:`Add a one-line subtitle: "A path is a sequence of questions you can re-run later" — or rename to "Save these steps".`},
+  {area:"Save-Path, Library & Scoping", sev:"P0", surface:"Save-path candidate prompt — no value prop", loc:"GrizmoPathCandidate.tsx:65", conf:"high",
+   current:`Save these 2 questions on the quote book as a path?`,
+   issue:[["jargon"],["missing value prop"],["awkward phrasing"]],
+   impact:"Most users meet \"path\" here first; a yes/no with no payoff gets dismissed, wasting the feature's key discovery moment.",
+   sugg:`"You just ran 2 questions in a row. Save them as a reusable path so you can re-run the whole sequence with one click."`},
+  {area:"Save-Path, Library & Scoping", sev:"P1", surface:"Save-path modal — Name field placeholder", loc:"GrizmoPathModal.tsx:148", conf:"high",
+   current:`What to call this path?`,
+   issue:[["placeholder-as-guidance"],["vague"]],
+   impact:"No hint of a good name or that it's how they'll find the path later; users enter throwaway names.",
+   sugg:`Placeholder "e.g. Weekly Gulf Coast margin check" + helper "You'll see this in your Library."`},
+  {area:"Save-Path, Library & Scoping", sev:"P1", surface:"Prompts tab — empty state (dev slang)", loc:"GrizmoLibrary.tsx:284", conf:"med",
+   current:`Save a one-shot question and it will live here for quick re-use.`,
+   issue:[["jargon"],["missing guidance"]],
+   impact:"\"one-shot\" is dev slang and there's no instruction on HOW to save a prompt.",
+   sugg:`"Save a question you ask often and it'll live here. Use 'Save as prompt' on any question you've asked."`},
+  {area:"Save-Path, Library & Scoping", sev:"P1", surface:"Activity — \"Save as path\" on a single question", loc:"GrizmoActivity.tsx:186", conf:"med",
+   current:`aria/title "Save as path" (seeds a 1-step path, forces aggregate scope)`,
+   issue:[["ambiguous"],["term contradiction"]],
+   impact:"Paths are framed as multi-step, but this makes a 1-step \"path\" and silently forces aggregate scope.",
+   sugg:`Label "Save as prompt" (single question → Prompts), or "Start a path from this" if extension is intended.`},
+  {area:"Save-Path, Library & Scoping", sev:"P1", surface:"Save-path modal — scope badge", loc:"GrizmoPathModal.tsx:113", conf:"high",
+   current:`Aggregate / Row-scoped`,
+   issue:[["jargon"],["inconsistent terminology"]],
+   impact:"\"Row-scoped\" can't be mapped to \"Row\" (Library), \"this row\" (candidate), or \"Whole row\" (legend) — four vocabularies for one concept.",
+   sugg:`Standardize one pair everywhere: "Whole quote book" vs "This row".`},
+  {area:"Save-Path, Library & Scoping", sev:"P1", surface:"Column legend — scoping instruction", loc:"GrizmoColumnLegend.tsx:31", conf:"high",
+   current:`Click any cell to scope Grizmo`,
+   issue:[["jargon: \"scope\" as a verb"]],
+   impact:"The primary instruction for focusing Grizmo on data is in insider language; users don't act on it.",
+   sugg:`"Click any cell to focus Grizmo on it."`},
+  {area:"Save-Path, Library & Scoping", sev:"P1", surface:"Context chips — empty & active guidance", loc:"GrizmoContextChips.tsx:50", conf:"high",
+   current:`No context · click any cell  /  Click a cell to set context`,
+   issue:[["inconsistent terminology"],["mildly technical"]],
+   impact:"This strip says \"context,\" the legend says \"scope,\" the modal says \"scope\" — three words for one gesture.",
+   sugg:`Pick one user word (e.g. "focus"): "Click any cell to tell Grizmo what to look at."`},
+  {area:"Save-Path, Library & Scoping", sev:"P2", surface:"Save-path modal — Description placeholder", loc:"GrizmoPathModal.tsx:158", conf:"med",
+   current:`A short note future-you will appreciate.`,
+   issue:[["tone mismatch"],["doesn't explain purpose"]],
+   impact:"Cutesy for a pricing tool; doesn't say the description shows on the Library card. Users skip it → empty cards.",
+   sugg:`"What this path checks and when to use it (shown in your Library)." Mark "(optional)".`},
+  {area:"Save-Path, Library & Scoping", sev:"P2", surface:"Save-path modal — re-run hint", loc:"GrizmoPathModal.tsx:258", conf:"med",
+   current:`Re-running this path replays each question — saved questions, not the answers.`,
+   issue:[["ambiguous"],["reads as a riddle"]],
+   impact:"The valuable point (fresh answers vs cached) is obscured; users unsure if they'll see stale data.",
+   sugg:`"Re-running asks each question again against current data — you get fresh answers, not a saved copy."`},
+  {area:"Save-Path, Library & Scoping", sev:"P2", surface:"+Add context chip — bare label", loc:"GrizmoContextChips.tsx:38", conf:"med",
+   current:`Add  (tooltip "Add another context")`,
+   issue:[["terse"],["ambiguous"],["jargon in tooltip"]],
+   impact:"\"Add\" what? Discoverability of multi-cell scoping suffers.",
+   sugg:`Label "Add a cell"; tooltip "Add another cell to Grizmo's focus."`},
+  {area:"Save-Path, Library & Scoping", sev:"P2", surface:"Bookmark concept overloaded", loc:"GrizmoViewSearch.tsx:102", conf:"med",
+   current:`Bookmarked only (filter) + bookmark-to-save implied elsewhere`,
+   issue:[["overloaded concept"]],
+   impact:"Bookmark means both \"favorite\" and \"how items get saved\" (per the wrong empty state) — users conflate them.",
+   sugg:`Keep bookmark = favorite only; fix the Paths empty state so nothing implies bookmarking saves items.`},
+  {area:"Save-Path, Library & Scoping", sev:"P2", surface:"No-matches empty state — possible dead end", loc:"GrizmoLibrary.tsx:294", conf:"med",
+   current:`Nothing to show with the current filters. (no clear-filters action in this branch)`,
+   issue:[["dead-end empty state"]],
+   impact:"Some filter combos land here with no recovery affordance.",
+   sugg:`Always offer "Clear filters" when any filter (query OR bookmarked) is active.`},
+  {area:"Save-Path, Library & Scoping", sev:"P3", surface:"Clear-all context button", loc:"GrizmoContextChips.tsx:92", conf:"low",
+   current:`Clear all`,
+   issue:[["vague CTA"]],
+   impact:"Clear all what? Ambiguous next to search/filters.",
+   sugg:`"Clear context" / "Clear all cells".`},
+  {area:"Save-Path, Library & Scoping", sev:"P3", surface:"Column legend — delta entry", loc:"GrizmoColumnLegend.tsx:22", conf:"low",
+   current:`Δ vs prior`,
+   issue:[["assumed knowledge"]],
+   impact:"\"prior\" what — prior day, prior quote? Unqualified.",
+   sugg:`"Change vs prior day" (whatever the actual comparison is).`},
+  {area:"Save-Path, Library & Scoping", sev:"P3", surface:"Library empty-state icons — emoji", loc:"GrizmoLibrary.tsx:279", conf:"low",
+   current:`🧭 (paths) / 💬 (prompts)`,
+   issue:[["tone"]],
+   impact:"Emoji clash with antd line icons used elsewhere in the chrome.",
+   sugg:`Use matching antd icons (advisory).`},
+
+  /* ---------- CONVERSATION SURFACE (Agent B) ---------- */
+  {area:"Conversation Surface", sev:"P1", surface:"Composer — send button", loc:"GrizmoComposer.tsx:94", conf:"med",
+   current:`Ask`,
+   issue:[["vague CTA"],["redundant with placeholder"]],
+   impact:"Bare \"Ask\" reads as a fragment and duplicates the \"Ask Grizmo…\" placeholder verb.",
+   sugg:`"Send" (or icon + aria "Send message").`},
+  {area:"Conversation Surface", sev:"P1", surface:"Feedback form — submit button", loc:"GrizmoFeedbackForm.tsx:95", conf:"high",
+   current:`Submit`,
+   issue:[["vague CTA"]],
+   impact:"Generic verb; doesn't describe the outcome.",
+   sugg:`"Send feedback" (matches the "Feedback received" toast).`},
+  {area:"Conversation Surface", sev:"P1", surface:"Composer — no failure copy", loc:"GrizmoComposer.tsx:48", conf:"med",
+   current:`(no error path — try/finally with no failure message)`,
+   issue:[["missing guidance"]],
+   impact:"A failed question silently does nothing; the analyst can't tell if Grizmo received it.",
+   sugg:`Add a failure toast/inline line: "Couldn't reach Grizmo. Try again."`},
+  {area:"Conversation Surface", sev:"P2", surface:"Suggestion chips — empty-state label", loc:"GrizmoChips.tsx:44", conf:"med",
+   current:`Try an aggregate question`,
+   issue:[["jargon"]],
+   impact:"The one piece of first-run guidance leads with an internal data term.",
+   sugg:`"Ask about all your rows" / "Try a question across your quote book".`},
+  {area:"Conversation Surface", sev:"P2", surface:"Confidence chip — note replaces anchor word", loc:"GrizmoConfidence.tsx:31", conf:"med",
+   current:`Medium · single sample`,
+   issue:[["assumed knowledge"],["terse"]],
+   impact:"When a note exists the word \"confidence\" disappears, leaving a bare level + jargon note.",
+   sugg:`Keep the anchor: "Medium confidence · single sample"; make notes plain-language.`},
+  {area:"Conversation Surface", sev:"P2", surface:"Confidence chip — redundant tooltip", loc:"GrizmoConfidence.tsx:27", conf:"med",
+   current:`title "Confidence: Medium" (visible already says "Medium confidence")`,
+   issue:[["redundant"]],
+   impact:"Hover reveals a near-duplicate; a wasted chance to explain what confidence means.",
+   sugg:`Tooltip should explain the level, e.g. "How sure Grizmo is in this answer".`},
+  {area:"Conversation Surface", sev:"P2", surface:"Feedback receipt — hand-wavy reassurance", loc:"GrizmoFeedbackReceipt.tsx:19", conf:"med",
+   current:`Feedback logged · {reason} · we'll audit and learn.`,
+   issue:[["vague"],["tone"]],
+   impact:"\"audit and learn\" is filler; reason casing also flips mid-sentence.",
+   sugg:`"Thanks — logged as '{reason}'. We use this to improve Grizmo."`},
+  {area:"Conversation Surface", sev:"P2", surface:"Feedback flow — two verbs for one event", loc:"GrizmoFeedbackForm.tsx:53 / GrizmoFeedbackReceipt.tsx:19", conf:"high",
+   current:`toast "Feedback received" vs receipt "Feedback logged"`,
+   issue:[["inconsistent terminology"]],
+   impact:"One submit, two different past-tense verbs.",
+   sugg:`Pick one ("received").`},
+  {area:"Conversation Surface", sev:"P2", surface:"Bookmark — tooltip/aria vs toast", loc:"GrizmoAnswerFooter.tsx:101", conf:"med",
+   current:`tooltip/aria "Bookmark" · toast "Saved"`,
+   issue:[["inconsistent terminology"],["aria not state-aware"]],
+   impact:"\"Saved\" vs \"Bookmark\" reads as two features; SR label doesn't reflect on/off state.",
+   sugg:`Toast "Bookmarked"; aria "Remove bookmark" when active.`},
+  {area:"Conversation Surface", sev:"P2", surface:"Feedback note — placeholder is the only label", loc:"GrizmoFeedbackForm.tsx:79", conf:"med",
+   current:`placeholder "Add a note (optional)"`,
+   issue:[["placeholder-as-label"]],
+   impact:"Unlabeled textarea for SR users; hint vanishes on focus.",
+   sugg:`Add a visible/aria label in addition to the placeholder.`},
+  {area:"Conversation Surface", sev:"P2", surface:"Row tag fallback — no identity", loc:"GrizmoBubble.tsx:75", conf:"med",
+   current:`Another row`,
+   issue:[["ambiguous"]],
+   impact:"When the source row leaves context, the analyst can't tell what the answer is about.",
+   sugg:`Carry the row identity, or "Row no longer in context".`},
+  {area:"Conversation Surface", sev:"P3", surface:"Thumbs-up toast", loc:"GrizmoAnswerFooter.tsx:58", conf:"low",
+   current:`Thanks`,
+   issue:[["too terse"]],
+   impact:"Doesn't confirm the positive rating registered; one-word outlier vs other toasts.",
+   sugg:`"Marked helpful".`},
+  {area:"Conversation Surface", sev:"P3", surface:"Details panel — emoji section labels", loc:"GrizmoDetails.tsx:68,84", conf:"low",
+   current:`⚡ Steps  /  📎 Sources`,
+   issue:[["tone"],["a11y"]],
+   impact:"Decorative emoji aren't meaningfully announced and skew casual.",
+   sugg:`Plain labels or icon components with aria-hidden.`},
+  {area:"Conversation Surface", sev:"P3", surface:"Empty state — informal shorthand", loc:"GrizmoEmptyState.tsx:30", conf:"low",
+   current:`Your pricing co-pilot. I'll explain prices, model what-ifs, compare peers, and decode flags.`,
+   issue:[["mild jargon"]],
+   impact:"\"what-ifs\" / \"decode flags\" read informal; otherwise strong.",
+   sugg:`Optional: "model what-if scenarios".`},
+  {area:"Conversation Surface", sev:"P3", surface:"Answer bubbles — no SR speaker cue", loc:"GrizmoBubble.tsx:97,127", conf:"low",
+   current:`avatar "G" with aria-hidden`,
+   issue:[["a11y: no speaker distinction"]],
+   impact:"SR users get no \"Grizmo said\" vs \"You said\" — bubbles rely on color/alignment only.",
+   sugg:`Add a visually-hidden "Grizmo:" / "You:" label per bubble.`},
+
+  /* ---------- DATA & RESPONSES (Agent A) ---------- */
+  {area:"Data & Response Content", sev:"P1", surface:"Ask failure — answer bubble", loc:"useGrizmoAsk.ts:159", conf:"high",
+   current:`Something went sideways. Try again.`,
+   issue:[["vague"],["tone mismatch"],["missing guidance"]],
+   impact:"Flippant non-explanation in a financial tool; user doesn't know if data is unsafe or what \"try again\" means.",
+   sugg:`"Grizmo couldn't complete that request. Your data is unchanged — ask again or rephrase." Attach recovery follow-up chips.`},
+  {area:"Data & Response Content", sev:"P1", surface:"Free-text fallback — exposes scaffolding", loc:"fakeLlm.ts:266", conf:"med",
+   current:`Static demo response. In production, free text routes through the closed prompt book scoped to the current selection…`,
+   issue:[["jargon"],["breaks character"],["no guidance"]],
+   impact:"A real question gets meta-commentary about the demo instead of an answer or a next step.",
+   sugg:`"I can't answer free-text questions yet. Try a suggested question below, or click a cell to scope me." Keep the dev note in a comment.`},
+  {area:"Data & Response Content", sev:"P1", surface:"Apply-price action chip — no scope, cents", loc:"fakeLlm.ts:164", conf:"high",
+   current:`Apply the 0.5¢ lift`,
+   issue:[["unit violation"],["vague CTA on a mutating action"]],
+   impact:"An \"apply\" implies a real price change; ambiguous scope + wrong unit is risky on the most consequential chip.",
+   sugg:`"Apply $0.0050/gal lift to both rows" — state scope, use $/gal.`},
+  {area:"Data & Response Content", sev:"P1", surface:"Answer bodies & follow-ups — cents notation", loc:"fakeLlm.ts:94,120,152,179,245,349,369,389", conf:"high",
+   current:`e.g. "sitting 0.6–1.2¢ below policy", "if margin lifts 0.5¢", "0.42¢ above the peer median"`,
+   issue:[["unit violation"],["mixes ¢ and $/gal in one sentence"]],
+   impact:"House standard is decimal dollars; systematic ¢ use across nearly every answer forces mental conversion and erodes trust.",
+   sugg:`Convert all ¢ → $/gal (0.6¢ → $0.0060/gal). Highest-volume consistency fix.`},
+  {area:"Data & Response Content", sev:"P1", surface:"Saved prompt — cents baked into reusable copy", loc:"GrizmoContext.tsx:95,97", conf:"high",
+   current:`What if margin shifts 1¢?  /  …if I shift margin by 1¢ on this row?`,
+   issue:[["unit violation"]],
+   impact:"A reusable prompt enshrines the wrong unit; every re-run reinforces it.",
+   sugg:`"What if margin shifts $0.0100/gal?"`},
+  {area:"Data & Response Content", sev:"P2", surface:"Activity feed — cents + bps + bare prices", loc:"GrizmoContext.tsx:107,115", conf:"med",
+   current:`"moved up 0.4¢; margin compressed 8 bps"  /  "Pilot proposed at 2.6620 vs peer median 2.6505 — 1.15¢ above"`,
+   issue:[["unit violation"],["3rd unit (bps)"],["bare prices, no unit"]],
+   impact:"Activity history shows yet another unit style; bare \"2.6620\" is ambiguous.",
+   sugg:`"$2.6620/gal vs peer median $2.6505/gal — $0.0115/gal above the band."`},
+  {area:"Data & Response Content", sev:"P2", surface:"Flagged-rows answer — confidence note", loc:"fakeLlm.ts:130", conf:"med",
+   current:`estimated clusters`,
+   issue:[["terse"],["ambiguous"]],
+   impact:"Doesn't say why confidence is only Medium or what's estimated; raises a question it doesn't answer.",
+   sugg:`"Cluster counts are estimated — may shift on refresh."`},
+  {area:"Data & Response Content", sev:"P2", surface:"Action chips — dangling adjective", loc:"fakeLlm.ts:132,133", conf:"high",
+   current:`Open the 11 margin-guard  /  Open the 8 over-band`,
+   issue:[["terse"],["missing noun"]],
+   impact:"Reads unfinished — \"the 11 margin-guard [what?]\".",
+   sugg:`"Open 11 margin-guard rows" / "Open 8 over-band rows".`},
+  {area:"Data & Response Content", sev:"P2", surface:"Error answer — no recovery follow-ups", loc:"useGrizmoAsk.ts:159", conf:"med",
+   current:`(error message carries no followUps/actions)`,
+   issue:[["missing guidance"]],
+   impact:"User hits a dead end on error with nothing to click, unlike every successful answer.",
+   sugg:`Attach a couple of seed follow-up chips to the error message.`},
+  {area:"Data & Response Content", sev:"P2", surface:"Save-path default description — scope jargon", loc:"detectPathCandidate.ts:125", conf:"med",
+   current:`Aggregate path — runs against the whole quote book.  /  Row-scoped path — runs against the currently selected row.`,
+   issue:[["jargon"],["leads with internal taxonomy"]],
+   impact:"User-facing description leads with \"Aggregate\"/\"Row-scoped\" rather than plain meaning.",
+   sugg:`"Runs across the whole quote book." / "Runs on the row you have selected."`},
+  {area:"Data & Response Content", sev:"P3", surface:"Open-chip phrasing — no consistent pattern", loc:"fakeLlm.ts:163,209", conf:"med",
+   current:`Open the uplift candidates  /  Open the 25 in review`,
+   issue:[["inconsistent CTA pattern"]],
+   impact:"Chips don't read as a coherent set.",
+   sugg:`Standardize "Open <N> <noun>".`},
+  {area:"Data & Response Content", sev:"P3", surface:"Fallback thinking-step labels — placeholder feel", loc:"fakeLlm.ts:261,262,263", conf:"low",
+   current:`Reading data · Processing · Composing answer`,
+   issue:[["vague"]],
+   impact:"\"Processing\" reads like a placeholder vs the specific steps in real scenarios.",
+   sugg:`Concrete verbs even in fallback: "Reading current selection" / "Searching the prompt book".`},
+  {area:"Data & Response Content", sev:"P3", surface:"Save-path default name — generic", loc:"detectPathCandidate.ts:122", conf:"low",
+   current:`Quote-book walkthrough  /  Row walkthrough`,
+   issue:[["vague"],["term outlier (\"walkthrough\")"]],
+   impact:"Default name doesn't convey a re-runnable workflow; \"walkthrough\" is an outlier vs \"path\".",
+   sugg:`"Quote-book review path" / "Row review path".`},
+  {area:"Data & Response Content", sev:"P3", surface:"Feedback reason values — informal/ambiguous", loc:"types.ts:63", conf:"low",
+   current:`'wrong-data' | 'misread' | 'made-up'`,
+   issue:[["informal"],["ambiguous subject"]],
+   impact:"If surfaced as labels, \"made-up\" is blame-adjacent and \"misread\" is unclear (who misread?).",
+   sugg:`"Incorrect data" / "Misinterpreted my question" / "Fabricated / not in the data."`},
+
+  /* ---------- POSITIVE BASELINE ---------- */
+  {area:"What's working (keep)", sev:"good", surface:"Seed path / prompt card descriptions", loc:"GrizmoContext.tsx:59,72,88", conf:"high",
+   current:`Pulls margin health, peer comparison, and 30-day trend for the active row.`,
+   issue:[["clear"],["scannable"],["consistent voice"]],
+   impact:"Clear, benefit-led, consistent — use these as the voice template for the rewrites above.",
+   sugg:`No change. Reference voice for other copy.`},
+  {area:"What's working (keep)", sev:"good", surface:"Ellipsis & middot style", loc:"module-wide", conf:"high",
+   current:`Real "…" glyph and "·" middot used consistently across chips, search, meta lines.`,
+   issue:[["consistent"]],
+   impact:"Typographic style is uniform — no \"...\" vs \"…\" drift found.",
+   sugg:`Keep the single-glyph conventions.`},
+];
+
+// Implementation status, keyed by loc. Updated as edits land.
+const STATUS = {};
+// STATUS_INJECT (do not remove)
+// --- Panel, Lifecycle & Onboarding ---
+STATUS["GrizmoIntroBubble.tsx:144"] = {s:'done', n:"Body now states what Grizmo does + names the real 'Ask Grizmo' button (now :145-147)."};
+STATUS["GrizmoCloseConfirm.tsx:108,119"] = {s:'done', n:"Title 'Discard this conversation?', destructive 'Discard', cancel 'Cancel'."};
+STATUS["GrizmoCloseConfirm.tsx:70,119"] = {s:'done', n:"All branches reworded to 'conversation'/'cells in focus' — 'session'/'context' jargon removed; empty branch shows 'Close'."};
+STATUS["GrizmoPanel.tsx:338,347"] = {s:'done', n:"aria-label now 'Save conversation as a path'; term defined in the modal."};
+STATUS["GrizmoPanel.tsx:368,377"] = {s:'done', n:"Clear tooltip now '(you can undo)'."};
+STATUS["GrizmoPanel.tsx:391,396"] = {s:'done', n:"tooltip 'Close' / aria 'Close Grizmo' — 'End session' removed."};
+STATUS["GrizmoMini.tsx:125"] = {s:'done', n:"Label 'Resume conversation'; hardcoded count removed."};
+STATUS["GrizmoMini.tsx:115"] = {s:'done', n:"aria 'Reopen Grizmo conversation'."};
+STATUS["GrizmoPanel.tsx:298"] = {s:'done', n:"Toast 'Conversation restored'."};
+STATUS["GrizmoIntroBubble.tsx:130,142,154"] = {s:'done', n:"Dismiss aria 'Dismiss intro'; dialog aria kept 'Meet Grizmo'."};
+STATUS["GrizmoTourTrigger.tsx:76"] = {s:'done', n:"Identity row reworded; popover title also changed 'scope'→'focus' Grizmo for consistency."};
+STATUS["GrizmoPanel.tsx:382,388"] = {s:'done', n:"Verified consistent (Minimize / Minimize Grizmo) — no change needed."};
+// --- Save-Path, Library & Scoping ---
+STATUS["GrizmoLibrary.tsx:283"] = {s:'done', n:"Fixed misleading copy → points users to 'Save as path'."};
+STATUS["GrizmoPathModal.tsx:132"] = {s:'done', n:"Added subtitle defining what a 'path' is."};
+STATUS["GrizmoPathCandidate.tsx:65"] = {s:'done', n:"Value-led lede; dynamic count/scope preserved."};
+STATUS["GrizmoPathModal.tsx:148"] = {s:'done', n:"Example placeholder + 'shows in Library' helper."};
+STATUS["GrizmoLibrary.tsx:284"] = {s:'done', n:"Now explains how to save ('Save as prompt')."};
+STATUS["GrizmoActivity.tsx:186"] = {s:'partial', n:"Kept 'Save as path' — no savePrompt action exists; relabel would mislead. Needs a real saved-question flow."};
+STATUS["GrizmoPathModal.tsx:113"] = {s:'done', n:"Badge 'Whole quote book' / 'This row'."};
+STATUS["GrizmoColumnLegend.tsx:31"] = {s:'done', n:"'Click any cell to focus Grizmo on it'."};
+STATUS["GrizmoContextChips.tsx:50"] = {s:'done', n:"Focus language: 'Click a cell to tell Grizmo what to look at'."};
+STATUS["GrizmoPathModal.tsx:158"] = {s:'done', n:"Explains purpose + that it shows in the Library."};
+STATUS["GrizmoPathModal.tsx:258"] = {s:'done', n:"Clarified fresh-answers vs cached copy."};
+STATUS["GrizmoContextChips.tsx:38"] = {s:'done', n:"'Add a cell' + clearer tooltip (idle branch :43)."};
+STATUS["GrizmoViewSearch.tsx:102"] = {s:'done', n:"Resolved via empty-state fix; 'Bookmarked only' kept as favorite filter."};
+STATUS["GrizmoLibrary.tsx:294"] = {s:'done', n:"Unified copy; 'Clear filters' shown whenever filters active."};
+STATUS["GrizmoContextChips.tsx:92"] = {s:'done', n:"'Clear all cells' (now :93)."};
+STATUS["GrizmoColumnLegend.tsx:22"] = {s:'done', n:"'Change vs prior day'."};
+STATUS["GrizmoLibrary.tsx:279"] = {s:'skipped', n:"Advisory only (emoji→antd icon is styling, not copy) — deferred."};
+// --- Conversation Surface ---
+STATUS["GrizmoComposer.tsx:94"] = {s:'done', n:"'Ask' → 'Send' (now :112)."};
+STATUS["GrizmoFeedbackForm.tsx:95"] = {s:'done', n:"'Submit' → 'Send feedback' (now :100)."};
+STATUS["GrizmoComposer.tsx:48"] = {s:'done', n:"catch fires error toast 'Couldn't reach Grizmo. Try again.' via addToast."};
+STATUS["GrizmoChips.tsx:44"] = {s:'done', n:"'Ask about all your rows'."};
+STATUS["GrizmoConfidence.tsx:31"] = {s:'done', n:"Keeps 'confidence' anchor: '<Level> confidence · <note>'."};
+STATUS["GrizmoConfidence.tsx:27"] = {s:'done', n:"Tooltip now explains the rating instead of echoing it."};
+STATUS["GrizmoFeedbackReceipt.tsx:19"] = {s:'done', n:"'Thanks — recorded as {reason}…'; reason casing preserved."};
+STATUS["GrizmoFeedbackForm.tsx:53 / GrizmoFeedbackReceipt.tsx:19"] = {s:'done', n:"Unified verbs: toast 'Feedback received', receipt 'recorded as'."};
+STATUS["GrizmoAnswerFooter.tsx:101"] = {s:'done', n:"Toast 'Bookmarked'; aria state-aware ('Remove bookmark')."};
+STATUS["GrizmoFeedbackForm.tsx:79"] = {s:'done', n:"Added aria-label; kept placeholder."};
+STATUS["GrizmoBubble.tsx:75"] = {s:'done', n:"'Row no longer in context' (now :85)."};
+STATUS["GrizmoAnswerFooter.tsx:58"] = {s:'done', n:"Thumbs-up toast 'Marked helpful'."};
+STATUS["GrizmoDetails.tsx:68,84"] = {s:'done', n:"Emoji removed → 'Steps' / 'Sources'."};
+STATUS["GrizmoEmptyState.tsx:30"] = {s:'done', n:"'what-ifs' → 'what-if scenarios'."};
+STATUS["GrizmoBubble.tsx:97,127"] = {s:'done', n:"Added sr-only speaker cue (You: / Grizmo:) on all bubbles."};
+STATUS["GrizmoFeedbackForm.tsx:25"] = {s:'done', n:"'Made something up' → 'Invented data'."};
+// --- Data & Response Content ---
+STATUS["useGrizmoAsk.ts:159"] = {s:'done', n:"Calm error + 'your data is unchanged'; added 2 recovery follow-up chips."};
+STATUS["fakeLlm.ts:266"] = {s:'done', n:"Fallback now guides the user; dev note moved to a code comment."};
+STATUS["fakeLlm.ts:164"] = {s:'done', n:"'Apply $0.0050/gal lift to both rows'."};
+STATUS["fakeLlm.ts:94,120,152,179,245,349,369,389"] = {s:'done', n:"9 cents→$/gal conversions across answer bodies & follow-ups; 0 ¢ remain."};
+STATUS["GrizmoContext.tsx:95,97"] = {s:'done', n:"Saved prompt now '$0.0100/gal'."};
+STATUS["GrizmoContext.tsx:107,115"] = {s:'done', n:"Activity ¢/bps/bare prices → $/gal ('$2.6620/gal' etc.)."};
+STATUS["fakeLlm.ts:130"] = {s:'done', n:"'Cluster counts are estimated'."};
+STATUS["fakeLlm.ts:132,133"] = {s:'done', n:"'Open 11 margin-guard rows' / 'Open 8 over-band rows'."};
+STATUS["detectPathCandidate.ts:125"] = {s:'done', n:"Plain 'Runs across the whole quote book.' / 'Runs on the row you have selected.'."};
+STATUS["fakeLlm.ts:163,209"] = {s:'done', n:"Standardized 'Open <N> <noun>' pattern."};
+STATUS["fakeLlm.ts:261,262,263"] = {s:'done', n:"Concrete step labels (no 'Processing')."};
+STATUS["detectPathCandidate.ts:122"] = {s:'done', n:"'Quote-book review path' / 'Row review path'."};
+STATUS["types.ts:63"] = {s:'skipped', n:"Internal enum keys (not user-facing); visible labels fixed in the feedback form."};
+
+function statusFor(f){ return STATUS[f.loc] || {s:'pending', n:''}; }
+const ST_LABEL = {done:'✓ Done', partial:'◐ Partial', skipped:'– Skipped', pending:'… Pending'};
+
+const SEV_LABEL = {P0:"P0", P1:"P1", P2:"P2", P3:"P3", good:"KEEP"};
+const root = document.getElementById('findings-root');
+const AREAS = [...new Set(F.map(f=>f.area))];
+
+function render(filter){
+  root.innerHTML = '';
+  let shown = 0;
+  AREAS.forEach(area=>{
+    const items = F.filter(f=>f.area===area && (filter==='ALL' || f.sev===filter));
+    if(!items.length) return;
+    shown += items.length;
+    const head = document.createElement('div');
+    head.className = 'area-head';
+    head.innerHTML = `<h3>${area}</h3><span class="count">${items.length} item${items.length>1?'s':''}</span>`;
+    root.appendChild(head);
+    items.forEach(f=>{
+      const el = document.createElement('div');
+      el.className = `finding ${f.sev}`;
+      const issuePills = f.issue.map(i=>`<span class="pill">${i[0]}</span>`).join('');
+      el.innerHTML = `
+        <div class="f-top">
+          <span class="sev ${f.sev}">${SEV_LABEL[f.sev]}</span>
+          <span class="f-surface">${f.surface}</span>
+          <span class="f-conf">confidence: ${f.conf}</span>
+          <span class="f-loc">${f.loc}</span>
+        </div>
+        ${(()=>{const st=statusFor(f);return `<div class="f-status st-${st.s}"><span class="st-badge">${ST_LABEL[st.s]}</span>${st.n?`<span class="st-note">${esc(st.n)}</span>`:''}</div>`;})()}
+        <p class="f-issue">${issuePills}</p>
+        <div class="f-grid">
+          <div class="f-block">
+            <div class="h">Current</div>
+            <code class="quote">${esc(f.current)}</code>
+          </div>
+          <div class="f-block">
+            <div class="h"><span class="arrow">▸</span> Suggested (advisory)</div>
+            <code class="quote">${esc(f.sugg)}</code>
+          </div>
+        </div>
+        <div class="f-block" style="margin-top:12px">
+          <div class="h">Impact</div>
+          <div class="v">${esc(f.impact)}</div>
+        </div>`;
+      root.appendChild(el);
+    });
+  });
+  document.getElementById('empty-note').classList.toggle('hidden', shown>0);
+  updateBanner();
+}
+function updateBanner(){
+  const actionable = F.filter(f=>f.sev!=='good');
+  const done = actionable.filter(f=>statusFor(f).s==='done').length;
+  const partial = actionable.filter(f=>statusFor(f).s==='partial').length;
+  const skipped = actionable.filter(f=>statusFor(f).s==='skipped').length;
+  const tot = actionable.length;
+  const pct = Math.round((done/tot)*100);
+  const allResolved = (done+partial+skipped)===tot;
+  document.getElementById('impl-banner').innerHTML =
+    `<b>${allResolved ? 'Implementation complete' : 'Implementation in progress'}</b>` +
+    `<span class="bar"><i style="width:${pct}%"></i></span>` +
+    `<span><b>${done}</b>/${tot} done${partial?` · ${partial} partial`:''}${skipped?` · ${skipped} skipped`:''}</span>`;
+}
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+// stats
+const counts = {P0:0,P1:0,P2:0,P3:0};
+F.forEach(f=>{ if(counts[f.sev]!==undefined) counts[f.sev]++; });
+const total = counts.P0+counts.P1+counts.P2+counts.P3;
+document.getElementById('stats').innerHTML = `
+  <div class="stat s-total"><div class="n">${total}</div><div class="l">findings</div></div>
+  <div class="stat s-p0"><div class="n">${counts.P0}</div><div class="l">P0 · blocking</div></div>
+  <div class="stat s-p1"><div class="n">${counts.P1}</div><div class="l">P1 · friction</div></div>
+  <div class="stat s-p2"><div class="n">${counts.P2}</div><div class="l">P2 · polish</div></div>
+  <div class="stat s-p3"><div class="n">${counts.P3}</div><div class="l">P3 · nit</div></div>`;
+
+// filter wiring
+document.querySelectorAll('#filterbar .fbtn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('#filterbar .fbtn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    render(btn.dataset.sev);
+  });
+});
+
+render('ALL');
+</script>
+</body>
+</html>

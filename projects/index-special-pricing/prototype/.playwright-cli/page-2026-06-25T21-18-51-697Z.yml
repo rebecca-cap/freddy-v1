@@ -1,0 +1,723 @@
+- generic [ref=e1]:
+  - generic [ref=e7]:
+    - generic [ref=e8]:
+      - generic [ref=e9]:
+        - button "menu-unfold" [ref=e11] [cursor=pointer]:
+          - img "menu-unfold" [ref=e12]:
+            - img [ref=e13]
+        - paragraph [ref=e16]:
+          - img "tag" [ref=e18]:
+            - img [ref=e19]
+          - text: Manage Offers
+      - generic [ref=e267] [cursor=pointer]:
+        - generic [ref=e268]:
+          - paragraph [ref=e269]: Freddy Demo
+          - generic [ref=e270]:
+            - img "user" [ref=e271]:
+              - img [ref=e272]
+            - text: All Companies
+        - generic [ref=e276]: FD
+    - generic [ref=e28]:
+      - complementary [ref=e29]:
+        - generic [ref=e32]:
+          - generic [ref=e33]:
+            - generic:
+              - img "search" [ref=e36]:
+                - img [ref=e37]
+              - text: Search
+              - img "mac-command" [ref=e41]:
+                - img [ref=e42]
+              - generic [ref=e45]: K
+          - generic [ref=e46]:
+            - link "dashboard Dashboard" [ref=e48] [cursor=pointer]:
+              - /url: /OrderDashboard
+              - img "dashboard" [ref=e50]:
+                - img [ref=e51]
+              - paragraph [ref=e53]: Dashboard
+            - link "sliders Admin Dashboard" [ref=e55] [cursor=pointer]:
+              - /url: /AdminDashboard
+              - img "sliders" [ref=e57]:
+                - img [ref=e58]
+              - paragraph [ref=e60]: Admin Dashboard
+            - link "tag Manage Offers" [ref=e62] [cursor=pointer]:
+              - /url: /SpecialOffers
+              - img "tag" [ref=e64]:
+                - img [ref=e65]
+              - paragraph [ref=e67]: Manage Offers
+            - link "money-collect Online Orders" [ref=e69] [cursor=pointer]:
+              - /url: /OnlineOrders
+              - img "money-collect" [ref=e71]:
+                - img [ref=e72]
+              - paragraph [ref=e74]: Online Orders
+            - generic [ref=e75]:
+              - generic [ref=e76] [cursor=pointer]:
+                - img "file" [ref=e78]:
+                  - img [ref=e79]
+                - paragraph [ref=e81]: Buy Now
+              - generic:
+                - link "Prompt" [ref=e84] [cursor=pointer]:
+                  - /url: /BuyNow/Prompt
+                  - paragraph: Prompt
+                - link "Forward" [ref=e87] [cursor=pointer]:
+                  - /url: /BuyNow/Forward
+                  - paragraph: Forward
+                - link "Offers" [ref=e90] [cursor=pointer]:
+                  - /url: /BuyNow/Offers
+                  - paragraph: Offers
+            - generic [ref=e92]:
+              - generic [ref=e93] [cursor=pointer]:
+                - img "file-sync" [ref=e95]:
+                  - img [ref=e96]
+                - paragraph [ref=e98]: Pricing Engine
+              - generic:
+                - paragraph [ref=e100]: Quote Book
+                - link "Daily" [ref=e102] [cursor=pointer]:
+                  - /url: /PricingEngine/QuoteBookEOD
+                  - paragraph: Daily
+                - link "Midday" [ref=e105] [cursor=pointer]:
+                  - /url: /PricingEngine/QuoteBookMidday
+                  - paragraph: Midday
+                - paragraph [ref=e107]: Command Center
+                - link "Command Center" [ref=e109] [cursor=pointer]:
+                  - /url: /PricingEngine/CommandCenter
+                  - paragraph: Command Center
+                - paragraph [ref=e111]: Calculations
+                - link "Formula Management" [ref=e113] [cursor=pointer]:
+                  - /url: /PricingEngine/FormulaManagement
+                  - paragraph: Formula Management
+                - link "Quote Rows" [ref=e116] [cursor=pointer]:
+                  - /url: /PricingEngine/Quotes
+                  - paragraph: Quote Rows
+                - paragraph [ref=e118]: Prices
+                - link "All Prices" [ref=e120] [cursor=pointer]:
+                  - /url: /PricingEngine/AllPrices
+                  - paragraph: All Prices
+            - generic [ref=e122]:
+              - generic [ref=e123] [cursor=pointer]:
+                - img "diff" [ref=e125]:
+                  - img [ref=e126]
+                - paragraph [ref=e128]: Admin
+              - generic:
+                - paragraph [ref=e130]: Pricing Engine
+                - link "Net / Gross Defaults" [ref=e132] [cursor=pointer]:
+                  - /url: /Admin/NetGrossDefaults
+                  - paragraph: Net / Gross Defaults
+                - link "Allocation Management" [ref=e135] [cursor=pointer]:
+                  - /url: /Admin/AllocationAssociationManagement
+                  - paragraph: Allocation Management
+                - link "Price Notifications" [ref=e138] [cursor=pointer]:
+                  - /url: /Admin/PriceNotifications
+                  - paragraph: Price Notifications
+                - link "Calendar Management" [ref=e141] [cursor=pointer]:
+                  - /url: /Admin/CalendarManagement
+                  - paragraph: Calendar Management
+                - paragraph [ref=e143]: Price Setup
+                - link "Price Publishers" [ref=e145] [cursor=pointer]:
+                  - /url: /Admin/Publishers
+                  - paragraph: Price Publishers
+                - link "Price Instruments" [ref=e148] [cursor=pointer]:
+                  - /url: /Admin/Instruments
+                  - paragraph: Price Instruments
+                - paragraph [ref=e150]: Reference Data
+                - link "Products" [ref=e152] [cursor=pointer]:
+                  - /url: /Admin/Products
+                  - paragraph: Products
+                - link "Locations" [ref=e155] [cursor=pointer]:
+                  - /url: /Admin/Locations
+                  - paragraph: Locations
+                - link "Users" [ref=e158] [cursor=pointer]:
+                  - /url: /Admin/Users
+                  - paragraph: Users
+                - link "Manage Counterparties" [ref=e161] [cursor=pointer]:
+                  - /url: /Admin/Counterparties
+                  - paragraph: Manage Counterparties
+                - link "Counterparty Hierarchy" [ref=e164] [cursor=pointer]:
+                  - /url: /Admin/CounterpartyHierarchy
+                  - paragraph: Counterparty Hierarchy
+                - paragraph [ref=e166]: Integrations
+                - link "Price Import Mappings" [ref=e168] [cursor=pointer]:
+                  - /url: /Admin/PriceImportMappings
+                  - paragraph: Price Import Mappings
+                - link "Price Translations" [ref=e171] [cursor=pointer]:
+                  - /url: /Admin/PriceTranslations
+                  - paragraph: Price Translations
+                - link "Allocation Mappings" [ref=e174] [cursor=pointer]:
+                  - /url: /Admin/AllocationMappings
+                  - paragraph: Allocation Mappings
+                - link "Manage OPIS Curves" [ref=e177] [cursor=pointer]:
+                  - /url: /Admin/ManageOpisPrices
+                  - paragraph: Manage OPIS Curves
+                - paragraph [ref=e179]: Application
+                - link "Extract Status Report" [ref=e181] [cursor=pointer]:
+                  - /url: /Admin/IntegrationStatus
+                  - paragraph: Extract Status Report
+                - paragraph [ref=e183]: Market Platform
+                - link "Applied Allocation Report" [ref=e185] [cursor=pointer]:
+                  - /url: /Admin/AppliedAllocationReport
+                  - paragraph: Applied Allocation Report
+                - link "Authorization Allocations" [ref=e188] [cursor=pointer]:
+                  - /url: /Admin/AuthorizationAllocationAssociations
+                  - paragraph: Authorization Allocations
+                - link "Availability" [ref=e191] [cursor=pointer]:
+                  - /url: /Admin/Availability
+                  - paragraph: Availability
+                - link "Market Platform Setups" [ref=e194] [cursor=pointer]:
+                  - /url: /Admin/MarketPlatformSetups
+                  - paragraph: Market Platform Setups
+                - link "Price Configurations" [ref=e197] [cursor=pointer]:
+                  - /url: /Admin/PriceConfiguration
+                  - paragraph: Price Configurations
+                - link "Formula Templates" [ref=e200] [cursor=pointer]:
+                  - /url: /Admin/FormulaTemplates
+                  - paragraph: Formula Templates
+                - link "Placeholder Management" [ref=e203] [cursor=pointer]:
+                  - /url: /Admin/PlaceholderManagement
+                  - paragraph: Placeholder Management
+                - link "Delivery Periods" [ref=e206] [cursor=pointer]:
+                  - /url: /Admin/DeliveryPeriods
+                  - paragraph: Delivery Periods
+                - link "Current Prices" [ref=e209] [cursor=pointer]:
+                  - /url: /Admin/CalculatedValueReport
+                  - paragraph: Current Prices
+                - link "Calendar Periods" [ref=e212] [cursor=pointer]:
+                  - /url: /Admin/CalendarPeriods
+                  - paragraph: Calendar Periods
+                - link "Quantity Distribution" [ref=e215] [cursor=pointer]:
+                  - /url: /Admin/QuantityDistributionManagement
+                  - paragraph: Quantity Distribution
+                - link "Volume Thresholds" [ref=e218] [cursor=pointer]:
+                  - /url: /Admin/VolumeThresholds
+                  - paragraph: Volume Thresholds
+      - main [ref=e220]:
+        - generic [ref=e222]:
+          - generic [ref=e223]:
+            - generic [ref=e226]:
+              - heading "Offers" [level=4] [ref=e227]
+              - heading "6 Results" [level=6] [ref=e277]
+            - generic [ref=e233]:
+              - img "search" [ref=e235]:
+                - img [ref=e236]
+              - textbox "Search here" [ref=e238]
+            - button "plus Create new offer down" [ref=e240] [cursor=pointer]:
+              - generic [ref=e241]:
+                - img "plus" [ref=e242]:
+                  - img [ref=e243]
+                - text: Create new offer
+                - img "down" [ref=e246]:
+                  - img [ref=e247]
+          - generic [ref=e250]:
+            - generic [ref=e513]: 
+            - listbox "Row Groups" [ref=e252]:
+              - generic [ref=e514]: Drag here to set row groups
+            - text: 
+            - treegrid [ref=e254]:
+              - rowgroup [ref=e255]:
+                - row "Offer ID Type Name Product Location Volume Accepted Volume Volume % Status Response Pending Submissions Lifting Window Created Created By Actions" [ref=e515]:
+                  - columnheader "Offer ID" [ref=e282]:
+                    - text: 
+                    - generic [ref=e283]: 
+                    - generic [ref=e284] [cursor=pointer]: Offer ID
+                    - text: 
+                    - generic [ref=e285] [cursor=pointer]:
+                      - text: 
+                      - generic [ref=e286]: 
+                      - text:  
+                  - columnheader "Type" [ref=e287]:
+                    - text: 
+                    - generic [ref=e288]: 
+                    - generic [ref=e289] [cursor=pointer]: Type
+                    - text: 
+                    - generic:    
+                  - columnheader "Name" [ref=e290]:
+                    - text: 
+                    - generic [ref=e291]: 
+                    - generic [ref=e292] [cursor=pointer]: Name
+                    - text: 
+                    - generic:    
+                  - columnheader "Product" [ref=e293]:
+                    - text: 
+                    - generic [ref=e294]: 
+                    - generic [ref=e295] [cursor=pointer]: Product
+                    - text: 
+                    - generic:    
+                  - columnheader "Location" [ref=e296]:
+                    - text: 
+                    - generic [ref=e297]: 
+                    - generic [ref=e298] [cursor=pointer]: Location
+                    - text: 
+                    - generic:    
+                  - columnheader "Volume" [ref=e299]:
+                    - text: 
+                    - generic [ref=e300]: 
+                    - generic [ref=e301] [cursor=pointer]: Volume
+                    - text: 
+                    - generic:    
+                  - columnheader "Accepted Volume" [ref=e302]:
+                    - text: 
+                    - generic [ref=e303]: 
+                    - generic [ref=e304] [cursor=pointer]: Accepted Volume
+                    - text: 
+                    - generic:    
+                  - columnheader "Volume %" [ref=e305]:
+                    - text: 
+                    - generic [ref=e306]: 
+                    - generic [ref=e307] [cursor=pointer]: Volume %
+                    - text: 
+                    - generic:    
+                  - columnheader "Status" [ref=e308]:
+                    - text: 
+                    - generic [ref=e309]: 
+                    - generic [ref=e310] [cursor=pointer]: Status
+                    - text: 
+                    - generic:    
+                  - columnheader "Response" [ref=e311]:
+                    - text: 
+                    - generic [ref=e312]: 
+                    - generic [ref=e313] [cursor=pointer]: Response
+                    - text: 
+                    - generic:    
+                  - columnheader "Pending Submissions" [ref=e314]:
+                    - text: 
+                    - generic [ref=e315]: 
+                    - generic [ref=e316] [cursor=pointer]: Pending Submissions
+                    - text: 
+                    - generic:    
+                  - columnheader "Lifting Window" [ref=e317]:
+                    - text: 
+                    - generic [ref=e318]: 
+                    - generic [ref=e319] [cursor=pointer]: Lifting Window
+                    - text: 
+                    - generic:    
+                  - columnheader "Created" [ref=e320]:
+                    - text: 
+                    - generic [ref=e321]: 
+                    - generic [ref=e322] [cursor=pointer]: Created
+                    - text: 
+                    - generic:    
+                  - columnheader "Created By" [ref=e323]:
+                    - text: 
+                    - generic [ref=e324]: 
+                    - generic [ref=e325] [cursor=pointer]: Created By
+                    - text: 
+                    - generic:    
+                  - columnheader "Actions" [ref=e516]:
+                    - text: 
+                    - generic [ref=e517]: 
+                    - generic [ref=e518]: Actions
+                    - text: 
+                    - generic: 
+              - rowgroup [ref=e326]:
+                - row "15001 Fixed Price Houston ULSD Promo ULSD Houston Terminal 25,000 gal 18,500 gal 74% Active 74.00% 0 May 1, 5:00 PM - May 9, 4:59 PM Apr 15, 2026 frank.overland@gravitate.energy View offer Create new offer from this" [ref=e327]:
+                  - gridcell "15001" [ref=e328]
+                  - gridcell "Fixed Price" [ref=e329]
+                  - gridcell "Houston ULSD Promo" [ref=e330]
+                  - gridcell "ULSD" [ref=e331]
+                  - gridcell "Houston Terminal" [ref=e332]
+                  - gridcell "25,000 gal" [ref=e333]
+                  - gridcell "18,500 gal" [ref=e334]
+                  - gridcell "74%" [ref=e335]
+                  - gridcell "Active" [ref=e336]:
+                    - generic [ref=e520]: Active
+                  - gridcell "74.00%" [ref=e339]
+                  - gridcell "0" [ref=e340]
+                  - gridcell "May 1, 5:00 PM - May 9, 4:59 PM" [ref=e341]:
+                    - generic [ref=e521]: May 1, 5:00 PM - May 9, 4:59 PM
+                  - gridcell "Apr 15, 2026" [ref=e343]
+                  - gridcell "frank.overland@gravitate.energy" [ref=e344]
+                  - gridcell "View offer Create new offer from this" [ref=e522]:
+                    - generic [ref=e523]:
+                      - button "View offer" [ref=e525] [cursor=pointer]:
+                        - img "eye" [ref=e526]:
+                          - img [ref=e527]
+                      - button "Create new offer from this" [ref=e530] [cursor=pointer]:
+                        - img "copy" [ref=e531]:
+                          - img [ref=e532]
+                - row "15002 Fixed Price Houston Gasoline Q2 Gasoline 87 Houston Terminal 18,000 gal 12,000 gal 67% Active 67.00% 0 May 1, 5:00 PM - May 9, 4:59 PM Apr 15, 2026 frank.overland@gravitate.energy View offer Create new offer from this" [ref=e357]:
+                  - gridcell "15002" [ref=e358]
+                  - gridcell "Fixed Price" [ref=e359]
+                  - gridcell "Houston Gasoline Q2" [ref=e360]
+                  - gridcell "Gasoline 87" [ref=e361]
+                  - gridcell "Houston Terminal" [ref=e362]
+                  - gridcell "18,000 gal" [ref=e363]
+                  - gridcell "12,000 gal" [ref=e364]
+                  - gridcell "67%" [ref=e365]
+                  - gridcell "Active" [ref=e366]:
+                    - generic [ref=e535]: Active
+                  - gridcell "67.00%" [ref=e369]
+                  - gridcell "0" [ref=e370]
+                  - gridcell "May 1, 5:00 PM - May 9, 4:59 PM" [ref=e371]:
+                    - generic [ref=e536]: May 1, 5:00 PM - May 9, 4:59 PM
+                  - gridcell "Apr 15, 2026" [ref=e373]
+                  - gridcell "frank.overland@gravitate.energy" [ref=e374]
+                  - gridcell "View offer Create new offer from this" [ref=e537]:
+                    - generic [ref=e538]:
+                      - button "View offer" [ref=e540] [cursor=pointer]:
+                        - img "eye" [ref=e541]:
+                          - img [ref=e542]
+                      - button "Create new offer from this" [ref=e545] [cursor=pointer]:
+                        - img "copy" [ref=e546]:
+                          - img [ref=e547]
+                - row "15003 Fixed Price Dallas Premium Push Gasoline 91 Dallas Hub 12,000 gal 12,000 gal 100% Completed 100.00% 0 Apr 24, 5:00 PM - May 1, 4:59 PM Apr 15, 2026 frank.overland@gravitate.energy View offer Create new offer from this" [ref=e387]:
+                  - gridcell "15003" [ref=e388]
+                  - gridcell "Fixed Price" [ref=e389]
+                  - gridcell "Dallas Premium Push" [ref=e390]
+                  - gridcell "Gasoline 91" [ref=e391]
+                  - gridcell "Dallas Hub" [ref=e392]
+                  - gridcell "12,000 gal" [ref=e393]
+                  - gridcell "12,000 gal" [ref=e394]
+                  - gridcell "100%" [ref=e395]
+                  - gridcell "Completed" [ref=e396]:
+                    - generic [ref=e550]: Completed
+                  - gridcell "100.00%" [ref=e399]
+                  - gridcell "0" [ref=e400]
+                  - gridcell "Apr 24, 5:00 PM - May 1, 4:59 PM" [ref=e401]:
+                    - generic [ref=e551]: Apr 24, 5:00 PM - May 1, 4:59 PM
+                  - gridcell "Apr 15, 2026" [ref=e403]
+                  - gridcell "frank.overland@gravitate.energy" [ref=e404]
+                  - gridcell "View offer Create new offer from this" [ref=e552]:
+                    - generic [ref=e553]:
+                      - button "View offer" [ref=e555] [cursor=pointer]:
+                        - img "eye" [ref=e556]:
+                          - img [ref=e557]
+                      - button "Create new offer from this" [ref=e560] [cursor=pointer]:
+                        - img "copy" [ref=e561]:
+                          - img [ref=e562]
+                - row "15004 Fixed Price Salt Lake Jet A Jet A Salt Lake Rack 30,000 gal 8,000 gal 27% Active 27.00% 0 May 1, 5:00 PM - May 9, 4:59 PM Apr 15, 2026 frank.overland@gravitate.energy View offer Create new offer from this" [ref=e417]:
+                  - gridcell "15004" [ref=e418]
+                  - gridcell "Fixed Price" [ref=e419]
+                  - gridcell "Salt Lake Jet A" [ref=e420]
+                  - gridcell "Jet A" [ref=e421]
+                  - gridcell "Salt Lake Rack" [ref=e422]
+                  - gridcell "30,000 gal" [ref=e423]
+                  - gridcell "8,000 gal" [ref=e424]
+                  - gridcell "27%" [ref=e425]
+                  - gridcell "Active" [ref=e426]:
+                    - generic [ref=e565]: Active
+                  - gridcell "27.00%" [ref=e429]
+                  - gridcell "0" [ref=e430]
+                  - gridcell "May 1, 5:00 PM - May 9, 4:59 PM" [ref=e431]:
+                    - generic [ref=e566]: May 1, 5:00 PM - May 9, 4:59 PM
+                  - gridcell "Apr 15, 2026" [ref=e433]
+                  - gridcell "frank.overland@gravitate.energy" [ref=e434]
+                  - gridcell "View offer Create new offer from this" [ref=e567]:
+                    - generic [ref=e568]:
+                      - button "View offer" [ref=e570] [cursor=pointer]:
+                        - img "eye" [ref=e571]:
+                          - img [ref=e572]
+                      - button "Create new offer from this" [ref=e575] [cursor=pointer]:
+                        - img "copy" [ref=e576]:
+                          - img [ref=e577]
+                - row "15005 Fixed Price Biodiesel B5 Special Biodiesel B5 Dallas Hub 8,000 gal 0 gal 0% Scheduled 0.00% 0 May 9, 5:00 PM - May 17, 4:59 PM Apr 15, 2026 frank.overland@gravitate.energy View offer Create new offer from this" [ref=e447]:
+                  - gridcell "15005" [ref=e448]
+                  - gridcell "Fixed Price" [ref=e449]
+                  - gridcell "Biodiesel B5 Special" [ref=e450]
+                  - gridcell "Biodiesel B5" [ref=e451]
+                  - gridcell "Dallas Hub" [ref=e452]
+                  - gridcell "8,000 gal" [ref=e453]
+                  - gridcell "0 gal" [ref=e454]
+                  - gridcell "0%" [ref=e455]
+                  - gridcell "Scheduled" [ref=e456]:
+                    - generic [ref=e580]: Scheduled
+                  - gridcell "0.00%" [ref=e459]
+                  - gridcell "0" [ref=e460]
+                  - gridcell "May 9, 5:00 PM - May 17, 4:59 PM" [ref=e461]:
+                    - generic [ref=e581]: May 9, 5:00 PM - May 17, 4:59 PM
+                  - gridcell "Apr 15, 2026" [ref=e463]
+                  - gridcell "frank.overland@gravitate.energy" [ref=e464]
+                  - gridcell "View offer Create new offer from this" [ref=e582]:
+                    - generic [ref=e583]:
+                      - button "View offer" [ref=e585] [cursor=pointer]:
+                        - img "eye" [ref=e586]:
+                          - img [ref=e587]
+                      - button "Create new offer from this" [ref=e590] [cursor=pointer]:
+                        - img "copy" [ref=e591]:
+                          - img [ref=e592]
+                - row "15006 Fixed Price Cascade Q1 Reach ULSD Salt Lake Rack 20,000 gal 19,500 gal 98% Completed 98.00% 0 Apr 9, 5:00 PM - Apr 17, 4:59 PM Apr 15, 2026 frank.overland@gravitate.energy View offer Create new offer from this" [ref=e477]:
+                  - gridcell "15006" [ref=e478]
+                  - gridcell "Fixed Price" [ref=e479]
+                  - gridcell "Cascade Q1 Reach" [ref=e480]
+                  - gridcell "ULSD" [ref=e481]
+                  - gridcell "Salt Lake Rack" [ref=e482]
+                  - gridcell "20,000 gal" [ref=e483]
+                  - gridcell "19,500 gal" [ref=e484]
+                  - gridcell "98%" [ref=e485]
+                  - gridcell "Completed" [ref=e486]:
+                    - generic [ref=e595]: Completed
+                  - gridcell "98.00%" [ref=e489]
+                  - gridcell "0" [ref=e490]
+                  - gridcell "Apr 9, 5:00 PM - Apr 17, 4:59 PM" [ref=e491]:
+                    - generic [ref=e596]: Apr 9, 5:00 PM - Apr 17, 4:59 PM
+                  - gridcell "Apr 15, 2026" [ref=e493]
+                  - gridcell "frank.overland@gravitate.energy" [ref=e494]
+                  - gridcell "View offer Create new offer from this" [ref=e597]:
+                    - generic [ref=e598]:
+                      - button "View offer" [ref=e600] [cursor=pointer]:
+                        - img "eye" [ref=e601]:
+                          - img [ref=e602]
+                      - button "Create new offer from this" [ref=e605] [cursor=pointer]:
+                        - img "copy" [ref=e606]:
+                          - img [ref=e607]
+            - generic [ref=e257]:
+              - tablist [ref=e258]:
+                - tab "Filters" [ref=e259] [cursor=pointer]:
+                  - generic [ref=e260]: 
+                  - generic [ref=e261]: Filters
+                - tab "Columns" [ref=e262] [cursor=pointer]:
+                  - generic [ref=e263]: 
+                  - generic [ref=e264]: Columns
+                - tab "Grid Views" [ref=e265] [cursor=pointer]:
+                  - generic [ref=e266]: Grid Views
+              - text:                                                                                                    
+            - text:    
+  - dialog [ref=e610]:
+    - generic [ref=e611]:
+      - generic [ref=e613]:
+        - button "Close" [ref=e614] [cursor=pointer]:
+          - img "close" [ref=e615]:
+            - img [ref=e616]
+        - generic [ref=e618]: Quick create offer
+      - generic [ref=e622]:
+        - button "arrow-left Back to Offers" [ref=e623] [cursor=pointer]:
+          - generic [ref=e624]:
+            - img "arrow-left" [ref=e625]:
+              - img [ref=e626]
+            - generic [ref=e628]: Back to Offers
+        - generic [ref=e629]:
+          - generic [ref=e630]:
+            - generic [ref=e631]:
+              - generic [ref=e632]:
+                - heading "Create New Offer" [level=4] [ref=e633]
+                - generic [ref=e634]:
+                  - generic [ref=e635]:
+                    - generic [ref=e636]:
+                      - paragraph [ref=e637]: Preset
+                      - generic [ref=e639] [cursor=pointer]:
+                        - generic [ref=e640]:
+                          - combobox [expanded] [active] [ref=e642]:
+                            - listbox:
+                              - option "G3 Suboctane fast-fill": g3-fast-fill
+                              - option "Premium — KC daily": premium-kc-daily
+                          - generic: No preset selected
+                        - generic:
+                          - img:
+                            - img
+                    - generic [ref=e643]:
+                      - paragraph [ref=e644]: Need more control?
+                      - button "Switch to full setup" [ref=e645] [cursor=pointer]:
+                        - generic [ref=e646]: Switch to full setup
+                  - paragraph [ref=e647]: Start from a saved preset to pre-fill the offer, or fill the steps below from scratch.
+              - generic [ref=e649]:
+                - generic [ref=e651]:
+                  - paragraph [ref=e653]: "1"
+                  - paragraph [ref=e654]: Offer details
+                - generic [ref=e658]:
+                  - paragraph [ref=e660]: "2"
+                  - paragraph [ref=e661]: Timeframe
+              - generic [ref=e662]:
+                - generic [ref=e664]:
+                  - heading "Product & volume" [level=4] [ref=e665]
+                  - paragraph [ref=e666]: Product, terminal, and total volume for this offer.
+                - generic [ref=e667]:
+                  - generic [ref=e668]:
+                    - paragraph [ref=e669]: Product
+                    - generic [ref=e670] [cursor=pointer]:
+                      - generic [ref=e671]:
+                        - combobox [ref=e673]
+                        - generic: Select product…
+                      - generic:
+                        - img:
+                          - img
+                  - generic [ref=e674]:
+                    - paragraph [ref=e675]: Terminal / location
+                    - generic [ref=e676] [cursor=pointer]:
+                      - generic [ref=e677]:
+                        - combobox [disabled] [ref=e679]
+                        - generic: Select terminal…
+                      - generic:
+                        - img:
+                          - img
+                  - generic [ref=e680]:
+                    - paragraph [ref=e681]: Volume (gal)
+                    - generic [ref=e687]:
+                      - generic [ref=e688]:
+                        - button "Increase Value" [ref=e689] [cursor=pointer]:
+                          - img "up" [ref=e690]:
+                            - img [ref=e691]
+                        - button "Decrease Value" [ref=e693] [cursor=pointer]:
+                          - img "down" [ref=e694]:
+                            - img [ref=e695]
+                      - spinbutton "e.g. 42,000" [ref=e698]
+              - generic [ref=e699]:
+                - generic [ref=e701]:
+                  - heading "Price formula" [level=4] [ref=e702]
+                  - paragraph [ref=e703]: How the offer price is calculated. Invoiced at lift.
+                - generic [ref=e704]:
+                  - paragraph [ref=e705]: Σ
+                  - heading "No price formula yet" [level=5] [ref=e706]
+                  - paragraph [ref=e707]: Pick a saved formula template (recommended), or build from scratch. Picking a product first filters the list.
+                  - generic [ref=e708]:
+                    - button "Choose a formula template" [ref=e709] [cursor=pointer]:
+                      - generic [ref=e710]: Choose a formula template
+                    - button "Build from scratch" [ref=e711] [cursor=pointer]:
+                      - generic [ref=e712]: Build from scratch
+              - generic [ref=e713]:
+                - generic [ref=e714]:
+                  - generic [ref=e715]:
+                    - heading "Customers" [level=4] [ref=e716]
+                    - paragraph [ref=e717]: Pick by group, who's authorized to lift, or available credit. Picks stack below across every tab.
+                  - paragraph [ref=e718]: 0 selected
+                - generic [ref=e719]:
+                  - paragraph [ref=e721]: Selected customers
+                  - paragraph [ref=e723]: Nobody selected yet — pick from any tab below.
+                - generic [ref=e725]:
+                  - generic [ref=e726] [cursor=pointer]:
+                    - radio "Groups"
+                    - generic "Groups" [ref=e727]
+                  - generic [ref=e728] [cursor=pointer]:
+                    - radio "Authorized to lift"
+                    - generic "Authorized to lift" [ref=e729]
+                  - generic [ref=e730] [cursor=pointer]:
+                    - radio "Credit"
+                    - generic "Credit" [ref=e731]
+                  - generic [ref=e732] [cursor=pointer]:
+                    - radio "All customers" [checked]
+                    - generic "All customers" [ref=e733]
+                - generic [ref=e735]:
+                  - generic [ref=e736]:
+                    - generic [ref=e739]:
+                      - heading [level=4]
+                      - heading "5 Results" [level=6] [ref=e740]
+                    - generic [ref=e745]:
+                      - img "search" [ref=e747]:
+                        - img [ref=e748]
+                      - textbox "Search here" [ref=e750]
+                  - generic [ref=e753]:
+                    - text:  
+                    - treegrid [ref=e754]:
+                      - row [ref=e756]:
+                        - columnheader [ref=e757]:
+                          - text: 
+                          - text: 
+                          - generic: 
+                        - columnheader [ref=e758]:
+                          - generic [ref=e759]:
+                            - checkbox [ref=e760]
+                            - text: 
+                          - generic [ref=e761]: 
+                          - text: 
+                          - generic: 
+                      - rowgroup [ref=e762]:
+                        - row "Authorized Counterparty" [ref=e763]:
+                          - columnheader "Authorized" [ref=e764]:
+                            - text: 
+                            - generic [ref=e765]: 
+                            - generic [ref=e766] [cursor=pointer]: Authorized
+                            - text: 
+                            - generic:    
+                          - columnheader "Counterparty" [ref=e767]:
+                            - text: 
+                            - generic [ref=e768]: 
+                            - generic [ref=e769] [cursor=pointer]: Counterparty
+                            - text: 
+                            - generic:    
+                      - rowgroup [ref=e770]:
+                        - row "Press SPACE to select this row." [ref=e771]:
+                          - gridcell "star" [ref=e772]:
+                            - button "star" [ref=e773] [cursor=pointer]:
+                              - img "star" [ref=e774]:
+                                - img [ref=e775]
+                          - gridcell "Press Space to toggle row selection (unchecked)  Unselected" [ref=e777]:
+                            - checkbox "Press Space to toggle row selection (unchecked)" [ref=e778]
+                            - text:  Unselected
+                        - row "Press SPACE to select this row." [ref=e779]:
+                          - gridcell "star" [ref=e780]:
+                            - button "star" [ref=e781] [cursor=pointer]:
+                              - img "star" [ref=e782]:
+                                - img [ref=e783]
+                          - gridcell "Press Space to toggle row selection (unchecked)  Unselected" [ref=e785]:
+                            - checkbox "Press Space to toggle row selection (unchecked)" [ref=e786]
+                            - text:  Unselected
+                        - row "Press SPACE to select this row." [ref=e787]:
+                          - gridcell "star" [ref=e788]:
+                            - button "star" [ref=e789] [cursor=pointer]:
+                              - img "star" [ref=e790]:
+                                - img [ref=e791]
+                          - gridcell "Press Space to toggle row selection (unchecked)  Unselected" [ref=e793]:
+                            - checkbox "Press Space to toggle row selection (unchecked)" [ref=e794]
+                            - text:  Unselected
+                        - row "Press SPACE to select this row." [ref=e795]:
+                          - gridcell "star" [ref=e796]:
+                            - button "star" [ref=e797] [cursor=pointer]:
+                              - img "star" [ref=e798]:
+                                - img [ref=e799]
+                          - gridcell "Press Space to toggle row selection (unchecked)  Unselected" [ref=e801]:
+                            - checkbox "Press Space to toggle row selection (unchecked)" [ref=e802]
+                            - text:  Unselected
+                        - row "Press SPACE to select this row." [ref=e803]:
+                          - gridcell "star" [ref=e804]:
+                            - button "star" [ref=e805] [cursor=pointer]:
+                              - img "star" [ref=e806]:
+                                - img [ref=e807]
+                          - gridcell "Press Space to toggle row selection (unchecked)  Unselected" [ref=e809]:
+                            - checkbox "Press Space to toggle row selection (unchecked)" [ref=e810]
+                            - text:  Unselected
+                      - rowgroup [ref=e811]:
+                        - row "Press SPACE to select this row." [ref=e812]:
+                          - gridcell "Demo Trucking Co." [ref=e813]
+                          - gridcell "No" [ref=e814]
+                        - row "Press SPACE to select this row." [ref=e815]:
+                          - gridcell "Frontier Fuel Services" [ref=e816]
+                          - gridcell "No" [ref=e817]
+                        - row "Press SPACE to select this row." [ref=e818]:
+                          - gridcell "Cascade Logistics" [ref=e819]
+                          - gridcell "No" [ref=e820]
+                        - row "Press SPACE to select this row." [ref=e821]:
+                          - gridcell "Prairie Trading Co." [ref=e822]
+                          - gridcell "No" [ref=e823]
+                        - row "Press SPACE to select this row." [ref=e824]:
+                          - gridcell "Sunbelt Wholesale" [ref=e825]
+                          - gridcell "No" [ref=e826]
+                    - text:    
+                - generic [ref=e827]:
+                  - paragraph [ref=e828]: Need more room to search and filter?
+                  - button "Open the full customer picker" [ref=e829] [cursor=pointer]:
+                    - generic [ref=e830]: Open the full customer picker
+            - generic [ref=e836]:
+              - button "arrow-left Previous" [disabled] [ref=e837]:
+                - generic:
+                  - img "arrow-left":
+                    - img
+                  - paragraph: Previous
+              - generic [ref=e838]:
+                - paragraph [ref=e839]: Step 1 of 2
+                - button "Next arrow-right" [ref=e840] [cursor=pointer]:
+                  - generic [ref=e841]:
+                    - paragraph [ref=e842]: Next
+                    - img "arrow-right" [ref=e843]:
+                      - img [ref=e844]
+          - generic [ref=e847]:
+            - generic [ref=e848]:
+              - heading "Index Special" [level=5] [ref=e849]
+              - paragraph [ref=e850]: What customers will see
+            - generic [ref=e851]:
+              - paragraph [ref=e852]: Product & Location
+              - paragraph [ref=e853]:
+                - emphasis [ref=e854]: Not configured
+            - generic [ref=e855]:
+              - paragraph [ref=e856]: Pricing Strategy
+              - generic [ref=e857]:
+                - paragraph [ref=e858]: Index Pricing
+                - paragraph [ref=e859]: Not configured yet
+            - generic [ref=e860]:
+              - paragraph [ref=e861]: Timing Windows
+              - paragraph [ref=e862]:
+                - emphasis [ref=e863]: Not configured
+            - generic [ref=e864]:
+              - paragraph [ref=e865]: Target Customers
+              - paragraph [ref=e866]:
+                - emphasis [ref=e867]: Not configured
+  - generic [ref=e873]:
+    - generic "G3 Suboctane fast-fill" [ref=e874] [cursor=pointer]:
+      - generic [ref=e875]: G3 Suboctane fast-fill
+    - generic "Premium — KC daily" [ref=e876] [cursor=pointer]:
+      - generic [ref=e877]: Premium — KC daily

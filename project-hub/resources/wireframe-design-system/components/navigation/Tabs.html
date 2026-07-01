@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabs Component - Gravitate Wireframe Design System</title>
+  <link rel="stylesheet" href="../../tokens/tokens.css">
+  <link rel="stylesheet" href="../controls/controls.css">
+  <link rel="stylesheet" href="navigation.css">
+  <style>
+    body {
+      font-family: var(--wf-font-family);
+      padding: 40px;
+      background-color: var(--wf-color-gray-50);
+    }
+    .demo-section {
+      background: white;
+      padding: 24px;
+      border-radius: 8px;
+      margin-bottom: 24px;
+      border: 1px solid var(--wf-color-border);
+    }
+    .demo-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--wf-color-text-muted);
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .demo-row {
+      margin-bottom: 24px;
+    }
+    .demo-row:last-child {
+      margin-bottom: 0;
+    }
+  </style>
+</head>
+<body>
+  <h1 style="margin-bottom: 32px; color: var(--wf-color-text);">Tabs Component</h1>
+
+  <!-- Line Tabs (Default) -->
+  <div class="demo-section">
+    <div class="demo-title">Line Tabs (Default)</div>
+    <div class="wf-tabs wf-tabs-line">
+      <div class="wf-tabs-list">
+        <button class="wf-tab wf-tab-active">Overview</button>
+        <button class="wf-tab">Details</button>
+        <button class="wf-tab">History</button>
+        <button class="wf-tab" disabled>Disabled</button>
+      </div>
+      <div class="wf-tabs-content">
+        <p>Tab content goes here. This is the Overview panel.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Line Tabs with Badges -->
+  <div class="demo-section">
+    <div class="demo-title">Line Tabs with Badges</div>
+    <div class="wf-tabs wf-tabs-line">
+      <div class="wf-tabs-list">
+        <button class="wf-tab wf-tab-active">
+          All Orders
+        </button>
+        <button class="wf-tab">
+          Pending <span class="wf-badge wf-badge-sm">12</span>
+        </button>
+        <button class="wf-tab">
+          Processing <span class="wf-badge wf-badge-sm wf-badge-secondary">5</span>
+        </button>
+        <button class="wf-tab">
+          Completed <span class="wf-badge wf-badge-sm wf-badge-success">48</span>
+        </button>
+      </div>
+      <div class="wf-tabs-content">
+        <p>Order list content.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card Tabs -->
+  <div class="demo-section">
+    <div class="demo-title">Card Tabs</div>
+    <div class="wf-tabs wf-tabs-card">
+      <div class="wf-tabs-list">
+        <button class="wf-tab wf-tab-active">Day</button>
+        <button class="wf-tab">Week</button>
+        <button class="wf-tab">Month</button>
+        <button class="wf-tab">Year</button>
+      </div>
+      <div class="wf-tabs-content">
+        <p>Daily view content.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pill Tabs -->
+  <div class="demo-section">
+    <div class="demo-title">Pill Tabs</div>
+    <div class="wf-tabs wf-tabs-pill">
+      <div class="wf-tabs-list">
+        <button class="wf-tab wf-tab-active">All</button>
+        <button class="wf-tab">Active</button>
+        <button class="wf-tab">Completed</button>
+        <button class="wf-tab">Archived</button>
+      </div>
+      <div class="wf-tabs-content">
+        <p>Showing all items.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vertical Tabs -->
+  <div class="demo-section">
+    <div class="demo-title">Vertical Tabs</div>
+    <div class="wf-tabs wf-tabs-vertical" style="min-height: 200px;">
+      <div class="wf-tabs-list">
+        <button class="wf-tab wf-tab-active">General</button>
+        <button class="wf-tab">Security</button>
+        <button class="wf-tab">Notifications</button>
+        <button class="wf-tab">Integrations</button>
+        <button class="wf-tab" disabled>Billing</button>
+      </div>
+      <div class="wf-tabs-content">
+        <h3 style="margin-top: 0;">General Settings</h3>
+        <p>Configure your general application preferences here.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Usage Examples -->
+  <div class="demo-section">
+    <div class="demo-title">Code Examples</div>
+    <pre style="background: var(--wf-color-gray-100); padding: 16px; border-radius: 6px; overflow-x: auto; font-size: 13px;"><code>&lt;!-- Line Tabs (Default) --&gt;
+&lt;div class="wf-tabs wf-tabs-line"&gt;
+  &lt;div class="wf-tabs-list"&gt;
+    &lt;button class="wf-tab wf-tab-active"&gt;Overview&lt;/button&gt;
+    &lt;button class="wf-tab"&gt;Details&lt;/button&gt;
+    &lt;button class="wf-tab"&gt;History&lt;/button&gt;
+    &lt;button class="wf-tab" disabled&gt;Disabled&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="wf-tabs-content"&gt;
+    &lt;!-- Active tab content --&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Card Tabs --&gt;
+&lt;div class="wf-tabs wf-tabs-card"&gt;
+  &lt;div class="wf-tabs-list"&gt;
+    &lt;button class="wf-tab wf-tab-active"&gt;Day&lt;/button&gt;
+    &lt;button class="wf-tab"&gt;Week&lt;/button&gt;
+    &lt;button class="wf-tab"&gt;Month&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="wf-tabs-content"&gt;...&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Pill Tabs --&gt;
+&lt;div class="wf-tabs wf-tabs-pill"&gt;
+  &lt;div class="wf-tabs-list"&gt;
+    &lt;button class="wf-tab wf-tab-active"&gt;All&lt;/button&gt;
+    &lt;button class="wf-tab"&gt;Active&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="wf-tabs-content"&gt;...&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Tab with Badge --&gt;
+&lt;button class="wf-tab"&gt;
+  Orders &lt;span class="wf-badge wf-badge-sm"&gt;12&lt;/span&gt;
+&lt;/button&gt;
+
+&lt;!-- Vertical Tabs --&gt;
+&lt;div class="wf-tabs wf-tabs-vertical"&gt;
+  &lt;div class="wf-tabs-list"&gt;
+    &lt;button class="wf-tab wf-tab-active"&gt;General&lt;/button&gt;
+    &lt;button class="wf-tab"&gt;Security&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="wf-tabs-content"&gt;...&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+  </div>
+</body>
+</html>

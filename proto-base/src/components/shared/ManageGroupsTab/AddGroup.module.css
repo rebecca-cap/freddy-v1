@@ -1,0 +1,12 @@
+.form {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  background: var(--gravi-bg-color-hover, rgba(0, 0, 0, 0.02));
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.field {
+  flex: 1;
+  min-width: 0;
+}

@@ -1,0 +1,131 @@
+{
+  "slug": "datagrid",
+  "title": "DataGrid",
+  "order": 8,
+  "group": "Data Display",
+  "intro": "`wf-datagrid` is the workhorse for dense tabular data — the wireframe stand-in for production's GraviGrid. It's a flexbox table, not an HTML `<table>`: a header row, a body of rows, and flex-weighted cells that carry the alignment, sort, selection, and density affordances analysts scan dozens of times a day.",
+  "searchTerms": ["wf-datagrid", "wf-datagrid-header", "wf-datagrid-row", "wf-datagrid-cell", "wf-datagrid-cell-number", "wf-datagrid-cell-checkbox", "wf-datagrid-cell-sortable", "wf-datagrid-compact", "wf-datagrid-row-selected", "datagrid", "data grid", "table", "GraviGrid", "tabular data", "sortable", "selection"],
+  "blocks": [
+    {
+      "type": "usage",
+      "body": "A DataGrid is three nested pieces: `wf-datagrid` (the bordered, rounded container), a single `wf-datagrid-header`, and a `wf-datagrid-body` holding one `wf-datagrid-row` per record. Every column is a `wf-datagrid-cell` in both the header and each row — there is no `<th>`/`<td>`, so the header and row cells must use the **same `flex` weights in the same order** or the columns won't line up.\n\nColumn width comes from inline `flex` on each cell (`flex: 2` for wide text columns, `flex: 1` for narrow ones, `flex: 0 0 60px` for fixed widths). Cells truncate with an ellipsis by default (`overflow: hidden; text-overflow: ellipsis; white-space: nowrap`), so a grid stays one row tall per record no matter how long the content.\n\nReach for `wf-datagrid` when you have **three or more rows** of structured, columnar data. Fewer than that is a `wf-card` with a list inside (§7.4), and a contract record's worth of label/value pairs is a `wf-description-list`, not a grid."
+    },
+    {
+      "type": "specimen",
+      "title": "Sortable headers",
+      "image": "specimens/datagrid/01-datagrid-sortable-headers.png",
+      "caption": "wf-datagrid-cell-sortable headers carry a wf-datagrid-sort-icon. The active column adds wf-sorted, which tints its icon primary blue; idle columns show both arrows in tertiary gray. Numerics stay right-aligned, statuses render as wf-badge pills."
+    },
+    {
+      "type": "variants",
+      "title": "Structural classes",
+      "intro": "The grid is composed entirely from these classes plus inline `flex` on cells. Match cell order and `flex` weights between the header and every row.",
+      "rows": [
+        { "name": "wf-datagrid", "when": "The outer container. Carries the 1px border, 8px radius, white surface, and clips overflow so nested rows stay inside the rounded corners.", "code": "<div class=\"wf-datagrid\">…</div>" },
+        { "name": "wf-datagrid-header", "when": "The single header row. Neutral-50 background, bottom border, 13px / 600 secondary-text labels.", "code": "<div class=\"wf-datagrid-header\">…cells…</div>" },
+        { "name": "wf-datagrid-body", "when": "Wraps the data rows in a vertical flex column.", "code": "<div class=\"wf-datagrid-body\">…rows…</div>" },
+        { "name": "wf-datagrid-row", "when": "One per record. Has a hover background and a bottom border that drops off the last row automatically.", "code": "<div class=\"wf-datagrid-row\">…cells…</div>" },
+        { "name": "wf-datagrid-cell", "when": "The base cell. Default `flex: 1`; set inline `flex` to weight columns. Left-aligned, single-line, ellipsis-truncated.", "code": "<div class=\"wf-datagrid-cell\" style=\"flex: 2\">Acme Corporation</div>" }
+      ]
+    },
+    {
+      "type": "variants",
+      "title": "Cell modifiers",
+      "intro": "Stack these on a `wf-datagrid-cell` to change alignment, fixed width, or affordance. Apply the same modifier to the header cell and its column's body cells so the column reads consistently.",
+      "rows": [
+        { "name": "wf-datagrid-cell-number", "when": "Numeric, currency, or volume columns. Right-aligns the cell (`justify-content: flex-end`) and turns on `tabular-nums` so digits align in a column.", "code": "<div class=\"wf-datagrid-cell wf-datagrid-cell-number\" style=\"flex: 1\">2,400,000</div>" },
+        { "name": "wf-datagrid-cell-checkbox", "when": "The leading selection column. Fixed `flex: 0 0 48px`, center-justified, holds a `wf-checkbox-input`.", "code": "<div class=\"wf-datagrid-cell wf-datagrid-cell-checkbox\"><input type=\"checkbox\" class=\"wf-checkbox-input\"></div>" },
+        { "name": "wf-datagrid-cell-sortable", "when": "A clickable header cell. Adds pointer cursor, disables text selection, and reserves a gap for the sort icon. Pair with a `wf-datagrid-sort-icon` span.", "code": "<div class=\"wf-datagrid-cell wf-datagrid-cell-sortable\" style=\"flex: 2\">Customer <span class=\"wf-datagrid-sort-icon\">&#9650;&#9660;</span></div>" },
+        { "name": "wf-sorted", "when": "Added alongside wf-datagrid-cell-sortable on the column currently driving the sort. Tints its sort icon primary blue.", "code": "<div class=\"wf-datagrid-cell wf-datagrid-cell-sortable wf-sorted\" style=\"flex: 2\">Contract ID <span class=\"wf-datagrid-sort-icon\">&#9650;</span></div>" },
+        { "name": "wf-datagrid-cell-actions", "when": "A row-action cell. `flex: 0 0 auto` with a 4px gap so inline ghost buttons sit snug at the row's end.", "code": "<div class=\"wf-datagrid-cell wf-datagrid-cell-actions\"><button class=\"wf-button wf-button-ghost wf-button-sm\">Edit</button></div>" },
+        { "name": "wf-mono", "when": "A utility for codes, IDs, and currency — switches the cell to a monospace face with tabular figures so they align character-for-character.", "code": "<div class=\"wf-datagrid-cell wf-mono\" style=\"flex: 1\">PRD-001</div>" }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "Row selection",
+      "image": "specimens/datagrid/02-datagrid-selection.png",
+      "caption": "A leading wf-datagrid-cell-checkbox column drives bulk selection. Checked rows take wf-datagrid-row-selected, which paints a light-blue (#eff6ff) background that also persists on hover."
+    },
+    {
+      "type": "specimen",
+      "title": "Compact density",
+      "image": "specimens/datagrid/03-datagrid-compact.png",
+      "caption": "wf-datagrid-compact on the container drops cell padding from 12px/16px to 8px/12px and steps header and row text down a size — the high-volume default for analyst screens."
+    },
+    {
+      "type": "specimen",
+      "title": "Cell types & alignment",
+      "image": "specimens/datagrid/04-datagrid-cell-types.png",
+      "caption": "Mixed cell content: an avatar in a fixed-width column, a two-line name/email stack, a wf-badge-with-dot status, a right-aligned wf-mono currency figure, and a trailing wf-datagrid-cell-actions group."
+    },
+    {
+      "type": "tokens",
+      "title": "DataGrid tokens",
+      "intro": "Surfaces and borders read from these data-display tokens, which themselves alias the neutral and primary scales. Reach for the alias, never the raw hex.",
+      "rows": [
+        { "token": "--wf-datagrid-header-bg", "value": "var(--wf-color-neutral-50, #f9fafb)", "use": "Header row background — a faint gray that separates labels from data." },
+        { "token": "--wf-datagrid-row-hover", "value": "var(--wf-color-neutral-50, #f9fafb)", "use": "Row hover background; signals which row the pointer is on." },
+        { "token": "--wf-datagrid-row-selected", "value": "#eff6ff", "use": "Selected-row background (wf-datagrid-row-selected) — a light primary tint, held even on hover." },
+        { "token": "--wf-datagrid-border", "value": "var(--wf-color-border, #d1d5db)", "use": "Container border plus every header/row divider." }
+      ]
+    },
+    {
+      "type": "code",
+      "title": "Canonical DataGrid markup",
+      "lang": "html",
+      "code": "<div class=\"wf-datagrid\">\n  <div class=\"wf-datagrid-header\">\n    <div class=\"wf-datagrid-cell wf-datagrid-cell-sortable wf-sorted\" style=\"flex: 2\">\n      Contract ID\n      <span class=\"wf-datagrid-sort-icon\">&#9650;</span>\n    </div>\n    <div class=\"wf-datagrid-cell\" style=\"flex: 2\">Customer</div>\n    <div class=\"wf-datagrid-cell\" style=\"flex: 1\">Status</div>\n    <div class=\"wf-datagrid-cell wf-datagrid-cell-number\" style=\"flex: 1\">Volume</div>\n  </div>\n  <div class=\"wf-datagrid-body\">\n    <div class=\"wf-datagrid-row\">\n      <div class=\"wf-datagrid-cell wf-mono\" style=\"flex: 2\">CNT-2024-001</div>\n      <div class=\"wf-datagrid-cell\" style=\"flex: 2\">Acme Corporation</div>\n      <div class=\"wf-datagrid-cell\" style=\"flex: 1\">\n        <span class=\"wf-badge wf-badge-success\">Active</span>\n      </div>\n      <div class=\"wf-datagrid-cell wf-datagrid-cell-number wf-mono\" style=\"flex: 1\">2,400,000</div>\n    </div>\n  </div>\n</div>",
+      "note": "Header and row cells share identical `flex` weights in identical order — that's what keeps the columns aligned, since these are flex divs, not a real table."
+    },
+    {
+      "type": "code",
+      "title": "Density and selection modifiers",
+      "lang": "html",
+      "code": "<!-- Compact: tighter padding, smaller text -->\n<div class=\"wf-datagrid wf-datagrid-compact\">…</div>\n\n<!-- Striped rows for long, scan-heavy tables -->\n<div class=\"wf-datagrid wf-datagrid-striped\">…</div>\n\n<!-- A selected row with a leading checkbox column -->\n<div class=\"wf-datagrid-row wf-datagrid-row-selected\">\n  <div class=\"wf-datagrid-cell wf-datagrid-cell-checkbox\">\n    <input type=\"checkbox\" class=\"wf-checkbox-input\" checked>\n  </div>\n  <div class=\"wf-datagrid-cell\" style=\"flex: 2\">CNT-2024-001</div>\n  …\n</div>",
+      "note": "wf-datagrid-compact and wf-datagrid-striped are container-level modifiers; wf-datagrid-row-selected is per-row."
+    },
+    {
+      "type": "rules",
+      "title": "When to use a DataGrid",
+      "intro": "From DESIGN.md §4.1 (container choice) and §7.4 (data-display anti-patterns).",
+      "items": [
+        { "rule": "Three or more rows of columnar data before you reach for wf-datagrid.", "why": "Fewer than three rows is a wf-card with a list inside, not a grid — the grid chrome costs more than it earns at that scale (§7.4)." },
+        { "rule": "A single record's label/value pairs belong in a wf-description-list, not a one-row grid.", "why": "A grid is for comparing many records down columns; a lone record reads better as terms and details." },
+        { "rule": "Never render zero-data as a blank grid — swap the body for wf-datagrid-empty with a CTA.", "why": "An empty grid is a dead end; the empty state tells the user what to do next (§7.4, §4.6)." },
+        { "rule": "Don't push more than one number-and-label into a wf-metric-card to dodge a grid.", "why": "MetricCard is one number, one label, one optional trend; multi-value comparison is the grid's job (§4.1, §7.4)." }
+      ]
+    },
+    {
+      "type": "rules",
+      "title": "Density, alignment, and color",
+      "intro": "Cross-cutting DESIGN.md rules that govern how the grid is filled in.",
+      "items": [
+        { "rule": "Default to wf-datagrid-compact for analyst-facing tables.", "why": "Density is a feature — a senior analyst would rather see one more row than one more breath of margin (§2.5, §5.1)." },
+        { "rule": "Right-align every numeric column with wf-datagrid-cell-number, and apply it to the header cell too.", "why": "Right alignment plus tabular-nums lines up magnitudes so the eye can compare figures vertically (§2.2 grid-first)." },
+        { "rule": "Status cells carry a wf-badge or wf-badge-with-dot, never bare colored text.", "why": "Color is never the only signal — pair it with a label or shape so the status survives for color-blind and AT users (§3.3, §6.3)." },
+        { "rule": "Status colors only mark real status; a green badge is not a decorative accent.", "why": "Status colors are reserved for status, no exceptions — dilute them and users stop reading them (§3.1, §7.2)." },
+        { "rule": "Row actions are inline ghost buttons in a wf-datagrid-cell-actions cell; bulk verbs live in an ActionBar above the grid.", "why": "Single-record actions are scoped inline; collection actions belong on a wf-action-bar, not crowded into rows (§4.3)." }
+      ]
+    },
+    {
+      "type": "dosdonts",
+      "items": [
+        { "do": "Give the header cell and its column's body cells the same flex weight.", "dont": "style=\"flex: 2\" header over style=\"flex: 1\" rows", "why": "These are flexbox divs, not a `<table>` — mismatched weights drift the header out of line with its column." },
+        { "do": "<div class=\"wf-datagrid-cell wf-datagrid-cell-number\">2,400,000</div>", "dont": "<div class=\"wf-datagrid-cell\">2,400,000</div>", "why": "Without wf-datagrid-cell-number the figure left-aligns and loses tabular-nums, so magnitudes no longer line up." },
+        { "do": "<span class=\"wf-badge wf-badge-warning\">Pending</span>", "dont": "<span style=\"color: orange\">Pending</span>", "why": "Color alone fails §3.3 — the badge gives the status a shape and label, and warning is a reserved status token." },
+        { "do": "wf-datagrid-empty with a CTA when there are no rows", "dont": "an empty wf-datagrid-body", "why": "A blank grid is a dead end; the empty state names the next action (§7.4, §4.6)." },
+        { "do": "wf-datagrid for 3+ rows of comparable records", "dont": "wf-datagrid for a single record's fields", "why": "Two rows of data is a card-with-list; a lone record is a description list. The grid earns its chrome only across many rows (§7.4)." }
+      ]
+    },
+    {
+      "type": "gotchas",
+      "items": [
+        { "title": "It's flexbox, not a table", "detail": "There is no `<table>`, `<th>`, or `<td>`. Columns line up only because header and row cells share inline `flex` weights in the same order. Add or reorder a column in one place and you must mirror it everywhere." },
+        { "title": "Cells truncate by default", "detail": "Every wf-datagrid-cell sets overflow:hidden, text-overflow:ellipsis, and white-space:nowrap. Long content clips to one line — to show two lines (name over email) nest a div inside the cell rather than relying on wrap." },
+        { "title": "Selected rows stay selected-blue on hover", "detail": "wf-datagrid-row-selected:hover keeps the #eff6ff selected tint instead of swapping to the neutral hover background, so a checked row reads as selected even under the pointer." },
+        { "title": "The checkbox column is a fixed 48px", "detail": "wf-datagrid-cell-checkbox is flex: 0 0 48px and center-justified — it doesn't grow with the table, so leave it out of your flex-weight budget for the data columns." },
+        { "title": "wf-sorted only tints the icon", "detail": "Adding wf-sorted recolors the wf-datagrid-sort-icon to primary blue but doesn't change the arrow glyph — you swap the glyph yourself (single ▲ / ▼ for the active direction vs. the ▲▼ idle pair)." }
+      ]
+    }
+  ]
+}

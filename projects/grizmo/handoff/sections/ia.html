@@ -1,0 +1,25 @@
+<h2>Information architecture</h2>
+
+<p class="lead">Scout lives in a single panel that holds two top-level views, reached through a tab strip: <span class="tok">Chats</span> and <span class="tok">Library</span>. Everything the analyst does — asking, reviewing past conversations, and reusing saved questions — happens inside this one surface, so navigation never leaves the pricing grid behind.</p>
+
+<p>The tab strip is the panel's primary wayfinding control (see 1). <span class="tok">Chats</span> is <b>list-first</b>: it opens onto the full set of conversations rather than a single thread. Each conversation appears as a card; selecting one slides into that conversation, and a back affordance labeled <span class="tok">‹ All Chats</span> returns to the list. There is no separate inbox view — the Chats list <i>is</i> the inbox, carrying an unseen-count badge when background answers are ready.</p>
+
+{{figure:c1-viewnav}}
+
+<p>The <span class="tok">Library</span> view holds reusable saved items: <span class="tok">Prompt</span> (one question) and <span class="tok">Path</span> (an ordered sequence of questions). It offers search, a starred-only filter, and an ownership filter spanning <span class="pill">All</span>, <span class="pill">Yours</span>, and <span class="pill">Shared with you</span>.</p>
+
+<h3>Scoping</h3>
+<p>Scoping is the cross-cutting concept: whatever the analyst selects in the grid — a row, a single cell, or a multi-cell selection — becomes the conversation's <span class="tok">context</span>, and Scout answers about that scope; with nothing in focus, it answers about the whole view.</p>
+
+<h3>Panel modes</h3>
+<p>The panel presents in one of two modes, switched by a single control. It can <b>float</b> as a draggable, resizable card docked top-right, or <b>dock as a sidebar</b> at full height, pushing the grid leftward to make room.</p>
+
+<table>
+<thead><tr><th>Surface</th><th>Purpose</th></tr></thead>
+<tbody>
+<tr><td><span class="tok">Chats</span> view</td><td>List-first home for every conversation; opening a card slides into that thread.</td></tr>
+<tr><td><span class="tok">Library</span> view</td><td>Saved Prompts and Paths, with search, starred-only, and ownership filters.</td></tr>
+<tr><td>Floating mode</td><td>Draggable, height-resizable card docked top-right, overlaying the grid.</td></tr>
+<tr><td>Sidebar mode</td><td>Full-height dock that pushes the grid left for a side-by-side layout.</td></tr>
+</tbody>
+</table>

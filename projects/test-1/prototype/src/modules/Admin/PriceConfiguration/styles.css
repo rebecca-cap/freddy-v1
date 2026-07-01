@@ -1,0 +1,19 @@
+.side-detail-header-background {
+  background: rgb(101, 170, 225);
+  background: var(--secondary-gradient);
+}
+
+.ant-tabs > .ant-tabs-nav .ant-tabs-nav-wrap,
+.ant-tabs > div > .ant-tabs-nav .ant-tabs-nav-wrap {
+  padding: 0px 10px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.ant-row.ant-form-item {
+  margin-bottom: 0px;
+}
+
+.product-group-hover:hover {
+  background-color: var(--theme-color-2-trans);
+}

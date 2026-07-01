@@ -1,0 +1,9 @@
+/* Custom styles for AG Grid pagination */
+.ag-theme-alpine .ag-paging-panel {
+    font-size: 11px;
+    color: #595959;
+}
+
+.ag-theme-alpine .ag-paging-page-summary-panel {
+    color: #595959;
+}

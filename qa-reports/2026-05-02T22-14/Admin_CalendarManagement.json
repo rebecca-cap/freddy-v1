@@ -1,0 +1,15 @@
+{
+  "path": "/Admin/CalendarManagement",
+  "title": "Calendar Management",
+  "finalUrl": "http://localhost:3001/Admin/CalendarManagement",
+  "rootLen": 73702,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [
+    "PricingEngine/Admin/Calendar/GetMetadata",
+    "PricingEngine/Admin/Calendar/Read"
+  ],
+  "consoleEventCount": 12
+}

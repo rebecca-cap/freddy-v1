@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Empty State Component - Gravitate Wireframe Design System</title>
+  <link rel="stylesheet" href="../../tokens/index.css">
+  <link rel="stylesheet" href="status.css">
+  <link rel="stylesheet" href="../controls/controls.css">
+  <link rel="stylesheet" href="../layout/layout.css">
+  <style>
+    body {
+      font-family: var(--wf-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+      padding: 32px;
+      background-color: var(--wf-color-bg, #ffffff);
+      color: var(--wf-color-text, #1e293b);
+    }
+    .demo-section {
+      margin-bottom: 48px;
+    }
+    .demo-section h2 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--wf-color-text, #1e293b);
+    }
+    .demo-section h3 {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 12px;
+      color: var(--wf-color-text-muted, #64748b);
+    }
+    .demo-row {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .demo-container {
+      border: 1px solid var(--wf-color-border);
+      border-radius: 8px;
+      overflow: hidden;
+      max-width: 400px;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid var(--wf-color-border, #cbd5e1);
+      margin: 32px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Empty State Component</h1>
+  <p style="color: var(--wf-color-text-muted); margin-bottom: 32px;">
+    Empty states communicate when there's no data to display and guide users on what to do next.
+  </p>
+
+  <!-- Basic Empty State -->
+  <div class="demo-section">
+    <h2>Basic Empty State</h2>
+    <div class="demo-container">
+      <div class="wf-empty-state">
+        <div class="wf-empty-state-icon">📋</div>
+        <h3 class="wf-empty-state-title">No contracts found</h3>
+        <p class="wf-empty-state-description">
+          You don't have any contracts yet. Create your first contract to get started.
+        </p>
+        <button class="wf-button wf-button-primary">
+          Create Contract
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Empty State Variants -->
+  <div class="demo-section">
+    <h2>State Variants</h2>
+    <div class="demo-row">
+      <!-- Error State -->
+      <div class="demo-container">
+        <div class="wf-empty-state wf-empty-state-error">
+          <div class="wf-empty-state-icon">⚠️</div>
+          <h3 class="wf-empty-state-title">Unable to load data</h3>
+          <p class="wf-empty-state-description">
+            Something went wrong. Please try again.
+          </p>
+          <button class="wf-button wf-button-secondary">
+            Retry
+          </button>
+        </div>
+      </div>
+
+      <!-- Search Empty State -->
+      <div class="demo-container">
+        <div class="wf-empty-state wf-empty-state-search">
+          <div class="wf-empty-state-icon">🔍</div>
+          <h3 class="wf-empty-state-title">No results found</h3>
+          <p class="wf-empty-state-description">
+            Try adjusting your search or filter criteria.
+          </p>
+        </div>
+      </div>
+
+      <!-- Success State -->
+      <div class="demo-container">
+        <div class="wf-empty-state wf-empty-state-success">
+          <div class="wf-empty-state-icon">✅</div>
+          <h3 class="wf-empty-state-title">All caught up!</h3>
+          <p class="wf-empty-state-description">
+            You've completed all your tasks. Great work!
+          </p>
+        </div>
+      </div>
+
+      <!-- Warning State -->
+      <div class="demo-container">
+        <div class="wf-empty-state wf-empty-state-warning">
+          <div class="wf-empty-state-icon">⚡</div>
+          <h3 class="wf-empty-state-title">Action required</h3>
+          <p class="wf-empty-state-description">
+            Your subscription expires in 3 days. Renew now to avoid interruption.
+          </p>
+          <button class="wf-button wf-button-primary">
+            Renew Subscription
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Compact Empty State -->
+  <div class="demo-section">
+    <h2>Compact Empty State</h2>
+    <p style="color: var(--wf-color-text-muted); margin-bottom: 16px;">
+      Use for inline contexts like tables, sidebars, or smaller containers.
+    </p>
+    <div class="demo-row">
+      <div class="demo-container" style="max-width: 300px;">
+        <div class="wf-empty-state wf-empty-state-compact">
+          <div class="wf-empty-state-icon">📁</div>
+          <h3 class="wf-empty-state-title">No files</h3>
+          <p class="wf-empty-state-description">
+            Upload files to get started.
+          </p>
+          <button class="wf-button wf-button-secondary wf-button-sm">
+            Upload
+          </button>
+        </div>
+      </div>
+
+      <div class="demo-container" style="max-width: 300px;">
+        <div class="wf-empty-state wf-empty-state-compact wf-empty-state-search">
+          <div class="wf-empty-state-icon">🔍</div>
+          <h3 class="wf-empty-state-title">No matches</h3>
+          <p class="wf-empty-state-description">
+            Try a different search term.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- With Icon Container -->
+  <div class="demo-section">
+    <h2>With Icon Container</h2>
+    <p style="color: var(--wf-color-text-muted); margin-bottom: 16px;">
+      Use the icon container for a more polished look with custom SVG icons.
+    </p>
+    <div class="demo-container">
+      <div class="wf-empty-state">
+        <div class="wf-empty-state-icon-container">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="12" y1="18" x2="12" y2="12"/>
+            <line x1="9" y1="15" x2="15" y2="15"/>
+          </svg>
+        </div>
+        <h3 class="wf-empty-state-title">No documents</h3>
+        <p class="wf-empty-state-description">
+          Create a new document to start collaborating with your team.
+        </p>
+        <button class="wf-button wf-button-primary">
+          New Document
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Multiple Actions -->
+  <div class="demo-section">
+    <h2>Multiple Actions</h2>
+    <div class="demo-container" style="max-width: 450px;">
+      <div class="wf-empty-state">
+        <div class="wf-empty-state-icon">📊</div>
+        <h3 class="wf-empty-state-title">No reports available</h3>
+        <p class="wf-empty-state-description">
+          Generate a new report or import data from an external source.
+        </p>
+        <div class="wf-empty-state-actions">
+          <button class="wf-button wf-button-primary">
+            Generate Report
+          </button>
+          <button class="wf-button wf-button-secondary">
+            Import Data
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Bordered Empty State -->
+  <div class="demo-section">
+    <h2>Bordered Empty State</h2>
+    <p style="color: var(--wf-color-text-muted); margin-bottom: 16px;">
+      Use for drop zones or areas expecting user input.
+    </p>
+    <div style="max-width: 450px;">
+      <div class="wf-empty-state wf-empty-state-bordered">
+        <div class="wf-empty-state-icon">📤</div>
+        <h3 class="wf-empty-state-title">Drop files here</h3>
+        <p class="wf-empty-state-description">
+          Drag and drop files or click to browse.
+        </p>
+        <button class="wf-button wf-button-secondary">
+          Browse Files
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Usage in Context -->
+  <div class="demo-section">
+    <h2>Usage Examples</h2>
+
+    <h3>In a Data Table</h3>
+    <div style="max-width: 600px; border: 1px solid var(--wf-color-border); border-radius: 8px; overflow: hidden; margin-bottom: 24px;">
+      <!-- Table header -->
+      <div style="display: flex; padding: 12px 16px; background: var(--wf-color-bg-disabled); border-bottom: 1px solid var(--wf-color-border);">
+        <div style="flex: 0 0 40px;"></div>
+        <div style="flex: 2; font-weight: 500; font-size: 13px;">Name</div>
+        <div style="flex: 1; font-weight: 500; font-size: 13px;">Status</div>
+        <div style="flex: 1; font-weight: 500; font-size: 13px;">Date</div>
+        <div style="flex: 0 0 80px;"></div>
+      </div>
+      <!-- Empty state -->
+      <div class="wf-empty-state wf-empty-state-inline">
+        <div class="wf-empty-state-icon">📋</div>
+        <h3 class="wf-empty-state-title">No records found</h3>
+        <p class="wf-empty-state-description">
+          Add a new record to get started.
+        </p>
+        <button class="wf-button wf-button-primary wf-button-sm">
+          Add Record
+        </button>
+      </div>
+    </div>
+
+    <h3>In a Card</h3>
+    <div class="wf-card" style="max-width: 350px; margin-bottom: 24px;">
+      <div class="wf-card-header">
+        <span style="font-weight: 500;">Recent Activity</span>
+      </div>
+      <div class="wf-empty-state wf-empty-state-compact wf-empty-state-inline">
+        <div class="wf-empty-state-icon">📝</div>
+        <h3 class="wf-empty-state-title">No recent activity</h3>
+        <p class="wf-empty-state-description">
+          Activity will appear here once you start working.
+        </p>
+      </div>
+    </div>
+
+    <h3>In a Sidebar</h3>
+    <div style="width: 256px; border: 1px solid var(--wf-color-border); border-radius: 8px; overflow: hidden;">
+      <div style="padding: 16px; border-bottom: 1px solid var(--wf-color-border);">
+        <input type="text" placeholder="Search notifications..." style="width: 100%; padding: 8px 12px; border: 1px solid var(--wf-color-border); border-radius: 6px; font-size: 13px;">
+      </div>
+      <div class="wf-empty-state wf-empty-state-compact wf-empty-state-inline">
+        <div class="wf-empty-state-icon">🔔</div>
+        <h3 class="wf-empty-state-title">No notifications</h3>
+        <p class="wf-empty-state-description">
+          You're all caught up!
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Common Use Cases -->
+  <div class="demo-section">
+    <h2>Common Use Cases</h2>
+    <div class="demo-row">
+      <!-- First-time / Onboarding -->
+      <div class="demo-container">
+        <div class="wf-empty-state">
+          <div class="wf-empty-state-icon">🚀</div>
+          <h3 class="wf-empty-state-title">Welcome to Projects!</h3>
+          <p class="wf-empty-state-description">
+            Get started by creating your first project. We'll guide you through the process.
+          </p>
+          <div class="wf-empty-state-actions">
+            <button class="wf-button wf-button-primary">
+              Create Project
+            </button>
+            <button class="wf-button wf-button-ghost">
+              Learn More
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Permission/Access -->
+      <div class="demo-container">
+        <div class="wf-empty-state">
+          <div class="wf-empty-state-icon">🔒</div>
+          <h3 class="wf-empty-state-title">Access restricted</h3>
+          <p class="wf-empty-state-description">
+            You don't have permission to view this content. Contact your administrator for access.
+          </p>
+          <button class="wf-button wf-button-secondary">
+            Request Access
+          </button>
+        </div>
+      </div>
+
+      <!-- Connection/Offline -->
+      <div class="demo-container">
+        <div class="wf-empty-state wf-empty-state-error">
+          <div class="wf-empty-state-icon">📡</div>
+          <h3 class="wf-empty-state-title">No connection</h3>
+          <p class="wf-empty-state-description">
+            Check your internet connection and try again.
+          </p>
+          <button class="wf-button wf-button-secondary">
+            Retry
+          </button>
+        </div>
+      </div>
+
+      <!-- Maintenance -->
+      <div class="demo-container">
+        <div class="wf-empty-state wf-empty-state-warning">
+          <div class="wf-empty-state-icon">🔧</div>
+          <h3 class="wf-empty-state-title">Under maintenance</h3>
+          <p class="wf-empty-state-description">
+            We're making some improvements. Please check back in a few minutes.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Layout Components - Gravitate Wireframe Design System</title>
+  <link rel="stylesheet" href="../../tokens/index.css">
+  <link rel="stylesheet" href="layout.css">
+  <style>
+    body {
+      font-family: var(--wf-font-family-sans);
+      margin: 0;
+      padding: 0;
+      background-color: var(--wf-color-background);
+    }
+    .hero {
+      background: linear-gradient(135deg, var(--wf-color-gray-800) 0%, var(--wf-color-gray-900) 100%);
+      color: white;
+      padding: var(--wf-space-16) var(--wf-space-6);
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: var(--wf-font-size-4xl);
+      font-weight: var(--wf-font-weight-bold);
+      margin: 0 0 var(--wf-space-4) 0;
+    }
+    .hero p {
+      font-size: var(--wf-font-size-lg);
+      opacity: 0.8;
+      margin: 0;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .content {
+      padding: var(--wf-space-8) var(--wf-space-6);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section {
+      margin-bottom: var(--wf-space-12);
+    }
+    .section-title {
+      font-size: var(--wf-font-size-2xl);
+      font-weight: var(--wf-font-weight-bold);
+      margin-bottom: var(--wf-space-6);
+      color: var(--wf-color-text-primary);
+    }
+    .component-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: var(--wf-space-6);
+    }
+    .component-card {
+      background: var(--wf-color-background);
+      border: 1px solid var(--wf-color-border);
+      border-radius: var(--wf-border-radius-lg);
+      overflow: hidden;
+      transition: box-shadow var(--wf-transition-normal), transform var(--wf-transition-normal);
+    }
+    .component-card:hover {
+      box-shadow: var(--wf-shadow-lg);
+      transform: translateY(-2px);
+    }
+    .component-card a {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .component-preview {
+      background: var(--wf-color-background-alt);
+      padding: var(--wf-space-6);
+      min-height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid var(--wf-color-border);
+    }
+    .component-info {
+      padding: var(--wf-space-4);
+    }
+    .component-name {
+      font-size: var(--wf-font-size-lg);
+      font-weight: var(--wf-font-weight-semibold);
+      margin: 0 0 var(--wf-space-2) 0;
+      color: var(--wf-color-text-primary);
+    }
+    .component-desc {
+      font-size: var(--wf-font-size-sm);
+      color: var(--wf-color-text-secondary);
+      margin: 0;
+      line-height: var(--wf-line-height-relaxed);
+    }
+    .preview-box {
+      background: var(--wf-color-gray-200);
+      border: 1px solid var(--wf-color-gray-300);
+      border-radius: var(--wf-border-radius-md);
+      padding: var(--wf-space-2) var(--wf-space-3);
+      font-size: var(--wf-font-size-xs);
+      color: var(--wf-color-text-tertiary);
+    }
+    .preview-box-accent {
+      background: var(--wf-color-accent-blue);
+      color: white;
+      border-color: var(--wf-color-accent-blue);
+    }
+    .quick-start {
+      background: var(--wf-color-background-alt);
+      border-radius: var(--wf-border-radius-lg);
+      padding: var(--wf-space-6);
+      margin-bottom: var(--wf-space-8);
+    }
+    .quick-start h2 {
+      margin-top: 0;
+    }
+    .quick-start pre {
+      background: var(--wf-color-gray-800);
+      color: var(--wf-color-gray-100);
+      padding: var(--wf-space-4);
+      border-radius: var(--wf-border-radius-md);
+      overflow-x: auto;
+      font-family: var(--wf-font-family-mono);
+      font-size: var(--wf-font-size-sm);
+      margin: 0;
+    }
+    .token-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: var(--wf-font-size-sm);
+    }
+    .token-table th,
+    .token-table td {
+      text-align: left;
+      padding: var(--wf-space-3);
+      border-bottom: 1px solid var(--wf-color-border);
+    }
+    .token-table th {
+      font-weight: var(--wf-font-weight-medium);
+      color: var(--wf-color-text-secondary);
+      background: var(--wf-color-background-alt);
+    }
+    .token-table code {
+      background: var(--wf-color-gray-100);
+      padding: var(--wf-space-1) var(--wf-space-2);
+      border-radius: var(--wf-border-radius-sm);
+      font-family: var(--wf-font-family-mono);
+      font-size: var(--wf-font-size-xs);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <h1>Layout Components</h1>
+    <p>Pure HTML/CSS layout primitives for building wireframe mockups. No JavaScript required.</p>
+  </div>
+
+  <div class="content">
+
+    <!-- Quick Start -->
+    <div class="quick-start">
+      <h2 class="wf-text-h2">Quick Start</h2>
+      <p class="wf-text-body" style="margin-bottom: var(--wf-space-4);">Include the CSS files in your HTML to start using the layout components:</p>
+      <pre>&lt;!-- Include design tokens and layout CSS --&gt;
+&lt;link rel="stylesheet" href="tokens/index.css"&gt;
+&lt;link rel="stylesheet" href="components/layout/layout.css"&gt;
+
+&lt;!-- Basic page structure --&gt;
+&lt;div class="wf-page"&gt;
+  &lt;header class="wf-page-header"&gt;
+    &lt;div class="wf-page-title"&gt;
+      &lt;h1 class="wf-text-h1"&gt;My Page&lt;/h1&gt;
+    &lt;/div&gt;
+  &lt;/header&gt;
+  &lt;main class="wf-page-content"&gt;
+    &lt;div class="wf-row wf-gap-4"&gt;
+      &lt;div class="wf-card wf-flex-1"&gt;Card 1&lt;/div&gt;
+      &lt;div class="wf-card wf-flex-1"&gt;Card 2&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/main&gt;
+&lt;/div&gt;</pre>
+    </div>
+
+    <!-- Components Grid -->
+    <div class="section">
+      <h2 class="section-title">Components</h2>
+      <div class="component-grid">
+
+        <!-- Row -->
+        <div class="component-card">
+          <a href="Row.html">
+            <div class="component-preview">
+              <div class="wf-row wf-gap-2">
+                <div class="preview-box preview-box-accent">1</div>
+                <div class="preview-box preview-box-accent">2</div>
+                <div class="preview-box preview-box-accent">3</div>
+              </div>
+            </div>
+            <div class="component-info">
+              <h3 class="component-name">Row</h3>
+              <p class="component-desc">Horizontal flexbox container for laying out items in a row with gap, alignment, and justification options.</p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Column -->
+        <div class="component-card">
+          <a href="Column.html">
+            <div class="component-preview">
+              <div class="wf-column wf-gap-2">
+                <div class="preview-box preview-box-accent">1</div>
+                <div class="preview-box preview-box-accent">2</div>
+                <div class="preview-box preview-box-accent">3</div>
+              </div>
+            </div>
+            <div class="component-info">
+              <h3 class="component-name">Column</h3>
+              <p class="component-desc">Vertical flexbox container for stacking items with gap, alignment, and flex grow/shrink options.</p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Container -->
+        <div class="component-card">
+          <a href="Container.html">
+            <div class="component-preview">
+              <div style="width: 100%;">
+                <div class="wf-container wf-container-sm" style="background: rgba(59, 130, 246, 0.15); border-radius: var(--wf-border-radius-md);">
+                  <div class="preview-box" style="text-align: center;">Centered content</div>
+                </div>
+              </div>
+            </div>
+            <div class="component-info">
+              <h3 class="component-name">Container</h3>
+              <p class="component-desc">Content container with padding and max-width constraints for centering and constraining content.</p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Page -->
+        <div class="component-card">
+          <a href="Page.html">
+            <div class="component-preview">
+              <div style="width: 100%; background: var(--wf-color-background); border: 1px solid var(--wf-color-border); border-radius: var(--wf-border-radius-md); overflow: hidden;">
+                <div style="padding: var(--wf-space-2) var(--wf-space-3); background: var(--wf-color-background); border-bottom: 1px solid var(--wf-color-border);">
+                  <div class="wf-row wf-justify-between wf-align-center">
+                    <span style="font-size: var(--wf-font-size-xs); font-weight: var(--wf-font-weight-semibold);">Title</span>
+                    <div class="preview-box preview-box-accent" style="padding: 2px 6px; font-size: 10px;">Action</div>
+                  </div>
+                </div>
+                <div style="padding: var(--wf-space-3); background: var(--wf-color-background-alt); min-height: 60px;">
+                  <div class="preview-box" style="height: 40px;"></div>
+                </div>
+              </div>
+            </div>
+            <div class="component-info">
+              <h3 class="component-name">Page</h3>
+              <p class="component-desc">Full page layout with header (title + actions) and main content area for standard application pages.</p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Page with Sidebar -->
+        <div class="component-card">
+          <a href="PageWithSidebar.html">
+            <div class="component-preview">
+              <div style="width: 100%; background: var(--wf-color-background); border: 1px solid var(--wf-color-border); border-radius: var(--wf-border-radius-md); overflow: hidden;">
+                <div class="wf-row" style="min-height: 120px;">
+                  <div style="width: 50px; background: var(--wf-color-background); border-right: 1px solid var(--wf-color-border); padding: var(--wf-space-2);">
+                    <div class="wf-column wf-gap-1 wf-align-center">
+                      <div class="preview-box preview-box-accent" style="width: 20px; height: 20px; padding: 0;"></div>
+                      <div class="preview-box" style="width: 20px; height: 20px; padding: 0;"></div>
+                      <div class="preview-box" style="width: 20px; height: 20px; padding: 0;"></div>
+                    </div>
+                  </div>
+                  <div style="flex: 1;">
+                    <div style="padding: var(--wf-space-2); background: var(--wf-color-background); border-bottom: 1px solid var(--wf-color-border);">
+                      <span style="font-size: 10px; font-weight: var(--wf-font-weight-semibold);">Page</span>
+                    </div>
+                    <div style="padding: var(--wf-space-2); background: var(--wf-color-background-alt);">
+                      <div class="preview-box" style="height: 50px;"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="component-info">
+              <h3 class="component-name">Page with Sidebar</h3>
+              <p class="component-desc">Two-column layout with fixed sidebar for navigation and flexible main content area.</p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Card -->
+        <div class="component-card">
+          <a href="layout.css">
+            <div class="component-preview">
+              <div class="wf-card" style="width: 200px;">
+                <div class="wf-card-header" style="padding: var(--wf-space-2) var(--wf-space-3);">
+                  <span style="font-size: var(--wf-font-size-xs); font-weight: var(--wf-font-weight-medium);">Card Title</span>
+                </div>
+                <div class="wf-card-body" style="padding: var(--wf-space-3);">
+                  <div class="preview-box">Content</div>
+                </div>
+                <div class="wf-card-footer" style="padding: var(--wf-space-2) var(--wf-space-3);">
+                  <div class="preview-box preview-box-accent" style="padding: 2px 8px; font-size: 10px;">Action</div>
+                </div>
+              </div>
+            </div>
+            <div class="component-info">
+              <h3 class="component-name">Card</h3>
+              <p class="component-desc">Elevated container with optional header, body, and footer sections for grouping related content.</p>
+            </div>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Utility Classes Reference -->
+    <div class="section">
+      <h2 class="section-title">Utility Classes Reference</h2>
+
+      <!-- Flexbox Utilities -->
+      <div class="wf-card" style="margin-bottom: var(--wf-space-6);">
+        <div class="wf-card-header">
+          <h3 class="wf-text-h3">Flexbox Utilities</h3>
+        </div>
+        <div class="wf-card-body" style="padding: 0;">
+          <table class="token-table">
+            <thead>
+              <tr>
+                <th>Class</th>
+                <th>CSS Property</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>.wf-row</code></td>
+                <td>display: flex; flex-direction: row;</td>
+              </tr>
+              <tr>
+                <td><code>.wf-column</code></td>
+                <td>display: flex; flex-direction: column;</td>
+              </tr>
+              <tr>
+                <td><code>.wf-justify-{start|center|end|between|around|evenly}</code></td>
+                <td>justify-content: {value};</td>
+              </tr>
+              <tr>
+                <td><code>.wf-align-{start|center|end|stretch|baseline}</code></td>
+                <td>align-items: {value};</td>
+              </tr>
+              <tr>
+                <td><code>.wf-wrap</code></td>
+                <td>flex-wrap: wrap;</td>
+              </tr>
+              <tr>
+                <td><code>.wf-flex-1</code></td>
+                <td>flex: 1 1 0%;</td>
+              </tr>
+              <tr>
+                <td><code>.wf-grow</code> / <code>.wf-grow-0</code></td>
+                <td>flex-grow: 1 / 0;</td>
+              </tr>
+              <tr>
+                <td><code>.wf-shrink</code> / <code>.wf-shrink-0</code></td>
+                <td>flex-shrink: 1 / 0;</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Gap Utilities -->
+      <div class="wf-card" style="margin-bottom: var(--wf-space-6);">
+        <div class="wf-card-header">
+          <h3 class="wf-text-h3">Gap Utilities</h3>
+        </div>
+        <div class="wf-card-body" style="padding: 0;">
+          <table class="token-table">
+            <thead>
+              <tr>
+                <th>Class</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.wf-gap-0</code></td><td>0</td></tr>
+              <tr><td><code>.wf-gap-1</code></td><td>4px (0.25rem)</td></tr>
+              <tr><td><code>.wf-gap-2</code></td><td>8px (0.5rem)</td></tr>
+              <tr><td><code>.wf-gap-3</code></td><td>12px (0.75rem)</td></tr>
+              <tr><td><code>.wf-gap-4</code></td><td>16px (1rem)</td></tr>
+              <tr><td><code>.wf-gap-6</code></td><td>24px (1.5rem)</td></tr>
+              <tr><td><code>.wf-gap-8</code></td><td>32px (2rem)</td></tr>
+              <tr><td><code>.wf-gap-10</code></td><td>40px (2.5rem)</td></tr>
+              <tr><td><code>.wf-gap-12</code></td><td>48px (3rem)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Spacing Utilities -->
+      <div class="wf-card" style="margin-bottom: var(--wf-space-6);">
+        <div class="wf-card-header">
+          <h3 class="wf-text-h3">Spacing Utilities</h3>
+        </div>
+        <div class="wf-card-body" style="padding: 0;">
+          <table class="token-table">
+            <thead>
+              <tr>
+                <th>Pattern</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.wf-p-{0-8}</code></td><td>Padding on all sides</td></tr>
+              <tr><td><code>.wf-px-{0|2|4|6|8}</code></td><td>Padding left and right</td></tr>
+              <tr><td><code>.wf-py-{0|2|4|6|8}</code></td><td>Padding top and bottom</td></tr>
+              <tr><td><code>.wf-m-{0-4|auto}</code></td><td>Margin on all sides</td></tr>
+              <tr><td><code>.wf-mx-{0|2|4|auto}</code></td><td>Margin left and right</td></tr>
+              <tr><td><code>.wf-my-{0|2|4}</code></td><td>Margin top and bottom</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Width Utilities -->
+      <div class="wf-card">
+        <div class="wf-card-header">
+          <h3 class="wf-text-h3">Width & Height Utilities</h3>
+        </div>
+        <div class="wf-card-body" style="padding: 0;">
+          <table class="token-table">
+            <thead>
+              <tr>
+                <th>Class</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.wf-w-full</code></td><td>width: 100%;</td></tr>
+              <tr><td><code>.wf-w-auto</code></td><td>width: auto;</td></tr>
+              <tr><td><code>.wf-w-1\/2</code></td><td>width: 50%;</td></tr>
+              <tr><td><code>.wf-w-1\/3</code> / <code>.wf-w-2\/3</code></td><td>width: 33.33% / 66.67%;</td></tr>
+              <tr><td><code>.wf-w-1\/4</code> / <code>.wf-w-3\/4</code></td><td>width: 25% / 75%;</td></tr>
+              <tr><td><code>.wf-h-full</code></td><td>height: 100%;</td></tr>
+              <tr><td><code>.wf-h-screen</code></td><td>height: 100vh;</td></tr>
+              <tr><td><code>.wf-min-h-screen</code></td><td>min-height: 100vh;</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- File Structure -->
+    <div class="section">
+      <h2 class="section-title">File Structure</h2>
+      <div class="wf-card">
+        <div class="wf-card-body">
+          <pre style="margin: 0; background: var(--wf-color-gray-800); color: var(--wf-color-gray-100); padding: var(--wf-space-4); border-radius: var(--wf-border-radius-md);">WireframeDesignSystem/
+├── tokens/
+│   ├── index.css           # Main entry point for all tokens
+│   ├── colors.css          # Color tokens
+│   ├── typography.css      # Typography tokens
+│   ├── spacing.css         # Spacing tokens
+│   ├── borders.css         # Border and elevation tokens
+│   └── utilities.css       # Utility classes
+│
+└── components/
+    └── layout/
+        ├── index.html          # This documentation page
+        ├── layout.css          # Layout component styles
+        ├── Row.html            # Row component documentation
+        ├── Column.html         # Column component documentation
+        ├── Container.html      # Container component documentation
+        ├── Page.html           # Page layout documentation
+        └── PageWithSidebar.html  # Sidebar layout documentation</pre>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

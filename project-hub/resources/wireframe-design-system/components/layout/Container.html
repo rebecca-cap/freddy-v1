@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Container Component - Gravitate Wireframe Design System</title>
+  <link rel="stylesheet" href="../../tokens/index.css">
+  <link rel="stylesheet" href="layout.css">
+  <style>
+    /* Demo-specific styles */
+    body {
+      font-family: var(--wf-font-family-sans);
+      padding: var(--wf-space-6);
+      background-color: var(--wf-color-background-alt);
+      margin: 0;
+    }
+    .demo-section {
+      margin-bottom: var(--wf-space-8);
+    }
+    .demo-title {
+      font-size: var(--wf-font-size-lg);
+      font-weight: var(--wf-font-weight-semibold);
+      margin-bottom: var(--wf-space-4);
+      color: var(--wf-color-text-primary);
+    }
+    .demo-subtitle {
+      font-size: var(--wf-font-size-sm);
+      color: var(--wf-color-text-secondary);
+      margin-bottom: var(--wf-space-3);
+    }
+    .demo-box {
+      background-color: var(--wf-color-gray-200);
+      border: 1px solid var(--wf-color-gray-300);
+      border-radius: var(--wf-border-radius-md);
+      padding: var(--wf-space-4);
+      text-align: center;
+      font-size: var(--wf-font-size-sm);
+      color: var(--wf-color-text-secondary);
+    }
+    .demo-content {
+      background-color: var(--wf-color-gray-100);
+      border: 2px dashed var(--wf-color-gray-300);
+      border-radius: var(--wf-border-radius-md);
+      padding: var(--wf-space-4);
+      text-align: center;
+      font-size: var(--wf-font-size-sm);
+      color: var(--wf-color-text-tertiary);
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .demo-outer {
+      background-color: var(--wf-color-gray-50);
+      border: 1px solid var(--wf-color-border);
+      border-radius: var(--wf-border-radius-lg);
+      padding: 0;
+      margin-bottom: var(--wf-space-4);
+      overflow: hidden;
+    }
+    .demo-width-indicator {
+      text-align: center;
+      padding: var(--wf-space-2);
+      font-size: var(--wf-font-size-xs);
+      color: var(--wf-color-text-tertiary);
+      border-top: 1px solid var(--wf-color-border);
+      background: var(--wf-color-background);
+    }
+    code {
+      background-color: var(--wf-color-gray-100);
+      padding: var(--wf-space-1) var(--wf-space-2);
+      border-radius: var(--wf-border-radius-sm);
+      font-family: var(--wf-font-family-mono);
+      font-size: var(--wf-font-size-sm);
+    }
+    pre {
+      background-color: var(--wf-color-gray-800);
+      color: var(--wf-color-gray-100);
+      padding: var(--wf-space-4);
+      border-radius: var(--wf-border-radius-md);
+      overflow-x: auto;
+      font-family: var(--wf-font-family-mono);
+      font-size: var(--wf-font-size-sm);
+      margin-bottom: var(--wf-space-4);
+    }
+  </style>
+</head>
+<body>
+
+  <h1 class="wf-text-h1" style="margin-bottom: var(--wf-space-6);">Container Component</h1>
+  <p class="wf-text-body" style="margin-bottom: var(--wf-space-8); max-width: 600px;">
+    The Container component provides horizontal padding and optional max-width constraints
+    for centering content. Use it to create consistent content widths across your layouts.
+  </p>
+
+  <!-- =====================================================
+       BASIC CONTAINER
+       ===================================================== -->
+  <div class="demo-section">
+    <h2 class="demo-title">Basic Container</h2>
+    <p class="demo-subtitle">Full-width container with horizontal padding</p>
+
+    <pre>&lt;div class="wf-container"&gt;
+  &lt;!-- Your content here --&gt;
+&lt;/div&gt;</pre>
+
+    <div class="demo-outer">
+      <div class="wf-container" style="background: rgba(59, 130, 246, 0.1);">
+        <div class="demo-content">
+          Container with default padding (16px on each side)
+        </div>
+      </div>
+      <div class="demo-width-indicator">width: 100% | padding: 16px horizontal</div>
+    </div>
+  </div>
+
+  <!-- =====================================================
+       CONTAINER SIZE VARIANTS
+       ===================================================== -->
+  <div class="demo-section">
+    <h2 class="demo-title">Container Size Variants</h2>
+    <p class="demo-subtitle">Constrain content width with max-width modifiers</p>
+
+    <pre>&lt;div class="wf-container wf-container-sm"&gt;...&lt;/div&gt;  &lt;!-- max-width: 640px --&gt;
+&lt;div class="wf-container wf-container-md"&gt;...&lt;/div&gt;  &lt;!-- max-width: 768px --&gt;
+&lt;div class="wf-container wf-container-lg"&gt;...&lt;/div&gt;  &lt;!-- max-width: 1024px --&gt;
+&lt;div class="wf-container wf-container-xl"&gt;...&lt;/div&gt;  &lt;!-- max-width: 1280px --&gt;
+&lt;div class="wf-container wf-container-2xl"&gt;...&lt;/div&gt; &lt;!-- max-width: 1536px --&gt;</pre>
+
+    <div class="demo-outer">
+      <div class="wf-container wf-container-sm" style="background: rgba(59, 130, 246, 0.1);">
+        <div class="demo-content">.wf-container-sm</div>
+      </div>
+      <div class="demo-width-indicator">max-width: 640px</div>
+    </div>
+
+    <div class="demo-outer">
+      <div class="wf-container wf-container-md" style="background: rgba(59, 130, 246, 0.1);">
+        <div class="demo-content">.wf-container-md</div>
+      </div>
+      <div class="demo-width-indicator">max-width: 768px</div>
+    </div>
+
+    <div class="demo-outer">
+      <div class="wf-container wf-container-lg" style="background: rgba(59, 130, 246, 0.1);">
+        <div class="demo-content">.wf-container-lg</div>
+      </div>
+      <div class="demo-width-indicator">max-width: 1024px</div>
+    </div>
+
+    <div class="demo-outer">
+      <div class="wf-container wf-container-xl" style="background: rgba(59, 130, 246, 0.1);">
+        <div class="demo-content">.wf-container-xl</div>
+      </div>
+      <div class="demo-width-indicator">max-width: 1280px</div>
+    </div>
+  </div>
+
+  <!-- =====================================================
+       CONTAINER PADDING VARIANTS
+       ===================================================== -->
+  <div class="demo-section">
+    <h2 class="demo-title">Container Padding Variants</h2>
+    <p class="demo-subtitle">Adjust horizontal padding with modifier classes</p>
+
+    <pre>&lt;div class="wf-container wf-container-tight"&gt;...&lt;/div&gt;    &lt;!-- padding: 8px --&gt;
+&lt;div class="wf-container"&gt;...&lt;/div&gt;                        &lt;!-- padding: 16px (default) --&gt;
+&lt;div class="wf-container wf-container-relaxed"&gt;...&lt;/div&gt;  &lt;!-- padding: 24px --&gt;
+&lt;div class="wf-container wf-container-spacious"&gt;...&lt;/div&gt; &lt;!-- padding: 32px --&gt;</pre>
+
+    <div class="demo-outer">
+      <div class="wf-container wf-container-tight wf-container-md" style="background: rgba(59, 130, 246, 0.1);">
+        <div class="demo-content">.wf-container-tight (8px padding)</div>
+      </div>
+    </div>
+
+    <div class="demo-outer">
+      <div class="wf-container wf-container-md" style="background: rgba(59, 130, 246, 0.1);">
+        <div class="demo-content">Default container (16px padding)</div>
+      </div>
+    </div>
+
+    <div class="demo-outer">
+      <div class="wf-container wf-container-relaxed wf-container-md" style="background: rgba(59, 130, 246, 0.1);">
+        <div class="demo-content">.wf-container-relaxed (24px padding)</div>
+      </div>
+    </div>
+
+    <div class="demo-outer">
+      <div class="wf-container wf-container-spacious wf-container-md" style="background: rgba(59, 130, 246, 0.1);">
+        <div class="demo-content">.wf-container-spacious (32px padding)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================
+       ELEVATED CONTAINER
+       ===================================================== -->
+  <div class="demo-section">
+    <h2 class="demo-title">Elevated Container</h2>
+    <p class="demo-subtitle">Card-like container with background, border, and shadow</p>
+
+    <pre>&lt;div class="wf-container wf-container-elevated"&gt;
+  &lt;p&gt;This container has a card-like appearance&lt;/p&gt;
+&lt;/div&gt;</pre>
+
+    <div style="padding: var(--wf-space-6); background: var(--wf-color-background-alt);">
+      <div class="wf-container wf-container-md wf-container-elevated" style="padding-top: var(--wf-space-4); padding-bottom: var(--wf-space-4);">
+        <h3 class="wf-text-h3" style="margin-bottom: var(--wf-space-2);">Elevated Container</h3>
+        <p class="wf-text-body" style="color: var(--wf-color-text-secondary);">
+          This container has a white background, subtle border, border-radius, and shadow.
+          Perfect for creating card-like content areas.
+        </p>
+      </div>
+    </div>
+
+    <p class="demo-subtitle" style="margin-top: var(--wf-space-4);">Elevated containers work great for content cards:</p>
+
+    <div style="padding: var(--wf-space-6); background: var(--wf-color-background-alt);">
+      <div class="wf-container wf-container-lg">
+        <div class="wf-row wf-gap-4 wf-wrap">
+          <div class="wf-container-elevated wf-flex-1" style="padding: var(--wf-space-4); min-width: 200px;">
+            <h4 class="wf-text-label" style="margin-bottom: var(--wf-space-2);">Revenue</h4>
+            <p class="wf-text-h2">$24,500</p>
+            <p class="wf-text-helper">+12% from last month</p>
+          </div>
+          <div class="wf-container-elevated wf-flex-1" style="padding: var(--wf-space-4); min-width: 200px;">
+            <h4 class="wf-text-label" style="margin-bottom: var(--wf-space-2);">Users</h4>
+            <p class="wf-text-h2">1,234</p>
+            <p class="wf-text-helper">+8% from last month</p>
+          </div>
+          <div class="wf-container-elevated wf-flex-1" style="padding: var(--wf-space-4); min-width: 200px;">
+            <h4 class="wf-text-label" style="margin-bottom: var(--wf-space-2);">Orders</h4>
+            <p class="wf-text-h2">567</p>
+            <p class="wf-text-helper">+23% from last month</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================
+       NESTED CONTAINERS
+       ===================================================== -->
+  <div class="demo-section">
+    <h2 class="demo-title">Nested Containers</h2>
+    <p class="demo-subtitle">Containers can be nested for complex layouts</p>
+
+    <pre>&lt;div class="wf-container wf-container-xl"&gt;
+  &lt;div class="wf-container wf-container-md"&gt;
+    &lt;!-- Narrower content within wider container --&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+
+    <div class="demo-outer" style="padding: 0;">
+      <div class="wf-container wf-container-xl" style="background: rgba(139, 92, 246, 0.1); padding-top: var(--wf-space-4); padding-bottom: var(--wf-space-4);">
+        <p class="wf-text-label" style="margin-bottom: var(--wf-space-2);">Outer: .wf-container-xl</p>
+        <div class="wf-container wf-container-md" style="background: rgba(59, 130, 246, 0.2); padding-top: var(--wf-space-4); padding-bottom: var(--wf-space-4);">
+          <p class="wf-text-label" style="margin-bottom: var(--wf-space-2);">Inner: .wf-container-md</p>
+          <div class="demo-content">Nested content</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================
+       COMBINED WITH LAYOUT COMPONENTS
+       ===================================================== -->
+  <div class="demo-section">
+    <h2 class="demo-title">Combined with Layout Components</h2>
+    <p class="demo-subtitle">Use containers with rows and columns for complete layouts</p>
+
+    <pre>&lt;div class="wf-container wf-container-lg"&gt;
+  &lt;div class="wf-row wf-gap-6"&gt;
+    &lt;aside class="wf-column wf-gap-4" style="width: 200px;"&gt;
+      &lt;!-- Sidebar --&gt;
+    &lt;/aside&gt;
+    &lt;main class="wf-column wf-gap-4 wf-flex-1"&gt;
+      &lt;!-- Main content --&gt;
+    &lt;/main&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+
+    <div style="background: var(--wf-color-background-alt); padding: var(--wf-space-4);">
+      <div class="wf-container wf-container-lg">
+        <div class="wf-row wf-gap-6">
+          <aside class="wf-column wf-gap-4" style="width: 180px; flex-shrink: 0;">
+            <div class="wf-container-elevated" style="padding: var(--wf-space-4);">
+              <h4 class="wf-text-label" style="margin-bottom: var(--wf-space-3);">Navigation</h4>
+              <div class="wf-column wf-gap-2">
+                <div class="demo-box" style="text-align: left; padding: var(--wf-space-2);">Dashboard</div>
+                <div class="demo-box" style="text-align: left; padding: var(--wf-space-2);">Reports</div>
+                <div class="demo-box" style="text-align: left; padding: var(--wf-space-2);">Settings</div>
+              </div>
+            </div>
+          </aside>
+          <main class="wf-column wf-gap-4 wf-flex-1">
+            <div class="wf-container-elevated" style="padding: var(--wf-space-4);">
+              <h3 class="wf-text-h3" style="margin-bottom: var(--wf-space-2);">Main Content</h3>
+              <p class="wf-text-body" style="color: var(--wf-color-text-secondary);">
+                This demonstrates combining containers with rows and columns for a
+                sidebar + main content layout.
+              </p>
+            </div>
+            <div class="wf-row wf-gap-4">
+              <div class="wf-container-elevated wf-flex-1" style="padding: var(--wf-space-4);">
+                <div class="demo-content" style="min-height: 60px;">Card 1</div>
+              </div>
+              <div class="wf-container-elevated wf-flex-1" style="padding: var(--wf-space-4);">
+                <div class="demo-content" style="min-height: 60px;">Card 2</div>
+              </div>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================
+       CSS CLASS REFERENCE
+       ===================================================== -->
+  <div class="demo-section">
+    <h2 class="demo-title">CSS Class Reference</h2>
+
+    <div class="wf-container-elevated" style="padding: var(--wf-space-4);">
+      <table style="width: 100%; border-collapse: collapse;">
+        <thead>
+          <tr style="border-bottom: 2px solid var(--wf-color-border);">
+            <th style="text-align: left; padding: var(--wf-space-2);">Class</th>
+            <th style="text-align: left; padding: var(--wf-space-2);">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid var(--wf-color-border);">
+            <td style="padding: var(--wf-space-2);"><code>.wf-container</code></td>
+            <td style="padding: var(--wf-space-2);">Base container with 16px horizontal padding, auto margins</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--wf-color-border);">
+            <td style="padding: var(--wf-space-2);"><code>.wf-container-sm</code></td>
+            <td style="padding: var(--wf-space-2);">max-width: 640px</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--wf-color-border);">
+            <td style="padding: var(--wf-space-2);"><code>.wf-container-md</code></td>
+            <td style="padding: var(--wf-space-2);">max-width: 768px</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--wf-color-border);">
+            <td style="padding: var(--wf-space-2);"><code>.wf-container-lg</code></td>
+            <td style="padding: var(--wf-space-2);">max-width: 1024px</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--wf-color-border);">
+            <td style="padding: var(--wf-space-2);"><code>.wf-container-xl</code></td>
+            <td style="padding: var(--wf-space-2);">max-width: 1280px</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--wf-color-border);">
+            <td style="padding: var(--wf-space-2);"><code>.wf-container-2xl</code></td>
+            <td style="padding: var(--wf-space-2);">max-width: 1536px</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--wf-color-border);">
+            <td style="padding: var(--wf-space-2);"><code>.wf-container-full</code></td>
+            <td style="padding: var(--wf-space-2);">max-width: 100%</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--wf-color-border);">
+            <td style="padding: var(--wf-space-2);"><code>.wf-container-tight</code></td>
+            <td style="padding: var(--wf-space-2);">8px horizontal padding</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--wf-color-border);">
+            <td style="padding: var(--wf-space-2);"><code>.wf-container-relaxed</code></td>
+            <td style="padding: var(--wf-space-2);">24px horizontal padding</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--wf-color-border);">
+            <td style="padding: var(--wf-space-2);"><code>.wf-container-spacious</code></td>
+            <td style="padding: var(--wf-space-2);">32px horizontal padding</td>
+          </tr>
+          <tr>
+            <td style="padding: var(--wf-space-2);"><code>.wf-container-elevated</code></td>
+            <td style="padding: var(--wf-space-2);">White background, border, border-radius, shadow</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</body>
+</html>

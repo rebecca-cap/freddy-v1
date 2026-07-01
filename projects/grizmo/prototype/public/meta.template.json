@@ -1,0 +1,4 @@
+{
+  "REACT_APP_AMPLITUDE_API_KEY": "${REACT_APP_AMPLITUDE_API_KEY}",
+  "version":"0.2.67"
+}

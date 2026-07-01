@@ -1,0 +1,68 @@
+/*
+ * ScoutAnswerFooter — quiet feedback + bookmark row.
+ * Spec `.footer`: a thin top divider, three muted icon controls, brand-colored
+ * when active. Sits at the very bottom of the answer card, above inline aux.
+ */
+
+.scout-answer-footer {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding-top: 8px;
+  border-top: 0.5px solid var(--scout-border);
+}
+
+.scout-answer-footer__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--scout-radius-sm);
+  background: transparent;
+  color: var(--scout-text-subtle);
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background 80ms ease,
+    color 80ms ease;
+}
+
+.scout-answer-footer__btn:hover {
+  background: var(--scout-surface-2);
+  color: var(--scout-text-muted);
+}
+
+.scout-answer-footer__btn.is-on {
+  color: var(--scout-brand);
+}
+.scout-answer-footer__btn.is-on:hover {
+  background: var(--scout-brand-soft);
+  color: var(--scout-brand);
+}
+
+.scout-answer-footer__btn:focus {
+  outline: none;
+}
+.scout-answer-footer__btn:focus-visible {
+  outline: 2px solid var(--scout-brand);
+  outline-offset: 1px;
+}
+
+/* Meatballs (⋯) overflow menu trigger — Copy / Export / Save live inside it.
+   Pushed to the right edge of the footer. Brand-tinted once the answer's
+   question is saved to the Library, so the saved state still reads at a glance. */
+.scout-answer-footer__more {
+  margin-left: auto;
+  font-size: 17px;
+}
+.scout-answer-footer__more.is-saved {
+  color: var(--scout-brand);
+}
+.scout-answer-footer__more.ant-dropdown-open {
+  background: var(--scout-surface-2);
+  color: var(--scout-text-muted);
+}

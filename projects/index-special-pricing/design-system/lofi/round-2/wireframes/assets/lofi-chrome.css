@@ -1,0 +1,263 @@
+/* lofi-chrome.css — lo-fi annotation chrome for the Index Special Offers round 1.
+   These classes are intentionally prefixed `lf-` (NOT `wf-`): they are wireframe
+   scaffolding (screen bar, click-budget meter, designer notes, phone frame),
+   never part of the Gravitate WireframeDesignSystem. All design-system surfaces
+   use `wf-` classes and `--wf-` tokens. Demo chrome may use plain literals. */
+
+body {
+  background: var(--wf-color-background);
+  color: var(--wf-color-text-primary);
+  font-family: var(--wf-font-family);
+}
+
+/* --- top screen bar (orientation for reviewers) --- */
+.lf-screenbar {
+  display: flex;
+  align-items: center;
+  gap: var(--wf-space-4);
+  padding: var(--wf-space-2) var(--wf-space-5);
+  background: var(--wf-color-surface-raised);
+  border-bottom: 1px solid var(--wf-color-border);
+  font-size: var(--wf-text-sm);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.lf-screenbar a { color: var(--wf-color-primary); text-decoration: none; font-weight: var(--wf-font-medium); }
+.lf-screenbar a:hover { text-decoration: underline; }
+.lf-screenbar .lf-sep { color: var(--wf-color-text-tertiary); }
+.lf-screenbar .lf-screen-name { font-weight: var(--wf-font-semibold); }
+.lf-goal {
+  margin-left: auto;
+  display: inline-flex;
+  gap: var(--wf-space-2);
+  align-items: center;
+  padding: 2px var(--wf-space-3);
+  border: 1px dashed var(--wf-color-border);
+  border-radius: var(--wf-radius-sm);
+  color: var(--wf-color-text-secondary);
+  font-size: var(--wf-text-xs);
+}
+
+/* --- the index price-formula readout (the "meat") --- */
+.lf-readout {
+  border: 1px solid var(--wf-color-border);
+  border-left: 3px solid var(--wf-color-primary);
+  border-radius: var(--wf-radius-md);
+  background: var(--wf-color-surface-sunken);
+  padding: var(--wf-space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--wf-space-1);
+}
+.lf-readout-label { font-size: var(--wf-text-xs); text-transform: uppercase; letter-spacing: .04em; color: var(--wf-color-text-tertiary); }
+.lf-readout-formula { font-size: var(--wf-text-md); }
+.lf-readout-note { font-size: var(--wf-text-xs); color: var(--wf-color-text-secondary); }
+
+/* --- click-budget / time meter --- */
+.lf-meter { display: flex; flex-direction: column; gap: var(--wf-space-2); }
+.lf-meter-row { display: flex; justify-content: space-between; align-items: baseline; font-size: var(--wf-text-sm); }
+.lf-meter-row b { font-size: var(--wf-text-md); }
+.lf-meter-track { height: 8px; border-radius: 999px; background: var(--wf-color-surface-sunken); overflow: hidden; border: 1px solid var(--wf-color-border); }
+.lf-meter-fill { height: 100%; width: 75%; background: var(--wf-color-primary); }
+
+/* --- keyboard hint chips --- */
+.kbd {
+  display: inline-block;
+  min-width: 18px;
+  padding: 1px var(--wf-space-2);
+  border: 1px solid var(--wf-color-border);
+  border-bottom-width: 2px;
+  border-radius: var(--wf-radius-sm);
+  background: var(--wf-color-surface);
+  font-family: var(--wf-font-mono, ui-monospace, monospace);
+  font-size: var(--wf-text-xs);
+  color: var(--wf-color-text-secondary);
+}
+.lf-hints { display: flex; flex-direction: column; gap: var(--wf-space-2); font-size: var(--wf-text-sm); color: var(--wf-color-text-secondary); }
+.lf-hints div { display: flex; justify-content: space-between; gap: var(--wf-space-3); }
+
+/* --- selectable group / duration chips (lo-fi affordance) --- */
+.lf-chiprow { display: flex; flex-wrap: wrap; gap: var(--wf-space-2); }
+.lf-chip {
+  display: inline-flex; align-items: center; gap: var(--wf-space-2);
+  padding: var(--wf-space-2) var(--wf-space-3);
+  border: 1px solid var(--wf-color-border);
+  border-radius: 999px;
+  background: var(--wf-color-surface);
+  font-size: var(--wf-text-sm);
+  cursor: pointer;
+  min-height: 36px;
+}
+.lf-chip:focus-visible { outline: var(--wf-focus-ring, 2px solid var(--wf-color-primary)); outline-offset: 2px; }
+.lf-chip.is-selected { border-color: var(--wf-color-primary); background: var(--wf-color-primary); color: #fff; font-weight: var(--wf-font-medium); }
+.lf-chip .lf-chip-count { color: var(--wf-color-text-tertiary); font-size: var(--wf-text-xs); }
+.lf-chip.is-selected .lf-chip-count { color: rgba(255,255,255,0.85); }
+
+/* --- "kept from prior" inline tag --- */
+.lf-kept { font-size: var(--wf-text-xs); color: var(--wf-color-text-tertiary); font-style: italic; }
+
+/* --- designer annotation note --- */
+.lf-anno {
+  border: 1px dashed var(--wf-color-border);
+  border-radius: var(--wf-radius-md);
+  background: var(--wf-color-surface);
+  padding: var(--wf-space-3) var(--wf-space-4);
+  font-size: var(--wf-text-sm);
+  color: var(--wf-color-text-secondary);
+}
+.lf-anno b { color: var(--wf-color-text-primary); }
+
+/* --- sticky summary rail --- */
+.lf-rail { position: sticky; top: var(--wf-space-6); align-self: flex-start; }
+
+/* --- force a menu open in a static wireframe --- */
+.wf-menu.lf-open { display: block; position: absolute; top: 100%; right: 0; margin-top: var(--wf-space-1); z-index: 40; min-width: 240px; }
+.lf-menu-anchor { position: relative; }
+
+/* --- phone frame for the mobile screen --- */
+.lf-phone-wrap { display: flex; justify-content: center; padding: var(--wf-space-8) var(--wf-space-4); }
+.lf-phone {
+  width: 390px; max-width: 100%;
+  border: 10px solid #1f2430;
+  border-radius: 36px;
+  overflow: hidden;
+  background: var(--wf-color-background);
+  box-shadow: var(--wf-elevation-lg, 0 12px 40px rgba(0,0,0,.18));
+}
+.lf-phone-screen { height: 760px; overflow-y: auto; }
+.lf-phone-statusbar { display:flex; justify-content:space-between; padding: var(--wf-space-2) var(--wf-space-4); font-size: var(--wf-text-xs); color: var(--wf-color-text-secondary); }
+
+/* generic stack helper for demo blocks */
+.lf-stack { display: flex; flex-direction: column; gap: var(--wf-space-5); }
+.lf-muted { color: var(--wf-color-text-secondary); }
+
+/* =====================================================================
+   "Create New Offer" page chrome — mirrors the production full-screen
+   create surface so the index quick-create reads as the same page the
+   wizard-based offers use (top bar + ✕, Back to Offers, wide left card,
+   narrow right "What customers will see" preview, footer action bar).
+   No app sidebar. Still lf- (wireframe scaffolding), not design system.
+   ===================================================================== */
+.lf-topbar {
+  display: flex; align-items: center; gap: var(--wf-space-4);
+  padding: var(--wf-space-4) var(--wf-space-6);
+  background: var(--wf-color-surface-raised);
+  border-bottom: 1px solid var(--wf-color-border);
+  position: sticky; top: 0; z-index: 50;
+}
+.lf-topbar-x { font-size: 22px; line-height: 1; color: var(--wf-color-text-secondary); text-decoration: none; }
+.lf-topbar-x:hover { color: var(--wf-color-text-primary); }
+.lf-topbar-title { font-weight: var(--wf-font-bold); font-size: var(--wf-text-md); }
+.lf-topbar .lf-backlink { margin-left: auto; font-size: var(--wf-text-xs); color: var(--wf-color-primary); text-decoration: none; border: 1px dashed var(--wf-color-border); border-radius: var(--wf-radius-sm); padding: 2px var(--wf-space-3); }
+.lf-topbar .lf-backlink:hover { text-decoration: underline; }
+
+.lf-offer-page { max-width: 1120px; margin: 0 auto; padding: var(--wf-space-6) var(--wf-space-6) var(--wf-space-12); }
+.lf-backtolist { display: inline-flex; align-items: center; gap: var(--wf-space-2); color: var(--wf-color-text-secondary); text-decoration: none; font-size: var(--wf-text-sm); margin-bottom: var(--wf-space-4); }
+.lf-backtolist:hover { color: var(--wf-color-text-primary); }
+
+.lf-offer-grid { display: flex; gap: var(--wf-space-5); align-items: flex-start; }
+.lf-offer-main { flex: 1 1 auto; min-width: 0; }
+.lf-offer-side { flex: 0 0 360px; max-width: 360px; }
+@media (max-width: 880px) { .lf-offer-grid { flex-direction: column; } .lf-offer-side { flex: 1 1 auto; max-width: none; width: 100%; } }
+
+/* groups within the left content card (heading + fields, no form-section-in-card) */
+.lf-group { padding: var(--wf-space-2) 0; }
+.lf-group + .lf-group { border-top: 1px solid var(--wf-color-border); margin-top: var(--wf-space-4); padding-top: var(--wf-space-5); }
+.lf-group-title { margin: 0 0 2px; }
+.lf-group-desc { margin: 0 0 var(--wf-space-3); color: var(--wf-color-text-secondary); }
+
+/* left-card footer action bar (mirrors the wizard footer position/feel) */
+.lf-offer-footer { display: flex; align-items: center; gap: var(--wf-space-4); margin-top: var(--wf-space-4); padding: var(--wf-space-3) var(--wf-space-5); border: 1px solid var(--wf-color-border); border-radius: var(--wf-radius-md); background: var(--wf-color-surface); }
+.lf-offer-footer .lf-footer-mid { margin-left: auto; font-size: var(--wf-text-xs); color: var(--wf-color-text-tertiary); display: inline-flex; align-items: center; gap: var(--wf-space-2); }
+
+/* right "What customers will see" preview panel */
+.lf-preview { display: flex; flex-direction: column; gap: var(--wf-space-3); }
+.lf-preview-sec { border: 1px solid var(--wf-color-border); border-radius: var(--wf-radius-md); padding: var(--wf-space-3) var(--wf-space-4); }
+.lf-preview-sec.is-empty { border-style: dashed; }
+.lf-preview-sec.is-key { border-left: 3px solid var(--wf-color-primary); }
+.lf-preview-label { font-size: var(--wf-text-xs); text-transform: uppercase; letter-spacing: .05em; color: var(--wf-color-text-tertiary); }
+.lf-preview-strategy { font-size: var(--wf-text-base); font-weight: var(--wf-font-semibold); margin: 2px 0 0; }
+.lf-preview-value { font-size: var(--wf-text-sm); margin-top: 2px; color: var(--wf-color-text-primary); }
+.lf-preview-value.is-empty { color: var(--wf-color-text-tertiary); font-style: italic; }
+
+/* =====================================================================
+   ROUND 2 additions — real price formula, formula edit drawer (open
+   state for static wireframes), progressive invite, pinning.
+   Still lf- (wireframe scaffolding), not design system.
+   ===================================================================== */
+
+/* host that pins an open wf-detail-panel to the right with a dimmed page
+   behind it, so a static wireframe can show the "edit formula" drawer open */
+.lf-drawer-host { position: fixed; inset: 0; display: flex; justify-content: flex-end; z-index: 60; }
+.lf-drawer-backdrop { position: absolute; inset: 0; background: var(--wf-color-background-overlay, rgba(15,23,42,.45)); }
+.lf-drawer-host .wf-detail-panel { position: relative; z-index: 1; height: 100vh; box-shadow: var(--wf-elevation-lg, -8px 0 32px rgba(0,0,0,.18)); }
+
+/* a saved-formula "chosen" summary line inside the price-formula group */
+.lf-formula-chosen { display: flex; align-items: center; gap: var(--wf-space-3); flex-wrap: wrap; padding: var(--wf-space-3) var(--wf-space-4); border: 1px solid var(--wf-color-border); border-left: 3px solid var(--wf-color-primary); border-radius: var(--wf-radius-md); background: var(--wf-color-surface); }
+.lf-formula-chosen .lf-formula-name { font-weight: var(--wf-font-semibold); }
+.lf-formula-chosen .lf-formula-actions { margin-left: auto; display: flex; gap: var(--wf-space-2); }
+
+/* a single variable definition block inside the edit drawer (the 7 fields) */
+.lf-var-block { border: 1px solid var(--wf-color-border); border-radius: var(--wf-radius-md); padding: var(--wf-space-3); margin-bottom: var(--wf-space-3); }
+.lf-var-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--wf-space-2); }
+.lf-var-head .lf-var-tag { font-family: var(--wf-font-mono, ui-monospace, monospace); font-size: var(--wf-text-xs); background: var(--wf-color-surface-sunken); border: 1px solid var(--wf-color-border); border-radius: var(--wf-radius-sm); padding: 1px var(--wf-space-2); }
+
+/* pin toggle that floats favorite groups to the top of the chip row */
+.lf-pin { border: none; background: none; cursor: pointer; color: var(--wf-color-text-tertiary); font-size: var(--wf-text-sm); padding: 0 2px; }
+.lf-pin.is-pinned { color: var(--wf-color-primary); }
+.lf-pinned-label { font-size: var(--wf-text-xs); text-transform: uppercase; letter-spacing: .05em; color: var(--wf-color-text-tertiary); margin: 0 0 var(--wf-space-2); }
+
+/* consolidated top area: preset select + save-as + switch to full */
+.lf-presetbar { display: flex; align-items: flex-end; gap: var(--wf-space-4); flex-wrap: wrap; padding: var(--wf-space-3) var(--wf-space-4); border: 1px solid var(--wf-color-border); border-radius: var(--wf-radius-md); background: var(--wf-color-surface-sunken); margin-bottom: var(--wf-space-5); }
+.lf-presetbar .wf-field { margin: 0; }
+.lf-presetbar-end { margin-left: auto; align-self: center; }
+
+/* plain underlined link + native click-to-expand table */
+.lf-link { background: none; border: none; padding: 0; font: inherit; color: var(--wf-color-primary); text-decoration: underline; cursor: pointer; }
+.lf-more { margin-top: var(--wf-space-3); }
+.lf-more > summary { display: inline-block; list-style: none; color: var(--wf-color-primary); text-decoration: underline; cursor: pointer; font-size: var(--wf-text-sm); }
+.lf-more > summary::-webkit-details-marker { display: none; }
+.lf-more[open] > summary { margin-bottom: var(--wf-space-3); }
+
+/* small inline search affordance row */
+.lf-searchrow { display: flex; gap: var(--wf-space-2); align-items: center; margin-bottom: var(--wf-space-3); }
+.lf-searchrow .wf-input { max-width: 320px; }
+
+/* ---- bottom-sheet template chooser (mirrors production FormulaTemplateSelector) ---- */
+.lf-bottomsheet-host { position: fixed; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; z-index: 60; }
+.lf-bottomsheet-backdrop { position: absolute; inset: 0; background: var(--wf-color-background-overlay, rgba(15,23,42,.45)); }
+.lf-bottomsheet { position: relative; z-index: 1; background: var(--wf-color-background); border-top-left-radius: var(--wf-radius-lg); border-top-right-radius: var(--wf-radius-lg); box-shadow: var(--wf-elevation-lg, 0 -8px 32px rgba(0,0,0,.18)); height: 85vh; display: flex; flex-direction: column; }
+.lf-bottomsheet-header { padding: var(--wf-space-5) var(--wf-space-6); border-bottom: 1px solid var(--wf-color-border); display: flex; align-items: flex-start; gap: var(--wf-space-4); }
+.lf-bottomsheet-header .lf-bs-actions { margin-left: auto; display: flex; gap: var(--wf-space-2); }
+.lf-bottomsheet-body { padding: var(--wf-space-5) var(--wf-space-6); overflow: auto; }
+
+/* horizontal scrolling row of template cards (production default view) */
+.lf-cardscroll { display: flex; gap: var(--wf-space-4); overflow-x: auto; padding-bottom: var(--wf-space-3); }
+.lf-cardscroll > .wf-card { flex: 0 0 300px; }
+
+/* a compact component-line list inside a template card */
+.lf-comp-list { border: 1px solid var(--wf-color-border); border-radius: var(--wf-radius-md); }
+.lf-comp-item { display: flex; gap: var(--wf-space-2); align-items: flex-start; padding: var(--wf-space-2) var(--wf-space-3); border-bottom: 1px solid var(--wf-color-border-light, var(--wf-color-border)); }
+.lf-comp-item:last-child { border-bottom: none; }
+.lf-comp-item .lf-comp-lines { font-size: var(--wf-text-xs); }
+.lf-comp-op { color: var(--wf-color-success); font-weight: var(--wf-font-bold); }
+
+/* editable formula table cells keep inputs/selects compact inside the datagrid */
+.wf-datagrid .wf-field { margin: 0; }
+.lf-cell-edit .wf-input, .lf-cell-edit .wf-select { width: 100%; }
+
+/* ---- duration field: the dropdown (open on focus) holds BOTH the quick
+   options and the hour/minute increments, so only the focused field's quick
+   picks are active at a time (no conflict between the two fields) ---- */
+.lf-quick-label { text-transform: uppercase; letter-spacing: .04em; font-size: 10px; font-weight: var(--wf-font-medium); color: var(--wf-color-text-tertiary); margin-right: var(--wf-space-1); }
+/* the dropdown — hidden until its field is focused (or forced open with is-open) */
+.lf-timelist { display: none; margin-top: 2px; border: 1px solid var(--wf-color-border); border-radius: var(--wf-radius-sm); background: var(--wf-color-surface); max-height: 260px; overflow-y: auto; box-shadow: var(--wf-elevation-md, 0 4px 12px rgba(0,0,0,.10)); }
+/* quick-select row pinned at the top of the dropdown */
+.lf-timelist-quick { display: flex; align-items: center; gap: var(--wf-space-2); flex-wrap: wrap; padding: var(--wf-space-2) var(--wf-space-3); border-bottom: 1px solid var(--wf-color-border); background: var(--wf-color-surface-sunken); }
+.lf-timelist-item { padding: var(--wf-space-2) var(--wf-space-3); font-size: var(--wf-text-sm); cursor: pointer; }
+.lf-timelist-item:hover, .lf-timelist-item.is-active { background: var(--wf-color-surface-sunken); }
+/* reveal the list while the field has focus, while hovering it, or forced open */
+.wf-input:focus ~ .lf-timelist,
+.lf-timelist:hover,
+.lf-timelist.is-open { display: block; }

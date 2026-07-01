@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toggle Component - Wireframe Design System</title>
+  <link rel="stylesheet" href="controls.css">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      padding: 32px;
+      background-color: #f8fafc;
+      margin: 0;
+    }
+    .demo-section {
+      background: white;
+      padding: 24px;
+      border-radius: 8px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      max-width: 400px;
+    }
+    .demo-section h2 {
+      margin-top: 0;
+      margin-bottom: 16px;
+      font-size: 16px;
+      color: #374151;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 8px;
+    }
+    .demo-row {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .demo-row:last-child {
+      margin-bottom: 0;
+    }
+    .toggle-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Toggle Component</h1>
+
+  <div class="demo-section">
+    <h2>Basic Toggle</h2>
+
+    <!-- Toggle off -->
+    <div class="demo-row">
+      <label class="wf-toggle">
+        <input type="checkbox" class="wf-toggle-input">
+        <span class="wf-toggle-track"></span>
+        <span class="wf-toggle-label">Enable notifications</span>
+      </label>
+    </div>
+
+    <!-- Toggle on -->
+    <div class="demo-row">
+      <label class="wf-toggle">
+        <input type="checkbox" class="wf-toggle-input" checked>
+        <span class="wf-toggle-track"></span>
+        <span class="wf-toggle-label">Dark mode</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Toggle States</h2>
+
+    <!-- Off state -->
+    <div class="demo-row">
+      <label class="wf-toggle">
+        <input type="checkbox" class="wf-toggle-input">
+        <span class="wf-toggle-track"></span>
+        <span class="wf-toggle-label">Off</span>
+      </label>
+    </div>
+
+    <!-- On state -->
+    <div class="demo-row">
+      <label class="wf-toggle">
+        <input type="checkbox" class="wf-toggle-input" checked>
+        <span class="wf-toggle-track"></span>
+        <span class="wf-toggle-label">On</span>
+      </label>
+    </div>
+
+    <!-- Disabled off -->
+    <div class="demo-row">
+      <label class="wf-toggle">
+        <input type="checkbox" class="wf-toggle-input" disabled>
+        <span class="wf-toggle-track"></span>
+        <span class="wf-toggle-label">Disabled off</span>
+      </label>
+    </div>
+
+    <!-- Disabled on -->
+    <div class="demo-row">
+      <label class="wf-toggle">
+        <input type="checkbox" class="wf-toggle-input" checked disabled>
+        <span class="wf-toggle-track"></span>
+        <span class="wf-toggle-label">Disabled on</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Settings Panel Example</h2>
+
+    <div class="toggle-list">
+      <label class="wf-toggle">
+        <input type="checkbox" class="wf-toggle-input" checked>
+        <span class="wf-toggle-track"></span>
+        <span class="wf-toggle-label">Email notifications</span>
+      </label>
+      <label class="wf-toggle">
+        <input type="checkbox" class="wf-toggle-input" checked>
+        <span class="wf-toggle-track"></span>
+        <span class="wf-toggle-label">Push notifications</span>
+      </label>
+      <label class="wf-toggle">
+        <input type="checkbox" class="wf-toggle-input">
+        <span class="wf-toggle-track"></span>
+        <span class="wf-toggle-label">SMS alerts</span>
+      </label>
+      <label class="wf-toggle">
+        <input type="checkbox" class="wf-toggle-input" checked>
+        <span class="wf-toggle-track"></span>
+        <span class="wf-toggle-label">Auto-save drafts</span>
+      </label>
+      <label class="wf-toggle">
+        <input type="checkbox" class="wf-toggle-input">
+        <span class="wf-toggle-track"></span>
+        <span class="wf-toggle-label">Show advanced options</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Feature Flags Example</h2>
+
+    <div class="toggle-list">
+      <label class="wf-toggle">
+        <input type="checkbox" class="wf-toggle-input" checked>
+        <span class="wf-toggle-track"></span>
+        <span class="wf-toggle-label">Real-time pricing updates</span>
+      </label>
+      <label class="wf-toggle">
+        <input type="checkbox" class="wf-toggle-input">
+        <span class="wf-toggle-track"></span>
+        <span class="wf-toggle-label">Beta features</span>
+      </label>
+      <label class="wf-toggle">
+        <input type="checkbox" class="wf-toggle-input" disabled>
+        <span class="wf-toggle-track"></span>
+        <span class="wf-toggle-label">API access (requires upgrade)</span>
+      </label>
+      <label class="wf-toggle">
+        <input type="checkbox" class="wf-toggle-input" checked>
+        <span class="wf-toggle-track"></span>
+        <span class="wf-toggle-label">Analytics tracking</span>
+      </label>
+    </div>
+  </div>
+
+</body>
+</html>

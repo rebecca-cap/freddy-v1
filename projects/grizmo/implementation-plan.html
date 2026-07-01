@@ -1,0 +1,1322 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Project Hub — Wire up the Project Detail page</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<style>
+  :root {
+    --bg: #FAFAFA;
+    --surface: #FFFFFF;
+    --ink: #1A1A1A;
+    --ink-2: #4A4A4A;
+    --ink-3: #6B6B6B;
+    --line: #E6E6E6;
+    --line-2: #F0F0F0;
+    --brand: #715DAA;
+    --brand-soft: #F1EDF8;
+    --brand-ink: #3F3270;
+    --accent: #1D9E75;
+    --accent-soft: #E6F4EE;
+    --warn: #B8651A;
+    --warn-soft: #FAEEDE;
+    --code-bg: #1C1A24;
+    --code-ink: #E8E5F0;
+    --code-mute: #9E97B5;
+    --shadow: 0 1px 2px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.06);
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 15px/1.55 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--brand-ink); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* Layout */
+  .shell {
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    gap: 0;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 0 80px;
+  }
+  nav.toc {
+    position: sticky;
+    top: 0;
+    align-self: start;
+    height: 100vh;
+    overflow: auto;
+    padding: 28px 18px 28px 28px;
+    border-right: 1px solid var(--line);
+    background: var(--bg);
+  }
+  nav.toc h2 {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--ink-3);
+    margin: 0 0 10px;
+  }
+  nav.toc .phase {
+    margin: 0 0 14px;
+  }
+  nav.toc .phase > a {
+    display: block;
+    font-weight: 600;
+    color: var(--ink);
+    padding: 4px 6px;
+    border-radius: 4px;
+    font-size: 13.5px;
+  }
+  nav.toc .phase > a:hover { background: var(--brand-soft); }
+  nav.toc .phase > a .done {
+    font-size: 10px;
+    font-weight: 700;
+    color: #1B5B45;
+    background: var(--accent-soft);
+    border: 1px solid #CFE7DC;
+    padding: 1px 6px;
+    border-radius: 999px;
+    margin-left: 6px;
+    letter-spacing: .04em;
+    vertical-align: middle;
+  }
+  nav.toc ul {
+    list-style: none;
+    margin: 4px 0 0;
+    padding: 0 0 0 10px;
+    border-left: 1px solid var(--line);
+  }
+  nav.toc li a {
+    display: block;
+    padding: 3px 8px;
+    font-size: 12.5px;
+    color: var(--ink-2);
+    border-radius: 4px;
+  }
+  nav.toc li a:hover { background: var(--brand-soft); color: var(--brand-ink); }
+
+  main {
+    padding: 36px 36px 0 36px;
+    min-width: 0;
+  }
+
+  /* Header */
+  header.hero {
+    margin: 0 0 28px;
+    padding: 0 0 24px;
+    border-bottom: 1px solid var(--line);
+  }
+  header.hero .eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    color: var(--brand);
+    margin-bottom: 8px;
+  }
+  header.hero h1 {
+    font-size: 30px;
+    line-height: 1.15;
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+  }
+  header.hero .sub {
+    color: var(--ink-2);
+    font-size: 15.5px;
+    max-width: 740px;
+  }
+  header.hero .meta {
+    margin-top: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 10px;
+    font-size: 12.5px;
+    color: var(--ink-3);
+  }
+  header.hero .meta b { color: var(--ink); font-weight: 600; }
+
+  /* Section blocks */
+  section.phase {
+    margin: 36px 0 0;
+    padding: 0 0 8px;
+  }
+  section.phase > .phase-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 0 0 8px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 18px;
+  }
+  section.phase > .phase-head .num {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--brand);
+    letter-spacing: -.01em;
+    min-width: 56px;
+  }
+  section.phase > .phase-head .title {
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: -.01em;
+  }
+  section.phase > .phase-head .tag {
+    margin-left: auto;
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--ink-3);
+    font-weight: 600;
+  }
+  section.phase > .phase-head .tag.shipped {
+    color: #1B5B45;
+    background: var(--accent-soft);
+    border: 1px solid #CFE7DC;
+    padding: 3px 10px;
+    border-radius: 999px;
+  }
+
+  /* Feature cards */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 18px 20px 20px;
+    margin: 0 0 16px;
+    box-shadow: var(--shadow);
+  }
+  .card.shipped { border-left: 3px solid var(--accent); }
+  .card .card-head {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+  .card .step {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--brand);
+    background: var(--brand-soft);
+    padding: 3px 8px;
+    border-radius: 999px;
+    letter-spacing: .04em;
+  }
+  .card h3 {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: -.005em;
+    flex: 1;
+  }
+  .card .kind {
+    font-size: 11px;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    font-weight: 600;
+  }
+  .card .done-badge {
+    font-size: 11px;
+    font-weight: 700;
+    color: #1B5B45;
+    background: var(--accent-soft);
+    border: 1px solid #CFE7DC;
+    padding: 2px 8px;
+    border-radius: 999px;
+    letter-spacing: .04em;
+  }
+  .card .what {
+    color: var(--ink-2);
+    font-size: 14.5px;
+    margin: 4px 0 14px;
+  }
+  .card .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px 20px;
+    margin: 0 0 14px;
+  }
+  .card .block {
+    min-width: 0;
+  }
+  .card .block .label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--ink-3);
+    font-weight: 700;
+    margin: 0 0 6px;
+  }
+  .card .block p {
+    margin: 0;
+    color: var(--ink-2);
+    font-size: 13.5px;
+    line-height: 1.55;
+  }
+  .card .outcome ul {
+    margin: 0; padding-left: 18px;
+    color: var(--ink-2);
+    font-size: 13.5px;
+  }
+  .card .outcome li { margin: 2px 0; }
+  .card .verify {
+    background: var(--accent-soft);
+    border: 1px solid #CFE7DC;
+    color: #1B5B45;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    margin: 12px 0 0;
+  }
+  .card .verify b { color: #143C2E; }
+  .card .files-touched {
+    margin: 12px 0 0;
+    font-size: 12.5px;
+    color: var(--ink-3);
+  }
+  .card .files-touched b { color: var(--ink-2); }
+  .card .files-touched code {
+    font: 12px/1.5 ui-monospace, monospace;
+    background: #F4F4F4;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 1px 5px;
+    color: var(--ink-2);
+  }
+
+  /* Prompt block */
+  .prompt {
+    margin: 12px 0 0;
+    background: var(--code-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #2B2939;
+  }
+  .prompt .bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: #15131C;
+    border-bottom: 1px solid #2B2939;
+    color: var(--code-mute);
+    font-size: 12px;
+  }
+  .prompt .bar .name {
+    font-weight: 600;
+    color: #C7C1DE;
+  }
+  .prompt .bar .copy {
+    margin-left: auto;
+    border: 1px solid #3A364A;
+    background: #221F2C;
+    color: var(--code-ink);
+    font-size: 11.5px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .prompt .bar .copy:hover { background: #2C2839; }
+  .prompt .bar .copy.copied { color: #9DE6BD; border-color: #2A6248; }
+  .prompt pre {
+    margin: 0;
+    padding: 14px 16px;
+    font: 12.5px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    color: var(--code-ink);
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  /* Phase tag colors */
+  .ph-ui   .step { background: #EAF1F8; color: #1E4D7A; }
+  .ph-mix  .step { background: #F4EFE0; color: #6E5A1E; }
+  .ph-int  .step { background: #FCE9EC; color: #8E2C39; }
+  .kind.ph-ui  { color: #1E4D7A; }
+  .kind.ph-mix { color: #6E5A1E; }
+  .kind.ph-int { color: #8E2C39; }
+
+  /* Pillbar of principles at top of phase */
+  .principles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0 0 16px;
+  }
+  .pill {
+    font-size: 11.5px;
+    background: #F2F2F2;
+    color: var(--ink-2);
+    padding: 4px 9px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+  }
+  .pill.brand { background: var(--brand-soft); color: var(--brand-ink); border-color: #E1D8F0; }
+  .pill.acc   { background: var(--accent-soft); color: #1B5B45; border-color: #D2E8DE; }
+  .pill.warn  { background: var(--warn-soft); color: var(--warn); border-color: #EFDFC8; }
+
+  /* Callouts */
+  .note {
+    background: #FFF8E6;
+    border: 1px solid #F1E1B0;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin: 0 0 20px;
+    color: #6E5A1E;
+    font-size: 14px;
+  }
+  .note b { color: #5A4815; }
+  .note.acc { background: var(--accent-soft); border-color: #CFE7DC; color: #1B5B45; }
+  .note.acc b { color: #143C2E; }
+  .legend {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    font-size: 12.5px;
+    color: var(--ink-3);
+    margin: 4px 0 18px;
+  }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .legend .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .legend .dot.ui  { background: #1E4D7A; }
+  .legend .dot.mix { background: #6E5A1E; }
+  .legend .dot.int { background: #8E2C39; }
+
+  /* Small utilities */
+  .kbd {
+    background: #F0F0F0;
+    border: 1px solid #DCDCDC;
+    border-bottom-width: 2px;
+    border-radius: 4px;
+    padding: 0 6px;
+    font: 12px/1.6 ui-monospace, monospace;
+    color: var(--ink);
+  }
+  .ref {
+    background: var(--brand-soft);
+    color: var(--brand-ink);
+    padding: 1px 7px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .pathline {
+    font: 12.5px/1.5 ui-monospace, monospace;
+    color: var(--ink-3);
+    word-break: break-all;
+  }
+  hr.thin { border: 0; border-top: 1px solid var(--line); margin: 28px 0; }
+
+  /* Verify / files tables */
+  .checklist {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 0 0 16px;
+    box-shadow: var(--shadow);
+  }
+  .checklist h4 {
+    margin: 0 0 10px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--brand-ink);
+  }
+  .checklist ol { margin: 0; padding-left: 20px; color: var(--ink-2); font-size: 13.5px; }
+  .checklist ol li { margin: 5px 0; }
+  .checklist ol li code {
+    font: 12px/1.5 ui-monospace, monospace;
+    background: #F4F4F4;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 1px 5px;
+  }
+  table.files {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    font-size: 13px;
+  }
+  table.files th, table.files td {
+    text-align: left;
+    padding: 9px 14px;
+    border-bottom: 1px solid var(--line-2);
+    vertical-align: top;
+  }
+  table.files th {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: var(--ink-3);
+    background: #FBFAFD;
+  }
+  table.files td code {
+    font: 12px/1.5 ui-monospace, monospace;
+    color: var(--brand-ink);
+  }
+  table.files .badge {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 1px 7px;
+    border-radius: 999px;
+    letter-spacing: .04em;
+    white-space: nowrap;
+  }
+  table.files .badge.new { background: var(--brand-soft); color: var(--brand-ink); border: 1px solid #E1D8F0; }
+  table.files .badge.edit { background: var(--warn-soft); color: var(--warn); border: 1px solid #EFDFC8; }
+  table.files .badge.done { background: var(--accent-soft); color: #1B5B45; border: 1px solid #CFE7DC; }
+
+  /* How-to-use steps */
+  .howto {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin: 0 0 24px;
+  }
+  .howto h2 { margin: 0 0 10px; font-size: 16px; }
+  .howto ol { margin: 0; padding-left: 20px; color: var(--ink-2); font-size: 14px; }
+  .howto ol li { margin: 4px 0; }
+  .howto .files {
+    margin-top: 12px;
+    background: #F7F5FB;
+    border: 1px solid #E5DEF3;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+  .howto .files div { margin: 2px 0; }
+  .howto .files b { color: var(--brand-ink); }
+</style>
+</head>
+<body>
+<div class="shell">
+  <nav class="toc">
+    <h2>Plan</h2>
+    <div class="phase">
+      <a href="#how-to-use">How to use this</a>
+    </div>
+    <div class="phase">
+      <a href="#overview">Overview &amp; principles</a>
+    </div>
+    <div class="phase">
+      <a href="#phase-1">Phase 1 — See the work<span class="done">Shipped</span></a>
+      <ul>
+        <li><a href="#s-1-1">1a · Hi-Fi version timeline</a></li>
+        <li><a href="#s-1-2">1b · Lo-Fi external rounds</a></li>
+        <li><a href="#s-1-3">1c · External Resources — Links</a></li>
+      </ul>
+    </div>
+    <div class="phase">
+      <a href="#phase-2">Phase 2 — Editable + search</a>
+      <ul>
+        <li><a href="#s-2-1">2a · Link external lo-fi dialog</a></li>
+        <li><a href="#s-2-2">2b · Hi-Fi changelog</a></li>
+        <li><a href="#s-2-3">2c · Sync / Merge to main</a></li>
+        <li><a href="#s-2-4">2d · Scoped search</a></li>
+        <li><a href="#s-2-5">2e · Send to Claude</a></li>
+      </ul>
+    </div>
+    <div class="phase">
+      <a href="#phase-3">Phase 3 — Optional</a>
+      <ul>
+        <li><a href="#s-3-1">3a · Screenshots upload</a></li>
+        <li><a href="#s-3-2">3b · Remaining categories</a></li>
+        <li><a href="#s-3-3">3c · Advanced Launch</a></li>
+        <li><a href="#s-3-4">3d · Server-side search</a></li>
+      </ul>
+    </div>
+    <div class="phase">
+      <a href="#verification">Verification checklists</a>
+    </div>
+    <div class="phase">
+      <a href="#critical-files">Critical files</a>
+    </div>
+    <div class="phase">
+      <a href="#guardrails">Guardrails &amp; gotchas</a>
+    </div>
+  </nav>
+
+  <main>
+    <header class="hero">
+      <div class="eyebrow">Project Hub · Project Detail wiring</div>
+      <h1>Wire up the Project Detail page in the Hub</h1>
+      <div class="sub">Turn the inert "coming soon" placeholders on <code>/p/:slug</code> into real features so the Hub actually surfaces the Grizmo work — Hi-Fi commit timeline, external lo-fi wireframes, and saved links. Phase 1 is shipped; Phases 2 and 3 are scoped and ready to hand to Claude Code.</div>
+      <div class="meta">
+        <span><b>Source plan:</b></span>
+        <span class="pathline">/Users/frankoverland/.claude/plans/can-we-make-some-serene-hare.md</span>
+      </div>
+      <div class="meta">
+        <span><b>Target repo:</b></span>
+        <span class="pathline">/Users/frankoverland/freddy/project-hub</span>
+      </div>
+      <div class="meta">
+        <span><b>Stack:</b> Vite + React 18 + Tailwind 3.4 + shadcn/ui (web :5174) · Express API (:3030) · filesystem-first JSON persistence</span>
+      </div>
+      <div class="legend" style="margin-top:14px">
+        <span><span class="dot ui"></span> UI step (fine grained)</span>
+        <span><span class="dot mix"></span> Mixed (UI + minimal wiring)</span>
+        <span><span class="dot int"></span> Interactions (coarser, multi-piece)</span>
+      </div>
+    </header>
+
+    <div class="howto" id="how-to-use">
+      <h2>How to use this document</h2>
+      <ol>
+        <li>Phase 1 is marked <b>Shipped</b> — the code is on disk and verified in the browser. Its cards are a record of what landed, not a to-do.</li>
+        <li>For Phase 2 and 3, read the <b>What</b> and <b>Why</b> so you know what the step is for and how it relates to the live features.</li>
+        <li>Look at the <b>Outcome</b> bullets — that is what "done" means. If the outcome is not visible after Claude Code finishes, the step is not done.</li>
+        <li>Click <b>Copy prompt</b> and paste it into Claude Code. Each prompt is self-contained and names the files to touch and the patterns to mirror.</li>
+        <li>Run the <b>Verify</b> check before moving on. The full per-phase checklists are at the bottom.</li>
+      </ol>
+      <div class="files">
+        <div><b>Run it:</b> <span class="pathline">cd ~/freddy/project-hub &amp;&amp; npm run dev</span> (concurrently runs Vite + tsx watch — both auto-reload)</div>
+        <div><b>Open:</b> <span class="pathline">http://localhost:5174/p/grizmo</span></div>
+        <div><b>Verify sweep:</b> <span class="pathline">~/freddy/project-hub/.claude/verify-hub.sh</span> — re-check <code>lsof -ti:5174</code> before hitting endpoints</div>
+      </div>
+    </div>
+
+    <div class="note acc">
+      <b>Phase 1 status:</b> All three sub-phases (1a Hi-Fi timeline, 1b Lo-Fi externals, 1c Links) are implemented, type-check clean (<code>tsc</code> exit 0), and verified against the running servers — the verify sweep is green (4 external rounds, 4 saved links, 7 git commits with the expected HEAD). Phases 2 and 3 below have not been started and are gated on an explicit go-ahead.
+    </div>
+
+    <div class="note">
+      <b>Ground rule for every prompt:</b> the Hub shell stays on shadcn + the OKLCH themes. Never import the Wireframe DS <code>wireframe.css</code> into the React app — render lo-fi files in sandboxed iframes only. Persist via JSON files under <code>~/freddy/projects/{slug}/</code>; no database. Mirror the existing component patterns (BranchPanel, LofiRounds) rather than inventing new ones.
+    </div>
+
+    <!-- ===================== OVERVIEW ===================== -->
+    <section class="phase" id="overview">
+      <div class="phase-head">
+        <div class="num">§</div>
+        <div class="title">Overview &amp; guiding principles</div>
+        <div class="tag">read first</div>
+      </div>
+      <div class="principles">
+        <span class="pill brand">Filesystem-first</span>
+        <span class="pill">Iframe isolation</span>
+        <span class="pill acc">Pointer files, not copies</span>
+        <span class="pill warn">Visible wins, in order</span>
+      </div>
+
+      <article class="card">
+        <div class="card-head">
+          <span class="step">Why</span>
+          <h3>What problem this solves</h3>
+        </div>
+        <p class="what">When Frank opens <code>/p/grizmo</code>, none of his shipped Grizmo work shows up — the page looks like an empty project. This wires the inert features so the Hub surfaces real progress.</p>
+        <div class="grid">
+          <div class="block">
+            <div class="label">The gap</div>
+            <p>The Hi-Fi and Lo-Fi timelines were grey "coming soon" boxes. External Resources had six disabled chips. Frank's actual Grizmo lo-fi wireframes live outside the project tree at <code>~/Documents/Claude/Projects/Ai Opportunities/</code>, with no way for the Hub to surface them.</p>
+          </div>
+          <div class="block outcome">
+            <div class="label">The four cross-cutting decisions</div>
+            <ul>
+              <li>Filesystem-first over a database — JSON files Frank can <code>ls</code>, <code>git diff</code>, and hand-edit.</li>
+              <li>Wireframe DS via sandboxed iframe only — zero style leakage into the host app.</li>
+              <li>Pointer files (<code>externals.json</code>) over copies (go stale) or symlinks (break Finder, confuse provenance).</li>
+              <li>Per-commit Launch is deferred to Phase 3 — Phase 1 Launch just opens the live dev URL.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- ===================== PHASE 1 ===================== -->
+    <section class="phase" id="phase-1">
+      <div class="phase-head">
+        <div class="num">1</div>
+        <div class="title">See the Grizmo work</div>
+        <div class="tag shipped">Shipped &amp; verified</div>
+      </div>
+      <div class="principles">
+        <span class="pill acc">Highest leverage</span>
+        <span class="pill">1a → 1b → 1c, in order</span>
+        <span class="pill brand">Verified in the browser</span>
+      </div>
+      <p style="color:var(--ink-2); font-size:14.5px; max-width:740px; margin:0 0 18px;">The three features that make the Project Detail page reflect real work. Each was built and confirmed against the running servers before moving to the next. The cards below document what landed.</p>
+
+      <!-- 1a -->
+      <article class="card shipped ph-mix" id="s-1-1">
+        <div class="card-head">
+          <span class="step">Step 1a</span>
+          <h3>Hi-Fi version timeline</h3>
+          <span class="done-badge">Done</span>
+        </div>
+        <p class="what">A real timeline that renders one card per git commit on the project branch, replacing the disabled Hi-Fi placeholder.</p>
+        <div class="grid">
+          <div class="block">
+            <div class="label">Why</div>
+            <p>The shipped Grizmo Hi-Fi demo is four committed phases of work on branch <code>project/grizmo</code>. The Hub had no surface for it. Reusing the existing <code>GET /api/projects/:slug/git</code> endpoint means no new backend — the commits are the timeline.</p>
+          </div>
+          <div class="block outcome">
+            <div class="label">Outcome (definition of done)</div>
+            <ul>
+              <li>One card per commit: subject, short hash, author, relative time.</li>
+              <li>HEAD badge on the topmost commit; "Active" pill when the dev server runs.</li>
+              <li>Launch button opens <code>devUrl</code> in a new tab; disabled with "Start dev server first" when stopped.</li>
+              <li>"New version" stays disabled with copy "Commit in your worktree, then refresh."</li>
+            </ul>
+          </div>
+        </div>
+        <div class="prompt">
+          <div class="bar"><span class="name">Prompt → Claude Code · Step 1a</span><button class="copy">Copy prompt</button></div>
+<pre>In /Users/frankoverland/freddy/project-hub, replace the disabled Hi-Fi TimelinePlaceholder on the Project Detail page with a real commit timeline.
+
+Create src/components/projects/HifiTimeline.tsx. It takes props { slug, devUrl, running }. On mount it calls api.getGitInfo(slug) (already defined in src/lib/api.ts — returns GitInfo with a recent: GitCommit[] array). Render one card per commit showing the subject, short hash, author, and a relative time. Put a HEAD badge on the first (topmost) commit. When running is true, show an "Active" pill and an enabled "Launch" button that is an anchor to devUrl with target="_blank"; when running is false, render a disabled element with the title "Start dev server first". Always render a visually-disabled "New version" control with the copy "Commit in your worktree, then refresh." Give the component its own loading and error state and a Refresh button, mirroring the structure and styling of the existing src/components/projects/BranchPanel.tsx.
+
+Then edit src/components/ProjectDetail.tsx: swap the second TimelinePlaceholder (the Hi-Fi one in the Prototypes tab) for <HifiTimeline slug={project.slug} devUrl={project.devUrl} running={runtime.running} />. Leave the Lo-Fi TimelinePlaceholder in place.
+
+Optionally bump the commit count in server/git.ts from -10 to -25 so the timeline shows more history. No new endpoint, no data-shape changes. Follow the existing styling approach in the repo (shadcn + Tailwind, the OKLCH theme tokens). Verify: open http://localhost:5174/p/grizmo, confirm commit cards render, start the dev server, and confirm the Launch button enables and opens a new tab.</pre>
+        </div>
+        <div class="verify"><b>Verify:</b> Open <code>/p/grizmo</code> → commit cards render with HEAD on top. Click Start dev server → Launch buttons enable → clicking one opens the dev URL in a new tab.</div>
+        <div class="files-touched"><b>Touched:</b> <code>src/components/projects/HifiTimeline.tsx</code> (new), <code>src/components/ProjectDetail.tsx</code>, <code>server/git.ts</code></div>
+      </article>
+
+      <!-- 1b -->
+      <article class="card shipped ph-mix" id="s-1-2">
+        <div class="card-head">
+          <span class="step">Step 1b</span>
+          <h3>Lo-Fi external rounds via externals.json</h3>
+          <span class="done-badge">Done</span>
+        </div>
+        <p class="what">Surface lo-fi wireframes that live outside the project tree through a pointer file, rendered in a sandboxed iframe — no copies, no symlinks.</p>
+        <div class="grid">
+          <div class="block">
+            <div class="label">Why</div>
+            <p>The Grizmo lo-fis sit at <code>~/Documents/Claude/Projects/Ai Opportunities/</code>. Copies go stale silently; symlinks break Finder previews and blur "what's mine" inside the project. A pointer file (<code>externals.json</code>) is hand-editable, diffable, and points at the source of truth.</p>
+          </div>
+          <div class="block outcome">
+            <div class="label">Outcome (definition of done)</div>
+            <ul>
+              <li><code>listLofiRounds()</code> appends external entries (marked <code>external: true</code>) after in-tree rounds.</li>
+              <li>Each external row shows an "External" pill, the label, and a <code>file://</code> open link.</li>
+              <li>A collapsed iframe preview toggle (<code>sandbox="allow-same-origin"</code>, ~600px tall) renders the wireframe in native styling.</li>
+              <li>Path-traversal outside the pointed-at directory is rejected by the serving route.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="prompt">
+          <div class="bar"><span class="name">Prompt → Claude Code · Step 1b</span><button class="copy">Copy prompt</button></div>
+<pre>In /Users/frankoverland/freddy/project-hub, surface lo-fi wireframes that live outside the project tree using a pointer file.
+
+The pointer file lives at ~/freddy/projects/{slug}/design-system/lofi/externals.json and is a JSON array of { label, path, indexHtml } entries (path is an absolute directory outside the project; indexHtml is the entry file inside it).
+
+In server/projects.ts: extend the LofiRound interface with optional external?: boolean, label?: string, previewUrl?: string. Add a readExternalsConfig(slug) helper that reads and validates externals.json, returning [] when it is missing or malformed. After listLofiRounds() builds the in-tree rounds, append one round per external entry: round number 1000 + index (so externals sort after in-tree rounds), name "external-N", external: true, the label, createdAt from the index file's mtime, and previewUrl = `/api/projects/${encodeURIComponent(slug)}/lofi/external/${i}/`. Skip entries whose index file is missing. Add resolveExternalLofiFile(slug, idx, relPath) that resolves a requested file to an absolute path and returns null if it escapes the pointed-at directory (guard: the resolved path must equal root or start with root + path.sep).
+
+In server/index.ts: add a RequestHandler that serves files from the external directory over HTTP (browsers block file:// iframes from an http origin, so static serving is required). Normalize req.params values (they are typed string | string[] under @types/express 5) with a helper that takes the first value. Register both GET /api/projects/:slug/lofi/external/:idx and .../:idx/* pointing at it; call resolveExternalLofiFile then res.sendFile.
+
+Mirror the new fields in src/lib/api.ts (external?, label?, previewUrl? on LofiRound). In src/components/LofiRounds.tsx, render external rounds with an amber "External" pill, the label as the title, a file:// open link, and a collapsible iframe preview that mounts <iframe src={r.previewUrl} sandbox="allow-same-origin"> only when expanded (~600px tall).
+
+Verify: hand-write externals.json with the 4 Grizmo entries, refresh /p/grizmo, confirm 4 External rows, and expand "Round 4 — Gizmo Option A" to see gizmo-demo.html render in its native styling.</pre>
+        </div>
+        <div class="verify"><b>Verify:</b> With 4 entries in <code>externals.json</code>, refresh → 4 "External" rows appear. Expand "Round 4 — Gizmo Option A" → <code>gizmo-demo.html</code> renders natively in the iframe. Traversal attempts (<code>%2e%2e%2f</code>) return 404.</div>
+        <div class="files-touched"><b>Touched:</b> <code>server/projects.ts</code>, <code>server/index.ts</code>, <code>src/lib/api.ts</code>, <code>src/components/LofiRounds.tsx</code>, <code>~/freddy/projects/grizmo/design-system/lofi/externals.json</code> (new)</div>
+      </article>
+
+      <!-- 1c -->
+      <article class="card shipped ph-int" id="s-1-3">
+        <div class="card-head">
+          <span class="step">Step 1c</span>
+          <h3>External Resources — Links tab live</h3>
+          <span class="done-badge">Done</span>
+        </div>
+        <p class="what">A working Links tab with add/delete persistence, plus five inactive category chips ready for Phase 3 to flip on.</p>
+        <div class="grid">
+          <div class="block">
+            <div class="label">Why</div>
+            <p>Links ships first because it is the cheapest end-to-end and most useful for the Grizmo demo (Notion brief, Drive, plan.html). Once Links works, Docs / Loom / Competitive / Interviews are the same shape with a different <code>category</code> — so all six chips live in one component and Phase 3 just flips flags.</p>
+          </div>
+          <div class="block outcome">
+            <div class="label">Outcome (definition of done)</div>
+            <ul>
+              <li>Three endpoints: GET (optional <code>?category</code>), POST (validates category/title/url, 400 on missing), DELETE by id.</li>
+              <li><code>ExternalResource</code> rows persist to <code>resources/external.json</code> with a UUID + ISO date, written atomically.</li>
+              <li>Add-link inline form (title + url + optional note) with optimistic insert; delete with optimistic remove + rollback on error.</li>
+              <li>Five non-Links chips show "coming soon" but live in the same component.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="prompt">
+          <div class="bar"><span class="name">Prompt → Claude Code · Step 1c</span><button class="copy">Copy prompt</button></div>
+<pre>In /Users/frankoverland/freddy/project-hub, make the External Resources Links tab fully working with filesystem persistence.
+
+Create server/resources.ts. Define a ResourceCategory type ("links" | "docs" | "loom" | "competitive" | "interviews" | "screenshots") and an ExternalResource = { id, category, title, url, note?, createdAt }. Store the array at ~/freddy/projects/{slug}/resources/external.json. Implement listExternalResources(slug), addExternalResource(slug, input) (generate id with randomUUID, set createdAt to ISO, trim and validate title+url), and deleteExternalResource(slug, id). Write the file atomically (write a tmp file, then rename). Make sure the store file is excluded from the user-facing project-files listing in projects.ts.
+
+In server/index.ts, add three routes before the error handler: GET /api/projects/:slug/resources/external (optional ?category filter), POST .../resources/external (body { category, title, url, note? }; return 400 if category, title, or url is missing), and DELETE .../resources/external/:id.
+
+In src/lib/api.ts, add the ResourceCategory and ExternalResource types plus listExternalResources / addExternalResource / deleteExternalResource clients matching the existing client style.
+
+Create src/components/projects/ExternalResources.tsx: six category chips at the top (screenshots, links, interviews, competitive, docs, loom) with per-category count badges; only "links" is active, the other five render a "coming soon" treatment but live inside this same component so Phase 3 flips a flag. When Links is active, show an "Add link" inline form (title + URL + optional note, with a submit guard) that POSTs and optimistically appends the returned row, and a delete control per row that optimistically removes and rolls back on error.
+
+Edit src/components/ProjectDetail.tsx: swap the disabled External Resources chip card for <ExternalResources slug={project.slug} />.
+
+Verify: open /p/grizmo, add a link titled "Grizmo brief", confirm it persists across refresh and appears on disk in resources/external.json, add a few more, and delete one.</pre>
+        </div>
+        <div class="verify"><b>Verify:</b> Add a link "Grizmo brief" under Links → persists across refresh and lands in <code>resources/external.json</code> on disk. Add more, delete one → list updates optimistically.</div>
+        <div class="files-touched"><b>Touched:</b> <code>server/resources.ts</code> (new), <code>server/index.ts</code>, <code>src/lib/api.ts</code>, <code>src/components/projects/ExternalResources.tsx</code> (new), <code>src/components/ProjectDetail.tsx</code></div>
+      </article>
+    </section>
+
+    <!-- ===================== PHASE 2 ===================== -->
+    <section class="phase" id="phase-2">
+      <div class="phase-head">
+        <div class="num">2</div>
+        <div class="title">Make it editable + search</div>
+        <div class="tag">not started · gated</div>
+      </div>
+      <div class="principles">
+        <span class="pill warn">Do not start without go-ahead</span>
+        <span class="pill">~2–3 days</span>
+        <span class="pill brand">Builds on Phase 1 surfaces</span>
+      </div>
+      <p style="color:var(--ink-2); font-size:14.5px; max-width:740px; margin:0 0 18px;">Phase 1 made the work visible. Phase 2 makes it editable from the Hub — manage external lo-fi from the UI, read commit changelogs, run git sync/merge, and search within a project.</p>
+
+      <!-- 2a -->
+      <article class="card ph-mix" id="s-2-1">
+        <div class="card-head">
+          <span class="step">Step 2a</span>
+          <h3>"Link external lo-fi…" dialog</h3>
+          <span class="kind ph-mix">Mixed</span>
+        </div>
+        <p class="what">A dialog next to "New round" that adds and removes external lo-fi entries from the UI instead of hand-editing the JSON.</p>
+        <div class="grid">
+          <div class="block">
+            <div class="label">Why</div>
+            <p>Phase 1 wrote <code>externals.json</code> by hand. Frank should be able to point the Hub at a new wireframe directory without opening a file. The read path already exists — this adds the write path on top of the same pointer file.</p>
+          </div>
+          <div class="block outcome">
+            <div class="label">Outcome (definition of done)</div>
+            <ul>
+              <li>"Link external lo-fi…" button opens a dialog with label, directory path, and index-html fields.</li>
+              <li>POST appends to <code>externals.json</code>; DELETE removes by index/label.</li>
+              <li>New external row appears in the lo-fi list without a manual refresh.</li>
+              <li>Invalid paths (missing index file) are rejected with a clear message.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="prompt">
+          <div class="bar"><span class="name">Prompt → Claude Code · Step 2a</span><button class="copy">Copy prompt</button></div>
+<pre>In /Users/frankoverland/freddy/project-hub, let the user manage external lo-fi entries from the UI instead of hand-editing externals.json.
+
+Backend: add POST /api/projects/:slug/lofi/externals (body { label, path, indexHtml }) that appends to ~/freddy/projects/{slug}/design-system/lofi/externals.json, and DELETE /api/projects/:slug/lofi/externals/:idx that removes an entry by index. Validate that path exists and the indexHtml file is present inside it; return 400 with a clear message otherwise. Write the file atomically (tmp + rename), reusing the readExternalsConfig helper added in Phase 1b.
+
+Frontend: in src/components/LofiRounds.tsx, add a "Link external lo-fi…" button next to the existing "New round" control. It opens a dialog (mirror the shadcn dialog usage elsewhere in the repo) with fields for label, absolute directory path, and index html filename. On submit, POST then refresh the rounds list so the new External row appears. Add a remove action on external rows that calls the DELETE endpoint with rollback on error.
+
+Add matching api.ts clients. Mirror the existing component and client styling. Verify: open /p/grizmo, click "Link external lo-fi…", add a directory, confirm the new External row renders and that externals.json on disk gained the entry; then remove it from the UI and confirm it disappears from the file.</pre>
+        </div>
+        <div class="verify"><b>Verify:</b> Add an entry via the dialog → new External row appears and <code>externals.json</code> gains it. Remove it → row disappears and the file shrinks.</div>
+      </article>
+
+      <!-- 2b -->
+      <article class="card ph-mix" id="s-2-2">
+        <div class="card-head">
+          <span class="step">Step 2b</span>
+          <h3>Hi-Fi changelog modal</h3>
+          <span class="kind ph-mix">Mixed</span>
+        </div>
+        <p class="what">The "📓 changelog" chip becomes a modal showing full commit bodies with a "Copy as markdown" button.</p>
+        <div class="grid">
+          <div class="block">
+            <div class="label">Why</div>
+            <p>The Hi-Fi timeline shows commit subjects only. When Frank wants the full story of a phase — or wants to paste it into a writeup — he needs the bodies. A changelog endpoint keeps the timeline lightweight while making the detail one click away.</p>
+          </div>
+          <div class="block outcome">
+            <div class="label">Outcome (definition of done)</div>
+            <ul>
+              <li>New endpoint <code>GET /api/projects/:slug/git/changelog</code> returns commit subjects + bodies.</li>
+              <li>The changelog chip opens a modal listing each commit with its body.</li>
+              <li>"Copy as markdown" copies a formatted changelog to the clipboard.</li>
+              <li>Modal scrolls cleanly for long histories.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="prompt">
+          <div class="bar"><span class="name">Prompt → Claude Code · Step 2b</span><button class="copy">Copy prompt</button></div>
+<pre>In /Users/frankoverland/freddy/project-hub, turn the inert "changelog" chip into a working commit-changelog modal.
+
+Backend: add GET /api/projects/:slug/git/changelog that runs git log on the project branch and returns each commit's hash, short hash, subject, full body, author, and authored date. Reuse the git helpers in server/git.ts.
+
+Frontend: in the Hi-Fi timeline area, wire the "changelog" chip to open a modal (mirror the existing shadcn modal usage). List each commit with its subject as a heading and its body below, scrollable for long histories. Add a "Copy as markdown" button that builds a markdown changelog (## subject, then body) and writes it to the clipboard via navigator.clipboard.
+
+Add an api.ts client for the changelog endpoint and a GitChangelogEntry type. Verify: open /p/grizmo, click the changelog chip, confirm commit bodies render, and click "Copy as markdown" then paste into a text editor to confirm the format.</pre>
+        </div>
+        <div class="verify"><b>Verify:</b> Click the changelog chip → modal lists commits with bodies. "Copy as markdown" → pasted output is well-formed markdown.</div>
+      </article>
+
+      <!-- 2c -->
+      <article class="card ph-int" id="s-2-3">
+        <div class="card-head">
+          <span class="step">Step 2c</span>
+          <h3>Sync from main / Merge to main</h3>
+          <span class="kind ph-int">Interactions</span>
+        </div>
+        <p class="what">The two disabled BranchPanel rows become real git operations, with a confirmation dialog before merging to main.</p>
+        <div class="grid">
+          <div class="block">
+            <div class="label">Why</div>
+            <p>Frank's project branches drift from main as he works. Doing the sync and merge from the Hub keeps him out of the terminal. Merge-to-main is the riskiest operation in the plan, so it requires a confirmation dialog showing exactly what will be merged.</p>
+          </div>
+          <div class="block outcome">
+            <div class="label">Outcome (definition of done)</div>
+            <ul>
+              <li><code>POST .../git/sync-from-main</code> runs fetch + merge main in the worktree; returns updated GitInfo + <code>conflicts: boolean</code>; 409 if the tree is dirty.</li>
+              <li><code>POST .../git/merge-to-main</code> merges the project branch into main in the proto-base, then returns to the project branch.</li>
+              <li>Merge-to-main shows a confirmation dialog listing the commits about to be merged.</li>
+              <li>The disabled rows at BranchPanel are replaced with live controls that reflect ahead/behind state.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="prompt">
+          <div class="bar"><span class="name">Prompt → Claude Code · Step 2c</span><button class="copy">Copy prompt</button></div>
+<pre>In /Users/frankoverland/freddy/project-hub, wire the disabled Sync-from-main and Merge-to-main rows in BranchPanel to real git operations. Treat these as potentially destructive — guard carefully.
+
+Backend (server/git.ts + server/index.ts):
+- POST /api/projects/:slug/git/sync-from-main: in the project's worktree, run git fetch then git merge main --no-edit. Before merging, check the working tree is clean — if dirty, return 409 with a clear message and do nothing. Return the updated GitInfo plus conflicts: boolean (true if the merge left conflict markers). Do not auto-resolve conflicts.
+- POST /api/projects/:slug/git/merge-to-main: in PROTO_BASE_PATH, run git checkout main, git merge --no-ff project/<slug>, then git checkout back to the project branch. Return updated GitInfo. If main is dirty or the merge conflicts, abort safely and return a clear error — never leave the repo on the wrong branch.
+
+Frontend (src/components/projects/BranchPanel.tsx, the disabled rows around lines 159–168): replace them with live controls. Sync-from-main calls the endpoint and refreshes GitInfo, surfacing a conflict warning if conflicts is true. Merge-to-main first opens a confirmation dialog that lists the commits about to be merged (subject + short hash); only on explicit confirm does it POST. Reflect ahead/behind counts in the row state.
+
+Add api.ts clients. Verify on a throwaway test project first (not grizmo): make a commit on main, Sync-from-main, confirm the worktree advances; make a commit on the project branch, Merge-to-main, confirm main gains the merge commit and the worktree returns to the project branch.</pre>
+        </div>
+        <div class="verify"><b>Verify:</b> On a test project — Sync-from-main advances the worktree (409 when dirty). Merge-to-main shows the confirm dialog, then main gains the merge commit and the worktree returns to the project branch.</div>
+      </article>
+
+      <!-- 2d -->
+      <article class="card ph-ui" id="s-2-4">
+        <div class="card-head">
+          <span class="step">Step 2d</span>
+          <h3>Scoped search (client-side)</h3>
+          <span class="kind ph-ui">UI</span>
+        </div>
+        <p class="what">The inert header search input becomes a live client-side filter over everything on the page.</p>
+        <div class="grid">
+          <div class="block">
+            <div class="label">Why</div>
+            <p>A project accrues rounds, commits, links, and files. The header search has been a dead box. A client-side index over the already-loaded data is cheap and instant; Phase 3 promotes it to server-side ripgrep when content outgrows what's in memory.</p>
+          </div>
+          <div class="block outcome">
+            <div class="label">Outcome (definition of done)</div>
+            <ul>
+              <li>Typing in the header input filters across rounds (incl. externals), commit subjects, external resource titles + notes, and project files.</li>
+              <li>Matches are grouped by type with a count; non-matching sections collapse or dim.</li>
+              <li>Clearing the input restores the full page.</li>
+              <li>No new network calls — the index is built from data already loaded.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="prompt">
+          <div class="bar"><span class="name">Prompt → Claude Code · Step 2d</span><button class="copy">Copy prompt</button></div>
+<pre>In /Users/frankoverland/freddy/project-hub, make the scoped search input in the Project Detail header (around ProjectDetail.tsx line 98, currently inert) a working client-side filter.
+
+Build an in-memory index from data already loaded on the page: lo-fi rounds (including external rounds, by label and name), commit subjects from the Hi-Fi timeline, external resource titles and notes, and project file names. As the user types, filter these and show grouped results (by type) with a per-group match count. Dim or collapse sections with no matches. Clearing the input restores the full page. Do not add any network calls — this is purely client-side over the existing ProjectDetail data. Mirror the repo's existing component and styling patterns.
+
+Verify: open /p/grizmo, type part of a commit subject and confirm the timeline filters; type part of an external resource title and confirm the links filter; clear the box and confirm everything returns.</pre>
+        </div>
+        <div class="verify"><b>Verify:</b> Type part of a commit subject → timeline filters. Type a link title → links filter. Clear → full page returns. No network calls fire.</div>
+      </article>
+
+      <!-- 2e -->
+      <article class="card ph-ui" id="s-2-5">
+        <div class="card-head">
+          <span class="step">Step 2e</span>
+          <h3>"Send to Claude" chip</h3>
+          <span class="kind ph-ui">UI</span>
+        </div>
+        <p class="what">A per-commit chip that copies a ready-to-paste Claude Code prompt template to the clipboard.</p>
+        <div class="grid">
+          <div class="block">
+            <div class="label">Why</div>
+            <p>When Frank wants to iterate on a specific commit's work in Claude Code, he ends up writing the same framing each time. A chip that copies a filled prompt template (repo path, branch, commit ref, subject) removes that friction.</p>
+          </div>
+          <div class="block outcome">
+            <div class="label">Outcome (definition of done)</div>
+            <ul>
+              <li>Each Hi-Fi timeline card has a "Send to Claude" chip.</li>
+              <li>Clicking it copies a prompt template pre-filled with the repo path, branch, commit short hash, and subject.</li>
+              <li>A brief "Copied" confirmation appears.</li>
+              <li>No network calls — clipboard only.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="prompt">
+          <div class="bar"><span class="name">Prompt → Claude Code · Step 2e</span><button class="copy">Copy prompt</button></div>
+<pre>In /Users/frankoverland/freddy/project-hub, add a "Send to Claude" chip to each commit card in the Hi-Fi timeline (src/components/projects/HifiTimeline.tsx).
+
+Clicking the chip builds a self-contained Claude Code prompt template pre-filled with: the project repo path (project.prototypePath), the branch, the commit short hash and subject, and a sentence telling Claude Code to check out or reference that commit and continue the work. Write it to the clipboard via navigator.clipboard and show a brief "Copied" confirmation on the chip (mirror the copy-button pattern). No network calls. Verify: open /p/grizmo, click "Send to Claude" on a commit, paste into a text editor, and confirm the template includes the right repo path, branch, and commit reference.</pre>
+        </div>
+        <div class="verify"><b>Verify:</b> Click "Send to Claude" on a commit → clipboard holds a prompt with the right repo path, branch, and commit ref. Chip flashes "Copied".</div>
+      </article>
+    </section>
+
+    <!-- ===================== PHASE 3 ===================== -->
+    <section class="phase" id="phase-3">
+      <div class="phase-head">
+        <div class="num">3</div>
+        <div class="title">Optional polish</div>
+        <div class="tag">not started · gated</div>
+      </div>
+      <div class="principles">
+        <span class="pill warn">Do not start without go-ahead</span>
+        <span class="pill">~3–4 days</span>
+        <span class="pill brand">Flips Phase 1 flags on</span>
+      </div>
+      <p style="color:var(--ink-2); font-size:14.5px; max-width:740px; margin:0 0 18px;">Nice-to-haves once the core loop is solid. Several of these are quick because Phase 1 built the scaffolding (the five inactive resource chips, the disabled Launch-per-commit control).</p>
+
+      <!-- 3a -->
+      <article class="card ph-int" id="s-3-1">
+        <div class="card-head">
+          <span class="step">Step 3a</span>
+          <h3>Screenshots category — upload</h3>
+          <span class="kind ph-int">Interactions</span>
+        </div>
+        <p class="what">Activate the Screenshots chip with drag-drop upload and thumbnails.</p>
+        <div class="grid">
+          <div class="block">
+            <div class="label">Why</div>
+            <p>Screenshots are the one resource category that needs file upload rather than a URL, so it is the most involved of the five inactive chips. It earns its own step.</p>
+          </div>
+          <div class="block outcome">
+            <div class="label">Outcome (definition of done)</div>
+            <ul>
+              <li>Drag-drop (or picker) upload into <code>resources/screenshots/</code>.</li>
+              <li>Thumbnails render (sharp, or CSS aspect-ratio fallback).</li>
+              <li>Delete removes the file and its store entry.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="prompt">
+          <div class="bar"><span class="name">Prompt → Claude Code · Step 3a</span><button class="copy">Copy prompt</button></div>
+<pre>In /Users/frankoverland/freddy/project-hub, activate the Screenshots category in src/components/projects/ExternalResources.tsx (it is the only resource category that needs file upload rather than a URL).
+
+Backend: add an upload endpoint that accepts an image multipart upload and writes it under ~/freddy/projects/{slug}/resources/screenshots/, recording an entry in the same external.json store with category "screenshots" (store the on-disk filename rather than a URL). Add a static route to serve the saved files. Add a delete that removes both the file and the store entry.
+
+Frontend: flip the screenshots chip active, add a drag-drop (or file-picker) upload zone, render thumbnails (use a CSS aspect-ratio box; optionally generate true thumbnails with sharp), and a delete action. Mirror the Links tab structure already in the component. Add api.ts clients. Verify: open /p/grizmo, drop a PNG into Screenshots, confirm the thumbnail renders and the file lands in resources/screenshots/, then delete it.</pre>
+        </div>
+        <div class="verify"><b>Verify:</b> Drop a PNG into Screenshots → thumbnail renders, file lands in <code>resources/screenshots/</code>. Delete → file and entry removed.</div>
+      </article>
+
+      <!-- 3b -->
+      <article class="card ph-ui" id="s-3-2">
+        <div class="card-head">
+          <span class="step">Step 3b</span>
+          <h3>Docs / Loom / Competitive / Interviews</h3>
+          <span class="kind ph-ui">UI</span>
+        </div>
+        <p class="what">Flip the remaining four URL-based resource categories from "coming soon" to active.</p>
+        <div class="grid">
+          <div class="block">
+            <div class="label">Why</div>
+            <p>These are the same shape as Links — a title, a URL, an optional note — so each is roughly a 30-minute flag flip. Phase 1 deliberately built them into the same component for exactly this.</p>
+          </div>
+          <div class="block outcome">
+            <div class="label">Outcome (definition of done)</div>
+            <ul>
+              <li>All four chips become active and accept add/delete like Links.</li>
+              <li>Each filters to its own category via the existing endpoints.</li>
+              <li>Counts on the chips reflect saved items.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="prompt">
+          <div class="bar"><span class="name">Prompt → Claude Code · Step 3b</span><button class="copy">Copy prompt</button></div>
+<pre>In /Users/frankoverland/freddy/project-hub, activate the Docs, Loom, Competitive, and Interviews categories in src/components/projects/ExternalResources.tsx. These are the same URL-based shape as the working Links tab — a title, a URL, an optional note — so flip their active flag on and reuse the existing add/delete form and the existing GET/POST/DELETE resource endpoints with the appropriate category value. Make sure the per-chip count badges reflect saved items. No backend changes should be needed beyond what Links already uses. Verify: open /p/grizmo, add and delete an item under each of the four categories and confirm persistence across refresh.</pre>
+        </div>
+        <div class="verify"><b>Verify:</b> Add + delete an item under each of the four categories → persists across refresh; chip counts update.</div>
+      </article>
+
+      <!-- 3c -->
+      <article class="card ph-int" id="s-3-3">
+        <div class="card-head">
+          <span class="step">Step 3c</span>
+          <h3>Advanced Launch — per-commit checkout</h3>
+          <span class="kind ph-int">Interactions</span>
+        </div>
+        <p class="what">Launch a specific commit by checking it out in the worktree, with a clean-tree pre-flight and auto-restart.</p>
+        <div class="grid">
+          <div class="block">
+            <div class="label">Why</div>
+            <p>Phase 1 kept Launch dumb — every button opens the live dev URL. Real per-commit preview means checking out that ref, which is risky against a dirty tree or uncommitted work. It is gated behind a pre-flight and confirmation for that reason.</p>
+          </div>
+          <div class="block outcome">
+            <div class="label">Outcome (definition of done)</div>
+            <ul>
+              <li><code>POST /api/projects/:slug/checkout</code> with <code>{ ref }</code> and a working-tree-clean pre-flight (409 if dirty).</li>
+              <li>On checkout, the dev server auto-restarts against the new ref.</li>
+              <li>The timeline reflects which commit is currently checked out.</li>
+              <li>A confirmation step appears before switching refs.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="prompt">
+          <div class="bar"><span class="name">Prompt → Claude Code · Step 3c</span><button class="copy">Copy prompt</button></div>
+<pre>In /Users/frankoverland/freddy/project-hub, add per-commit Launch (checkout) to the Hi-Fi timeline. Treat this as risky — guard against dirty trees.
+
+Backend: add POST /api/projects/:slug/checkout with body { ref }. Pre-flight: verify the worktree is clean; if dirty, return 409 with a clear message and do nothing (never discard uncommitted work). On a clean tree, git checkout the ref in the worktree, then restart the dev server (reuse the existing start/stop lifecycle in server/dev-server.ts) so the preview reflects the checked-out ref. Return the new runtime state and the current ref.
+
+Frontend (src/components/projects/HifiTimeline.tsx): enable each card's Launch to target its own commit. Before switching, show a confirmation dialog. After checkout, indicate which commit is currently checked out and reflect the restarted dev server state. Add api.ts client. Verify on a test project first: with a clean tree, Launch an older commit, confirm the dev server restarts on that ref; with a dirty tree, confirm the action is blocked with a clear message.</pre>
+        </div>
+        <div class="verify"><b>Verify:</b> On a test project — clean tree: Launch an older commit → dev server restarts on that ref. Dirty tree: action blocked with a clear message.</div>
+      </article>
+
+      <!-- 3d -->
+      <article class="card ph-mix" id="s-3-4">
+        <div class="card-head">
+          <span class="step">Step 3d</span>
+          <h3>Server-side search (ripgrep)</h3>
+          <span class="kind ph-mix">Mixed</span>
+        </div>
+        <p class="what">Promote the client-side scoped search to a ripgrep-backed endpoint that also searches file contents.</p>
+        <div class="grid">
+          <div class="block">
+            <div class="label">Why</div>
+            <p>Client-side search (2d) only covers what is loaded in memory — metadata, not file contents. Once a project has real docs and notes on disk, a ripgrep endpoint can search inside files too, with the same UI on top.</p>
+          </div>
+          <div class="block outcome">
+            <div class="label">Outcome (definition of done)</div>
+            <ul>
+              <li>New endpoint runs ripgrep across the project tree and returns matches with file + line context.</li>
+              <li>The header search uses the endpoint when the query is long enough, falling back to the client index for instant metadata hits.</li>
+              <li>Results link to the matching file/round.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="prompt">
+          <div class="bar"><span class="name">Prompt → Claude Code · Step 3d</span><button class="copy">Copy prompt</button></div>
+<pre>In /Users/frankoverland/freddy/project-hub, promote the client-side scoped search (Phase 2d) to a server-side ripgrep-backed search that also covers file contents.
+
+Backend: add GET /api/projects/:slug/search?q=... that shells out to ripgrep (rg) across ~/freddy/projects/{slug}/, returning matches with file path and a line of context. Sanitize the query and bound the result count. Skip node_modules and the prototype's build output.
+
+Frontend: keep the instant client-side index for metadata (rounds, commits, resource titles), and when the query is non-trivial, also call the search endpoint and merge in file-content matches grouped separately, each linking to the matching file or round. Add an api.ts client. Verify: open /p/grizmo, search for a string you know is inside a notes.md or doc, and confirm a file-content match appears with context.</pre>
+        </div>
+        <div class="verify"><b>Verify:</b> Search a string inside a <code>notes.md</code> → a file-content match appears with line context, linking to the file.</div>
+      </article>
+    </section>
+
+    <!-- ===================== VERIFICATION ===================== -->
+    <section class="phase" id="verification">
+      <div class="phase-head">
+        <div class="num">✓</div>
+        <div class="title">Verification checklists</div>
+        <div class="tag">per phase</div>
+      </div>
+      <div class="principles">
+        <span class="pill brand">Check the screen, not the test runner</span>
+        <span class="pill">Re-check ports first</span>
+      </div>
+      <div class="note">
+        <b>Before hitting any endpoint:</b> re-run <code>lsof -ti:5174</code> (web) and <code>lsof -ti:3030</code> (API) to confirm the dev servers are up. If either is down, start with <code>cd ~/freddy/project-hub &amp;&amp; npm run dev</code>. The scripted sweep is at <code>~/freddy/project-hub/.claude/verify-hub.sh</code>.
+      </div>
+
+      <div class="checklist">
+        <h4>Phase 1 — shipped &amp; green</h4>
+        <ol>
+          <li>Open <code>http://localhost:5174/p/grizmo</code>. Confirm commit cards under Hi-Fi, top one is the latest Grizmo commit, HEAD badge present. Click <b>Start dev server</b> → Launch buttons enable → click one → new tab opens to the dev URL.</li>
+          <li>With 4 entries in <code>~/freddy/projects/grizmo/design-system/lofi/externals.json</code>, refresh → 4 "External" rows. Expand <b>Round 4 — Gizmo Option A</b> → <code>gizmo-demo.html</code> renders in native styling. Traversal attempt (<code>%2e%2e%2f</code>) returns 404.</li>
+          <li>Under External Resources → Links, <b>Add link</b> "Grizmo brief" with a URL → persists across refresh and appears on disk in <code>resources/external.json</code>. Add a few more, delete one.</li>
+        </ol>
+      </div>
+
+      <div class="checklist">
+        <h4>Phase 2 — when built</h4>
+        <ol>
+          <li><b>2a:</b> Add an external lo-fi via the dialog → new row appears and <code>externals.json</code> gains the entry; remove it → row and entry disappear.</li>
+          <li><b>2b:</b> Open the changelog modal → commit bodies render; "Copy as markdown" pastes well-formed markdown.</li>
+          <li><b>2c (on a test project, not grizmo):</b> Sync-from-main advances the worktree and 409s on a dirty tree; Merge-to-main shows the confirm dialog, then main gains the merge commit and the worktree returns to the project branch.</li>
+          <li><b>2d:</b> Typing filters timeline + links + files instantly; clearing restores; no network calls fire.</li>
+          <li><b>2e:</b> "Send to Claude" copies a prompt with the right repo path, branch, and commit ref.</li>
+        </ol>
+      </div>
+
+      <div class="checklist">
+        <h4>Phase 3 — when built</h4>
+        <ol>
+          <li><b>3a:</b> Drop a PNG into Screenshots → thumbnail renders, file lands in <code>resources/screenshots/</code>, delete removes both.</li>
+          <li><b>3b:</b> Add + delete an item under Docs, Loom, Competitive, Interviews → each persists across refresh; chip counts update.</li>
+          <li><b>3c (test project):</b> Clean tree → Launch an older commit restarts the dev server on that ref; dirty tree → blocked with a clear message.</li>
+          <li><b>3d:</b> Search a string inside a <code>notes.md</code> → file-content match appears with line context.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===================== CRITICAL FILES ===================== -->
+    <section class="phase" id="critical-files">
+      <div class="phase-head">
+        <div class="num">⌗</div>
+        <div class="title">Critical files</div>
+        <div class="tag">appendix</div>
+      </div>
+      <table class="files">
+        <thead>
+          <tr><th>File</th><th>Role</th><th>Phase</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>src/components/ProjectDetail.tsx</code></td>
+            <td>Project Detail page. Swapped the Hi-Fi placeholder (Prototypes tab) and the External Resources chip card (Resources tab) for the real components.</td>
+            <td><span class="badge done">P1 done</span></td>
+          </tr>
+          <tr>
+            <td><code>src/components/projects/HifiTimeline.tsx</code></td>
+            <td>Renders commit cards from <code>api.getGitInfo</code>; HEAD badge, Active pill, Launch button. P2 adds changelog + Send-to-Claude chips; P3 adds per-commit checkout.</td>
+            <td><span class="badge done">P1 done</span></td>
+          </tr>
+          <tr>
+            <td><code>src/components/projects/ExternalResources.tsx</code></td>
+            <td>Six category chips; Links active with add/delete. P3 flips Screenshots + the other four categories on.</td>
+            <td><span class="badge done">P1 done</span></td>
+          </tr>
+          <tr>
+            <td><code>src/components/LofiRounds.tsx</code></td>
+            <td>Renders in-tree + external lo-fi rounds with iframe preview toggle. P2 adds the "Link external lo-fi…" dialog.</td>
+            <td><span class="badge done">P1 done</span></td>
+          </tr>
+          <tr>
+            <td><code>src/components/projects/BranchPanel.tsx</code></td>
+            <td>Branch state panel. Disabled Sync/Merge rows (~159–168) become live git operations.</td>
+            <td><span class="badge edit">P2</span></td>
+          </tr>
+          <tr>
+            <td><code>server/projects.ts</code></td>
+            <td>Extended <code>listLofiRounds()</code> to merge <code>externals.json</code>; added <code>readExternalsConfig</code> + <code>resolveExternalLofiFile</code> with traversal guard.</td>
+            <td><span class="badge done">P1 done</span></td>
+          </tr>
+          <tr>
+            <td><code>server/resources.ts</code></td>
+            <td>CRUD for <code>external.json</code> (list/add/delete), atomic writes. P3 adds screenshot uploads.</td>
+            <td><span class="badge done">P1 done</span></td>
+          </tr>
+          <tr>
+            <td><code>server/index.ts</code></td>
+            <td>3 resource routes + 2 external-lofi static routes (P1). P2 adds externals CRUD, changelog, sync/merge. P3 adds checkout + search.</td>
+            <td><span class="badge done">P1 done</span></td>
+          </tr>
+          <tr>
+            <td><code>server/git.ts</code></td>
+            <td>Git helpers (bumped log to -25). P2 adds changelog, sync-from-main, merge-to-main; P3 adds checkout.</td>
+            <td><span class="badge done">P1 done</span></td>
+          </tr>
+          <tr>
+            <td><code>src/lib/api.ts</code></td>
+            <td>Typed API client. Extended <code>LofiRound</code>, added <code>ExternalResource</code> + resource clients. Each later phase adds its own clients.</td>
+            <td><span class="badge done">P1 done</span></td>
+          </tr>
+          <tr>
+            <td><code>~/freddy/projects/grizmo/design-system/lofi/externals.json</code></td>
+            <td>Pointer file — 4 Grizmo lo-fi entries. Hand-edited in P1; managed via dialog in P2.</td>
+            <td><span class="badge done">P1 done</span></td>
+          </tr>
+          <tr>
+            <td><code>~/freddy/projects/grizmo/resources/external.json</code></td>
+            <td>External resources store — written by the resource CRUD endpoints.</td>
+            <td><span class="badge done">P1 done</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ===================== GUARDRAILS ===================== -->
+    <section class="phase" id="guardrails">
+      <div class="phase-head">
+        <div class="num">★</div>
+        <div class="title">Guardrails &amp; gotchas (pin these in chat)</div>
+        <div class="tag">cross-cutting</div>
+      </div>
+      <div class="principles">
+        <span class="pill brand">Mirror, don't reinterpret</span>
+        <span class="pill">Self-contained prompts</span>
+        <span class="pill warn">Filesystem-first</span>
+      </div>
+
+      <article class="card">
+        <div class="card-head">
+          <span class="step">★</span>
+          <h3>Rules every prompt should respect</h3>
+        </div>
+        <div class="grid">
+          <div class="block">
+            <div class="label">Shell stays on shadcn + OKLCH</div>
+            <p>Never import <code>~/Documents/WireframeDesignSystem/wireframe.css</code> into the React app. Lo-fi files render only in sandboxed iframes (<code>sandbox="allow-same-origin"</code>) so their <code>wf-*</code> styling stays intact with zero leakage.</p>
+          </div>
+          <div class="block">
+            <div class="label">Filesystem-first, no database</div>
+            <p>Persist via JSON files under <code>~/freddy/projects/{slug}/</code>, mirroring <code>projects.json</code>. Write atomically (tmp file + rename). No SQLite, no new DB.</p>
+          </div>
+          <div class="block">
+            <div class="label">Pointer files, not copies</div>
+            <p>External lo-fi is referenced by absolute path in <code>externals.json</code> — never copied (goes stale) or symlinked (breaks Finder, confuses provenance).</p>
+          </div>
+          <div class="block">
+            <div class="label">Path-traversal guard</div>
+            <p>Any route serving files from an external directory must reject paths that escape the pointed-at root: the resolved absolute path must equal root or start with <code>root + path.sep</code>.</p>
+          </div>
+          <div class="block">
+            <div class="label">Express 5 param typing</div>
+            <p><code>req.params</code> values are typed <code>string | string[]</code> under @types/express 5. Normalize with a first-value helper before use, and type splat handlers as <code>RequestHandler</code>.</p>
+          </div>
+          <div class="block">
+            <div class="label">Git ops are risky</div>
+            <p>Sync/merge/checkout must pre-flight a clean tree (409 if dirty), never discard uncommitted work, never leave the repo on the wrong branch, and merge-to-main requires an explicit confirmation dialog. Test on a throwaway project, not grizmo.</p>
+          </div>
+          <div class="block">
+            <div class="label">Mirror existing patterns</div>
+            <p>New components follow <code>BranchPanel.tsx</code> / <code>LofiRounds.tsx</code> structure; new clients follow the existing <code>api.ts</code> shape. Don't invent abstractions the repo doesn't already use.</p>
+          </div>
+          <div class="block">
+            <div class="label">Re-check ports, then verify</div>
+            <p>Before hitting endpoints, re-run <code>lsof -ti:5174</code> and <code>lsof -ti:3030</code>. Verify each step in the browser (Frank checks the screen, not the test runner) before moving on.</p>
+          </div>
+        </div>
+      </article>
+    </section>
+
+  </main>
+</div>
+
+<script>
+  // Copy-button behavior
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest(".prompt .copy");
+    if (!btn) return;
+    const pre = btn.closest(".prompt").querySelector("pre");
+    if (!pre) return;
+    const text = pre.textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      const original = btn.textContent;
+      btn.textContent = "Copied";
+      btn.classList.add("copied");
+      setTimeout(() => {
+        btn.textContent = original;
+        btn.classList.remove("copied");
+      }, 1400);
+    }).catch(() => {
+      btn.textContent = "Press ⌘C";
+      setTimeout(() => { btn.textContent = "Copy prompt"; }, 1400);
+    });
+  });
+
+  // Smooth scroll for in-page anchors with a small offset
+  document.querySelectorAll('nav.toc a[href^="#"]').forEach(a => {
+    a.addEventListener("click", (e) => {
+      const id = a.getAttribute("href").slice(1);
+      const el = document.getElementById(id);
+      if (!el) return;
+      e.preventDefault();
+      const y = el.getBoundingClientRect().top + window.scrollY - 18;
+      window.scrollTo({ top: y, behavior: "smooth" });
+      history.replaceState(null, "", "#" + id);
+    });
+  });
+</script>
+</body>
+</html>

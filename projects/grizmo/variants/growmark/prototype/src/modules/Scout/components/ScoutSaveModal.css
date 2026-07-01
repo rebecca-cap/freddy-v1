@@ -1,0 +1,437 @@
+/*
+ * ScoutPathModal — save-as-path modal (Phase 6.2 + 6.3).
+ *
+ * Hosted inside an antd Modal whose root carries `.scout-scope` via
+ * `wrapClassName` so Scout tokens (warn / accent / text-muted) apply to
+ * everything inside.
+ */
+
+/* Anchor the wrap class so our tokens flow into the antd modal body. */
+.scout-save-modal-wrap.scout-scope .ant-modal-content {
+  border-radius: 12px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.scout-save-modal-wrap.scout-scope .ant-modal-body {
+  padding: 0;
+}
+
+/* --- Head --- */
+.scout-save-modal-wrap .scout-save-modal__head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--scout-border);
+  background: var(--scout-surface);
+}
+
+.scout-save-modal-wrap .scout-save-modal__head-icon {
+  color: var(--scout-brand);
+  font-size: 18px;
+  line-height: 1;
+}
+
+.scout-save-modal-wrap .scout-save-modal__head-titles {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.scout-save-modal-wrap .scout-save-modal__head-title {
+  font-family: 'Lato', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--scout-text);
+}
+
+.scout-save-modal-wrap .scout-save-modal__head-subtitle {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--scout-text-muted);
+}
+
+.scout-save-modal-wrap .scout-save-modal__close {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: transparent;
+  border: none;
+  color: var(--scout-text-muted);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.scout-save-modal-wrap .scout-save-modal__close:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--scout-text);
+}
+
+/* --- Tabs --- */
+.scout-save-modal-wrap .scout-save-modal__tabs {
+  display: flex;
+  align-items: stretch;
+  gap: 4px;
+  padding: 0 18px;
+  border-bottom: 1px solid var(--scout-border);
+  background: var(--scout-surface);
+}
+
+.scout-save-modal-wrap .scout-save-modal__tab {
+  appearance: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 10px 4px;
+  margin-bottom: -1px;
+  font-family: 'Lato', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--scout-text-muted);
+  border-bottom: 2px solid transparent;
+  transition: color 100ms ease, border-color 100ms ease;
+}
+
+.scout-save-modal-wrap .scout-save-modal__tab + .scout-save-modal__tab {
+  margin-left: 14px;
+}
+
+.scout-save-modal-wrap .scout-save-modal__tab:hover {
+  color: var(--scout-text);
+}
+
+.scout-save-modal-wrap .scout-save-modal__tab.is-active {
+  color: var(--scout-brand);
+  border-bottom-color: var(--scout-brand);
+}
+
+/* --- Body --- */
+.scout-save-modal-wrap .scout-save-modal__body {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 18px;
+}
+
+.scout-save-modal-wrap .scout-save-modal__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.scout-save-modal-wrap .scout-save-modal__field-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--scout-text-muted);
+}
+
+/* Auto-suggest pill — Scout's subject guess. Reads as a soft brand chip, not
+   another uppercase caption, so it's clearly a system suggestion. */
+.scout-save-modal-wrap .scout-save-modal__suggest-badge {
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--scout-brand);
+  background: var(--scout-brand-soft);
+  border-radius: 999px;
+  padding: 1px 7px;
+}
+
+.scout-save-modal-wrap .scout-save-modal__field-help {
+  font-size: 11px;
+  color: var(--scout-text-muted);
+}
+
+/* Beat antd's input defaults so Scout tokens carry through. */
+.scout-save-modal-wrap .ant-input,
+.scout-save-modal-wrap .ant-input-affix-wrapper,
+.scout-save-modal-wrap textarea.ant-input {
+  border-radius: 6px;
+  font-size: 13px;
+  font-family: 'Lato', sans-serif;
+}
+
+/* Share scope cards + people picker live in ScoutSharePicker.css (shared with
+ * the Share modal). */
+
+.scout-save-modal-wrap .scout-save-modal__meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--scout-text-muted);
+  padding: 0;
+  background: transparent;
+}
+
+.scout-save-modal-wrap .scout-save-modal__scope {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--scout-info-bg);
+  color: var(--scout-info);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.scout-save-modal-wrap .scout-save-modal__meta-dot {
+  color: var(--scout-text-subtle);
+}
+
+/* OBJ-4 — explicit single-prompt vs multi-step-path badge. */
+.scout-save-modal-wrap .scout-save-modal__kind-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--scout-brand-soft);
+  color: var(--scout-brand);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* SAV-4 — flattened single-prompt preview + the flatten toggle/explainer. */
+.scout-save-modal-wrap .scout-save-modal__flattened {
+  border: 1px solid var(--scout-border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: var(--scout-surface);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--scout-text);
+}
+
+.scout-save-modal-wrap .scout-save-modal__flatten {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.scout-save-modal-wrap .scout-save-modal__flatten-toggle {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px solid var(--scout-border);
+  color: var(--scout-brand);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 6px;
+}
+
+.scout-save-modal-wrap .scout-save-modal__flatten-toggle:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.scout-save-modal-wrap .scout-save-modal__flatten-toggle.is-on {
+  background: var(--scout-brand-soft);
+  border-color: var(--scout-brand);
+}
+
+.scout-save-modal-wrap .scout-save-modal__flatten-help {
+  margin: 0;
+  font-size: 11px;
+  color: var(--scout-text-subtle);
+  line-height: 1.5;
+}
+
+/* --- Steps head --- */
+.scout-save-modal-wrap .scout-save-modal__steps-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.scout-save-modal-wrap .scout-save-modal__edit-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: transparent;
+  border: none;
+  color: var(--scout-brand);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 4px;
+}
+
+.scout-save-modal-wrap .scout-save-modal__edit-toggle:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* --- Steps list --- */
+.scout-save-modal-wrap .scout-save-modal__steps {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 240px;
+  overflow-y: auto;
+  border: 1px solid var(--scout-border);
+  border-radius: 8px;
+  padding: 8px;
+  background: var(--scout-surface);
+}
+
+.scout-save-modal-wrap .scout-save-modal__step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 9px;
+  border-radius: 6px;
+  background: transparent;
+  font-size: 13px;
+  color: var(--scout-text);
+  transition: opacity 120ms ease-out;
+}
+
+.scout-save-modal-wrap .scout-save-modal__step.is-dropped {
+  opacity: 0.45;
+  text-decoration: line-through;
+  background: transparent;
+}
+
+.scout-save-modal-wrap .scout-save-modal__step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--scout-brand-soft);
+  color: var(--scout-brand);
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.scout-save-modal-wrap .scout-save-modal__step-num.is-dropped {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--scout-text-subtle);
+}
+
+.scout-save-modal-wrap .scout-save-modal__step-label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.scout-save-modal-wrap .scout-save-modal__step-edit {
+  flex: 1;
+  font-size: 12px;
+}
+
+.scout-save-modal-wrap .scout-save-modal__step-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.scout-save-modal-wrap .scout-save-modal__step-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  background: transparent;
+  border: none;
+  color: var(--scout-text-muted);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.scout-save-modal-wrap .scout-save-modal__step-icon:hover:not(:disabled) {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--scout-text);
+}
+
+.scout-save-modal-wrap .scout-save-modal__step-icon:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.scout-save-modal-wrap .scout-save-modal__hint {
+  margin: 0;
+  font-size: 11px;
+  color: var(--scout-text-subtle);
+  line-height: 1.5;
+}
+
+/* --- Footer --- */
+.scout-save-modal-wrap .scout-save-modal__footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 18px;
+  border-top: 1px solid var(--scout-border);
+  background: var(--scout-surface);
+}
+
+/* Shared sizing — antd `size="small"` renders these too compact for a modal
+   footer; give both a comfortable height + horizontal padding. */
+.scout-save-modal-wrap .ant-btn.gravi-button.scout-save-modal__cancel,
+.scout-save-modal-wrap .ant-btn.gravi-button.scout-save-modal__save {
+  height: 34px;
+  min-width: auto;
+  padding: 0 18px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.scout-save-modal-wrap .ant-btn.gravi-button.scout-save-modal__cancel {
+  background: transparent;
+  border-color: var(--scout-border);
+  color: var(--scout-text-muted);
+}
+
+.scout-save-modal-wrap .ant-btn.gravi-button.scout-save-modal__cancel:hover {
+  background: var(--scout-surface-2);
+  color: var(--scout-text);
+  border-color: var(--scout-border-strong);
+}
+
+.scout-save-modal-wrap .ant-btn.gravi-button.scout-save-modal__save,
+.scout-save-modal-wrap .ant-btn.gravi-button.scout-save-modal__save:focus {
+  background: var(--scout-brand);
+  border-color: var(--scout-brand);
+  color: #ffffff;
+}
+
+/* Explicit brand-hover fill so antd's default hover can't wash the button out
+   ("disappearing" hover). Mirrors the toolbar trigger's hover treatment. */
+.scout-save-modal-wrap .ant-btn.gravi-button.scout-save-modal__save:hover:not(:disabled) {
+  background: var(--scout-brand-hover);
+  border-color: var(--scout-brand-hover);
+  color: #ffffff;
+}
+
+.scout-save-modal-wrap .ant-btn.gravi-button.scout-save-modal__save:disabled {
+  background: var(--scout-brand-soft);
+  color: var(--scout-text-subtle);
+  border-color: var(--scout-brand-soft);
+  cursor: not-allowed;
+}

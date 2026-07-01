@@ -1,0 +1,38 @@
+.create-benchmark-drawer div.ant-drawer-header {
+  background-color: var(--bg-1);
+}
+.primary-color {
+  color: #2869b8 !important;
+}
+.create-benchmark-drawer .primary-bg {
+  /*  background-color: #E3EDF9; color from design */
+  background-color: color-mix(in srgb, var(--theme-color-2), white 70%);
+}
+
+.create-benchmark-drawer .max-content-width {
+  max-width: 650px;
+  width: 100%;
+}
+
+.create-benchmark-drawer .max-header-width {
+  max-width: 800px;
+  width: 100%;
+}
+.small-button-icon {
+  font-size: 11px !important;
+  color: #2869b8 !important;
+}
+
+.w-50 {
+  width: 50% !important;
+}
+
+.create-benchmark-drawer .multiple-competitor-rows {
+  gap: 5px;
+}
+.create-benchmark-drawer .hidden {
+  visibility: hidden;
+}
+.create-benchmark-drawer .total-percent {
+  margin-right: 21px;
+}

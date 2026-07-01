@@ -1,0 +1,15 @@
+{
+  "path": "/Admin/AllocationMappings",
+  "title": "Allocation Mappings",
+  "finalUrl": "http://localhost:3001/Admin/AllocationMappings",
+  "rootLen": 68771,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [
+    "MarketPlatform/Admin/AllocationFileImportManagement/GetSupplierMetadata",
+    "MarketPlatform/Admin/AllocationFileImportManagement/ReadSupplierTranslations"
+  ],
+  "consoleEventCount": 10
+}

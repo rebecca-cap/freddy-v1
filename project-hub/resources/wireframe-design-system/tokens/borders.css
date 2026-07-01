@@ -1,0 +1,87 @@
+/**
+ * Gravitate Wireframe Design System - Border & Elevation Tokens
+ *
+ * Wireframe-appropriate borders using solid lines instead of shadows.
+ * Creates visual hierarchy through border weight rather than blur effects.
+ *
+ * Usage:
+ *   border-radius: var(--wf-radius-md);
+ *   border: var(--wf-elevation-1);
+ *   outline: var(--wf-elevation-3);
+ */
+
+:root {
+  /* ==========================================================================
+     Border Radius
+     Consistent rounding for different component types
+     ========================================================================== */
+
+  --wf-radius-none: 0;         /* Sharp corners */
+  --wf-radius-sm: 0.25rem;     /* 4px - Buttons, inputs, small elements */
+  --wf-radius-md: 0.5rem;      /* 8px - Cards, modals, dropdowns */
+  --wf-radius-lg: 0.75rem;     /* 12px - Large containers, panels */
+  --wf-radius-full: 9999px;    /* Full round - Pills, avatars, badges */
+
+  /* ==========================================================================
+     Border Width
+     Standard border thicknesses
+     ========================================================================== */
+
+  --wf-border-width: 1px;      /* Default border width */
+  --wf-border-width-2: 2px;    /* Emphasis, focus states */
+  --wf-border-width-3: 3px;    /* Strong emphasis */
+
+  /* ==========================================================================
+     Elevation System
+     Uses border weight to indicate visual hierarchy
+     Replaces traditional shadow-based elevation
+     ========================================================================== */
+
+  /* Level 0 - Flat, no elevation (inline elements) */
+  --wf-elevation-0: none;
+
+  /* Level 1 - Subtle elevation (cards, containers) */
+  --wf-elevation-1: 1px solid var(--wf-color-border, #d1d5db);
+
+  /* Level 2 - Medium elevation (dropdowns, popovers) */
+  --wf-elevation-2: 2px solid var(--wf-color-border, #d1d5db);
+
+  /* Level 3 - High elevation / Focus state (modals, focus rings) */
+  --wf-elevation-3: 2px solid var(--wf-color-primary, #2563eb);
+
+  /* ==========================================================================
+     Focus Ring
+     Accessible focus indicator for keyboard navigation
+     ========================================================================== */
+
+  --wf-focus-ring: 0 0 0 2px var(--wf-color-surface, #ffffff),
+                   0 0 0 4px var(--wf-color-primary, #2563eb);
+
+  /* Offset focus ring for elements with backgrounds */
+  --wf-focus-ring-offset: 2px;
+
+  /* ==========================================================================
+     Dividers
+     Horizontal and vertical separators
+     ========================================================================== */
+
+  --wf-divider: 1px solid var(--wf-color-border, #d1d5db);
+  --wf-divider-light: 1px solid var(--wf-color-border-light, #f3f4f6);
+
+  /* ==========================================================================
+     Component-Specific Borders
+     Pre-defined border styles for common patterns
+     ========================================================================== */
+
+  /* Input borders */
+  --wf-border-input: var(--wf-border-width) solid var(--wf-color-border, #d1d5db);
+  --wf-border-input-hover: var(--wf-border-width) solid var(--wf-color-neutral-500, #6b7280);
+  --wf-border-input-focus: var(--wf-border-width-2) solid var(--wf-color-primary, #2563eb);
+  --wf-border-input-error: var(--wf-border-width) solid var(--wf-color-error, #dc2626);
+
+  /* Card borders */
+  --wf-border-card: var(--wf-elevation-1);
+
+  /* Table borders */
+  --wf-border-table: var(--wf-divider);
+}

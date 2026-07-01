@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail Panel Component - Gravitate Wireframe Design System</title>
+  <link rel="stylesheet" href="../../tokens/index.css">
+  <link rel="stylesheet" href="../controls/controls.css">
+  <link rel="stylesheet" href="../data-display/data-display.css">
+  <link rel="stylesheet" href="specialized.css">
+  <style>
+    body {
+      font-family: var(--wf-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+      background-color: var(--wf-color-background, #f9fafb);
+      margin: 0;
+      padding: 32px;
+      color: var(--wf-color-text-primary, #111827);
+    }
+    .demo-section {
+      margin-bottom: 48px;
+    }
+    .demo-section h2 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--wf-color-text-primary, #111827);
+    }
+    .demo-section p {
+      font-size: 14px;
+      color: var(--wf-color-text-secondary, #374151);
+      margin-bottom: 16px;
+    }
+    .demo-container {
+      background: var(--wf-color-neutral-200, #e5e7eb);
+      border-radius: 8px;
+      padding: 0;
+      overflow: hidden;
+    }
+    .demo-frame {
+      display: flex;
+      height: 500px;
+      background: var(--wf-color-neutral-100, #f3f4f6);
+    }
+    .demo-master {
+      flex: 1;
+      padding: 24px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--wf-color-text-secondary);
+    }
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      font-size: 16px;
+      color: var(--wf-color-text-secondary, #374151);
+      margin-bottom: 32px;
+    }
+    code {
+      display: block;
+      background: var(--wf-color-neutral-100, #f3f4f6);
+      padding: 16px;
+      border-radius: 6px;
+      font-size: 13px;
+      overflow-x: auto;
+      white-space: pre;
+      margin-top: 8px;
+    }
+    /* Override for demo - show panel inline */
+    .demo-container .wf-detail-panel {
+      position: relative;
+      transform: none;
+      flex-shrink: 0;
+    }
+    .description-item {
+      margin-bottom: 16px;
+    }
+    .description-item:last-child {
+      margin-bottom: 0;
+    }
+    .description-label {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--wf-color-text-secondary, #374151);
+      margin-bottom: 4px;
+    }
+    .description-value {
+      font-size: 14px;
+      color: var(--wf-color-text-primary, #111827);
+    }
+  </style>
+</head>
+<body>
+  <h1>Detail Panel Component</h1>
+  <p class="subtitle">Side panel for master-detail views with header, tabs, content, and footer.</p>
+
+  <!-- Basic Detail Panel -->
+  <section class="demo-section">
+    <h2>Default Detail Panel (480px)</h2>
+    <p>Standard detail panel with header, tabs, content area, and footer actions.</p>
+    <div class="demo-container">
+      <div class="demo-frame">
+        <div class="demo-master">
+          <span>Master content / Data grid</span>
+        </div>
+        <div class="wf-detail-panel wf-detail-panel-open">
+          <div class="wf-detail-panel-header">
+            <div class="wf-detail-panel-title-group">
+              <h2 class="wf-detail-panel-title">Contract Details</h2>
+              <span class="wf-badge wf-badge-success">Active</span>
+            </div>
+            <button class="wf-detail-panel-close">x</button>
+          </div>
+          <div class="wf-detail-panel-tabs">
+            <button class="wf-tab wf-tab-active">Overview</button>
+            <button class="wf-tab">Details</button>
+            <button class="wf-tab">History</button>
+          </div>
+          <div class="wf-detail-panel-body">
+            <div class="description-item">
+              <div class="description-label">Contract ID</div>
+              <div class="description-value">CNT-2024-00142</div>
+            </div>
+            <div class="description-item">
+              <div class="description-label">Customer</div>
+              <div class="description-value">Acme Corporation</div>
+            </div>
+            <div class="description-item">
+              <div class="description-label">Contract Type</div>
+              <div class="description-value">Supply Agreement</div>
+            </div>
+            <div class="description-item">
+              <div class="description-label">Start Date</div>
+              <div class="description-value">January 1, 2024</div>
+            </div>
+            <div class="description-item">
+              <div class="description-label">End Date</div>
+              <div class="description-value">December 31, 2024</div>
+            </div>
+            <div class="description-item">
+              <div class="description-label">Value</div>
+              <div class="description-value">$1,250,000.00</div>
+            </div>
+          </div>
+          <div class="wf-detail-panel-footer">
+            <button class="wf-button wf-button-secondary">Cancel</button>
+            <button class="wf-button wf-button-primary">Save Changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Narrow Detail Panel -->
+  <section class="demo-section">
+    <h2>Narrow Detail Panel (320px)</h2>
+    <p>Compact detail panel for simpler content or limited space.</p>
+    <div class="demo-container">
+      <div class="demo-frame" style="height: 400px;">
+        <div class="demo-master">
+          <span>Master content / Data grid</span>
+        </div>
+        <div class="wf-detail-panel wf-detail-panel-narrow wf-detail-panel-open">
+          <div class="wf-detail-panel-header">
+            <div class="wf-detail-panel-title-group">
+              <h2 class="wf-detail-panel-title">Quick View</h2>
+            </div>
+            <button class="wf-detail-panel-close">x</button>
+          </div>
+          <div class="wf-detail-panel-body">
+            <div class="description-item">
+              <div class="description-label">Name</div>
+              <div class="description-value">John Smith</div>
+            </div>
+            <div class="description-item">
+              <div class="description-label">Email</div>
+              <div class="description-value">john@example.com</div>
+            </div>
+            <div class="description-item">
+              <div class="description-label">Role</div>
+              <div class="description-value">Administrator</div>
+            </div>
+            <div class="description-item">
+              <div class="description-label">Status</div>
+              <div class="description-value">
+                <span class="wf-badge wf-badge-success wf-badge-sm">Active</span>
+              </div>
+            </div>
+          </div>
+          <div class="wf-detail-panel-footer">
+            <button class="wf-button wf-button-primary wf-button-sm" style="width: 100%;">Edit Profile</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wide Detail Panel -->
+  <section class="demo-section">
+    <h2>Wide Detail Panel (640px)</h2>
+    <p>Larger detail panel for complex content with more details.</p>
+    <div class="demo-container">
+      <div class="demo-frame" style="height: 450px;">
+        <div class="demo-master">
+          <span>Master content</span>
+        </div>
+        <div class="wf-detail-panel wf-detail-panel-wide wf-detail-panel-open">
+          <div class="wf-detail-panel-header">
+            <div class="wf-detail-panel-title-group">
+              <h2 class="wf-detail-panel-title">Order #ORD-2024-0892</h2>
+              <div style="display: flex; gap: 8px; margin-top: 4px;">
+                <span class="wf-badge wf-badge-warning">Pending Review</span>
+                <span class="wf-badge">High Priority</span>
+              </div>
+            </div>
+            <button class="wf-detail-panel-close">x</button>
+          </div>
+          <div class="wf-detail-panel-tabs">
+            <button class="wf-tab wf-tab-active">Summary</button>
+            <button class="wf-tab">Line Items</button>
+            <button class="wf-tab">Documents</button>
+            <button class="wf-tab">Activity</button>
+          </div>
+          <div class="wf-detail-panel-body">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+              <div>
+                <h4 style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600;">Order Information</h4>
+                <div class="description-item">
+                  <div class="description-label">Order Date</div>
+                  <div class="description-value">January 15, 2024</div>
+                </div>
+                <div class="description-item">
+                  <div class="description-label">Requested Delivery</div>
+                  <div class="description-value">February 1, 2024</div>
+                </div>
+                <div class="description-item">
+                  <div class="description-label">Total Value</div>
+                  <div class="description-value" style="font-weight: 600;">$45,890.00</div>
+                </div>
+              </div>
+              <div>
+                <h4 style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600;">Customer</h4>
+                <div class="description-item">
+                  <div class="description-label">Company</div>
+                  <div class="description-value">Global Industries Ltd</div>
+                </div>
+                <div class="description-item">
+                  <div class="description-label">Contact</div>
+                  <div class="description-value">Sarah Johnson</div>
+                </div>
+                <div class="description-item">
+                  <div class="description-label">Phone</div>
+                  <div class="description-value">(555) 123-4567</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="wf-detail-panel-footer">
+            <button class="wf-button wf-button-ghost">Print</button>
+            <button class="wf-button wf-button-secondary">Reject</button>
+            <button class="wf-button wf-button-success">Approve Order</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Detail Panel Without Tabs -->
+  <section class="demo-section">
+    <h2>Detail Panel Without Tabs</h2>
+    <p>Simplified panel without tab navigation.</p>
+    <div class="demo-container">
+      <div class="demo-frame" style="height: 350px;">
+        <div class="demo-master">
+          <span>Master content</span>
+        </div>
+        <div class="wf-detail-panel wf-detail-panel-open">
+          <div class="wf-detail-panel-header">
+            <div class="wf-detail-panel-title-group">
+              <h2 class="wf-detail-panel-title">Edit Customer</h2>
+            </div>
+            <button class="wf-detail-panel-close">x</button>
+          </div>
+          <div class="wf-detail-panel-body">
+            <div class="wf-field">
+              <label class="wf-field-label">Company Name</label>
+              <input type="text" class="wf-input" value="Acme Corporation">
+            </div>
+            <div class="wf-field">
+              <label class="wf-field-label">Contact Email</label>
+              <input type="email" class="wf-input" value="contact@acme.com">
+            </div>
+            <div class="wf-field">
+              <label class="wf-field-label">Phone</label>
+              <input type="tel" class="wf-input" value="(555) 123-4567">
+            </div>
+          </div>
+          <div class="wf-detail-panel-footer">
+            <button class="wf-button wf-button-secondary">Cancel</button>
+            <button class="wf-button wf-button-primary">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Width Options -->
+  <section class="demo-section">
+    <h2>Panel Width Options</h2>
+    <div class="demo-container" style="background: white; padding: 24px;">
+      <div style="display: flex; gap: 16px; font-size: 14px;">
+        <div style="flex: 1; padding: 16px; background: var(--wf-color-neutral-100); border-radius: 6px;">
+          <strong>.wf-detail-panel-narrow</strong>
+          <br><span style="color: var(--wf-color-text-secondary);">320px width</span>
+        </div>
+        <div style="flex: 1; padding: 16px; background: var(--wf-color-neutral-100); border-radius: 6px;">
+          <strong>.wf-detail-panel</strong> (default)
+          <br><span style="color: var(--wf-color-text-secondary);">480px width</span>
+        </div>
+        <div style="flex: 1; padding: 16px; background: var(--wf-color-neutral-100); border-radius: 6px;">
+          <strong>.wf-detail-panel-wide</strong>
+          <br><span style="color: var(--wf-color-text-secondary);">640px width</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Code Example -->
+  <section class="demo-section">
+    <h2>Code Example</h2>
+    <code>&lt;div class="wf-detail-panel wf-detail-panel-open"&gt;
+  &lt;div class="wf-detail-panel-header"&gt;
+    &lt;div class="wf-detail-panel-title-group"&gt;
+      &lt;h2 class="wf-detail-panel-title"&gt;Contract Details&lt;/h2&gt;
+      &lt;span class="wf-badge wf-badge-success"&gt;Active&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;button class="wf-detail-panel-close"&gt;x&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="wf-detail-panel-tabs"&gt;
+    &lt;button class="wf-tab wf-tab-active"&gt;Overview&lt;/button&gt;
+    &lt;button class="wf-tab"&gt;Details&lt;/button&gt;
+    &lt;button class="wf-tab"&gt;History&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="wf-detail-panel-body"&gt;
+    &lt;!-- Content goes here --&gt;
+  &lt;/div&gt;
+  &lt;div class="wf-detail-panel-footer"&gt;
+    &lt;button class="wf-button wf-button-secondary"&gt;Cancel&lt;/button&gt;
+    &lt;button class="wf-button wf-button-primary"&gt;Save Changes&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Width variants --&gt;
+&lt;div class="wf-detail-panel wf-detail-panel-narrow"&gt;...&lt;/div&gt;
+&lt;div class="wf-detail-panel wf-detail-panel-wide"&gt;...&lt;/div&gt;</code>
+  </section>
+
+</body>
+</html>

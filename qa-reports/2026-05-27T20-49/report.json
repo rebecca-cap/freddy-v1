@@ -1,0 +1,492 @@
+{
+  "generatedAt": "2026-05-27T20:51:22.356Z",
+  "summary": {
+    "total": 52,
+    "pass": 52,
+    "fail": 0,
+    "errors": 0,
+    "stuckLoaders": 0,
+    "emptyGrids": 0
+  },
+  "routes": {
+    "/": {
+      "status": "pass",
+      "rootLen": 259306,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/AllocationAssociationManagement": {
+      "status": "pass",
+      "rootLen": 177532,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/AllocationMappings": {
+      "status": "pass",
+      "rootLen": 74496,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/AppliedAllocationReport": {
+      "status": "pass",
+      "rootLen": 212811,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/AuthorizationAllocationAssociations": {
+      "status": "pass",
+      "rootLen": 127298,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/Availability": {
+      "status": "pass",
+      "rootLen": 133672,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/CalculatedValueReport": {
+      "status": "pass",
+      "rootLen": 120368,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/CalendarManagement": {
+      "status": "pass",
+      "rootLen": 119838,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/CalendarPeriods": {
+      "status": "pass",
+      "rootLen": 56887,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/Counterparties": {
+      "status": "pass",
+      "rootLen": 135687,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/CounterpartyHierarchy": {
+      "status": "pass",
+      "rootLen": 86422,
+      "errors": [],
+      "consoleErrors": [
+        "Warning: Each child in a list should have a unique \"key\" prop.%s%s See https://reactjs.org/link/warning-keys for more information.%s \n\nCheck the render method of `Crumbs`.  \n    at BreadcrumbItem2 (http://localhost:5173/node_modules/.vite/deps/chunk-SZ33DJ26.js?v=4e576b59:10016:31)\n    at Crumbs (http://localhost:5173/src/components/shared/Hierarchies/components/Crumbs.tsx:20:3)\n    at div\n    at div\n    at Horizontal (http://localhost:5173/node_modules/.vite/deps/@gravitate-js_excalibrr.js?v=4e576b59:48397:3)\n    at HierarchyItems (http://localhost:5173/src/components/shared/Hierarchies/components/HierarchyItems.tsx:22:3)\n    at div\n    at Vertical (http://localhost:5173/node_modules/.vite/deps/@gravitate-js_excalibrr.js?v=4e576b59:64495:3)\n    at div\n    at Horizontal (http://localhost:5173/node_modules/.vite/deps/@gravitate-js_excalibrr.js?v=4e576b59:48397:3)\n    at ManageCounterpartyHierarchy (http://localhost:5173/src/modules/Admin/ManageCounterpartyHierarchy/index.tsx:31:7)\n    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3251:5)\n    at Outlet (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3630:26)\n    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3251:5)\n    at Outlet (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3630:26)\n    at main\n    at http://localhost:5173/node_modules/.vite/deps/chunk-SZ33DJ26.js?v=4e576b59:11623:25\n    at http://localhost:5173/node_modules/.vite/deps/chunk-SZ33DJ26.js?v=4e576b59:11609:39\n    at section\n    at http://localhost:5173/node_modules/.vite/deps/chunk-SZ33DJ26.js?v=4e576b59:11633:36\n    at http://localhost:5173/node_modules/.vite/deps/chunk-SZ33DJ26.js?v=4e576b59:11609:39\n    at VerticalNavLayout (http://localhost:5173/node_modules/.vite/deps/@gravitate-js_excalibrr.js?v=4e576b59:97333:3)\n    at section\n    at http://localhost:5173/node_modules/.vite/deps/chunk-SZ33DJ26.js?v=4e576b59:11633:36\n    at http://localhost:5173/node_modules/.vite/deps/chunk-SZ33DJ26.js?v=4e576b59:11609:39\n    at PageWrapper (http://localhost:5173/node_modules/.vite/deps/@gravitate-js_excalibrr.js?v=4e576b59:97222:3)\n    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3251:5)\n    at Routes (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3690:5)\n    at RouteBuilder (http://localhost:5173/node_modules/.vite/deps/@gravitate-js_excalibrr.js?v=4e576b59:97426:3)\n    at NavigationContextProvider (http://localhost:5173/node_modules/.vite/deps/@gravitate-js_excalibrr.js?v=4e576b59:97370:3)\n    at AuthenticatedRoute (http://localhost:5173/src/modules/_Main/routes/AuthenticatedRoute/index.jsx:29:7)\n    at UserProvider (http://localhost:5173/src/contexts/UserContext/index.tsx:41:3)\n    at AuthRedirect (http://localhost:5173/src/modules/_Main/index.jsx?t=1777935392180:182:3)\n    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3251:5)\n    at Outlet (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3630:26)\n    at ErrorBoundary2 (http://localhost:5173/node_modules/.vite/deps/@sentry_react.js?v=4e576b59:3101:43)\n    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3251:5)\n    at RenderErrorBoundary (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3211:5)\n    at DataRoutes (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3560:5)\n    at Router (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3637:15)\n    at RouterProvider (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3509:5)\n    at GateKeeper (http://localhost:5173/src/modules/_Main/index.jsx?t=1777935392180:100:3)\n    at AuthProvider (http://localhost:5173/node_modules/.vite/deps/@gravitate-js_excalibrr.js?v=4e576b59:78797:3)\n    at ErrorBoundary2 (http://localhost:5173/node_modules/.vite/deps/@sentry_react.js?v=4e576b59:3101:43)\n    at Main (http://localhost:5173/src/modules/_Main/index.jsx?t=1777935392180:35:18)\n    at CacheBuster (http://localhost:5173/src/components/shared/CacheBuster.jsx:17:5)\n    at ThemeContextProvider (http://localhost:5173/node_modules/.vite/deps/@gravitate-js_excalibrr.js?v=4e576b59:64427:3)\n    at ThemeWrapper (http://localhost:5173/src/App.tsx?t=1777935392180:57:17)\n    at EnvironmentConfigProvider (http://localhost:5173/src/api/useEnvironmentConfig/index.tsx?t=1777935392180:40:3)\n    at QueryClientProvider (http://localhost:5173/node_modules/.vite/deps/@tanstack_react-query.js?v=4e576b59:2844:3)\n    at App"
+      ],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/DeliveryPeriods": {
+      "status": "pass",
+      "rootLen": 149863,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/FormulaTemplates": {
+      "status": "pass",
+      "rootLen": 114835,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/Instruments": {
+      "status": "pass",
+      "rootLen": 132544,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/IntegrationStatus": {
+      "status": "pass",
+      "rootLen": 116667,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/Locations": {
+      "status": "pass",
+      "rootLen": 135074,
+      "errors": [],
+      "consoleErrors": [
+        "Warning: Each child in a list should have a unique \"key\" prop.%s%s See https://reactjs.org/link/warning-keys for more information.%s \n\nCheck the render method of `ManageLocationGroups`.  \n    at GroupEditor (http://localhost:5173/src/components/shared/GroupEditor/GroupEditor.tsx:21:3)\n    at ManageLocationGroups (http://localhost:5173/src/modules/Admin/ManageLocations/components/ManagementPane/ManageLocationGroups/index.tsx:23:3)\n    at div\n    at Horizontal (http://localhost:5173/node_modules/.vite/deps/@gravitate-js_excalibrr.js?v=4e576b59:48397:3)\n    at div\n    at TabPane (http://localhost:5173/node_modules/.vite/deps/chunk-SZ33DJ26.js?v=4e576b59:17493:24)\n    at div\n    at div\n    at TabPanelList (http://localhost:5173/node_modules/.vite/deps/chunk-SZ33DJ26.js?v=4e576b59:17463:18)\n    at div\n    at Tabs (http://localhost:5173/node_modules/.vite/deps/chunk-SZ33DJ26.js?v=4e576b59:17543:18)\n    at Tabs2 (http://localhost:5173/node_modules/.vite/deps/chunk-SZ33DJ26.js?v=4e576b59:17680:17)\n    at div\n    at Horizontal (http://localhost:5173/node_modules/.vite/deps/@gravitate-js_excalibrr.js?v=4e576b59:48397:3)\n    at ManagementPane (http://localhost:5173/src/modules/Admin/ManageLocations/components/ManagementPane/index.tsx:25:3)\n    at div\n    at Vertical (http://localhost:5173/node_modules/.vite/deps/@gravitate-js_excalibrr.js?v=4e576b59:64495:3)\n    at div\n    at Horizontal (http://localhost:5173/node_modules/.vite/deps/@gravitate-js_excalibrr.js?v=4e576b59:48397:3)\n    at ManageLocations (http://localhost:5173/src/modules/Admin/ManageLocations/ManageLocationsPage.tsx:29:7)\n    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3251:5)\n    at Outlet (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3630:26)\n    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3251:5)\n    at Outlet (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3630:26)\n    at main\n    at http://localhost:5173/node_modules/.vite/deps/chunk-SZ33DJ26.js?v=4e576b59:11623:25\n    at http://localhost:5173/node_modules/.vite/deps/chunk-SZ33DJ26.js?v=4e576b59:11609:39\n    at section\n    at http://localhost:5173/node_modules/.vite/deps/chunk-SZ33DJ26.js?v=4e576b59:11633:36\n    at http://localhost:5173/node_modules/.vite/deps/chunk-SZ33DJ26.js?v=4e576b59:11609:39\n    at VerticalNavLayout (http://localhost:5173/node_modules/.vite/deps/@gravitate-js_excalibrr.js?v=4e576b59:97333:3)\n    at section\n    at http://localhost:5173/node_modules/.vite/deps/chunk-SZ33DJ26.js?v=4e576b59:11633:36\n    at http://localhost:5173/node_modules/.vite/deps/chunk-SZ33DJ26.js?v=4e576b59:11609:39\n    at PageWrapper (http://localhost:5173/node_modules/.vite/deps/@gravitate-js_excalibrr.js?v=4e576b59:97222:3)\n    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3251:5)\n    at Routes (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3690:5)\n    at RouteBuilder (http://localhost:5173/node_modules/.vite/deps/@gravitate-js_excalibrr.js?v=4e576b59:97426:3)\n    at NavigationContextProvider (http://localhost:5173/node_modules/.vite/deps/@gravitate-js_excalibrr.js?v=4e576b59:97370:3)\n    at AuthenticatedRoute (http://localhost:5173/src/modules/_Main/routes/AuthenticatedRoute/index.jsx:29:7)\n    at UserProvider (http://localhost:5173/src/contexts/UserContext/index.tsx:41:3)\n    at AuthRedirect (http://localhost:5173/src/modules/_Main/index.jsx?t=1777935392180:182:3)\n    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3251:5)\n    at Outlet (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3630:26)\n    at ErrorBoundary2 (http://localhost:5173/node_modules/.vite/deps/@sentry_react.js?v=4e576b59:3101:43)\n    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3251:5)\n    at RenderErrorBoundary (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3211:5)\n    at DataRoutes (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3560:5)\n    at Router (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3637:15)\n    at RouterProvider (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3509:5)\n    at GateKeeper (http://localhost:5173/src/modules/_Main/index.jsx?t=1777935392180:100:3)\n    at AuthProvider (http://localhost:5173/node_modules/.vite/deps/@gravitate-js_excalibrr.js?v=4e576b59:78797:3)\n    at ErrorBoundary2 (http://localhost:5173/node_modules/.vite/deps/@sentry_react.js?v=4e576b59:3101:43)\n    at Main (http://localhost:5173/src/modules/_Main/index.jsx?t=1777935392180:35:18)\n    at CacheBuster (http://localhost:5173/src/components/shared/CacheBuster.jsx:17:5)\n    at ThemeContextProvider (http://localhost:5173/node_modules/.vite/deps/@gravitate-js_excalibrr.js?v=4e576b59:64427:3)\n    at ThemeWrapper (http://localhost:5173/src/App.tsx?t=1777935392180:57:17)\n    at EnvironmentConfigProvider (http://localhost:5173/src/api/useEnvironmentConfig/index.tsx?t=1777935392180:40:3)\n    at QueryClientProvider (http://localhost:5173/node_modules/.vite/deps/@tanstack_react-query.js?v=4e576b59:2844:3)\n    at App"
+      ],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/ManageOpisPrices": {
+      "status": "pass",
+      "rootLen": 200630,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/MarketPlatformSetups": {
+      "status": "pass",
+      "rootLen": 123971,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/NetGrossDefaults": {
+      "status": "pass",
+      "rootLen": 110867,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/PlaceholderManagement": {
+      "status": "pass",
+      "rootLen": 154458,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/PriceConfiguration": {
+      "status": "pass",
+      "rootLen": 72736,
+      "errors": [],
+      "consoleErrors": [
+        "Warning: Each child in a list should have a unique \"key\" prop.%s%s See https://reactjs.org/link/warning-keys for more information.%s \n\nCheck the render method of `ProductGroups`.  \n    at Horizontal (http://localhost:5173/node_modules/.vite/deps/@gravitate-js_excalibrr.js?v=4e576b59:48397:3)\n    at ProductGroups (http://localhost:5173/src/modules/Admin/PriceConfiguration/components/ProductGroups/index.tsx:22:3)\n    at div\n    at Vertical (http://localhost:5173/node_modules/.vite/deps/@gravitate-js_excalibrr.js?v=4e576b59:64495:3)\n    at div\n    at Horizontal (http://localhost:5173/node_modules/.vite/deps/@gravitate-js_excalibrr.js?v=4e576b59:48397:3)\n    at PriceConfiguration (http://localhost:5173/src/modules/Admin/PriceConfiguration/page.tsx:28:7)\n    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3251:5)\n    at Outlet (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3630:26)\n    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3251:5)\n    at Outlet (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3630:26)\n    at main\n    at http://localhost:5173/node_modules/.vite/deps/chunk-SZ33DJ26.js?v=4e576b59:11623:25\n    at http://localhost:5173/node_modules/.vite/deps/chunk-SZ33DJ26.js?v=4e576b59:11609:39\n    at section\n    at http://localhost:5173/node_modules/.vite/deps/chunk-SZ33DJ26.js?v=4e576b59:11633:36\n    at http://localhost:5173/node_modules/.vite/deps/chunk-SZ33DJ26.js?v=4e576b59:11609:39\n    at VerticalNavLayout (http://localhost:5173/node_modules/.vite/deps/@gravitate-js_excalibrr.js?v=4e576b59:97333:3)\n    at section\n    at http://localhost:5173/node_modules/.vite/deps/chunk-SZ33DJ26.js?v=4e576b59:11633:36\n    at http://localhost:5173/node_modules/.vite/deps/chunk-SZ33DJ26.js?v=4e576b59:11609:39\n    at PageWrapper (http://localhost:5173/node_modules/.vite/deps/@gravitate-js_excalibrr.js?v=4e576b59:97222:3)\n    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3251:5)\n    at Routes (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3690:5)\n    at RouteBuilder (http://localhost:5173/node_modules/.vite/deps/@gravitate-js_excalibrr.js?v=4e576b59:97426:3)\n    at NavigationContextProvider (http://localhost:5173/node_modules/.vite/deps/@gravitate-js_excalibrr.js?v=4e576b59:97370:3)\n    at AuthenticatedRoute (http://localhost:5173/src/modules/_Main/routes/AuthenticatedRoute/index.jsx:29:7)\n    at UserProvider (http://localhost:5173/src/contexts/UserContext/index.tsx:41:3)\n    at AuthRedirect (http://localhost:5173/src/modules/_Main/index.jsx?t=1777935392180:182:3)\n    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3251:5)\n    at Outlet (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3630:26)\n    at ErrorBoundary2 (http://localhost:5173/node_modules/.vite/deps/@sentry_react.js?v=4e576b59:3101:43)\n    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3251:5)\n    at RenderErrorBoundary (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3211:5)\n    at DataRoutes (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3560:5)\n    at Router (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3637:15)\n    at RouterProvider (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3509:5)\n    at GateKeeper (http://localhost:5173/src/modules/_Main/index.jsx?t=1777935392180:100:3)\n    at AuthProvider (http://localhost:5173/node_modules/.vite/deps/@gravitate-js_excalibrr.js?v=4e576b59:78797:3)\n    at ErrorBoundary2 (http://localhost:5173/node_modules/.vite/deps/@sentry_react.js?v=4e576b59:3101:43)\n    at Main (http://localhost:5173/src/modules/_Main/index.jsx?t=1777935392180:35:18)\n    at CacheBuster (http://localhost:5173/src/components/shared/CacheBuster.jsx:17:5)\n    at ThemeContextProvider (http://localhost:5173/node_modules/.vite/deps/@gravitate-js_excalibrr.js?v=4e576b59:64427:3)\n    at ThemeWrapper (http://localhost:5173/src/App.tsx?t=1777935392180:57:17)\n    at EnvironmentConfigProvider (http://localhost:5173/src/api/useEnvironmentConfig/index.tsx?t=1777935392180:40:3)\n    at QueryClientProvider (http://localhost:5173/node_modules/.vite/deps/@tanstack_react-query.js?v=4e576b59:2844:3)\n    at App"
+      ],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/PriceImportMappings": {
+      "status": "pass",
+      "rootLen": 87334,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/PriceNotifications": {
+      "status": "pass",
+      "rootLen": 106742,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/PriceTranslations": {
+      "status": "pass",
+      "rootLen": 121599,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/Products": {
+      "status": "pass",
+      "rootLen": 151691,
+      "errors": [],
+      "consoleErrors": [
+        "Warning: Each child in a list should have a unique \"key\" prop.%s%s See https://reactjs.org/link/warning-keys for more information.%s \n\nCheck the render method of `ManageProductGroups`.  \n    at GroupEditor (http://localhost:5173/src/components/shared/GroupEditor/GroupEditor.tsx:21:3)\n    at ManageProductGroups (http://localhost:5173/src/modules/Admin/ManageProducts/components/ManagementPane/ManageProductGroups/index.tsx:23:3)\n    at div\n    at Horizontal (http://localhost:5173/node_modules/.vite/deps/@gravitate-js_excalibrr.js?v=4e576b59:48397:3)\n    at div\n    at TabPane (http://localhost:5173/node_modules/.vite/deps/chunk-SZ33DJ26.js?v=4e576b59:17493:24)\n    at div\n    at div\n    at TabPanelList (http://localhost:5173/node_modules/.vite/deps/chunk-SZ33DJ26.js?v=4e576b59:17463:18)\n    at div\n    at Tabs (http://localhost:5173/node_modules/.vite/deps/chunk-SZ33DJ26.js?v=4e576b59:17543:18)\n    at Tabs2 (http://localhost:5173/node_modules/.vite/deps/chunk-SZ33DJ26.js?v=4e576b59:17680:17)\n    at div\n    at Horizontal (http://localhost:5173/node_modules/.vite/deps/@gravitate-js_excalibrr.js?v=4e576b59:48397:3)\n    at ManagementPane (http://localhost:5173/src/modules/Admin/ManageProducts/components/ManagementPane/index.tsx:24:3)\n    at div\n    at Vertical (http://localhost:5173/node_modules/.vite/deps/@gravitate-js_excalibrr.js?v=4e576b59:64495:3)\n    at div\n    at Horizontal (http://localhost:5173/node_modules/.vite/deps/@gravitate-js_excalibrr.js?v=4e576b59:48397:3)\n    at ManageProducts (http://localhost:5173/src/modules/Admin/ManageProducts/ManageProducts.tsx:25:43)\n    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3251:5)\n    at Outlet (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3630:26)\n    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3251:5)\n    at Outlet (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3630:26)\n    at main\n    at http://localhost:5173/node_modules/.vite/deps/chunk-SZ33DJ26.js?v=4e576b59:11623:25\n    at http://localhost:5173/node_modules/.vite/deps/chunk-SZ33DJ26.js?v=4e576b59:11609:39\n    at section\n    at http://localhost:5173/node_modules/.vite/deps/chunk-SZ33DJ26.js?v=4e576b59:11633:36\n    at http://localhost:5173/node_modules/.vite/deps/chunk-SZ33DJ26.js?v=4e576b59:11609:39\n    at VerticalNavLayout (http://localhost:5173/node_modules/.vite/deps/@gravitate-js_excalibrr.js?v=4e576b59:97333:3)\n    at section\n    at http://localhost:5173/node_modules/.vite/deps/chunk-SZ33DJ26.js?v=4e576b59:11633:36\n    at http://localhost:5173/node_modules/.vite/deps/chunk-SZ33DJ26.js?v=4e576b59:11609:39\n    at PageWrapper (http://localhost:5173/node_modules/.vite/deps/@gravitate-js_excalibrr.js?v=4e576b59:97222:3)\n    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3251:5)\n    at Routes (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3690:5)\n    at RouteBuilder (http://localhost:5173/node_modules/.vite/deps/@gravitate-js_excalibrr.js?v=4e576b59:97426:3)\n    at NavigationContextProvider (http://localhost:5173/node_modules/.vite/deps/@gravitate-js_excalibrr.js?v=4e576b59:97370:3)\n    at AuthenticatedRoute (http://localhost:5173/src/modules/_Main/routes/AuthenticatedRoute/index.jsx:29:7)\n    at UserProvider (http://localhost:5173/src/contexts/UserContext/index.tsx:41:3)\n    at AuthRedirect (http://localhost:5173/src/modules/_Main/index.jsx?t=1777935392180:182:3)\n    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3251:5)\n    at Outlet (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3630:26)\n    at ErrorBoundary2 (http://localhost:5173/node_modules/.vite/deps/@sentry_react.js?v=4e576b59:3101:43)\n    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3251:5)\n    at RenderErrorBoundary (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3211:5)\n    at DataRoutes (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3560:5)\n    at Router (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3637:15)\n    at RouterProvider (http://localhost:5173/node_modules/.vite/deps/chunk-VXUUUR2W.js?v=4e576b59:3509:5)\n    at GateKeeper (http://localhost:5173/src/modules/_Main/index.jsx?t=1777935392180:100:3)\n    at AuthProvider (http://localhost:5173/node_modules/.vite/deps/@gravitate-js_excalibrr.js?v=4e576b59:78797:3)\n    at ErrorBoundary2 (http://localhost:5173/node_modules/.vite/deps/@sentry_react.js?v=4e576b59:3101:43)\n    at Main (http://localhost:5173/src/modules/_Main/index.jsx?t=1777935392180:35:18)\n    at CacheBuster (http://localhost:5173/src/components/shared/CacheBuster.jsx:17:5)\n    at ThemeContextProvider (http://localhost:5173/node_modules/.vite/deps/@gravitate-js_excalibrr.js?v=4e576b59:64427:3)\n    at ThemeWrapper (http://localhost:5173/src/App.tsx?t=1777935392180:57:17)\n    at EnvironmentConfigProvider (http://localhost:5173/src/api/useEnvironmentConfig/index.tsx?t=1777935392180:40:3)\n    at QueryClientProvider (http://localhost:5173/node_modules/.vite/deps/@tanstack_react-query.js?v=4e576b59:2844:3)\n    at App"
+      ],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/Publishers": {
+      "status": "pass",
+      "rootLen": 94885,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/QuantityDistributionManagement": {
+      "status": "pass",
+      "rootLen": 116049,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/Users": {
+      "status": "pass",
+      "rootLen": 159716,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/VolumeThresholds": {
+      "status": "pass",
+      "rootLen": 134874,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/AdminDashboard": {
+      "status": "pass",
+      "rootLen": 259576,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Analytics/ByChannel": {
+      "status": "pass",
+      "rootLen": 187744,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Analytics/ByContract": {
+      "status": "pass",
+      "rootLen": 231641,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Analytics/ByCustomer": {
+      "status": "pass",
+      "rootLen": 118475,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Analytics/ByTerminal": {
+      "status": "pass",
+      "rootLen": 111434,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/BuyNow/Forward": {
+      "status": "pass",
+      "rootLen": 122113,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/BuyNow/Offers": {
+      "status": "pass",
+      "rootLen": 158373,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/BuyNow/Prompt": {
+      "status": "pass",
+      "rootLen": 107576,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/ContractManagement/ContractRevaluation": {
+      "status": "pass",
+      "rootLen": 150633,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/ContractManagement/Contracts": {
+      "status": "pass",
+      "rootLen": 190942,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/ContractManagement/FormulaTemplates": {
+      "status": "pass",
+      "rootLen": 115548,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/ContractManagement/Measurements": {
+      "status": "pass",
+      "rootLen": 217303,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/ContractManagement/MissingPrices": {
+      "status": "pass",
+      "rootLen": 146760,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/ContractManagement/Valuations": {
+      "status": "pass",
+      "rootLen": 131867,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/OnlineOrders": {
+      "status": "pass",
+      "rootLen": 198052,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/OrderDashboard": {
+      "status": "pass",
+      "rootLen": 259330,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/PricingEngine/Calculations": {
+      "status": "pass",
+      "rootLen": 26440,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/PricingEngine/CommandCenter": {
+      "status": "pass",
+      "rootLen": 306183,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": [
+        "ReferenceData/Hierarchy/Location/List",
+        "ReferenceData/Hierarchy/Product/List"
+      ]
+    },
+    "/PricingEngine/Prices": {
+      "status": "pass",
+      "rootLen": 26440,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/PricingEngine/QuoteBookEOD": {
+      "status": "pass",
+      "rootLen": 180939,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/PricingEngine/QuoteBookMidday": {
+      "status": "pass",
+      "rootLen": 154849,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/SpecialOffers": {
+      "status": "pass",
+      "rootLen": 163641,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/SuperUserAdmin/MPIManagement": {
+      "status": "pass",
+      "rootLen": 209252,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    }
+  }
+}

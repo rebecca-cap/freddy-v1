@@ -1,0 +1,89 @@
+/*
+ * ScoutBubble — user + scout message styles.
+ *
+ * Wireframe source: gizmo-demo.html, `.msg-user` (1048) and `.msg-gizmo`
+ * (1054). All values come from `--scout-*` tokens; no hard-coded colors.
+ *
+ * Layout:
+ *   - `.scout-msg` is a flex row inside the message list (which is column).
+ *   - User: align-self: flex-end, no avatar, max-width 88%.
+ *   - Scout: align-self: flex-start, small "G" avatar on the left, card
+ *     grows to ~96% so structured content (tables) has room.
+ */
+
+/* ------------------------------------------------------------------ */
+/* User bubble (Step 3.2)                                             */
+/* ------------------------------------------------------------------ */
+.scout-msg--user {
+  align-self: flex-end;
+  max-width: 88%;
+  padding: 9px 13px;
+  border-radius: var(--scout-radius);
+  background: var(--scout-surface-3);
+  color: var(--scout-text);
+  font-size: var(--scout-font-size-md);
+  line-height: var(--scout-line-height-base);
+  /* Wraps long content cleanly */
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  /* Text stays selectable (default), but be explicit because some host CSS
+     globally disables selection on chat surfaces. */
+  user-select: text;
+}
+
+/* ------------------------------------------------------------------ */
+/* Scout bubble shell (Step 3.3)                                     */
+/* ------------------------------------------------------------------ */
+.scout-msg--scout {
+  align-self: stretch;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  max-width: 100%;
+}
+
+.scout-msg__avatar {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--scout-brand);
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--scout-font-weight-bold);
+  font-size: 11px;
+  margin-top: 2px;
+  user-select: none;
+}
+
+.scout-msg__card {
+  flex: 1;
+  min-width: 0;
+  background: var(--scout-surface);
+  border: 1px solid color-mix(in srgb, var(--scout-brand) 35%, transparent);
+  border-radius: var(--scout-radius);
+  padding: 13px 15px 12px;
+  font-size: var(--scout-font-size-md);
+  line-height: var(--scout-line-height-base);
+  color: var(--scout-text);
+  /* Stack the three slots vertically with a calm rhythm. */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.scout-msg__card:empty {
+  /* While a placeholder bubble has no slots yet, give it a small minimum
+     height so the avatar isn't visually orphaned for the fraction of a
+     second before the first thinking step lands. */
+  min-height: 24px;
+}
+
+/* Slot containers are passthrough — they exist so the bubble shell can show
+   / hide each slot via the bubble component, and so descendants can use
+   `.scout-msg__slot--X` as a hook without touching the children. */
+.scout-msg__slot {
+  min-width: 0;
+}

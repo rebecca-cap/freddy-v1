@@ -1,0 +1,13 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.rn.gravitate.core.vnext",
+      "sha256_cert_fingerprints": [
+        "B9:E6:AE:E4:D5:D7:BC:95:D0:63:E5:17:7A:12:19:A8:10:6D:3B:57:6A:F7:62:14:CB:46:2C:17:99:4B:6D:ED",
+        "A1:63:25:01:01:47:E9:C0:D8:D3:C4:30:FC:B8:27:11:04:5B:E0:AC:5A:6C:EF:24:44:1E:08:18:A2:EC:39:D9"
+      ]
+    }
+  }
+]

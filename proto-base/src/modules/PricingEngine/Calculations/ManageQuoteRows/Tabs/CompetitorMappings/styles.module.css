@@ -1,0 +1,176 @@
+/* ─── Configure Matching panel ─────────────────────────────────────────── */
+
+.panelRoot {
+  background-color: var(--bg-1);
+  border: 1px solid var(--gray-300);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.configCard {
+  background: var(--bg-1);
+  border-bottom: 1px solid var(--gray-300);
+}
+
+.configCardHeader {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--gray-200);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.configSection {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.configSection:last-child {
+  border-bottom: none;
+}
+
+.configLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-1);
+  margin-bottom: 4px;
+}
+
+.configDesc {
+  font-size: 11px;
+  color: var(--text-3);
+  margin-bottom: 8px;
+}
+
+/* Selected Quote Rows label/value lines */
+.selectionLine {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+  font-size: 12px;
+  gap: 12px;
+}
+
+.selectionLineLabel {
+  color: var(--text-3);
+  flex-shrink: 0;
+}
+
+.selectionLineValue {
+  color: var(--text-1);
+  font-weight: 500;
+  text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Helper text under the Find Matching button */
+.findHelperText {
+  font-size: 11px;
+  color: var(--text-3);
+  text-align: center;
+  margin-top: 8px;
+  display: block;
+}
+
+/* Total badge in card header */
+.headerBadge {
+  background: var(--theme-color-2-trans);
+  color: var(--theme-color-2);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+/* Current Mappings rows */
+.currentMappingsRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--gray-200);
+  font-size: 12px;
+}
+
+.currentMappingsRow:last-child {
+  border-bottom: none;
+}
+
+.currentMappingsRowMeta {
+  font-size: 10px;
+  color: var(--text-3);
+}
+
+.currentMappingsCompetitors {
+  font-size: 10px;
+  color: var(--text-3);
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Empty state when no rows selected */
+.emptyState {
+  padding: 40px 24px;
+  text-align: center;
+}
+
+.emptyStateIcon {
+  font-size: 32px;
+  color: var(--gray-400);
+  margin-bottom: 12px;
+}
+
+/* ─── Preview drawer stat banner ────────────────────────────────────────── */
+/* Left-aligned divider-separated label/value sections, packed together. */
+
+.statBanner {
+  background: var(--bg-1);
+  padding: 16px 20px;
+  width: 100%;
+  box-sizing: border-box;
+  justify-content: flex-start;
+}
+
+.statSection {
+  min-width: 0;
+}
+
+.statDivider {
+  width: 1px;
+  align-self: stretch;
+  background: var(--gray-200);
+  margin: 0 20px;
+}
+
+.statLabel {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--gray-800, #1f2937);
+}
+
+/* Value font-size/weight live inline on the Texto component (see StatCards.tsx). */
+.statValue {
+  color: var(--theme-text-primary, var(--gray-900, #111));
+}
+
+.statValueIcon {
+  font-size: 22px;
+  color: var(--gray-700, #4b5563);
+}
+
+.statHint {
+  font-size: 12px;
+  color: var(--gray-800, #1f2937);
+}

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Master-Detail Layout - Gravitate Wireframe Design System</title>
+
+  <!-- Design System CSS -->
+  <link rel="stylesheet" href="../tokens/index.css">
+  <link rel="stylesheet" href="../components/layout/layout.css">
+  <link rel="stylesheet" href="../components/controls/controls.css">
+  <link rel="stylesheet" href="../components/data-display/data-display.css">
+  <link rel="stylesheet" href="../components/navigation/navigation.css">
+  <link rel="stylesheet" href="../components/feedback/feedback.css">
+  <link rel="stylesheet" href="../components/status/status.css">
+
+  <style>
+    /* Pattern-specific layout styles */
+    .master-detail-container {
+      display: flex;
+      height: calc(100vh - 65px);
+      overflow: hidden;
+    }
+    .master-panel {
+      width: 60%;
+      border-right: 1px solid var(--wf-color-border, #d1d5db);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .detail-panel {
+      width: 40%;
+      display: flex;
+      flex-direction: column;
+      background-color: var(--wf-color-surface, #ffffff);
+      overflow: hidden;
+    }
+    .detail-panel-empty {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
+    .action-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      background-color: var(--wf-color-surface, #ffffff);
+      border-bottom: 1px solid var(--wf-color-border, #d1d5db);
+    }
+    .search-input-wrapper {
+      position: relative;
+      flex: 1;
+      max-width: 300px;
+    }
+    .search-input-wrapper .wf-input {
+      padding-left: 36px;
+    }
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--wf-color-text-muted, #64748b);
+    }
+    .grid-container {
+      flex: 1;
+      overflow-y: auto;
+    }
+    .detail-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--wf-color-border, #d1d5db);
+    }
+    .detail-content {
+      flex: 1;
+      overflow-y: auto;
+    }
+    .detail-section {
+      padding: 20px;
+      border-bottom: 1px solid var(--wf-color-border, #d1d5db);
+    }
+    .detail-section:last-child {
+      border-bottom: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="wf-page">
+    <!-- Page Header -->
+    <header class="wf-page-header">
+      <div class="wf-page-title">
+        <h1 class="wf-text-h2">Contracts</h1>
+        <p class="wf-text-helper">Manage and view contract details</p>
+      </div>
+      <div class="wf-page-actions">
+        <button class="wf-button wf-button-secondary">
+          <span class="wf-icon">&#x1F4E5;</span>
+          Export
+        </button>
+        <button class="wf-button wf-button-primary">
+          <span class="wf-icon">&#x2795;</span>
+          New Contract
+        </button>
+      </div>
+    </header>
+
+    <!-- Master-Detail Container -->
+    <div class="master-detail-container">
+      <!-- Master Panel (List) -->
+      <div class="master-panel">
+        <!-- Action Bar with Search and Filters -->
+        <div class="action-bar">
+          <div class="search-input-wrapper">
+            <span class="search-icon">&#x1F50D;</span>
+            <input type="text" class="wf-input" placeholder="Search contracts...">
+          </div>
+          <select class="wf-select" style="width: 150px;">
+            <option>All Status</option>
+            <option>Active</option>
+            <option>Pending</option>
+            <option>Expired</option>
+          </select>
+          <select class="wf-select" style="width: 150px;">
+            <option>All Categories</option>
+            <option>Technology</option>
+            <option>Marketing</option>
+            <option>Operations</option>
+          </select>
+          <button class="wf-button wf-button-ghost">
+            <span class="wf-icon">&#x1F50D;</span>
+            More Filters
+          </button>
+        </div>
+
+        <!-- Data Grid -->
+        <div class="grid-container">
+          <div class="wf-datagrid wf-datagrid-borderless" style="border-radius: 0;">
+            <div class="wf-datagrid-header">
+              <div class="wf-datagrid-cell wf-datagrid-cell-checkbox">
+                <input type="checkbox" class="wf-checkbox-input">
+              </div>
+              <div class="wf-datagrid-cell wf-datagrid-cell-sortable wf-sorted" style="flex: 2;">
+                Contract Name
+                <span class="wf-datagrid-sort-icon">&#x25B2;</span>
+              </div>
+              <div class="wf-datagrid-cell wf-datagrid-cell-sortable">
+                Supplier
+                <span class="wf-datagrid-sort-icon">&#x25B2;</span>
+              </div>
+              <div class="wf-datagrid-cell">Status</div>
+              <div class="wf-datagrid-cell wf-datagrid-cell-number wf-datagrid-cell-sortable">
+                Value
+                <span class="wf-datagrid-sort-icon">&#x25B2;</span>
+              </div>
+            </div>
+            <div class="wf-datagrid-body">
+              <!-- Selected Row -->
+              <div class="wf-datagrid-row wf-datagrid-row-selected">
+                <div class="wf-datagrid-cell wf-datagrid-cell-checkbox">
+                  <input type="checkbox" class="wf-checkbox-input" checked>
+                </div>
+                <div class="wf-datagrid-cell" style="flex: 2;">
+                  <span class="wf-truncate">IT Infrastructure Services Agreement</span>
+                </div>
+                <div class="wf-datagrid-cell">TechCorp Inc.</div>
+                <div class="wf-datagrid-cell">
+                  <span class="wf-badge wf-badge-success">Active</span>
+                </div>
+                <div class="wf-datagrid-cell wf-datagrid-cell-number wf-mono">$450,000</div>
+              </div>
+              <!-- Regular Rows -->
+              <div class="wf-datagrid-row">
+                <div class="wf-datagrid-cell wf-datagrid-cell-checkbox">
+                  <input type="checkbox" class="wf-checkbox-input">
+                </div>
+                <div class="wf-datagrid-cell" style="flex: 2;">
+                  <span class="wf-truncate">Office Supplies Contract</span>
+                </div>
+                <div class="wf-datagrid-cell">SupplyMax</div>
+                <div class="wf-datagrid-cell">
+                  <span class="wf-badge wf-badge-success">Active</span>
+                </div>
+                <div class="wf-datagrid-cell wf-datagrid-cell-number wf-mono">$85,000</div>
+              </div>
+              <div class="wf-datagrid-row">
+                <div class="wf-datagrid-cell wf-datagrid-cell-checkbox">
+                  <input type="checkbox" class="wf-checkbox-input">
+                </div>
+                <div class="wf-datagrid-cell" style="flex: 2;">
+                  <span class="wf-truncate">Marketing Services Agreement</span>
+                </div>
+                <div class="wf-datagrid-cell">BrandPro Agency</div>
+                <div class="wf-datagrid-cell">
+                  <span class="wf-badge wf-badge-warning">Expiring</span>
+                </div>
+                <div class="wf-datagrid-cell wf-datagrid-cell-number wf-mono">$220,000</div>
+              </div>
+              <div class="wf-datagrid-row">
+                <div class="wf-datagrid-cell wf-datagrid-cell-checkbox">
+                  <input type="checkbox" class="wf-checkbox-input">
+                </div>
+                <div class="wf-datagrid-cell" style="flex: 2;">
+                  <span class="wf-truncate">Cloud Hosting Services</span>
+                </div>
+                <div class="wf-datagrid-cell">CloudNine</div>
+                <div class="wf-datagrid-cell">
+                  <span class="wf-badge wf-badge-success">Active</span>
+                </div>
+                <div class="wf-datagrid-cell wf-datagrid-cell-number wf-mono">$180,000</div>
+              </div>
+              <div class="wf-datagrid-row">
+                <div class="wf-datagrid-cell wf-datagrid-cell-checkbox">
+                  <input type="checkbox" class="wf-checkbox-input">
+                </div>
+                <div class="wf-datagrid-cell" style="flex: 2;">
+                  <span class="wf-truncate">Facilities Management Contract</span>
+                </div>
+                <div class="wf-datagrid-cell">FacilityPro</div>
+                <div class="wf-datagrid-cell">
+                  <span class="wf-badge wf-badge-error">Expired</span>
+                </div>
+                <div class="wf-datagrid-cell wf-datagrid-cell-number wf-mono">$320,000</div>
+              </div>
+              <div class="wf-datagrid-row">
+                <div class="wf-datagrid-cell wf-datagrid-cell-checkbox">
+                  <input type="checkbox" class="wf-checkbox-input">
+                </div>
+                <div class="wf-datagrid-cell" style="flex: 2;">
+                  <span class="wf-truncate">Security Services Agreement</span>
+                </div>
+                <div class="wf-datagrid-cell">SecureGuard</div>
+                <div class="wf-datagrid-cell">
+                  <span class="wf-badge">Pending</span>
+                </div>
+                <div class="wf-datagrid-cell wf-datagrid-cell-number wf-mono">$150,000</div>
+              </div>
+              <div class="wf-datagrid-row">
+                <div class="wf-datagrid-cell wf-datagrid-cell-checkbox">
+                  <input type="checkbox" class="wf-checkbox-input">
+                </div>
+                <div class="wf-datagrid-cell" style="flex: 2;">
+                  <span class="wf-truncate">Consulting Services Contract</span>
+                </div>
+                <div class="wf-datagrid-cell">ConsultPro</div>
+                <div class="wf-datagrid-cell">
+                  <span class="wf-badge wf-badge-success">Active</span>
+                </div>
+                <div class="wf-datagrid-cell wf-datagrid-cell-number wf-mono">$275,000</div>
+              </div>
+              <div class="wf-datagrid-row">
+                <div class="wf-datagrid-cell wf-datagrid-cell-checkbox">
+                  <input type="checkbox" class="wf-checkbox-input">
+                </div>
+                <div class="wf-datagrid-cell" style="flex: 2;">
+                  <span class="wf-truncate">Data Analytics Platform</span>
+                </div>
+                <div class="wf-datagrid-cell">DataInsight</div>
+                <div class="wf-datagrid-cell">
+                  <span class="wf-badge wf-badge-success">Active</span>
+                </div>
+                <div class="wf-datagrid-cell wf-datagrid-cell-number wf-mono">$190,000</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Detail Panel -->
+      <div class="detail-panel">
+        <!-- Detail Header -->
+        <div class="detail-header">
+          <div class="wf-row wf-align-center" style="justify-content: space-between; margin-bottom: 12px;">
+            <h2 class="wf-text-h3" style="margin: 0;">IT Infrastructure Services Agreement</h2>
+            <div class="wf-row wf-gap-2">
+              <button class="wf-button wf-button-ghost wf-button-sm">
+                <span class="wf-icon">&#x270F;</span>
+              </button>
+              <button class="wf-button wf-button-ghost wf-button-sm">
+                <span class="wf-icon">&#x1F5D1;</span>
+              </button>
+            </div>
+          </div>
+          <div class="wf-row wf-gap-3 wf-align-center">
+            <span class="wf-badge wf-badge-success">Active</span>
+            <span class="wf-text-helper">Contract #CT-2024-0842</span>
+          </div>
+        </div>
+
+        <!-- Detail Tabs -->
+        <div class="wf-tabs">
+          <div class="wf-tabs-list">
+            <button class="wf-tab wf-tab-active">Overview</button>
+            <button class="wf-tab">Documents</button>
+            <button class="wf-tab">Timeline</button>
+            <button class="wf-tab">Notes</button>
+          </div>
+        </div>
+
+        <!-- Detail Content -->
+        <div class="detail-content">
+          <!-- Overview Tab Content -->
+          <div class="detail-section">
+            <h4 class="wf-text-label" style="margin-bottom: 12px;">Contract Details</h4>
+            <div class="wf-description-list wf-description-list-horizontal">
+              <div class="wf-description-list-item">
+                <dt class="wf-description-list-term">Supplier</dt>
+                <dd class="wf-description-list-detail">
+                  <div class="wf-row wf-align-center wf-gap-2">
+                    <div class="wf-avatar wf-avatar-sm">
+                      <span class="wf-avatar-initials">TC</span>
+                    </div>
+                    TechCorp Inc.
+                  </div>
+                </dd>
+              </div>
+              <div class="wf-description-list-item">
+                <dt class="wf-description-list-term">Category</dt>
+                <dd class="wf-description-list-detail">Technology</dd>
+              </div>
+              <div class="wf-description-list-item">
+                <dt class="wf-description-list-term">Contract Value</dt>
+                <dd class="wf-description-list-detail wf-mono">$450,000.00</dd>
+              </div>
+              <div class="wf-description-list-item">
+                <dt class="wf-description-list-term">Payment Terms</dt>
+                <dd class="wf-description-list-detail">Net 30</dd>
+              </div>
+              <div class="wf-description-list-item">
+                <dt class="wf-description-list-term">Start Date</dt>
+                <dd class="wf-description-list-detail">January 1, 2024</dd>
+              </div>
+              <div class="wf-description-list-item">
+                <dt class="wf-description-list-term">End Date</dt>
+                <dd class="wf-description-list-detail">December 31, 2025</dd>
+              </div>
+            </div>
+          </div>
+
+          <div class="detail-section">
+            <h4 class="wf-text-label" style="margin-bottom: 12px;">Description</h4>
+            <p class="wf-text-body" style="color: var(--wf-color-text-secondary, #374151);">
+              Comprehensive IT infrastructure services including network management, server maintenance,
+              cloud infrastructure support, and 24/7 technical support. This agreement covers all
+              company locations and includes quarterly performance reviews.
+            </p>
+          </div>
+
+          <div class="detail-section">
+            <h4 class="wf-text-label" style="margin-bottom: 12px;">Key Contacts</h4>
+            <div class="wf-list" style="border: none;">
+              <div class="wf-list-item" style="padding-left: 0; padding-right: 0;">
+                <div class="wf-avatar wf-avatar-sm">
+                  <span class="wf-avatar-initials">JS</span>
+                </div>
+                <div class="wf-list-item-content">
+                  <div class="wf-list-item-title">John Smith</div>
+                  <div class="wf-list-item-description">Account Manager</div>
+                </div>
+                <span class="wf-list-item-meta">john@techcorp.com</span>
+              </div>
+              <div class="wf-list-item" style="padding-left: 0; padding-right: 0;">
+                <div class="wf-avatar wf-avatar-sm">
+                  <span class="wf-avatar-initials">SD</span>
+                </div>
+                <div class="wf-list-item-content">
+                  <div class="wf-list-item-title">Sarah Davis</div>
+                  <div class="wf-list-item-description">Technical Lead</div>
+                </div>
+                <span class="wf-list-item-meta">sarah@techcorp.com</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="detail-section">
+            <h4 class="wf-text-label" style="margin-bottom: 12px;">Budget Utilization</h4>
+            <div class="wf-progress" style="margin-bottom: 8px;">
+              <div class="wf-progress-label">
+                <span>YTD Spend</span>
+                <span>$312,500 of $450,000</span>
+              </div>
+              <div class="wf-progress-bar">
+                <div class="wf-progress-fill" style="width: 69%;"></div>
+              </div>
+            </div>
+            <p class="wf-text-helper">69% of contract value utilized with 6 months remaining</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

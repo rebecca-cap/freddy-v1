@@ -1,0 +1,14 @@
+{
+  "path": "/Admin/VolumeThresholds",
+  "title": "Volume Thresholds",
+  "finalUrl": "http://localhost:3001/Admin/VolumeThresholds",
+  "rootLen": 128662,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 10,
+  "stuckLoaders": [],
+  "emptyGrids": []
+}

@@ -1,0 +1,197 @@
+{
+  "slug": "form-surfaces",
+  "title": "FormSection, DetailPanel & WizardFooter",
+  "order": 19,
+  "group": "Specialized",
+  "intro": "Three narrative-first surfaces for data entry and review. FormSection is the form-shaped grouping primitive that gives related fields a heading and shared rhythm; DetailPanel is the master-detail read view that slides in beside a grid; WizardFooter anchors a multi-step flow with Back/Next and progress. All three obey the same posture rule: forms read top-down in a single column, never crammed into a data-dense grid layout.",
+  "searchTerms": [
+    "FormSection",
+    "DetailPanel",
+    "WizardFooter",
+    "wf-form-section",
+    "wf-form-grid",
+    "wf-detail-panel",
+    "wf-wizard-footer",
+    "wf-wizard-progress",
+    "form group",
+    "master detail",
+    "side panel",
+    "stepper footer",
+    "wizard",
+    "progress bar",
+    "narrative-first"
+  ],
+  "blocks": [
+    {
+      "type": "usage",
+      "body": "These three surfaces share a posture. DESIGN.md §2.2 splits the system into two layouts: data views are *grid-first* (align columns, share row rhythm, scan vertically) and forms are *narrative-first* (single column, top-down reading order, generous label-to-input proximity). FormSection, DetailPanel, and WizardFooter all live on the narrative-first side. Don't mix the two postures inside one page section.\n\n`wf-form-section` is the form-shaped grouping primitive (DESIGN.md §4.1). Reach for it whenever you have form fields that belong together — \"Customer Information,\" \"Billing Address.\" Each section owns its own heading, optional `wf-form-section-description`, and consistent vertical rhythm. Forms compose `wf-form-section` blocks *vertically* — they should rarely sit inside a `wf-card`. Inside the body, `wf-form-grid` with a `wf-form-grid-2`/`-3`/`-4` modifier lays out fields, collapsing to one column under 768px.\n\n`wf-detail-panel` is the master-detail read view: a 480px column with a header (title + status badge + close), optional `wf-detail-panel-tabs`, a scrolling `wf-detail-panel-body`, and a footer that pins the commit buttons. It starts off-screen (`transform: translateX(100%)`) and slides in when you add `wf-detail-panel-open`. Width is set by modifier, not inline style.\n\n`wf-wizard-footer` is the navigation bar for a stepper flow: Back on the left, a `wf-wizard-progress` step counter in the middle, the forward action on the right. The progress-bar variant stacks a full-width fill above the action row. The footer carries the navigation — the step content lives above it."
+    },
+    {
+      "type": "specimen",
+      "title": "FormSection — grouped fields",
+      "image": "specimens/form-surfaces/01-formsection-grouped.png",
+      "caption": "Multiple titled FormSections stacked vertically — each with its own header, description, and a wf-form-grid laying out related fields. This is the narrative-first form posture from DESIGN.md §4.1."
+    },
+    {
+      "type": "variants",
+      "title": "FormSection classes",
+      "intro": "A FormSection is a `wf-form-section` wrapping a `wf-form-section-header` (title + optional description) and a `wf-form-section-body`. Inside the body, `wf-form-grid` plus a column modifier arranges the fields.",
+      "rows": [
+        {
+          "name": "wf-form-section",
+          "when": "Base grouping. Stacks fields under one heading with a 32px bottom margin between sections (zeroed on the last child).",
+          "code": "<div class=\"wf-form-section\">\n  <div class=\"wf-form-section-header\">\n    <h3 class=\"wf-form-section-title\">Customer Information</h3>\n    <p class=\"wf-form-section-description\">Enter the customer's contact details.</p>\n  </div>\n  <div class=\"wf-form-section-body\">\n    <!-- fields -->\n  </div>\n</div>"
+        },
+        {
+          "name": "wf-form-section-card",
+          "when": "A standalone settings group that needs visual separation — adds a white background, border, 8px radius, and 20px padding. Use for an isolated section, not as an outer wrapper around a whole multi-section form.",
+          "code": "<div class=\"wf-form-section wf-form-section-card\">\n  <div class=\"wf-form-section-header\">\n    <h3 class=\"wf-form-section-title\">Account Settings</h3>\n  </div>\n  <div class=\"wf-form-section-body\">...</div>\n</div>"
+        },
+        {
+          "name": "wf-form-section-collapsible / wf-form-section-collapsed",
+          "when": "An expandable section. `-collapsible` turns the header into a clickable row with a chevron; adding `-collapsed` rotates the chevron and hides the body.",
+          "code": "<div class=\"wf-form-section wf-form-section-collapsible wf-form-section-collapsed\">\n  <div class=\"wf-form-section-header\">\n    <h3 class=\"wf-form-section-title\">Advanced Options</h3>\n  </div>\n  <div class=\"wf-form-section-body\">...</div>\n</div>"
+        },
+        {
+          "name": "wf-form-grid-2 / -3 / -4",
+          "when": "Column layout inside the body. `wf-form-grid` alone is single-column; the modifier sets 2, 3, or 4 equal columns with a 16px gap. All collapse to one column at ≤768px.",
+          "code": "<div class=\"wf-form-grid wf-form-grid-2\">\n  <div class=\"wf-field\">\n    <label class=\"wf-field-label\">City</label>\n    <input type=\"text\" class=\"wf-input\">\n  </div>\n  <!-- more wf-field -->\n</div>"
+        }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "DetailPanel — read view",
+      "image": "specimens/form-surfaces/02-detailpanel-read-view.png",
+      "caption": "The default 480px DetailPanel: header with title and an Active badge, a tab row (Overview / Details / History), a scrolling body of label/value detail rows, and a footer pinning Cancel + Save Changes."
+    },
+    {
+      "type": "variants",
+      "title": "DetailPanel classes",
+      "intro": "`wf-detail-panel` is a flex column that starts off-screen and slides in with `wf-detail-panel-open`. Compose a header, optional tabs, a body, and a footer. The tabs and footer are optional; the body always scrolls.",
+      "rows": [
+        {
+          "name": "wf-detail-panel",
+          "when": "Base panel — default 480px wide, full height, left border, off-screen until opened. Always pair with an open/width modifier in practice.",
+          "code": "<div class=\"wf-detail-panel wf-detail-panel-open\">\n  <div class=\"wf-detail-panel-header\">\n    <div class=\"wf-detail-panel-title-group\">\n      <h2 class=\"wf-detail-panel-title\">Contract Details</h2>\n      <span class=\"wf-badge wf-badge-success\">Active</span>\n    </div>\n    <button class=\"wf-detail-panel-close\">x</button>\n  </div>\n  <div class=\"wf-detail-panel-body\"><!-- detail rows --></div>\n  <div class=\"wf-detail-panel-footer\">\n    <button class=\"wf-button wf-button-secondary\">Cancel</button>\n    <button class=\"wf-button wf-button-primary\">Save Changes</button>\n  </div>\n</div>"
+        },
+        {
+          "name": "wf-detail-panel-open",
+          "when": "Visibility toggle. Without it the panel is translated 100% to the right (hidden); adding it slides the panel in over a 300ms ease transition.",
+          "code": "<div class=\"wf-detail-panel wf-detail-panel-open\">...</div>"
+        },
+        {
+          "name": "wf-detail-panel-narrow",
+          "when": "Compact 320px panel for a quick read — a few label/value rows, no tabs.",
+          "code": "<div class=\"wf-detail-panel wf-detail-panel-narrow wf-detail-panel-open\">...</div>"
+        },
+        {
+          "name": "wf-detail-panel-wide",
+          "when": "640px panel for complex records — two-column body, more tabs, multiple footer actions.",
+          "code": "<div class=\"wf-detail-panel wf-detail-panel-wide wf-detail-panel-open\">...</div>"
+        },
+        {
+          "name": "wf-detail-panel-tabs",
+          "when": "Optional tab row between header and body. Holds `wf-tab` buttons; `wf-tab-active` carries the primary-color underline. Omit the whole row for a single-view panel.",
+          "code": "<div class=\"wf-detail-panel-tabs\">\n  <button class=\"wf-tab wf-tab-active\">Overview</button>\n  <button class=\"wf-tab\">Details</button>\n  <button class=\"wf-tab\">History</button>\n</div>"
+        },
+        {
+          "name": "wf-detail-panel-elevated",
+          "when": "Drops the left border for a left-side drop shadow instead — use when the panel floats over content rather than sitting flush in a split view.",
+          "code": "<div class=\"wf-detail-panel wf-detail-panel-elevated wf-detail-panel-open\">...</div>"
+        }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "WizardFooter — with progress",
+      "image": "specimens/form-surfaces/03-wizardfooter-progress.png",
+      "caption": "The progress-bar variant: a full-width fill above a Back / \"Step 2 of 4\" / Continue action row. The footer carries the navigation; the step content lives above it."
+    },
+    {
+      "type": "variants",
+      "title": "WizardFooter classes",
+      "intro": "`wf-wizard-footer` is a space-between flex row: a backward action, a `wf-wizard-progress` counter, and a forward action. Variants change layout or add a progress bar.",
+      "rows": [
+        {
+          "name": "wf-wizard-footer",
+          "when": "Base footer. Back (secondary) left, step counter center, forward action (primary) right. Use a success button for the final \"Submit\" step; disable Back on step one.",
+          "code": "<div class=\"wf-wizard-footer\">\n  <button class=\"wf-button wf-button-secondary\">&#8592; Back</button>\n  <div class=\"wf-wizard-progress\">Step 2 of 4</div>\n  <button class=\"wf-button wf-button-primary\">Continue &#8594;</button>\n</div>"
+        },
+        {
+          "name": "wf-wizard-footer-with-progress",
+          "when": "Adds a visual progress bar. Switches the footer to a column: a full-width `wf-wizard-progress-bar` on top, then a `wf-wizard-actions` row holding Back / counter / forward. Set the fill width inline to the percent complete.",
+          "code": "<div class=\"wf-wizard-footer wf-wizard-footer-with-progress\">\n  <div class=\"wf-wizard-progress-bar\">\n    <div class=\"wf-wizard-progress-fill\" style=\"width: 50%;\"></div>\n  </div>\n  <div class=\"wf-wizard-actions\">\n    <button class=\"wf-button wf-button-secondary\">&#8592; Back</button>\n    <div class=\"wf-wizard-progress\">Step 2 of 4</div>\n    <button class=\"wf-button wf-button-primary\">Continue &#8594;</button>\n  </div>\n</div>"
+        },
+        {
+          "name": "wf-wizard-footer-centered",
+          "when": "No progress indicator — just two centered buttons with a 24px gap. For short flows where the step count adds nothing.",
+          "code": "<div class=\"wf-wizard-footer wf-wizard-footer-centered\">\n  <button class=\"wf-button wf-button-secondary\">&#8592; Previous</button>\n  <button class=\"wf-button wf-button-primary\">Next &#8594;</button>\n</div>"
+        },
+        {
+          "name": "wf-wizard-footer-compact",
+          "when": "Tighter 12px/16px padding for dense layouts; usually paired with `wf-button-sm` controls and a short \"2 / 4\" counter.",
+          "code": "<div class=\"wf-wizard-footer wf-wizard-footer-compact\">\n  <button class=\"wf-button wf-button-secondary wf-button-sm\">&#8592; Back</button>\n  <div class=\"wf-wizard-progress\">2 / 4</div>\n  <button class=\"wf-button wf-button-primary wf-button-sm\">Next &#8594;</button>\n</div>"
+        },
+        {
+          "name": "wf-wizard-footer-sticky",
+          "when": "Pins the footer to the bottom of the viewport (position: sticky; bottom: 0) so navigation stays reachable in a long, scrolling step.",
+          "code": "<div class=\"wf-wizard-footer wf-wizard-footer-sticky\">...</div>"
+        }
+      ]
+    },
+    {
+      "type": "tokens",
+      "title": "Tokens these surfaces consume",
+      "intro": "All three reach for the semantic `--wf-color-*` aliases rather than raw neutrals. Fallback hex values shown are the ones literally written in specialized.css.",
+      "rows": [
+        { "token": "--wf-color-border", "value": "#d1d5db", "use": "Section header underlines, panel borders/dividers, wizard-footer top border." },
+        { "token": "--wf-color-text-primary", "value": "#111827", "use": "Section titles, panel titles, detail values." },
+        { "token": "--wf-color-text-secondary", "value": "#374151", "use": "Section descriptions, field labels, wizard step counter, panel close glyph." },
+        { "token": "--wf-color-primary", "value": "#2563eb", "use": "Active tab underline in the panel; the wizard progress-bar fill." },
+        { "token": "--wf-color-neutral-50", "value": "#f9fafb", "use": "Detail-panel footer background." },
+        { "token": "--wf-color-neutral-100", "value": "#f3f4f6", "use": "Close-button hover background." },
+        { "token": "--wf-color-neutral-200", "value": "#e5e7eb", "use": "Unfilled track of the wizard progress bar." }
+      ]
+    },
+    {
+      "type": "code",
+      "title": "A FormSection-driven form with a WizardFooter",
+      "lang": "html",
+      "code": "<!-- Forms compose FormSection blocks vertically — no outer wf-card -->\n<div class=\"wf-form-section\">\n  <div class=\"wf-form-section-header\">\n    <h3 class=\"wf-form-section-title\">Basic Information</h3>\n    <p class=\"wf-form-section-description\">Enter the contract details below.</p>\n  </div>\n  <div class=\"wf-form-section-body\">\n    <div class=\"wf-form-grid wf-form-grid-2\">\n      <div class=\"wf-field\">\n        <label class=\"wf-field-label\">Contract Name <span class=\"wf-required\">*</span></label>\n        <input type=\"text\" class=\"wf-input\" placeholder=\"Enter contract name\">\n      </div>\n      <div class=\"wf-field\">\n        <label class=\"wf-field-label\">Contract Type <span class=\"wf-required\">*</span></label>\n        <select class=\"wf-select\"><option value=\"\">Select type...</option></select>\n      </div>\n    </div>\n  </div>\n</div>\n\n<!-- Footer carries the navigation; step content lives above -->\n<div class=\"wf-wizard-footer wf-wizard-footer-with-progress\">\n  <div class=\"wf-wizard-progress-bar\">\n    <div class=\"wf-wizard-progress-fill\" style=\"width: 50%;\"></div>\n  </div>\n  <div class=\"wf-wizard-actions\">\n    <button class=\"wf-button wf-button-secondary\">&#8592; Back</button>\n    <div class=\"wf-wizard-progress\">Step 2 of 4</div>\n    <button class=\"wf-button wf-button-primary\">Continue &#8594;</button>\n  </div>\n</div>",
+      "note": "The wizard pattern (patterns/FormWizard.html) is exactly this: a stepper plus form sections plus a wizard footer."
+    },
+    {
+      "type": "rules",
+      "title": "Composition rules",
+      "items": [
+        { "rule": "Compose forms as a vertical stack of wf-form-section blocks; don't wrap the stack in a wf-card.", "why": "DESIGN.md §4.1 and §7.1 — forms are narrative-first and own their own rhythm; an outer card is a redundant second container layer." },
+        { "rule": "Pick FormSection for form fields, Card for discrete non-form content, MetricCard only for a single dashboard number.", "why": "The container quick-lookup in §4.1: form fields → FormSection, discrete chunk → Card, highlighted metric → MetricCard." },
+        { "rule": "Set DetailPanel width with the modifier class (-narrow 320 / default 480 / -wide 640), not an inline width.", "why": "The three widths are the sanctioned sizes; an arbitrary inline width breaks the slide transform and the master-detail rhythm." },
+        { "rule": "Toggle the panel with wf-detail-panel-open, not by mounting/unmounting it.", "why": "The base class translates the panel 100% off-screen and the open class slides it back — the 300ms transition only fires if both states exist." },
+        { "rule": "Use the WizardFooter for an ordered flow; use Tabs only for peer views.", "why": "DESIGN.md §7.5 — \"Don't use Tabs for an ordered flow. That's a Stepper.\" The wizard footer is the stepper's navigation." },
+        { "rule": "Make the final wizard step's forward button a success button and disable Back on step one.", "why": "Matches the component's own last-step (wf-button-success Submit) and first-step (disabled Back) treatments — the affordance signals where you are in the flow." }
+      ]
+    },
+    {
+      "type": "dosdonts",
+      "items": [
+        { "do": "<div class=\"wf-form-section\">...</div>\n<div class=\"wf-form-section\">...</div>", "dont": "<div class=\"wf-card\"><div class=\"wf-form-section\">...</div></div>", "why": "DESIGN.md §7.1: don't put a wf-form-section inside a wf-card. FormSections compose vertically on their own." },
+        { "do": "<div class=\"wf-detail-panel wf-detail-panel-wide\">", "dont": "<div class=\"wf-detail-panel\" style=\"width: 600px;\">", "why": "Width is a modifier (-narrow / default / -wide). An inline width is an off-grid size that won't read as one of the system's panel sizes." },
+        { "do": "Forms read top-down in a single narrative column.", "dont": "Lay form fields out grid-first like a data table.", "why": "DESIGN.md §2.2: data views are grid-first, forms are narrative-first — don't mix postures inside one section." },
+        { "do": "<div class=\"wf-wizard-progress\">Step 2 of 4</div>", "dont": "Style the step counter with --wf-color-primary for emphasis.", "why": "DESIGN.md §7.2: primary color is for interactive intent only — the counter is static text and uses --wf-color-text-secondary." },
+        { "do": "Reach for --wf-color-text-secondary for labels and descriptions.", "dont": "Hard-code #374151 or reach for --wf-color-neutral-700.", "why": "DESIGN.md §7.2: use the semantic alias even when a neutral has the same value — it carries the meaning." }
+      ]
+    },
+    {
+      "type": "gotchas",
+      "items": [
+        { "title": "DetailPanel is hidden until you add -open", "detail": "The base .wf-detail-panel carries transform: translateX(100%), so a bare panel renders fully off-screen. The demo page even adds a CSS override (position: relative; transform: none) just to show it inline. In a real layout, add wf-detail-panel-open to slide it in." },
+        { "title": "Progress bar lives in a different DOM shape", "detail": "wf-wizard-footer-with-progress switches the footer to flex-direction: column. The progress bar is a direct child on top, and Back / counter / forward must be wrapped in a wf-wizard-actions row — they are not direct children of the footer like in the basic variant." },
+        { "title": "Progress fill width is inline, not a token", "detail": "The fill is .wf-wizard-progress-fill with its width set inline (style=\"width: 50%;\"). There's no data attribute or modifier for completion — you compute the percent and write it inline. This is the one sanctioned inline value here." },
+        { "title": "Tabs and footer are optional, the body always scrolls", "detail": "wf-detail-panel-tabs and wf-detail-panel-footer are drop-in regions you can omit. The body (.wf-detail-panel-body) is flex: 1 with overflow-y: auto, so the header/tabs/footer stay pinned while only the body scrolls — don't add your own scroll container inside it." },
+        { "title": "Form grids collapse to one column on mobile", "detail": "wf-form-grid-2/-3/-4 all become a single column at ≤768px via a media query. Don't fight this with inline grid-template-columns — the single-column fallback is the narrative-first posture asserting itself on small screens." }
+      ]
+    }
+  ]
+}

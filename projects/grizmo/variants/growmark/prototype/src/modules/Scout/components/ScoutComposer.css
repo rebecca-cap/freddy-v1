@@ -1,0 +1,137 @@
+/*
+ * ScoutComposer — textarea + send styles.
+ *
+ * Wireframe source: `.gizmo-footer input` + `.gizmo-footer .send` (lines
+ * 1198–1212 of gizmo-demo.html). The footer chrome (`border-top`, padding,
+ * background) lives on `.scout-panel__footer`; the composer itself is just
+ * the textarea + button row that sits inside it.
+ *
+ * Per the design-system policy:
+ *   - antd Input.TextArea → 3-class override `.scout-scope .ant-input.scout-composer__textarea`
+ *   - Excalibrr GraviButton → 4-class override (extra `.gravi-button` because
+ *     Excalibrr defines `.gravi-button.filled.default { background: ... }`
+ *     which would otherwise win on cascade order — same fix logged in
+ *     project-context.md for the trigger.
+ */
+
+.scout-composer {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  width: 100%;
+}
+
+/* Undo — borderless, icon-only, sized to the Ask field height and pinned to
+   its left. No square, no padding, no pulse: just the chevron-back icon that
+   dims when there's nothing to undo. */
+.scout-composer__undo {
+  flex-shrink: 0;
+  height: 35px;
+  width: 28px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: transparent;
+  color: var(--scout-text-muted);
+  font-size: var(--scout-font-size-md);
+  cursor: pointer;
+  transition: color 80ms ease;
+}
+.scout-composer__undo:hover {
+  color: var(--scout-brand);
+}
+.scout-composer__undo:focus-visible {
+  outline: 2px solid var(--scout-brand);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+.scout-composer__undo.is-disabled {
+  color: var(--scout-text-subtle);
+  opacity: 0.5;
+  cursor: default;
+}
+.scout-composer__undo.is-disabled:hover {
+  color: var(--scout-text-subtle);
+}
+
+/* TextArea — rounded pill that grows up to ~5 rows then scrolls. */
+.scout-scope .ant-input.scout-composer__textarea {
+  flex: 1;
+  min-width: 0;
+  padding: 7px 12px;
+  border: 0.5px solid var(--scout-border-strong);
+  border-radius: var(--scout-radius-pill);
+  background: var(--scout-surface);
+  color: var(--scout-text);
+  font-family: var(--scout-font-family);
+  font-size: var(--scout-font-size-md);
+  line-height: var(--scout-line-height-base);
+  resize: none;
+  box-shadow: none;
+  transition: border-color 80ms ease;
+}
+
+/* As the textarea grows past one line, ease the pill into a softer rounded
+   rectangle so the bottom corners don't sit awkwardly against the panel
+   footer. The :not check keeps single-line state crisp. */
+.scout-scope .ant-input.scout-composer__textarea:not(:placeholder-shown) {
+  /* No-op — sizing comes from antd's autoSize. Hook kept for future tweaks. */
+}
+
+.scout-scope .ant-input.scout-composer__textarea:hover {
+  border-color: var(--scout-border-strong);
+}
+
+.scout-scope .ant-input.scout-composer__textarea:focus,
+.scout-scope .ant-input.scout-composer__textarea:focus-visible {
+  border-color: var(--scout-brand);
+  outline: none;
+  /* Soft purple glow ring — tasteful focus affordance. */
+  box-shadow: 0 0 0 3px rgba(113, 93, 170, 0.18);
+  transition: border-color 80ms ease, box-shadow 120ms ease;
+}
+
+.scout-scope .ant-input.scout-composer__textarea::placeholder {
+  color: var(--scout-text-subtle);
+}
+
+/* Send button — brand-purple "Ask" pill, white text. Bump specificity to
+   (0,4,0) to beat Excalibrr's `.gravi-button.filled.default { background }`. */
+.scout-scope .ant-btn.gravi-button.scout-composer__send {
+  flex-shrink: 0;
+  height: 30px;
+  min-width: 0;
+  padding: 0 14px;
+  border-radius: var(--scout-radius-pill);
+  background: var(--scout-brand);
+  border: 0;
+  color: #ffffff;
+  font-weight: var(--scout-font-weight-semibold);
+  font-size: var(--scout-font-size-md);
+  line-height: 1;
+  box-shadow: none;
+  transition: background 80ms ease, opacity 80ms ease;
+}
+
+.scout-scope .ant-btn.gravi-button.scout-composer__send:hover {
+  background: var(--scout-brand-hover);
+  color: #ffffff;
+}
+
+.scout-scope .ant-btn.gravi-button.scout-composer__send:focus,
+.scout-scope .ant-btn.gravi-button.scout-composer__send:focus-visible {
+  outline: 2px solid var(--scout-brand);
+  outline-offset: 2px;
+  background: var(--scout-brand);
+  color: #ffffff;
+}
+
+.scout-scope .ant-btn.gravi-button.scout-composer__send[disabled],
+.scout-scope .ant-btn.gravi-button.scout-composer__send[disabled]:hover {
+  background: var(--scout-surface-3);
+  color: var(--scout-text-subtle);
+  cursor: not-allowed;
+  opacity: 1;
+}

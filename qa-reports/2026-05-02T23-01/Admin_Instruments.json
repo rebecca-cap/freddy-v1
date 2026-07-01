@@ -1,0 +1,14 @@
+{
+  "path": "/Admin/Instruments",
+  "title": "Price Instruments",
+  "finalUrl": "http://localhost:3001/Admin/Instruments",
+  "rootLen": 132544,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 8,
+  "stuckLoaders": [],
+  "emptyGrids": []
+}

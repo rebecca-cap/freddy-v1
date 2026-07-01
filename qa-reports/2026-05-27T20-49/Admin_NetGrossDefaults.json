@@ -1,0 +1,14 @@
+{
+  "path": "/Admin/NetGrossDefaults",
+  "title": "Net / Gross Defaults",
+  "finalUrl": "http://localhost:5173/Admin/NetGrossDefaults",
+  "rootLen": 110867,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 10,
+  "stuckLoaders": [],
+  "emptyGrids": []
+}

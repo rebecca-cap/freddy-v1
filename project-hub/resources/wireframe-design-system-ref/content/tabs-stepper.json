@@ -1,0 +1,133 @@
+{
+  "slug": "tabs-stepper",
+  "title": "Tabs & Stepper",
+  "order": 15,
+  "group": "Navigation",
+  "intro": "Tabs and Stepper look alike — a row of labels with one highlighted — but they answer opposite questions. `wf-tabs` switches between peer views the user can visit in any order; `wf-stepper` tracks ordered, gated progress through a flow with one correct path. Picking the wrong one quietly lies to the user about whether the order matters.",
+  "searchTerms": ["wf-tabs", "wf-tab", "wf-tab-active", "wf-tabs-line", "wf-tabs-card", "wf-tabs-pill", "wf-tabs-vertical", "wf-stepper", "wf-step", "wf-step-active", "wf-step-completed", "wf-step-error", "wf-step-connector", "wf-step-indicator", "tabs", "stepper", "wizard", "progress", "steps", "navigation"],
+  "blocks": [
+    {
+      "type": "usage",
+      "body": "Reach for `wf-tabs` when you're switching between *peer views of the same thing* — \"Overview / Details / History\" on a contract record. Every tab is equally valid and the user can move between them freely, in any order. No tab is a prerequisite for another.\n\nReach for `wf-stepper` when the user is moving through an *ordered, gated progression* — \"Select Type → Add Details → Review → Complete.\" There is a single correct path, steps generally can't be skipped, and each step carries a completion state (pending, active, completed, error). Stepper is the navigation half of the `FormWizard` page pattern.\n\nThe test is order. If the sequence is meaningful and gated, it's a Stepper. If the user should be able to jump straight to the third item without touching the first two, it's Tabs. When you're tempted to use Tabs for an ordered flow, you want a Stepper; when you're tempted to use a Stepper for free navigation, you want Tabs."
+    },
+    {
+      "type": "specimen",
+      "title": "Line Tabs (default)",
+      "image": "specimens/tabs-stepper/01-tabs-line-default.png",
+      "caption": "The default `wf-tabs wf-tabs-line` style: peer views with a 2px primary underline marking the active tab. Muted resting labels, a darker hover, and a disabled tab that drops to text-disabled."
+    },
+    {
+      "type": "specimen",
+      "title": "Card Tabs",
+      "image": "specimens/tabs-stepper/02-tabs-card.png",
+      "caption": "`wf-tabs-card` swaps the underline for a sunken tab strip where the active tab reads as a raised white card with a small shadow, joined to its panel."
+    },
+    {
+      "type": "variants",
+      "title": "Tabs variants",
+      "intro": "Style modifiers go on the `wf-tabs` wrapper; the active state is `wf-tab-active` on the button, and `disabled` is the native HTML attribute. The wrapper holds a `wf-tabs-list` of `wf-tab` buttons plus a `wf-tabs-content` panel.",
+      "rows": [
+        { "name": "wf-tabs-line", "when": "Default. Peer views with a 2px underline on the active tab — the everyday choice for record sub-views.", "code": "<div class=\"wf-tabs wf-tabs-line\">\n  <div class=\"wf-tabs-list\">\n    <button class=\"wf-tab wf-tab-active\">Overview</button>\n    <button class=\"wf-tab\">Details</button>\n    <button class=\"wf-tab\">History</button>\n    <button class=\"wf-tab\" disabled>Disabled</button>\n  </div>\n  <div class=\"wf-tabs-content\">\n    <p>The Overview panel.</p>\n  </div>\n</div>" },
+        { "name": "wf-tabs-card", "when": "The active tab reads as a raised card on a sunken strip. Use when tabs sit directly atop the content they control, like a date-range switcher.", "code": "<div class=\"wf-tabs wf-tabs-card\">\n  <div class=\"wf-tabs-list\">\n    <button class=\"wf-tab wf-tab-active\">Day</button>\n    <button class=\"wf-tab\">Week</button>\n    <button class=\"wf-tab\">Month</button>\n  </div>\n  <div class=\"wf-tabs-content\">...</div>\n</div>" },
+        { "name": "wf-tabs-pill", "when": "Rounded pills with a solid primary fill on the active tab. Best for compact in-content filters — \"All / Active / Archived.\"", "code": "<div class=\"wf-tabs wf-tabs-pill\">\n  <div class=\"wf-tabs-list\">\n    <button class=\"wf-tab wf-tab-active\">All</button>\n    <button class=\"wf-tab\">Active</button>\n  </div>\n  <div class=\"wf-tabs-content\">...</div>\n</div>" },
+        { "name": "wf-tabs-vertical", "when": "Lays the tab list down the left with a right-edge active marker. Use for settings-style screens with many peer sections.", "code": "<div class=\"wf-tabs wf-tabs-vertical\">\n  <div class=\"wf-tabs-list\">\n    <button class=\"wf-tab wf-tab-active\">General</button>\n    <button class=\"wf-tab\">Security</button>\n  </div>\n  <div class=\"wf-tabs-content\">...</div>\n</div>" },
+        { "name": "wf-badge in a tab", "when": "Count indicator on a tab label. Drop a `wf-badge wf-badge-sm` (optionally `-secondary` / `-success`) inside the button after the label.", "code": "<button class=\"wf-tab\">\n  Pending <span class=\"wf-badge wf-badge-sm\">12</span>\n</button>" }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "Horizontal Stepper",
+      "image": "specimens/tabs-stepper/03-stepper-horizontal.png",
+      "caption": "`wf-stepper` showing sequential progress: a completed step (filled primary circle with a check), the active step (white circle, primary ring and number), and pending steps (muted outlined circles). Connectors turn primary once the step before them is complete."
+    },
+    {
+      "type": "specimen",
+      "title": "Stepper with error state",
+      "image": "specimens/tabs-stepper/04-stepper-error-state.png",
+      "caption": "`wf-step-error` renders a failed step as a filled danger circle with a \"!\" indicator and a danger label, sitting between a completed step and the remaining pending steps."
+    },
+    {
+      "type": "variants",
+      "title": "Stepper step states",
+      "intro": "State classes go on each `wf-step`. A step holds a `wf-step-indicator` (number, check, or \"!\") and a `wf-step-label`, with `wf-step-connector` divs between steps. Mark the connector after a finished step `wf-step-connector-completed` so the progress line fills in.",
+      "rows": [
+        { "name": "wf-step (default)", "when": "A pending step the user hasn't reached. Muted outlined circle with the step number.", "code": "<div class=\"wf-step\">\n  <span class=\"wf-step-indicator\">3</span>\n  <span class=\"wf-step-label\">Review</span>\n</div>" },
+        { "name": "wf-step-active", "when": "The step the user is on. White fill, primary border and number, primary label — the Stepper's equivalent of `wf-tab-active`.", "code": "<div class=\"wf-step wf-step-active\">\n  <span class=\"wf-step-indicator\">2</span>\n  <span class=\"wf-step-label\">Add Details</span>\n</div>" },
+        { "name": "wf-step-completed", "when": "A finished step. Solid primary circle with a check (✓). Pair with `wf-step-connector-completed` on the connector that follows it.", "code": "<div class=\"wf-step wf-step-completed\">\n  <span class=\"wf-step-indicator\">✓</span>\n  <span class=\"wf-step-label\">Select Type</span>\n</div>" },
+        { "name": "wf-step-error", "when": "A failed step that needs attention — \"Payment Failed.\" Solid danger circle with a \"!\" and a danger label.", "code": "<div class=\"wf-step wf-step-error\">\n  <span class=\"wf-step-indicator\">!</span>\n  <span class=\"wf-step-label\">Payment Failed</span>\n</div>" },
+        { "name": "wf-step-connector-completed", "when": "The connector between two steps after the earlier one is done. Turns the line from border-gray to primary so progress reads at a glance.", "code": "<div class=\"wf-step-connector wf-step-connector-completed\"></div>" }
+      ]
+    },
+    {
+      "type": "variants",
+      "title": "Stepper layout modifiers",
+      "intro": "Layout modifiers go on the `wf-stepper` wrapper.",
+      "rows": [
+        { "name": "wf-stepper-vertical", "when": "Stacks steps top-to-bottom with vertical connectors. Wrap label + description in a `wf-step-content` div. Good for order-tracking timelines.", "code": "<div class=\"wf-stepper wf-stepper-vertical\">\n  <div class=\"wf-step wf-step-completed\">\n    <span class=\"wf-step-indicator\">✓</span>\n    <div class=\"wf-step-content\">\n      <span class=\"wf-step-label\">Order Placed</span>\n      <span class=\"wf-step-description\">Your order has been received</span>\n    </div>\n  </div>\n  <div class=\"wf-step-connector wf-step-connector-completed\"></div>\n  ...\n</div>" },
+        { "name": "wf-stepper-compact", "when": "Shrinks indicators to 24px and labels to 11px for tight headers and breadcrumb-height progress bars.", "code": "<div class=\"wf-stepper wf-stepper-compact\">\n  ...\n</div>" },
+        { "name": "wf-step-description", "when": "Optional sub-label under a step's title — \"Add payment method.\" Add as a third span (or inside `wf-step-content` when vertical).", "code": "<div class=\"wf-step wf-step-active\">\n  <span class=\"wf-step-indicator\">3</span>\n  <span class=\"wf-step-label\">Payment</span>\n  <span class=\"wf-step-description\">Add payment method</span>\n</div>" }
+      ]
+    },
+    {
+      "type": "tokens",
+      "title": "Tokens these components reach for",
+      "intro": "Both components draw their active/complete signal from the same primary token, and the Stepper error from danger — semantic intent, never decoration (see DESIGN §3.1). All values below are the fallbacks declared inline in `navigation.css`.",
+      "rows": [
+        { "token": "--wf-color-primary", "value": "#2563eb", "use": "Active tab underline/fill, completed and active step rings, the filled progress connector — the \"you are here / done\" signal across both components." },
+        { "token": "--wf-color-danger", "value": "#dc2626", "use": "`wf-step-error` indicator fill and label. The only non-primary status color either component uses." },
+        { "token": "--wf-color-text-muted", "value": "#64748b", "use": "Resting tab labels and pending step labels/indicators." },
+        { "token": "--wf-color-text-disabled", "value": "#94a3b8", "use": "Disabled tab text and step descriptions." },
+        { "token": "--wf-color-border", "value": "#cbd5e1", "use": "Tabs-list bottom border, pending step-indicator border, and the unfilled connector line." },
+        { "token": "--wf-color-bg-hover", "value": "#f8fafc", "use": "Sunken strip behind Card tabs and the pending step-indicator fill." },
+        { "token": "--wf-radius-full", "value": "9999px", "use": "Pill-tab corners and the round step indicators." },
+        { "token": "--wf-transition-fast", "value": "150ms ease", "use": "Tab color/state and step-indicator transitions." }
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "title": "Tabs — peer views",
+      "code": "<!-- Line tabs: equally-valid views, any order -->\n<div class=\"wf-tabs wf-tabs-line\">\n  <div class=\"wf-tabs-list\">\n    <button class=\"wf-tab wf-tab-active\">Overview</button>\n    <button class=\"wf-tab\">Details</button>\n    <button class=\"wf-tab\">History</button>\n    <button class=\"wf-tab\" disabled>Disabled</button>\n  </div>\n  <div class=\"wf-tabs-content\">\n    <!-- Active tab content -->\n  </div>\n</div>",
+      "note": "The active button carries `wf-tab-active`; switching tabs swaps which button has it and which panel renders in `wf-tabs-content`."
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "title": "Stepper — gated progression",
+      "code": "<!-- Completed → active → pending, with a filled connector behind the done step -->\n<div class=\"wf-stepper\">\n  <div class=\"wf-step wf-step-completed\">\n    <span class=\"wf-step-indicator\">✓</span>\n    <span class=\"wf-step-label\">Select Type</span>\n  </div>\n  <div class=\"wf-step-connector wf-step-connector-completed\"></div>\n  <div class=\"wf-step wf-step-active\">\n    <span class=\"wf-step-indicator\">2</span>\n    <span class=\"wf-step-label\">Add Details</span>\n  </div>\n  <div class=\"wf-step-connector\"></div>\n  <div class=\"wf-step\">\n    <span class=\"wf-step-indicator\">3</span>\n    <span class=\"wf-step-label\">Review</span>\n  </div>\n</div>",
+      "note": "Completed steps show ✓ and a filled connector; the active step shows its number in a primary ring; pending steps stay muted. This is the header of the FormWizard page pattern."
+    },
+    {
+      "type": "rules",
+      "title": "Tabs vs. Stepper — the navigation choice (DESIGN §4.4)",
+      "intro": "From the component decision tree. Peer views? Tabs. Ordered path? Stepper.",
+      "items": [
+        { "rule": "Use Tabs only for peer views of the same thing, freely navigable in any order.", "why": "Tabs signal that every view is equally valid and order doesn't matter — that's the contract users read from the shape." },
+        { "rule": "Use Stepper only for ordered, gated progression with a single correct path and per-step completion state.", "why": "A Stepper promises sequence and gating. Steps generally can't be skipped, and each one tracks pending / active / completed / error." },
+        { "rule": "If you're tempted to use Tabs for an ordered flow, you want a Stepper.", "why": "Tabs let users jump ahead and skip prerequisites — exactly what a gated flow must prevent." },
+        { "rule": "If you're tempted to use a Stepper for free navigation, you want Tabs.", "why": "A Stepper's completion states and gating imply rules that don't exist for peer views, confusing the user about what's required." },
+        { "rule": "Don't reach for Tabs or Stepper for top-level location — that's Sidebar — or for hierarchy crumbs — that's Breadcrumb.", "why": "Tabs and Stepper are in-page navigation; Sidebar answers \"where am I in the app\" and Breadcrumb answers \"where am I in the tree.\"" }
+      ]
+    },
+    {
+      "type": "dosdonts",
+      "items": [
+        { "do": "Tabs for \"Overview / History / Settings\" on one record", "dont": "Tabs for \"Configure → Review → Submit\"", "why": "An ordered, gated flow is a Stepper (DESIGN §4.4 / §7.5). Tabs would let users skip straight to Submit." },
+        { "do": "Stepper for \"Select Type → Add Details → Review → Complete\"", "dont": "Stepper for free-to-browse settings panels", "why": "Completion states and gating imply a required sequence that doesn't exist for peer views — use `wf-tabs-vertical` instead." },
+        { "do": "`<button class=\"wf-tab wf-tab-active\">` for the current tab", "dont": "Styling the active tab with primary color by hand", "why": "`wf-tab-active` already applies `--wf-color-primary` to text and the underline; hand-rolling it drifts from the token contract (DESIGN §2.7)." },
+        { "do": "Mark finished connectors with `wf-step-connector-completed`", "dont": "Leaving every connector gray while steps complete", "why": "The filled connector is the at-a-glance progress signal; without it the Stepper looks stalled even as steps complete." },
+        { "do": "Reserve `wf-step-error` for an actual failed step", "dont": "Using the danger color to make a step \"stand out\"", "why": "Status color is reserved for status (DESIGN §3.1) — a decorative red step reads as a failure that isn't there." }
+      ]
+    },
+    {
+      "type": "gotchas",
+      "items": [
+        { "title": "Tabs and Stepper are static markup, not stateful widgets", "detail": "Nothing in `navigation.css` wires click-to-switch. `wf-tab-active`, `wf-step-active`, and `wf-step-completed` are presentational classes you move by hand (or via prototype JS). The library renders the state; it doesn't manage it." },
+        { "title": "The completed connector is a separate element you must flip", "detail": "`wf-step-connector` defaults to the gray border color. It only turns primary when you also add `wf-step-connector-completed` — and that class lives on the connector div, not on the step before it. Forget it and progress won't read." },
+        { "title": "Vertical steppers need a wrapping wf-step-content", "detail": "In `wf-stepper-vertical`, the label and description sit in a `wf-step-content` div beside the indicator (the horizontal layout stacks them as bare sibling spans). Swapping layout means restructuring the step's children, not just the wrapper class." },
+        { "title": "The step indicator's glyph is content, not derived", "detail": "The ✓ for completed, the number for active/pending, and the \"!\" for error are literal text inside `wf-step-indicator` — the state class only colors the circle. Set the matching glyph yourself when you change a step's state." },
+        { "title": "Card and pill tabs drop the underline entirely", "detail": "`wf-tabs-line` is the only variant that uses the bottom border; `wf-tabs-card`, `wf-tabs-pill`, and `wf-tabs-vertical` each zero out `border-bottom` and signal the active tab a different way (raised card, solid pill, right-edge marker). Don't expect an underline outside the line variant." }
+      ]
+    }
+  ]
+}

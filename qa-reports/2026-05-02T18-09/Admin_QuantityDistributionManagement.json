@@ -1,0 +1,14 @@
+{
+  "path": "/Admin/QuantityDistributionManagement",
+  "title": "Quantity Distribution",
+  "finalUrl": "http://localhost:3001/Admin/QuantityDistributionManagement",
+  "rootLen": 46838,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [
+    "MarketPlatform/QuantityDistribution/GetQuantityDistributionWeights"
+  ],
+  "consoleEventCount": 11
+}

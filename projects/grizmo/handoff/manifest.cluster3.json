@@ -1,0 +1,194 @@
+[
+  {
+    "id": "c3-cell-scope",
+    "title": "Grid cell highlighting — scope",
+    "section": "scoping",
+    "file": "c3-cell-scope.png",
+    "target": "viewport",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": []
+  },
+  {
+    "id": "c3-cell-addmode",
+    "title": "Grid +Add pick mode",
+    "section": "scoping",
+    "file": "c3-cell-addmode.png",
+    "target": "viewport",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Picked / eligible",
+        "note": "Same row OR one scope-group column.",
+        "xPct": 47.92,
+        "yPct": 32.77,
+        "wPct": 5.95,
+        "hPct": 3.33
+      },
+      {
+        "n": 2,
+        "label": "Disabled",
+        "note": "Off-axis / identity cells can’t be picked.",
+        "xPct": 7.8,
+        "yPct": 39.63,
+        "wPct": 2.02,
+        "hPct": 3.33
+      }
+    ]
+  },
+  {
+    "id": "c3-ready-dots",
+    "title": "Per-row ready indicator",
+    "section": "threading",
+    "file": "c3-ready-dots.png",
+    "target": "viewport",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Ready dots",
+        "note": "Lights when that row’s background answer is ready.",
+        "xPct": 7.8,
+        "yPct": 32.77,
+        "wPct": 2.02,
+        "hPct": 3.33
+      }
+    ]
+  },
+  {
+    "id": "c3-timer-bar",
+    "title": "Prototype timer bar",
+    "section": "crosspage",
+    "file": "c3-timer-bar.png",
+    "target": ".scout-proto-timer",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Label",
+        "note": "“PROTOTYPE TIMER (simulated latency)”.",
+        "xPct": 1.07,
+        "yPct": 37.21,
+        "wPct": 20.81,
+        "hPct": 31.1
+      },
+      {
+        "n": 2,
+        "label": "Countdown",
+        "note": "Soonest ready answer.",
+        "xPct": 33.18,
+        "yPct": 37.21,
+        "wPct": 12,
+        "hPct": 31.1
+      }
+    ]
+  },
+  {
+    "id": "c3-sidebar",
+    "title": "Sidebar-docked mode",
+    "section": "anatomy",
+    "file": "c3-sidebar.png",
+    "target": "viewport",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Docked panel",
+        "note": "Full height; pushes the grid left.",
+        "xPct": 77.38,
+        "yPct": 0,
+        "wPct": 22.62,
+        "hPct": 100
+      }
+    ]
+  },
+  {
+    "id": "c3-name-tag",
+    "title": "Cross-page name tag",
+    "section": "crosspage",
+    "file": "c3-name-tag.png",
+    "target": "viewport",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Scout status",
+        "note": "“Scout is thinking / ready”.",
+        "xPct": 82.84,
+        "yPct": 2.21,
+        "wPct": 6.14,
+        "hPct": 1.86
+      }
+    ]
+  },
+  {
+    "id": "c3-control-panel",
+    "title": "Control Panel alert cards",
+    "section": "crosspage",
+    "file": "c3-control-panel.png",
+    "target": "viewport",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Ready alert cards",
+        "note": "Click jumps back into the thread.",
+        "xPct": 74.64,
+        "yPct": 51.78,
+        "wPct": 23.93,
+        "hPct": 10.39
+      }
+    ]
+  },
+  {
+    "id": "c3-tour",
+    "title": "How cell colors work",
+    "section": "scoping",
+    "file": "c3-tour.png",
+    "target": "viewport",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Cell-color help",
+        "note": "Explains identity vs scope coloring.",
+        "xPct": 56.94,
+        "yPct": 11.67,
+        "wPct": 8.22,
+        "hPct": 2
+      }
+    ]
+  }
+]

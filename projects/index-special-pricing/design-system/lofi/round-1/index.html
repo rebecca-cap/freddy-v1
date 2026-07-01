@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Index Special Offers — Lo-fi round 1</title>
+  <link rel="stylesheet" href="wireframes/assets/wireframe.css">
+  <link rel="stylesheet" href="wireframes/assets/lofi-chrome.css">
+  <style>
+    .gx { max-width: 960px; margin: 0 auto; padding: var(--wf-space-8) var(--wf-space-6); }
+    .gx-grid { display: grid; gap: var(--wf-space-4); grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); margin-top: var(--wf-space-6); }
+    .gx-card { display:flex; flex-direction:column; gap: var(--wf-space-2); text-decoration:none; color: inherit; }
+    .gx-thumb { aspect-ratio: 16/10; border:1px solid var(--wf-color-border); border-radius: var(--wf-radius-md); background: var(--wf-color-surface-sunken); display:flex; align-items:center; justify-content:center; font-size: var(--wf-text-h1); color: var(--wf-color-text-tertiary); }
+    .gx-card:hover .gx-thumb { border-color: var(--wf-color-primary); }
+    .gx-num { font-size: var(--wf-text-xs); color: var(--wf-color-text-tertiary); letter-spacing:.05em; text-transform:uppercase; }
+  </style>
+</head>
+<body>
+  <div class="gx">
+    <h1 class="wf-text-h1">Index Special Offers — Lo-fi round 1</h1>
+    <p class="wf-text wf-text-body lf-muted">A fresh, single-view <strong>Quick Create for an index special</strong> — fire off an offer in ~10–12 clicks and under 30 seconds. Built from the Gravitate WireframeDesignSystem.</p>
+
+    <div class="wf-row wf-gap-3" style="margin-top: var(--wf-space-4);">
+      <a class="wf-button wf-button-primary wf-button-sm" href="wireframes/02-quick-create-index.html">Open the hero flow</a>
+      <a class="wf-button wf-button-secondary wf-button-sm" href="WIREFRAME-GUIDE.html">Decisions &amp; changelog &rarr;</a>
+    </div>
+
+    <div class="gx-grid">
+      <a class="gx-card" href="wireframes/01-launchpad.html">
+        <div class="gx-thumb">&#128228;</div>
+        <span class="gx-num">Screen 01</span>
+        <span class="wf-text wf-text-h4">Offers launchpad</span>
+        <span class="wf-text wf-text-helper">Entry point — the Create menu and its three paths.</span>
+      </a>
+      <a class="gx-card" href="wireframes/02-quick-create-index.html">
+        <div class="gx-thumb">&#9889;</div>
+        <span class="gx-num">Screen 02 &middot; hero</span>
+        <span class="wf-text wf-text-h4">Quick create — Index special</span>
+        <span class="wf-text wf-text-helper">The single-view flow. Price formula is the centerpiece.</span>
+      </a>
+      <a class="gx-card" href="wireframes/03-create-from-prior.html">
+        <div class="gx-thumb">&#128203;</div>
+        <span class="gx-num">Screen 03</span>
+        <span class="wf-text wf-text-h4">Create from prior</span>
+        <span class="wf-text wf-text-helper">Same view, prefilled from a sent offer — tweak &amp; send.</span>
+      </a>
+      <a class="gx-card" href="wireframes/04-mobile-quick-create.html">
+        <div class="gx-thumb">&#128241;</div>
+        <span class="gx-num">Screen 04</span>
+        <span class="wf-text wf-text-h4">Mobile quick create</span>
+        <span class="wf-text wf-text-helper">Same field sequence, one column, pinned send bar.</span>
+      </a>
+      <a class="gx-card" href="wireframes/05-review-send.html">
+        <div class="gx-thumb">&#10003;</div>
+        <span class="gx-num">Screen 05</span>
+        <span class="wf-text wf-text-h4">Offer sent</span>
+        <span class="wf-text wf-text-helper">The payoff — sent confirmation and the speed scorecard.</span>
+      </a>
+    </div>
+  </div>
+</body>
+</html>

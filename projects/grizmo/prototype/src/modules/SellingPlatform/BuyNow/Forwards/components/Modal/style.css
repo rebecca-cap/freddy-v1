@@ -1,0 +1,13 @@
+.forwards-modal-container .ant-modal-body {
+  padding: 0;
+  overflow: scroll;
+}
+
+.pricing-information .ant-form-item,
+.pricing-information .ant-form-item * {
+  margin-bottom: 0;
+}
+
+.expired-modal .ant-modal-body {
+  padding: 0
+}

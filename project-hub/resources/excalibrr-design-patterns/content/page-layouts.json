@@ -1,0 +1,183 @@
+{
+  "slug": "page-layouts",
+  "title": "Page Layouts",
+  "order": 2,
+  "group": "Page anatomy",
+  "intro": "Three archetypes — full-width, sidebar + main, and grid-first — cover every page in the application. Each starts from the same page header anatomy, fills the viewport with `<Vertical height=\"100%\">`, and gives exactly one pane the scroll. Pick an archetype; never invent a custom shape.",
+  "demoPath": "/DesignSystem/PageLayouts",
+  "searchTerms": [
+    "page layout",
+    "full-width",
+    "sidebar",
+    "grid-first",
+    "page header",
+    "PageHeader",
+    "control bar",
+    "chrome budget",
+    "scroll region",
+    "Vertical",
+    "Horizontal",
+    "GraviGrid",
+    "viewport",
+    "archetype",
+    "back button",
+    "content padding"
+  ],
+  "blocks": [
+    {
+      "type": "rules",
+      "title": "Laws of page layout",
+      "intro": "These hold on every page. Violations are bugs, not stylistic choices.",
+      "items": [
+        {
+          "rule": "Every page is one of three archetypes: full-width, sidebar + main, or grid-first.",
+          "why": "Three shapes keep the whole app predictable. A page that fits none of them is a design problem to resolve, not a fourth archetype to invent."
+        },
+        {
+          "rule": "The page root is `<Vertical height=\"100%\">`; chrome rows never flex, and exactly one pane owns scrolling via `flex=\"1\"` + `scroll`.",
+          "why": "Competing scroll regions produce double scrollbars and headers that drift off-screen. One explicit scroll owner keeps chrome pinned to the viewport."
+        },
+        {
+          "rule": "On grid-centric pages, cumulative non-grid chrome — page header, control bars, tab strips, filter rows, footers — stays under 320px.",
+          "why": "The grid is the page. Past ~320px of chrome the grid no longer fits the viewport, and users end up scrolling the shell instead of the data."
+        },
+        {
+          "rule": "Page header anatomy never varies: `Texto` h3 weight 600 title on the left, actions on the right (secondary before primary, 8px gap), optional back icon button 8px left of the title.",
+          "why": "Users orient by the header. One anatomy makes every page legible at a glance; per-page variants read as a different product."
+        },
+        {
+          "rule": "Content areas take 24px padding (space-5) on all four sides; grid-first pages take none.",
+          "why": "One padding value makes screens compose seamlessly. Grids manage their own cell spacing — wrapper padding only shrinks visible rows."
+        },
+        {
+          "rule": "Sidebars are fixed-width, 240–280px, with `flex-shrink: 0`; the main pane takes `flex=\"1\"`.",
+          "why": "Proportional sidebars reflow navigation on every resize. A fixed width keeps nav targets stationary while content absorbs the change."
+        },
+        {
+          "rule": "Layout geometry travels through props — `flex=\"1\"`, `height=\"100%\"`, `gap={12}` — never `style`.",
+          "why": "`<Vertical style={{ flex: 1 }}>` is the most reviewed-out mistake in generated code. Props keep layout declarative and auditable; `style` is reserved for properties with no prop equivalent, like `padding`."
+        }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "Full-width — the default archetype",
+      "image": "specimens/page-layouts/01-full-width.png",
+      "caption": "Page header (flex-shrink: 0, border-bottom) above a flex: 1 scrollable content area with 24px padding. The default for dashboards, detail pages, and forms."
+    },
+    {
+      "type": "specimen",
+      "title": "Sidebar + main",
+      "image": "specimens/page-layouts/02-sidebar-main.png",
+      "caption": "Header spans the full width; below it a fixed 240–280px sidebar sits beside a flex: 1 main pane. The sidebar never flexes — flex-shrink: 0."
+    },
+    {
+      "type": "specimen",
+      "title": "Grid-first",
+      "image": "specimens/page-layouts/03-grid-first.png",
+      "caption": "One control bar of filters and actions, then the grid takes everything else at flex: 1. No page-level padding — the grid owns its own spacing."
+    },
+    {
+      "type": "specimen",
+      "title": "Page header anatomy",
+      "image": "specimens/page-layouts/04-page-header.png",
+      "caption": "Texto h3 weight 600 title left; actions right with secondary before primary and 8px gap. Detail pages add a back icon button 8px left of the title. The row uses justify-content: space-between."
+    },
+    {
+      "type": "specimen",
+      "title": "Consistency dos and don'ts",
+      "image": "specimens/page-layouts/05-dos-donts-headers.png",
+      "caption": "From the live guide: identical header treatment on every page, and one 24px (space-5) content padding standard versus arbitrary per-page values."
+    },
+    {
+      "type": "tokens",
+      "title": "Layout spacing and sizing",
+      "intro": "The full vocabulary a page layout is allowed to use. Anything outside this table needs a reason in review.",
+      "rows": [
+        {
+          "token": "Content padding",
+          "value": "24px (space-5)",
+          "use": "All scrollable content areas, uniform on all four sides — full-width and sidebar + main archetypes"
+        },
+        {
+          "token": "Page header padding",
+          "value": "16px 24px (space-4 space-5)",
+          "use": "Standard header row on every archetype, with a 1px border-bottom separating it from content"
+        },
+        {
+          "token": "Control bar padding",
+          "value": "12px 24px (space-3 space-5)",
+          "use": "Filter and action bar above the grid on grid-first pages"
+        },
+        {
+          "token": "Sidebar width",
+          "value": "240–280px",
+          "use": "Fixed sidebar in sidebar + main; flex-shrink: 0 so it never collapses"
+        },
+        {
+          "token": "Action gap",
+          "value": "8px",
+          "use": "Between header action buttons, and between the back button and the title"
+        },
+        {
+          "token": "Chrome budget",
+          "value": "≤ 320px",
+          "use": "Maximum cumulative non-grid chrome height (headers + bars + footers) on grid-first pages"
+        }
+      ]
+    },
+    {
+      "type": "code",
+      "title": "Canonical skeletons — all three archetypes",
+      "code": "// 1 · Full-width — the default\n<Vertical height=\"100%\">\n  <PageHeader />                              {/* flex-shrink: 0, border-bottom */}\n  <Vertical flex=\"1\" scroll style={{ padding: 24 }}>\n    {/* content */}\n  </Vertical>\n</Vertical>\n\n// 2 · Sidebar + main — settings, profile, nav-heavy pages\n<Vertical height=\"100%\">\n  <PageHeader />                              {/* spans full width */}\n  <Horizontal flex=\"1\">\n    <Sidebar />                               {/* 240–280px, flex-shrink: 0 */}\n    <Vertical flex=\"1\" scroll style={{ padding: 24 }}>\n      {/* main content */}\n    </Vertical>\n  </Horizontal>\n</Vertical>\n\n// 3 · Grid-first — the grid is the page\n<Vertical height=\"100%\">\n  <ControlBar />                              {/* filters + actions, border-bottom */}\n  <GraviGrid agPropOverrides={{}} />          {/* fills the rest — no wrapper padding */}\n</Vertical>",
+      "note": "Geometry goes through props only; `style` appears solely for `padding`, which has no prop equivalent. `GraviGrid` always receives `agPropOverrides`, even when empty. The `scroll` prop marks the one pane allowed to scroll — both primitives clip overflow otherwise."
+    },
+    {
+      "type": "dosdonts",
+      "items": [
+        {
+          "do": "Reuse the exact header anatomy on every page — Texto h3 weight 600, 16px 24px padding, border-bottom.",
+          "dont": "Restyle headers per page: bigger fonts, centered titles, uppercase labels, missing borders.",
+          "why": "Headers are how users tell where they are; variance between pages reads as a different product."
+        },
+        {
+          "do": "Pad content areas 24px (space-5), uniform on all four sides.",
+          "dont": "Invent per-page padding — 20px, 32px 16px, 12px 24px 8px shorthand.",
+          "why": "One value keeps screens composable and removes a whole class of review churn."
+        },
+        {
+          "do": "Budget grid-page chrome: one control bar, then the grid at flex: 1.",
+          "dont": "Stack header + tab bar + filter strip + summary cards + footer around the grid.",
+          "why": "Every chrome row steals data rows; past ~320px total the grid no longer fits the viewport."
+        },
+        {
+          "do": "Mark exactly one pane as the scroll owner with `flex=\"1\"` + `scroll`.",
+          "dont": "Let the document body scroll, or nest multiple `overflow: auto` panes.",
+          "why": "Multiple scroll regions create double scrollbars and let chrome scroll away with the content."
+        }
+      ]
+    },
+    {
+      "type": "usage",
+      "title": "Choosing an archetype",
+      "body": "Default to full-width. It serves dashboards, detail pages, and form pages: a page header, then one scrollable content area. Reach for sidebar + main only when the page carries its own internal navigation — settings, profile management, multi-section configuration — and the sidebar holds that navigation, nothing else.\n\nGo grid-first the moment a data grid is the point of the page: quote books, pricing screens, any manage-X table. The grid replaces the content area entirely; the only chrome above it is a single control bar of filters and actions, and the page contributes zero padding because `GraviGrid` manages its own cell spacing.\n\nDrawers, split panels, and footers added later count against the same viewport the layout was budgeted for. Decide the archetype first, then make every subsequent surface justify the pixels it takes from it."
+    },
+    {
+      "type": "gotchas",
+      "items": [
+        {
+          "title": "The 320px chrome budget is cumulative",
+          "detail": "Count every non-grid row: page header (~56px), control bar (~48px), tab strip, filter row, analytics cards, publish footer. Each looks cheap alone; together they push the grid below the fold at 1080p. This exact failure has shipped more than once — audit the running total before adding any new chrome row to a grid page, and design drawers and footers tight from the first pass."
+        },
+        {
+          "title": "Vertical and Horizontal defaults are asymmetric",
+          "detail": "Vertical is greedy — flex: '1 1 auto' and height: '100%' by default — while Horizontal hugs content with flex: '0 1 auto' and no height. The split-pane row in sidebar + main collapses to its content height unless you pass flex=\"1\" explicitly."
+        },
+        {
+          "title": "Both primitives clip by default",
+          "detail": "Vertical and Horizontal set overflow: hidden unless you pass `scroll`. Forget it on the content pane and long content silently truncates instead of scrolling. Mark the one scroll owner explicitly; everything else stays clipped on purpose."
+        }
+      ]
+    }
+  ]
+}

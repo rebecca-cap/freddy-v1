@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Input Component - Wireframe Design System</title>
+  <link rel="stylesheet" href="controls.css">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      padding: 32px;
+      background-color: #f8fafc;
+      margin: 0;
+    }
+    .demo-section {
+      background: white;
+      padding: 24px;
+      border-radius: 8px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      max-width: 400px;
+    }
+    .demo-section h2 {
+      margin-top: 0;
+      margin-bottom: 16px;
+      font-size: 16px;
+      color: #374151;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Input Component</h1>
+
+  <div class="demo-section">
+    <h2>Basic Input</h2>
+
+    <!-- Basic input with label -->
+    <div class="wf-field">
+      <label class="wf-field-label">Field Label</label>
+      <input type="text" class="wf-input" placeholder="Enter value...">
+    </div>
+
+    <!-- Input without placeholder -->
+    <div class="wf-field">
+      <label class="wf-field-label">Username</label>
+      <input type="text" class="wf-input">
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>With Helper Text</h2>
+
+    <!-- With helper text -->
+    <div class="wf-field">
+      <label class="wf-field-label">Email <span class="wf-required">*</span></label>
+      <input type="email" class="wf-input" placeholder="you@example.com">
+      <span class="wf-field-helper">We'll never share your email</span>
+    </div>
+
+    <!-- Password with helper -->
+    <div class="wf-field">
+      <label class="wf-field-label">Password <span class="wf-required">*</span></label>
+      <input type="password" class="wf-input">
+      <span class="wf-field-helper">Must be at least 8 characters</span>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Error State</h2>
+
+    <!-- Error state -->
+    <div class="wf-field wf-field-error">
+      <label class="wf-field-label">Username</label>
+      <input type="text" class="wf-input" value="john_doe">
+      <span class="wf-field-error-message">Username is already taken</span>
+    </div>
+
+    <!-- Another error example -->
+    <div class="wf-field wf-field-error">
+      <label class="wf-field-label">Email <span class="wf-required">*</span></label>
+      <input type="email" class="wf-input" value="invalid-email">
+      <span class="wf-field-error-message">Please enter a valid email address</span>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Disabled State</h2>
+
+    <!-- Disabled input -->
+    <div class="wf-field">
+      <label class="wf-field-label">Read Only</label>
+      <input type="text" class="wf-input" disabled value="Cannot edit">
+    </div>
+
+    <!-- Disabled with helper -->
+    <div class="wf-field">
+      <label class="wf-field-label">System Generated</label>
+      <input type="text" class="wf-input" disabled value="AUTO-12345">
+      <span class="wf-field-helper">This value is automatically generated</span>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Input Types</h2>
+
+    <!-- Number input -->
+    <div class="wf-field">
+      <label class="wf-field-label">Quantity</label>
+      <input type="number" class="wf-input" placeholder="0" min="0" max="100">
+    </div>
+
+    <!-- Date input -->
+    <div class="wf-field">
+      <label class="wf-field-label">Start Date</label>
+      <input type="date" class="wf-input">
+    </div>
+
+    <!-- Search input -->
+    <div class="wf-field">
+      <label class="wf-field-label">Search</label>
+      <input type="search" class="wf-input" placeholder="Search products...">
+    </div>
+  </div>
+
+</body>
+</html>

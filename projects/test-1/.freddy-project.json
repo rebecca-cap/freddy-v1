@@ -1,0 +1,14 @@
+{
+  "slug": "test-1",
+  "name": "Test 1",
+  "description": "test desc",
+  "branch": "project/test-1",
+  "port": 3002,
+  "createdAt": "2026-05-05T19:17:28.069Z",
+  "paths": {
+    "project": "/Users/frankoverland/freddy/projects/test-1",
+    "prototype": "/Users/frankoverland/freddy/projects/test-1/prototype",
+    "lofi": "/Users/frankoverland/freddy/projects/test-1/design-system/lofi",
+    "resources": "/Users/frankoverland/freddy/projects/test-1/resources"
+  }
+}

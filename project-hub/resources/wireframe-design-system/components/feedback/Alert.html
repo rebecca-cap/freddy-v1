@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alert Components - Gravitate Wireframe Design System</title>
+  <link rel="stylesheet" href="../../tokens/index.css">
+  <link rel="stylesheet" href="feedback.css">
+  <style>
+    /* Demo page styles */
+    .demo-section {
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--wf-color-border);
+    }
+    .demo-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--wf-color-text-primary);
+    }
+    .demo-description {
+      font-size: 0.875rem;
+      color: var(--wf-color-text-secondary);
+      margin-bottom: 1.5rem;
+    }
+    .demo-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 600px;
+    }
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 1.5rem;
+    }
+    .demo-item {
+      padding: 1.5rem;
+      background: var(--wf-color-surface);
+      border: 1px solid var(--wf-color-border);
+      border-radius: var(--wf-radius-md);
+    }
+    .demo-item h4 {
+      font-size: 0.875rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      color: var(--wf-color-text-secondary);
+    }
+  </style>
+</head>
+<body style="padding: 2rem; background: var(--wf-color-background);">
+
+  <h1 style="margin-bottom: 0.5rem;">Alert Components</h1>
+  <p style="color: var(--wf-color-text-secondary); margin-bottom: 2rem;">
+    Inline alert banners for displaying important messages within the page flow.
+  </p>
+
+  <!-- ============================================
+       ALERT VARIANTS
+       ============================================ -->
+  <section class="demo-section">
+    <h2 class="demo-title">Alert Variants</h2>
+    <p class="demo-description">
+      Four semantic variants for different types of messages: info, success, warning, and error.
+    </p>
+
+    <div class="demo-stack">
+      <!-- Info Alert -->
+      <div class="wf-alert wf-alert-info">
+        <span class="wf-alert-icon">&#8505;</span>
+        <div class="wf-alert-content">
+          <h4 class="wf-alert-title">Information</h4>
+          <p class="wf-alert-description">This is an informational alert with a title and description. Use it to share helpful context with users.</p>
+        </div>
+        <button class="wf-alert-close">&times;</button>
+      </div>
+
+      <!-- Success Alert -->
+      <div class="wf-alert wf-alert-success">
+        <span class="wf-alert-icon">&#10003;</span>
+        <div class="wf-alert-content">
+          <h4 class="wf-alert-title">Success</h4>
+          <p class="wf-alert-description">Your changes have been saved successfully. You can continue editing or return to the dashboard.</p>
+        </div>
+        <button class="wf-alert-close">&times;</button>
+      </div>
+
+      <!-- Warning Alert -->
+      <div class="wf-alert wf-alert-warning">
+        <span class="wf-alert-icon">&#9888;</span>
+        <div class="wf-alert-content">
+          <h4 class="wf-alert-title">Warning</h4>
+          <p class="wf-alert-description">Your subscription will expire in 7 days. Please update your payment method to avoid service interruption.</p>
+        </div>
+        <button class="wf-alert-close">&times;</button>
+      </div>
+
+      <!-- Error Alert -->
+      <div class="wf-alert wf-alert-error">
+        <span class="wf-alert-icon">&#10005;</span>
+        <div class="wf-alert-content">
+          <h4 class="wf-alert-title">Error</h4>
+          <p class="wf-alert-description">Unable to process your request. Please check your input and try again, or contact support if the problem persists.</p>
+        </div>
+        <button class="wf-alert-close">&times;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       SIMPLE ALERTS (No Title)
+       ============================================ -->
+  <section class="demo-section">
+    <h2 class="demo-title">Simple Alerts (Message Only)</h2>
+    <p class="demo-description">
+      Compact alerts with just a message, useful for brief notifications.
+    </p>
+
+    <div class="demo-stack">
+      <div class="wf-alert wf-alert-info wf-alert-simple">
+        <span class="wf-alert-icon">&#8505;</span>
+        <div class="wf-alert-content">
+          <p class="wf-alert-description">You have 3 new notifications.</p>
+        </div>
+      </div>
+
+      <div class="wf-alert wf-alert-success wf-alert-simple">
+        <span class="wf-alert-icon">&#10003;</span>
+        <div class="wf-alert-content">
+          <p class="wf-alert-description">Email sent successfully.</p>
+        </div>
+      </div>
+
+      <div class="wf-alert wf-alert-warning wf-alert-simple">
+        <span class="wf-alert-icon">&#9888;</span>
+        <div class="wf-alert-content">
+          <p class="wf-alert-description">Please review the highlighted fields before submitting.</p>
+        </div>
+      </div>
+
+      <div class="wf-alert wf-alert-error wf-alert-simple">
+        <span class="wf-alert-icon">&#10005;</span>
+        <div class="wf-alert-content">
+          <p class="wf-alert-description">Connection failed. Please check your network.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       ALERTS WITH ACTIONS
+       ============================================ -->
+  <section class="demo-section">
+    <h2 class="demo-title">Alerts with Actions</h2>
+    <p class="demo-description">
+      Alerts can include action buttons to let users respond to the message.
+    </p>
+
+    <div class="demo-stack">
+      <div class="wf-alert wf-alert-warning">
+        <span class="wf-alert-icon">&#9888;</span>
+        <div class="wf-alert-content">
+          <h4 class="wf-alert-title">Unsaved Changes</h4>
+          <p class="wf-alert-description">You have unsaved changes that will be lost if you leave this page.</p>
+          <div class="wf-alert-actions">
+            <button class="wf-button wf-button-secondary wf-button-sm">Discard</button>
+            <button class="wf-button wf-button-primary wf-button-sm">Save Changes</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="wf-alert wf-alert-info">
+        <span class="wf-alert-icon">&#8505;</span>
+        <div class="wf-alert-content">
+          <h4 class="wf-alert-title">New Feature Available</h4>
+          <p class="wf-alert-description">Check out our new dashboard analytics. See your data in a whole new way.</p>
+          <div class="wf-alert-actions">
+            <button class="wf-button wf-button-link wf-button-sm">Learn More</button>
+          </div>
+        </div>
+        <button class="wf-alert-close">&times;</button>
+      </div>
+
+      <div class="wf-alert wf-alert-error">
+        <span class="wf-alert-icon">&#10005;</span>
+        <div class="wf-alert-content">
+          <h4 class="wf-alert-title">Payment Failed</h4>
+          <p class="wf-alert-description">We couldn't process your payment. Please update your billing information.</p>
+          <div class="wf-alert-actions">
+            <button class="wf-button wf-button-danger wf-button-sm">Update Payment</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       NON-CLOSABLE ALERTS
+       ============================================ -->
+  <section class="demo-section">
+    <h2 class="demo-title">Non-Closable Alerts</h2>
+    <p class="demo-description">
+      Important alerts that cannot be dismissed.
+    </p>
+
+    <div class="demo-stack">
+      <div class="wf-alert wf-alert-error">
+        <span class="wf-alert-icon">&#10005;</span>
+        <div class="wf-alert-content">
+          <h4 class="wf-alert-title">Account Suspended</h4>
+          <p class="wf-alert-description">Your account has been suspended due to a policy violation. Please contact support for assistance.</p>
+          <div class="wf-alert-actions">
+            <button class="wf-button wf-button-secondary wf-button-sm">Contact Support</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="wf-alert wf-alert-warning">
+        <span class="wf-alert-icon">&#9888;</span>
+        <div class="wf-alert-content">
+          <p class="wf-alert-description">This feature is currently in beta. Some functionality may be limited.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       BANNER ALERTS
+       ============================================ -->
+  <section class="demo-section">
+    <h2 class="demo-title">Banner Alerts</h2>
+    <p class="demo-description">
+      Full-width banners for page-level notifications, typically placed at the top of the content area.
+    </p>
+
+    <div style="margin: 0 -2rem;">
+      <div class="wf-alert wf-alert-info wf-alert-banner">
+        <span class="wf-alert-icon">&#8505;</span>
+        <div class="wf-alert-content">
+          <p class="wf-alert-description">Scheduled maintenance: The system will be unavailable on Sunday, Feb 1st from 2:00 AM - 4:00 AM EST.</p>
+        </div>
+        <button class="wf-alert-close">&times;</button>
+      </div>
+
+      <div class="wf-alert wf-alert-success wf-alert-banner" style="margin-top: 1rem;">
+        <span class="wf-alert-icon">&#10003;</span>
+        <div class="wf-alert-content">
+          <p class="wf-alert-description">Welcome! Your account has been created. Complete your profile to get started.</p>
+        </div>
+        <button class="wf-alert-close">&times;</button>
+      </div>
+
+      <div class="wf-alert wf-alert-warning wf-alert-banner" style="margin-top: 1rem;">
+        <span class="wf-alert-icon">&#9888;</span>
+        <div class="wf-alert-content">
+          <p class="wf-alert-description">Your trial expires in 3 days. <a href="#" style="color: inherit; font-weight: 500;">Upgrade now</a> to keep access to all features.</p>
+        </div>
+        <button class="wf-alert-close">&times;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       USAGE CODE EXAMPLES
+       ============================================ -->
+  <section class="demo-section">
+    <h2 class="demo-title">Usage</h2>
+    <p class="demo-description">Copy and paste these patterns into your wireframes.</p>
+
+    <div class="demo-item" style="background: var(--wf-color-neutral-900); color: var(--wf-color-neutral-100);">
+      <pre style="margin: 0; font-size: 0.8rem; overflow-x: auto; white-space: pre-wrap;"><code>&lt;!-- Alert with Title and Description --&gt;
+&lt;div class="wf-alert wf-alert-info"&gt;
+  &lt;span class="wf-alert-icon"&gt;&amp;#8505;&lt;/span&gt;
+  &lt;div class="wf-alert-content"&gt;
+    &lt;h4 class="wf-alert-title"&gt;Information&lt;/h4&gt;
+    &lt;p class="wf-alert-description"&gt;This is an informational message.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;button class="wf-alert-close"&gt;&amp;times;&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;!-- Simple Alert (message only) --&gt;
+&lt;div class="wf-alert wf-alert-success wf-alert-simple"&gt;
+  &lt;span class="wf-alert-icon"&gt;&amp;#10003;&lt;/span&gt;
+  &lt;div class="wf-alert-content"&gt;
+    &lt;p class="wf-alert-description"&gt;Changes saved successfully.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Alert with Actions --&gt;
+&lt;div class="wf-alert wf-alert-warning"&gt;
+  &lt;span class="wf-alert-icon"&gt;&amp;#9888;&lt;/span&gt;
+  &lt;div class="wf-alert-content"&gt;
+    &lt;h4 class="wf-alert-title"&gt;Unsaved Changes&lt;/h4&gt;
+    &lt;p class="wf-alert-description"&gt;You have unsaved changes.&lt;/p&gt;
+    &lt;div class="wf-alert-actions"&gt;
+      &lt;button class="wf-button wf-button-secondary wf-button-sm"&gt;Discard&lt;/button&gt;
+      &lt;button class="wf-button wf-button-primary wf-button-sm"&gt;Save&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Full-width Banner --&gt;
+&lt;div class="wf-alert wf-alert-error wf-alert-banner"&gt;
+  &lt;span class="wf-alert-icon"&gt;&amp;#10005;&lt;/span&gt;
+  &lt;div class="wf-alert-content"&gt;
+    &lt;p class="wf-alert-description"&gt;System maintenance in progress.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;button class="wf-alert-close"&gt;&amp;times;&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;!-- Variant Classes --&gt;
+&lt;!-- wf-alert-info, wf-alert-success, wf-alert-warning, wf-alert-error --&gt;
+
+&lt;!-- Modifier Classes --&gt;
+&lt;!-- wf-alert-simple: For message-only alerts --&gt;
+&lt;!-- wf-alert-banner: Full-width banner style --&gt;</code></pre>
+    </div>
+  </section>
+
+</body>
+</html>

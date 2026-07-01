@@ -1,0 +1,309 @@
+{
+  "slug": "navigation",
+  "title": "Navigation",
+  "order": 13,
+  "group": "Communication",
+  "intro": "Navigation has two layers: the app chrome Excalibrr generates from a single pageConfig object — sidebar, toolbar, routes, quick search — and the in-page wayfinding you compose from antd Tabs. Declare sections, enable scopes, and let the provider build the rest; never hand-roll the chrome.",
+  "demoPath": "/DesignSystem/DSNavigation",
+  "searchTerms": [
+    "NavigationContextProvider",
+    "useNavigationContext",
+    "PageWrapper",
+    "VerticalNav",
+    "PageToolbar",
+    "QuickSearch",
+    "QuickSearchModal",
+    "pageConfig",
+    "Page",
+    "scopes",
+    "AuthenticatedRoute",
+    "defaultRedirect",
+    "navStyle",
+    "Tabs",
+    "tabPosition",
+    "Menu",
+    "sidebar",
+    "command palette",
+    "routing"
+  ],
+  "blocks": [
+    {
+      "type": "usage",
+      "body": "Excalibrr owns the application shell. `NavigationContextProvider` takes a `pageConfig` object and an async `getScopes()` and generates everything downstream: the React Router route tree, the hover-expanding sidebar (`VerticalNav`), the per-section toolbar with route links (`PageToolbar`), the Cmd+K quick-search command palette, the 404 page, and last-visited-page persistence. You declare sections and routes — the provider builds the chrome.\n\nInside a page, wayfinding is antd `Tabs`: parallel views of one entity (drawer sections, detail panes, settings groups). Build both `Tabs` and `Menu` from the antd v5 `items` array — `Tabs.TabPane` is removed outright, and Menu JSX children are deprecated for removal.\n\n`useNavigationContext()` exposes `{ validPages }` — the permission-filtered page tree — anywhere under the provider, for breadcrumbs or custom page lists."
+    },
+    {
+      "type": "specimen",
+      "title": "Vertical nav sidebar",
+      "image": "specimens/navigation/01-vertical-nav-sidebar.png",
+      "caption": "The 80px rail expands to 260px on hover. The active section (Design System) is open: flat child routes, bold sub-group headings (Showcases, Pattern Guide) rendered by SubPageGroupings, and the white active-route dot on Navigation. The expanded child list collapses again when the pointer leaves."
+    },
+    {
+      "type": "specimen",
+      "title": "Page toolbar",
+      "image": "specimens/navigation/02-page-toolbar.png",
+      "caption": "PageToolbar renders per section: sidebar toggle, section icon + title, then one link per visible route — plain links for single pages, a filled tag for the active group (Showcases). Note the right edge: route links past the available width clip silently under the user pane — the 13-route ceiling in action."
+    },
+    {
+      "type": "specimen",
+      "title": "Quick search",
+      "image": "specimens/navigation/03-quick-search.png",
+      "caption": "Cmd+K (Ctrl+I on Windows) toggles the command palette. Every permissioned route in pageConfig is auto-registered as a command; typing filters by name, selecting navigates and closes. No extra wiring — registration happens inside getValidPages."
+    },
+    {
+      "type": "props",
+      "title": "NavigationContextProvider",
+      "intro": "Mount once, above the router outlet. Everything else is derived.",
+      "rows": [
+        {
+          "prop": "pageConfig",
+          "type": "Record<string, Page>",
+          "notes": "The entire nav tree. Top-level key order defines section order in the sidebar."
+        },
+        {
+          "prop": "getScopes",
+          "type": "() => Promise<Record<string, Scope>>",
+          "notes": "Async permission fetch. Pages render only after it resolves, and only sections whose key appears in the result are kept — keys must match pageConfig keys exactly (case-sensitive)."
+        },
+        {
+          "prop": "navStyle",
+          "type": "'horizontal' | 'vertical' | 'inline'",
+          "default": "'vertical'",
+          "notes": "vertical = sidebar + PageToolbar (the Gravitate standard). horizontal = top Menu bar. 'inline' exists in the type but has no layout of its own — any value other than 'vertical' falls through to the horizontal layout. Do not use it."
+        },
+        {
+          "prop": "userControlPane",
+          "type": "ReactNode",
+          "notes": "Right-edge slot in the toolbar: user menu, theme switcher, notifications."
+        },
+        {
+          "prop": "handleLogout",
+          "type": "() => void",
+          "notes": "Required by the type; passed through to the page wrapper."
+        },
+        {
+          "prop": "updatePreferenceSetting",
+          "type": "(key: string, value: string) => void",
+          "default": "() => {}",
+          "notes": "Mirrors last-visited persistence (last_page_section, last_<section>_page) to your backend alongside localStorage."
+        }
+      ]
+    },
+    {
+      "type": "props",
+      "title": "Page (pageConfig entry)",
+      "intro": "One shape for sections, groups, and leaf routes — nesting depth decides the role. Sections hold routes; routes can hold one more level of grouped pages.",
+      "rows": [
+        {
+          "prop": "key",
+          "type": "string",
+          "notes": "URL segment and scope key in one. Must equal the pageConfig object key for sections."
+        },
+        {
+          "prop": "title",
+          "type": "string",
+          "notes": "Label in sidebar, toolbar, and quick search."
+        },
+        {
+          "prop": "icon",
+          "type": "ReactNode",
+          "notes": "Antd icon. Sections only — child quick-search rows reuse the section icon."
+        },
+        {
+          "prop": "element",
+          "type": "ReactNode",
+          "notes": "Routed component for leaf pages. Sections can omit it — React Router renders an implicit <Outlet/>."
+        },
+        {
+          "prop": "routes",
+          "type": "Page[]",
+          "notes": "Child pages. One extra grouping level is supported (group with routes renders a bold heading in the sidebar, URLs stay flat at /<section>/<leafKey>). Keep visible routes at 13 or fewer per section."
+        },
+        {
+          "prop": "defaultRedirect",
+          "type": "string",
+          "notes": "Landing child for the bare section URL. Required whenever routes exist — the generated index redirect dereferences it unconditionally when no last-visited page is stored."
+        },
+        {
+          "prop": "hasPermission",
+          "type": "boolean | (scopes) => boolean",
+          "notes": "Route-level gate. The permission filter invokes it (`!hasPermission || hasPermission(scopes)`), so omit it or pass a function — a literal boolean breaks: false short-circuits to visible, true crashes the filter. Filtered routes also drop out of quick search."
+        },
+        {
+          "prop": "hideNav",
+          "type": "boolean",
+          "notes": "Unreliable — only consulted in two aggregate does-this-group-have-visible-children checks (sidebar group expand, toolbar links row). An individual route with hideNav still renders in the sidebar child list, the toolbar, and quick search. Use query_page to hide a single route."
+        },
+        {
+          "prop": "index / query_page",
+          "type": "number / string",
+          "notes": "Both exclude a first-level route from sidebar, toolbar, and quick search while its URL stays deep-linkable — the only reliable single-route hides. Grouped (second-level) children leak: the toolbar GroupDropdown ignores both flags and the sidebar group list ignores query_page."
+        }
+      ]
+    },
+    {
+      "type": "rules",
+      "title": "Wiring a new section",
+      "intro": "Two files, every time. The provider does the rest — routes, sidebar entry, toolbar links, quick-search commands.",
+      "items": [
+        {
+          "rule": "Declare the section in pageConfig.tsx AND enable its key in the AuthenticatedRoute scopes object.",
+          "why": "getValidPages iterates the scope keys, not the pageConfig keys — a section missing from scopes is dropped without warning."
+        },
+        {
+          "rule": "Scope keys match pageConfig keys exactly, case-sensitive.",
+          "why": "scopes.bakery does nothing for config.Bakery; the menu item silently never appears."
+        },
+        {
+          "rule": "Set defaultRedirect on every section that has routes.",
+          "why": "The generated index route falls back to it when no last-visited page is stored — omit it and first-time visits to the bare section URL navigate to undefined."
+        },
+        {
+          "rule": "Cap each section at 13 visible routes.",
+          "why": "PageToolbar lays route links in one non-wrapping row; route 14 and beyond clip under the user pane with no overflow affordance and no error."
+        },
+        {
+          "rule": "Clear the last_page_section / last_<section>_page localStorage keys when you remove routes.",
+          "why": "The chrome replays last-visited paths on load — stale keys strand users on deleted pages."
+        }
+      ]
+    },
+    {
+      "type": "code",
+      "title": "Canonical section wiring",
+      "code": "// 1. demo/src/pageConfig.tsx — declare the section\nconfig.PricingEngine = {\n  hasPermission: () => true,\n  key: 'PricingEngine',          // URL segment AND scope key\n  icon: <DollarOutlined />,\n  title: 'Pricing Engine',\n  defaultRedirect: 'QuoteBook',  // landing child for /PricingEngine\n  routes: [\n    { hasPermission: () => true, key: 'QuoteBook', title: 'Quote Book', element: <QuoteBook /> },\n    { hasPermission: () => true, key: 'Markers', title: 'Markers', element: <Markers /> },\n    // ...keep visible routes <= 13 per section\n  ],\n}\n\n// 2. demo/src/_Main/AuthenticatedRoute.jsx — enable the scope\nconst scopes = {\n  Welcome: true,\n  PricingEngine: true, // must match the section key exactly (case-sensitive)\n}",
+      "note": "Both files or no menu item. Routes, sidebar entry, toolbar links, and quick-search commands are all generated from this one declaration."
+    },
+    {
+      "type": "usage",
+      "title": "In-page wayfinding: Tabs",
+      "body": "Tabs switch parallel views of one entity — they never replace section navigation. If a destination deserves a URL, it belongs in pageConfig, not in a tab. Three or more peer views of the same record (Overview / Details / History) is the Tabs sweet spot; two views are usually better as a Segmented toggle."
+    },
+    {
+      "type": "specimen",
+      "title": "Tabs — line, top (default)",
+      "image": "specimens/navigation/04-tabs-top.png",
+      "caption": "Default horizontal line tabs: active tab in theme green with ink-bar underline, inactive tabs in body color, content panel below. This is the workhorse for drawer and detail-pane sections."
+    },
+    {
+      "type": "specimen",
+      "title": "Tabs — line, left",
+      "image": "specimens/navigation/05-tabs-left.png",
+      "caption": "tabPosition=\"left\" rotates the ink bar to the divider edge and stacks labels vertically — for tall settings or profile surfaces where the tab list outgrows horizontal space."
+    },
+    {
+      "type": "specimen",
+      "title": "Tabs — card",
+      "image": "specimens/navigation/06-tabs-card.png",
+      "caption": "type=\"card\" with the middle tab selected: the active card (Details) fuses with the panel, inactive cards stay recessed. Use when each tab represents a container-like surface rather than a slice of one record."
+    },
+    {
+      "type": "variants",
+      "title": "Tabs variants",
+      "intro": "One component, two real axes: position and chrome.",
+      "rows": [
+        {
+          "name": "Line, top (default)",
+          "when": "Parallel views of one record — drawers, detail panes, configuration sections.",
+          "code": "<Tabs defaultActiveKey=\"1\" items={items} />"
+        },
+        {
+          "name": "Line, left",
+          "when": "Tall surfaces with many tabs or long labels; the vertical list scales where a horizontal row would scroll.",
+          "code": "<Tabs tabPosition=\"left\" items={items} />"
+        },
+        {
+          "name": "Card",
+          "when": "Tabs that switch container-like surfaces; the selected card visually joins the panel below.",
+          "code": "<Tabs type=\"card\" items={items} />"
+        }
+      ]
+    },
+    {
+      "type": "code",
+      "title": "Tabs and Menu — items API only",
+      "code": "import { Menu, Tabs } from 'antd'\n\n// Tabs: items array — never <Tabs.TabPane>\n<Tabs\n  defaultActiveKey=\"overview\"\n  items={[\n    { key: 'overview', label: 'Overview', children: <OverviewPane /> },\n    { key: 'details', label: 'Details', children: <DetailsPane /> },\n    { key: 'history', label: 'History', children: <HistoryPane /> },\n  ]}\n/>\n\n// Menu: items array — never <Menu.Item> children\n<Menu\n  mode=\"horizontal\"\n  selectedKeys={[currentKey]}\n  onClick={({ key }) => navigate(key)}\n  items={pages.map((p) => ({ key: p.key, label: p.title }))}\n/>",
+      "note": "antd v5 removed Tabs.TabPane outright and deprecates Menu JSX children (dev console warning, removal planned). Submenus are nested via the children property of an item, not Menu.SubMenu."
+    },
+    {
+      "type": "tokens",
+      "title": "Nav chrome tokens",
+      "intro": "The chrome is themed through CSS variables — never hard-code the teal.",
+      "rows": [
+        {
+          "token": "--nav-background",
+          "value": "var(--primary-gradient) — light: darken(theme-color-1, 10%) → theme-color-1; dark: theme-color-1 → lighten(theme-color-1, 15%)",
+          "use": "Sidebar and horizontal nav surface."
+        },
+        {
+          "token": "--nav-highlight",
+          "value": "light: var(--theme-color-2); dark: var(--theme-color-3)",
+          "use": "Logo pill in the sidebar rail. Theme-dependent — light and dark map it to different theme colors, and theme-color-2 itself swings green/blue across themes."
+        },
+        {
+          "token": "--theme-color-3",
+          "value": "theme accent 3",
+          "use": "Selected-item ink and underline in the horizontal Menu bar."
+        }
+      ]
+    },
+    {
+      "type": "dosdonts",
+      "items": [
+        {
+          "do": "Declare navigation in pageConfig and enable the scope key — let the provider build the chrome.",
+          "dont": "Hand-roll a sidebar or toolbar inside a page.",
+          "why": "The chrome carries permissions, quick-search registration, and last-visited persistence; bespoke nav forks all three."
+        },
+        {
+          "do": "Build Menu from an items array.",
+          "dont": "Nest <Menu.Item> children.",
+          "why": "antd v5 deprecates Menu JSX children — they still render today but log a dev warning and are slated for removal; items is the only supported API."
+        },
+        {
+          "do": "Pass Tabs an items array.",
+          "dont": "Use <Tabs.TabPane>.",
+          "why": "TabPane is removed in antd v5; it renders nothing."
+        },
+        {
+          "do": "Split a growing section into sub-groups or a second section before it reaches 14 routes.",
+          "dont": "Keep appending routes past 13.",
+          "why": "Toolbar links clip silently under the user pane — no overflow menu, no warning."
+        },
+        {
+          "do": "Use Tabs for parallel views of one entity.",
+          "dont": "Use Tabs as a substitute for routes.",
+          "why": "Tab state has no URL — destinations that deserve deep links belong in pageConfig."
+        }
+      ]
+    },
+    {
+      "type": "gotchas",
+      "items": [
+        {
+          "title": "Menu JSX children are deprecated in antd v5",
+          "detail": "<Menu.Item>/<Menu.SubMenu> children still render in the installed antd (5.29) but log a deprecation warning and are slated for removal. Pass items={[{ key, label, children }]} — the only supported API."
+        },
+        {
+          "title": "Tabs.TabPane is gone",
+          "detail": "Unlike Menu, this is a hard removal: antd v5 exports TabPane as () => null and Tabs strips the children prop entirely. <Tabs items={[...]} /> is the only path; TabPane children silently produce zero tabs."
+        },
+        {
+          "title": "13 routes per section, then silent overflow",
+          "detail": "PageToolbar renders route links in one non-wrapping flex row. On a standard viewport roughly 13 fit; the rest clip under the user pane with no overflow affordance — visible in the toolbar specimen, where the last link is truncated mid-word."
+        },
+        {
+          "title": "Menu item missing? Check the scope key",
+          "detail": "getValidPages iterates Object.keys(scopes), not pageConfig. A section absent from the AuthenticatedRoute scopes object — or cased differently — is dropped without warning. Update both files every time."
+        },
+        {
+          "title": "Sections with routes need defaultRedirect",
+          "detail": "The generated index redirect resolves localStorage last_<section>_page first, then defaultRedirect — and dereferences it unconditionally (defaultRedirect!). First visit to a bare section URL without it navigates to undefined."
+        },
+        {
+          "title": "Sidebar group expansion only lives while hovered",
+          "detail": "In mini mode the expanded child list collapses to height 0 the moment the pointer leaves the rail (.sidebar-mini .sidebar:not(:hover) sets height: 0 !important). That is the designed behavior, not a state bug — pin the sidebar open via the toolbar toggle for sustained drilling."
+        }
+      ]
+    }
+  ]
+}

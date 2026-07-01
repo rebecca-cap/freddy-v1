@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skeleton Component - Gravitate Wireframe Design System</title>
+  <link rel="stylesheet" href="../../tokens/index.css">
+  <link rel="stylesheet" href="status.css">
+  <link rel="stylesheet" href="../layout/layout.css">
+  <style>
+    body {
+      font-family: var(--wf-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+      padding: 32px;
+      background-color: var(--wf-color-bg, #ffffff);
+      color: var(--wf-color-text, #1e293b);
+    }
+    .demo-section {
+      margin-bottom: 48px;
+    }
+    .demo-section h2 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--wf-color-text, #1e293b);
+    }
+    .demo-section h3 {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 12px;
+      color: var(--wf-color-text-muted, #64748b);
+    }
+    .demo-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      max-width: 400px;
+    }
+    .demo-row {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid var(--wf-color-border, #cbd5e1);
+      margin: 32px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Skeleton Component</h1>
+  <p style="color: var(--wf-color-text-muted); margin-bottom: 32px;">
+    Skeleton placeholders show where content will appear while loading, providing better perceived performance.
+  </p>
+
+  <!-- Text Skeleton -->
+  <div class="demo-section">
+    <h2>Text Skeleton</h2>
+    <div class="demo-grid">
+      <!-- Single line -->
+      <div>
+        <h3>Single Line</h3>
+        <div class="wf-skeleton wf-skeleton-text"></div>
+      </div>
+
+      <!-- Short text -->
+      <div>
+        <h3>Short Text</h3>
+        <div class="wf-skeleton wf-skeleton-text wf-skeleton-text-short"></div>
+      </div>
+
+      <!-- Extra short text -->
+      <div>
+        <h3>Extra Short Text</h3>
+        <div class="wf-skeleton wf-skeleton-text wf-skeleton-text-xs"></div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Multiple Lines -->
+  <div class="demo-section">
+    <h2>Multiple Lines</h2>
+    <div class="demo-grid">
+      <div class="wf-skeleton-lines">
+        <div class="wf-skeleton wf-skeleton-text"></div>
+        <div class="wf-skeleton wf-skeleton-text"></div>
+        <div class="wf-skeleton wf-skeleton-text wf-skeleton-text-short"></div>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 24px;">Paragraph Skeleton</h3>
+    <div class="demo-grid">
+      <div class="wf-skeleton-lines">
+        <div class="wf-skeleton wf-skeleton-heading"></div>
+        <div class="wf-skeleton wf-skeleton-text"></div>
+        <div class="wf-skeleton wf-skeleton-text"></div>
+        <div class="wf-skeleton wf-skeleton-text"></div>
+        <div class="wf-skeleton wf-skeleton-text wf-skeleton-text-short"></div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Rectangle Skeleton -->
+  <div class="demo-section">
+    <h2>Rectangle Skeleton (Images/Cards)</h2>
+    <div class="demo-row">
+      <div class="wf-skeleton wf-skeleton-rect" style="width: 100px; height: 100px;"></div>
+      <div class="wf-skeleton wf-skeleton-rect" style="width: 150px; height: 100px;"></div>
+      <div class="wf-skeleton wf-skeleton-rect" style="width: 200px; height: 120px;"></div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Circle Skeleton -->
+  <div class="demo-section">
+    <h2>Circle Skeleton (Avatars)</h2>
+    <div class="demo-row">
+      <div class="wf-skeleton wf-skeleton-avatar-sm"></div>
+      <div class="wf-skeleton wf-skeleton-avatar"></div>
+      <div class="wf-skeleton wf-skeleton-avatar-lg"></div>
+      <div class="wf-skeleton wf-skeleton-circle" style="width: 80px; height: 80px;"></div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Button & Input Skeletons -->
+  <div class="demo-section">
+    <h2>Button & Input Skeletons</h2>
+    <div class="demo-row">
+      <div class="wf-skeleton wf-skeleton-button"></div>
+      <div class="wf-skeleton wf-skeleton-button" style="width: 150px;"></div>
+    </div>
+
+    <h3 style="margin-top: 24px;">Input Skeleton</h3>
+    <div style="max-width: 300px;">
+      <div class="wf-skeleton wf-skeleton-input"></div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Card Skeleton -->
+  <div class="demo-section">
+    <h2>Card Skeleton</h2>
+    <div class="demo-row">
+      <!-- Basic card skeleton -->
+      <div class="wf-card" style="width: 280px;">
+        <div class="wf-skeleton wf-skeleton-rect" style="height: 150px; border-radius: 0;"></div>
+        <div class="wf-card-body">
+          <div class="wf-skeleton wf-skeleton-heading"></div>
+          <div class="wf-skeleton wf-skeleton-text"></div>
+          <div class="wf-skeleton wf-skeleton-text wf-skeleton-text-short"></div>
+        </div>
+      </div>
+
+      <!-- Pre-composed card skeleton -->
+      <div class="wf-skeleton-card" style="width: 280px;">
+        <div class="wf-skeleton wf-skeleton-card-image"></div>
+        <div class="wf-skeleton-card-body">
+          <div class="wf-skeleton wf-skeleton-heading"></div>
+          <div class="wf-skeleton wf-skeleton-text"></div>
+          <div class="wf-skeleton wf-skeleton-text wf-skeleton-text-short"></div>
+        </div>
+      </div>
+
+      <!-- Horizontal card skeleton -->
+      <div class="wf-card" style="width: 400px;">
+        <div style="display: flex;">
+          <div class="wf-skeleton wf-skeleton-rect" style="width: 120px; min-height: 120px; border-radius: 0;"></div>
+          <div class="wf-card-body" style="flex: 1;">
+            <div class="wf-skeleton wf-skeleton-heading"></div>
+            <div class="wf-skeleton wf-skeleton-text"></div>
+            <div class="wf-skeleton wf-skeleton-text wf-skeleton-text-short"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- List Item Skeleton -->
+  <div class="demo-section">
+    <h2>List Item Skeleton</h2>
+    <div style="max-width: 400px; border: 1px solid var(--wf-color-border); border-radius: 8px; overflow: hidden;">
+      <!-- List item 1 -->
+      <div class="wf-skeleton-list-item" style="padding: 12px 16px; border-bottom: 1px solid var(--wf-color-border);">
+        <div class="wf-skeleton wf-skeleton-avatar"></div>
+        <div class="wf-skeleton-list-item-content">
+          <div class="wf-skeleton wf-skeleton-text" style="width: 60%;"></div>
+          <div class="wf-skeleton wf-skeleton-text wf-skeleton-text-short" style="height: 12px;"></div>
+        </div>
+      </div>
+
+      <!-- List item 2 -->
+      <div class="wf-skeleton-list-item" style="padding: 12px 16px; border-bottom: 1px solid var(--wf-color-border);">
+        <div class="wf-skeleton wf-skeleton-avatar"></div>
+        <div class="wf-skeleton-list-item-content">
+          <div class="wf-skeleton wf-skeleton-text" style="width: 75%;"></div>
+          <div class="wf-skeleton wf-skeleton-text wf-skeleton-text-short" style="height: 12px;"></div>
+        </div>
+      </div>
+
+      <!-- List item 3 -->
+      <div class="wf-skeleton-list-item" style="padding: 12px 16px;">
+        <div class="wf-skeleton wf-skeleton-avatar"></div>
+        <div class="wf-skeleton-list-item-content">
+          <div class="wf-skeleton wf-skeleton-text" style="width: 50%;"></div>
+          <div class="wf-skeleton wf-skeleton-text wf-skeleton-text-short" style="height: 12px;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Table Skeleton -->
+  <div class="demo-section">
+    <h2>Table Skeleton</h2>
+    <div style="max-width: 600px; border: 1px solid var(--wf-color-border); border-radius: 8px; overflow: hidden;">
+      <!-- Table header -->
+      <div class="wf-skeleton-table-row" style="background: var(--wf-color-bg-disabled);">
+        <div class="wf-skeleton" style="flex: 0 0 40px; height: 16px;"></div>
+        <div class="wf-skeleton" style="flex: 2; height: 16px;"></div>
+        <div class="wf-skeleton" style="flex: 1; height: 16px;"></div>
+        <div class="wf-skeleton" style="flex: 1; height: 16px;"></div>
+      </div>
+
+      <!-- Table rows -->
+      <div class="wf-skeleton-table-row">
+        <div class="wf-skeleton wf-skeleton-avatar-sm"></div>
+        <div class="wf-skeleton" style="flex: 2;"></div>
+        <div class="wf-skeleton" style="flex: 1;"></div>
+        <div class="wf-skeleton" style="flex: 1;"></div>
+      </div>
+
+      <div class="wf-skeleton-table-row">
+        <div class="wf-skeleton wf-skeleton-avatar-sm"></div>
+        <div class="wf-skeleton" style="flex: 2;"></div>
+        <div class="wf-skeleton" style="flex: 1;"></div>
+        <div class="wf-skeleton" style="flex: 1;"></div>
+      </div>
+
+      <div class="wf-skeleton-table-row">
+        <div class="wf-skeleton wf-skeleton-avatar-sm"></div>
+        <div class="wf-skeleton" style="flex: 2;"></div>
+        <div class="wf-skeleton" style="flex: 1;"></div>
+        <div class="wf-skeleton" style="flex: 1;"></div>
+      </div>
+
+      <div class="wf-skeleton-table-row" style="border-bottom: none;">
+        <div class="wf-skeleton wf-skeleton-avatar-sm"></div>
+        <div class="wf-skeleton" style="flex: 2;"></div>
+        <div class="wf-skeleton" style="flex: 1;"></div>
+        <div class="wf-skeleton" style="flex: 1;"></div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Profile/Header Skeleton -->
+  <div class="demo-section">
+    <h2>Profile Header Skeleton</h2>
+    <div style="max-width: 500px; padding: 24px; border: 1px solid var(--wf-color-border); border-radius: 8px;">
+      <div style="display: flex; gap: 16px; align-items: flex-start;">
+        <div class="wf-skeleton wf-skeleton-avatar-lg"></div>
+        <div style="flex: 1;">
+          <div class="wf-skeleton wf-skeleton-heading" style="margin-bottom: 8px;"></div>
+          <div class="wf-skeleton wf-skeleton-text wf-skeleton-text-short" style="margin-bottom: 16px;"></div>
+          <div style="display: flex; gap: 8px;">
+            <div class="wf-skeleton wf-skeleton-button" style="width: 80px;"></div>
+            <div class="wf-skeleton wf-skeleton-button" style="width: 80px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Form Skeleton -->
+  <div class="demo-section">
+    <h2>Form Skeleton</h2>
+    <div style="max-width: 400px; padding: 24px; border: 1px solid var(--wf-color-border); border-radius: 8px;">
+      <!-- Field 1 -->
+      <div style="margin-bottom: 20px;">
+        <div class="wf-skeleton wf-skeleton-text" style="width: 80px; height: 14px; margin-bottom: 8px;"></div>
+        <div class="wf-skeleton wf-skeleton-input"></div>
+      </div>
+
+      <!-- Field 2 -->
+      <div style="margin-bottom: 20px;">
+        <div class="wf-skeleton wf-skeleton-text" style="width: 100px; height: 14px; margin-bottom: 8px;"></div>
+        <div class="wf-skeleton wf-skeleton-input"></div>
+      </div>
+
+      <!-- Field 3 (textarea) -->
+      <div style="margin-bottom: 20px;">
+        <div class="wf-skeleton wf-skeleton-text" style="width: 120px; height: 14px; margin-bottom: 8px;"></div>
+        <div class="wf-skeleton wf-skeleton-rect" style="height: 80px; width: 100%;"></div>
+      </div>
+
+      <!-- Buttons -->
+      <div style="display: flex; gap: 12px; justify-content: flex-end;">
+        <div class="wf-skeleton wf-skeleton-button" style="width: 80px;"></div>
+        <div class="wf-skeleton wf-skeleton-button" style="width: 100px;"></div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

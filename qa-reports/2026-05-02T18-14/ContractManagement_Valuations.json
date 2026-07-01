@@ -1,0 +1,14 @@
+{
+  "path": "/ContractManagement/Valuations",
+  "title": "Contract Values",
+  "finalUrl": "http://localhost:3001/ContractManagement/Valuations",
+  "rootLen": 57067,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [
+    "EntityReport/Read"
+  ],
+  "consoleEventCount": 14
+}

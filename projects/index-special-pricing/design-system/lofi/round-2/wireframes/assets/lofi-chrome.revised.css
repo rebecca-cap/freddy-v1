@@ -1,0 +1,78 @@
+/* lofi-chrome.revised.css — REVISED chrome for the Round 2 audit pass.
+   It imports the original lofi-chrome.css and then overrides / adds the
+   handful of rules the UX audit calls for, so the *.revised.html screens
+   can be compared 1:1 against the originals without touching the old CSS.
+   Still lf- scaffolding (not the WireframeDesignSystem). */
+
+@import url("lofi-chrome.css");
+
+/* === #9 — kill the 3px side-stripe accents; use full border + faint tint === */
+.lf-readout {
+  border: 1px solid var(--wf-color-border);
+}
+.lf-formula-chosen {
+  border: 1px solid color-mix(in oklab, var(--wf-color-primary) 32%, var(--wf-color-border));
+  background: color-mix(in oklab, var(--wf-color-primary) 6%, var(--wf-color-surface));
+}
+.lf-preview-sec.is-key {
+  border: 1px solid color-mix(in oklab, var(--wf-color-primary) 42%, var(--wf-color-border));
+  background: color-mix(in oklab, var(--wf-color-primary) 5%, var(--wf-color-surface));
+}
+
+/* === #2/#3 — read-only formula readout (no inputs, glance-and-confirm) === */
+.lf-datagrid-ro .wf-datagrid-cell { font-size: var(--wf-text-sm); color: var(--wf-color-text-primary); }
+.lf-datagrid-ro .wf-datagrid-cell-number { font-family: var(--wf-font-mono, ui-monospace, monospace); }
+.lf-ro-note { font-size: var(--wf-text-xs); color: var(--wf-color-text-tertiary); margin: var(--wf-space-2) 0 0; }
+
+/* === #4 — promote the differential into the focal point of the formula block === */
+.lf-diff-hero {
+  margin-top: var(--wf-space-4);
+  border: 1px solid color-mix(in oklab, var(--wf-color-primary) 42%, var(--wf-color-border));
+  background: color-mix(in oklab, var(--wf-color-primary) 6%, var(--wf-color-surface));
+  border-radius: var(--wf-radius-md);
+  padding: var(--wf-space-4) var(--wf-space-5);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--wf-space-4) var(--wf-space-5);
+}
+.lf-diff-field { display: flex; flex-direction: column; gap: var(--wf-space-1); }
+.lf-diff-field .wf-field-label { font-weight: var(--wf-font-semibold); }
+.lf-diff-field .wf-field-label span { font-weight: var(--wf-font-normal); color: var(--wf-color-text-tertiary); }
+.lf-diff-input {
+  width: 150px;
+  font-size: 22px;
+  line-height: 1.2;
+  font-family: var(--wf-font-mono, ui-monospace, monospace);
+  padding: var(--wf-space-2) var(--wf-space-3);
+}
+.lf-diff-result { margin: 0; flex: 1 1 240px; min-width: 0; font-size: var(--wf-text-sm); color: var(--wf-color-text-secondary); }
+.lf-diff-result strong { color: var(--wf-color-text-primary); font-weight: var(--wf-font-semibold); }
+
+/* === #7 — running recipient tally next to the Invite heading === */
+.lf-invite-count {
+  display: inline-flex; align-items: center; gap: var(--wf-space-2);
+  font-size: var(--wf-text-sm); font-weight: var(--wf-font-semibold);
+  color: var(--wf-color-primary);
+}
+.lf-invite-count .lf-dot { width: 7px; height: 7px; border-radius: 999px; background: var(--wf-color-primary); display: inline-block; }
+
+/* === #10 — designer click/time budget chip, back in the footer === */
+.lf-budget {
+  margin-left: auto;
+  display: inline-flex; align-items: center; gap: var(--wf-space-2);
+  font-size: var(--wf-text-xs); color: var(--wf-color-text-tertiary);
+  border: 1px dashed var(--wf-color-border); border-radius: var(--wf-radius-sm);
+  padding: 2px var(--wf-space-3);
+}
+
+/* === #6 — formula library: wrapping grid instead of horizontal scroll === */
+.lf-cardgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--wf-space-4);
+  align-items: start;
+}
+.lf-filterhint { font-size: var(--wf-text-sm); color: var(--wf-color-text-secondary); margin: 0 0 var(--wf-space-4); }
+.lf-filterhint a { color: var(--wf-color-primary); }
+.lf-filterhint strong { color: var(--wf-color-text-primary); font-weight: var(--wf-font-semibold); }

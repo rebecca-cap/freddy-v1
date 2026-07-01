@@ -1,0 +1,474 @@
+/*
+ * ScoutLibrary — saved items surface (save-model consolidation).
+ *
+ * Layout: vertical stack.
+ *   1) ScoutViewSearch (already styled, owns its own border-bottom)
+ *   2) Scrollable card list (or empty state)
+ *
+ * All values come from --scout-* tokens.
+ */
+
+.scout-library {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+/* Title row — mirrors the Chats inbox "All Chats" header (same gutter + type). */
+.scout-library__toolbar {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding: 8px 12px 4px;
+}
+
+.scout-scope .scout-library__heading {
+  margin: 0;
+  color: var(--scout-text);
+  font-size: 14px;
+  font-weight: var(--scout-font-weight-bold);
+}
+
+/* ------------------------------------------------------------------------ */
+/* Scrollable card list                                                     */
+/* ------------------------------------------------------------------------ */
+
+.scout-library__body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  /* Top padding kept small — the filter row above already provides the gap;
+     12px horizontal gutter matches the search bar + filter row so every left
+     edge lines up. */
+  padding: 2px 12px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ------------------------------------------------------------------------ */
+/* Card                                                                     */
+/* ------------------------------------------------------------------------ */
+
+.scout-library-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 14px;
+  background: var(--scout-surface);
+  border: 0.5px solid var(--scout-border-strong);
+  border-radius: var(--scout-radius);
+  transition: border-color 100ms ease, box-shadow 100ms ease, background 100ms ease;
+}
+
+.scout-library-card:hover {
+  border-color: var(--scout-brand);
+  box-shadow: var(--scout-shadow-md);
+}
+
+/* Row 1 — title + action cluster, vertically centered on one line. */
+.scout-library-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.scout-library-card__title {
+  flex: 1;
+  min-width: 0;
+  font-size: var(--scout-font-size-body);
+  font-weight: var(--scout-font-weight-semibold);
+  color: var(--scout-text);
+  line-height: var(--scout-line-height-tight);
+}
+
+/* Action cluster — Edit / Share (reveal on hover) + Star (always shown). */
+.scout-library-card__actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.scout-library-card__action {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border-radius: var(--scout-radius-sm);
+  color: var(--scout-text-subtle);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: color 100ms ease, background 100ms ease, opacity 120ms ease;
+}
+
+.scout-library-card__action:hover {
+  color: var(--scout-brand);
+  background: var(--scout-brand-soft);
+}
+
+.scout-library-card__action:focus,
+.scout-library-card__action:focus-visible {
+  outline: 2px solid var(--scout-brand);
+  outline-offset: 1px;
+}
+
+.scout-library-card__star.is-filled {
+  color: var(--scout-brand);
+}
+
+/* Edit + Share stay in the DOM (reserving width so the title never reflows)
+   but only become visible/clickable on card hover or keyboard focus. Opacity
+   (not visibility) keeps them tab-reachable, which reveals them via
+   :focus-within. */
+.scout-library-card__action--reveal {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.scout-library-card:hover .scout-library-card__action--reveal,
+.scout-library-card:focus-within .scout-library-card__action--reveal {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scout-library-card__action {
+    transition: color 100ms ease, background 100ms ease;
+  }
+}
+
+/* Row 2 — one meta zone: every facet as a pill. */
+.scout-library-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.scout-library-card__tag {
+  display: inline-flex;
+  align-items: center;
+  height: 18px;
+  padding: 0 8px;
+  font-size: var(--scout-font-size-xs);
+  font-weight: var(--scout-font-weight-medium);
+  line-height: 1;
+  color: var(--scout-text-muted);
+  background: var(--scout-surface-2);
+  border-radius: var(--scout-radius-pill);
+  white-space: nowrap;
+}
+
+/* Kind is the only brand-tinted facet — it signals activation cost. */
+.scout-library-card__tag--kind {
+  color: var(--scout-brand);
+  background: var(--scout-brand-soft);
+  font-weight: var(--scout-font-weight-semibold);
+}
+
+/* Row 3 — description, clamped so one verbose card can't blow out the rhythm. */
+.scout-library-card__description {
+  margin: 0;
+  font-size: var(--scout-font-size-sm-plus);
+  color: var(--scout-text-muted);
+  line-height: var(--scout-line-height-base);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Provenance — received ("Shared by X") or shared-out badge, footer-left. */
+.scout-library-card__provenance {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: var(--scout-font-size-xs);
+  font-weight: var(--scout-font-weight-medium);
+  color: var(--scout-text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.scout-library-card__provenance.is-received {
+  color: var(--scout-brand);
+}
+
+/* Filter row — Favorites toggle + the "+ Filters" builder, wraps freely.
+   Shares the 12px horizontal gutter with the search bar + card list so all
+   three sections align left-to-right; 2px top + 8px bottom give an even ~10px
+   rhythm above and below. */
+.scout-library__filter {
+  padding: 2px 12px 8px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Builder: removable filter tokens + the add affordance, on one wrapping row. */
+.scout-library__builder {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+/* "+ Filters" pill — brand-outline; shrinks to an icon-only "+" once filters
+   are active (is-compact). */
+.scout-library__addfilter {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 24px;
+  padding: 0 10px;
+  font-family: var(--scout-font-family);
+  font-size: var(--scout-font-size-xs);
+  font-weight: var(--scout-font-weight-medium);
+  line-height: 1;
+  color: var(--scout-brand);
+  background: var(--scout-surface);
+  border: 0.5px dashed var(--scout-brand);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 100ms ease, border-color 100ms ease, color 100ms ease;
+}
+.scout-library__addfilter:hover {
+  background: var(--scout-brand-soft);
+  border-color: var(--scout-brand);
+}
+.scout-library__addfilter:focus-visible {
+  outline: 2px solid var(--scout-brand);
+  outline-offset: 1px;
+}
+.scout-library__addfilter.is-compact {
+  width: 24px;
+  padding: 0;
+  justify-content: center;
+}
+
+/* Active filter token — value label + × clear affordance. */
+.scout-library__token {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 24px;
+  padding: 0 4px 0 10px;
+  font-size: var(--scout-font-size-xs);
+  font-weight: var(--scout-font-weight-medium);
+  line-height: 1;
+  color: var(--scout-brand-hover);
+  background: var(--scout-brand-soft);
+  border: 0.5px solid var(--scout-brand);
+  border-radius: 999px;
+}
+.scout-library__token-label {
+  white-space: nowrap;
+}
+.scout-library__token-x {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--scout-brand-hover);
+  font-size: 10px;
+  cursor: pointer;
+  transition: background 80ms ease, color 80ms ease;
+}
+.scout-library__token-x:hover {
+  background: var(--scout-brand);
+  color: #ffffff;
+}
+.scout-library__token-x:focus-visible {
+  outline: 2px solid var(--scout-brand);
+  outline-offset: 1px;
+}
+
+/* "Clear all" — subtle text button after the tokens. */
+.scout-library__clearall {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 0 4px;
+  font-family: var(--scout-font-family);
+  font-size: var(--scout-font-size-xs);
+  color: var(--scout-text-subtle);
+  cursor: pointer;
+  text-decoration: underline;
+}
+.scout-library__clearall:hover {
+  color: var(--scout-brand);
+}
+
+/* Dropdown menu rows (portaled to body — no --scout-* tokens here). */
+.scout-library__menu-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.scout-library__menu-check {
+  font-size: 11px;
+  color: #715daa;
+}
+.scout-library__menu-check.is-hidden {
+  visibility: hidden;
+}
+
+.scout-library-chip {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 24px;
+  padding: 0 10px;
+  font-family: var(--scout-font-family);
+  font-size: var(--scout-font-size-xs);
+  font-weight: var(--scout-font-weight-medium);
+  line-height: 1;
+  color: var(--scout-text-muted);
+  background: var(--scout-surface);
+  border: 0.5px solid var(--scout-border-strong);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: color 100ms ease, background 100ms ease, border-color 100ms ease;
+}
+
+.scout-library-chip:hover {
+  color: var(--scout-brand);
+  border-color: var(--scout-brand);
+  background: var(--scout-brand-soft);
+}
+
+.scout-library-chip.is-active {
+  color: var(--scout-surface);
+  background: var(--scout-brand);
+  border-color: var(--scout-brand);
+}
+
+.scout-library-chip:focus,
+.scout-library-chip:focus-visible {
+  outline: 2px solid var(--scout-brand);
+  outline-offset: 1px;
+}
+
+/* Favorites toggle — the star carries the meaning; keep it amber when active. */
+.scout-library-chip--favorites span {
+  font-size: var(--scout-font-size-sm-plus);
+  line-height: 1;
+}
+
+.scout-library-chip--favorites.is-active span,
+.scout-library-chip--favorites:not(.is-active) span {
+  color: inherit;
+}
+
+/* Footer row — provenance on left, CTA pinned right (action zone). */
+.scout-library-card__footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 0.5px solid var(--scout-border);
+}
+
+/* CTA — GraviButton override for compact, brand-tinted Run/Ask. margin-left
+   auto keeps it right-aligned even when there's no provenance on the left. */
+.scout-scope .scout-library-card .ant-btn.scout-library-card__cta {
+  margin-left: auto;
+  flex-shrink: 0;
+  height: 24px;
+  padding: 0 10px;
+  font-size: var(--scout-font-size-sm-plus);
+  font-weight: var(--scout-font-weight-semibold);
+  line-height: 1;
+  border-radius: var(--scout-radius-sm);
+  background: var(--scout-brand);
+  color: var(--scout-surface);
+  border-color: var(--scout-brand);
+}
+
+.scout-scope .scout-library-card .ant-btn.scout-library-card__cta:hover,
+.scout-scope .scout-library-card .ant-btn.scout-library-card__cta:focus {
+  background: var(--scout-brand-hover);
+  border-color: var(--scout-brand-hover);
+  color: var(--scout-surface);
+}
+
+/* ------------------------------------------------------------------------ */
+/* Empty states                                                             */
+/* ------------------------------------------------------------------------ */
+
+.scout-library__empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px 24px 40px;
+  gap: 8px;
+}
+
+.scout-library__empty-icon {
+  font-size: 28px;
+  line-height: 1;
+  margin-bottom: 4px;
+  filter: grayscale(0.2);
+}
+
+.scout-library__empty-title {
+  font-size: var(--scout-font-size-base);
+  font-weight: var(--scout-font-weight-semibold);
+  color: var(--scout-text);
+  line-height: var(--scout-line-height-tight);
+}
+
+.scout-library__empty-body {
+  font-size: var(--scout-font-size-sm-plus);
+  color: var(--scout-text-muted);
+  line-height: var(--scout-line-height-base);
+  max-width: 260px;
+}
+
+.scout-library__empty-action {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  padding: 4px 8px;
+  margin-top: 4px;
+  font-family: var(--scout-font-family);
+  font-size: var(--scout-font-size-sm-plus);
+  font-weight: var(--scout-font-weight-semibold);
+  color: var(--scout-brand);
+  cursor: pointer;
+  border-radius: var(--scout-radius-sm);
+  transition: background 100ms ease, color 100ms ease;
+}
+
+.scout-library__empty-action:hover {
+  background: var(--scout-brand-soft);
+  color: var(--scout-brand-hover);
+}
+
+.scout-library__empty-action:focus,
+.scout-library__empty-action:focus-visible {
+  outline: 2px solid var(--scout-brand);
+  outline-offset: 1px;
+}

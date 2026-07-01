@@ -1,0 +1,45 @@
+import { CheckOutlined } from '@ant-design/icons'
+import { Horizontal, Texto, Vertical } from '@gravitate-js/excalibrr'
+import { Fragment } from 'react'
+
+export function StepIndicator({ currentStep, steps }: { currentStep: number; steps: string[] }) {
+  return (
+    <Vertical style={{ maxHeight: 'fit-content', width: '100%' }} className={'border-bottom border-top p-0'}>
+      <Horizontal className={'px-2 py-4'}>
+        {steps.map((step, index) => {
+          const showActiveColor = currentStep >= index
+          const showCheck = currentStep > index
+          return (
+            <Fragment key={step}>
+              <Horizontal key={step} verticalCenter style={{ width: '100%' }}>
+                <Vertical key={step} verticalCenter horizontalCenter>
+                  <div className={`step-circle ${showActiveColor ? 'active' : 'inactive'}`}>
+                    {showCheck ? (
+                      <Texto appearance={showActiveColor ? 'white' : 'default'}>
+                        <CheckOutlined style={{ color: 'inherit' }} />
+                      </Texto>
+                    ) : (
+                      <Texto appearance={showActiveColor ? 'white' : 'default'}>{index + 1}</Texto>
+                    )}
+                  </div>
+                  <Texto
+                    style={{ color: showActiveColor ? 'var(--theme-color-1)' : 'var(--gray-600)' }}
+                    className={'mt-2'}
+                  >
+                    {step}
+                  </Texto>
+                </Vertical>
+              </Horizontal>
+              {index < steps.length - 1 && (
+                <Horizontal key={`line-${index}`} style={{ width: '100%', alignSelf: 'flex-start', marginTop: '14px' }}>
+                  {/* 14px ≈ the 30px step circle's vertical center, so the connector meets the circles. */}
+                  <div style={{ height: '2px', backgroundColor: 'var(--bg-3)', width: '100%' }} />
+                </Horizontal>
+              )}
+            </Fragment>
+          )
+        })}
+      </Horizontal>
+    </Vertical>
+  )
+}

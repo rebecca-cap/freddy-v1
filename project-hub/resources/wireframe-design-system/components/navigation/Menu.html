@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu Component - Gravitate Wireframe Design System</title>
+  <link rel="stylesheet" href="../../tokens/tokens.css">
+  <link rel="stylesheet" href="../controls/controls.css">
+  <link rel="stylesheet" href="navigation.css">
+  <style>
+    body {
+      font-family: var(--wf-font-family);
+      padding: 40px;
+      background-color: var(--wf-color-gray-50);
+    }
+    .demo-section {
+      background: white;
+      padding: 24px;
+      border-radius: 8px;
+      margin-bottom: 24px;
+      border: 1px solid var(--wf-color-border);
+    }
+    .demo-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--wf-color-text-muted);
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .demo-row {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+    /* For demo purposes, show menus as always visible */
+    .demo-menu-visible .wf-menu {
+      position: static;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <h1 style="margin-bottom: 32px; color: var(--wf-color-text);">Menu Component</h1>
+
+  <!-- Basic Menu -->
+  <div class="demo-section">
+    <div class="demo-title">Basic Dropdown Menu</div>
+    <div class="demo-row">
+      <div class="wf-menu-container demo-menu-visible">
+        <button class="wf-button wf-button-secondary">
+          Options ▼
+        </button>
+        <div class="wf-menu">
+          <button class="wf-menu-item">
+            <span class="wf-menu-icon">✏️</span>
+            Edit
+          </button>
+          <button class="wf-menu-item">
+            <span class="wf-menu-icon">📋</span>
+            Duplicate
+          </button>
+          <button class="wf-menu-item">
+            <span class="wf-menu-icon">📤</span>
+            Export
+          </button>
+          <div class="wf-menu-divider"></div>
+          <button class="wf-menu-item wf-menu-item-danger">
+            <span class="wf-menu-icon">🗑️</span>
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Menu with Shortcuts -->
+  <div class="demo-section">
+    <div class="demo-title">Menu with Keyboard Shortcuts</div>
+    <div class="demo-row">
+      <div class="wf-menu-container demo-menu-visible">
+        <button class="wf-button wf-button-secondary">
+          File ▼
+        </button>
+        <div class="wf-menu">
+          <button class="wf-menu-item">
+            <span class="wf-menu-icon">📄</span>
+            New
+            <span class="wf-menu-shortcut">⌘N</span>
+          </button>
+          <button class="wf-menu-item">
+            <span class="wf-menu-icon">📂</span>
+            Open
+            <span class="wf-menu-shortcut">⌘O</span>
+          </button>
+          <button class="wf-menu-item">
+            <span class="wf-menu-icon">💾</span>
+            Save
+            <span class="wf-menu-shortcut">⌘S</span>
+          </button>
+          <div class="wf-menu-divider"></div>
+          <button class="wf-menu-item">
+            <span class="wf-menu-icon">🖨️</span>
+            Print
+            <span class="wf-menu-shortcut">⌘P</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Menu with Labels/Sections -->
+  <div class="demo-section">
+    <div class="demo-title">Menu with Section Labels</div>
+    <div class="demo-row">
+      <div class="wf-menu-container demo-menu-visible">
+        <button class="wf-button wf-button-secondary">
+          View ▼
+        </button>
+        <div class="wf-menu">
+          <div class="wf-menu-label">Display</div>
+          <button class="wf-menu-item">
+            <span class="wf-menu-icon">📋</span>
+            List View
+          </button>
+          <button class="wf-menu-item">
+            <span class="wf-menu-icon">📊</span>
+            Grid View
+          </button>
+          <button class="wf-menu-item">
+            <span class="wf-menu-icon">📅</span>
+            Calendar View
+          </button>
+          <div class="wf-menu-divider"></div>
+          <div class="wf-menu-label">Sort By</div>
+          <button class="wf-menu-item">
+            <span class="wf-menu-icon">📅</span>
+            Date
+          </button>
+          <button class="wf-menu-item">
+            <span class="wf-menu-icon">🔤</span>
+            Name
+          </button>
+          <button class="wf-menu-item">
+            <span class="wf-menu-icon">📏</span>
+            Size
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Menu with Checkable Items -->
+  <div class="demo-section">
+    <div class="demo-title">Menu with Checkable Items</div>
+    <div class="demo-row">
+      <div class="wf-menu-container demo-menu-visible">
+        <button class="wf-button wf-button-secondary">
+          Settings ▼
+        </button>
+        <div class="wf-menu">
+          <div class="wf-menu-label">Options</div>
+          <button class="wf-menu-item wf-menu-item-check wf-menu-item-checked">
+            Show Sidebar
+          </button>
+          <button class="wf-menu-item wf-menu-item-check wf-menu-item-checked">
+            Show Line Numbers
+          </button>
+          <button class="wf-menu-item wf-menu-item-check">
+            Word Wrap
+          </button>
+          <div class="wf-menu-divider"></div>
+          <button class="wf-menu-item wf-menu-item-check wf-menu-item-checked">
+            Auto Save
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Menu with Disabled Items -->
+  <div class="demo-section">
+    <div class="demo-title">Menu with Disabled Items</div>
+    <div class="demo-row">
+      <div class="wf-menu-container demo-menu-visible">
+        <button class="wf-button wf-button-secondary">
+          Edit ▼
+        </button>
+        <div class="wf-menu">
+          <button class="wf-menu-item">
+            <span class="wf-menu-icon">↩️</span>
+            Undo
+            <span class="wf-menu-shortcut">⌘Z</span>
+          </button>
+          <button class="wf-menu-item" disabled>
+            <span class="wf-menu-icon">↪️</span>
+            Redo
+            <span class="wf-menu-shortcut">⌘⇧Z</span>
+          </button>
+          <div class="wf-menu-divider"></div>
+          <button class="wf-menu-item">
+            <span class="wf-menu-icon">✂️</span>
+            Cut
+            <span class="wf-menu-shortcut">⌘X</span>
+          </button>
+          <button class="wf-menu-item">
+            <span class="wf-menu-icon">📋</span>
+            Copy
+            <span class="wf-menu-shortcut">⌘C</span>
+          </button>
+          <button class="wf-menu-item" disabled>
+            <span class="wf-menu-icon">📌</span>
+            Paste
+            <span class="wf-menu-shortcut">⌘V</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Action Menu (Context Menu Style) -->
+  <div class="demo-section">
+    <div class="demo-title">Action Menu (Context Menu Style)</div>
+    <div class="demo-row">
+      <div class="wf-menu-container demo-menu-visible">
+        <button class="wf-button wf-button-secondary wf-button-sm">
+          ⋮
+        </button>
+        <div class="wf-menu">
+          <button class="wf-menu-item">
+            <span class="wf-menu-icon">👁️</span>
+            View Details
+          </button>
+          <button class="wf-menu-item">
+            <span class="wf-menu-icon">✏️</span>
+            Edit
+          </button>
+          <button class="wf-menu-item">
+            <span class="wf-menu-icon">📋</span>
+            Duplicate
+          </button>
+          <button class="wf-menu-item">
+            <span class="wf-menu-icon">📥</span>
+            Archive
+          </button>
+          <div class="wf-menu-divider"></div>
+          <button class="wf-menu-item wf-menu-item-danger">
+            <span class="wf-menu-icon">🗑️</span>
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right-Aligned Menu -->
+  <div class="demo-section">
+    <div class="demo-title">Right-Aligned Menu</div>
+    <div style="display: flex; justify-content: flex-end;">
+      <div class="wf-menu-container demo-menu-visible">
+        <button class="wf-button wf-button-secondary">
+          Account ▼
+        </button>
+        <div class="wf-menu wf-menu-right">
+          <div style="padding: 12px; border-bottom: 1px solid var(--wf-color-border);">
+            <div style="font-weight: 500; color: var(--wf-color-text);">John Doe</div>
+            <div style="font-size: 12px; color: var(--wf-color-text-muted);">john@example.com</div>
+          </div>
+          <button class="wf-menu-item">
+            <span class="wf-menu-icon">👤</span>
+            Profile
+          </button>
+          <button class="wf-menu-item">
+            <span class="wf-menu-icon">⚙️</span>
+            Settings
+          </button>
+          <button class="wf-menu-item">
+            <span class="wf-menu-icon">❓</span>
+            Help
+          </button>
+          <div class="wf-menu-divider"></div>
+          <button class="wf-menu-item">
+            <span class="wf-menu-icon">🚪</span>
+            Sign Out
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Usage Examples -->
+  <div class="demo-section">
+    <div class="demo-title">Code Examples</div>
+    <pre style="background: var(--wf-color-gray-100); padding: 16px; border-radius: 6px; overflow-x: auto; font-size: 13px;"><code>&lt;!-- Basic Dropdown Menu --&gt;
+&lt;div class="wf-menu-container"&gt;
+  &lt;button class="wf-button wf-button-secondary"&gt;
+    Options ▼
+  &lt;/button&gt;
+  &lt;div class="wf-menu"&gt;
+    &lt;button class="wf-menu-item"&gt;
+      &lt;span class="wf-menu-icon"&gt;✏️&lt;/span&gt;
+      Edit
+    &lt;/button&gt;
+    &lt;button class="wf-menu-item"&gt;
+      &lt;span class="wf-menu-icon"&gt;📋&lt;/span&gt;
+      Duplicate
+    &lt;/button&gt;
+    &lt;div class="wf-menu-divider"&gt;&lt;/div&gt;
+    &lt;button class="wf-menu-item wf-menu-item-danger"&gt;
+      &lt;span class="wf-menu-icon"&gt;🗑️&lt;/span&gt;
+      Delete
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- With Keyboard Shortcuts --&gt;
+&lt;button class="wf-menu-item"&gt;
+  &lt;span class="wf-menu-icon"&gt;💾&lt;/span&gt;
+  Save
+  &lt;span class="wf-menu-shortcut"&gt;⌘S&lt;/span&gt;
+&lt;/button&gt;
+
+&lt;!-- With Section Labels --&gt;
+&lt;div class="wf-menu-label"&gt;Display&lt;/div&gt;
+&lt;button class="wf-menu-item"&gt;List View&lt;/button&gt;
+
+&lt;!-- Checkable Items --&gt;
+&lt;button class="wf-menu-item wf-menu-item-check wf-menu-item-checked"&gt;
+  Show Sidebar
+&lt;/button&gt;
+
+&lt;!-- Right-Aligned Menu --&gt;
+&lt;div class="wf-menu wf-menu-right"&gt;
+  ...
+&lt;/div&gt;
+
+&lt;!-- Disabled Item --&gt;
+&lt;button class="wf-menu-item" disabled&gt;
+  Paste
+&lt;/button&gt;</code></pre>
+  </div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+.border-radius-5 {
+    border-radius: 5px !important;
+}
+
+.formula-components-list {
+    border: 1px solid var(--gray-300);
+    border-radius: 5px;
+}
+
+.formula-components-list .ant-list-header {
+    background-color: var(--bg-3);
+    padding: 8px;
+    border-radius: 5px 5px 0 0;
+}
+
+.formula-components-list .ant-list-items .ant-list-item {
+    background-color: var(--bg-1);
+    padding: 5px 8px;
+}
+
+.formula-components-list .ant-list-footer {
+    background-color: var(--bg-3);
+    padding: 6px 8px;
+    border-radius: 0 0 5px 5px;
+}
+
+/* Formula components row alignment */
+.formula-components-row {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.formula-col-name {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.formula-col-source {
+    width: 120px;
+    flex-shrink: 0;
+    text-align: center;
+}
+
+.formula-col-value {
+    width: 80px;
+    flex-shrink: 0;
+    text-align: right;
+}

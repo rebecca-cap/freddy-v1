@@ -1,0 +1,25 @@
+<h2>Cross-page chrome</h2>
+<p class="lead">Scout keeps working after the analyst leaves the Quote Book, so a thin layer of status surfaces lives outside the panel and persists across navigation. Each one reflects the same underlying activity state — idle, thinking, or ready — and each offers a path back into the conversation that produced it.</p>
+
+<h3>Trigger and activity badge</h3>
+<p>The <span class="tok">Ask Scout</span> toolbar control carries a small status badge that mirrors Scout's current activity: <b>idle</b>, <b>thinking</b>, or <b>ready</b>. The badge gives the analyst an at-a-glance read on whether background work is in flight or an answer is waiting, without opening the panel. The trigger also opens the panel via <span class="kbd">⌘G</span> / <span class="kbd">Ctrl+G</span>.</p>
+
+<h3>Name tag</h3>
+<p>A compact tag sits near the user's name in the app header and reads <span class="tok">Scout is thinking</span>, <span class="tok">Scout is ready</span>, or an idle state, accompanied by an unseen dot when answers are waiting. It updates in lockstep with every other ready surface the moment a conversation finishes.</p>
+{{figure:c3-name-tag}}
+
+<h3>Control-Panel alert cards</h3>
+<p>Scout replaces the app's "Recent Alerts" empty state with a card for each ready conversation. Clicking a card (see 1) navigates back to the Quote Book and opens that exact conversation, so an analyst who wandered off can return to a finished answer in one move.</p>
+{{figure:c3-control-panel}}
+
+<h3>Minimized mini-bubble</h3>
+<p>Minimizing collapses the panel to a small violet pill anchored just above the trigger, labelled <span class="tok">Resume conversation</span>, with a gentle sheen. Clicking it reopens the full panel with all state intact — context, conversation, and position preserved.</p>
+{{figure:c1-mini}}
+
+<h3>First-run intro bubble</h3>
+<p>On first visit a one-time tip points at the trigger: <span class="tok">Hi, I'm Scout 👋 — Your pricing co-pilot. Ask about any row — costs, margins, deltas. Click to start, or press ⌘G.</span> It appears once and does not return on later visits.</p>
+
+<h3>Bottom prototype-timer bar</h3>
+<p>A deliberately utilitarian fixed strip spans the bottom of the viewport — dashed top border, monospace type, neutral greys with an amber accent — reading <span class="tok">PROTOTYPE TIMER (simulated latency — not part of Scout)</span> alongside a soonest-ready countdown (see 1, 2).</p>
+{{figure:c3-timer-bar}}
+<div class="callout callout--warn"><b>Demo-only — do not build.</b> The timer bar exists solely to make the simulated think-time legible during demos. It is <b>not part of the product</b>. A real build wires conversations to live streaming and status; the simulated latency and this bar both disappear.</div>

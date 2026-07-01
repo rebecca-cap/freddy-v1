@@ -1,0 +1,14 @@
+{
+  "path": "/ContractManagement/FormulaTemplates",
+  "title": "Formula Templates",
+  "finalUrl": "http://localhost:5173/ContractManagement/FormulaTemplates",
+  "rootLen": 115548,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 11,
+  "stuckLoaders": [],
+  "emptyGrids": []
+}

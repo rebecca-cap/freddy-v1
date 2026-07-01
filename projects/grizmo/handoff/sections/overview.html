@@ -1,0 +1,24 @@
+<h2>Overview</h2>
+
+<p class="lead">Scout is an embedded AI pricing co-pilot that lives inside a dense pricing grid — the surface where an analyst sets and publishes fuel prices per customer, location, and product. It answers questions about the rows on screen: why a row is flagged, where margin is being left on the table, how the market moved, and how a price ranks against a benchmark. Every answer explains its reasoning, cites its sources, and states a confidence level, and the analyst can save reusable questions and multi-step paths, share them with teammates, and let Scout work in the background across many rows at once.</p>
+
+<p>The mental model fits in one line: <b>ask in plain language → get an explainable, scoped answer → save it for reuse → let Scout work in the background and tell you when it's done.</b> Everything that follows is in service of keeping that loop calm and legible.</p>
+
+<h3>Entry points</h3>
+
+<p>Scout is reachable four ways, each tuned to a different moment in the analyst's work.</p>
+
+<ul>
+  <li><b>Toolbar trigger.</b> A control in the grid's toolbar labelled <span class="tok">Ask Scout</span>, carrying a small 8-bit mascot head, opens the panel. On first visit a one-time intro bubble points at it (see <b>2</b>): <span class="tok">Hi, I'm Scout 👋 — Your pricing co-pilot. Ask about any row — costs, margins, deltas. Click to start, or press ⌘G.</span></li>
+  <li><b>Keyboard shortcut.</b> Pressing <span class="kbd">⌘G</span> / <span class="kbd">Ctrl+G</span> opens the panel from anywhere. It is open-only — it never toggles the panel closed — and is ignored while the analyst is typing in another input.</li>
+  <li><b>Per-row ready indicator.</b> A small three-dot marker in a pinned grid column lights up when a background answer for that row is ready; selecting it jumps straight into that row's conversation.</li>
+  <li><b>Cross-page alert.</b> When Scout finishes thinking while the analyst is on another page, a name tag reading <span class="tok">Scout is ready</span> and alert cards in the app's Control Panel invite them back.</li>
+</ul>
+
+{{figure:c1-trigger}}
+
+<h3>Design tone</h3>
+
+<p>The intended feel is calm, trustworthy, and quietly intelligent — "a thinking machine." The brand color is a deep violet (<span class="tok">#715DAA</span>) and the type is Lato. Motion is present but restrained: a slow shimmer while Scout thinks, gentle slides between views, never anything bouncy.</p>
+
+<div class="callout callout--note"><b>Trust is structural, not decorative.</b> Confidence and sources accompany every answer by design. They are core to why an analyst would act on what Scout says, not visual garnish.</div>

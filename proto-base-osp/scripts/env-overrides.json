@@ -1,0 +1,4 @@
+[
+  { "name": "Localhost", "url": "http://localhost:44361/api" },
+  { "name": "Dev (PE)", "url": "https://dev.pe.gravitate.energy/api" }
+]

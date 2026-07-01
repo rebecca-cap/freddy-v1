@@ -1,0 +1,13 @@
+/*
+ * ScoutActionChips — scenario action chips at the end of an answer body.
+ *
+ * Chip size + style come from `.scout-chip` in ScoutChips.css (identical to
+ * the "Try a follow-up" chips). This file only owns the wrapping row layout:
+ * chips sit below body content, never above, and wrap to a second row.
+ */
+
+.scout-action-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}

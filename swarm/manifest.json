@@ -1,0 +1,1169 @@
+{
+  "generatedAt": "2026-05-02",
+  "totalRoutes": 52,
+  "summary": {
+    "crash": 8,
+    "empty": 34,
+    "populated": 10,
+    "totalMissingEndpointInstances": 65,
+    "distinctMissingEndpoints": 69
+  },
+  "routes": [
+    {
+      "route": "/",
+      "team": "T10",
+      "currentState": "empty",
+      "fixtureFile": null,
+      "endpoints": [
+        {
+          "key": "MarketPlatform/OrderEntry/GetPricesForDashboard",
+          "wired": false,
+          "populated": false
+        },
+        {
+          "key": "MarketPlatform/OrderReporting/GetCreditWidget",
+          "wired": false,
+          "populated": false
+        },
+        {
+          "key": "MarketPlatform/OrderReporting/GetPendingOrders",
+          "wired": false,
+          "populated": false
+        },
+        {
+          "key": "MarketPlatform/OrderReporting/GetRecentlyProcessedOrders",
+          "wired": false,
+          "populated": false
+        }
+      ],
+      "missingEndpoints": [
+        "MarketPlatform/OrderEntry/GetPricesForDashboard",
+        "MarketPlatform/OrderReporting/GetCreditWidget",
+        "MarketPlatform/OrderReporting/GetPendingOrders",
+        "MarketPlatform/OrderReporting/GetRecentlyProcessedOrders"
+      ],
+      "consumerCrashes": [],
+      "notes": ""
+    },
+    {
+      "route": "/OrderDashboard",
+      "team": "T8",
+      "currentState": "empty",
+      "fixtureFile": null,
+      "endpoints": [
+        {
+          "key": "MarketPlatform/OrderEntry/GetPricesForDashboard",
+          "wired": false,
+          "populated": false
+        },
+        {
+          "key": "MarketPlatform/OrderReporting/GetCreditWidget",
+          "wired": false,
+          "populated": false
+        },
+        {
+          "key": "MarketPlatform/OrderReporting/GetPendingOrders",
+          "wired": false,
+          "populated": false
+        },
+        {
+          "key": "MarketPlatform/OrderReporting/GetRecentlyProcessedOrders",
+          "wired": false,
+          "populated": false
+        }
+      ],
+      "missingEndpoints": [
+        "MarketPlatform/OrderEntry/GetPricesForDashboard",
+        "MarketPlatform/OrderReporting/GetCreditWidget",
+        "MarketPlatform/OrderReporting/GetPendingOrders",
+        "MarketPlatform/OrderReporting/GetRecentlyProcessedOrders"
+      ],
+      "consumerCrashes": [],
+      "notes": ""
+    },
+    {
+      "route": "/AdminDashboard",
+      "team": "T8",
+      "currentState": "empty",
+      "fixtureFile": null,
+      "endpoints": [
+        {
+          "key": "MarketPlatform/AdminOrderDashboard/GetPendingOrders",
+          "wired": false,
+          "populated": false
+        },
+        {
+          "key": "MarketPlatform/AdminOrderDashboard/GetProcessedForwardVolume",
+          "wired": false,
+          "populated": false
+        },
+        {
+          "key": "MarketPlatform/AdminOrderDashboard/GetProcessedProfit",
+          "wired": false,
+          "populated": false
+        },
+        {
+          "key": "MarketPlatform/AdminOrderDashboard/GetProcessedPromptVolume",
+          "wired": false,
+          "populated": false
+        },
+        {
+          "key": "MarketPlatform/AdminOrderDashboard/GetProcessedVolume",
+          "wired": false,
+          "populated": false
+        },
+        {
+          "key": "MarketPlatform/AdminOrderDashboard/GetRecentlyProcessedOrders",
+          "wired": false,
+          "populated": false
+        }
+      ],
+      "missingEndpoints": [
+        "MarketPlatform/AdminOrderDashboard/GetPendingOrders",
+        "MarketPlatform/AdminOrderDashboard/GetProcessedForwardVolume",
+        "MarketPlatform/AdminOrderDashboard/GetProcessedProfit",
+        "MarketPlatform/AdminOrderDashboard/GetProcessedPromptVolume",
+        "MarketPlatform/AdminOrderDashboard/GetProcessedVolume",
+        "MarketPlatform/AdminOrderDashboard/GetRecentlyProcessedOrders"
+      ],
+      "consumerCrashes": [],
+      "notes": ""
+    },
+    {
+      "route": "/SpecialOffers",
+      "team": "T8",
+      "currentState": "empty",
+      "fixtureFile": null,
+      "endpoints": [
+        {
+          "key": "MarketPlatform/SpecialOfferAdmin/GetMetadata",
+          "wired": false,
+          "populated": false
+        },
+        {
+          "key": "MarketPlatform/SpecialOfferAdmin/GetSpecialOffers",
+          "wired": false,
+          "populated": false
+        }
+      ],
+      "missingEndpoints": [
+        "MarketPlatform/SpecialOfferAdmin/GetMetadata",
+        "MarketPlatform/SpecialOfferAdmin/GetSpecialOffers"
+      ],
+      "consumerCrashes": [],
+      "notes": ""
+    },
+    {
+      "route": "/OnlineOrders",
+      "team": "T8",
+      "currentState": "empty",
+      "fixtureFile": "src/freddy/fixtures/entityReport.ts",
+      "endpoints": [
+        {
+          "key": "EntityReport/Read",
+          "wired": false,
+          "populated": false
+        }
+      ],
+      "missingEndpoints": [
+        "EntityReport/Read"
+      ],
+      "consumerCrashes": [],
+      "notes": ""
+    },
+    {
+      "route": "/BuyNow/Prompt",
+      "team": "T8",
+      "currentState": "populated",
+      "fixtureFile": "src/freddy/fixtures/orderEntry.ts",
+      "endpoints": [],
+      "missingEndpoints": [],
+      "consumerCrashes": [],
+      "notes": ""
+    },
+    {
+      "route": "/BuyNow/Forward",
+      "team": "T8",
+      "currentState": "crash",
+      "fixtureFile": "src/freddy/fixtures/orderEntry.ts",
+      "endpoints": [
+        {
+          "key": "MarketPlatform/OrderEntry/GetOrderEntryData",
+          "wired": true,
+          "populated": false,
+          "fixtureFile": "src/freddy/fixtures/orderEntry.ts"
+        }
+      ],
+      "missingEndpoints": [],
+      "consumerCrashes": [
+        {
+          "file": "src/modules/SellingPlatform/BuyNow/Forwards/page.jsx",
+          "line": 54,
+          "error": "Cannot read properties of undefined (reading 'MarketPlatformInstrumentId')"
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "route": "/BuyNow/Offers",
+      "team": "T8",
+      "currentState": "empty",
+      "fixtureFile": null,
+      "endpoints": [
+        {
+          "key": "MarketPlatform/MarketPlatformAllSpecialOffers/GetAllSpecialOffers",
+          "wired": false,
+          "populated": false
+        }
+      ],
+      "missingEndpoints": [
+        "MarketPlatform/MarketPlatformAllSpecialOffers/GetAllSpecialOffers"
+      ],
+      "consumerCrashes": [],
+      "notes": ""
+    },
+    {
+      "route": "/PricingEngine/QuoteBookEOD",
+      "team": "T6",
+      "currentState": "populated",
+      "fixtureFile": "src/freddy/fixtures/quoteBook.ts",
+      "endpoints": [],
+      "missingEndpoints": [],
+      "consumerCrashes": [],
+      "notes": ""
+    },
+    {
+      "route": "/PricingEngine/QuoteBookMidday",
+      "team": "T6",
+      "currentState": "populated",
+      "fixtureFile": "src/freddy/fixtures/quoteBook.ts",
+      "endpoints": [],
+      "missingEndpoints": [],
+      "consumerCrashes": [],
+      "notes": ""
+    },
+    {
+      "route": "/PricingEngine/CommandCenter",
+      "team": "T6",
+      "currentState": "crash",
+      "fixtureFile": "src/freddy/fixtures/commandCenter.ts",
+      "endpoints": [
+        {
+          "key": "Application/UserDefinedPageView/Read",
+          "wired": true,
+          "populated": false,
+          "fixtureFile": "src/freddy/fixtures/commandCenter.ts"
+        },
+        {
+          "key": "CommandCenter/GetIntradayCompetitorMovementData",
+          "wired": true,
+          "populated": false,
+          "fixtureFile": "src/freddy/fixtures/commandCenter.ts"
+        },
+        {
+          "key": "CommandCenter/GetMarginSummaryData",
+          "wired": true,
+          "populated": false,
+          "fixtureFile": "src/freddy/fixtures/commandCenter.ts"
+        },
+        {
+          "key": "CommandCenter/GetMetaData",
+          "wired": true,
+          "populated": false,
+          "fixtureFile": "src/freddy/fixtures/commandCenter.ts"
+        },
+        {
+          "key": "CommandCenter/GetStrategyMissData",
+          "wired": true,
+          "populated": false,
+          "fixtureFile": "src/freddy/fixtures/commandCenter.ts"
+        },
+        {
+          "key": "CommandCenter/GetVolumePaceData",
+          "wired": true,
+          "populated": false,
+          "fixtureFile": "src/freddy/fixtures/commandCenter.ts"
+        },
+        {
+          "key": "ReferenceData/Hierarchy/Location/List",
+          "wired": false,
+          "populated": false
+        },
+        {
+          "key": "ReferenceData/Hierarchy/Product/List",
+          "wired": false,
+          "populated": false
+        }
+      ],
+      "missingEndpoints": [
+        "ReferenceData/Hierarchy/Location/List",
+        "ReferenceData/Hierarchy/Product/List"
+      ],
+      "consumerCrashes": [
+        {
+          "file": "src/modules/CommandCenter/components/marginSummaryUtil.ts",
+          "line": 40,
+          "error": "Cannot read properties of undefined (reading 'map')"
+        },
+        {
+          "file": "src/modules/CommandCenter/components/marginSummaryUtil.ts",
+          "line": 40,
+          "error": "Cannot read properties of undefined (reading 'map')"
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "route": "/PricingEngine/Calculations",
+      "team": "T6",
+      "currentState": "populated",
+      "fixtureFile": "src/freddy/fixtures/calculatedValueReport.ts",
+      "endpoints": [],
+      "missingEndpoints": [],
+      "consumerCrashes": [],
+      "notes": ""
+    },
+    {
+      "route": "/PricingEngine/Prices",
+      "team": "T6",
+      "currentState": "populated",
+      "fixtureFile": "src/freddy/fixtures/opisCurves.ts",
+      "endpoints": [],
+      "missingEndpoints": [],
+      "consumerCrashes": [],
+      "notes": ""
+    },
+    {
+      "route": "/ContractManagement/Contracts",
+      "team": "T7",
+      "currentState": "populated",
+      "fixtureFile": null,
+      "endpoints": [],
+      "missingEndpoints": [],
+      "consumerCrashes": [],
+      "notes": ""
+    },
+    {
+      "route": "/ContractManagement/Valuations",
+      "team": "T7",
+      "currentState": "empty",
+      "fixtureFile": "src/freddy/fixtures/calculatedValueReport.ts",
+      "endpoints": [
+        {
+          "key": "EntityReport/Read",
+          "wired": false,
+          "populated": false
+        }
+      ],
+      "missingEndpoints": [
+        "EntityReport/Read"
+      ],
+      "consumerCrashes": [],
+      "notes": ""
+    },
+    {
+      "route": "/ContractManagement/ContractRevaluation",
+      "team": "T7",
+      "currentState": "empty",
+      "fixtureFile": null,
+      "endpoints": [
+        {
+          "key": "ContractRevaluation/GetContractValuations",
+          "wired": false,
+          "populated": false
+        },
+        {
+          "key": "ContractRevaluation/GetMetaData",
+          "wired": false,
+          "populated": false
+        }
+      ],
+      "missingEndpoints": [
+        "ContractRevaluation/GetContractValuations",
+        "ContractRevaluation/GetMetaData"
+      ],
+      "consumerCrashes": [],
+      "notes": ""
+    },
+    {
+      "route": "/ContractManagement/MissingPrices",
+      "team": "T7",
+      "currentState": "empty",
+      "fixtureFile": "src/freddy/fixtures/contractsReport.ts",
+      "endpoints": [
+        {
+          "key": "EntityReport/Read",
+          "wired": false,
+          "populated": false
+        }
+      ],
+      "missingEndpoints": [
+        "EntityReport/Read"
+      ],
+      "consumerCrashes": [],
+      "notes": ""
+    },
+    {
+      "route": "/ContractManagement/Measurements",
+      "team": "T7",
+      "currentState": "populated",
+      "fixtureFile": null,
+      "endpoints": [],
+      "missingEndpoints": [],
+      "consumerCrashes": [],
+      "notes": ""
+    },
+    {
+      "route": "/ContractManagement/FormulaTemplates",
+      "team": "T7",
+      "currentState": "empty",
+      "fixtureFile": null,
+      "endpoints": [
+        {
+          "key": "FormulaTemplateManagement/GetAll",
+          "wired": false,
+          "populated": false
+        },
+        {
+          "key": "FormulaTemplateManagement/Metadata",
+          "wired": false,
+          "populated": false
+        }
+      ],
+      "missingEndpoints": [
+        "FormulaTemplateManagement/GetAll",
+        "FormulaTemplateManagement/Metadata"
+      ],
+      "consumerCrashes": [],
+      "notes": ""
+    },
+    {
+      "route": "/Analytics/ByCustomer",
+      "team": "T9",
+      "currentState": "empty",
+      "fixtureFile": null,
+      "endpoints": [
+        {
+          "key": "PricePerformance/ByCustomer",
+          "wired": false,
+          "populated": false
+        }
+      ],
+      "missingEndpoints": [
+        "PricePerformance/ByCustomer"
+      ],
+      "consumerCrashes": [],
+      "notes": ""
+    },
+    {
+      "route": "/Analytics/ByChannel",
+      "team": "T9",
+      "currentState": "empty",
+      "fixtureFile": null,
+      "endpoints": [
+        {
+          "key": "PricePerformance/ByChannel",
+          "wired": false,
+          "populated": false
+        }
+      ],
+      "missingEndpoints": [
+        "PricePerformance/ByChannel"
+      ],
+      "consumerCrashes": [],
+      "notes": ""
+    },
+    {
+      "route": "/Analytics/ByTerminal",
+      "team": "T9",
+      "currentState": "empty",
+      "fixtureFile": null,
+      "endpoints": [
+        {
+          "key": "PricePerformance/ByTerminal",
+          "wired": false,
+          "populated": false
+        }
+      ],
+      "missingEndpoints": [
+        "PricePerformance/ByTerminal"
+      ],
+      "consumerCrashes": [],
+      "notes": ""
+    },
+    {
+      "route": "/Analytics/ByContract",
+      "team": "T9",
+      "currentState": "empty",
+      "fixtureFile": null,
+      "endpoints": [
+        {
+          "key": "PricePerformance/ByContract",
+          "wired": false,
+          "populated": false
+        }
+      ],
+      "missingEndpoints": [
+        "PricePerformance/ByContract"
+      ],
+      "consumerCrashes": [],
+      "notes": ""
+    },
+    {
+      "route": "/Admin/NetGrossDefaults",
+      "team": "T10",
+      "currentState": "empty",
+      "fixtureFile": null,
+      "endpoints": [
+        {
+          "key": "Admin/NetGrossRules/GetAll",
+          "wired": false,
+          "populated": false
+        },
+        {
+          "key": "Admin/NetGrossRules/Metadata",
+          "wired": false,
+          "populated": false
+        }
+      ],
+      "missingEndpoints": [
+        "Admin/NetGrossRules/GetAll",
+        "Admin/NetGrossRules/Metadata"
+      ],
+      "consumerCrashes": [],
+      "notes": ""
+    },
+    {
+      "route": "/Admin/AllocationAssociationManagement",
+      "team": "T4",
+      "currentState": "empty",
+      "fixtureFile": "src/freddy/fixtures/allocationManagement.ts",
+      "endpoints": [
+        {
+          "key": "QuoteBook/Analytics/Allocation/Admin/GetAllocations",
+          "wired": false,
+          "populated": false
+        },
+        {
+          "key": "QuoteBook/Analytics/Allocation/Admin/GetAssociations",
+          "wired": false,
+          "populated": false
+        },
+        {
+          "key": "admin/allocation/reference/GetMetaDataForReferences",
+          "wired": true,
+          "populated": false,
+          "fixtureFile": "src/freddy/fixtures/allocationManagement.ts"
+        },
+        {
+          "key": "admin/allocation/reference/GetReferences",
+          "wired": true,
+          "populated": false,
+          "fixtureFile": "src/freddy/fixtures/allocationManagement.ts"
+        }
+      ],
+      "missingEndpoints": [
+        "QuoteBook/Analytics/Allocation/Admin/GetAllocations",
+        "QuoteBook/Analytics/Allocation/Admin/GetAssociations"
+      ],
+      "consumerCrashes": [],
+      "notes": ""
+    },
+    {
+      "route": "/Admin/PriceNotifications",
+      "team": "T3",
+      "currentState": "empty",
+      "fixtureFile": null,
+      "endpoints": [
+        {
+          "key": "PriceNotifications/SubscriptionManagement/GetAvailableLocations",
+          "wired": false,
+          "populated": false
+        },
+        {
+          "key": "PriceNotifications/SubscriptionManagement/GetAvailableProducts",
+          "wired": false,
+          "populated": false
+        },
+        {
+          "key": "PriceNotifications/SubscriptionManagement/GetMetadata",
+          "wired": false,
+          "populated": false
+        },
+        {
+          "key": "PriceNotifications/SubscriptionManagement/GetRecipientData",
+          "wired": false,
+          "populated": false
+        },
+        {
+          "key": "PriceNotifications/SubscriptionManagement/GetSubscriptions",
+          "wired": false,
+          "populated": false
+        }
+      ],
+      "missingEndpoints": [
+        "PriceNotifications/SubscriptionManagement/GetAvailableLocations",
+        "PriceNotifications/SubscriptionManagement/GetAvailableProducts",
+        "PriceNotifications/SubscriptionManagement/GetMetadata",
+        "PriceNotifications/SubscriptionManagement/GetRecipientData",
+        "PriceNotifications/SubscriptionManagement/GetSubscriptions"
+      ],
+      "consumerCrashes": [],
+      "notes": ""
+    },
+    {
+      "route": "/Admin/CalendarManagement",
+      "team": "T5",
+      "currentState": "empty",
+      "fixtureFile": "src/freddy/fixtures/calendarPeriods.ts",
+      "endpoints": [
+        {
+          "key": "PricingEngine/Admin/Calendar/GetMetadata",
+          "wired": false,
+          "populated": false
+        },
+        {
+          "key": "PricingEngine/Admin/Calendar/Read",
+          "wired": false,
+          "populated": false
+        }
+      ],
+      "missingEndpoints": [
+        "PricingEngine/Admin/Calendar/GetMetadata",
+        "PricingEngine/Admin/Calendar/Read"
+      ],
+      "consumerCrashes": [],
+      "notes": ""
+    },
+    {
+      "route": "/Admin/Publishers",
+      "team": "T3",
+      "currentState": "populated",
+      "fixtureFile": "src/freddy/fixtures/pricePublishers.ts",
+      "endpoints": [],
+      "missingEndpoints": [],
+      "consumerCrashes": [],
+      "notes": ""
+    },
+    {
+      "route": "/Admin/Instruments",
+      "team": "T2",
+      "currentState": "crash",
+      "fixtureFile": "src/freddy/fixtures/manageInstruments.ts",
+      "endpoints": [],
+      "missingEndpoints": [],
+      "consumerCrashes": [
+        {
+          "file": "src/modules/Admin/ManagePriceInstruments/index.tsx",
+          "line": 263,
+          "error": "Cannot read properties of undefined (reading 'map')"
+        },
+        {
+          "file": "src/modules/Admin/ManagePriceInstruments/index.tsx",
+          "line": 263,
+          "error": "Cannot read properties of undefined (reading 'map')"
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "route": "/Admin/Products",
+      "team": "T2",
+      "currentState": "crash",
+      "fixtureFile": "src/freddy/fixtures/products.ts",
+      "endpoints": [],
+      "missingEndpoints": [],
+      "consumerCrashes": [
+        {
+          "file": "src/modules/Admin/ManageProducts/components/ManagementPane/ManageProductGroups/index.tsx",
+          "line": 33,
+          "error": "Cannot read properties of undefined (reading 'map')"
+        },
+        {
+          "file": "src/modules/Admin/ManageProducts/components/ManagementPane/ManageProductGroups/index.tsx",
+          "line": 33,
+          "error": "Cannot read properties of undefined (reading 'map')"
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "route": "/Admin/Locations",
+      "team": "T2",
+      "currentState": "crash",
+      "fixtureFile": "src/freddy/fixtures/locations.ts",
+      "endpoints": [],
+      "missingEndpoints": [],
+      "consumerCrashes": [
+        {
+          "file": "src/modules/Admin/ManageLocations/components/ManagementPane/ManageLocationGroups/index.tsx",
+          "line": 33,
+          "error": "Cannot read properties of undefined (reading 'map')"
+        },
+        {
+          "file": "src/modules/Admin/ManageLocations/components/ManagementPane/ManageLocationGroups/index.tsx",
+          "line": 33,
+          "error": "Cannot read properties of undefined (reading 'map')"
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "route": "/Admin/Users",
+      "team": "T1",
+      "currentState": "crash",
+      "fixtureFile": "src/freddy/fixtures/users.ts",
+      "endpoints": [],
+      "missingEndpoints": [],
+      "consumerCrashes": [
+        {
+          "file": "src/modules/Admin/ManageUsers/components/colDefs.tsx",
+          "line": 295,
+          "error": "Cannot read properties of undefined (reading 'find')"
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "route": "/Admin/Counterparties",
+      "team": "T1",
+      "currentState": "populated",
+      "fixtureFile": "src/freddy/fixtures/counterparties.ts",
+      "endpoints": [],
+      "missingEndpoints": [],
+      "consumerCrashes": [],
+      "notes": ""
+    },
+    {
+      "route": "/Admin/CounterpartyHierarchy",
+      "team": "T1",
+      "currentState": "empty",
+      "fixtureFile": "src/freddy/fixtures/counterpartyHierarchy.ts",
+      "endpoints": [
+        {
+          "key": "ReferenceData/CounterPartyHierarchy/CounterParty/Items",
+          "wired": false,
+          "populated": false
+        }
+      ],
+      "missingEndpoints": [
+        "ReferenceData/CounterPartyHierarchy/CounterParty/Items"
+      ],
+      "consumerCrashes": [],
+      "notes": ""
+    },
+    {
+      "route": "/Admin/PriceImportMappings",
+      "team": "T3",
+      "currentState": "empty",
+      "fixtureFile": null,
+      "endpoints": [
+        {
+          "key": "PriceImport/TranslationManagement/GetMetadata",
+          "wired": false,
+          "populated": false
+        },
+        {
+          "key": "PriceImport/TranslationManagement/GetPriceTranslationData",
+          "wired": false,
+          "populated": false
+        }
+      ],
+      "missingEndpoints": [
+        "PriceImport/TranslationManagement/GetMetadata",
+        "PriceImport/TranslationManagement/GetPriceTranslationData"
+      ],
+      "consumerCrashes": [],
+      "notes": ""
+    },
+    {
+      "route": "/Admin/PriceTranslations",
+      "team": "T3",
+      "currentState": "empty",
+      "fixtureFile": null,
+      "endpoints": [
+        {
+          "key": "PriceImport/TranslatedIdentifiers/GetAll",
+          "wired": false,
+          "populated": false
+        },
+        {
+          "key": "PriceImport/TranslatedIdentifiers/MetaData",
+          "wired": false,
+          "populated": false
+        }
+      ],
+      "missingEndpoints": [
+        "PriceImport/TranslatedIdentifiers/GetAll",
+        "PriceImport/TranslatedIdentifiers/MetaData"
+      ],
+      "consumerCrashes": [],
+      "notes": ""
+    },
+    {
+      "route": "/Admin/AllocationMappings",
+      "team": "T4",
+      "currentState": "empty",
+      "fixtureFile": "src/freddy/fixtures/allocationManagement.ts",
+      "endpoints": [
+        {
+          "key": "MarketPlatform/Admin/AllocationFileImportManagement/GetSupplierMetadata",
+          "wired": false,
+          "populated": false
+        },
+        {
+          "key": "MarketPlatform/Admin/AllocationFileImportManagement/ReadSupplierTranslations",
+          "wired": false,
+          "populated": false
+        }
+      ],
+      "missingEndpoints": [
+        "MarketPlatform/Admin/AllocationFileImportManagement/GetSupplierMetadata",
+        "MarketPlatform/Admin/AllocationFileImportManagement/ReadSupplierTranslations"
+      ],
+      "consumerCrashes": [],
+      "notes": ""
+    },
+    {
+      "route": "/Admin/ManageOpisPrices",
+      "team": "T3",
+      "currentState": "crash",
+      "fixtureFile": "src/freddy/fixtures/opisCurves.ts",
+      "endpoints": [],
+      "missingEndpoints": [],
+      "consumerCrashes": [
+        {
+          "file": "src/modules/Admin/ManageOpisCurves/components/Grid/ManageOpisCurvesGrid.tsx",
+          "line": 40,
+          "error": "Cannot read properties of undefined (reading 'filter')"
+        },
+        {
+          "file": "src/modules/Admin/ManageOpisCurves/components/Grid/ManageOpisCurvesGrid.tsx",
+          "line": 40,
+          "error": "Cannot read properties of undefined (reading 'filter')"
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "route": "/Admin/IntegrationStatus",
+      "team": "T3",
+      "currentState": "empty",
+      "fixtureFile": "src/freddy/fixtures/priceInstrumentUpload.ts",
+      "endpoints": [
+        {
+          "key": "EntityReport/Read",
+          "wired": false,
+          "populated": false
+        }
+      ],
+      "missingEndpoints": [
+        "EntityReport/Read"
+      ],
+      "consumerCrashes": [],
+      "notes": ""
+    },
+    {
+      "route": "/Admin/AppliedAllocationReport",
+      "team": "T4",
+      "currentState": "empty",
+      "fixtureFile": "src/freddy/fixtures/allocationManagement.ts",
+      "endpoints": [
+        {
+          "key": "MarketPlatform/Admin/OrderAllocationStatus/GetOrderAllocationData",
+          "wired": false,
+          "populated": false
+        }
+      ],
+      "missingEndpoints": [
+        "MarketPlatform/Admin/OrderAllocationStatus/GetOrderAllocationData"
+      ],
+      "consumerCrashes": [],
+      "notes": ""
+    },
+    {
+      "route": "/Admin/AuthorizationAllocationAssociations",
+      "team": "T4",
+      "currentState": "crash",
+      "fixtureFile": "src/freddy/fixtures/allocationManagement.ts",
+      "endpoints": [
+        {
+          "key": "admin/allocation/management/GetMetadata",
+          "wired": true,
+          "populated": false,
+          "fixtureFile": "src/freddy/fixtures/allocationManagement.ts"
+        },
+        {
+          "key": "admin/allocation/management/ReadManagementData",
+          "wired": true,
+          "populated": false,
+          "fixtureFile": "src/freddy/fixtures/allocationManagement.ts"
+        },
+        {
+          "key": "admin/allocation/reference/GetMetaDataForReferences",
+          "wired": true,
+          "populated": false,
+          "fixtureFile": "src/freddy/fixtures/allocationManagement.ts"
+        },
+        {
+          "key": "admin/allocation/reference/GetReferences",
+          "wired": true,
+          "populated": false,
+          "fixtureFile": "src/freddy/fixtures/allocationManagement.ts"
+        }
+      ],
+      "missingEndpoints": [],
+      "consumerCrashes": [
+        {
+          "file": "src/modules/Admin/ManageAllocationAssociations/components/AuthorizationAllocationMappings.tsx",
+          "line": 64,
+          "error": "Cannot read properties of undefined (reading 'reduce')"
+        },
+        {
+          "file": "src/modules/Admin/ManageAllocationAssociations/components/AuthorizationAllocationMappings.tsx",
+          "line": 64,
+          "error": "Cannot read properties of undefined (reading 'reduce')"
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "route": "/Admin/Availability",
+      "team": "T10",
+      "currentState": "empty",
+      "fixtureFile": null,
+      "endpoints": [
+        {
+          "key": "AvailabilityMaintenance/GetAvailabilityMaintenanceGridData",
+          "wired": false,
+          "populated": false
+        },
+        {
+          "key": "admin/allocation/management/ReadManagementData",
+          "wired": true,
+          "populated": false,
+          "fixtureFile": "src/freddy/fixtures/allocationManagement.ts"
+        },
+        {
+          "key": "admin/allocation/reference/GetMetaDataForReferences",
+          "wired": true,
+          "populated": false,
+          "fixtureFile": "src/freddy/fixtures/allocationManagement.ts"
+        },
+        {
+          "key": "admin/allocation/reference/GetReferences",
+          "wired": true,
+          "populated": false,
+          "fixtureFile": "src/freddy/fixtures/allocationManagement.ts"
+        }
+      ],
+      "missingEndpoints": [
+        "AvailabilityMaintenance/GetAvailabilityMaintenanceGridData"
+      ],
+      "consumerCrashes": [],
+      "notes": ""
+    },
+    {
+      "route": "/Admin/MarketPlatformSetups",
+      "team": "T2",
+      "currentState": "empty",
+      "fixtureFile": "src/freddy/fixtures/manageInstruments.ts",
+      "endpoints": [
+        {
+          "key": "MarketPlatform/Admin/TradeEntrySetup/GetMetaData",
+          "wired": false,
+          "populated": false
+        },
+        {
+          "key": "MarketPlatform/Admin/TradeEntrySetup/Read",
+          "wired": false,
+          "populated": false
+        }
+      ],
+      "missingEndpoints": [
+        "MarketPlatform/Admin/TradeEntrySetup/GetMetaData",
+        "MarketPlatform/Admin/TradeEntrySetup/Read"
+      ],
+      "consumerCrashes": [],
+      "notes": ""
+    },
+    {
+      "route": "/Admin/PriceConfiguration",
+      "team": "T3",
+      "currentState": "empty",
+      "fixtureFile": null,
+      "endpoints": [
+        {
+          "key": "MarketPlatform/Admin/PriceConfiguration/GetAll",
+          "wired": false,
+          "populated": false
+        },
+        {
+          "key": "MarketPlatform/Admin/PriceConfiguration/MetaData",
+          "wired": false,
+          "populated": false
+        }
+      ],
+      "missingEndpoints": [
+        "MarketPlatform/Admin/PriceConfiguration/GetAll",
+        "MarketPlatform/Admin/PriceConfiguration/MetaData"
+      ],
+      "consumerCrashes": [],
+      "notes": ""
+    },
+    {
+      "route": "/Admin/FormulaTemplates",
+      "team": "T10",
+      "currentState": "empty",
+      "fixtureFile": null,
+      "endpoints": [
+        {
+          "key": "MarketPlatform/ContractTemplates/GetAll",
+          "wired": false,
+          "populated": false
+        },
+        {
+          "key": "MarketPlatform/ContractTemplates/Metadata",
+          "wired": false,
+          "populated": false
+        }
+      ],
+      "missingEndpoints": [
+        "MarketPlatform/ContractTemplates/GetAll",
+        "MarketPlatform/ContractTemplates/Metadata"
+      ],
+      "consumerCrashes": [],
+      "notes": ""
+    },
+    {
+      "route": "/Admin/PlaceholderManagement",
+      "team": "T10",
+      "currentState": "empty",
+      "fixtureFile": null,
+      "endpoints": [
+        {
+          "key": "MarketPlatform/PlaceholderPriceManagement/GetPlaceholders",
+          "wired": false,
+          "populated": false
+        }
+      ],
+      "missingEndpoints": [
+        "MarketPlatform/PlaceholderPriceManagement/GetPlaceholders"
+      ],
+      "consumerCrashes": [],
+      "notes": ""
+    },
+    {
+      "route": "/Admin/DeliveryPeriods",
+      "team": "T5",
+      "currentState": "empty",
+      "fixtureFile": null,
+      "endpoints": [
+        {
+          "key": "DeliveryPeriodManagement/GetDeliveryPeriodConfigurations",
+          "wired": false,
+          "populated": false
+        },
+        {
+          "key": "DeliveryPeriodManagement/GetMetaData",
+          "wired": false,
+          "populated": false
+        }
+      ],
+      "missingEndpoints": [
+        "DeliveryPeriodManagement/GetDeliveryPeriodConfigurations",
+        "DeliveryPeriodManagement/GetMetaData"
+      ],
+      "consumerCrashes": [],
+      "notes": ""
+    },
+    {
+      "route": "/Admin/CalculatedValueReport",
+      "team": "T10",
+      "currentState": "empty",
+      "fixtureFile": "src/freddy/fixtures/calculatedValueReport.ts",
+      "endpoints": [
+        {
+          "key": "MarketPlatform/CalculatedPriceReport/GetSecondaryPriceBreakdown",
+          "wired": false,
+          "populated": false
+        },
+        {
+          "key": "MarketPlatform/CalculatedPriceReport/ReadMetadata",
+          "wired": false,
+          "populated": false
+        }
+      ],
+      "missingEndpoints": [
+        "MarketPlatform/CalculatedPriceReport/GetSecondaryPriceBreakdown",
+        "MarketPlatform/CalculatedPriceReport/ReadMetadata"
+      ],
+      "consumerCrashes": [],
+      "notes": ""
+    },
+    {
+      "route": "/Admin/CalendarPeriods",
+      "team": "T5",
+      "currentState": "empty",
+      "fixtureFile": "src/freddy/fixtures/calendarPeriods.ts",
+      "endpoints": [
+        {
+          "key": "MarketPlatform/Admin/Calendar/ReadCalendarPeriods",
+          "wired": false,
+          "populated": false
+        }
+      ],
+      "missingEndpoints": [
+        "MarketPlatform/Admin/Calendar/ReadCalendarPeriods"
+      ],
+      "consumerCrashes": [],
+      "notes": ""
+    },
+    {
+      "route": "/Admin/QuantityDistributionManagement",
+      "team": "T10",
+      "currentState": "empty",
+      "fixtureFile": null,
+      "endpoints": [
+        {
+          "key": "MarketPlatform/QuantityDistribution/GetQuantityDistributionWeights",
+          "wired": false,
+          "populated": false
+        }
+      ],
+      "missingEndpoints": [
+        "MarketPlatform/QuantityDistribution/GetQuantityDistributionWeights"
+      ],
+      "consumerCrashes": [],
+      "notes": ""
+    },
+    {
+      "route": "/Admin/VolumeThresholds",
+      "team": "T10",
+      "currentState": "empty",
+      "fixtureFile": null,
+      "endpoints": [
+        {
+          "key": "MarketPlatform/Admin/TradeEntrySetupVolumeConstraints/ReadTradeEntrySetupVolumeThresholds",
+          "wired": false,
+          "populated": false
+        }
+      ],
+      "missingEndpoints": [
+        "MarketPlatform/Admin/TradeEntrySetupVolumeConstraints/ReadTradeEntrySetupVolumeThresholds"
+      ],
+      "consumerCrashes": [],
+      "notes": ""
+    },
+    {
+      "route": "/SuperUserAdmin/MPIManagement",
+      "team": "T2",
+      "currentState": "populated",
+      "fixtureFile": "src/freddy/fixtures/manageInstruments.ts",
+      "endpoints": [],
+      "missingEndpoints": [],
+      "consumerCrashes": [],
+      "notes": ""
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "slug": "buttons",
+  "title": "Buttons",
+  "order": 5,
+  "group": "Controls",
+  "intro": "`.wf-button` is the only button in the wireframe kit. A base class sets the inline-flex shape, padding, and 6px radius; a single variant modifier carries the color and intent. Stack a size modifier when you need it, and let the `disabled` attribute and `.wf-button-loading` cover the two in-flight states.",
+  "searchTerms": ["wf-button", "wf-button-primary", "wf-button-secondary", "wf-button-success", "wf-button-danger", "wf-button-ghost", "wf-button-sm", "wf-button-lg", "wf-button-loading", "wf-icon", "button", "CTA", "primary button", "disabled", "loading"],
+  "blocks": [
+    {
+      "type": "usage",
+      "body": "Always pair the base `.wf-button` with exactly one variant modifier — the base alone is a transparent-bordered button with no fill. The variant supplies background, border, and text color, so it is also what signals intent: `.wf-button-primary` for the one primary CTA, `.wf-button-secondary` for neutral actions, `.wf-button-success` to confirm, `.wf-button-danger` to destroy, `.wf-button-ghost` for the quietest tertiary action like Cancel.\n\nSize and state are independent, stackable modifiers. Add `.wf-button-sm` or `.wf-button-lg` to shift padding and font size; add the `disabled` attribute or `.wf-button-loading` for the two waiting states. The button lays out with `inline-flex` and a `--wf-space-sm` gap, so a `<span class=\"wf-icon\">` child slots in on either side of the label with no extra markup."
+    },
+    {
+      "type": "specimen",
+      "title": "Button variants — the API",
+      "image": "specimens/buttons/01-button-variants.png",
+      "caption": "Base .wf-button plus one variant modifier: primary (solid blue, white text), secondary (white fill, gray border), success (solid green), danger (solid red), ghost (transparent, no border). The variant is the intent signal — don't pick a color for decoration."
+    },
+    {
+      "type": "variants",
+      "title": "Variant modifiers",
+      "intro": "Pair the base `.wf-button` with exactly one of these. They are mutually exclusive — one variant per button.",
+      "rows": [
+        { "name": "wf-button-primary", "when": "The single primary CTA on a surface. Solid `--wf-color-primary` blue with white text.", "code": "<button class=\"wf-button wf-button-primary\">Primary Action</button>" },
+        { "name": "wf-button-secondary", "when": "Neutral or secondary actions. White surface fill with a `--wf-color-border` outline and dark text.", "code": "<button class=\"wf-button wf-button-secondary\">Secondary</button>" },
+        { "name": "wf-button-success", "when": "Confirm a positive, completed action. Solid `--wf-color-success` green with white text.", "code": "<button class=\"wf-button wf-button-success\">Confirm</button>" },
+        { "name": "wf-button-danger", "when": "Destructive actions — Delete, Remove. Solid `--wf-color-danger` red with white text.", "code": "<button class=\"wf-button wf-button-danger\">Delete</button>" },
+        { "name": "wf-button-ghost", "when": "Low-emphasis tertiary actions like Cancel. Transparent background and border, dark text; only tints on hover.", "code": "<button class=\"wf-button wf-button-ghost\">Cancel</button>" }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "Button sizes",
+      "image": "specimens/buttons/02-button-sizes.png",
+      "caption": "Size modifiers stack on top of a variant. .wf-button-sm tightens padding to xs/md and drops to --wf-font-size-sm; the default carries no size class; .wf-button-lg opens padding to md/xl at --wf-font-size-lg."
+    },
+    {
+      "type": "variants",
+      "title": "Size modifiers",
+      "intro": "Optional, stacked on top of a variant. Default size (no class) covers most cases.",
+      "rows": [
+        { "name": "wf-button-sm", "when": "Compact toolbars and inline placements. Padding `--wf-space-xs` / `--wf-space-md`, font `--wf-font-size-sm` (13px).", "code": "<button class=\"wf-button wf-button-primary wf-button-sm\">Small</button>" },
+        { "name": "(default)", "when": "The standard button. No size class — base padding `--wf-space-sm` / `--wf-space-lg`, font `--wf-font-size-md` (14px).", "code": "<button class=\"wf-button wf-button-primary\">Default</button>" },
+        { "name": "wf-button-lg", "when": "Prominent or hero actions. Padding `--wf-space-md` / `--wf-space-xl`, font `--wf-font-size-lg` (16px).", "code": "<button class=\"wf-button wf-button-primary wf-button-lg\">Large</button>" }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "Button states — disabled & loading",
+      "image": "specimens/buttons/03-button-states.png",
+      "caption": "The disabled attribute drops the button to 0.6 opacity with a not-allowed cursor on every variant. .wf-button-loading hides the label (color: transparent), kills pointer events, and spins a ::after ring — use it while an action is in flight."
+    },
+    {
+      "type": "variants",
+      "title": "State modifiers",
+      "intro": "Both states apply to any variant.",
+      "rows": [
+        { "name": "disabled (attribute)", "when": "The action is unavailable. Sets `cursor: not-allowed` and `opacity: 0.6`; hover and active styling are suppressed via `:not(:disabled)`.", "code": "<button class=\"wf-button wf-button-primary\" disabled>Disabled</button>" },
+        { "name": "wf-button-loading", "when": "An action is in flight. Label goes `color: transparent`, `pointer-events` are off, and a 16px spinner animates via `::after`.", "code": "<button class=\"wf-button wf-button-primary wf-button-loading\">Loading...</button>" }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "Buttons with icons",
+      "image": "specimens/buttons/04-buttons-with-icons.png",
+      "caption": "Drop a <span class=\"wf-icon\"> child before or after the label. The button's inline-flex layout and --wf-space-sm gap handle alignment; the icon is a fixed 16x16 box."
+    },
+    {
+      "type": "code",
+      "title": "Canonical usage",
+      "lang": "html",
+      "code": "<!-- Primary CTA — one per surface -->\n<button class=\"wf-button wf-button-primary\">Primary Action</button>\n\n<!-- Neutral secondary -->\n<button class=\"wf-button wf-button-secondary\">Secondary</button>\n\n<!-- Destructive -->\n<button class=\"wf-button wf-button-danger\">Delete</button>\n\n<!-- Low-emphasis tertiary -->\n<button class=\"wf-button wf-button-ghost\">Cancel</button>\n\n<!-- Size modifier stacked on a variant -->\n<button class=\"wf-button wf-button-primary wf-button-sm\">Small</button>\n\n<!-- Icon + label -->\n<button class=\"wf-button wf-button-primary\"><span class=\"wf-icon\">+</span> Add New</button>\n\n<!-- In-flight states -->\n<button class=\"wf-button wf-button-primary\" disabled>Disabled</button>\n<button class=\"wf-button wf-button-primary wf-button-loading\">Loading...</button>",
+      "note": "Every button is base .wf-button + one variant. Size and state modifiers stack on top."
+    },
+    {
+      "type": "tokens",
+      "title": "Tokens the button reads",
+      "intro": "These are defined in this stylesheet's `:root` and drive the button's resting appearance.",
+      "rows": [
+        { "token": "--wf-color-primary", "value": "#2563eb", "use": "Primary fill and border." },
+        { "token": "--wf-color-bg", "value": "#ffffff", "use": "Secondary button surface fill." },
+        { "token": "--wf-color-success", "value": "#16a34a", "use": "Success fill and border." },
+        { "token": "--wf-color-danger", "value": "#dc2626", "use": "Danger fill and border." },
+        { "token": "--wf-color-text-inverse", "value": "#ffffff", "use": "White label on solid primary/success/danger fills." },
+        { "token": "--wf-color-text", "value": "#1e293b", "use": "Dark label on secondary and ghost." },
+        { "token": "--wf-color-border", "value": "#cbd5e1", "use": "Secondary button outline." },
+        { "token": "--wf-radius-md", "value": "6px", "use": "Button corner radius." },
+        { "token": "--wf-font-size-md", "value": "14px", "use": "Default label size." }
+      ]
+    },
+    {
+      "type": "rules",
+      "title": "Button rules",
+      "items": [
+        { "rule": "Always combine `.wf-button` with exactly one variant modifier.", "why": "The base class has a transparent border and no fill — without a variant the button is invisible chrome." },
+        { "rule": "Use color to signal intent, never decoration — success means confirm, danger means destroy.", "why": "Variant color is the only semantic the modifier carries; pick green or red for looks and you mislead the user." },
+        { "rule": "One `.wf-button-primary` per surface.", "why": "Two solid-blue CTAs compete and erase the action hierarchy." },
+        { "rule": "Keep a 44x44 tap target even with `.wf-button-sm`.", "why": "Small visual padding still needs a finger-sized hit area on touch surfaces." },
+        { "rule": "Pair every icon with a text label or an `aria-label`.", "why": "Color and glyph shape are never the only signal — an unlabeled `.wf-icon` button is a usability hole." }
+      ]
+    },
+    {
+      "type": "dosdonts",
+      "items": [
+        { "do": "<button class=\"wf-button wf-button-primary\">Save</button>", "dont": "<button class=\"wf-button\">Save</button>", "why": "The base class alone has a transparent border and no fill — you need a variant to get a visible, colored button." },
+        { "do": "<button class=\"wf-button wf-button-primary wf-button-sm\">Small</button>", "dont": "<button class=\"wf-button wf-button-sm\">Small</button>", "why": "Size modifiers are additive on top of a variant, not a substitute for one." },
+        { "do": "<button class=\"wf-button wf-button-danger\">Delete</button> for a destructive action", "dont": "<button class=\"wf-button wf-button-danger\">Download</button> because red looks bold", "why": "Variant color is the intent signal — danger red on a safe action teaches users to ignore the warning." },
+        { "do": "<button class=\"wf-button wf-button-primary\"><span class=\"wf-icon\">+</span> Add New</button>", "dont": "<button class=\"wf-button wf-button-primary\"><span class=\"wf-icon\">+</span></button>", "why": "An icon-only button with no label or aria-label leaves the action unreadable to anyone who can't decode the glyph." }
+      ]
+    },
+    {
+      "type": "gotchas",
+      "items": [
+        { "title": "Hover, active, and focus styling silently no-op", "detail": "controls.css references `--wf-color-primary-hover`, `--wf-color-primary-active`, `--wf-shadow-focus`, and the `--wf-space-sm`/`--wf-space-lg` family. This component stylesheet defines those itself in its own `:root`, but the shared `tokens/*.css` exports the *-dim, `--wf-focus-ring`, and `--wf-space-2`/`--wf-space-6` names instead. Load only the token files and the hover/active/focus and padding variables resolve to nothing — interaction states quietly disappear. Don't rely on those visual states from the token sheet alone." },
+        { "title": "Loading hides your label", "detail": "`.wf-button-loading` sets `color: transparent !important` and `pointer-events: none`, then draws a spinner via `::after`. The button keeps its width but the text vanishes and clicks are dead — only use it while an action is genuinely in flight, and don't count on the visible label text." },
+        { "title": "Disabled hover is suppressed by design", "detail": "Every variant's hover and active rules are scoped with `:not(:disabled)`, so a `disabled` button stays at 0.6 opacity with `not-allowed` and never reacts to the pointer — expected, but it means you can't restyle a disabled button's hover from this sheet." },
+        { "title": "Spinner color flips on solid variants", "detail": "The default spinner ring uses `currentColor`, but `.wf-button-primary`, `.wf-button-success`, and `.wf-button-danger` override it to `--wf-color-text-inverse` (white). A loading secondary or ghost button spins in the dark text color instead — consistent with their labels, just worth knowing if you swap variants." }
+      ]
+    }
+  ]
+}

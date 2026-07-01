@@ -1,0 +1,178 @@
+{
+  "slug": "typography",
+  "title": "Typography",
+  "order": 1,
+  "group": "Foundations",
+  "intro": "Texto is the single text primitive — every piece of UI text in a Gravitate screen goes through it. One component, three axes: category sets the scale step and rendered element, appearance sets the color role, weight overrides the default 500. Never reach for raw <p>/<h*> tags or antd Typography directly.",
+  "demoPath": "/DesignSystem/Typography",
+  "searchTerms": [
+    "Texto",
+    "text",
+    "typography",
+    "heading",
+    "heading-small",
+    "label",
+    "p1",
+    "p2",
+    "h1",
+    "h2",
+    "h3",
+    "h4",
+    "h5",
+    "appearance",
+    "weight",
+    "font",
+    "type scale",
+    "section header",
+    "field label",
+    "helper text"
+  ],
+  "blocks": [
+    {
+      "type": "usage",
+      "body": "Texto wraps antd Typography: `h1`–`h5` render semantic `<h*>` elements via antd `Title`, `p1`/`p2`/`label` render antd `Paragraph` (a block-level div), and `heading`/`heading-small` render antd `Text` (an inline span) with built-in uppercase and 5px letterspacing. Pick the category for the role, not the size you want — the scale is em-based, so every step inherits and multiplies the container's font size.\n\nThree axes cover everything: `category` (scale step), `appearance` (color role), `weight` (font weight, defaults to 500). Anything beyond that — alignment, transforms — has a dedicated prop (`align`, `textTransform`). If you find yourself passing `style` for type styling, you are working around the component instead of with it."
+    },
+    {
+      "type": "specimen",
+      "title": "Categories",
+      "image": "specimens/typography/01-categories.png",
+      "caption": "Nine of the ten categories at default appearance and weight: h1 (2.5em) down to h5 (1.25em), body p1 and the slightly larger p2, and the uppercase letterspaced heading / heading-small eyebrows. Not shown: label (0.9em fine print)."
+    },
+    {
+      "type": "variants",
+      "title": "Category scale",
+      "intro": "Exactly ten valid categories. p3 and h6 do not exist — they silently fall through to an unstyled text branch.",
+      "rows": [
+        { "name": "h1 — 2.5em", "when": "Hero numbers and page-level display text. Rare; one per screen at most.", "code": "<Texto category=\"h1\">$0.0425</Texto>" },
+        { "name": "h2 — 2em", "when": "Large stat callouts and dashboard KPIs.", "code": "<Texto category=\"h2\">42 terminals</Texto>" },
+        { "name": "h3 — 1.75em", "when": "Page titles.", "code": "<Texto category=\"h3\">Quote Book</Texto>" },
+        { "name": "h4 — 1.5em", "when": "Card, drawer, and modal titles.", "code": "<Texto category=\"h4\">Exception Profile</Texto>" },
+        { "name": "h5 — 1.25em", "when": "Section titles inside cards and panels; pairs with appearance=\"medium\" weight=\"600\" textTransform=\"uppercase\" for section headers — h5 is not uppercase on its own.", "code": "<Texto category=\"h5\">Thresholds</Texto>" },
+        { "name": "p1 — 1em", "when": "Default body text. The category you get when you pass none.", "code": "<Texto>Body copy</Texto>" },
+        { "name": "p2 — 1.1em", "when": "Emphasized body text — p2 is LARGER than p1, not fine print. Also the standard category for field labels and helper text with appearance=\"medium\".", "code": "<Texto category=\"p2\">Lead paragraph</Texto>" },
+        { "name": "label — 0.9em", "when": "The smallest step: captions, table-adjacent metadata, true fine print.", "code": "<Texto category=\"label\">Updated 6:00 AM CT</Texto>" },
+        { "name": "heading — 1.2em", "when": "Uppercase letterspaced eyebrow above a content block. Renders an inline span, always bold and uppercase — no extra styling needed.", "code": "<Texto category=\"heading\">Pricing Engine</Texto>" },
+        { "name": "heading-small — 1em", "when": "Compact eyebrow for dense panels and drawer section breaks.", "code": "<Texto category=\"heading-small\">Quote Detail</Texto>" }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "Appearances",
+      "image": "specimens/typography/02-appearances.png",
+      "caption": "Seven appearances on p1: primary (brand green), secondary (the theme's INFO accent — teal here, never gray), medium and light (identical subdued gray), error, success, warning."
+    },
+    {
+      "type": "tokens",
+      "title": "Appearance → color mapping",
+      "intro": "Appearance names are color roles resolved through antd theme tokens. Hex values sampled from the default light theme.",
+      "rows": [
+        { "token": "default", "value": "theme text color (rgba(0,0,0,0.88))", "use": "Body copy. The default — omit the prop." },
+        { "token": "medium", "value": "antd type=\"secondary\" gray (rgba(0,0,0,0.45))", "use": "THE gray for subdued text: field labels, helper text, section headers." },
+        { "token": "light", "value": "same gray as medium", "use": "Alias of medium in the current package — prefer medium for consistency." },
+        { "token": "hint", "value": "same gray as medium", "use": "Placeholder-grade text. Also resolves to the medium gray today." },
+        { "token": "primary", "value": "colorPrimaryText (#388A58 brand green)", "use": "Brand-emphasis text tied to the primary action color." },
+        { "token": "secondary", "value": "colorInfoText (#0C5A58 — the info accent)", "use": "Info-accent text ONLY. This is never gray — it is blue/teal depending on theme." },
+        { "token": "success", "value": "antd success (#156139)", "use": "Positive states: published, passing, in range." },
+        { "token": "warning", "value": "antd warning (#D98900)", "use": "Caution states: stale data, soft thresholds." },
+        { "token": "error", "value": "antd danger (#B32741)", "use": "Failures and blocking exceptions." },
+        { "token": "optimal", "value": "colorWarningHover (gold)", "use": "\"Optimal\" metric highlights in pricing views." },
+        { "token": "white", "value": "literal white", "use": "Text on dark or color-filled surfaces." }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "Weights",
+      "image": "specimens/typography/03-weights.png",
+      "caption": "Weights 400–700 on p1. Omitting weight renders 500 — pass weight=\"400\" explicitly when you need true regular."
+    },
+    {
+      "type": "props",
+      "title": "Texto props",
+      "intro": "Verified against @gravitate-js/excalibrr 5.2.1 (the version installed in the demo). Unrecognized extra props spread onto the root element.",
+      "rows": [
+        { "prop": "category", "type": "'p1' | 'p2' | 'label' | 'heading' | 'heading-small' | 'h1'–'h5'", "default": "'p1'", "notes": "The only ten valid values. p3 and h6 are not in the type union and silently break at runtime." },
+        { "prop": "appearance", "type": "'default' | 'medium' | 'light' | 'hint' | 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'optimal' | 'white'", "default": "'default'", "notes": "Color role. Use medium for gray; secondary is the blue/teal info accent." },
+        { "prop": "weight", "type": "CSSProperties['fontWeight']", "default": "renders 500", "notes": "Internally `weight || 500` — omitting the prop renders 500, never the browser-default 400." },
+        { "prop": "align", "type": "CSSProperties['textAlign']", "default": "'left'", "notes": "Right-align numerics in stat layouts with align=\"right\"." },
+        { "prop": "textTransform", "type": "CSSProperties['textTransform']", "default": "—", "notes": "First-class prop — never pass textTransform through style. heading/heading-small are already uppercase." },
+        { "prop": "children", "type": "ReactNode", "default": "—", "notes": "Required." },
+        { "prop": "className / style", "type": "string / CSSProperties", "default": "—", "notes": "Escape hatches. style merges last and wins — keep it for spacing only, never for type styling." }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "Common patterns",
+      "image": "specimens/typography/04-common-patterns.png",
+      "caption": "The four workhorse recipes: uppercase section header (h5 + medium + 600 + explicit uppercase transform), field label (p2 + medium, uppercase), bold field value (p1 + 600), and helper text (p2 + medium)."
+    },
+    {
+      "type": "code",
+      "title": "Canonical usage — a labeled stat block",
+      "code": "import { Texto, Vertical } from '@gravitate-js/excalibrr'\n\n<Vertical gap={4}>\n  <Texto category=\"heading-small\" appearance=\"medium\">\n    Rack Margin\n  </Texto>\n  <Texto category=\"h2\" weight=\"600\">\n    $0.0425/gal\n  </Texto>\n  <Texto category=\"p2\" appearance=\"medium\">\n    Trailing 7-day average vs. OPIS low\n  </Texto>\n</Vertical>",
+      "note": "Eyebrow in heading-small (uppercase comes free), value in h2, helper in p2 + medium. Money is decimal dollars — $0.0425/gal, never cents symbols."
+    },
+    {
+      "type": "dosdonts",
+      "items": [
+        {
+          "do": "Use appearance=\"medium\" for gray, subdued text.",
+          "dont": "Use appearance=\"secondary\" expecting gray.",
+          "why": "secondary maps to the theme's colorInfoText — a blue/teal accent. medium is the antd secondary gray."
+        },
+        {
+          "do": "Stay inside the ten categories: p1, p2, label, heading, heading-small, h1–h5.",
+          "dont": "Write category=\"p3\" or category=\"h6\".",
+          "why": "Invalid categories fall through to a plain antd Text branch with an undefined font size — no error, just wrong text."
+        },
+        {
+          "do": "Pass weight=\"400\" when a spec calls for regular weight.",
+          "dont": "Omit weight and assume browser-default 400.",
+          "why": "Texto renders `weight || 500` — unweighted text is always medium-weight."
+        },
+        {
+          "do": "Use the textTransform and align props.",
+          "dont": "Reach for style={{ textTransform: 'uppercase' }}.",
+          "why": "The props exist for exactly this; style is reserved for spacing escape hatches."
+        },
+        {
+          "do": "Set all UI text with Texto.",
+          "dont": "Drop raw <p>/<h3> tags or import antd Typography directly.",
+          "why": "Raw tags skip the scale, the 500 default weight, and the appearance color roles — screens drift off-system one tag at a time."
+        }
+      ]
+    },
+    {
+      "type": "gotchas",
+      "items": [
+        {
+          "title": "appearance=\"secondary\" is BLUE, not gray",
+          "detail": "secondary resolves to antd colorInfoText — the info accent (teal in the default theme, blue in others). Every \"why is my label blue\" bug traces here. Gray text is appearance=\"medium\"."
+        },
+        {
+          "title": "p3 and h6 silently break",
+          "detail": "Valid categories are only p1, p2, label, heading, heading-small, h1–h5. Anything else misses every render branch and falls to antd Text with fontSize: undefined — it renders, looks almost right, and is wrong."
+        },
+        {
+          "title": "p2 is larger than p1",
+          "detail": "p2 is 1.1em, p1 is 1em. p2 is the emphasized body step, not fine print. The smallest category is label (0.9em)."
+        },
+        {
+          "title": "medium, light, and hint are currently the same gray",
+          "detail": "All three map to antd type=\"secondary\" (rgba(0,0,0,0.45) in light theme). Standardize on medium so intent stays legible in code."
+        },
+        {
+          "title": "Default weight is 500, not 400",
+          "detail": "Texto applies `fontWeight: weight || 500`. Designs that assume regular-weight body text need an explicit weight=\"400\"."
+        },
+        {
+          "title": "The scale is em-based and inherits container font size",
+          "detail": "h1 is 2.5em of whatever the parent sets, not a fixed pixel size. Inside a container that shrinks its font-size (dense grids, compact drawers), every Texto shrinks with it."
+        },
+        {
+          "title": "Categories change the rendered element",
+          "detail": "h1–h5 render real heading tags, p1/p2/label render a block-level div (antd Paragraph), heading/heading-small render an inline span. Inline vs. block matters in flex rows — eyebrows sit inline; body steps take the full line."
+        }
+      ]
+    }
+  ]
+}

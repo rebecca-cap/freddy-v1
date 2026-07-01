@@ -1,0 +1,199 @@
+{
+  "slug": "panels",
+  "title": "Panels",
+  "order": 5,
+  "group": "Page anatomy",
+  "intro": "A panel is collaborative chrome: it slides in beside the content without blocking it. No shim, no overlay — the page stays live while the panel is open. If the user must finish the panel before touching the page, the surface is a Drawer, not a panel.",
+  "demoPath": "/DesignSystem/Panels",
+  "searchTerms": [
+    "panel",
+    "inline panel",
+    "split panel",
+    "side panel",
+    "filter panel",
+    "detail pane",
+    "flex pane",
+    "list-detail",
+    "Horizontal",
+    "Vertical"
+  ],
+  "blocks": [
+    {
+      "type": "rules",
+      "title": "The laws of panels",
+      "items": [
+        {
+          "rule": "A panel never blocks the page — no shim, no overlay, no dimming.",
+          "why": "The point of a panel is side-by-side work. If the page must freeze while the surface is open, the surface is a Drawer."
+        },
+        {
+          "rule": "Panels push content aside via flex; they never float above it.",
+          "why": "A floating overlay hides the very data the panel exists to support. Pushing keeps both surfaces fully visible and interactive."
+        },
+        {
+          "rule": "Budget chrome before you build — cumulative non-grid chrome on a grid page stays at or under 320px.",
+          "why": "Panels ship tight from the first pass; chrome is budgeted, not accumulated. Headers, toolbars, and panel padding all spend from the same budget, and the grid must keep the viewport."
+        },
+        {
+          "rule": "Inline panels are 320–400px fixed-width; the main pane takes flex 1 with min-width 0.",
+          "why": "Fixed width keeps panel content stable while the main pane absorbs the resize. min-width 0 lets the flex pane actually shrink instead of overflowing under the panel."
+        },
+        {
+          "rule": "Every panel owns its scroll — pinned header, independently scrolling body.",
+          "why": "Tying panel scroll to the page scrolls the user's working context away mid-task."
+        },
+        {
+          "rule": "An inline panel's header is title left, close (✕) right, 1px border below — nothing else. Split-panel list headers drop the close: there is no open/close state to dismiss.",
+          "why": "A constant header anatomy makes every panel instantly identifiable — and dismissible when dismissal exists."
+        },
+        {
+          "rule": "Split-panel lists are 280–320px fixed on the left; detail takes flex 1 on the right.",
+          "why": "List labels truncate predictably at a fixed width; detail content is what benefits from every extra pixel."
+        },
+        {
+          "rule": "Panels close from their own header or their launch control — never from a click on the main content.",
+          "why": "Click-outside-to-close belongs to overlays. Panels exist precisely so users can click the content while they work."
+        }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "Panel vs Drawer",
+      "image": "specimens/panels/01-panel-vs-drawer.png",
+      "caption": "The dividing line: a panel keeps the content area interactive with no shim; a drawer deactivates it behind an overlay. Panels serve filters, settings, and detail previews — drawers serve creation forms and multi-step workflows."
+    },
+    {
+      "type": "specimen",
+      "title": "Inline panel — right side",
+      "image": "specimens/panels/02-inline-panel.png",
+      "caption": "The canonical inline panel: main content shrinks via flex and stays fully active; the panel sits at fixed width with a border-left, pinned title + close header, and its own scrolling body."
+    },
+    {
+      "type": "specimen",
+      "title": "Split panel — list + detail",
+      "image": "specimens/panels/03-split-panel.png",
+      "caption": "Persistent two-pane anatomy: fixed-width list pane on the left with selection state (tinted row + 3px accent bar), flex-1 detail pane on the right, 1px border between. Both panes scroll independently."
+    },
+    {
+      "type": "specimen",
+      "title": "Do / Don't — push, never overlay",
+      "image": "specimens/panels/04-dos-donts.png",
+      "caption": "Do: panel shares the flex row and the content stays active. Don't: a drawer-style overlay that dims or blocks the page — if the content is blocked, the surface should be a Drawer."
+    },
+    {
+      "type": "variants",
+      "title": "Panel types — and the drawer boundary",
+      "intro": "Two panel shapes cover every legitimate use. Anything past them is a Drawer.",
+      "rows": [
+        {
+          "name": "Inline panel",
+          "when": "Transient tool surface the user opens and closes — filters, settings, detail preview that follows selection. 320–400px fixed, border-left, mounted inside the page's flex row.",
+          "code": "{panelOpen && <Vertical width={360} style={{ borderLeft: '1px solid var(--border-default)' }}>…</Vertical>}"
+        },
+        {
+          "name": "Split panel",
+          "when": "Persistent two-pane list + detail anatomy — profile managers, manage tabs. Left list 280–320px fixed, right detail flex 1; both always present, no open/close state."
+        },
+        {
+          "name": "Drawer — not a panel",
+          "when": "The task must block the page: creation forms, multi-step workflows, formula editors. Shim overlay, explicit close, commit/cancel contract. See the Right Drawers entry."
+        }
+      ]
+    },
+    {
+      "type": "tokens",
+      "title": "Panel sizing & spacing",
+      "intro": "Fixed dimensions are decided once per surface and never accumulated. The chrome budget is the binding constraint.",
+      "rows": [
+        {
+          "token": "inline panel width",
+          "value": "320–400px",
+          "use": "Fixed width of an inline push panel — pick once based on densest content, then hold it"
+        },
+        {
+          "token": "split list pane width",
+          "value": "280–320px",
+          "use": "Fixed left pane of a split panel; detail pane takes flex 1"
+        },
+        {
+          "token": "chrome budget",
+          "value": "≤ 320px",
+          "use": "Cumulative non-grid chrome on grid pages: page header + toolbars + footers + panel padding stack, all-in"
+        },
+        {
+          "token": "--space-3",
+          "value": "12px",
+          "use": "Panel header vertical padding; gap between fields in the panel body"
+        },
+        {
+          "token": "--space-4",
+          "value": "16px",
+          "use": "Panel header horizontal padding; panel body padding"
+        },
+        {
+          "token": "--border-default",
+          "value": "#e8e8e8",
+          "use": "Panel edge: border-left on inline panels, divider between split panes, header border-bottom"
+        },
+        {
+          "token": "--surface-muted",
+          "value": "#fafafa",
+          "use": "Panel background when it should read as secondary to the main content; list-pane headers"
+        }
+      ]
+    },
+    {
+      "type": "code",
+      "title": "Canonical inline panel",
+      "code": "import { useState } from 'react'\nimport { Horizontal, Vertical, Texto, GraviButton } from '@gravitate-js/excalibrr'\nimport { CloseOutlined } from '@ant-design/icons'\n\nfunction PageWithPanel() {\n  const [panelOpen, setPanelOpen] = useState(false)\n\n  return (\n    <Horizontal height=\"100%\" alignItems=\"stretch\">\n      {/* Main pane: flex 1 + minWidth 0 so it can actually shrink */}\n      <Vertical flex=\"1\" scroll style={{ minWidth: 0 }}>\n        {/* page content — stays fully interactive while the panel is open */}\n      </Vertical>\n\n      {panelOpen && (\n        <Vertical width={360} style={{ borderLeft: '1px solid var(--border-default)' }}>\n          {/* Pinned header: title left, close right */}\n          <Horizontal\n            justifyContent=\"space-between\"\n            alignItems=\"center\"\n            style={{\n              padding: 'var(--space-3) var(--space-4)',\n              borderBottom: '1px solid var(--border-default)',\n            }}\n          >\n            <Texto category=\"p2\" weight=\"600\">Filters</Texto>\n            <GraviButton icon={<CloseOutlined />} onClick={() => setPanelOpen(false)} />\n          </Horizontal>\n\n          {/* Body: owns its own scroll */}\n          <Vertical flex=\"1\" gap={12} scroll style={{ padding: 'var(--space-4)' }}>\n            {/* panel fields */}\n          </Vertical>\n        </Vertical>\n      )}\n    </Horizontal>\n  )\n}",
+      "note": "Visibility is a plain conditional render — no shim component, no portal. Layout props go through the Horizontal/Vertical shorthands (`flex=\"1\"`, `width={360}`, `height=\"100%\"`, `gap={12}`, `scroll`, `justifyContent`), never through `style`; `style` carries only borders, padding, and the `minWidth: 0` shrink fix."
+    },
+    {
+      "type": "dosdonts",
+      "items": [
+        {
+          "do": "Push the content aside — panel and page share one flex row.",
+          "dont": "Float the panel over the page with a shadow or dimmed backdrop.",
+          "why": "Dimmed or blocked content means the surface is a Drawer. Mislabeled panels train users that the page is frozen when it is not."
+        },
+        {
+          "do": "Ship the panel at its final, tight dimensions in the first pass.",
+          "dont": "Stack header, toolbar, padding, and panel chrome incrementally until the grid loses the viewport.",
+          "why": "Chrome is budgeted, not accumulated — cumulative non-grid chrome stays at or under 320px on grid pages."
+        },
+        {
+          "do": "Give the panel a pinned header and an independently scrolling body.",
+          "dont": "Let one scrollbar move the panel and the main content together.",
+          "why": "Side-by-side work breaks the moment scrolling one surface scrolls the other away."
+        },
+        {
+          "do": "Close from the ✕ in the panel header or by toggling the launch control.",
+          "dont": "Dismiss the panel when the user clicks the main content.",
+          "why": "Clicking the content is the panel's core use case, not a dismissal gesture."
+        }
+      ]
+    },
+    {
+      "type": "gotchas",
+      "items": [
+        {
+          "title": "Chrome budget: 320px, all-in",
+          "detail": "Panels ship tight from the first pass — chrome is budgeted, not accumulated. On grid pages, cumulative non-grid chrome (page header + toolbars + footers + the panel's own padding stack) must stay at or under 320px or the grid no longer fits the viewport. Audit the running total before adding a panel; if the panel pushes past the budget, trim other chrome — do not ship and tighten later."
+        },
+        {
+          "title": "min-width: 0 on the flex pane",
+          "detail": "Flex children refuse to shrink below their content's intrinsic width. Without `minWidth: 0` on the main pane, opening the panel makes a grid overflow underneath it instead of resizing. Pair with a grid that re-measures on container resize."
+        },
+        {
+          "title": "Graduating to a Drawer? Use the v5 prop names",
+          "detail": "When a surface outgrows panel rules and becomes a Drawer, use the antd v5 names: `open` (not `visible`), `destroyOnHidden` (not `destroyOnClose`), and `afterOpenChange` (not `afterVisibleChange`). Drawer has no `onOpenChange` — wire dismissal through `onClose`."
+        }
+      ]
+    },
+    {
+      "type": "usage",
+      "title": "Choosing panel vs drawer",
+      "body": "The decision is interaction, not size. Ask one question: does the user need to see and touch the main content while the surface is open? Yes — panel: filters that live-update a grid, detail previews that follow row selection, settings that apply immediately. No — drawer: creation forms, multi-step workflows, formula editors, anything with a commit/cancel contract.\n\nInline panels are for transient tools with open/close state; split panels are for permanent list + detail anatomy and carry no open/close state at all. When a \"panel\" starts wanting a footer with Save and Cancel, it has already become a drawer — move it to the Right Drawers pattern rather than bolting a commit contract onto a non-blocking surface."
+    }
+  ]
+}

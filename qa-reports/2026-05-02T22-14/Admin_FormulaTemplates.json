@@ -1,0 +1,15 @@
+{
+  "path": "/Admin/FormulaTemplates",
+  "title": "Formula Templates",
+  "finalUrl": "http://localhost:3001/Admin/FormulaTemplates",
+  "rootLen": 85752,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [
+    "MarketPlatform/ContractTemplates/GetAll",
+    "MarketPlatform/ContractTemplates/Metadata"
+  ],
+  "consoleEventCount": 12
+}

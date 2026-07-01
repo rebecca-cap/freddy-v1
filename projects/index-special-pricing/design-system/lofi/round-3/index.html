@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Index Special Offers — Lo-fi round 3</title>
+  <link rel="stylesheet" href="wireframes/assets/wireframe.css">
+  <link rel="stylesheet" href="wireframes/assets/lofi-chrome.css">
+  <style>
+    .gx { max-width: 960px; margin: 0 auto; padding: var(--wf-space-8) var(--wf-space-6); }
+    .gx-grid { display: grid; gap: var(--wf-space-4); grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); margin-top: var(--wf-space-6); }
+    .gx-card { display:flex; flex-direction:column; gap: var(--wf-space-2); text-decoration:none; color: inherit; }
+    .gx-thumb { aspect-ratio: 16/10; border:1px solid var(--wf-color-border); border-radius: var(--wf-radius-md); background: var(--wf-color-surface-sunken); display:flex; align-items:center; justify-content:center; font-size: var(--wf-text-h1); color: var(--wf-color-text-tertiary); }
+    .gx-card:hover .gx-thumb { border-color: var(--wf-color-primary); }
+    .gx-num { font-size: var(--wf-text-xs); color: var(--wf-color-text-tertiary); letter-spacing:.05em; text-transform:uppercase; }
+  </style>
+</head>
+<body>
+  <div class="gx">
+    <h1 class="wf-text-h1">Index Special Offers — Lo-fi round 3</h1>
+    <p class="wf-text wf-text-body lf-muted">Round 3 reworks round 2’s <strong>Create New Offer</strong> into a <strong>two-step flow</strong> (Step 1 — Offer details, Step 2 — Time frame): a <strong>preset that starts blank</strong> (populate → edit → Update / Save as new, name disclosed progressively), no offer-type dropdown, the <strong>differential moved below the variable grid</strong> with a correctly-labelled price-formula display, <strong>readable customer chips that persist across invite tabs</strong>, and a <strong>timing step rebuilt to match the production prototype</strong> — Visibility &amp; Pickup windows with absolute date·time·timezone, real-clock pickers, and a Calendar View that visualizes both windows.</p>
+
+    <div class="wf-row wf-gap-3" style="margin-top: var(--wf-space-4);">
+      <a class="wf-button wf-button-primary wf-button-sm" href="wireframes/02-create-offer.html">Open the hero flow</a>
+      <a class="wf-button wf-button-secondary wf-button-sm" href="WIREFRAME-GUIDE.html">Decisions &amp; changelog &rarr;</a>
+      <a class="wf-button wf-button-ghost wf-button-sm" href="../round-2/index.html">Round 2 &rarr;</a>
+    </div>
+
+    <div class="gx-grid">
+      <a class="gx-card" href="wireframes/01-launchpad.html">
+        <div class="gx-thumb">&#128228;</div>
+        <span class="gx-num">Screen 01</span>
+        <span class="wf-text wf-text-h4">Offers launchpad</span>
+        <span class="wf-text wf-text-helper">Entry — New → Fast / Full, Presets, Create from prior.</span>
+      </a>
+      <a class="gx-card" href="wireframes/02-create-offer.html">
+        <div class="gx-thumb">&#9889;</div>
+        <span class="gx-num">Screen 02 &middot; hero</span>
+        <span class="wf-text wf-text-h4">Create New Offer — 2 steps</span>
+        <span class="wf-text wf-text-helper">Stepper (Offer details · Time frame), blank-by-default preset, chips, prototype timing + Calendar View. Starts empty — pick a preset to populate.</span>
+      </a>
+      <a class="gx-card" href="wireframes/03-price-formula.html">
+        <div class="gx-thumb">&#931;</div>
+        <span class="gx-num">Screen 03</span>
+        <span class="wf-text wf-text-h4">Price formula — pick</span>
+        <span class="wf-text wf-text-helper">Bottom-sheet formula chooser; loads the variable grid on screen 02.</span>
+      </a>
+      <a class="gx-card" href="wireframes/04-invite.html">
+        <div class="gx-thumb">&#128101;</div>
+        <span class="gx-num">Screen 04</span>
+        <span class="wf-text wf-text-h4">Customers — consolidated</span>
+        <span class="wf-text wf-text-helper">Full picker; chips stack across Groups / Authorized / Credit / All.</span>
+      </a>
+      <a class="gx-card" href="wireframes/05-offer-sent.html">
+        <div class="gx-thumb">&#10003;</div>
+        <span class="gx-num">Screen 05</span>
+        <span class="wf-text wf-text-h4">Offer sent</span>
+        <span class="wf-text wf-text-helper">Payoff + reuse: Save as Preset vs Create from prior.</span>
+      </a>
+    </div>
+  </div>
+</body>
+</html>

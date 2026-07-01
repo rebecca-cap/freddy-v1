@@ -1,0 +1,13 @@
+.side-by-side-left {
+    resize: horizontal;
+    overflow: auto;
+    min-width: 5%;
+    max-width: 95%;
+    width: 50%;
+}
+.horizontal-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 100%;
+}

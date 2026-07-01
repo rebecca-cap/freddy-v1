@@ -1,0 +1,14 @@
+{
+  "path": "/Admin/DeliveryPeriods",
+  "title": "Delivery Periods",
+  "finalUrl": "http://localhost:3001/Admin/DeliveryPeriods",
+  "rootLen": 148986,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 10,
+  "stuckLoaders": [],
+  "emptyGrids": []
+}

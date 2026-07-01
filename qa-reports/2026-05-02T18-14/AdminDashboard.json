@@ -1,0 +1,19 @@
+{
+  "path": "/AdminDashboard",
+  "title": "Admin Dashboard",
+  "finalUrl": "http://localhost:3001/AdminDashboard",
+  "rootLen": 236720,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [
+    "MarketPlatform/AdminOrderDashboard/GetPendingOrders",
+    "MarketPlatform/AdminOrderDashboard/GetProcessedForwardVolume",
+    "MarketPlatform/AdminOrderDashboard/GetProcessedProfit",
+    "MarketPlatform/AdminOrderDashboard/GetProcessedPromptVolume",
+    "MarketPlatform/AdminOrderDashboard/GetProcessedVolume",
+    "MarketPlatform/AdminOrderDashboard/GetRecentlyProcessedOrders"
+  ],
+  "consoleEventCount": 24
+}

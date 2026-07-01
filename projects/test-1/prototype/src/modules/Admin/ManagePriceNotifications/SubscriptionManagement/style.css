@@ -1,0 +1,16 @@
+.ag-selection-checkbox {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.in-cell-product-location-edit-buttons {
+  min-width: 100px;
+}
+.disabled-gravi-button-row {
+  cursor: not-allowed !important;
+  opacity: 0.3;
+}
+.ag-selection-checkbox {
+  justify-content: center !important;
+  width: 100% !important;
+}

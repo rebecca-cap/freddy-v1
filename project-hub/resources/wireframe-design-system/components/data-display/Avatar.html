@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avatar Component - Gravitate Wireframe Design System</title>
+  <link rel="stylesheet" href="../../tokens/tokens.css">
+  <link rel="stylesheet" href="../controls/controls.css">
+  <link rel="stylesheet" href="data-display.css">
+  <style>
+    body {
+      font-family: var(--wf-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+      background-color: var(--wf-color-background, #f9fafb);
+      margin: 0;
+      padding: 32px;
+      color: var(--wf-color-text-primary, #111827);
+    }
+    .demo-section {
+      margin-bottom: 48px;
+    }
+    .demo-section h2 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--wf-color-text-primary, #111827);
+    }
+    .demo-section p {
+      font-size: 14px;
+      color: var(--wf-color-text-secondary, #374151);
+      margin-bottom: 16px;
+    }
+    .demo-container {
+      background: white;
+      border-radius: 8px;
+      padding: 24px;
+      border: 1px solid var(--wf-color-border, #d1d5db);
+    }
+    .demo-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .demo-row + .demo-row {
+      margin-top: 24px;
+    }
+    .demo-label {
+      font-size: 12px;
+      color: var(--wf-color-text-secondary);
+      min-width: 80px;
+    }
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      font-size: 16px;
+      color: var(--wf-color-text-secondary, #374151);
+      margin-bottom: 32px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Avatar Component</h1>
+  <p class="subtitle">User avatars displaying initials or profile images.</p>
+
+  <!-- Avatar Sizes -->
+  <section class="demo-section">
+    <h2>Avatar Sizes</h2>
+    <p>Avatars come in four sizes: small (32px), medium (40px), large (56px), and extra-large (80px).</p>
+    <div class="demo-container">
+      <div class="demo-row">
+        <div style="text-align: center;">
+          <div class="wf-avatar wf-avatar-sm">
+            <span class="wf-avatar-initials">JD</span>
+          </div>
+          <div style="font-size: 12px; color: var(--wf-color-text-secondary); margin-top: 8px;">Small</div>
+        </div>
+        <div style="text-align: center;">
+          <div class="wf-avatar">
+            <span class="wf-avatar-initials">JD</span>
+          </div>
+          <div style="font-size: 12px; color: var(--wf-color-text-secondary); margin-top: 8px;">Medium</div>
+        </div>
+        <div style="text-align: center;">
+          <div class="wf-avatar wf-avatar-lg">
+            <span class="wf-avatar-initials">JD</span>
+          </div>
+          <div style="font-size: 12px; color: var(--wf-color-text-secondary); margin-top: 8px;">Large</div>
+        </div>
+        <div style="text-align: center;">
+          <div class="wf-avatar wf-avatar-xl">
+            <span class="wf-avatar-initials">JD</span>
+          </div>
+          <div style="font-size: 12px; color: var(--wf-color-text-secondary); margin-top: 8px;">X-Large</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Initials Avatars -->
+  <section class="demo-section">
+    <h2>Initials Avatars</h2>
+    <p>Display user initials when no profile image is available.</p>
+    <div class="demo-container">
+      <div class="demo-row">
+        <div class="wf-avatar">
+          <span class="wf-avatar-initials">JD</span>
+        </div>
+        <div class="wf-avatar">
+          <span class="wf-avatar-initials">AS</span>
+        </div>
+        <div class="wf-avatar">
+          <span class="wf-avatar-initials">BJ</span>
+        </div>
+        <div class="wf-avatar">
+          <span class="wf-avatar-initials">MK</span>
+        </div>
+        <div class="wf-avatar">
+          <span class="wf-avatar-initials">SR</span>
+        </div>
+        <div class="wf-avatar">
+          <span class="wf-avatar-initials">CT</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Image Avatars -->
+  <section class="demo-section">
+    <h2>Image Avatars</h2>
+    <p>Display profile photos when available.</p>
+    <div class="demo-container">
+      <div class="demo-row">
+        <div class="wf-avatar wf-avatar-sm">
+          <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 10px;">[img]</div>
+        </div>
+        <div class="wf-avatar">
+          <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 10px;">[img]</div>
+        </div>
+        <div class="wf-avatar wf-avatar-lg">
+          <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #ee0979 0%, #ff6a00 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 12px;">[img]</div>
+        </div>
+        <div class="wf-avatar wf-avatar-xl">
+          <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 14px;">[img]</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Avatar with Status -->
+  <section class="demo-section">
+    <h2>Avatar with Status Indicator</h2>
+    <p>Show user availability with status dots.</p>
+    <div class="demo-container">
+      <div class="demo-row">
+        <div style="text-align: center;">
+          <div class="wf-avatar-wrapper">
+            <div class="wf-avatar">
+              <span class="wf-avatar-initials">JD</span>
+            </div>
+            <span class="wf-avatar-status wf-avatar-status-online"></span>
+          </div>
+          <div style="font-size: 12px; color: var(--wf-color-text-secondary); margin-top: 8px;">Online</div>
+        </div>
+        <div style="text-align: center;">
+          <div class="wf-avatar-wrapper">
+            <div class="wf-avatar">
+              <span class="wf-avatar-initials">AS</span>
+            </div>
+            <span class="wf-avatar-status wf-avatar-status-away"></span>
+          </div>
+          <div style="font-size: 12px; color: var(--wf-color-text-secondary); margin-top: 8px;">Away</div>
+        </div>
+        <div style="text-align: center;">
+          <div class="wf-avatar-wrapper">
+            <div class="wf-avatar">
+              <span class="wf-avatar-initials">BJ</span>
+            </div>
+            <span class="wf-avatar-status wf-avatar-status-busy"></span>
+          </div>
+          <div style="font-size: 12px; color: var(--wf-color-text-secondary); margin-top: 8px;">Busy</div>
+        </div>
+        <div style="text-align: center;">
+          <div class="wf-avatar-wrapper">
+            <div class="wf-avatar">
+              <span class="wf-avatar-initials">MK</span>
+            </div>
+            <span class="wf-avatar-status wf-avatar-status-offline"></span>
+          </div>
+          <div style="font-size: 12px; color: var(--wf-color-text-secondary); margin-top: 8px;">Offline</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Avatar Group -->
+  <section class="demo-section">
+    <h2>Avatar Group</h2>
+    <p>Display multiple avatars in a stacked group.</p>
+    <div class="demo-container">
+      <div class="demo-row">
+        <span class="demo-label">Default:</span>
+        <div class="wf-avatar-group">
+          <div class="wf-avatar">
+            <span class="wf-avatar-initials">JD</span>
+          </div>
+          <div class="wf-avatar">
+            <span class="wf-avatar-initials">AS</span>
+          </div>
+          <div class="wf-avatar">
+            <span class="wf-avatar-initials">BJ</span>
+          </div>
+          <div class="wf-avatar">
+            <span class="wf-avatar-initials">MK</span>
+          </div>
+        </div>
+      </div>
+      <div class="demo-row">
+        <span class="demo-label">With count:</span>
+        <div class="wf-avatar-group">
+          <div class="wf-avatar">
+            <span class="wf-avatar-initials">JD</span>
+          </div>
+          <div class="wf-avatar">
+            <span class="wf-avatar-initials">AS</span>
+          </div>
+          <div class="wf-avatar">
+            <span class="wf-avatar-initials">BJ</span>
+          </div>
+          <div class="wf-avatar wf-avatar-count">
+            <span class="wf-avatar-initials">+5</span>
+          </div>
+        </div>
+      </div>
+      <div class="demo-row">
+        <span class="demo-label">Small:</span>
+        <div class="wf-avatar-group">
+          <div class="wf-avatar wf-avatar-sm">
+            <span class="wf-avatar-initials">JD</span>
+          </div>
+          <div class="wf-avatar wf-avatar-sm">
+            <span class="wf-avatar-initials">AS</span>
+          </div>
+          <div class="wf-avatar wf-avatar-sm">
+            <span class="wf-avatar-initials">BJ</span>
+          </div>
+          <div class="wf-avatar wf-avatar-sm">
+            <span class="wf-avatar-initials">MK</span>
+          </div>
+          <div class="wf-avatar wf-avatar-sm">
+            <span class="wf-avatar-initials">SR</span>
+          </div>
+          <div class="wf-avatar wf-avatar-sm wf-avatar-count">
+            <span class="wf-avatar-initials">+3</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Avatars in Context -->
+  <section class="demo-section">
+    <h2>Avatars in Context</h2>
+    <p>Examples of avatars used in common UI patterns.</p>
+    <div class="demo-container">
+
+      <!-- User List Item -->
+      <div style="margin-bottom: 24px;">
+        <h4 style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600;">User List</h4>
+        <div class="wf-list" style="max-width: 400px;">
+          <div class="wf-list-item">
+            <div class="wf-avatar-wrapper">
+              <div class="wf-avatar wf-avatar-sm">
+                <span class="wf-avatar-initials">JD</span>
+              </div>
+              <span class="wf-avatar-status wf-avatar-status-online"></span>
+            </div>
+            <div class="wf-list-item-content">
+              <div class="wf-list-item-title">John Doe</div>
+              <div class="wf-list-item-description">john@example.com</div>
+            </div>
+            <span class="wf-badge wf-badge-success wf-badge-sm">Admin</span>
+          </div>
+          <div class="wf-list-item">
+            <div class="wf-avatar-wrapper">
+              <div class="wf-avatar wf-avatar-sm">
+                <span class="wf-avatar-initials">AS</span>
+              </div>
+              <span class="wf-avatar-status wf-avatar-status-away"></span>
+            </div>
+            <div class="wf-list-item-content">
+              <div class="wf-list-item-title">Alice Smith</div>
+              <div class="wf-list-item-description">alice@example.com</div>
+            </div>
+            <span class="wf-badge wf-badge-sm">Member</span>
+          </div>
+          <div class="wf-list-item" style="border-bottom: none;">
+            <div class="wf-avatar-wrapper">
+              <div class="wf-avatar wf-avatar-sm">
+                <span class="wf-avatar-initials">BJ</span>
+              </div>
+              <span class="wf-avatar-status wf-avatar-status-offline"></span>
+            </div>
+            <div class="wf-list-item-content">
+              <div class="wf-list-item-title">Bob Johnson</div>
+              <div class="wf-list-item-description">bob@example.com</div>
+            </div>
+            <span class="wf-badge wf-badge-sm">Member</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comment/Activity -->
+      <div style="margin-bottom: 24px;">
+        <h4 style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600;">Activity Feed</h4>
+        <div style="display: flex; flex-direction: column; gap: 16px; max-width: 500px;">
+          <div style="display: flex; gap: 12px;">
+            <div class="wf-avatar wf-avatar-sm" style="flex-shrink: 0;">
+              <span class="wf-avatar-initials">JD</span>
+            </div>
+            <div>
+              <div style="font-size: 14px;"><strong>John Doe</strong> updated the contract status</div>
+              <div style="font-size: 12px; color: var(--wf-color-text-secondary);">2 hours ago</div>
+            </div>
+          </div>
+          <div style="display: flex; gap: 12px;">
+            <div class="wf-avatar wf-avatar-sm" style="flex-shrink: 0;">
+              <span class="wf-avatar-initials">AS</span>
+            </div>
+            <div>
+              <div style="font-size: 14px;"><strong>Alice Smith</strong> added a comment</div>
+              <div style="font-size: 12px; color: var(--wf-color-text-secondary);">5 hours ago</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- User Profile Card -->
+      <div>
+        <h4 style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600;">Profile Card</h4>
+        <div class="wf-card" style="max-width: 300px;">
+          <div class="wf-card-body" style="text-align: center; padding: 24px;">
+            <div class="wf-avatar wf-avatar-xl" style="margin: 0 auto 16px;">
+              <span class="wf-avatar-initials">JD</span>
+            </div>
+            <h4 style="margin: 0 0 4px 0; font-weight: 600;">John Doe</h4>
+            <p style="margin: 0 0 12px 0; font-size: 14px; color: var(--wf-color-text-secondary);">Product Manager</p>
+            <div style="display: flex; gap: 8px; justify-content: center;">
+              <span class="wf-badge wf-badge-success wf-badge-sm">Online</span>
+              <span class="wf-badge wf-badge-primary wf-badge-sm">Pro</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Avatar with Name -->
+  <section class="demo-section">
+    <h2>Avatar with Name</h2>
+    <p>Combining avatars with user names in different layouts.</p>
+    <div class="demo-container">
+      <div class="demo-row">
+        <!-- Horizontal with name -->
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div class="wf-avatar wf-avatar-sm">
+            <span class="wf-avatar-initials">JD</span>
+          </div>
+          <span style="font-size: 14px; font-weight: 500;">John Doe</span>
+        </div>
+
+        <!-- Horizontal with name and role -->
+        <div style="display: flex; align-items: center; gap: 12px; margin-left: 32px;">
+          <div class="wf-avatar">
+            <span class="wf-avatar-initials">AS</span>
+          </div>
+          <div>
+            <div style="font-size: 14px; font-weight: 500;">Alice Smith</div>
+            <div style="font-size: 12px; color: var(--wf-color-text-secondary);">Designer</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Assignment -->
+  <section class="demo-section">
+    <h2>Team Assignment Example</h2>
+    <p>Using avatar groups to show team members on a project.</p>
+    <div class="demo-container">
+      <div class="wf-card" style="max-width: 400px;">
+        <div class="wf-card-header">
+          <div>
+            <h3 class="wf-card-title">Q1 Contract Review</h3>
+            <p class="wf-card-subtitle">Due January 31, 2024</p>
+          </div>
+          <span class="wf-badge wf-badge-warning">In Progress</span>
+        </div>
+        <div class="wf-card-body">
+          <div style="margin-bottom: 16px;">
+            <div style="font-size: 12px; color: var(--wf-color-text-secondary); margin-bottom: 8px;">Assigned to</div>
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <div class="wf-avatar-group">
+                <div class="wf-avatar wf-avatar-sm">
+                  <span class="wf-avatar-initials">JD</span>
+                </div>
+                <div class="wf-avatar wf-avatar-sm">
+                  <span class="wf-avatar-initials">AS</span>
+                </div>
+                <div class="wf-avatar wf-avatar-sm">
+                  <span class="wf-avatar-initials">BJ</span>
+                </div>
+              </div>
+              <button class="wf-button wf-button-ghost wf-button-sm">+ Add</button>
+            </div>
+          </div>
+          <div>
+            <div style="font-size: 12px; color: var(--wf-color-text-secondary); margin-bottom: 4px;">Progress</div>
+            <div style="background: var(--wf-color-neutral-200); height: 8px; border-radius: 4px; overflow: hidden;">
+              <div style="background: var(--wf-color-primary, #2563eb); height: 100%; width: 65%;"></div>
+            </div>
+            <div style="font-size: 12px; color: var(--wf-color-text-secondary); margin-top: 4px;">65% complete</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

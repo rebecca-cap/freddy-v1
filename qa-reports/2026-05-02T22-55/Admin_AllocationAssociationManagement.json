@@ -1,0 +1,14 @@
+{
+  "path": "/Admin/AllocationAssociationManagement",
+  "title": "Allocation Management",
+  "finalUrl": "http://localhost:3001/Admin/AllocationAssociationManagement",
+  "rootLen": 176657,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 13,
+  "stuckLoaders": [],
+  "emptyGrids": []
+}

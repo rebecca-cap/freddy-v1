@@ -1,0 +1,15 @@
+{
+  "path": "/ContractManagement/ContractRevaluation",
+  "title": "Contract Revaluation",
+  "finalUrl": "http://localhost:3001/ContractManagement/ContractRevaluation",
+  "rootLen": 112922,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [
+    "ContractRevaluation/GetContractValuations",
+    "ContractRevaluation/GetMetaData"
+  ],
+  "consoleEventCount": 12
+}

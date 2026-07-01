@@ -1,0 +1,242 @@
+{
+  "slug": "tags",
+  "title": "Tags & Badges",
+  "order": 8,
+  "group": "Data",
+  "intro": "BBDTag, DeltaTag, and ManyTag cover status, movement, and multiplicity — every short categorical label in a Gravitate portal is one of these three. All render antd Tags underneath, so portal theming carries straight through; BBDTag alone forwards extra antd Tag props — DeltaTag and ManyTag accept only their own.",
+  "demoPath": "/DesignSystem/Tags",
+  "searchTerms": [
+    "BBDTag",
+    "DeltaTag",
+    "ManyTag",
+    "tag",
+    "badge",
+    "pill",
+    "chip",
+    "status tag",
+    "antd Tag",
+    "+ N more",
+    "textTransform",
+    "theme1",
+    "theme2",
+    "success",
+    "warning",
+    "error",
+    "kpi delta",
+    "threshold",
+    "invertColors",
+    "tagItems",
+    "maxCount"
+  ],
+  "blocks": [
+    {
+      "type": "usage",
+      "body": "Three components split the tagging job. `BBDTag` is the workhorse status/category pill — an antd Tag with Excalibrr's boolean theme props — used in grids, drawers, and page headers. `DeltaTag` colors a numeric value's movement against a threshold: green above, red below, flippable for metrics where rising is bad. `ManyTag` lays out a string array as neutral tags and collapses overflow behind a \"+ N more\" tooltip button.\n\nReach for a tag when the value is short, categorical, and scannable. Sentence-length content belongs in `Texto`; anything the user clicks to act belongs in a button. Inside GraviGrid cells, prefer the `TagCell` renderer (see Cell Renderers) over mounting BBDTags by hand."
+    },
+    {
+      "type": "specimen",
+      "title": "BBDTag — brand and status variants",
+      "image": "specimens/tags/01-bbdtag-theme-status.png",
+      "caption": "The seven boolean color variants in the demo theme. Brand: theme1 (light info tint), theme2 (filled with the portal primary), theme3 (volcano), theme4 (purple). Status: success, warning, error. Omit every boolean to get the neutral default tag."
+    },
+    {
+      "type": "props",
+      "title": "BBDTag props",
+      "intro": "Verified against @gravitate-js/excalibrr 5.2.x. Everything not listed falls through to the underlying antd Tag (icon, bordered, closable, onClose, onClick).",
+      "rows": [
+        {
+          "prop": "children",
+          "type": "ReactNode",
+          "notes": "The label — the ONLY way to set tag text. There is no text prop; a BBDTag without children renders an empty pill."
+        },
+        {
+          "prop": "theme1 … theme4",
+          "type": "boolean",
+          "notes": "Brand palette pills. theme2 fills with the portal primary color tokens; theme1 uses the lighter info/processing tint; theme3 and theme4 map to volcano and purple presets. Set at most one."
+        },
+        {
+          "prop": "success / warning / error",
+          "type": "boolean",
+          "notes": "Status presets. These imply state — reserve them for pass/fail, readiness, and severity, never for neutral metadata."
+        },
+        {
+          "prop": "color",
+          "type": "string",
+          "notes": "Escape hatch to any antd preset or hex; \"primary\" aliases theme2. An explicit color overrides every boolean except theme2."
+        },
+        {
+          "prop": "textTransform",
+          "type": "CSSProperties['textTransform']",
+          "notes": "Casing without a style object: \"uppercase\" | \"lowercase\" | \"capitalize\"."
+        },
+        {
+          "prop": "className / style",
+          "type": "string / CSSProperties",
+          "notes": "Pass-through. Use className=\"text-ellipsis\" with a maxWidth style for truncation. fontSize is pinned to 12px after your style spread — see gotchas."
+        }
+      ]
+    },
+    {
+      "type": "variants",
+      "title": "BBDTag — choosing a color",
+      "intro": "The color is a claim about the content. Pick by meaning, not by what looks nice next to the grid.",
+      "rows": [
+        {
+          "name": "default (neutral)",
+          "when": "Reporting attributes, groupings, counts — anything that is a fact, not a state.",
+          "code": "<BBDTag>Reporting Group A</BBDTag>"
+        },
+        {
+          "name": "theme1 / theme2",
+          "when": "Brand-tinted category pills; theme2 is the filled, highest-emphasis tag, theme1 the lighter tint.",
+          "code": "<BBDTag theme2>Rack</BBDTag>"
+        },
+        {
+          "name": "theme3 / theme4",
+          "when": "A second and third categorical axis when one brand tint isn't enough.",
+          "code": "<BBDTag theme3>Contract</BBDTag>"
+        },
+        {
+          "name": "success / warning / error",
+          "when": "True state only: published/blocked, pass/fail validation, exception severity.",
+          "code": "<BBDTag success>Published</BBDTag>"
+        },
+        {
+          "name": "color",
+          "when": "One-off antd preset or hex outside the seven booleans. Last resort — it bypasses the theme.",
+          "code": "<BBDTag color='geekblue'>Custom</BBDTag>"
+        }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "BBDTag — composition patterns",
+      "image": "specimens/tags/02-bbdtag-composition.png",
+      "caption": "textTransform casing, text-ellipsis truncation on a neutral tag, removable filter tags (theme2 with a CloseOutlined in children), pass/fail validation tags with leading icons, and compact percent pills sized for grid cells."
+    },
+    {
+      "type": "specimen",
+      "title": "DeltaTag — the five states",
+      "image": "specimens/tags/03-deltatag-states.png",
+      "caption": "Gain (green, caret-up), drop (red, caret-down), invertColors turning a rise red for rising-is-bad metrics, textIfEqual replacing the number when value === threshold, and prefix/postfix money formatting in decimal dollars."
+    },
+    {
+      "type": "props",
+      "title": "DeltaTag props",
+      "intro": "DeltaTag wraps BBDTag and owns its own color — you never set success/error on it. Both value and threshold are required.",
+      "rows": [
+        {
+          "prop": "value",
+          "type": "number",
+          "notes": "The metric. Rendered via toFixed(precision) with a caret icon matching its direction."
+        },
+        {
+          "prop": "threshold",
+          "type": "number",
+          "notes": "Required — usually 0. Above is green, below is red. Omitting it compares against undefined, which is always false, so every value renders red."
+        },
+        {
+          "prop": "precision",
+          "type": "number",
+          "default": "0",
+          "notes": "Decimal places. Gravitate money is decimal dollars — precision={4} for $0.0100/gal copy."
+        },
+        {
+          "prop": "prefix / postfix",
+          "type": "ReactNode",
+          "notes": "Rendered tight around the number: prefix=\"$\" postfix=\"/gal\" gives $0.0125/gal."
+        },
+        {
+          "prop": "textIfEqual",
+          "type": "string",
+          "notes": "When value === threshold, renders a success tag with this text instead of the number — \"On Target\" beats a green 0."
+        },
+        {
+          "prop": "invertColors",
+          "type": "boolean",
+          "default": "false",
+          "notes": "Flips the mapping for metrics where rising is bad (cost, exceptions, churn)."
+        }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "ManyTag — overflow behavior",
+      "image": "specimens/tags/04-manytag-overflow.png",
+      "caption": "The same eight items at maxCount 1, 3, 5, and unbounded. Visible items render as neutral BBDTags; the remainder collapses into a \"+ N more\" button whose hover tooltip lists the hidden items."
+    },
+    {
+      "type": "props",
+      "title": "ManyTag props",
+      "intro": "Two props, both required. Items are plain strings — map object arrays before passing.",
+      "rows": [
+        {
+          "prop": "tagItems",
+          "type": "string[]",
+          "notes": "The full list. If undefined the component returns null and the cell is silently blank — the prop is tagItems, not items."
+        },
+        {
+          "prop": "maxCount",
+          "type": "number",
+          "notes": "Visible tags before overflow collapses into \"+ N more\". 2–4 fits most grid cells and cards; the prop is maxCount, not limit."
+        }
+      ]
+    },
+    {
+      "type": "code",
+      "title": "Canonical usage",
+      "code": "import { BBDTag, DeltaTag, ManyTag, Horizontal } from '@gravitate-js/excalibrr'\n\n<Horizontal gap={8} verticalCenter>\n  {/* Status pill — boolean theme prop, label as children */}\n  <BBDTag success>Published</BBDTag>\n\n  {/* Neutral reporting attribute — no theme prop, never a status color */}\n  <BBDTag>Reporting Group A</BBDTag>\n\n  {/* Movement vs threshold — green above, red below, decimal dollars */}\n  <DeltaTag value={0.0125} threshold={0} precision={4} prefix='$' postfix='/gal' />\n\n  {/* Collection — collapses to \"+ N more\" with a hover tooltip */}\n  <ManyTag tagItems={['Marathon', 'Shell', 'Valero', 'Phillips 66']} maxCount={3} />\n</Horizontal>",
+      "note": "Layout via Horizontal gap={8} — never style={{ gap }}. Money copy is decimal dollars ($0.0125/gal), never cents symbols."
+    },
+    {
+      "type": "dosdonts",
+      "items": [
+        {
+          "do": "Pass the label as children: <BBDTag success>Published</BBDTag>",
+          "dont": "Pass text=\"…\" or theme=\"success\" string props",
+          "why": "Neither prop exists. Unknown props fall through to the DOM and the tag renders as an empty pill with no warning."
+        },
+        {
+          "do": "Use the default neutral BBDTag for reporting attributes and metadata",
+          "dont": "Reuse success/warning/error because the color matches the page",
+          "why": "Status colors imply state — a green \"Region: West\" reads as a passing check."
+        },
+        {
+          "do": "Always pass threshold to DeltaTag, usually threshold={0}",
+          "dont": "Omit threshold or invent positive/inverted props",
+          "why": "The comparison against undefined is always false, so every value renders red regardless of sign."
+        },
+        {
+          "do": "Call ManyTag with tagItems and maxCount",
+          "dont": "Call it with items and limit",
+          "why": "tagItems is undefined, the component returns null, and the cell is silently blank."
+        }
+      ]
+    },
+    {
+      "type": "gotchas",
+      "items": [
+        {
+          "title": "Neutral attributes get neutral tags",
+          "detail": "For reporting attributes and other stateless metadata, use the default BBDTag with no boolean prop. Status colors imply state: a success-green attribute tag reads as \"passing\" and an error-red one as \"broken\". This is the established rule for reporting attributes (e.g. ManageQuoteRows)."
+        },
+        {
+          "title": "Wrong prop names fail silently",
+          "detail": "BBDTag with text=/theme=, DeltaTag without threshold, and ManyTag with items/limit all render empty or all-red with zero console output. The /DesignSystem/Tags showcase page itself shipped with these exact bugs — trust this reference and the .d.ts, not that page's prop strings."
+        },
+        {
+          "title": "BBDTag pins font-size to 12px",
+          "detail": "The component applies fontSize: 12 after spreading your style object, so style={{ fontSize: 14 }} is silently discarded. To size content differently, wrap it in a span with its own inline size: <BBDTag><span style={{ fontSize: 14 }}>+15.2%</span></BBDTag> — a child's own font-size overrides the inherited pin. Don't use className='text-xs'; that utility class exists nowhere in this stack and silently does nothing."
+        },
+        {
+          "title": "Color booleans have a precedence order",
+          "detail": "Set exactly one. If several are set: theme2 wins outright, an explicit color prop beats the rest, then theme1 > theme3 > theme4 > success > warning > error. Conditional tags should compute one boolean, e.g. success={ok} error={!ok}."
+        },
+        {
+          "title": "ManyTag overflow is hover-only",
+          "detail": "\"+ N more\" is a small antd Button inside a Tooltip — the hidden items appear only on hover and the button has no click handler. Don't use it as a disclosure control or on touch-first surfaces; if users must act on hidden items, show them another way."
+        }
+      ]
+    }
+  ]
+}

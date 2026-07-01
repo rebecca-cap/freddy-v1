@@ -1,0 +1,14 @@
+{
+  "path": "/Analytics/ByChannel",
+  "title": "By Channel",
+  "finalUrl": "http://localhost:5173/Analytics/ByChannel",
+  "rootLen": 187744,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 10,
+  "stuckLoaders": [],
+  "emptyGrids": []
+}

@@ -1,0 +1,13 @@
+{
+  "stamp": "2026-05-27T20-49",
+  "base": "http://localhost:5173",
+  "routes": 52,
+  "totalCrashes": 0,
+  "totalPageErrors": 0,
+  "totalConsoleErrors": 4,
+  "distinctMissingFixtures": 2,
+  "missingFixtures": [
+    "ReferenceData/Hierarchy/Location/List",
+    "ReferenceData/Hierarchy/Product/List"
+  ]
+}

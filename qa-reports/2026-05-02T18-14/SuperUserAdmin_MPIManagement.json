@@ -1,0 +1,12 @@
+{
+  "path": "/SuperUserAdmin/MPIManagement",
+  "title": "MPI Management",
+  "finalUrl": "http://localhost:3001/SuperUserAdmin/MPIManagement",
+  "rootLen": 170485,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 10
+}

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loader Component - Gravitate Wireframe Design System</title>
+  <link rel="stylesheet" href="../../tokens/index.css">
+  <link rel="stylesheet" href="status.css">
+  <link rel="stylesheet" href="../controls/controls.css">
+  <style>
+    body {
+      font-family: var(--wf-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+      padding: 32px;
+      background-color: var(--wf-color-bg, #ffffff);
+      color: var(--wf-color-text, #1e293b);
+    }
+    .demo-section {
+      margin-bottom: 48px;
+    }
+    .demo-section h2 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--wf-color-text, #1e293b);
+    }
+    .demo-section h3 {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 12px;
+      color: var(--wf-color-text-muted, #64748b);
+    }
+    .demo-row {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .demo-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .demo-item-label {
+      font-size: 12px;
+      color: var(--wf-color-text-muted, #64748b);
+    }
+    hr {
+      border: none;
+      border-top: 1px solid var(--wf-color-border, #cbd5e1);
+      margin: 32px 0;
+    }
+    .dark-bg {
+      background-color: #1e293b;
+      padding: 24px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Loader Component</h1>
+  <p style="color: var(--wf-color-text-muted); margin-bottom: 32px;">
+    Loading spinners indicate that content is being loaded or a process is in progress.
+  </p>
+
+  <!-- Basic Spinner -->
+  <div class="demo-section">
+    <h2>Basic Spinner</h2>
+    <div class="demo-row">
+      <div class="demo-item">
+        <div class="wf-loader">
+          <span class="wf-loader-spinner"></span>
+        </div>
+        <span class="demo-item-label">Default</span>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- With Text -->
+  <div class="demo-section">
+    <h2>Spinner with Text</h2>
+    <div class="demo-row">
+      <div class="demo-item">
+        <div class="wf-loader">
+          <span class="wf-loader-spinner"></span>
+          <span class="wf-loader-text">Loading...</span>
+        </div>
+        <span class="demo-item-label">Vertical (default)</span>
+      </div>
+
+      <div class="demo-item">
+        <div class="wf-loader wf-loader-horizontal">
+          <span class="wf-loader-spinner"></span>
+          <span class="wf-loader-text">Loading...</span>
+        </div>
+        <span class="demo-item-label">Horizontal</span>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Size Variants -->
+  <div class="demo-section">
+    <h2>Size Variants</h2>
+    <div class="demo-row">
+      <div class="demo-item">
+        <div class="wf-loader wf-loader-sm">
+          <span class="wf-loader-spinner"></span>
+        </div>
+        <span class="demo-item-label">Small</span>
+      </div>
+
+      <div class="demo-item">
+        <div class="wf-loader">
+          <span class="wf-loader-spinner"></span>
+        </div>
+        <span class="demo-item-label">Medium (default)</span>
+      </div>
+
+      <div class="demo-item">
+        <div class="wf-loader wf-loader-lg">
+          <span class="wf-loader-spinner"></span>
+        </div>
+        <span class="demo-item-label">Large</span>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 24px;">With Text</h3>
+    <div class="demo-row">
+      <div class="demo-item">
+        <div class="wf-loader wf-loader-sm">
+          <span class="wf-loader-spinner"></span>
+          <span class="wf-loader-text">Loading...</span>
+        </div>
+        <span class="demo-item-label">Small</span>
+      </div>
+
+      <div class="demo-item">
+        <div class="wf-loader">
+          <span class="wf-loader-spinner"></span>
+          <span class="wf-loader-text">Loading...</span>
+        </div>
+        <span class="demo-item-label">Medium</span>
+      </div>
+
+      <div class="demo-item">
+        <div class="wf-loader wf-loader-lg">
+          <span class="wf-loader-spinner"></span>
+          <span class="wf-loader-text">Loading data...</span>
+        </div>
+        <span class="demo-item-label">Large</span>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Color Variants -->
+  <div class="demo-section">
+    <h2>Color Variants</h2>
+    <div class="demo-row">
+      <div class="demo-item">
+        <div class="wf-loader">
+          <span class="wf-loader-spinner"></span>
+        </div>
+        <span class="demo-item-label">Default (Primary)</span>
+      </div>
+
+      <div class="demo-item">
+        <div class="wf-loader wf-loader-success">
+          <span class="wf-loader-spinner"></span>
+        </div>
+        <span class="demo-item-label">Success</span>
+      </div>
+
+      <div class="demo-item">
+        <div class="wf-loader wf-loader-warning">
+          <span class="wf-loader-spinner"></span>
+        </div>
+        <span class="demo-item-label">Warning</span>
+      </div>
+
+      <div class="demo-item">
+        <div class="wf-loader wf-loader-error">
+          <span class="wf-loader-spinner"></span>
+        </div>
+        <span class="demo-item-label">Error</span>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Inverse (Dark Background) -->
+  <div class="demo-section">
+    <h2>Inverse (Dark Background)</h2>
+    <div class="dark-bg">
+      <div class="demo-row">
+        <div class="demo-item">
+          <div class="wf-loader wf-loader-inverse">
+            <span class="wf-loader-spinner"></span>
+          </div>
+          <span class="demo-item-label" style="color: rgba(255,255,255,0.6);">Spinner only</span>
+        </div>
+
+        <div class="demo-item">
+          <div class="wf-loader wf-loader-inverse">
+            <span class="wf-loader-spinner"></span>
+            <span class="wf-loader-text">Loading...</span>
+          </div>
+          <span class="demo-item-label" style="color: rgba(255,255,255,0.6);">With text</span>
+        </div>
+
+        <div class="demo-item">
+          <div class="wf-loader wf-loader-inverse wf-loader-lg">
+            <span class="wf-loader-spinner"></span>
+            <span class="wf-loader-text">Please wait...</span>
+          </div>
+          <span class="demo-item-label" style="color: rgba(255,255,255,0.6);">Large</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Inline Loader -->
+  <div class="demo-section">
+    <h2>Inline Loader</h2>
+    <p style="margin-bottom: 16px;">
+      The data is
+      <span class="wf-loader wf-loader-inline wf-loader-sm wf-loader-horizontal" style="margin: 0 4px;">
+        <span class="wf-loader-spinner"></span>
+        <span class="wf-loader-text">loading</span>
+      </span>
+      please wait.
+    </p>
+
+    <p>
+      Saving changes
+      <span class="wf-loader wf-loader-inline wf-loader-sm" style="margin-left: 8px;">
+        <span class="wf-loader-spinner"></span>
+      </span>
+    </p>
+  </div>
+
+  <hr>
+
+  <!-- Fullscreen Overlay -->
+  <div class="demo-section">
+    <h2>Fullscreen Overlay</h2>
+    <p style="color: var(--wf-color-text-muted); margin-bottom: 16px;">
+      Click the button to show a fullscreen loading overlay. Click anywhere to dismiss.
+    </p>
+
+    <button class="wf-button wf-button-primary" onclick="showOverlay()">
+      Show Fullscreen Loader
+    </button>
+
+    <!-- Overlay (hidden by default) -->
+    <div id="loader-overlay" class="wf-loader-overlay" style="display: none;" onclick="hideOverlay()">
+      <div class="wf-loader wf-loader-lg">
+        <span class="wf-loader-spinner"></span>
+        <span class="wf-loader-text">Loading data...</span>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Usage in Context -->
+  <div class="demo-section">
+    <h2>Usage Examples</h2>
+
+    <h3>Loading Button</h3>
+    <div class="demo-row" style="margin-bottom: 24px;">
+      <button class="wf-button wf-button-primary wf-button-loading">
+        Save Changes
+      </button>
+      <button class="wf-button wf-button-secondary wf-button-loading">
+        Processing
+      </button>
+    </div>
+
+    <h3>Card Loading State</h3>
+    <div style="max-width: 300px; border: 1px solid var(--wf-color-border); border-radius: 8px; overflow: hidden;">
+      <div style="padding: 48px; display: flex; align-items: center; justify-content: center;">
+        <div class="wf-loader">
+          <span class="wf-loader-spinner"></span>
+          <span class="wf-loader-text">Loading content...</span>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 24px;">Table Loading State</h3>
+    <div style="max-width: 600px; border: 1px solid var(--wf-color-border); border-radius: 8px; overflow: hidden;">
+      <div style="padding: 12px 16px; background: var(--wf-color-bg-disabled); border-bottom: 1px solid var(--wf-color-border);">
+        <span style="font-weight: 500;">Users</span>
+      </div>
+      <div style="padding: 64px; display: flex; align-items: center; justify-content: center;">
+        <div class="wf-loader wf-loader-lg">
+          <span class="wf-loader-spinner"></span>
+          <span class="wf-loader-text">Loading users...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showOverlay() {
+      document.getElementById('loader-overlay').style.display = 'flex';
+    }
+    function hideOverlay() {
+      document.getElementById('loader-overlay').style.display = 'none';
+    }
+  </script>
+</body>
+</html>

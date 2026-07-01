@@ -1,0 +1,120 @@
+/* Theme variants. The `data-theme` attribute on <html> selects which one is active.
+   Default is "pitfield" — see ThemeSwitcher for the runtime swap. */
+
+/* =========================================================================
+   PITFIELD — warm dark. Refined industrial. Burnished copper accent.
+   Inspiration: a refinery control room at dusk, oxidized brass, leather.
+   ========================================================================= */
+:root,
+[data-theme="pitfield"] {
+  --background: oklch(0.205 0.012 55);
+  --foreground: oklch(0.945 0.006 80);
+
+  --card: oklch(0.235 0.013 55);
+  --card-foreground: oklch(0.945 0.006 80);
+
+  --popover: oklch(0.225 0.013 55);
+  --popover-foreground: oklch(0.945 0.006 80);
+
+  --primary: oklch(0.74 0.118 55);
+  --primary-foreground: oklch(0.18 0.015 55);
+
+  --secondary: oklch(0.28 0.013 55);
+  --secondary-foreground: oklch(0.945 0.006 80);
+
+  --muted: oklch(0.28 0.013 55);
+  --muted-foreground: oklch(0.68 0.012 65);
+
+  --accent: oklch(0.32 0.015 55);
+  --accent-foreground: oklch(0.945 0.006 80);
+
+  --destructive: oklch(0.62 0.18 28);
+  --destructive-foreground: oklch(0.98 0.005 80);
+
+  --border: oklch(0.31 0.012 55);
+  --input: oklch(0.31 0.012 55);
+  --ring: oklch(0.74 0.118 55);
+
+  --radius: 0.5rem;
+  --font-sans: "Geist", system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque", "Geist", sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+}
+
+/* =========================================================================
+   BONE & INK — light, paper-toned. Editorial quiet. Rust ochre accent.
+   Inspiration: a thoughtful quarterly magazine, museum wall caption.
+   ========================================================================= */
+[data-theme="bone-ink"] {
+  --background: oklch(0.972 0.008 82);
+  --foreground: oklch(0.225 0.03 255);
+
+  --card: oklch(0.987 0.005 85);
+  --card-foreground: oklch(0.225 0.03 255);
+
+  --popover: oklch(0.987 0.005 85);
+  --popover-foreground: oklch(0.225 0.03 255);
+
+  --primary: oklch(0.56 0.155 38);
+  --primary-foreground: oklch(0.985 0.005 85);
+
+  --secondary: oklch(0.93 0.012 82);
+  --secondary-foreground: oklch(0.28 0.03 255);
+
+  --muted: oklch(0.93 0.012 82);
+  --muted-foreground: oklch(0.52 0.018 250);
+
+  --accent: oklch(0.92 0.018 82);
+  --accent-foreground: oklch(0.28 0.03 255);
+
+  --destructive: oklch(0.56 0.19 26);
+  --destructive-foreground: oklch(0.985 0.005 85);
+
+  --border: oklch(0.88 0.01 82);
+  --input: oklch(0.88 0.01 82);
+  --ring: oklch(0.56 0.155 38);
+
+  --radius: 0.25rem;
+  --font-sans: "Geist", system-ui, sans-serif;
+  --font-display: "Source Serif 4", "Geist", serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+}
+
+/* =========================================================================
+   STEELYARD — cool dark. Utilitarian and exacting. Patina-green accent.
+   Inspiration: a precision workshop, anodized aluminum, blueprint corners.
+   ========================================================================= */
+[data-theme="steelyard"] {
+  --background: oklch(0.185 0.008 245);
+  --foreground: oklch(0.94 0.006 230);
+
+  --card: oklch(0.215 0.009 245);
+  --card-foreground: oklch(0.94 0.006 230);
+
+  --popover: oklch(0.21 0.009 245);
+  --popover-foreground: oklch(0.94 0.006 230);
+
+  --primary: oklch(0.74 0.115 155);
+  --primary-foreground: oklch(0.18 0.012 245);
+
+  --secondary: oklch(0.27 0.011 245);
+  --secondary-foreground: oklch(0.94 0.006 230);
+
+  --muted: oklch(0.27 0.011 245);
+  --muted-foreground: oklch(0.66 0.012 230);
+
+  --accent: oklch(0.30 0.012 245);
+  --accent-foreground: oklch(0.94 0.006 230);
+
+  --destructive: oklch(0.62 0.19 26);
+  --destructive-foreground: oklch(0.98 0.005 230);
+
+  --border: oklch(0.30 0.011 245);
+  --input: oklch(0.30 0.011 245);
+  --ring: oklch(0.74 0.115 155);
+
+  --radius: 0.125rem;
+  --font-sans: "Funnel Sans", system-ui, sans-serif;
+  --font-display: "Funnel Display", "Funnel Sans", sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+}

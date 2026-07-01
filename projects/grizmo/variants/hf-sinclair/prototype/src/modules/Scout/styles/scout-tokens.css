@@ -1,0 +1,153 @@
+/*
+ * Scout design tokens.
+ *
+ * Extracted from the round-4 wireframe (gizmo-demo.html). Scoped under
+ * `.scout-scope` so they only apply inside the Scout module and do NOT
+ * collide with Excalibrr's global theme tokens (--theme-color-2, --gray-100,
+ * etc.). Every variable is prefixed with `--scout-*`.
+ *
+ * Reference values from the wireframe :root block are preserved exactly.
+ */
+
+.scout-scope {
+  /* ------------------------------------------------------------------ */
+  /* Brand                                                              */
+  /* ------------------------------------------------------------------ */
+  --scout-brand: #715DAA;
+  --scout-brand-hover: #5C4A91;
+  --scout-brand-soft: #EFE9F8;
+  --scout-brand-soft-2: #DFD4F0;
+  /* Panel shimmer border (tad.ai-style). The ring sits on a NEUTRAL track at
+     rest and two multi-color glints orbit at different rates. `track` is a
+     faint gray that blends into the page when no glint is passing; the three
+     hues form the traveling multi-color glint (indigo → violet → magenta). */
+  --scout-shimmer-track: rgba(0, 0, 0, 0.07);
+  --scout-shimmer-1: #6366F1; /* indigo */
+  --scout-shimmer-2: #A78BFA; /* violet */
+  --scout-shimmer-3: #D946EF; /* magenta */
+
+  /* ------------------------------------------------------------------ */
+  /* Accent (green) + status colors                                     */
+  /* ------------------------------------------------------------------ */
+  --scout-accent: #1D9E75;
+  --scout-accent-bg: #E1F5EE;
+  --scout-accent-text: #0F6E56;
+
+  --scout-warn: #BA7517;
+  --scout-warn-bg: #FAEEDA;
+
+  --scout-danger: #A32D2D;
+  --scout-danger-bg: #FCEBEB;
+
+  --scout-info: #185FA5;
+  --scout-info-bg: #E6F1FB;
+
+  /* ------------------------------------------------------------------ */
+  /* Neutral surfaces                                                   */
+  /* ------------------------------------------------------------------ */
+  --scout-bg: #FAFAF7;
+  --scout-surface: #FFFFFF;
+  --scout-surface-2: #F4F2EC;
+  --scout-surface-3: #EDEAE2;
+
+  /* ------------------------------------------------------------------ */
+  /* Lines                                                              */
+  /* ------------------------------------------------------------------ */
+  --scout-border: rgba(0, 0, 0, 0.10);
+  --scout-border-strong: rgba(0, 0, 0, 0.18);
+
+  /* ------------------------------------------------------------------ */
+  /* Ink / text                                                         */
+  /* ------------------------------------------------------------------ */
+  --scout-text: #1B1B1A;
+  --scout-text-muted: #6B6A65;
+  --scout-text-subtle: #98968F;
+
+  /* ------------------------------------------------------------------ */
+  /* Typography                                                         */
+  /* ------------------------------------------------------------------ */
+  /* Match the host app's body font (Lato, loaded as @font-face in
+     src/components/shared/Theming/core.less). Scout components scoped under
+     .scout-scope explicitly set `font-family: var(--scout-font-family)`, so
+     this is what makes the panel / bubble / chips inherit Lato instead of
+     the wireframe's SF Pro Text. Mono stack stays system-default. */
+  --scout-font-family: 'Lato', sans-serif;
+  --scout-font-family-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --scout-font-size-xs: 10.5px;
+  --scout-font-size-sm: 11px;
+  --scout-font-size-sm-plus: 11.5px;
+  --scout-font-size-md: 12px;
+  --scout-font-size-body: 13px;
+  --scout-font-size-base: 14px;
+  --scout-font-size-h1: 22px;
+
+  --scout-font-weight-regular: 400;
+  --scout-font-weight-medium: 500;
+  --scout-font-weight-semibold: 600;
+  --scout-font-weight-bold: 700;
+
+  --scout-line-height-base: 1.5;
+  --scout-line-height-tight: 1.45;
+
+  /* ------------------------------------------------------------------ */
+  /* Radii                                                              */
+  /* ------------------------------------------------------------------ */
+  --scout-radius-sm: 4px;
+  --scout-radius: 8px;
+  --scout-radius-lg: 12px;
+  --scout-radius-pill: 999px;
+
+  /* ------------------------------------------------------------------ */
+  /* Shadows                                                            */
+  /* ------------------------------------------------------------------ */
+  --scout-shadow-md: 0 6px 20px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.06);
+  --scout-shadow-lg: 0 18px 40px rgba(0, 0, 0, 0.12), 0 4px 10px rgba(0, 0, 0, 0.06);
+  --scout-shadow-brand: 0 12px 28px rgba(113, 93, 170, 0.25), 0 2px 6px rgba(0, 0, 0, 0.08);
+
+  /* ------------------------------------------------------------------ */
+  /* Panel / surface sizing                                             */
+  /* ------------------------------------------------------------------ */
+  --scout-panel-width: 400px;
+  --scout-panel-height: 540px;
+  --scout-panel-height-tall: 630px;
+  --scout-tour-popover-width: 320px;
+}
+
+/*
+ * Grid scope/identity colors. Exposed at :root so AG Grid cells (which render
+ * outside any .scout-scope wrapper) can consume them. Token names stay
+ * prefixed with --scout-* so they never collide with Excalibrr theme vars.
+ *
+ * `cell-scope-*` paint a Scout-scoped data cell. `cell-identity-*` paint an
+ * identity (Customer / Product / Location) cell that participates in scope.
+ * `cell-col-*` tints come from the wireframe column-group strip; they apply
+ * ONLY while the panel is open via the `.scout-active` body class.
+ */
+:root {
+  --scout-cell-scope-bg: #E1F5EE;
+  --scout-cell-scope-outline: #1D9E75;
+  --scout-cell-scope-text: #0F6E56;
+
+  --scout-cell-identity-bg: rgba(0, 0, 0, 0.05);
+  --scout-cell-identity-text: #4A4A45;
+
+  /* +Add mode disabled cell (Wireframe 5 cell-selection constraint). Exposed
+     at :root because AG Grid cells render outside the .scout-scope wrapper.
+     A clearly deactivated gray fill + faint hatch + muted text. */
+  --scout-cell-disabled-bg: #EFEEEB;
+  --scout-cell-disabled-hatch: rgba(0, 0, 0, 0.08);
+  --scout-cell-disabled-text: #BAB8B2;
+
+  --scout-col-benchmark-bg: rgba(24, 95, 165, 0.04);
+  --scout-col-proposed-bg:  rgba(29, 158, 117, 0.05);
+  --scout-col-margin-bg:    rgba(186, 117, 23, 0.04);
+  --scout-col-delta-bg:     rgba(0, 0, 0, 0.02);
+  --scout-col-flags-bg:     rgba(163, 45, 45, 0.03);
+
+  --scout-col-benchmark-sw: rgba(24, 95, 165, 0.35);
+  --scout-col-proposed-sw:  rgba(29, 158, 117, 0.42);
+  --scout-col-margin-sw:    rgba(186, 117, 23, 0.40);
+  --scout-col-delta-sw:     rgba(0, 0, 0, 0.18);
+  --scout-col-flags-sw:     rgba(163, 45, 45, 0.35);
+}

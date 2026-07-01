@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Component - Gravitate Wireframe Design System</title>
+  <link rel="stylesheet" href="../../tokens/index.css">
+  <link rel="stylesheet" href="layout.css">
+  <style>
+    /* Demo-specific styles */
+    body {
+      font-family: var(--wf-font-family-sans);
+      margin: 0;
+      padding: 0;
+      background-color: var(--wf-color-background-alt);
+    }
+    .demo-section {
+      padding: var(--wf-space-6);
+      margin-bottom: var(--wf-space-8);
+    }
+    .demo-title {
+      font-size: var(--wf-font-size-lg);
+      font-weight: var(--wf-font-weight-semibold);
+      margin-bottom: var(--wf-space-4);
+      color: var(--wf-color-text-primary);
+    }
+    .demo-subtitle {
+      font-size: var(--wf-font-size-sm);
+      color: var(--wf-color-text-secondary);
+      margin-bottom: var(--wf-space-3);
+    }
+    .demo-frame {
+      border: 2px solid var(--wf-color-border);
+      border-radius: var(--wf-border-radius-lg);
+      overflow: hidden;
+      margin-bottom: var(--wf-space-4);
+    }
+    .demo-frame-label {
+      background: var(--wf-color-gray-800);
+      color: var(--wf-color-gray-100);
+      padding: var(--wf-space-2) var(--wf-space-4);
+      font-size: var(--wf-font-size-xs);
+      font-family: var(--wf-font-family-mono);
+    }
+    .demo-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--wf-space-2) var(--wf-space-4);
+      font-size: var(--wf-font-size-sm);
+      font-weight: var(--wf-font-weight-medium);
+      border-radius: var(--wf-border-radius-md);
+      border: 1px solid var(--wf-color-border);
+      background: var(--wf-color-background);
+      color: var(--wf-color-text-primary);
+      cursor: pointer;
+    }
+    .demo-btn-primary {
+      background: var(--wf-color-accent-blue);
+      color: white;
+      border-color: var(--wf-color-accent-blue);
+    }
+    .demo-placeholder {
+      background-color: var(--wf-color-gray-100);
+      border: 2px dashed var(--wf-color-gray-300);
+      border-radius: var(--wf-border-radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 200px;
+      color: var(--wf-color-text-tertiary);
+      font-size: var(--wf-font-size-sm);
+    }
+    code {
+      background-color: var(--wf-color-gray-100);
+      padding: var(--wf-space-1) var(--wf-space-2);
+      border-radius: var(--wf-border-radius-sm);
+      font-family: var(--wf-font-family-mono);
+      font-size: var(--wf-font-size-sm);
+    }
+    pre {
+      background-color: var(--wf-color-gray-800);
+      color: var(--wf-color-gray-100);
+      padding: var(--wf-space-4);
+      border-radius: var(--wf-border-radius-md);
+      overflow-x: auto;
+      font-family: var(--wf-font-family-mono);
+      font-size: var(--wf-font-size-sm);
+      margin-bottom: var(--wf-space-4);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="demo-section">
+    <h1 class="wf-text-h1" style="margin-bottom: var(--wf-space-6);">Page Component</h1>
+    <p class="wf-text-body" style="margin-bottom: var(--wf-space-8); max-width: 600px;">
+      The Page component provides a full-page layout structure with a header (title + actions)
+      and main content area. It establishes the primary visual hierarchy for application pages.
+    </p>
+  </div>
+
+  <!-- =====================================================
+       BASIC PAGE STRUCTURE
+       ===================================================== -->
+  <div class="demo-section">
+    <h2 class="demo-title">Basic Page Structure</h2>
+    <p class="demo-subtitle">Standard page layout with header and content area</p>
+
+    <pre>&lt;div class="wf-page"&gt;
+  &lt;header class="wf-page-header"&gt;
+    &lt;div class="wf-page-title"&gt;
+      &lt;h1 class="wf-text-h1"&gt;Page Title&lt;/h1&gt;
+      &lt;p class="wf-text-helper"&gt;Optional subtitle or description&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="wf-page-actions"&gt;
+      &lt;button&gt;Secondary&lt;/button&gt;
+      &lt;button&gt;Primary Action&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/header&gt;
+  &lt;main class="wf-page-content"&gt;
+    &lt;!-- Page content here --&gt;
+  &lt;/main&gt;
+&lt;/div&gt;</pre>
+
+    <div class="demo-frame">
+      <div class="demo-frame-label">Page Preview</div>
+      <div class="wf-page" style="min-height: 400px;">
+        <header class="wf-page-header">
+          <div class="wf-page-title">
+            <h1 class="wf-text-h1">Dashboard</h1>
+            <p class="wf-text-helper">Welcome back! Here's what's happening today.</p>
+          </div>
+          <div class="wf-page-actions">
+            <button class="demo-btn">Export</button>
+            <button class="demo-btn demo-btn-primary">+ New Report</button>
+          </div>
+        </header>
+        <main class="wf-page-content">
+          <div class="demo-placeholder">Page content area</div>
+        </main>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================
+       PAGE HEADER VARIANTS
+       ===================================================== -->
+  <div class="demo-section">
+    <h2 class="demo-title">Page Header Variants</h2>
+    <p class="demo-subtitle">Different header configurations for various use cases</p>
+
+    <h3 class="wf-text-h3" style="margin-top: var(--wf-space-6); margin-bottom: var(--wf-space-3);">Title Only</h3>
+    <div class="demo-frame">
+      <div class="demo-frame-label">Simple header - title only</div>
+      <header class="wf-page-header">
+        <div class="wf-page-title">
+          <h1 class="wf-text-h1">Settings</h1>
+        </div>
+      </header>
+    </div>
+
+    <h3 class="wf-text-h3" style="margin-top: var(--wf-space-6); margin-bottom: var(--wf-space-3);">Title with Subtitle</h3>
+    <div class="demo-frame">
+      <div class="demo-frame-label">Header with subtitle</div>
+      <header class="wf-page-header">
+        <div class="wf-page-title">
+          <h1 class="wf-text-h1">User Management</h1>
+          <p class="wf-text-helper">Manage team members and their permissions</p>
+        </div>
+      </header>
+    </div>
+
+    <h3 class="wf-text-h3" style="margin-top: var(--wf-space-6); margin-bottom: var(--wf-space-3);">Title with Breadcrumb</h3>
+    <div class="demo-frame">
+      <div class="demo-frame-label">Header with breadcrumb navigation</div>
+      <header class="wf-page-header">
+        <div class="wf-page-title">
+          <p class="wf-text-helper" style="margin-bottom: var(--wf-space-1);">
+            <span style="color: var(--wf-color-accent-blue);">Projects</span>
+            <span style="margin: 0 var(--wf-space-2);">/</span>
+            <span style="color: var(--wf-color-accent-blue);">Website Redesign</span>
+            <span style="margin: 0 var(--wf-space-2);">/</span>
+            <span>Tasks</span>
+          </p>
+          <h1 class="wf-text-h1">Project Tasks</h1>
+        </div>
+        <div class="wf-page-actions">
+          <button class="demo-btn demo-btn-primary">+ Add Task</button>
+        </div>
+      </header>
+    </div>
+
+    <h3 class="wf-text-h3" style="margin-top: var(--wf-space-6); margin-bottom: var(--wf-space-3);">Multiple Actions</h3>
+    <div class="demo-frame">
+      <div class="demo-frame-label">Header with multiple action buttons</div>
+      <header class="wf-page-header">
+        <div class="wf-page-title">
+          <h1 class="wf-text-h1">Orders</h1>
+          <p class="wf-text-helper">View and manage customer orders</p>
+        </div>
+        <div class="wf-page-actions">
+          <button class="demo-btn">Filter</button>
+          <button class="demo-btn">Export CSV</button>
+          <button class="demo-btn">Print</button>
+          <button class="demo-btn demo-btn-primary">+ New Order</button>
+        </div>
+      </header>
+    </div>
+  </div>
+
+  <!-- =====================================================
+       PAGE CONTENT VARIANTS
+       ===================================================== -->
+  <div class="demo-section">
+    <h2 class="demo-title">Page Content Variants</h2>
+    <p class="demo-subtitle">Different padding options for content areas</p>
+
+    <pre>&lt;main class="wf-page-content"&gt;...&lt;/main&gt;                 &lt;!-- Default: 24px --&gt;
+&lt;main class="wf-page-content wf-page-content-tight"&gt;...&lt;/main&gt;    &lt;!-- Tight: 16px --&gt;
+&lt;main class="wf-page-content wf-page-content-spacious"&gt;...&lt;/main&gt; &lt;!-- Spacious: 32px --&gt;
+&lt;main class="wf-page-content wf-page-content-none"&gt;...&lt;/main&gt;    &lt;!-- None: 0px --&gt;</pre>
+
+    <div class="wf-row wf-gap-4 wf-wrap">
+      <div class="demo-frame wf-flex-1" style="min-width: 250px;">
+        <div class="demo-frame-label">.wf-page-content (default)</div>
+        <main class="wf-page-content" style="background: var(--wf-color-background-alt);">
+          <div class="demo-placeholder" style="min-height: 100px;">24px padding</div>
+        </main>
+      </div>
+
+      <div class="demo-frame wf-flex-1" style="min-width: 250px;">
+        <div class="demo-frame-label">.wf-page-content-tight</div>
+        <main class="wf-page-content wf-page-content-tight" style="background: var(--wf-color-background-alt);">
+          <div class="demo-placeholder" style="min-height: 100px;">16px padding</div>
+        </main>
+      </div>
+
+      <div class="demo-frame wf-flex-1" style="min-width: 250px;">
+        <div class="demo-frame-label">.wf-page-content-spacious</div>
+        <main class="wf-page-content wf-page-content-spacious" style="background: var(--wf-color-background-alt);">
+          <div class="demo-placeholder" style="min-height: 100px;">32px padding</div>
+        </main>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================
+       FULL PAGE EXAMPLE: DASHBOARD
+       ===================================================== -->
+  <div class="demo-section">
+    <h2 class="demo-title">Full Example: Dashboard Page</h2>
+    <p class="demo-subtitle">Complete dashboard layout with stats cards and data table</p>
+
+    <div class="demo-frame">
+      <div class="demo-frame-label">Dashboard Page</div>
+      <div class="wf-page" style="min-height: 600px;">
+        <header class="wf-page-header">
+          <div class="wf-page-title">
+            <h1 class="wf-text-h1">Dashboard</h1>
+            <p class="wf-text-helper">Overview of your business metrics</p>
+          </div>
+          <div class="wf-page-actions">
+            <button class="demo-btn">Last 7 days</button>
+            <button class="demo-btn demo-btn-primary">Download Report</button>
+          </div>
+        </header>
+        <main class="wf-page-content">
+          <!-- Stats Cards -->
+          <div class="wf-row wf-gap-4 wf-wrap" style="margin-bottom: var(--wf-space-6);">
+            <div class="wf-card wf-flex-1" style="min-width: 200px;">
+              <div class="wf-card-body">
+                <p class="wf-text-label" style="margin-bottom: var(--wf-space-2);">Total Revenue</p>
+                <p class="wf-text-h2">$45,231</p>
+                <p class="wf-text-helper" style="color: var(--wf-color-accent-green);">+12.5% from last month</p>
+              </div>
+            </div>
+            <div class="wf-card wf-flex-1" style="min-width: 200px;">
+              <div class="wf-card-body">
+                <p class="wf-text-label" style="margin-bottom: var(--wf-space-2);">Active Users</p>
+                <p class="wf-text-h2">2,543</p>
+                <p class="wf-text-helper" style="color: var(--wf-color-accent-green);">+8.2% from last month</p>
+              </div>
+            </div>
+            <div class="wf-card wf-flex-1" style="min-width: 200px;">
+              <div class="wf-card-body">
+                <p class="wf-text-label" style="margin-bottom: var(--wf-space-2);">Orders</p>
+                <p class="wf-text-h2">1,234</p>
+                <p class="wf-text-helper" style="color: var(--wf-color-accent-red);">-3.1% from last month</p>
+              </div>
+            </div>
+            <div class="wf-card wf-flex-1" style="min-width: 200px;">
+              <div class="wf-card-body">
+                <p class="wf-text-label" style="margin-bottom: var(--wf-space-2);">Conversion Rate</p>
+                <p class="wf-text-h2">3.24%</p>
+                <p class="wf-text-helper" style="color: var(--wf-color-accent-green);">+0.5% from last month</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recent Orders Section -->
+          <div class="wf-section">
+            <div class="wf-section-header">
+              <h3 class="wf-section-title">Recent Orders</h3>
+              <button class="demo-btn">View All</button>
+            </div>
+            <div class="wf-card">
+              <div class="wf-card-body" style="padding: 0;">
+                <table style="width: 100%; border-collapse: collapse;">
+                  <thead>
+                    <tr style="background: var(--wf-color-background-alt);">
+                      <th style="text-align: left; padding: var(--wf-space-3) var(--wf-space-4); font-weight: var(--wf-font-weight-medium); font-size: var(--wf-font-size-sm); color: var(--wf-color-text-secondary);">Order ID</th>
+                      <th style="text-align: left; padding: var(--wf-space-3) var(--wf-space-4); font-weight: var(--wf-font-weight-medium); font-size: var(--wf-font-size-sm); color: var(--wf-color-text-secondary);">Customer</th>
+                      <th style="text-align: left; padding: var(--wf-space-3) var(--wf-space-4); font-weight: var(--wf-font-weight-medium); font-size: var(--wf-font-size-sm); color: var(--wf-color-text-secondary);">Amount</th>
+                      <th style="text-align: left; padding: var(--wf-space-3) var(--wf-space-4); font-weight: var(--wf-font-weight-medium); font-size: var(--wf-font-size-sm); color: var(--wf-color-text-secondary);">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style="border-top: 1px solid var(--wf-color-border);">
+                      <td style="padding: var(--wf-space-3) var(--wf-space-4); font-size: var(--wf-font-size-sm);">#12345</td>
+                      <td style="padding: var(--wf-space-3) var(--wf-space-4); font-size: var(--wf-font-size-sm);">John Doe</td>
+                      <td style="padding: var(--wf-space-3) var(--wf-space-4); font-size: var(--wf-font-size-sm);">$250.00</td>
+                      <td style="padding: var(--wf-space-3) var(--wf-space-4);"><span style="background: var(--wf-color-accent-green); color: white; padding: var(--wf-space-1) var(--wf-space-2); border-radius: var(--wf-border-radius-sm); font-size: var(--wf-font-size-xs);">Completed</span></td>
+                    </tr>
+                    <tr style="border-top: 1px solid var(--wf-color-border);">
+                      <td style="padding: var(--wf-space-3) var(--wf-space-4); font-size: var(--wf-font-size-sm);">#12344</td>
+                      <td style="padding: var(--wf-space-3) var(--wf-space-4); font-size: var(--wf-font-size-sm);">Jane Smith</td>
+                      <td style="padding: var(--wf-space-3) var(--wf-space-4); font-size: var(--wf-font-size-sm);">$125.00</td>
+                      <td style="padding: var(--wf-space-3) var(--wf-space-4);"><span style="background: var(--wf-color-accent-yellow); color: white; padding: var(--wf-space-1) var(--wf-space-2); border-radius: var(--wf-border-radius-sm); font-size: var(--wf-font-size-xs);">Pending</span></td>
+                    </tr>
+                    <tr style="border-top: 1px solid var(--wf-color-border);">
+                      <td style="padding: var(--wf-space-3) var(--wf-space-4); font-size: var(--wf-font-size-sm);">#12343</td>
+                      <td style="padding: var(--wf-space-3) var(--wf-space-4); font-size: var(--wf-font-size-sm);">Bob Wilson</td>
+                      <td style="padding: var(--wf-space-3) var(--wf-space-4); font-size: var(--wf-font-size-sm);">$89.99</td>
+                      <td style="padding: var(--wf-space-3) var(--wf-space-4);"><span style="background: var(--wf-color-accent-green); color: white; padding: var(--wf-space-1) var(--wf-space-2); border-radius: var(--wf-border-radius-sm); font-size: var(--wf-font-size-xs);">Completed</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================
+       FULL PAGE EXAMPLE: FORM PAGE
+       ===================================================== -->
+  <div class="demo-section">
+    <h2 class="demo-title">Full Example: Form Page</h2>
+    <p class="demo-subtitle">Settings or edit page with form content</p>
+
+    <div class="demo-frame">
+      <div class="demo-frame-label">Settings Page</div>
+      <div class="wf-page" style="min-height: 500px;">
+        <header class="wf-page-header">
+          <div class="wf-page-title">
+            <h1 class="wf-text-h1">Account Settings</h1>
+            <p class="wf-text-helper">Manage your account preferences and profile information</p>
+          </div>
+          <div class="wf-page-actions">
+            <button class="demo-btn">Cancel</button>
+            <button class="demo-btn demo-btn-primary">Save Changes</button>
+          </div>
+        </header>
+        <main class="wf-page-content">
+          <div class="wf-container wf-container-md" style="padding: 0;">
+            <div class="wf-card">
+              <div class="wf-card-header">
+                <h3 class="wf-text-h3">Profile Information</h3>
+              </div>
+              <div class="wf-card-body">
+                <div class="wf-column wf-gap-4">
+                  <div class="wf-column wf-gap-1">
+                    <label class="wf-text-label">Full Name</label>
+                    <div style="padding: var(--wf-space-3); border: 1px solid var(--wf-color-border); border-radius: var(--wf-border-radius-md); background: var(--wf-color-background);">John Doe</div>
+                  </div>
+                  <div class="wf-column wf-gap-1">
+                    <label class="wf-text-label">Email Address</label>
+                    <div style="padding: var(--wf-space-3); border: 1px solid var(--wf-color-border); border-radius: var(--wf-border-radius-md); background: var(--wf-color-background);">john@example.com</div>
+                  </div>
+                  <div class="wf-row wf-gap-4">
+                    <div class="wf-column wf-gap-1 wf-flex-1">
+                      <label class="wf-text-label">Company</label>
+                      <div style="padding: var(--wf-space-3); border: 1px solid var(--wf-color-border); border-radius: var(--wf-border-radius-md); background: var(--wf-color-background);">Acme Inc.</div>
+                    </div>
+                    <div class="wf-column wf-gap-1 wf-flex-1">
+                      <label class="wf-text-label">Role</label>
+                      <div style="padding: var(--wf-space-3); border: 1px solid var(--wf-color-border); border-radius: var(--wf-border-radius-md); background: var(--wf-color-background);">Administrator</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================
+       CSS CLASS REFERENCE
+       ===================================================== -->
+  <div class="demo-section">
+    <h2 class="demo-title">CSS Class Reference</h2>
+
+    <div class="wf-card">
+      <div class="wf-card-body">
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead>
+            <tr style="border-bottom: 2px solid var(--wf-color-border);">
+              <th style="text-align: left; padding: var(--wf-space-2);">Class</th>
+              <th style="text-align: left; padding: var(--wf-space-2);">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid var(--wf-color-border);">
+              <td style="padding: var(--wf-space-2);"><code>.wf-page</code></td>
+              <td style="padding: var(--wf-space-2);">Full page container with min-height: 100vh, flex column layout</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--wf-color-border);">
+              <td style="padding: var(--wf-space-2);"><code>.wf-page-header</code></td>
+              <td style="padding: var(--wf-space-2);">Page header with title and actions, white background</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--wf-color-border);">
+              <td style="padding: var(--wf-space-2);"><code>.wf-page-title</code></td>
+              <td style="padding: var(--wf-space-2);">Container for h1 title and optional subtitle</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--wf-color-border);">
+              <td style="padding: var(--wf-space-2);"><code>.wf-page-actions</code></td>
+              <td style="padding: var(--wf-space-2);">Container for action buttons in header</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--wf-color-border);">
+              <td style="padding: var(--wf-space-2);"><code>.wf-page-content</code></td>
+              <td style="padding: var(--wf-space-2);">Main content area with flex-grow and padding</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--wf-color-border);">
+              <td style="padding: var(--wf-space-2);"><code>.wf-page-content-tight</code></td>
+              <td style="padding: var(--wf-space-2);">Reduced padding (16px)</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--wf-color-border);">
+              <td style="padding: var(--wf-space-2);"><code>.wf-page-content-spacious</code></td>
+              <td style="padding: var(--wf-space-2);">Increased padding (32px)</td>
+            </tr>
+            <tr>
+              <td style="padding: var(--wf-space-2);"><code>.wf-page-content-none</code></td>
+              <td style="padding: var(--wf-space-2);">No padding (0px)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

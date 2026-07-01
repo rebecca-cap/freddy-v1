@@ -1,0 +1,12 @@
+{
+  "path": "/PricingEngine/Calculations",
+  "title": "Calculations",
+  "finalUrl": "http://localhost:3001/PricingEngine/Calculations",
+  "rootLen": 25565,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 10
+}

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customers — consolidated picker (chips agnostic of tab) · Round 3</title>
+  <link rel="stylesheet" href="assets/wireframe.css">
+  <link rel="stylesheet" href="assets/lofi-chrome.css">
+  <style>
+    /* sticky the consolidated chip bar so it's visible while you change tabs */
+    .lf-chipbar.is-sticky { position: sticky; top: 72px; z-index: 30; }
+  </style>
+</head>
+<body>
+
+  <div class="lf-topbar">
+    <a class="lf-topbar-x" href="02-create-offer.html" title="Close">&times;</a>
+    <span class="lf-topbar-title">Create New Offer · Customers</span>
+    <a class="lf-backlink" href="../index.html">Round 3 index</a>
+  </div>
+
+  <div class="lf-offer-page">
+    <a class="lf-backtolist" href="02-create-offer.html">&#8592; Back to the offer</a>
+
+    <div class="lf-offer-main">
+      <div class="wf-card">
+        <div class="wf-card-header">
+          <div>
+            <h1 class="wf-text-h1">Customers</h1>
+            <p class="wf-text-helper">The mode tab changes <em>what you’re picking from</em> — your running selection stays visible no matter which tab is open.</p>
+          </div>
+          <span class="wf-badge wf-badge-primary">Index Special</span>
+        </div>
+        <div class="wf-card-body">
+
+          <!-- consolidated, tab-agnostic chip bar (sticky) -->
+          <div class="lf-chipbar is-sticky">
+            <div class="lf-chipbar-head">
+              <span class="lf-chipbar-title">Selected customers — across all tabs</span>
+              <span class="lf-chipbar-count" id="custCount">0 selected</span>
+            </div>
+            <div class="lf-chipbar-list" id="chipList">
+              <span class="lf-chipbar-empty" id="chipEmpty">Nobody selected yet — pick from any tab below. Picks from different tabs stack here together.</span>
+            </div>
+          </div>
+
+          <div class="wf-tabs wf-tabs-pill" style="margin: var(--wf-space-4) 0 var(--wf-space-3);">
+            <div class="wf-tabs-list" id="inviteTabs">
+              <button class="wf-tab wf-tab-active" data-panel="groups">Groups</button>
+              <button class="wf-tab" data-panel="auth">Authorized to lift</button>
+              <button class="wf-tab" data-panel="credit">Credit</button>
+              <button class="wf-tab" data-panel="all">All customers</button>
+            </div>
+          </div>
+
+          <!-- Groups -->
+          <div class="lf-invite-panel" data-panel="groups">
+            <p class="wf-text wf-text-helper lf-block-desc">Groups are managed elsewhere — here you just consume and select them.</p>
+            <p class="lf-pinned-label">&#11088; Favorites</p>
+            <div class="lf-chiprow">
+              <span class="lf-chip lf-pickchip" data-id="grp-gulf" data-src="Group" data-label="Gulf Coast group" tabindex="0">Gulf Coast <span class="lf-chip-count">3</span></span>
+              <span class="lf-chip lf-pickchip" data-id="grp-midcon" data-src="Group" data-label="Midcon group" tabindex="0">Midcon <span class="lf-chip-count">5</span></span>
+              <span class="lf-chip lf-pickchip" data-id="grp-chi" data-src="Group" data-label="Chicago lifting group" tabindex="0">Chicago lifting <span class="lf-chip-count">4</span></span>
+            </div>
+            <div class="lf-searchrow" style="margin-top: var(--wf-space-3);"><input type="search" class="wf-input" placeholder="Search all groups… (type CHI → Chicago)"></div>
+            <div class="wf-datagrid wf-datagrid-compact">
+              <div class="wf-datagrid-header">
+                <div class="wf-datagrid-cell wf-datagrid-cell-checkbox">&nbsp;</div>
+                <div class="wf-datagrid-cell" style="flex:3">Group</div>
+                <div class="wf-datagrid-cell wf-datagrid-cell-number" style="flex:1">Customers</div>
+                <div class="wf-datagrid-cell" style="flex:2">Region</div>
+              </div>
+              <div class="wf-datagrid-body">
+                <div class="wf-datagrid-row lf-pickrow" data-id="grp-wtx" data-src="Group" data-label="West Texas group"><div class="wf-datagrid-cell wf-datagrid-cell-checkbox"><input type="checkbox" class="wf-checkbox-input"></div><div class="wf-datagrid-cell" style="flex:3">West Texas</div><div class="wf-datagrid-cell wf-datagrid-cell-number" style="flex:1">8</div><div class="wf-datagrid-cell" style="flex:2">West TX</div></div>
+                <div class="wf-datagrid-row lf-pickrow" data-id="grp-tulsa" data-src="Group" data-label="Rack — Tulsa group"><div class="wf-datagrid-cell wf-datagrid-cell-checkbox"><input type="checkbox" class="wf-checkbox-input"></div><div class="wf-datagrid-cell" style="flex:3">Rack — Tulsa</div><div class="wf-datagrid-cell wf-datagrid-cell-number" style="flex:1">6</div><div class="wf-datagrid-cell" style="flex:2">Midcon</div></div>
+                <div class="wf-datagrid-row lf-pickrow" data-id="grp-plains" data-src="Group" data-label="Plains group"><div class="wf-datagrid-cell wf-datagrid-cell-checkbox"><input type="checkbox" class="wf-checkbox-input"></div><div class="wf-datagrid-cell" style="flex:3">Plains</div><div class="wf-datagrid-cell wf-datagrid-cell-number" style="flex:1">5</div><div class="wf-datagrid-cell" style="flex:2">South Central</div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Authorized -->
+          <div class="lf-invite-panel" data-panel="auth" style="display:none;">
+            <p class="wf-text wf-text-helper lf-block-desc">Customers authorized for <strong>Group 3 Suboctane @ Tulsa</strong>.</p>
+            <div class="wf-datagrid wf-datagrid-compact">
+              <div class="wf-datagrid-header">
+                <div class="wf-datagrid-cell wf-datagrid-cell-checkbox">&nbsp;</div>
+                <div class="wf-datagrid-cell" style="flex:3">Customer</div>
+                <div class="wf-datagrid-cell" style="flex:2">Authorized product</div>
+                <div class="wf-datagrid-cell" style="flex:2">Location</div>
+              </div>
+              <div class="wf-datagrid-body">
+                <div class="wf-datagrid-row lf-pickrow" data-id="cust-qt" data-src="Authorized" data-label="QuikTrip"><div class="wf-datagrid-cell wf-datagrid-cell-checkbox"><input type="checkbox" class="wf-checkbox-input"></div><div class="wf-datagrid-cell" style="flex:3">QuikTrip</div><div class="wf-datagrid-cell" style="flex:2">G3 Suboctane</div><div class="wf-datagrid-cell" style="flex:2">Tulsa</div></div>
+                <div class="wf-datagrid-row lf-pickrow" data-id="cust-caseys" data-src="Authorized" data-label="Casey’s"><div class="wf-datagrid-cell wf-datagrid-cell-checkbox"><input type="checkbox" class="wf-checkbox-input"></div><div class="wf-datagrid-cell" style="flex:3">Casey’s</div><div class="wf-datagrid-cell" style="flex:2">G3 Suboctane</div><div class="wf-datagrid-cell" style="flex:2">Tulsa</div></div>
+                <div class="wf-datagrid-row lf-pickrow" data-id="cust-loves" data-src="Authorized" data-label="Love’s"><div class="wf-datagrid-cell wf-datagrid-cell-checkbox"><input type="checkbox" class="wf-checkbox-input"></div><div class="wf-datagrid-cell" style="flex:3">Love’s</div><div class="wf-datagrid-cell" style="flex:2">G3 Suboctane</div><div class="wf-datagrid-cell" style="flex:2">Tulsa</div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Credit -->
+          <div class="lf-invite-panel" data-panel="credit" style="display:none;">
+            <p class="wf-text wf-text-helper lf-block-desc">Ranked by available credit — who has the capacity to lift this.</p>
+            <div class="wf-datagrid wf-datagrid-compact">
+              <div class="wf-datagrid-header">
+                <div class="wf-datagrid-cell wf-datagrid-cell-checkbox">&nbsp;</div>
+                <div class="wf-datagrid-cell" style="flex:3">Customer</div>
+                <div class="wf-datagrid-cell wf-datagrid-cell-number" style="flex:2">Available credit</div>
+                <div class="wf-datagrid-cell" style="flex:2">Utilization</div>
+              </div>
+              <div class="wf-datagrid-body">
+                <div class="wf-datagrid-row lf-pickrow" data-id="cust-loves" data-src="Credit" data-label="Love’s"><div class="wf-datagrid-cell wf-datagrid-cell-checkbox"><input type="checkbox" class="wf-checkbox-input"></div><div class="wf-datagrid-cell" style="flex:3">Love’s</div><div class="wf-datagrid-cell wf-datagrid-cell-number wf-mono" style="flex:2">$4.2M</div><div class="wf-datagrid-cell" style="flex:2">31%</div></div>
+                <div class="wf-datagrid-row lf-pickrow" data-id="cust-7e" data-src="Credit" data-label="7-Eleven"><div class="wf-datagrid-cell wf-datagrid-cell-checkbox"><input type="checkbox" class="wf-checkbox-input"></div><div class="wf-datagrid-cell" style="flex:3">7-Eleven</div><div class="wf-datagrid-cell wf-datagrid-cell-number wf-mono" style="flex:2">$3.1M</div><div class="wf-datagrid-cell" style="flex:2">44%</div></div>
+                <div class="wf-datagrid-row lf-pickrow" data-id="cust-caseys" data-src="Credit" data-label="Casey’s"><div class="wf-datagrid-cell wf-datagrid-cell-checkbox"><input type="checkbox" class="wf-checkbox-input"></div><div class="wf-datagrid-cell" style="flex:3">Casey’s</div><div class="wf-datagrid-cell wf-datagrid-cell-number wf-mono" style="flex:2">$0.9M</div><div class="wf-datagrid-cell" style="flex:2"><span class="wf-text wf-text-warning">86%</span></div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- All -->
+          <div class="lf-invite-panel" data-panel="all" style="display:none;">
+            <div class="lf-searchrow"><input type="search" class="wf-input" placeholder="Search all customers…"></div>
+            <div class="wf-datagrid wf-datagrid-compact">
+              <div class="wf-datagrid-header">
+                <div class="wf-datagrid-cell wf-datagrid-cell-checkbox">&nbsp;</div>
+                <div class="wf-datagrid-cell" style="flex:3">Customer</div>
+                <div class="wf-datagrid-cell" style="flex:2">Region</div>
+              </div>
+              <div class="wf-datagrid-body">
+                <div class="wf-datagrid-row lf-pickrow" data-id="cust-7e" data-src="All" data-label="7-Eleven"><div class="wf-datagrid-cell wf-datagrid-cell-checkbox"><input type="checkbox" class="wf-checkbox-input"></div><div class="wf-datagrid-cell" style="flex:3">7-Eleven</div><div class="wf-datagrid-cell" style="flex:2">South Central</div></div>
+                <div class="wf-datagrid-row lf-pickrow" data-id="cust-murphy" data-src="All" data-label="Murphy USA"><div class="wf-datagrid-cell wf-datagrid-cell-checkbox"><input type="checkbox" class="wf-checkbox-input"></div><div class="wf-datagrid-cell" style="flex:3">Murphy USA</div><div class="wf-datagrid-cell" style="flex:2">Gulf Coast</div></div>
+                <div class="wf-datagrid-row lf-pickrow" data-id="cust-sheetz" data-src="All" data-label="Sheetz"><div class="wf-datagrid-cell wf-datagrid-cell-checkbox"><input type="checkbox" class="wf-checkbox-input"></div><div class="wf-datagrid-cell" style="flex:3">Sheetz</div><div class="wf-datagrid-cell" style="flex:2">East</div></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="lf-offer-footer">
+        <a class="wf-button wf-button-secondary" href="02-create-offer.html">Back</a>
+        <span class="lf-footer-mid" id="footerCount">0 customers selected</span>
+        <a class="wf-button wf-button-primary" href="02-create-offer.html">Use selection</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    var $$ = function(s, r){ return Array.prototype.slice.call((r||document).querySelectorAll(s)); };
+    var $  = function(s, r){ return (r||document).querySelector(s); };
+    var selected = {};
+    var chipList=$('#chipList'), chipEmpty=$('#chipEmpty'), custCount=$('#custCount'), footer=$('#footerCount');
+
+    function render(){
+      $$('.lf-selchip', chipList).forEach(function(n){ n.remove(); });
+      var ids=Object.keys(selected);
+      chipEmpty.style.display = ids.length?'none':'';
+      ids.forEach(function(id){
+        var c=selected[id], chip=document.createElement('span');
+        chip.className='lf-selchip';
+        chip.innerHTML='<span class="lf-selchip-src">'+c.src+'</span> '+c.label+' <button class="lf-selchip-x" data-rm="'+id+'" title="Remove" aria-label="Remove '+c.label+'">&times;</button>';
+        chipList.appendChild(chip);
+      });
+      var label = ids.length+' selected';
+      custCount.textContent=label; footer.textContent=ids.length+' customer'+(ids.length===1?'':'s')+' selected';
+    }
+    function toggle(id,label,src,on){
+      if(on) selected[id]={label:label,src:src}; else delete selected[id];
+      $$('.lf-pickrow[data-id="'+id+'"]').forEach(function(row){ var cb=$('input',row); if(cb) cb.checked=on; row.classList.toggle('wf-datagrid-row-selected',on); });
+      $$('.lf-pickchip[data-id="'+id+'"]').forEach(function(ch){ ch.classList.toggle('is-selected',on); });
+      render();
+    }
+    $$('.lf-pickrow').forEach(function(row){
+      row.addEventListener('click', function(e){ if(e.target.tagName==='INPUT') return; var cb=$('input',row); toggle(row.dataset.id,row.dataset.label,row.dataset.src,!(cb&&cb.checked)); });
+      var cb=$('input',row); if(cb) cb.addEventListener('change', function(){ toggle(row.dataset.id,row.dataset.label,row.dataset.src,cb.checked); });
+    });
+    $$('.lf-pickchip').forEach(function(ch){
+      ch.addEventListener('click', function(){ toggle(ch.dataset.id,ch.dataset.label,ch.dataset.src,!selected[ch.dataset.id]); });
+      ch.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); ch.click(); } });
+    });
+    chipList.addEventListener('click', function(e){ var rm=e.target.getAttribute&&e.target.getAttribute('data-rm'); if(rm) toggle(rm,selected[rm].label,selected[rm].src,false); });
+    $$('#inviteTabs .wf-tab').forEach(function(tab){
+      tab.addEventListener('click', function(){
+        $$('#inviteTabs .wf-tab').forEach(function(t){ t.classList.remove('wf-tab-active'); });
+        tab.classList.add('wf-tab-active');
+        $$('.lf-invite-panel').forEach(function(p){ p.style.display=(p.dataset.panel===tab.dataset.panel)?'':'none'; });
+      });
+    });
+  })();
+  </script>
+
+</body>
+</html>

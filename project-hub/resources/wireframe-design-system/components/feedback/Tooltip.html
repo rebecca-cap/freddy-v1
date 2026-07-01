@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tooltip Components - Gravitate Wireframe Design System</title>
+  <link rel="stylesheet" href="../../tokens/index.css">
+  <link rel="stylesheet" href="feedback.css">
+  <style>
+    /* Demo page styles */
+    .demo-section {
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--wf-color-border);
+    }
+    .demo-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--wf-color-text-primary);
+    }
+    .demo-description {
+      font-size: 0.875rem;
+      color: var(--wf-color-text-secondary);
+      margin-bottom: 1.5rem;
+    }
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 3rem;
+      padding: 3rem;
+    }
+    .demo-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+    .demo-item h4 {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--wf-color-text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    /* Force tooltip visible for demo */
+    .demo-visible .wf-tooltip {
+      opacity: 1;
+    }
+    .demo-code {
+      padding: 1.5rem;
+      background: var(--wf-color-neutral-900);
+      color: var(--wf-color-neutral-100);
+      border-radius: var(--wf-radius-md);
+    }
+    .demo-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      padding: 3rem;
+    }
+  </style>
+</head>
+<body style="padding: 2rem; background: var(--wf-color-background);">
+
+  <h1 style="margin-bottom: 0.5rem;">Tooltip Components</h1>
+  <p style="color: var(--wf-color-text-secondary); margin-bottom: 2rem;">
+    Contextual information that appears on hover. Useful for providing hints or additional details.
+  </p>
+
+  <!-- ============================================
+       TOOLTIP POSITIONS
+       ============================================ -->
+  <section class="demo-section">
+    <h2 class="demo-title">Tooltip Positions</h2>
+    <p class="demo-description">
+      Tooltips can appear above, below, to the left, or to the right of the trigger element.
+      Hover over the buttons to see the tooltips.
+    </p>
+
+    <div class="demo-grid">
+      <!-- Top -->
+      <div class="demo-item">
+        <h4>Top</h4>
+        <div class="wf-tooltip-container">
+          <button class="wf-button wf-button-secondary">Hover me</button>
+          <div class="wf-tooltip wf-tooltip-top">
+            Tooltip on top
+            <span class="wf-tooltip-arrow"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom -->
+      <div class="demo-item">
+        <h4>Bottom</h4>
+        <div class="wf-tooltip-container">
+          <button class="wf-button wf-button-secondary">Hover me</button>
+          <div class="wf-tooltip wf-tooltip-bottom">
+            Tooltip on bottom
+            <span class="wf-tooltip-arrow"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Left -->
+      <div class="demo-item">
+        <h4>Left</h4>
+        <div class="wf-tooltip-container">
+          <button class="wf-button wf-button-secondary">Hover me</button>
+          <div class="wf-tooltip wf-tooltip-left">
+            Tooltip on left
+            <span class="wf-tooltip-arrow"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right -->
+      <div class="demo-item">
+        <h4>Right</h4>
+        <div class="wf-tooltip-container">
+          <button class="wf-button wf-button-secondary">Hover me</button>
+          <div class="wf-tooltip wf-tooltip-right">
+            Tooltip on right
+            <span class="wf-tooltip-arrow"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       ALWAYS VISIBLE (for demo)
+       ============================================ -->
+  <section class="demo-section">
+    <h2 class="demo-title">Static Preview (Always Visible)</h2>
+    <p class="demo-description">
+      For wireframe purposes, tooltips can be made always visible using the <code>wf-tooltip-visible</code> class.
+    </p>
+
+    <div class="demo-grid demo-visible">
+      <!-- Top Visible -->
+      <div class="demo-item">
+        <h4>Top</h4>
+        <div class="wf-tooltip-container" style="margin-top: 3rem;">
+          <button class="wf-button wf-button-secondary">Button</button>
+          <div class="wf-tooltip wf-tooltip-top wf-tooltip-visible">
+            Helpful tip
+            <span class="wf-tooltip-arrow"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Visible -->
+      <div class="demo-item">
+        <h4>Bottom</h4>
+        <div class="wf-tooltip-container" style="margin-bottom: 3rem;">
+          <button class="wf-button wf-button-secondary">Button</button>
+          <div class="wf-tooltip wf-tooltip-bottom wf-tooltip-visible">
+            More info
+            <span class="wf-tooltip-arrow"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Left Visible -->
+      <div class="demo-item">
+        <h4>Left</h4>
+        <div class="wf-tooltip-container" style="margin-left: 6rem;">
+          <button class="wf-button wf-button-secondary">Button</button>
+          <div class="wf-tooltip wf-tooltip-left wf-tooltip-visible">
+            Hint
+            <span class="wf-tooltip-arrow"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Visible -->
+      <div class="demo-item">
+        <h4>Right</h4>
+        <div class="wf-tooltip-container" style="margin-right: 6rem;">
+          <button class="wf-button wf-button-secondary">Button</button>
+          <div class="wf-tooltip wf-tooltip-right wf-tooltip-visible">
+            Details
+            <span class="wf-tooltip-arrow"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       MULTILINE TOOLTIPS
+       ============================================ -->
+  <section class="demo-section">
+    <h2 class="demo-title">Multi-line Tooltips</h2>
+    <p class="demo-description">
+      For longer content, use the <code>wf-tooltip-multiline</code> class to allow text wrapping.
+    </p>
+
+    <div class="demo-row demo-visible">
+      <div class="wf-tooltip-container" style="margin-top: 5rem;">
+        <button class="wf-button wf-button-secondary">More Info</button>
+        <div class="wf-tooltip wf-tooltip-top wf-tooltip-multiline wf-tooltip-visible">
+          This tooltip contains a longer description that wraps to multiple lines for better readability.
+          <span class="wf-tooltip-arrow"></span>
+        </div>
+      </div>
+
+      <div class="wf-tooltip-container" style="margin-bottom: 5rem;">
+        <button class="wf-button wf-button-secondary">Help</button>
+        <div class="wf-tooltip wf-tooltip-bottom wf-tooltip-multiline wf-tooltip-visible">
+          Click this button to access additional help resources and documentation.
+          <span class="wf-tooltip-arrow"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       TOOLTIP ON DIFFERENT ELEMENTS
+       ============================================ -->
+  <section class="demo-section">
+    <h2 class="demo-title">Tooltips on Various Elements</h2>
+    <p class="demo-description">
+      Tooltips can be attached to any element, not just buttons.
+    </p>
+
+    <div class="demo-row">
+      <!-- On Icon -->
+      <div class="wf-tooltip-container">
+        <span style="cursor: help; font-size: 1.25rem;">&#8505;</span>
+        <div class="wf-tooltip wf-tooltip-top">
+          Information
+          <span class="wf-tooltip-arrow"></span>
+        </div>
+      </div>
+
+      <!-- On Text Link -->
+      <div class="wf-tooltip-container">
+        <a href="#" style="color: var(--wf-color-primary);">Hover this link</a>
+        <div class="wf-tooltip wf-tooltip-top">
+          Opens in new tab
+          <span class="wf-tooltip-arrow"></span>
+        </div>
+      </div>
+
+      <!-- On Badge -->
+      <div class="wf-tooltip-container">
+        <span style="display: inline-block; padding: 0.25rem 0.5rem; background: var(--wf-color-primary); color: white; border-radius: 9999px; font-size: 0.75rem;">Beta</span>
+        <div class="wf-tooltip wf-tooltip-top">
+          This feature is in beta
+          <span class="wf-tooltip-arrow"></span>
+        </div>
+      </div>
+
+      <!-- On Input -->
+      <div class="wf-tooltip-container">
+        <input type="text" placeholder="API Key" class="wf-input" style="width: 150px; padding: 0.5rem;">
+        <div class="wf-tooltip wf-tooltip-top">
+          Enter your API key
+          <span class="wf-tooltip-arrow"></span>
+        </div>
+      </div>
+
+      <!-- On Disabled Button -->
+      <div class="wf-tooltip-container">
+        <button class="wf-button wf-button-primary" disabled>Submit</button>
+        <div class="wf-tooltip wf-tooltip-top">
+          Complete all fields first
+          <span class="wf-tooltip-arrow"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       USAGE CODE EXAMPLES
+       ============================================ -->
+  <section class="demo-section">
+    <h2 class="demo-title">Usage</h2>
+    <p class="demo-description">Copy and paste these patterns into your wireframes.</p>
+
+    <div class="demo-code">
+      <pre style="margin: 0; font-size: 0.8rem; overflow-x: auto; white-space: pre-wrap;"><code>&lt;!-- Basic Tooltip (shows on hover) --&gt;
+&lt;div class="wf-tooltip-container"&gt;
+  &lt;button class="wf-button wf-button-secondary"&gt;Hover me&lt;/button&gt;
+  &lt;div class="wf-tooltip wf-tooltip-top"&gt;
+    This is a tooltip
+    &lt;span class="wf-tooltip-arrow"&gt;&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Always Visible (for wireframes) --&gt;
+&lt;div class="wf-tooltip-container"&gt;
+  &lt;button class="wf-button wf-button-secondary"&gt;Button&lt;/button&gt;
+  &lt;div class="wf-tooltip wf-tooltip-top wf-tooltip-visible"&gt;
+    Always shown
+    &lt;span class="wf-tooltip-arrow"&gt;&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Multi-line Tooltip --&gt;
+&lt;div class="wf-tooltip-container"&gt;
+  &lt;span&gt;Info&lt;/span&gt;
+  &lt;div class="wf-tooltip wf-tooltip-bottom wf-tooltip-multiline"&gt;
+    This tooltip has a longer description that wraps to multiple lines.
+    &lt;span class="wf-tooltip-arrow"&gt;&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Position Classes --&gt;
+&lt;!-- wf-tooltip-top --&gt;
+&lt;!-- wf-tooltip-bottom --&gt;
+&lt;!-- wf-tooltip-left --&gt;
+&lt;!-- wf-tooltip-right --&gt;
+
+&lt;!-- Modifier Classes --&gt;
+&lt;!-- wf-tooltip-visible: Always show the tooltip --&gt;
+&lt;!-- wf-tooltip-multiline: Allow text wrapping (max-width: 200px) --&gt;</code></pre>
+    </div>
+  </section>
+
+</body>
+</html>

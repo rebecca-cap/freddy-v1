@@ -1,0 +1,572 @@
+/*
+ * ScoutPanel — docked side-panel container styles.
+ *
+ * Mirrors `.gizmo-panel` from the round-4 wireframe (`gizmo-demo.html`).
+ * Every color / size / shadow / radius value comes from a `--scout-*` token
+ * defined in `../styles/scout-tokens.css`. No hardcoded colors.
+ *
+ * Layout: column flex — fixed header on top, flexible body in the middle,
+ * fixed footer at the bottom. Body owns the scrolling; header + footer stay
+ * pinned.
+ *
+ * Position: `fixed` (the wireframe uses `absolute` inside its demo frame; we
+ * portal to <body> and there's no QB-relative stage at Step 1.3, so `fixed`
+ * is the correct equivalent — same visual result, anchored to the viewport).
+ *
+ * Animation: `scout-slidein 200ms ease-out` keyframe, copied verbatim from
+ * the wireframe (`@keyframes slidein`: opacity 0 → 1, translateY(-6px) → 0).
+ * Plays on mount because the component only renders when open.
+ */
+
+/*
+ * Frame wrapper — owns the fixed positioning + the rotating conic-gradient
+ * shimmer "border". The actual panel sits INSIDE the frame so its
+ * `overflow: hidden` doesn't clip the shimmer ring.
+ *
+ * The shimmer uses an `@property` registered custom angle so the conic
+ * gradient can be smoothly animated by the compositor instead of restarting
+ * each tick (browsers can only animate properties they know about).
+ */
+.scout-panel-frame {
+  /* Dock right, ~50px from viewport top. Matches the wireframe defaults set
+     in JS at lines 2511–2513 (top:50px, right:16px). */
+  position: fixed;
+  top: 50px;
+  right: 16px;
+  width: var(--scout-panel-width);
+  /* Height auto-fits the panel (which sizes to content); the panel owns the
+     80vh cap. Width is fixed — never user-resizable. */
+  height: auto;
+  /* No background of its own — only the shimmer ring + the inner panel.
+     `border-radius` matches the panel + the 2px ring so they stay concentric.
+     Bottom-right is clipped tighter (panel 4px + 2px ring = 6px). */
+  border-radius:
+    calc(var(--scout-radius-lg) + 2px)
+    calc(var(--scout-radius-lg) + 2px)
+    6px
+    calc(var(--scout-radius-lg) + 2px);
+  z-index: 1000; /* above QB chrome, below antd modal overlays */
+  pointer-events: none; /* let clicks fall through the bare frame to children */
+}
+
+.scout-panel-frame > * {
+  pointer-events: auto;
+}
+
+.scout-panel-frame.is-open {
+  animation: scout-slidein 200ms ease-out;
+}
+
+@keyframes scout-slidein {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Two registered angles so each glint layer can rotate at its OWN rate.
+   `@property` makes them animate as angles (smooth sweep) rather than
+   snapping each tick. */
+@property --scout-shimmer-a {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+@property --scout-shimmer-b {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+/* tad.ai-style border: the ring is a NEUTRAL track at rest (blends into the
+   page), and two multi-color glints orbit at different speeds + directions,
+   so the highlight travels around the corners unevenly. The glint colors only
+   show where an arc currently sits; everywhere else the neutral track shows. */
+.scout-panel-frame__shimmer {
+  position: absolute;
+  inset: -2px; /* pokes 2px past the panel → a crisp 2px border */
+  border-radius: inherit;
+  overflow: hidden; /* clip the glint layers to the rounded ring */
+  background: var(--scout-shimmer-track); /* neutral "off" border */
+  z-index: 0;
+}
+
+.scout-panel-frame__shimmer::before,
+.scout-panel-frame__shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+/* Layer A — faster, clockwise. Indigo → violet → magenta glint. */
+.scout-panel-frame__shimmer::before {
+  background: conic-gradient(
+    from var(--scout-shimmer-a),
+    transparent 0deg,
+    transparent 18deg,
+    var(--scout-shimmer-1) 46deg,
+    var(--scout-shimmer-2) 72deg,
+    var(--scout-shimmer-3) 98deg,
+    transparent 126deg,
+    transparent 360deg
+  );
+  animation: scout-shimmer-a 4.2s linear infinite;
+}
+
+/* Layer B — slower, counter-clockwise, offset start. Violet → magenta →
+   brand glint. Different rate + direction makes the two glints drift past
+   each other around the corners. */
+.scout-panel-frame__shimmer::after {
+  background: conic-gradient(
+    from var(--scout-shimmer-b),
+    transparent 0deg,
+    transparent 175deg,
+    var(--scout-shimmer-2) 205deg,
+    var(--scout-shimmer-3) 232deg,
+    var(--scout-brand) 258deg,
+    transparent 288deg,
+    transparent 360deg
+  );
+  animation: scout-shimmer-b 7s linear infinite;
+}
+
+@keyframes scout-shimmer-a {
+  to {
+    --scout-shimmer-a: 360deg;
+  }
+}
+@keyframes scout-shimmer-b {
+  to {
+    --scout-shimmer-b: -360deg;
+  }
+}
+
+/* Respect reduced-motion: freeze both glints (the neutral track + static
+   color arcs still read as a tasteful gradient border). */
+@media (prefers-reduced-motion: reduce) {
+  .scout-panel-frame__shimmer::before,
+  .scout-panel-frame__shimmer::after {
+    animation: none;
+  }
+  .scout-panel-frame.is-open {
+    animation: none;
+  }
+}
+
+.scout-panel {
+  /* The panel lives INSIDE the frame. By default it sizes to its content and
+     caps at 80vh (then the body scrolls). An inline `height` set by the
+     resize grip pins an explicit height. It keeps its own background so the
+     conic gradient only shows at the 2px ring poking out around the edges. */
+  position: relative;
+  width: 100%;
+  max-height: min(80vh, calc(100vh - 66px)); /* 80% cap, kept on-screen */
+  background: var(--scout-surface);
+  /* Bottom-right corner clipped to 4px (tighter than the other 12px corners)
+     so it tucks under the resize grip. */
+  border-radius:
+    var(--scout-radius-lg)
+    var(--scout-radius-lg)
+    4px
+    var(--scout-radius-lg);
+  box-shadow: var(--scout-shadow-lg);
+  z-index: 1; /* above the shimmer ring */
+
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* clips body scrollbar to the rounded corners */
+
+  color: var(--scout-text);
+  font-family: var(--scout-font-family);
+  font-size: var(--scout-font-size-body);
+  line-height: var(--scout-line-height-base);
+}
+
+/* ------------------------------------------------------------------------ */
+/* Header                                                                   */
+/* ------------------------------------------------------------------------ */
+
+/* Header is now a column: title row on top, view nav on the bottom.
+   View nav owns its own underline + bottom border via the .tab-strip
+   treatment, so the header itself drops its bottom border. */
+.scout-panel__header {
+  display: flex;
+  flex-direction: column;
+  background: var(--scout-surface);
+  flex-shrink: 0;
+}
+
+.scout-panel__title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 8px 6px 12px;
+  border-bottom: 0.5px solid var(--scout-border);
+  /* Title row doubles as the drag handle — pointer events on the title row
+     initiate a move (unless the user grabs one of the control buttons). */
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+}
+
+/* Buttons inside the title row keep their normal pointer + selectability. */
+.scout-panel__title-row .scout-panel__controls {
+  cursor: default;
+}
+.scout-panel__title-row .scout-panel__controls button {
+  cursor: pointer;
+}
+
+.scout-panel-frame.is-dragging .scout-panel__title-row {
+  cursor: grabbing;
+}
+
+/* While dragging, suppress the slide-in transform so the panel tracks the
+   pointer cleanly instead of fighting an active animation. */
+.scout-panel-frame.is-dragging {
+  animation: none;
+}
+
+.scout-panel__g {
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+  object-fit: contain;
+  /* 8-bit Scout head — keep pixel edges crisp instead of smoothed. */
+  image-rendering: pixelated;
+  user-select: none;
+}
+
+.scout-panel__title {
+  flex: 1;
+  font-family: var(--scout-font-family);
+  font-size: var(--scout-font-size-base);
+  font-weight: var(--scout-font-weight-semibold);
+  color: var(--scout-text);
+  line-height: 1.2;
+}
+
+/* Header controls cluster — Phase 7.1 (undo / clear / min / close).
+   `align-self: center` so the strip vertically centers next to the view nav
+   regardless of whether the nav grows / shrinks. */
+.scout-panel__controls {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+/* Specificity bump (`.ant-btn`) so token-driven styling beats Excalibrr's
+   `.gravi-button.filled.default { background: var(--gray-200) }`. Applies to
+   every header control button (undo, clear, minimize, close). */
+.scout-scope .ant-btn.gravi-button.scout-panel__ctl {
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  padding: 0;
+  margin: 0;
+  border: 0.5px solid transparent;
+  border-radius: var(--scout-radius-sm);
+  background: transparent;
+  color: var(--scout-text-muted);
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: none;
+  transition: background 80ms ease, color 80ms ease;
+  flex-shrink: 0;
+}
+
+.scout-scope .ant-btn.gravi-button.scout-panel__ctl:hover {
+  background: var(--scout-surface-2);
+  color: var(--scout-text);
+  border-color: transparent;
+}
+
+/* Focus ring only for keyboard nav (`:focus-visible`), not on open/mouse —
+   the panel auto-focuses the close button on open and a `:focus` ring there
+   looked like a permanent purple border around the X. */
+.scout-scope .ant-btn.gravi-button.scout-panel__ctl:focus {
+  outline: none;
+}
+
+.scout-scope .ant-btn.gravi-button.scout-panel__ctl:focus-visible {
+  outline: 2px solid var(--scout-brand);
+  outline-offset: 1px;
+  background: transparent;
+  color: var(--scout-text);
+}
+
+/* Disabled Clear — keep the icon visible but dim it and stop the hover
+   reaction. antd Button[disabled] sets pointer-events: none, but the wrapper
+   Tooltip needs the cursor cue. */
+.scout-scope .ant-btn.gravi-button.scout-panel__ctl[disabled],
+.scout-scope .ant-btn.gravi-button.scout-panel__ctl.is-disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  background: transparent;
+  color: var(--scout-text-muted);
+}
+
+.scout-scope .ant-btn.gravi-button.scout-panel__ctl[disabled]:hover,
+.scout-scope .ant-btn.gravi-button.scout-panel__ctl.is-disabled:hover {
+  background: transparent;
+  color: var(--scout-text-muted);
+}
+
+/* Save-as-path control — quiet by default; turns brand-purple and pulses a
+   purple pulse when the conversation is saveable (a path candidate exists). */
+.scout-scope .ant-btn.gravi-button.scout-panel__savepath.is-available {
+  background: var(--scout-brand-soft);
+  color: var(--scout-brand);
+  border-color: rgba(113, 93, 170, 0.3);
+  animation: scout-savepath-glow 2.4s ease-in-out infinite;
+}
+
+.scout-scope .ant-btn.gravi-button.scout-panel__savepath.is-available:hover {
+  background: var(--scout-brand-soft);
+  color: var(--scout-brand);
+  border-color: var(--scout-brand);
+}
+
+@keyframes scout-savepath-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(113, 93, 170, 0);
+  }
+  50% {
+    box-shadow: 0 0 0 3px rgba(113, 93, 170, 0.22);
+  }
+}
+
+/* Reduced motion: freeze the save-path pulse (the tint still conveys state). */
+@media (prefers-reduced-motion: reduce) {
+  .scout-scope .ant-btn.gravi-button.scout-panel__savepath.is-available {
+    animation: none;
+  }
+}
+
+/* ------------------------------------------------------------------------ */
+/* Body — grows to fill, scrolls internally                                 */
+/* ------------------------------------------------------------------------ */
+
+.scout-panel__body {
+  /* `flex: 1 1 auto` (basis auto) so the body's natural size is its content —
+     the panel can shrink-wrap short content. When the panel hits its 80vh cap
+     (or a pinned resize height), the body shrinks and scrolls instead. */
+  flex: 1 1 auto;
+  min-height: 0; /* required for flex children that need to scroll */
+  overflow-y: auto;
+  padding: 14px 16px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* When the message list is mounted, IT owns scroll + padding — strip both
+   here so the bubbles flush to the inner panel edges with the right gutter. */
+.scout-panel__body.has-messages {
+  overflow: hidden;
+  padding: 0;
+  gap: 0;
+}
+
+/* iOS-style push / pop slide when moving between the chat inbox and a single
+   thread. The body is re-keyed on view change (ScoutPanel.tsx) so these enter
+   animations replay. push = into a thread (in from the right); pop = back to
+   the inbox (in from the left). The panel frame clips overflow, so the body can
+   start fully off-screen and slide into place. Disabled under reduced-motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .scout-panel__body--anim-push {
+    animation: scout-body-push 300ms cubic-bezier(0.32, 0.72, 0, 1) both;
+  }
+  .scout-panel__body--anim-pop {
+    animation: scout-body-pop 300ms cubic-bezier(0.32, 0.72, 0, 1) both;
+  }
+}
+
+/* push = entering a thread: body enters from the LEFT and travels right,
+   moving with the tabs that drift right. */
+@keyframes scout-body-push {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* pop = back to the inbox: body travels toward the LEFT (enters from the right),
+   moving with the tabs that drift left. */
+@keyframes scout-body-pop {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* ------------------------------------------------------------------------ */
+/* Footer — composer goes here in Phase 3.4                                 */
+/* ------------------------------------------------------------------------ */
+
+.scout-panel__footer {
+  flex-shrink: 0;
+  /* Extra right + bottom padding clears the resize grip in the bottom-right
+     corner so it never crowds the Ask button. */
+  padding: 10px 26px 16px 12px;
+  border-top: 0.5px solid var(--scout-border);
+  background: var(--scout-surface);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ------------------------------------------------------------------------ */
+/* Resize grip — bottom-right corner, height-only (width is locked)         */
+/* ------------------------------------------------------------------------ */
+
+.scout-panel__resize {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  width: 16px;
+  height: 16px;
+  z-index: 5; /* above footer content */
+  cursor: ns-resize; /* height-only resize */
+  /* Classic diagonal grip lines, clipped to a bottom-right triangle. */
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--scout-text-subtle) 0,
+    var(--scout-text-subtle) 1.5px,
+    transparent 1.5px,
+    transparent 4px
+  );
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  opacity: 0.45;
+  transition: opacity 120ms ease;
+  touch-action: none;
+}
+
+.scout-panel__resize:hover {
+  opacity: 0.85;
+}
+
+.scout-panel-frame.is-resizing .scout-panel__resize {
+  opacity: 0.9;
+}
+
+/* ------------------------------------------------------------------------ */
+/* Sidebar mode — right-docked, full viewport height, width-resizable.       */
+/* Pushes the QuoteBook over (see `.scout-push-host` below) instead of       */
+/* overlapping. The frame width is driven inline (state.panelWidth); the      */
+/* shimmer ring only paints on the left + corners since the right edge        */
+/* abuts the viewport.                                                        */
+/* ------------------------------------------------------------------------ */
+
+.scout-panel-frame--sidebar {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: auto;
+  height: 100vh;
+  /* Flush with the surface — no rounded corners. The left edge is a single
+     hairline seam (below), not the floating shimmer ring. */
+  border-radius: 0;
+}
+
+/* Sidebar is part of the surface, not a window floating over it: drop the
+   animated shimmer ring entirely so the edge reads as a calm seam. */
+.scout-panel-frame--sidebar .scout-panel-frame__shimmer {
+  display: none;
+}
+
+.scout-panel-frame--sidebar .scout-panel {
+  height: 100%;
+  /* Override the floating 80vh cap — sidebar is always full height. */
+  max-height: 100vh;
+  /* Flatten the floating depth: square corners, no drop shadow. A single
+     hairline on the left edge is the only separation from the pushed-over
+     content, so it reads as docked into the same surface. */
+  border-radius: 0;
+  box-shadow: none;
+  border-left: 1px solid var(--scout-border);
+}
+
+/* Width-resize handle — full-height strip on the panel's LEFT edge. */
+.scout-panel__resize-width {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 8px;
+  z-index: 6;
+  cursor: ew-resize;
+  touch-action: none;
+  /* Subtle hairline that brightens on hover/drag so the grab target reads. */
+  background: linear-gradient(
+    to right,
+    var(--scout-text-subtle) 0,
+    var(--scout-text-subtle) 1.5px,
+    transparent 1.5px
+  );
+  opacity: 0.35;
+  transition: opacity 120ms ease;
+}
+
+.scout-panel__resize-width:hover {
+  opacity: 0.85;
+}
+
+.scout-panel-frame.is-resizing-width .scout-panel__resize-width {
+  opacity: 0.9;
+}
+
+/* While resizing width, suppress the slide-in transform / animation. */
+.scout-panel-frame.is-resizing-width {
+  animation: none;
+}
+
+/* ------------------------------------------------------------------------ */
+/* Push-layout — when docked as a sidebar, the host content shell reserves a  */
+/* right gutter equal to the panel width so nothing hides behind the panel.   */
+/* `--scout-sidebar-width` is set on <body> by ScoutActiveBodyClass.        */
+/* ------------------------------------------------------------------------ */
+
+.scout-push-host {
+  transition: padding-right 160ms ease;
+}
+
+body.scout-sidebar .scout-push-host {
+  padding-right: var(--scout-sidebar-width, 380px);
+}
+
+/* The user cluster (avatar + name + Scout status tag / unseen badge) lives in
+   `.control-panel-trigger`, the right-aligned child of Excalibrr's top bar
+   (`.site-toolbar`). The sidebar panel is full-height (top:0), so without this
+   that cluster sits behind the panel. Translate it left by the panel width so
+   it slides into the open band and its right edge lines up with the right edge
+   of the pushed-over grid. A transform (not toolbar padding) is used so the
+   flex menu-links beside it can't squash or clip the cluster behind the panel.
+   (`.control-panel-trigger` is outside `.scout-scope`, so this is a plain
+   global rule keyed on the body class.) */
+.control-panel-trigger {
+  transition: transform 160ms ease;
+}
+
+body.scout-sidebar .control-panel-trigger {
+  transform: translateX(calc(-1 * var(--scout-sidebar-width, 380px)));
+}

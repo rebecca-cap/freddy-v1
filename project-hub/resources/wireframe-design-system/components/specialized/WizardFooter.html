@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wizard Footer Component - Gravitate Wireframe Design System</title>
+  <link rel="stylesheet" href="../../tokens/index.css">
+  <link rel="stylesheet" href="../controls/controls.css">
+  <link rel="stylesheet" href="specialized.css">
+  <style>
+    body {
+      font-family: var(--wf-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+      background-color: var(--wf-color-background, #f9fafb);
+      margin: 0;
+      padding: 32px;
+      color: var(--wf-color-text-primary, #111827);
+    }
+    .demo-section {
+      margin-bottom: 48px;
+    }
+    .demo-section h2 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--wf-color-text-primary, #111827);
+    }
+    .demo-section p {
+      font-size: 14px;
+      color: var(--wf-color-text-secondary, #374151);
+      margin-bottom: 16px;
+    }
+    .demo-container {
+      background: var(--wf-color-neutral-100, #f3f4f6);
+      border-radius: 8px;
+      padding: 0;
+      overflow: hidden;
+    }
+    .demo-content {
+      background: white;
+      padding: 48px 24px;
+      text-align: center;
+      color: var(--wf-color-text-secondary);
+      min-height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      font-size: 16px;
+      color: var(--wf-color-text-secondary, #374151);
+      margin-bottom: 32px;
+    }
+    code {
+      display: block;
+      background: var(--wf-color-neutral-100, #f3f4f6);
+      padding: 16px;
+      border-radius: 6px;
+      font-size: 13px;
+      overflow-x: auto;
+      white-space: pre;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Wizard Footer Component</h1>
+  <p class="subtitle">Navigation footer for wizard and stepper flows with back, next, and progress indicators.</p>
+
+  <!-- Basic Wizard Footer -->
+  <section class="demo-section">
+    <h2>Basic Wizard Footer</h2>
+    <p>Standard wizard footer with back button, progress indicator, and continue button.</p>
+    <div class="demo-container">
+      <div class="demo-content">
+        Step 2 content would go here...
+      </div>
+      <div class="wf-wizard-footer">
+        <button class="wf-button wf-button-secondary">
+          <span style="margin-right: 4px;">&#8592;</span> Back
+        </button>
+        <div class="wf-wizard-progress">
+          Step 2 of 4
+        </div>
+        <button class="wf-button wf-button-primary">
+          Continue <span style="margin-left: 4px;">&#8594;</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- First Step -->
+  <section class="demo-section">
+    <h2>First Step (No Back Button)</h2>
+    <p>Wizard footer for the first step with disabled or hidden back button.</p>
+    <div class="demo-container">
+      <div class="demo-content">
+        Step 1 content - Getting Started
+      </div>
+      <div class="wf-wizard-footer">
+        <button class="wf-button wf-button-secondary" disabled>
+          <span style="margin-right: 4px;">&#8592;</span> Back
+        </button>
+        <div class="wf-wizard-progress">
+          Step 1 of 4
+        </div>
+        <button class="wf-button wf-button-primary">
+          Get Started <span style="margin-left: 4px;">&#8594;</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Last Step -->
+  <section class="demo-section">
+    <h2>Last Step (Submit)</h2>
+    <p>Wizard footer for the final step with a submit/finish button.</p>
+    <div class="demo-container">
+      <div class="demo-content">
+        Step 4 content - Review and Submit
+      </div>
+      <div class="wf-wizard-footer">
+        <button class="wf-button wf-button-secondary">
+          <span style="margin-right: 4px;">&#8592;</span> Back
+        </button>
+        <div class="wf-wizard-progress">
+          Step 4 of 4
+        </div>
+        <button class="wf-button wf-button-success">
+          Submit <span style="margin-left: 4px;">&#10003;</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- With Progress Bar -->
+  <section class="demo-section">
+    <h2>With Progress Bar</h2>
+    <p>Wizard footer that includes a visual progress bar.</p>
+    <div class="demo-container">
+      <div class="demo-content">
+        Step 2 of 4 - Contract Details
+      </div>
+      <div class="wf-wizard-footer wf-wizard-footer-with-progress">
+        <div class="wf-wizard-progress-bar">
+          <div class="wf-wizard-progress-fill" style="width: 50%;"></div>
+        </div>
+        <div class="wf-wizard-actions">
+          <button class="wf-button wf-button-secondary">
+            <span style="margin-right: 4px;">&#8592;</span> Back
+          </button>
+          <div class="wf-wizard-progress">
+            Step 2 of 4
+          </div>
+          <button class="wf-button wf-button-primary">
+            Continue <span style="margin-left: 4px;">&#8594;</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Compact Wizard Footer -->
+  <section class="demo-section">
+    <h2>Compact Wizard Footer</h2>
+    <p>Smaller wizard footer for tighter layouts.</p>
+    <div class="demo-container">
+      <div class="demo-content" style="min-height: 100px; padding: 24px;">
+        Compact wizard content
+      </div>
+      <div class="wf-wizard-footer wf-wizard-footer-compact">
+        <button class="wf-button wf-button-secondary wf-button-sm">
+          <span style="margin-right: 4px;">&#8592;</span> Back
+        </button>
+        <div class="wf-wizard-progress" style="font-size: 13px;">
+          2 / 4
+        </div>
+        <button class="wf-button wf-button-primary wf-button-sm">
+          Next <span style="margin-left: 4px;">&#8594;</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Centered Wizard Footer -->
+  <section class="demo-section">
+    <h2>Centered Navigation</h2>
+    <p>Wizard footer with centered buttons (no progress indicator).</p>
+    <div class="demo-container">
+      <div class="demo-content">
+        Simple wizard step content
+      </div>
+      <div class="wf-wizard-footer wf-wizard-footer-centered">
+        <button class="wf-button wf-button-secondary">
+          <span style="margin-right: 4px;">&#8592;</span> Previous
+        </button>
+        <button class="wf-button wf-button-primary">
+          Next <span style="margin-left: 4px;">&#8594;</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- With Save Draft -->
+  <section class="demo-section">
+    <h2>With Save Draft Option</h2>
+    <p>Wizard footer with additional save draft button.</p>
+    <div class="demo-container">
+      <div class="demo-content">
+        Contract creation - step 3
+      </div>
+      <div class="wf-wizard-footer">
+        <div style="display: flex; gap: 8px;">
+          <button class="wf-button wf-button-secondary">
+            <span style="margin-right: 4px;">&#8592;</span> Back
+          </button>
+          <button class="wf-button wf-button-ghost">
+            Save Draft
+          </button>
+        </div>
+        <div class="wf-wizard-progress">
+          Step 3 of 5
+        </div>
+        <button class="wf-button wf-button-primary">
+          Continue <span style="margin-left: 4px;">&#8594;</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- With Cancel Option -->
+  <section class="demo-section">
+    <h2>With Cancel Option</h2>
+    <p>Wizard footer with cancel button for exiting the flow.</p>
+    <div class="demo-container">
+      <div class="demo-content">
+        New order creation wizard
+      </div>
+      <div class="wf-wizard-footer">
+        <div style="display: flex; gap: 8px;">
+          <button class="wf-button wf-button-ghost" style="color: var(--wf-color-danger, #dc2626);">
+            Cancel
+          </button>
+          <button class="wf-button wf-button-secondary">
+            <span style="margin-right: 4px;">&#8592;</span> Back
+          </button>
+        </div>
+        <div class="wf-wizard-progress">
+          Step 2 of 3
+        </div>
+        <button class="wf-button wf-button-primary">
+          Continue <span style="margin-left: 4px;">&#8594;</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Progress States -->
+  <section class="demo-section">
+    <h2>Progress Bar States</h2>
+    <p>Visual examples of progress bar at different completion levels.</p>
+    <div class="demo-container" style="background: white; padding: 24px;">
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <div>
+          <div style="font-size: 13px; color: var(--wf-color-text-secondary); margin-bottom: 8px;">25% Complete (Step 1 of 4)</div>
+          <div class="wf-wizard-progress-bar" style="height: 6px;">
+            <div class="wf-wizard-progress-fill" style="width: 25%;"></div>
+          </div>
+        </div>
+        <div>
+          <div style="font-size: 13px; color: var(--wf-color-text-secondary); margin-bottom: 8px;">50% Complete (Step 2 of 4)</div>
+          <div class="wf-wizard-progress-bar" style="height: 6px;">
+            <div class="wf-wizard-progress-fill" style="width: 50%;"></div>
+          </div>
+        </div>
+        <div>
+          <div style="font-size: 13px; color: var(--wf-color-text-secondary); margin-bottom: 8px;">75% Complete (Step 3 of 4)</div>
+          <div class="wf-wizard-progress-bar" style="height: 6px;">
+            <div class="wf-wizard-progress-fill" style="width: 75%;"></div>
+          </div>
+        </div>
+        <div>
+          <div style="font-size: 13px; color: var(--wf-color-text-secondary); margin-bottom: 8px;">100% Complete (Step 4 of 4)</div>
+          <div class="wf-wizard-progress-bar" style="height: 6px;">
+            <div class="wf-wizard-progress-fill" style="width: 100%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Code Example -->
+  <section class="demo-section">
+    <h2>Code Example</h2>
+    <code>&lt;!-- Basic Wizard Footer --&gt;
+&lt;div class="wf-wizard-footer"&gt;
+  &lt;button class="wf-button wf-button-secondary"&gt;
+    &amp;#8592; Back
+  &lt;/button&gt;
+  &lt;div class="wf-wizard-progress"&gt;
+    Step 2 of 4
+  &lt;/div&gt;
+  &lt;button class="wf-button wf-button-primary"&gt;
+    Continue &amp;#8594;
+  &lt;/button&gt;
+&lt;/div&gt;
+
+&lt;!-- With Progress Bar --&gt;
+&lt;div class="wf-wizard-footer wf-wizard-footer-with-progress"&gt;
+  &lt;div class="wf-wizard-progress-bar"&gt;
+    &lt;div class="wf-wizard-progress-fill" style="width: 50%;"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="wf-wizard-actions"&gt;
+    &lt;button class="wf-button wf-button-secondary"&gt;Back&lt;/button&gt;
+    &lt;div class="wf-wizard-progress"&gt;Step 2 of 4&lt;/div&gt;
+    &lt;button class="wf-button wf-button-primary"&gt;Continue&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Compact --&gt;
+&lt;div class="wf-wizard-footer wf-wizard-footer-compact"&gt;...&lt;/div&gt;
+
+&lt;!-- Centered --&gt;
+&lt;div class="wf-wizard-footer wf-wizard-footer-centered"&gt;...&lt;/div&gt;</code>
+  </section>
+
+</body>
+</html>

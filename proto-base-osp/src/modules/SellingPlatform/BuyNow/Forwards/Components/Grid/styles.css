@@ -1,0 +1,29 @@
+/* Suppress range selection highlight on static columns (Location, Product, Currency, UOM).
+   These columns are excluded from the Create Order selection logic via getSelectedCells(),
+   so the visual highlight is misleading. */
+
+.no-range-highlight.ag-cell-range-selected,
+.no-range-highlight.ag-cell-range-selected-1,
+.no-range-highlight.ag-cell-range-selected-2,
+.no-range-highlight.ag-cell-range-selected-3,
+.no-range-highlight.ag-cell-range-selected-4 {
+  background-color: transparent !important;
+}
+
+.no-range-highlight.ag-cell-range-top {
+  border-top-color: transparent !important;
+}
+.no-range-highlight.ag-cell-range-bottom {
+  border-bottom-color: transparent !important;
+}
+.no-range-highlight.ag-cell-range-left {
+  border-left-color: transparent !important;
+}
+.no-range-highlight.ag-cell-range-right {
+  border-right-color: transparent !important;
+}
+
+/* Restore pinned column separator border */
+.ag-cell-last-left-pinned.no-range-highlight.ag-cell-range-right {
+  border-right: 1px solid var(--ag-border-color, #babfc7) !important;
+}

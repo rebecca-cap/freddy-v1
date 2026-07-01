@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Scout — Chat Inbox Card Concepts</title>
+<style>
+  :root{
+    --brand:#715DAA; --brand-hover:#5E4C92; --brand-soft:#EFEBF7;
+    --surface:#FFFFFF; --surface-2:#F4F2EC; --surface-3:#EDEAE2;
+    --border:rgba(0,0,0,.10); --border-strong:rgba(0,0,0,.18);
+    --text:#1B1B1A; --muted:#6B6A65; --subtle:#98968F;
+    --ok-bg:#E8F3EC; --ok:#2E7D4F;
+    --radius:10px; --radius-sm:5px; --pill:999px;
+    --font:'Lato',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#E9E7E1;color:var(--text);font-family:var(--font);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1180px;margin:0 auto;padding:40px 28px 80px}
+  header.page{margin-bottom:28px}
+  h1{font-size:26px;margin:0 0 6px}
+  .lede{color:var(--muted);max-width:760px;font-size:15px}
+  h2{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:42px 0 14px;border-bottom:1px solid var(--border);padding-bottom:8px}
+  h3{font-size:18px;margin:0 0 2px}
+  .callout{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--brand);border-radius:var(--radius);padding:16px 18px;margin:18px 0}
+  .callout p{margin:0 0 8px}
+  .callout p:last-child{margin:0}
+  code{background:var(--surface-3);padding:1px 6px;border-radius:4px;font-size:.88em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+
+  /* matrix */
+  table.matrix{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;font-size:13.5px}
+  table.matrix th,table.matrix td{padding:9px 12px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
+  table.matrix th{background:var(--surface-2);font-weight:700;color:var(--text)}
+  table.matrix tr:last-child td{border-bottom:0}
+  .tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.03em;padding:2px 7px;border-radius:var(--pill);background:var(--surface-3);color:var(--muted)}
+
+  /* concept layout */
+  .concepts{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:start}
+  @media(max-width:980px){.concepts{grid-template-columns:1fr}}
+  .concept{background:var(--surface-2);border:1px solid var(--border);border-radius:14px;padding:18px}
+  .concept .thesis{color:var(--muted);font-size:13.5px;margin:4px 0 16px;min-height:54px}
+  .phone{background:var(--surface);border:1px solid var(--border-strong);border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:8px}
+  .ph-head{display:flex;align-items:center;justify-content:space-between;padding:4px 4px 8px;border-bottom:1px solid var(--border)}
+  .ph-title{font-weight:800;font-size:14px}
+  .ph-new{background:var(--brand);color:#fff;font-weight:700;font-size:12px;border-radius:var(--pill);padding:5px 11px}
+
+  /* ===== shared card ===== */
+  .card{width:100%;text-align:left;border:.5px solid var(--border);border-radius:var(--radius);background:var(--surface);padding:10px 12px;display:flex;flex-direction:column;gap:6px;cursor:default}
+  .card.ready{border-left:3px solid var(--brand)}
+  .card.empty{background:var(--surface-2)}
+  .q{font-size:14px;font-weight:700;color:var(--text);line-height:1.35;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .a{font-size:13px;color:var(--muted);line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .meta{display:flex;align-items:center;justify-content:space-between;gap:8px}
+  .time{font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums}
+  .placeholder{font-size:13px;color:var(--subtle);font-style:italic}
+  .badge{flex-shrink:0;display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:3px 8px;border-radius:var(--pill);white-space:nowrap}
+  .badge.ready{color:var(--brand-hover);background:var(--brand-soft)}
+  .badge.viewed{color:var(--text);background:var(--surface-3)}
+  .badge.think{color:var(--brand-hover);background:var(--brand-soft)}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--brand);flex-shrink:0}
+  .dots{display:inline-flex;gap:2px}.dots i{width:4px;height:4px;border-radius:50%;background:currentColor;display:block}
+  .chip{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:var(--muted);background:var(--surface-3);padding:2px 8px;border-radius:var(--pill);max-width:60%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .chip.scope{color:var(--brand-hover);background:var(--brand-soft)}
+  .cat{font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--subtle)}
+  .turns{font-size:11px;font-weight:700;color:var(--muted);background:var(--surface-3);border-radius:var(--pill);padding:1px 7px}
+  .row{display:flex;align-items:center;gap:8px}
+  .grow{flex:1;min-width:0}
+
+  .prosCons{margin-top:14px;font-size:13px}
+  .prosCons div{display:flex;gap:8px;margin:4px 0}
+  .prosCons .k{font-weight:700;flex-shrink:0;width:54px}
+  .pro .k{color:var(--ok)} .con .k{color:#9a3b3b} .when .k{color:var(--brand-hover)}
+  .label-mini{font-size:11px;color:var(--subtle);margin:14px 0 6px;letter-spacing:.04em;text-transform:uppercase}
+  .rec{background:var(--brand-soft);border:1px solid #d9d0ee;border-radius:var(--radius);padding:16px 18px;margin-top:8px}
+  .rec b{color:var(--brand-hover)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="page">
+  <h1>Scout — Chat Inbox Card Concepts</h1>
+  <p class="lede">Three ways to identify a chat in the inbox, without borrowing the messaging-app "sender title" metaphor that doesn't fit. Lo-fi wireframes using the real Scout palette so you can judge them side by side.</p>
+</header>
+
+<div class="callout">
+  <p><b>The problem.</b> The card today leads with a bold title in the slot a messaging app uses for the <i>sender</i> ("Sarah", "Mom"). But a Scout chat has no sender — it's <i>your own</i> question to an assistant, optionally scoped to a row. So the title falls back to <code>"New chat"</code>, which reads as a status and collides with the <code>Viewed</code> badge.</p>
+  <p><b>The real question:</b> <i>"What is this chat about, and what's its state?"</i> The strongest identifier is the <b>question you asked</b>; the useful secondary is the <b>data scope</b> (which row/book). Status + time are constant — they just get placed differently in each option below.</p>
+</div>
+
+<h2>Every card type the inbox must handle</h2>
+<table class="matrix">
+  <tr><th style="width:22%">Dimension</th><th>Variants</th></tr>
+  <tr><td><b>Scope</b></td><td><span class="tag">Row / cell</span> e.g. "MARATHON · LAS VEGAS" &nbsp; <span class="tag">Stream "General"</span> the running session &nbsp; <span class="tag">Ad-hoc</span> a general question, no row</td></tr>
+  <tr><td><b>State</b></td><td><span class="tag">Empty</span> nothing asked yet &nbsp; <span class="tag">Thinking</span> answer streaming &nbsp; <span class="tag">Ready</span> answer waiting (unseen) &nbsp; <span class="tag">Viewed</span> answered + seen</td></tr>
+  <tr><td><b>Depth</b></td><td><span class="tag">Single question</span> &nbsp; <span class="tag">Multi-question thread</span> (N turns about the same thing)</td></tr>
+</table>
+
+<h2>Three options</h2>
+<div class="concepts">
+
+  <!-- ============ OPTION A ============ -->
+  <section class="concept">
+    <h3>A · Question-led</h3>
+    <p class="thesis">Drop the title slot entirely. The <b>question is the headline</b>; the answer is the preview; scope rides as a small chip. The truest "what is this about."</p>
+    <div class="phone">
+      <div class="ph-head"><span class="ph-title">All Chats</span><span class="ph-new">+ New chat</span></div>
+
+      <!-- ad-hoc viewed -->
+      <div class="card">
+        <div class="q">Why are 23 rows flagged?</div>
+        <div class="a">These 23 flags fall into 3 clusters. The margin-guard cluster is…</div>
+        <div class="meta"><span class="time">Jun 3 · 9:27 AM</span><span class="badge viewed">Viewed</span></div>
+      </div>
+
+      <!-- row-scoped ready -->
+      <div class="card ready">
+        <div class="q">Why is my rank #3 here?</div>
+        <div class="a">You trail the lead by $0.0040/gal; two competitors cut overnight…</div>
+        <div class="meta"><span class="chip scope">⛽ MARATHON · LAS VEGAS</span><span class="badge ready"><span class="dot"></span>Ready</span></div>
+      </div>
+
+      <!-- empty -->
+      <div class="card empty">
+        <div class="placeholder">Nothing asked yet — start a question.</div>
+        <div class="meta"><span class="time">Jun 3 · 9:31 AM</span><span class="badge viewed">New</span></div>
+      </div>
+    </div>
+    <div class="prosCons">
+      <div class="pro row"><span class="k">Pros</span><span>Best information scent; reads like a real question list; no fake title.</span></div>
+      <div class="con row"><span class="k">Cons</span><span>Scope chip competes with the status badge on the bottom row.</span></div>
+      <div class="when row"><span class="k">Best</span><span>When most chats are ad-hoc questions, not row-scoped.</span></div>
+    </div>
+  </section>
+
+  <!-- ============ OPTION B ============ -->
+  <section class="concept">
+    <h3>B · Scope-tagged</h3>
+    <p class="thesis">Reuse the top slot for the <b>data scope</b> as a quiet category label (a real, meaningful "folder"), with the question as the main line beneath it.</p>
+    <div class="phone">
+      <div class="ph-head"><span class="ph-title">All Chats</span><span class="ph-new">+ New chat</span></div>
+
+      <!-- row-scoped viewed multi -->
+      <div class="card">
+        <div class="row"><span class="cat">⛽ MARATHON · LAS VEGAS</span><span class="grow"></span><span class="turns">4 Q</span></div>
+        <div class="q">Why is my rank #3 here?</div>
+        <div class="meta"><span class="time">Jun 3 · 9:27 AM</span><span class="badge viewed">Viewed</span></div>
+      </div>
+
+      <!-- general ready -->
+      <div class="card ready">
+        <div class="cat">General</div>
+        <div class="q">How did today's market move affect us?</div>
+        <div class="meta"><span class="time">Jun 3 · 9:25 AM</span><span class="badge ready"><span class="dot"></span>Ready</span></div>
+      </div>
+
+      <!-- empty -->
+      <div class="card empty">
+        <div class="cat">New chat</div>
+        <div class="placeholder">Nothing asked yet.</div>
+        <div class="meta"><span class="time">Jun 3 · 9:31 AM</span></div>
+      </div>
+    </div>
+    <div class="prosCons">
+      <div class="pro row"><span class="k">Pros</span><span>Scannable by data; the label is meaningful, not a fake name; groups well.</span></div>
+      <div class="con row"><span class="k">Cons</span><span>Ad-hoc chats get a generic "General" tag that adds little.</span></div>
+      <div class="when row"><span class="k">Best</span><span>When chats cluster around specific rows / books you revisit.</span></div>
+    </div>
+  </section>
+
+  <!-- ============ OPTION C ============ -->
+  <section class="concept">
+    <h3>C · Compact line-item</h3>
+    <p class="thesis">Densest. A <b>status dot + the question</b> on one line, scope &amp; time as a thin sub-line. No answer preview — optimized for scanning many chats fast.</p>
+    <div class="phone">
+      <div class="ph-head"><span class="ph-title">All Chats</span><span class="ph-new">+ New chat</span></div>
+
+      <!-- general viewed -->
+      <div class="card" style="gap:3px">
+        <div class="row"><span class="badge viewed" style="padding:2px 7px">Viewed</span><span class="q grow">Why are 23 rows flagged?</span></div>
+        <div class="a" style="color:var(--subtle)">General · Jun 3, 9:27 AM</div>
+      </div>
+
+      <!-- row ready multi -->
+      <div class="card ready" style="gap:3px">
+        <div class="row"><span class="dot"></span><span class="q grow">Why is my rank #3 here?</span><span class="turns">4</span></div>
+        <div class="a" style="color:var(--subtle)">MARATHON · LAS VEGAS · Jun 3, 9:27 AM</div>
+      </div>
+
+      <!-- thinking -->
+      <div class="card" style="gap:3px">
+        <div class="row"><span class="badge think" style="padding:2px 7px"><span class="dots"><i></i><i></i><i></i></span></span><span class="q grow">Recompute the Denver rack curve</span></div>
+        <div class="a" style="color:var(--subtle)">General · just now</div>
+      </div>
+
+      <!-- empty -->
+      <div class="card empty" style="gap:3px">
+        <div class="q grow" style="color:var(--subtle);font-weight:600">New chat</div>
+        <div class="a" style="color:var(--subtle)">Nothing asked yet · Jun 3, 9:31 AM</div>
+      </div>
+    </div>
+    <div class="prosCons">
+      <div class="pro row"><span class="k">Pros</span><span>Most chats visible at once; state reads instantly via the leading marker.</span></div>
+      <div class="con row"><span class="k">Cons</span><span>No answer preview; less "richness" per card.</span></div>
+      <div class="when row"><span class="k">Best</span><span>When users accumulate many chats and scan more than read.</span></div>
+    </div>
+  </section>
+
+</div>
+
+<h2>My read</h2>
+<div class="rec">
+  <p style="margin:0 0 8px"><b>Lean A (Question-led)</b> as the default. A chat's identity <i>is</i> the question — leading with it gives the best scent and kills the awkward "New chat" title for good. Keep the scope as a small chip so row-scoped chats still announce their data.</p>
+  <p style="margin:0">If row-scoped chats dominate in practice, <b>B</b> organizes better. <b>C</b> is the move only if the inbox routinely gets long. All three reserve <code>"New chat"</code> for genuinely empty sessions and keep the Ready state you already like (white + purple rail + dot).</p>
+</div>
+
+</div>
+</body>
+</html>

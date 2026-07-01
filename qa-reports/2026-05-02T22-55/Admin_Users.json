@@ -1,0 +1,14 @@
+{
+  "path": "/Admin/Users",
+  "title": "Users",
+  "finalUrl": "http://localhost:3001/Admin/Users",
+  "rootLen": 158841,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 11,
+  "stuckLoaders": [],
+  "emptyGrids": []
+}

@@ -1,0 +1,14 @@
+{
+  "path": "/BuyNow/Offers",
+  "title": "Offers",
+  "finalUrl": "http://localhost:5173/BuyNow/Offers",
+  "rootLen": 158373,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 10,
+  "stuckLoaders": [],
+  "emptyGrids": []
+}

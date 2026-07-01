@@ -1,0 +1,15 @@
+{
+  "slug": "index-special-pricing",
+  "name": "Index Special Pricing",
+  "description": "1st project for OSP",
+  "product": "ss",
+  "branch": "project/index-special-pricing",
+  "port": 5187,
+  "createdAt": "2026-06-17T20:29:52.686Z",
+  "paths": {
+    "project": "/Users/frankoverland/freddy/projects/index-special-pricing",
+    "prototype": "/Users/frankoverland/freddy/projects/index-special-pricing/prototype",
+    "lofi": "/Users/frankoverland/freddy/projects/index-special-pricing/design-system/lofi",
+    "resources": "/Users/frankoverland/freddy/projects/index-special-pricing/resources"
+  }
+}

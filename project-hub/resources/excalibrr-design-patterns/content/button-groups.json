@@ -1,0 +1,243 @@
+{
+  "slug": "button-groups",
+  "title": "Button Groups",
+  "order": 10,
+  "group": "Controls & input",
+  "intro": "Button groups are the commitment points of every screen — modal footers, drawer footers, toolbars, page-level commit bars. One gap (8px), one primary per group, one ordering rule. This entry consolidates the four spacing values (8/10/12/20px) that had drifted across the codebase into a single standard.",
+  "demoPath": "/DesignSystem/ButtonGroups",
+  "searchTerms": [
+    "GraviButton",
+    "ActionFooter",
+    "StepFooter",
+    "button bar",
+    "footer buttons",
+    "actions",
+    "commit bar",
+    "toolbar",
+    "Horizontal",
+    "primary button",
+    "cancel save"
+  ],
+  "blocks": [
+    {
+      "type": "rules",
+      "title": "The laws of button groups",
+      "items": [
+        {
+          "rule": "All adjacent buttons sit 8px apart (`--space-2`) — footers, toolbars, action bars, no exceptions.",
+          "why": "The codebase had drifted to 8/10/12/20px gaps across cousin screens. One value makes clusters read as a unit and removes per-screen judgment calls."
+        },
+        {
+          "rule": "Exactly one `theme1` button per group — every other action takes the default appearance.",
+          "why": "Two filled-primary buttons split the commitment; the user can no longer tell which action the screen is for."
+        },
+        {
+          "rule": "Order is escalation of commitment: secondary first, primary last (rightmost).",
+          "why": "Reading left to right, the user passes the escape hatch (Cancel) before reaching the commitment (Save). Primary-first reverses muscle memory from every other Gravitate screen."
+        },
+        {
+          "rule": "Destructive actions are isolated on the far left with `justifyContent='space-between'`; Cancel + primary stay grouped right.",
+          "why": "Physical distance prevents misclicks on irreversible actions. A Delete button nestled beside Save is one slip away from data loss."
+        },
+        {
+          "rule": "Theme semantics are fixed: `theme1` = primary commit (save, submit, create), `success` = positive completion only (approve, publish, mark complete), `error` = destructive (delete, remove, discard), default = secondary (cancel, close, back).",
+          "why": "A green Submit button reads as \"already done.\" When every screen honors the same mapping, color alone communicates consequence."
+        },
+        {
+          "rule": "Commit clusters right-align (`justifyContent='flex-end'`) in modal, drawer, and panel footers.",
+          "why": "Terminal actions live at the end of the reading path. Centered button clusters read as marketing pages, not workflow."
+        },
+        {
+          "rule": "Page-level commit bars use the shared `ActionFooter` / `StepFooter` primitives — never a hand-rolled flex strip.",
+          "why": "Four cousin implementations (ContractManagement, quick-entry FooterBar, ManageOffers wizard, QuoteBook publisher) each invented their own padding, height, and ordering. The primitives encode the rules above so they cannot drift."
+        }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "Theme semantics",
+      "image": "specimens/button-groups/01-semantic-themes.png",
+      "caption": "The four button meanings: theme1 (primary commit), success (positive completion only), error (destructive), and default (secondary). Each prop is a boolean — there is no type or theme string prop."
+    },
+    {
+      "type": "specimen",
+      "title": "Button ordering",
+      "image": "specimens/button-groups/02-button-ordering.png",
+      "caption": "Standard order (Cancel left, primary right) and the three-button pattern (destructive isolated far-left via space-between, Cancel + primary grouped right at 8px)."
+    },
+    {
+      "type": "specimen",
+      "title": "Standard footer",
+      "image": "specimens/button-groups/03-standard-footer.png",
+      "caption": "The canonical modal/drawer/panel footer: horizontal flex, flex-end, 8px gap, secondary before primary."
+    },
+    {
+      "type": "tokens",
+      "title": "Spacing tokens",
+      "intro": "Three values cover every spacing decision inside a button group.",
+      "rows": [
+        {
+          "token": "--space-2",
+          "value": "8px",
+          "use": "Gap between all adjacent buttons — footers, toolbars, action bars"
+        },
+        {
+          "token": "--space-2",
+          "value": "8px",
+          "use": "Gap between a button and adjacent text or a status badge"
+        },
+        {
+          "token": "--space-1",
+          "value": "4px",
+          "use": "Icon-to-text inside a button — Ant Design applies this automatically; never add manual margins"
+        }
+      ]
+    },
+    {
+      "type": "code",
+      "title": "Canonical skeletons",
+      "code": "import { Horizontal, GraviButton } from '@gravitate-js/excalibrr'\n\n// Standard footer — modals, drawers, panels\n<Horizontal gap={8} justifyContent='flex-end'>\n  <GraviButton buttonText='Cancel' onClick={onClose} />\n  <GraviButton buttonText='Save Changes' theme1 onClick={() => form.submit()} />\n</Horizontal>\n\n// Three-button — destructive isolated left\n<Horizontal justifyContent='space-between'>\n  <GraviButton buttonText='Delete Draft' error onClick={onDelete} />\n  <Horizontal gap={8}>\n    <GraviButton buttonText='Cancel' onClick={onClose} />\n    <GraviButton buttonText='Save' theme1 onClick={onSave} />\n  </Horizontal>\n</Horizontal>",
+      "note": "Gap and justification are Horizontal props, never style objects. Form submission goes through onClick={() => form.submit()} — htmlType='submit' is not used with GraviButton."
+    },
+    {
+      "type": "props",
+      "title": "GraviButton essentials",
+      "intro": "The props that matter for grouping. Theme props are booleans; set exactly one — when several are truthy the component resolves them by fixed internal precedence, not your JSX order.",
+      "rows": [
+        {
+          "prop": "buttonText",
+          "type": "ReactNode",
+          "notes": "The button label. Pass buttonText, never children — Excalibrr 4.x drops JSX children silently (empty button, no error); 5.x falls back to children only when buttonText is absent."
+        },
+        {
+          "prop": "theme1",
+          "type": "boolean",
+          "notes": "Primary commit action. The one filled-brand button per group."
+        },
+        {
+          "prop": "success",
+          "type": "boolean",
+          "notes": "Positive completion only — approve, publish, mark complete. Never for submit/save."
+        },
+        {
+          "prop": "error",
+          "type": "boolean",
+          "notes": "Destructive action — delete, remove, discard. This is the prop name; there is no danger boolean in the Excalibrr theme set."
+        },
+        {
+          "prop": "warning",
+          "type": "boolean",
+          "notes": "Typed in ThemeVariants but not wired in the installed 5.x lib — it renders as a default button. Prefer a confirm dialog over a yellow button."
+        },
+        {
+          "prop": "appearance",
+          "type": "'filled' | 'outlined' | 'solid' | 'dashed' | 'text' | 'link'",
+          "default": "solid when a theme prop is set; outlined otherwise",
+          "notes": "Use 'outlined' for the lower-emphasis variant — the value is 'outlined', not 'outline' ('outline' silently coerces to filled)."
+        },
+        {
+          "prop": "icon",
+          "type": "ReactNode",
+          "notes": "Leading icon. Ant Design handles the 4px icon-to-text gap; add no manual margin."
+        }
+      ]
+    },
+    {
+      "type": "variants",
+      "title": "Page footer primitives",
+      "intro": "Page-level commit bars — the strip at the bottom of a page's main content area — come from @components/shared/PageFooter. The caller composes the button cluster, so different flows (Save / Save Draft / Publish) work without prop sprawl.",
+      "rows": [
+        {
+          "name": "ActionFooter",
+          "when": "Single-screen commit. Optional icon + title left, optional notice/status slot, button cluster right.",
+          "code": "<ActionFooter title='Quote Publisher' notice={<StatusBadge tone='warning' variant='quiet' label='3 unsaved adjustments' />} actions={<>…</>} />"
+        },
+        {
+          "name": "ActionFooter emphasis='title'",
+          "when": "The footer title labels the entire page (Contract Management pattern). Adds a 2px brand rule under the title block — use sparingly or emphasis becomes noise.",
+          "code": "<ActionFooter emphasis='title' title='New Contract' actions={<>…</>} />"
+        },
+        {
+          "name": "ActionFooter compact",
+          "when": "Dense grid pages where the standard 48px bar steals canvas. 40px height, tighter padding.",
+          "code": "<ActionFooter compact notice={…} actions={<>…</>} />"
+        },
+        {
+          "name": "StepFooter",
+          "when": "Multi-step wizards. Previous + dot indicator + tabular-numeric 'Step N of M' + Next/Finish. The last step swaps Next for Finish automatically.",
+          "code": "<StepFooter currentStep={step} totalSteps={4} onBack={…} onNext={…} />"
+        }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "ActionFooter — single-screen commit",
+      "image": "specimens/button-groups/04-action-footer.png",
+      "caption": "ActionFooter with icon + title left, quiet status notice, and a three-button cluster right — Reset and Save Adjustments default, Publish Prices as the lone theme1."
+    },
+    {
+      "type": "specimen",
+      "title": "StepFooter — wizard",
+      "image": "specimens/button-groups/05-step-footer.png",
+      "caption": "StepFooter mid-wizard: Previous left, advancing dot indicator with 'Step 2 of 4' center, Next as the primary right."
+    },
+    {
+      "type": "dosdonts",
+      "title": "Do's & don'ts",
+      "items": [
+        {
+          "do": "Use theme1 for the primary action with an 8px gap: <GraviButton buttonText='Cancel' /> then <GraviButton buttonText='Create Contract' theme1 />.",
+          "dont": "Use success for a submit/create button, or pad the cluster to 12px.",
+          "why": "success means approve or complete — a green Create button claims the work is already done, and off-grid gaps make sibling screens look unrelated."
+        },
+        {
+          "do": "Isolate the destructive button far-left with space-between; keep Cancel + primary grouped right at 8px.",
+          "dont": "Center the cluster, put primary before Cancel, or mix Delete into the right-hand group.",
+          "why": "Reversed order breaks the escalation pattern, and a Delete button adjacent to Save is one misclick from data loss."
+        },
+        {
+          "do": "Self-close and pass the label: <GraviButton buttonText='Save' theme1 />.",
+          "dont": "Pass the label as children: <GraviButton theme1>Save</GraviButton>.",
+          "why": "buttonText renders on every Excalibrr version; 4.x drops JSX children silently, producing an empty button with no error or warning."
+        }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "Do's & don'ts, rendered",
+      "image": "specimens/button-groups/06-dos-donts.png",
+      "caption": "Side-by-side: correct theme1 primary at 8px vs. green success primary at 12px; isolated destructive vs. centered reversed cluster at 20px."
+    },
+    {
+      "type": "gotchas",
+      "title": "Gotchas",
+      "items": [
+        {
+          "title": "GraviButton renders buttonText, not children",
+          "detail": "Always self-close and pass buttonText. Excalibrr 4.x drops JSX children silently — the button renders empty with no error; 5.x falls back to children only when buttonText is absent. This has bitten multiple sessions; it is the number-one GraviButton bug."
+        },
+        {
+          "title": "Themes are boolean props, and destructive is `error`",
+          "detail": "Write <GraviButton theme1 />, <GraviButton success />, <GraviButton error />. There is no type='primary', no theme='success' string, and no danger boolean in the Excalibrr theme set — antd's danger prop bypasses Gravitate theming."
+        },
+        {
+          "title": "appearance='outlined', not 'outline'",
+          "detail": "The lower-emphasis appearance value is 'outlined'. 'outline' is silently coerced to 'filled' — you get a filled button instead of the outlined one you asked for."
+        },
+        {
+          "title": "No htmlType='submit'",
+          "detail": "GraviButton does not participate in native form submission. Wire the primary to onClick={() => form.submit()} so Ant Design's Form validation pipeline runs."
+        },
+        {
+          "title": "Layout props, not style objects",
+          "detail": "Gap and justification belong on the layout primitive: <Horizontal gap={8} justifyContent='flex-end'>. style={{ gap: '8px' }} on Horizontal is the lint-flagged anti-pattern."
+        }
+      ]
+    },
+    {
+      "type": "usage",
+      "title": "Where this applies",
+      "body": "Every multi-button cluster: modal footers, drawer footers, inline panel footers, toolbars above grids, and page-level commit bars. For modals and drawers, build the footer by hand with the canonical skeleton. For page-level bars, reach for `ActionFooter` or `StepFooter` and compose the buttons into the `actions` slot — the primitive owns padding, height, and alignment so the only decisions left are which buttons and which one gets `theme1`.\n\nA single button next to text (an empty-state CTA, a card action) follows the same semantics: `theme1` if it is the screen's commitment, default otherwise, 8px from the adjacent text."
+    }
+  ]
+}

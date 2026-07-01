@@ -1,0 +1,210 @@
+[
+  {
+    "path": "/",
+    "title": "Home"
+  },
+  {
+    "path": "/OrderDashboard",
+    "title": "Dashboard"
+  },
+  {
+    "path": "/AdminDashboard",
+    "title": "Admin Dashboard"
+  },
+  {
+    "path": "/SpecialOffers",
+    "title": "Offers"
+  },
+  {
+    "path": "/OnlineOrders",
+    "title": "Online Orders"
+  },
+  {
+    "path": "/BuyNow/Prompt",
+    "title": "Prompt"
+  },
+  {
+    "path": "/BuyNow/Forward",
+    "title": "Forward"
+  },
+  {
+    "path": "/BuyNow/Offers",
+    "title": "Offers"
+  },
+  {
+    "path": "/PricingEngine/QuoteBookEOD",
+    "title": "Daily"
+  },
+  {
+    "path": "/PricingEngine/QuoteBookMidday",
+    "title": "Midday"
+  },
+  {
+    "path": "/PricingEngine/CommandCenter",
+    "title": "Command Center"
+  },
+  {
+    "path": "/PricingEngine/Calculations",
+    "title": "Calculations"
+  },
+  {
+    "path": "/PricingEngine/Prices",
+    "title": "Prices"
+  },
+  {
+    "path": "/ContractManagement/Contracts",
+    "title": "Contracts"
+  },
+  {
+    "path": "/ContractManagement/Valuations",
+    "title": "Contract Values"
+  },
+  {
+    "path": "/ContractManagement/ContractRevaluation",
+    "title": "Contract Revaluation"
+  },
+  {
+    "path": "/ContractManagement/MissingPrices",
+    "title": "Missing Prices"
+  },
+  {
+    "path": "/ContractManagement/Measurements",
+    "title": "Contract Measurement"
+  },
+  {
+    "path": "/ContractManagement/FormulaTemplates",
+    "title": "Formula Templates"
+  },
+  {
+    "path": "/Analytics/ByCustomer",
+    "title": "By Customer"
+  },
+  {
+    "path": "/Analytics/ByChannel",
+    "title": "By Channel"
+  },
+  {
+    "path": "/Analytics/ByTerminal",
+    "title": "By Terminal"
+  },
+  {
+    "path": "/Analytics/ByContract",
+    "title": "By Contract"
+  },
+  {
+    "path": "/Admin/NetGrossDefaults",
+    "title": "Net / Gross Defaults"
+  },
+  {
+    "path": "/Admin/AllocationAssociationManagement",
+    "title": "Allocation Management"
+  },
+  {
+    "path": "/Admin/PriceNotifications",
+    "title": "Price Notifications"
+  },
+  {
+    "path": "/Admin/CalendarManagement",
+    "title": "Calendar Management"
+  },
+  {
+    "path": "/Admin/Publishers",
+    "title": "Price Publishers"
+  },
+  {
+    "path": "/Admin/Instruments",
+    "title": "Price Instruments"
+  },
+  {
+    "path": "/Admin/Products",
+    "title": "Products"
+  },
+  {
+    "path": "/Admin/Locations",
+    "title": "Locations"
+  },
+  {
+    "path": "/Admin/Users",
+    "title": "Users"
+  },
+  {
+    "path": "/Admin/Counterparties",
+    "title": "Manage Counterparties"
+  },
+  {
+    "path": "/Admin/CounterpartyHierarchy",
+    "title": "Counterparty Hierarchy"
+  },
+  {
+    "path": "/Admin/PriceImportMappings",
+    "title": "Price Import Mappings"
+  },
+  {
+    "path": "/Admin/PriceTranslations",
+    "title": "Price Translations"
+  },
+  {
+    "path": "/Admin/AllocationMappings",
+    "title": "Allocation Mappings"
+  },
+  {
+    "path": "/Admin/ManageOpisPrices",
+    "title": "Manage OPIS Curves"
+  },
+  {
+    "path": "/Admin/IntegrationStatus",
+    "title": "Extract Status Report"
+  },
+  {
+    "path": "/Admin/AppliedAllocationReport",
+    "title": "Applied Allocation Report"
+  },
+  {
+    "path": "/Admin/AuthorizationAllocationAssociations",
+    "title": "Authorization Allocations"
+  },
+  {
+    "path": "/Admin/Availability",
+    "title": "Availability"
+  },
+  {
+    "path": "/Admin/MarketPlatformSetups",
+    "title": "Market Platform Setups"
+  },
+  {
+    "path": "/Admin/PriceConfiguration",
+    "title": "Price Configurations"
+  },
+  {
+    "path": "/Admin/FormulaTemplates",
+    "title": "Formula Templates"
+  },
+  {
+    "path": "/Admin/PlaceholderManagement",
+    "title": "Placeholder Management"
+  },
+  {
+    "path": "/Admin/DeliveryPeriods",
+    "title": "Delivery Periods"
+  },
+  {
+    "path": "/Admin/CalculatedValueReport",
+    "title": "Current Prices"
+  },
+  {
+    "path": "/Admin/CalendarPeriods",
+    "title": "Calendar Periods"
+  },
+  {
+    "path": "/Admin/QuantityDistributionManagement",
+    "title": "Quantity Distribution"
+  },
+  {
+    "path": "/Admin/VolumeThresholds",
+    "title": "Volume Thresholds"
+  },
+  {
+    "path": "/SuperUserAdmin/MPIManagement",
+    "title": "MPI Management"
+  }
+]

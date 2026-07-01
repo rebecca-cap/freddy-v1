@@ -1,0 +1,166 @@
+/*
+ * ScoutShareModal — share a saved item with the team or specific people.
+ *
+ * Hosted in an antd Modal whose root carries `.scout-scope` via
+ * `wrapClassName` so Scout tokens apply throughout. Mirrors ScoutSaveModal's
+ * head / body / footer treatment for visual consistency.
+ */
+
+.scout-share-modal-wrap.scout-scope .ant-modal-content {
+  border-radius: 12px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.scout-share-modal-wrap.scout-scope .ant-modal-body {
+  padding: 0;
+}
+
+/* --- Head --- */
+.scout-share-modal-wrap .scout-share-modal__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--scout-border);
+  background: var(--scout-surface);
+}
+
+.scout-share-modal-wrap .scout-share-modal__head-icon {
+  color: var(--scout-brand);
+  font-size: 18px;
+  line-height: 1;
+}
+
+.scout-share-modal-wrap .scout-share-modal__head-titles {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.scout-share-modal-wrap .scout-share-modal__head-title {
+  font-family: 'Lato', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--scout-text);
+}
+
+.scout-share-modal-wrap .scout-share-modal__head-subtitle {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--scout-text-muted);
+}
+
+.scout-share-modal-wrap .scout-share-modal__close {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: transparent;
+  border: none;
+  color: var(--scout-text-muted);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.scout-share-modal-wrap .scout-share-modal__close:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--scout-text);
+}
+
+/* --- Body --- */
+.scout-share-modal-wrap .scout-share-modal__body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 16px;
+}
+
+/* The item being shared — name + kind chip. */
+.scout-share-modal-wrap .scout-share-modal__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--scout-border);
+  border-radius: 8px;
+  background: var(--scout-surface-2);
+}
+
+.scout-share-modal-wrap .scout-share-modal__item-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--scout-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.scout-share-modal-wrap .scout-share-modal__item-kind {
+  flex-shrink: 0;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--scout-text-muted);
+}
+
+/* Scope cards + people picker now live in ScoutSharePicker.css (shared with
+ * the Save/Edit modal). */
+
+/* --- Footer --- */
+.scout-share-modal-wrap .scout-share-modal__footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-top: 1px solid var(--scout-border);
+  background: var(--scout-surface);
+}
+
+.scout-share-modal-wrap .ant-btn.gravi-button.scout-share-modal__cancel,
+.scout-share-modal-wrap .ant-btn.gravi-button.scout-share-modal__share {
+  height: 34px;
+  min-width: auto;
+  padding: 0 18px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.scout-share-modal-wrap .ant-btn.gravi-button.scout-share-modal__cancel {
+  background: transparent;
+  border-color: var(--scout-border);
+  color: var(--scout-text-muted);
+}
+
+.scout-share-modal-wrap .ant-btn.gravi-button.scout-share-modal__cancel:hover {
+  background: var(--scout-surface-2);
+  color: var(--scout-text);
+  border-color: var(--scout-border-strong);
+}
+
+.scout-share-modal-wrap .ant-btn.gravi-button.scout-share-modal__share,
+.scout-share-modal-wrap .ant-btn.gravi-button.scout-share-modal__share:focus {
+  background: var(--scout-brand);
+  border-color: var(--scout-brand);
+  color: #ffffff;
+}
+
+.scout-share-modal-wrap .ant-btn.gravi-button.scout-share-modal__share:hover:not(:disabled) {
+  background: var(--scout-brand-hover);
+  border-color: var(--scout-brand-hover);
+  color: #ffffff;
+}
+
+.scout-share-modal-wrap .ant-btn.gravi-button.scout-share-modal__share:disabled {
+  background: var(--scout-brand-soft);
+  color: var(--scout-text-subtle);
+  border-color: var(--scout-brand-soft);
+  cursor: not-allowed;
+}

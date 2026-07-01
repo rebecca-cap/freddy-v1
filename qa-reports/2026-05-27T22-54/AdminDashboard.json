@@ -1,0 +1,14 @@
+{
+  "path": "/AdminDashboard",
+  "title": "Admin Dashboard",
+  "finalUrl": "http://localhost:5173/AdminDashboard",
+  "rootLen": 260205,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 18,
+  "stuckLoaders": [],
+  "emptyGrids": []
+}

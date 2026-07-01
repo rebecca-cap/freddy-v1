@@ -1,0 +1,132 @@
+.quoteBook-drawer .ant-drawer-body {
+  padding: 0px;
+}
+.quoteBook-eod-drawer .ant-drawer-body {
+  padding: 0px;
+}
+.quoteBook-eod-header .ag-header-cell-label {
+  font-size: 16px; /* Adjust the font size as needed */
+}
+
+.quoteBook-view-history-button {
+  font-size: 15px !important;
+  color: var(--theme-color-2) !important;
+  max-width: 50px;
+  border-radius: 10px !important;
+  border-color: transparent !important;
+}
+
+.quoteBook-view-history-button:hover {
+  background-color: var(--bg-3) !important;
+  color: var(--gray-600) !important;
+}
+
+.quoteBook-history-drawer-wrapper {
+  padding: 10px 30px;
+}
+
+.quoteBook-history-drawer .ant-drawer-header {
+  background-color: white;
+  border-bottom: 1px var(--gray-200) solid;
+}
+
+.quoteBook-history-drawer .ant-drawer-body {
+  padding: 0;
+}
+
+.quoteBook-analytics-types {
+  cursor: pointer;
+}
+
+.quoteBook-analytics-selected {
+  background-color: var(--theme-color-2-trans);
+  color: var(--theme-color-2);
+  font-weight: bold;
+}
+
+.lifting-table-legend-dot {
+  background-color: #0c5a58;
+  border-radius: 50%;
+  height: 12px;
+  width: 12px;
+}
+.benchmark-comparison-select .ant-select-selector {
+  padding: 0 !important;
+}
+.trend-tooltip {
+  border-radius: 3px;
+  min-width: 150px;
+}
+
+.quotebook-grid .ag-cell {
+  font-size: 12px;
+}
+
+.quotebook-grid .ag-header-cell {
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.quotebook-grid .ag-header-group-cell {
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.quotebook-history-grid .ag-cell {
+  font-size: 13px;
+}
+
+.quotebook-history-grid .ag-header-cell {
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.quotebook-history-grid .ag-header-group-cell {
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.spread-override-modal {
+  font-size: 14px !important;
+}
+
+.w-full {
+  width: 100% !important;
+}
+
+
+.ant-radio-group .ant-radio-button-wrapper.ant-radio-button-wrapper-checked {
+  border: 1px solid transparent !important;
+}
+
+.gap-10 {
+  gap: 10px;
+}
+
+.customer-liftings-total-card {
+  background-color: #eff6ff;
+    border-radius: 8px;
+    border: 1px solid #bfdbfe;
+    height: 100%;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    align-items: flex-start;
+    justify-content: center;
+    padding-left: 15px;
+}
+
+.customer-liftings-total-card-text {
+    color: #2563eb !important;
+}
+
+.customer-liftings-number-badge {
+    min-width: 16px;
+    min-height: 16px;
+    border-radius: 50%;
+    background-color: #dbeafe;
+    color: #2563eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+}

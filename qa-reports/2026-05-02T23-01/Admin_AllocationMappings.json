@@ -1,0 +1,14 @@
+{
+  "path": "/Admin/AllocationMappings",
+  "title": "Allocation Mappings",
+  "finalUrl": "http://localhost:3001/Admin/AllocationMappings",
+  "rootLen": 74496,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 8,
+  "stuckLoaders": [],
+  "emptyGrids": []
+}

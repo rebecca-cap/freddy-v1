@@ -1,0 +1,43 @@
+{
+  "generatedAt": "2026-05-05T18:07:56.399Z",
+  "summary": {
+    "total": 3,
+    "pass": 3,
+    "fail": 0,
+    "errors": 0,
+    "stuckLoaders": 0,
+    "emptyGrids": 0
+  },
+  "routes": {
+    "/": {
+      "status": "pass",
+      "rootLen": 117628,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/Counterparties": {
+      "status": "pass",
+      "rootLen": 135687,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/PricingEngine/CommandCenter": {
+      "status": "pass",
+      "rootLen": 301590,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": [
+        "ReferenceData/Hierarchy/Location/List",
+        "ReferenceData/Hierarchy/Product/List"
+      ]
+    }
+  }
+}

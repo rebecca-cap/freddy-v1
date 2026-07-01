@@ -1,0 +1,137 @@
+/*
+ * ScoutMini — Phase 7.1b floating mini-bubble.
+ *
+ * Mirrors `.gizmo-mini` from gizmo-demo.html (~line 1214). The wireframe
+ * positions this inside the QB demo frame; in the React port we anchor
+ * the pill ABOVE the #scout-trigger G button so the minimized state stays
+ * close to where the user expects to find Scout. JS sets `left` and
+ * `bottom` inline; this file owns the centering transform (translateX
+ * -50%) and the slide-in / hover animations so the anchor and bob can
+ * compose without overwriting each other.
+ */
+
+.scout-mini {
+  position: fixed;
+  /* `left` and `bottom` are set inline by ScoutMini.tsx — they track the
+     G trigger's viewport position with a 10px gap above. The pill
+     centers on `left` via `transform: translateX(-50%)`. */
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--scout-brand);
+  color: #fff;
+  padding: 4px 12px 4px 4px;
+  border: 0;
+  border-radius: var(--scout-radius-pill);
+  font-family: var(--scout-font-family);
+  font-size: 11px;
+  font-weight: var(--scout-font-weight-medium);
+  cursor: pointer;
+  box-shadow: var(--scout-shadow-md);
+  z-index: 999; /* below modal + toast, above QB chrome */
+  transform: translateX(-50%);
+  transition: transform 120ms ease, box-shadow 120ms ease;
+  animation: scout-mini-in 220ms ease-out;
+  overflow: visible;
+}
+
+.scout-mini:hover {
+  transform: translateX(-50%) translateY(-1px);
+  box-shadow: var(--scout-shadow-lg);
+  background: var(--scout-brand);
+}
+
+.scout-mini:focus,
+.scout-mini:focus-visible {
+  outline: 2px solid var(--scout-brand-soft-2);
+  outline-offset: 2px;
+}
+
+.scout-mini__g {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--scout-brand);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--scout-font-weight-bold);
+  font-size: 11px;
+  line-height: 1;
+  /* sits above the shimmer ::after so the white circle never gets washed */
+  position: relative;
+  z-index: 1;
+}
+
+.scout-mini__label {
+  line-height: 1;
+  position: relative;
+  z-index: 1;
+}
+
+/* Subtle gradient shimmer to grab the eye on the minimized state. A soft
+   white sheen sweeps diagonally across the purple pill every few seconds.
+   Inherits the pill's pill-shaped border-radius and is clipped to the
+   pill bounds via `overflow: hidden` on this pseudo-element (the pill
+   itself keeps `overflow: visible` so the focus ring isn't clipped).
+   Sized larger than the pill via `background-size: 220%` so the sheen
+   enters from off one edge and exits past the other. */
+.scout-mini::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  overflow: hidden;
+  background: linear-gradient(
+    115deg,
+    transparent 38%,
+    rgba(255, 255, 255, 0.32) 50%,
+    transparent 62%
+  );
+  background-size: 220% 100%;
+  background-position: 120% 0;
+  animation: scout-mini-shimmer 3.4s ease-in-out 0.6s infinite;
+}
+
+@keyframes scout-mini-shimmer {
+  0% {
+    background-position: 120% 0;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  55% {
+    background-position: -20% 0;
+    opacity: 1;
+  }
+  60% {
+    opacity: 0;
+  }
+  100% {
+    background-position: -20% 0;
+    opacity: 0;
+  }
+}
+
+@keyframes scout-mini-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-6px) scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scout-mini {
+    animation: none;
+  }
+  .scout-mini::after {
+    animation: none;
+  }
+}

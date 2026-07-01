@@ -1,0 +1,34 @@
+<h2>Library, Save &amp; Share</h2>
+
+<p class="lead">The Library is where reusable questions live, and where in-the-moment conversations get promoted into durable, shareable assets. It holds two kinds of saved item and gives the analyst a calm path from "I just asked this twice" to "this is now a one-click routine my team can run."</p>
+
+<h3>Two kinds of saved item</h3>
+<p>Every saved item is either a <span class="tok">Prompt</span> — a single reusable question — or a <span class="tok">Path</span> — an ordered list of questions that run in sequence. Both carry a name, a description, a <b>scope</b> (row-level versus aggregate/whole-view), a <b>subject tag</b>, a <b>star</b> for favoriting, and optional sharing.</p>
+
+<h3>Library cards, search &amp; filters</h3>
+<p>The Library is list-first. A toolbar across the top offers a search field, a <b>starred-only</b> toggle, and an ownership filter with three states: <span class="pill">All</span> <span class="pill">Yours</span> <span class="pill">Shared with you</span> (see 1). Each card stacks a title with an actions row, then a meta row of pills — a kind pill reading <span class="tok">Path · N steps</span> or <span class="tok">Prompt</span> alongside scope and subject (see 2) — then a description clamped to two lines (see 5), then a footer carrying provenance on the left and the primary action on the right. <b>Edit</b> and <b>Share</b> reveal on hover; the star stays visible at all times (see 4).</p>
+{{figure:c2-library}}
+<p>Two empty states cover the surface: a "nothing saved in this tab" state when a tab has no items, and a "no matches" state when filters or search exclude everything, paired with a <span class="tok">Clear filters</span> affordance.</p>
+{{figure:c2-library-empty}}
+
+<h3>Running: Run vs Open</h3>
+<p>The card footer's action depends on the item kind (see 3). <span class="tok">Run</span> executes a path's steps sequentially — Scout switches to the chat view and streams each answer in turn. <span class="tok">Open</span> drops a prompt's text into a new ask, ready to send. A row-scoped item carries a guard: if it is run with no row in context, Scout surfaces a warning to <span class="tok">Pick a row first</span> rather than answering against the wrong scope.</p>
+
+<h3>The Save modal</h3>
+<p>Saving opens a two-tab modal. The <b>Details</b> tab collects a required name, an optional description, a subject, and the step list. Save stays disabled until there is both a name and at least one kept step.</p>
+{{figure:c2-save-details}}
+<p>The <b>Share</b> tab carries an audience picker built from scope cards — <span class="pill">Only me</span> <span class="pill">Team</span> <span class="pill">Specific people</span> — with a scrollable avatar list revealed when "Specific people" is chosen. The same picker control powers both this tab and the standalone Share modal, so the audience experience is identical in both places.</p>
+{{figure:c2-save-share}}
+
+<h3>The inline path editor</h3>
+<p>Within the Details tab, a path's steps are directly editable: each step can be <b>renamed inline</b>, <b>reordered</b> up or down, or <b>dropped</b>. A dropped step renders struck-through and can be restored rather than vanishing. A <span class="tok">Flatten on save</span> option collapses the whole sequence into a single prompt for analysts who want one question instead of a multi-step run.</p>
+{{figure:c2-path-editor}}
+
+<h3>The path-candidate nudge</h3>
+<p>After the analyst runs two or more questions of the same scope in a row, Scout offers an inline prompt beneath the latest answer: <span class="tok">Save these N questions on this row as a path?</span> (or "on the quote book" for whole-view scope). It previews the step labels, offers a <span class="tok">Save as path</span> button, and a dismiss control.</p>
+{{figure:c2-path-candidate}}
+<div class="callout callout--note"><b>Appears once per qualifying run.</b> The nudge collapses after saving or dismissing, and questions already saved are excluded from later candidates so the same group is never re-suggested.</div>
+
+<h3>The standalone Share modal</h3>
+<p>Opened from a card's overflow menu, the Share modal headers with the item name (see 1), presents the shared audience picker (see 2), and confirms with a <span class="tok">Share</span> action (see 3). One difference from the Save modal's Share tab: the standalone modal omits the "Only me" option, since sharing nothing privately is not a meaningful action here.</p>
+{{figure:c2-share-modal}}

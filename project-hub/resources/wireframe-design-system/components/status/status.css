@@ -1,0 +1,655 @@
+/**
+ * Gravitate Wireframe Design System - Status Components CSS
+ * =========================================================
+ * Pure CSS status components for wireframe prototyping.
+ * Includes progress indicators, loaders, skeletons, and empty states.
+ *
+ * Dependencies:
+ *   - tokens/index.css (design tokens and base utilities)
+ *
+ * Usage:
+ *   <link rel="stylesheet" href="tokens/index.css">
+ *   <link rel="stylesheet" href="components/status/status.css">
+ */
+
+/* ============================================
+   DESIGN TOKENS (Status-specific)
+   ============================================ */
+:root {
+  /* Progress bar heights */
+  --wf-progress-height-sm: 4px;
+  --wf-progress-height-md: 8px;
+  --wf-progress-height-lg: 12px;
+
+  /* Loader sizes */
+  --wf-loader-size-sm: 16px;
+  --wf-loader-size-md: 24px;
+  --wf-loader-size-lg: 40px;
+
+  /* Skeleton colors */
+  --wf-skeleton-base: var(--wf-color-gray-200, #e5e7eb);
+  --wf-skeleton-highlight: var(--wf-color-gray-100, #f3f4f6);
+
+  /* Empty state icon size */
+  --wf-empty-state-icon-size: 48px;
+}
+
+/* ============================================
+   KEYFRAME ANIMATIONS
+   ============================================ */
+
+/* Progress bar fill animation */
+@keyframes wf-progress-fill {
+  from {
+    width: 0;
+  }
+}
+
+/* Spinner rotation */
+@keyframes wf-spinner-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Skeleton shimmer effect */
+@keyframes wf-skeleton-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Fade in for empty states */
+@keyframes wf-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Pulse animation for loaders */
+@keyframes wf-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* ============================================
+   PROGRESS COMPONENT
+   ============================================ */
+.wf-progress {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wf-space-xs, 4px);
+  width: 100%;
+}
+
+/* Progress label row */
+.wf-progress-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--wf-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  font-size: var(--wf-font-size-sm, 13px);
+  color: var(--wf-color-text, #1e293b);
+  line-height: 1.4;
+}
+
+.wf-progress-label span:last-child {
+  font-weight: var(--wf-font-weight-medium, 500);
+  color: var(--wf-color-text-muted, #64748b);
+}
+
+/* Progress bar container */
+.wf-progress-bar {
+  position: relative;
+  width: 100%;
+  height: var(--wf-progress-height-md);
+  background-color: var(--wf-color-bg-disabled, #f1f5f9);
+  border-radius: var(--wf-radius-full, 9999px);
+  overflow: hidden;
+}
+
+/* Progress bar fill */
+.wf-progress-fill {
+  height: 100%;
+  background-color: var(--wf-color-primary, #2563eb);
+  border-radius: var(--wf-radius-full, 9999px);
+  transition: width var(--wf-transition-normal, 200ms ease);
+  animation: wf-progress-fill 0.6s ease-out;
+}
+
+/* Progress color variants */
+.wf-progress-success .wf-progress-fill {
+  background-color: var(--wf-color-success, #16a34a);
+}
+
+.wf-progress-warning .wf-progress-fill {
+  background-color: var(--wf-color-warning, #d97706);
+}
+
+.wf-progress-error .wf-progress-fill {
+  background-color: var(--wf-color-danger, #dc2626);
+}
+
+/* Progress size variants */
+.wf-progress-sm .wf-progress-bar {
+  height: var(--wf-progress-height-sm);
+}
+
+.wf-progress-lg .wf-progress-bar {
+  height: var(--wf-progress-height-lg);
+}
+
+/* Progress without label */
+.wf-progress-bar-only {
+  gap: 0;
+}
+
+.wf-progress-bar-only .wf-progress-label {
+  display: none;
+}
+
+/* Indeterminate progress */
+.wf-progress-indeterminate .wf-progress-fill {
+  width: 30% !important;
+  animation: wf-progress-indeterminate 1.5s ease-in-out infinite;
+}
+
+@keyframes wf-progress-indeterminate {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(400%);
+  }
+}
+
+/* ============================================
+   LOADER COMPONENT
+   ============================================ */
+.wf-loader {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--wf-space-sm, 8px);
+}
+
+/* Spinner element */
+.wf-loader-spinner {
+  display: block;
+  width: var(--wf-loader-size-md);
+  height: var(--wf-loader-size-md);
+  border: 2px solid var(--wf-color-border, #cbd5e1);
+  border-top-color: var(--wf-color-primary, #2563eb);
+  border-radius: var(--wf-radius-full, 9999px);
+  animation: wf-spinner-rotate 0.8s linear infinite;
+}
+
+/* Loader text */
+.wf-loader-text {
+  font-family: var(--wf-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  font-size: var(--wf-font-size-sm, 13px);
+  color: var(--wf-color-text-muted, #64748b);
+  line-height: 1.4;
+}
+
+/* Loader size variants */
+.wf-loader-sm .wf-loader-spinner {
+  width: var(--wf-loader-size-sm);
+  height: var(--wf-loader-size-sm);
+  border-width: 2px;
+}
+
+.wf-loader-sm .wf-loader-text {
+  font-size: var(--wf-font-size-xs, 11px);
+}
+
+.wf-loader-lg .wf-loader-spinner {
+  width: var(--wf-loader-size-lg);
+  height: var(--wf-loader-size-lg);
+  border-width: 3px;
+}
+
+.wf-loader-lg .wf-loader-text {
+  font-size: var(--wf-font-size-md, 14px);
+}
+
+/* Horizontal loader layout */
+.wf-loader-horizontal {
+  flex-direction: row;
+  gap: var(--wf-space-md, 12px);
+}
+
+/* Loader color variants */
+.wf-loader-success .wf-loader-spinner {
+  border-top-color: var(--wf-color-success, #16a34a);
+}
+
+.wf-loader-warning .wf-loader-spinner {
+  border-top-color: var(--wf-color-warning, #d97706);
+}
+
+.wf-loader-error .wf-loader-spinner {
+  border-top-color: var(--wf-color-danger, #dc2626);
+}
+
+/* White spinner (for dark backgrounds) */
+.wf-loader-inverse .wf-loader-spinner {
+  border-color: rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+}
+
+.wf-loader-inverse .wf-loader-text {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Fullscreen loader overlay */
+.wf-loader-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--wf-color-background-overlay, rgba(17, 24, 39, 0.5));
+  z-index: var(--wf-z-modal, 500);
+  animation: wf-fade-in 0.2s ease-out;
+}
+
+.wf-loader-overlay .wf-loader {
+  background-color: var(--wf-color-bg, #ffffff);
+  padding: var(--wf-space-xl, 24px);
+  border-radius: var(--wf-radius-lg, 8px);
+  box-shadow: var(--wf-shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, 0.1));
+}
+
+/* Inline loader (within content) */
+.wf-loader-inline {
+  display: inline-flex;
+  flex-direction: row;
+  vertical-align: middle;
+}
+
+/* ============================================
+   SKELETON COMPONENT
+   ============================================ */
+.wf-skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--wf-skeleton-base) 25%,
+    var(--wf-skeleton-highlight) 50%,
+    var(--wf-skeleton-base) 75%
+  );
+  background-size: 200% 100%;
+  animation: wf-skeleton-shimmer 1.5s ease-in-out infinite;
+  border-radius: var(--wf-radius-sm, 4px);
+}
+
+/* Text skeleton */
+.wf-skeleton-text {
+  height: 16px;
+  width: 100%;
+  margin-bottom: var(--wf-space-xs, 4px);
+}
+
+.wf-skeleton-text:last-child {
+  margin-bottom: 0;
+}
+
+/* Short text variant */
+.wf-skeleton-text-short {
+  width: 60%;
+}
+
+/* Extra short text variant */
+.wf-skeleton-text-xs {
+  width: 30%;
+}
+
+/* Heading skeleton variants */
+.wf-skeleton-heading {
+  height: 24px;
+  width: 50%;
+  margin-bottom: var(--wf-space-sm, 8px);
+}
+
+.wf-skeleton-heading-lg {
+  height: 32px;
+  width: 40%;
+}
+
+/* Multiple lines container */
+.wf-skeleton-lines {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wf-space-xs, 4px);
+}
+
+.wf-skeleton-lines .wf-skeleton-text {
+  margin-bottom: 0;
+}
+
+/* Rectangle skeleton (for images/cards) */
+.wf-skeleton-rect {
+  border-radius: var(--wf-radius-md, 6px);
+}
+
+/* Circle skeleton (for avatars) */
+.wf-skeleton-circle {
+  border-radius: var(--wf-radius-full, 9999px);
+}
+
+/* Avatar skeleton with predefined sizes */
+.wf-skeleton-avatar-sm {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--wf-radius-full, 9999px);
+}
+
+.wf-skeleton-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--wf-radius-full, 9999px);
+}
+
+.wf-skeleton-avatar-lg {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--wf-radius-full, 9999px);
+}
+
+/* Button skeleton */
+.wf-skeleton-button {
+  height: 36px;
+  width: 100px;
+  border-radius: var(--wf-radius-md, 6px);
+}
+
+/* Input skeleton */
+.wf-skeleton-input {
+  height: 40px;
+  width: 100%;
+  border-radius: var(--wf-radius-md, 6px);
+}
+
+/* Card skeleton (pre-composed) */
+.wf-skeleton-card {
+  background-color: var(--wf-color-surface, #ffffff);
+  border: 1px solid var(--wf-color-border, #cbd5e1);
+  border-radius: var(--wf-radius-lg, 8px);
+  overflow: hidden;
+}
+
+.wf-skeleton-card-image {
+  height: 150px;
+  width: 100%;
+  border-radius: 0;
+}
+
+.wf-skeleton-card-body {
+  padding: var(--wf-space-lg, 16px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--wf-space-sm, 8px);
+}
+
+/* Table row skeleton */
+.wf-skeleton-table-row {
+  display: flex;
+  gap: var(--wf-space-md, 12px);
+  padding: var(--wf-space-md, 12px) var(--wf-space-lg, 16px);
+  border-bottom: 1px solid var(--wf-color-border, #cbd5e1);
+}
+
+.wf-skeleton-table-row .wf-skeleton {
+  flex: 1;
+  height: 16px;
+}
+
+.wf-skeleton-table-row .wf-skeleton:first-child {
+  flex: 0 0 40px;
+  border-radius: var(--wf-radius-full, 9999px);
+}
+
+/* List item skeleton */
+.wf-skeleton-list-item {
+  display: flex;
+  align-items: center;
+  gap: var(--wf-space-md, 12px);
+  padding: var(--wf-space-md, 12px) 0;
+}
+
+.wf-skeleton-list-item-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--wf-space-xs, 4px);
+}
+
+/* Disable animation (reduced motion preference) */
+@media (prefers-reduced-motion: reduce) {
+  .wf-skeleton {
+    animation: none;
+    background: var(--wf-skeleton-base);
+  }
+}
+
+/* ============================================
+   EMPTY STATE COMPONENT
+   ============================================ */
+.wf-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--wf-space-xl, 24px);
+  min-height: 200px;
+  animation: wf-fade-in 0.3s ease-out;
+}
+
+/* Empty state icon */
+.wf-empty-state-icon {
+  font-size: var(--wf-empty-state-icon-size);
+  line-height: 1;
+  margin-bottom: var(--wf-space-md, 12px);
+  opacity: 0.7;
+}
+
+/* Icon container for custom icons/images */
+.wf-empty-state-icon-container {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--wf-color-bg-disabled, #f1f5f9);
+  border-radius: var(--wf-radius-full, 9999px);
+  margin-bottom: var(--wf-space-md, 12px);
+}
+
+.wf-empty-state-icon-container svg,
+.wf-empty-state-icon-container img {
+  width: 32px;
+  height: 32px;
+  color: var(--wf-color-text-muted, #64748b);
+}
+
+/* Empty state title */
+.wf-empty-state-title {
+  font-family: var(--wf-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  font-size: var(--wf-font-size-lg, 16px);
+  font-weight: var(--wf-font-weight-semibold, 600);
+  color: var(--wf-color-text, #1e293b);
+  margin: 0 0 var(--wf-space-sm, 8px) 0;
+  line-height: 1.4;
+}
+
+/* Empty state description */
+.wf-empty-state-description {
+  font-family: var(--wf-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  font-size: var(--wf-font-size-md, 14px);
+  color: var(--wf-color-text-muted, #64748b);
+  margin: 0 0 var(--wf-space-lg, 16px) 0;
+  line-height: 1.5;
+  max-width: 400px;
+}
+
+/* Empty state action buttons */
+.wf-empty-state .wf-button,
+.wf-empty-state-actions {
+  margin-top: var(--wf-space-sm, 8px);
+}
+
+.wf-empty-state-actions {
+  display: flex;
+  gap: var(--wf-space-sm, 8px);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Compact empty state variant */
+.wf-empty-state-compact {
+  min-height: 120px;
+  padding: var(--wf-space-lg, 16px);
+}
+
+.wf-empty-state-compact .wf-empty-state-icon {
+  font-size: 32px;
+  margin-bottom: var(--wf-space-sm, 8px);
+}
+
+.wf-empty-state-compact .wf-empty-state-title {
+  font-size: var(--wf-font-size-md, 14px);
+}
+
+.wf-empty-state-compact .wf-empty-state-description {
+  font-size: var(--wf-font-size-sm, 13px);
+  margin-bottom: var(--wf-space-md, 12px);
+}
+
+/* Inline empty state (for tables, lists) */
+.wf-empty-state-inline {
+  min-height: auto;
+  padding: var(--wf-space-lg, 16px);
+}
+
+/* Error empty state variant */
+.wf-empty-state-error .wf-empty-state-icon {
+  color: var(--wf-color-danger, #dc2626);
+}
+
+.wf-empty-state-error .wf-empty-state-title {
+  color: var(--wf-color-danger, #dc2626);
+}
+
+/* Search empty state variant */
+.wf-empty-state-search .wf-empty-state-icon {
+  color: var(--wf-color-text-muted, #64748b);
+}
+
+/* Success empty state variant */
+.wf-empty-state-success .wf-empty-state-icon {
+  color: var(--wf-color-success, #16a34a);
+}
+
+/* Warning empty state variant */
+.wf-empty-state-warning .wf-empty-state-icon {
+  color: var(--wf-color-warning, #d97706);
+}
+
+/* Empty state with illustration */
+.wf-empty-state-illustration {
+  max-width: 200px;
+  height: auto;
+  margin-bottom: var(--wf-space-lg, 16px);
+  opacity: 0.8;
+}
+
+/* Empty state bordered (for use in cards/panels) */
+.wf-empty-state-bordered {
+  border: 2px dashed var(--wf-color-border, #cbd5e1);
+  border-radius: var(--wf-radius-lg, 8px);
+  background-color: var(--wf-color-bg-hover, #f8fafc);
+}
+
+/* ============================================
+   STATUS DOT / INDICATOR COMPONENT
+   ============================================ */
+.wf-status-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--wf-radius-full, 9999px);
+  background-color: var(--wf-color-text-muted, #64748b);
+}
+
+.wf-status-dot-success {
+  background-color: var(--wf-color-success, #16a34a);
+}
+
+.wf-status-dot-warning {
+  background-color: var(--wf-color-warning, #d97706);
+}
+
+.wf-status-dot-error {
+  background-color: var(--wf-color-danger, #dc2626);
+}
+
+.wf-status-dot-info {
+  background-color: var(--wf-color-primary, #2563eb);
+}
+
+/* Pulsing status dot (for active/live states) */
+.wf-status-dot-pulse {
+  position: relative;
+}
+
+.wf-status-dot-pulse::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: var(--wf-radius-full, 9999px);
+  background-color: inherit;
+  opacity: 0.4;
+  animation: wf-pulse 2s ease-in-out infinite;
+}
+
+/* Status indicator with text */
+.wf-status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--wf-space-xs, 4px);
+  font-family: var(--wf-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  font-size: var(--wf-font-size-sm, 13px);
+  color: var(--wf-color-text, #1e293b);
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+/* Center loader/empty state in container */
+.wf-status-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+}
+
+/* Full height loader/empty state */
+.wf-status-full-height {
+  min-height: 100%;
+  height: 100%;
+}

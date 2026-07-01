@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create New Offer — Index Special (fast) · Round 2</title>
+  <link rel="stylesheet" href="assets/wireframe.css">
+  <link rel="stylesheet" href="assets/lofi-chrome.css">
+</head>
+<body>
+
+  <div class="lf-topbar">
+    <a class="lf-topbar-x" href="01-launchpad.html" title="Close">&times;</a>
+    <span class="lf-topbar-title">Create New Offer</span>
+    <a class="lf-backlink" href="../index.html">Round 2 index</a>
+  </div>
+
+  <div class="lf-offer-page">
+    <a class="lf-backtolist" href="01-launchpad.html">&#8592; Back to Offers</a>
+
+    <div class="lf-offer-grid">
+
+      <!-- ============ LEFT: content card ============ -->
+      <div class="lf-offer-main">
+        <div class="wf-card">
+          <div class="wf-card-header">
+            <div>
+              <h1 class="wf-text-h1">Create New Offer</h1>
+              <p class="wf-text-helper">Index Special &middot; <strong>New — Fast</strong> · all sections on one page</p>
+            </div>
+            <span class="wf-badge wf-badge-primary">Index Special</span>
+          </div>
+
+          <div class="wf-card-body">
+
+            <!-- top collective area: preset + (dirty) save actions + switch to full -->
+            <div class="lf-presetbar">
+              <div class="wf-field" style="min-width: 200px;">
+                <label class="wf-field-label">Preset</label>
+                <div class="wf-row wf-gap-2 wf-align-center">
+                  <select class="wf-select">
+                    <option>G3 Suboctane fast-fill</option>
+                    <option>Premium — KC daily</option>
+                    <option>No preset selected</option>
+                  </select>
+                  <span class="wf-badge wf-badge-warning">Edited &middot; unsaved</span>
+                </div>
+              </div>
+              <!-- save actions appear only because changes were made -->
+              <div class="wf-field wf-flex-1" style="min-width: 320px;">
+                <label class="wf-field-label">Save changes</label>
+                <div class="wf-row wf-gap-2 wf-align-center wf-wrap">
+                  <button class="wf-button wf-button-secondary wf-button-sm">Save preset</button>
+                  <span class="lf-muted" style="font-size: var(--wf-text-xs);">or</span>
+                  <input type="text" class="wf-input wf-flex-1" value="G3 Suboctane — OPIS/Platts blend" placeholder="New preset name" style="min-width: 160px;">
+                  <button class="wf-button wf-button-secondary wf-button-sm">Save as new preset</button>
+                </div>
+              </div>
+              <a class="wf-button wf-button-ghost wf-button-sm lf-presetbar-end" href="#">Switch to full setup</a>
+            </div>
+
+            <!-- 1. Product & location -->
+            <div class="lf-group">
+              <h3 class="wf-text wf-text-h3 lf-group-title">Product &amp; location</h3>
+              <div class="wf-form-grid wf-form-grid-3">
+                <div class="wf-field">
+                  <label class="wf-field-label">Product</label>
+                  <select class="wf-select">
+                    <option>Group 3 Suboctane (87)</option>
+                    <option>Group 3 Premium (91)</option>
+                    <option>ULSD</option>
+                  </select>
+                </div>
+                <div class="wf-field">
+                  <label class="wf-field-label">Terminal / location</label>
+                  <select class="wf-select">
+                    <option>Tulsa — Magellan</option>
+                    <option>Kansas City</option>
+                    <option>Wichita</option>
+                  </select>
+                </div>
+                <div class="wf-field">
+                  <label class="wf-field-label">Volume (gal)</label>
+                  <input type="text" class="wf-input" value="42,000">
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. Price formula — choose template → results above → editable table -->
+            <div class="lf-group">
+              <h3 class="wf-text wf-text-h3 lf-group-title">Price formula <span class="wf-text wf-text-helper" style="font-weight:var(--wf-font-normal);">· invoiced at lift</span></h3>
+
+              <!-- 2a. template chooser (enabled once product & location are set) -->
+              <div class="lf-formula-chosen" style="margin-bottom: var(--wf-space-4);">
+                <span class="wf-text wf-text-label">Template</span>
+                <span class="lf-formula-name">G3 Suboctane — OPIS/Platts blend</span>
+                <span class="lf-formula-actions">
+                  <a class="wf-button wf-button-secondary wf-button-sm" href="03-price-formula.html">Choose another template</a>
+                </span>
+              </div>
+
+              <!-- 2b. resulting price + differential ABOVE the table, separate lines -->
+              <div class="wf-field" style="margin-bottom: var(--wf-space-3);">
+                <label class="wf-field-label">Resulting price</label>
+                <input type="text" class="wf-input wf-mono" value="0.5·OPIS G3 Sub Low (prior) + 0.5·Platts G3 Sub Mean (same) − 1.0·OPIS Ethanol Adj (2-day)">
+              </div>
+              <div class="wf-field" style="max-width: 200px; margin-bottom: var(--wf-space-4);">
+                <label class="wf-field-label">Differential ($/gal)</label>
+                <input type="text" class="wf-input wf-mono" value="+0.0250">
+              </div>
+
+              <!-- 2c. editable variable table (edit straight in the table) -->
+              <div class="wf-datagrid wf-datagrid-compact">
+                <div class="wf-datagrid-header">
+                  <div class="wf-datagrid-cell wf-datagrid-cell-number" style="flex:0 0 56px">%</div>
+                  <div class="wf-datagrid-cell" style="flex:2">Publisher</div>
+                  <div class="wf-datagrid-cell" style="flex:2.6">Instrument</div>
+                  <div class="wf-datagrid-cell" style="flex:1.4">Type</div>
+                  <div class="wf-datagrid-cell wf-datagrid-cell-number" style="flex:0 0 64px">Diff</div>
+                  <div class="wf-datagrid-cell" style="flex:1.8">Date Rule</div>
+                  <div class="wf-datagrid-cell" style="flex:1.6">Display</div>
+                  <div class="wf-datagrid-cell wf-datagrid-cell-actions" style="flex:0 0 40px"></div>
+                </div>
+                <div class="wf-datagrid-body">
+                  <div class="wf-datagrid-row">
+                    <div class="wf-datagrid-cell lf-cell-edit wf-datagrid-cell-number" style="flex:0 0 56px"><input type="text" class="wf-input wf-mono" value="50"></div>
+                    <div class="wf-datagrid-cell lf-cell-edit" style="flex:2"><select class="wf-select"><option>OPIS</option><option>Platts</option><option>Argus</option></select></div>
+                    <div class="wf-datagrid-cell lf-cell-edit" style="flex:2.6"><select class="wf-select"><option>G3 Suboctane Gross</option><option>G3 Suboctane Net</option></select></div>
+                    <div class="wf-datagrid-cell lf-cell-edit" style="flex:1.4"><select class="wf-select"><option>Low</option><option>High</option><option>Mean</option><option>Settle</option></select></div>
+                    <div class="wf-datagrid-cell lf-cell-edit wf-datagrid-cell-number" style="flex:0 0 64px"><input type="text" class="wf-input wf-mono" value="0"></div>
+                    <div class="wf-datagrid-cell lf-cell-edit" style="flex:1.8"><select class="wf-select"><option>Prior day</option><option>Same day</option><option>2-day avg</option></select></div>
+                    <div class="wf-datagrid-cell lf-cell-edit" style="flex:1.6"><input type="text" class="wf-input" value="OPIS leg"></div>
+                    <div class="wf-datagrid-cell wf-datagrid-cell-actions" style="flex:0 0 40px"><button class="wf-button wf-button-ghost wf-button-sm" title="Row options">&#8943;</button></div>
+                  </div>
+                  <div class="wf-datagrid-row">
+                    <div class="wf-datagrid-cell lf-cell-edit wf-datagrid-cell-number" style="flex:0 0 56px"><input type="text" class="wf-input wf-mono" value="50"></div>
+                    <div class="wf-datagrid-cell lf-cell-edit" style="flex:2"><select class="wf-select"><option>Platts</option><option>OPIS</option><option>Argus</option></select></div>
+                    <div class="wf-datagrid-cell lf-cell-edit" style="flex:2.6"><select class="wf-select"><option>G3 Suboctane</option></select></div>
+                    <div class="wf-datagrid-cell lf-cell-edit" style="flex:1.4"><select class="wf-select"><option>Mean</option><option>Low</option><option>High</option><option>Settle</option></select></div>
+                    <div class="wf-datagrid-cell lf-cell-edit wf-datagrid-cell-number" style="flex:0 0 64px"><input type="text" class="wf-input wf-mono" value="0"></div>
+                    <div class="wf-datagrid-cell lf-cell-edit" style="flex:1.8"><select class="wf-select"><option>Same day</option><option>Prior day</option><option>2-day avg</option></select></div>
+                    <div class="wf-datagrid-cell lf-cell-edit" style="flex:1.6"><input type="text" class="wf-input" value="Platts leg"></div>
+                    <div class="wf-datagrid-cell wf-datagrid-cell-actions" style="flex:0 0 40px"><button class="wf-button wf-button-ghost wf-button-sm" title="Row options">&#8943;</button></div>
+                  </div>
+                  <div class="wf-datagrid-row">
+                    <div class="wf-datagrid-cell lf-cell-edit wf-datagrid-cell-number" style="flex:0 0 56px"><input type="text" class="wf-input wf-mono" value="-100"></div>
+                    <div class="wf-datagrid-cell lf-cell-edit" style="flex:2"><select class="wf-select"><option>OPIS</option><option>Platts</option><option>Argus</option></select></div>
+                    <div class="wf-datagrid-cell lf-cell-edit" style="flex:2.6"><select class="wf-select"><option>G3 Ethanol Adj</option></select></div>
+                    <div class="wf-datagrid-cell lf-cell-edit" style="flex:1.4"><select class="wf-select"><option>Settle</option><option>Low</option><option>High</option><option>Mean</option></select></div>
+                    <div class="wf-datagrid-cell lf-cell-edit wf-datagrid-cell-number" style="flex:0 0 64px"><input type="text" class="wf-input wf-mono" value="0"></div>
+                    <div class="wf-datagrid-cell lf-cell-edit" style="flex:1.8"><select class="wf-select"><option>2-day avg</option><option>Same day</option><option>Prior day</option></select></div>
+                    <div class="wf-datagrid-cell lf-cell-edit" style="flex:1.6"><input type="text" class="wf-input" value="Ethanol adj"></div>
+                    <div class="wf-datagrid-cell wf-datagrid-cell-actions" style="flex:0 0 40px"><button class="wf-button wf-button-ghost wf-button-sm" title="Row options">&#8943;</button></div>
+                  </div>
+                </div>
+              </div>
+              <div class="wf-row wf-gap-2" style="margin-top: var(--wf-space-2);">
+                <button class="wf-button wf-button-ghost wf-button-sm">+ Add row</button>
+              </div>
+            </div>
+
+            <!-- 3. Timing -->
+            <div class="lf-group">
+              <h3 class="wf-text wf-text-h3 lf-group-title">Timing</h3>
+              <div class="wf-form-grid wf-form-grid-2">
+
+                <!-- Visible for (dropdown shown open: quick options + increments inside) -->
+                <div class="wf-field">
+                  <label class="wf-field-label">Visible for</label>
+                  <input type="text" class="wf-input" value="4h" aria-label="Visible for" placeholder="Click to pick or set a duration">
+                  <div class="lf-timelist is-open">
+                    <div class="lf-timelist-quick">
+                      <span class="lf-quick-label">Quick</span>
+                      <button class="wf-button wf-button-secondary wf-button-sm">1h <span class="kbd">1</span></button>
+                      <button class="wf-button wf-button-secondary wf-button-sm">2h <span class="kbd">2</span></button>
+                      <button class="wf-button wf-button-secondary wf-button-sm">6h <span class="kbd">6</span></button>
+                    </div>
+                    <div class="lf-timelist-item">0h 30m</div>
+                    <div class="lf-timelist-item">0h 45m</div>
+                    <div class="lf-timelist-item">1h 00m</div>
+                    <div class="lf-timelist-item">1h 15m</div>
+                    <div class="lf-timelist-item">1h 30m</div>
+                    <div class="lf-timelist-item">1h 45m</div>
+                    <div class="lf-timelist-item is-active">4h 00m</div>
+                  </div>
+                </div>
+
+                <!-- Lifting window (closed; same dropdown opens on focus) -->
+                <div class="wf-field">
+                  <label class="wf-field-label">Lifting window</label>
+                  <input type="text" class="wf-input" value="48h" aria-label="Lifting window" placeholder="Click to pick or set a window">
+                  <div class="lf-timelist">
+                    <div class="lf-timelist-quick">
+                      <span class="lf-quick-label">Quick</span>
+                      <button class="wf-button wf-button-secondary wf-button-sm">24h <span class="kbd">1</span></button>
+                      <button class="wf-button wf-button-secondary wf-button-sm">48h <span class="kbd">2</span></button>
+                      <button class="wf-button wf-button-secondary wf-button-sm">3d <span class="kbd">3</span></button>
+                    </div>
+                    <div class="lf-timelist-item">12h</div>
+                    <div class="lf-timelist-item">24h</div>
+                    <div class="lf-timelist-item">36h</div>
+                    <div class="lf-timelist-item is-active">48h</div>
+                    <div class="lf-timelist-item">72h</div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- 4. Invite -->
+            <div class="lf-group">
+              <h3 class="wf-text wf-text-h3 lf-group-title">Invite</h3>
+              <div class="wf-tabs wf-tabs-pill" style="margin-bottom: var(--wf-space-3);">
+                <div class="wf-tabs-list">
+                  <button class="wf-tab wf-tab-active">Groups</button>
+                  <button class="wf-tab">Authorized to lift</button>
+                  <button class="wf-tab">Credit</button>
+                  <button class="wf-tab">All customers</button>
+                </div>
+              </div>
+              <p class="lf-pinned-label">&#11088; Favorites</p>
+              <div class="lf-chiprow">
+                <span class="lf-chip is-selected" tabindex="0">Gulf Coast <span class="lf-chip-count">3</span></span>
+                <span class="lf-chip" tabindex="0">Midcon <span class="lf-chip-count">5</span></span>
+                <span class="lf-chip" tabindex="0">Chicago lifting <span class="lf-chip-count">4</span></span>
+              </div>
+
+              <!-- underlined link (not a tile) → reveals the all-groups table -->
+              <details class="lf-more">
+                <summary>Show 22 more groups</summary>
+                <div class="lf-searchrow">
+                  <input type="search" class="wf-input" placeholder="Search all groups… (type CHI → Chicago)">
+                </div>
+                <div class="wf-datagrid wf-datagrid-compact">
+                  <div class="wf-datagrid-header">
+                    <div class="wf-datagrid-cell" style="flex:0 0 40px" title="Pin to keep as a tile">&#9733;</div>
+                    <div class="wf-datagrid-cell wf-datagrid-cell-checkbox"><input type="checkbox" class="wf-checkbox-input"></div>
+                    <div class="wf-datagrid-cell" style="flex:3">Group</div>
+                    <div class="wf-datagrid-cell wf-datagrid-cell-number" style="flex:1">Customers</div>
+                    <div class="wf-datagrid-cell" style="flex:2">Region</div>
+                  </div>
+                  <div class="wf-datagrid-body">
+                    <div class="wf-datagrid-row">
+                      <div class="wf-datagrid-cell" style="flex:0 0 40px"><button class="lf-pin" title="Pin">&#9734;</button></div>
+                      <div class="wf-datagrid-cell wf-datagrid-cell-checkbox"><input type="checkbox" class="wf-checkbox-input"></div>
+                      <div class="wf-datagrid-cell" style="flex:3">West Texas</div>
+                      <div class="wf-datagrid-cell wf-datagrid-cell-number" style="flex:1">8</div>
+                      <div class="wf-datagrid-cell" style="flex:2">West TX</div>
+                    </div>
+                    <div class="wf-datagrid-row">
+                      <div class="wf-datagrid-cell" style="flex:0 0 40px"><button class="lf-pin" title="Pin">&#9734;</button></div>
+                      <div class="wf-datagrid-cell wf-datagrid-cell-checkbox"><input type="checkbox" class="wf-checkbox-input"></div>
+                      <div class="wf-datagrid-cell" style="flex:3">Rack — Tulsa</div>
+                      <div class="wf-datagrid-cell wf-datagrid-cell-number" style="flex:1">6</div>
+                      <div class="wf-datagrid-cell" style="flex:2">Midcon</div>
+                    </div>
+                    <div class="wf-datagrid-row">
+                      <div class="wf-datagrid-cell" style="flex:0 0 40px"><button class="lf-pin" title="Pin">&#9734;</button></div>
+                      <div class="wf-datagrid-cell wf-datagrid-cell-checkbox"><input type="checkbox" class="wf-checkbox-input"></div>
+                      <div class="wf-datagrid-cell" style="flex:3">Plains</div>
+                      <div class="wf-datagrid-cell wf-datagrid-cell-number" style="flex:1">5</div>
+                      <div class="wf-datagrid-cell" style="flex:2">South Central</div>
+                    </div>
+                    <div class="wf-datagrid-row">
+                      <div class="wf-datagrid-cell" style="flex:0 0 40px"><button class="lf-pin is-pinned" title="Pinned">&#11088;</button></div>
+                      <div class="wf-datagrid-cell wf-datagrid-cell-checkbox"><input type="checkbox" class="wf-checkbox-input" checked></div>
+                      <div class="wf-datagrid-cell" style="flex:3">Gulf Coast</div>
+                      <div class="wf-datagrid-cell wf-datagrid-cell-number" style="flex:1">3</div>
+                      <div class="wf-datagrid-cell" style="flex:2">Gulf Coast</div>
+                    </div>
+                  </div>
+                </div>
+                <p class="wf-text wf-text-helper" style="margin-top: var(--wf-space-2);">Check a row to add it; tap the &#9734; to favorite it.</p>
+              </details>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- footer action bar -->
+        <div class="lf-offer-footer">
+          <a class="wf-button wf-button-secondary" href="01-launchpad.html">Cancel</a>
+          <button class="wf-button wf-button-primary lf-presetbar-end">Send offer <span class="kbd">&#8984;&#8629;</span></button>
+        </div>
+      </div>
+
+      <!-- ============ RIGHT: customer preview ============ -->
+      <div class="lf-offer-side">
+        <div class="wf-card">
+          <div class="wf-card-header">
+            <div>
+              <h3 class="wf-card-title">Index Special</h3>
+              <p class="wf-card-subtitle">What customers will see</p>
+            </div>
+          </div>
+          <div class="wf-card-body">
+            <div class="lf-preview">
+              <div class="lf-preview-sec">
+                <div class="lf-preview-label">Product &amp; Location</div>
+                <div class="lf-preview-value">Group 3 Suboctane (87) &middot; Tulsa — Magellan</div>
+                <div class="lf-preview-value lf-muted">42,000 gal</div>
+              </div>
+              <div class="lf-preview-sec is-key">
+                <div class="lf-preview-label">Pricing Strategy</div>
+                <div class="lf-preview-strategy">Index Pricing</div>
+                <div class="lf-preview-value">G3 Suboctane — OPIS/Platts blend (3 vars)</div>
+                <div class="lf-preview-value wf-mono">formula + $0.0250/gal</div>
+                <div class="lf-preview-value lf-muted">Invoices at lift time</div>
+              </div>
+              <div class="lf-preview-sec">
+                <div class="lf-preview-label">Timing Windows</div>
+                <div class="lf-preview-value">Visible 4h &middot; Lift 48h</div>
+              </div>
+              <div class="lf-preview-sec">
+                <div class="lf-preview-label">Target Customers</div>
+                <div class="lf-preview-value">Gulf Coast group &middot; 3 customers</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

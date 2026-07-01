@@ -1,0 +1,14 @@
+{
+  "slug": "grizmo",
+  "name": "Grizmo",
+  "description": "desc 2",
+  "branch": "project/grizmo",
+  "port": 3003,
+  "createdAt": "2026-05-05T20:52:36.914Z",
+  "paths": {
+    "project": "/Users/frankoverland/freddy/projects/grizmo",
+    "prototype": "/Users/frankoverland/freddy/projects/grizmo/prototype",
+    "lofi": "/Users/frankoverland/freddy/projects/grizmo/design-system/lofi",
+    "resources": "/Users/frankoverland/freddy/projects/grizmo/resources"
+  }
+}

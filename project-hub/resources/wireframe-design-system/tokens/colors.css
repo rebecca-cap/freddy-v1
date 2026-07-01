@@ -1,0 +1,76 @@
+/**
+ * Gravitate Wireframe Design System - Color Tokens
+ *
+ * A simplified, accessible color palette for wireframe-style interfaces.
+ * All colors are designed to work well together and meet WCAG contrast requirements.
+ *
+ * Usage:
+ *   color: var(--wf-color-primary);
+ *   background-color: var(--wf-color-surface);
+ *   border-color: var(--wf-color-border);
+ */
+
+:root {
+  /* ==========================================================================
+     Primary Colors
+     Used for interactive elements, CTAs, and brand emphasis
+     ========================================================================== */
+
+  --wf-color-primary: #2563eb;           /* Primary blue - buttons, links, focus states */
+  --wf-color-primary-dim: #1e40af;       /* Darker variant - hover states, active states */
+
+  /* ==========================================================================
+     Status Colors
+     Used for feedback, alerts, and status indicators
+     ========================================================================== */
+
+  /* Success - confirmations, positive actions, completed states */
+  --wf-color-success: #16a34a;
+  --wf-color-success-dim: #15803d;
+
+  /* Warning - cautions, pending states, attention needed */
+  --wf-color-warning: #d97706;
+  --wf-color-warning-dim: #b45309;
+
+  /* Error - errors, destructive actions, validation failures */
+  --wf-color-error: #dc2626;
+  --wf-color-error-dim: #b91c1c;
+
+  /* ==========================================================================
+     Neutral Scale
+     Grayscale palette for text, backgrounds, and borders
+     Higher numbers = darker colors
+     ========================================================================== */
+
+  --wf-color-neutral-900: #111827;       /* Darkest - primary text, headings */
+  --wf-color-neutral-700: #374151;       /* Dark - secondary text, labels */
+  --wf-color-neutral-500: #6b7280;       /* Medium - placeholder text, icons */
+  --wf-color-neutral-300: #d1d5db;       /* Light - borders, dividers */
+  --wf-color-neutral-100: #f3f4f6;       /* Lighter - subtle backgrounds, hover states */
+  --wf-color-neutral-50: #f9fafb;        /* Lightest - page backgrounds, cards */
+
+  /* ==========================================================================
+     Semantic Aliases
+     Purpose-driven color assignments for consistent usage across components
+     ========================================================================== */
+
+  /* Border colors */
+  --wf-color-border: var(--wf-color-neutral-300);
+  --wf-color-border-light: var(--wf-color-neutral-100);
+  --wf-color-border-focus: var(--wf-color-primary);
+
+  /* Surface colors */
+  --wf-color-surface: #ffffff;           /* Default surface - cards, modals, inputs */
+  --wf-color-surface-raised: var(--wf-color-neutral-50);  /* Elevated surfaces */
+  --wf-color-surface-sunken: var(--wf-color-neutral-100); /* Inset surfaces, disabled states */
+
+  /* Text colors */
+  --wf-color-text-primary: var(--wf-color-neutral-900);   /* Main content, headings */
+  --wf-color-text-secondary: var(--wf-color-neutral-700); /* Supporting text, labels */
+  --wf-color-text-tertiary: var(--wf-color-neutral-500);  /* Hints, placeholders */
+  --wf-color-text-inverse: #ffffff;      /* Text on dark backgrounds */
+
+  /* Background colors */
+  --wf-color-background: var(--wf-color-neutral-50);      /* Page background */
+  --wf-color-background-overlay: rgba(17, 24, 39, 0.5);   /* Modal overlays */
+}

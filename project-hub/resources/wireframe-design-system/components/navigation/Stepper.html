@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stepper Component - Gravitate Wireframe Design System</title>
+  <link rel="stylesheet" href="../../tokens/tokens.css">
+  <link rel="stylesheet" href="../controls/controls.css">
+  <link rel="stylesheet" href="navigation.css">
+  <style>
+    body {
+      font-family: var(--wf-font-family);
+      padding: 40px;
+      background-color: var(--wf-color-gray-50);
+    }
+    .demo-section {
+      background: white;
+      padding: 24px;
+      border-radius: 8px;
+      margin-bottom: 24px;
+      border: 1px solid var(--wf-color-border);
+    }
+    .demo-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--wf-color-text-muted);
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+<body>
+  <h1 style="margin-bottom: 32px; color: var(--wf-color-text);">Stepper Component</h1>
+
+  <!-- Basic Horizontal Stepper -->
+  <div class="demo-section">
+    <div class="demo-title">Horizontal Stepper</div>
+    <div class="wf-stepper">
+      <div class="wf-step wf-step-completed">
+        <span class="wf-step-indicator">✓</span>
+        <span class="wf-step-label">Select Type</span>
+      </div>
+      <div class="wf-step-connector wf-step-connector-completed"></div>
+      <div class="wf-step wf-step-active">
+        <span class="wf-step-indicator">2</span>
+        <span class="wf-step-label">Add Details</span>
+      </div>
+      <div class="wf-step-connector"></div>
+      <div class="wf-step">
+        <span class="wf-step-indicator">3</span>
+        <span class="wf-step-label">Review</span>
+      </div>
+      <div class="wf-step-connector"></div>
+      <div class="wf-step">
+        <span class="wf-step-indicator">4</span>
+        <span class="wf-step-label">Complete</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stepper with Descriptions -->
+  <div class="demo-section">
+    <div class="demo-title">Stepper with Descriptions</div>
+    <div class="wf-stepper">
+      <div class="wf-step wf-step-completed">
+        <span class="wf-step-indicator">✓</span>
+        <span class="wf-step-label">Account</span>
+        <span class="wf-step-description">Create your account</span>
+      </div>
+      <div class="wf-step-connector wf-step-connector-completed"></div>
+      <div class="wf-step wf-step-completed">
+        <span class="wf-step-indicator">✓</span>
+        <span class="wf-step-label">Personal Info</span>
+        <span class="wf-step-description">Fill in your details</span>
+      </div>
+      <div class="wf-step-connector wf-step-connector-completed"></div>
+      <div class="wf-step wf-step-active">
+        <span class="wf-step-indicator">3</span>
+        <span class="wf-step-label">Payment</span>
+        <span class="wf-step-description">Add payment method</span>
+      </div>
+      <div class="wf-step-connector"></div>
+      <div class="wf-step">
+        <span class="wf-step-indicator">4</span>
+        <span class="wf-step-label">Confirm</span>
+        <span class="wf-step-description">Review and submit</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stepper at Different States -->
+  <div class="demo-section">
+    <div class="demo-title">All Steps Pending</div>
+    <div class="wf-stepper">
+      <div class="wf-step wf-step-active">
+        <span class="wf-step-indicator">1</span>
+        <span class="wf-step-label">Step 1</span>
+      </div>
+      <div class="wf-step-connector"></div>
+      <div class="wf-step">
+        <span class="wf-step-indicator">2</span>
+        <span class="wf-step-label">Step 2</span>
+      </div>
+      <div class="wf-step-connector"></div>
+      <div class="wf-step">
+        <span class="wf-step-indicator">3</span>
+        <span class="wf-step-label">Step 3</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <div class="demo-title">All Steps Completed</div>
+    <div class="wf-stepper">
+      <div class="wf-step wf-step-completed">
+        <span class="wf-step-indicator">✓</span>
+        <span class="wf-step-label">Step 1</span>
+      </div>
+      <div class="wf-step-connector wf-step-connector-completed"></div>
+      <div class="wf-step wf-step-completed">
+        <span class="wf-step-indicator">✓</span>
+        <span class="wf-step-label">Step 2</span>
+      </div>
+      <div class="wf-step-connector wf-step-connector-completed"></div>
+      <div class="wf-step wf-step-completed">
+        <span class="wf-step-indicator">✓</span>
+        <span class="wf-step-label">Step 3</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stepper with Error State -->
+  <div class="demo-section">
+    <div class="demo-title">Stepper with Error State</div>
+    <div class="wf-stepper">
+      <div class="wf-step wf-step-completed">
+        <span class="wf-step-indicator">✓</span>
+        <span class="wf-step-label">Select Plan</span>
+      </div>
+      <div class="wf-step-connector wf-step-connector-completed"></div>
+      <div class="wf-step wf-step-error">
+        <span class="wf-step-indicator">!</span>
+        <span class="wf-step-label">Payment Failed</span>
+      </div>
+      <div class="wf-step-connector"></div>
+      <div class="wf-step">
+        <span class="wf-step-indicator">3</span>
+        <span class="wf-step-label">Confirmation</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Compact Stepper -->
+  <div class="demo-section">
+    <div class="demo-title">Compact Stepper</div>
+    <div class="wf-stepper wf-stepper-compact">
+      <div class="wf-step wf-step-completed">
+        <span class="wf-step-indicator">✓</span>
+        <span class="wf-step-label">Cart</span>
+      </div>
+      <div class="wf-step-connector wf-step-connector-completed"></div>
+      <div class="wf-step wf-step-completed">
+        <span class="wf-step-indicator">✓</span>
+        <span class="wf-step-label">Shipping</span>
+      </div>
+      <div class="wf-step-connector wf-step-connector-completed"></div>
+      <div class="wf-step wf-step-active">
+        <span class="wf-step-indicator">3</span>
+        <span class="wf-step-label">Payment</span>
+      </div>
+      <div class="wf-step-connector"></div>
+      <div class="wf-step">
+        <span class="wf-step-indicator">4</span>
+        <span class="wf-step-label">Done</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vertical Stepper -->
+  <div class="demo-section">
+    <div class="demo-title">Vertical Stepper</div>
+    <div class="wf-stepper wf-stepper-vertical">
+      <div class="wf-step wf-step-completed">
+        <span class="wf-step-indicator">✓</span>
+        <div class="wf-step-content">
+          <span class="wf-step-label">Order Placed</span>
+          <span class="wf-step-description">Your order has been received</span>
+        </div>
+      </div>
+      <div class="wf-step-connector wf-step-connector-completed"></div>
+      <div class="wf-step wf-step-completed">
+        <span class="wf-step-indicator">✓</span>
+        <div class="wf-step-content">
+          <span class="wf-step-label">Processing</span>
+          <span class="wf-step-description">We're preparing your order</span>
+        </div>
+      </div>
+      <div class="wf-step-connector wf-step-connector-completed"></div>
+      <div class="wf-step wf-step-active">
+        <span class="wf-step-indicator">3</span>
+        <div class="wf-step-content">
+          <span class="wf-step-label">Shipped</span>
+          <span class="wf-step-description">Your order is on its way</span>
+        </div>
+      </div>
+      <div class="wf-step-connector"></div>
+      <div class="wf-step">
+        <span class="wf-step-indicator">4</span>
+        <div class="wf-step-content">
+          <span class="wf-step-label">Delivered</span>
+          <span class="wf-step-description">Package has arrived</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stepper in Wizard Context -->
+  <div class="demo-section">
+    <div class="demo-title">Stepper in Wizard Context</div>
+    <div style="border: 1px solid var(--wf-color-border); border-radius: 8px; overflow: hidden;">
+      <div style="padding: 24px; border-bottom: 1px solid var(--wf-color-border);">
+        <div class="wf-stepper">
+          <div class="wf-step wf-step-completed">
+            <span class="wf-step-indicator">✓</span>
+            <span class="wf-step-label">Contract Type</span>
+          </div>
+          <div class="wf-step-connector wf-step-connector-completed"></div>
+          <div class="wf-step wf-step-active">
+            <span class="wf-step-indicator">2</span>
+            <span class="wf-step-label">Party Details</span>
+          </div>
+          <div class="wf-step-connector"></div>
+          <div class="wf-step">
+            <span class="wf-step-indicator">3</span>
+            <span class="wf-step-label">Terms</span>
+          </div>
+          <div class="wf-step-connector"></div>
+          <div class="wf-step">
+            <span class="wf-step-indicator">4</span>
+            <span class="wf-step-label">Review</span>
+          </div>
+        </div>
+      </div>
+      <div style="padding: 32px;">
+        <h3 style="margin: 0 0 8px 0; color: var(--wf-color-text);">Party Details</h3>
+        <p style="margin: 0 0 24px 0; color: var(--wf-color-text-muted);">Enter the details for all parties involved in this contract.</p>
+        <div style="background: var(--wf-color-gray-100); padding: 48px; border-radius: 8px; text-align: center; color: var(--wf-color-text-muted);">
+          [Form content goes here]
+        </div>
+      </div>
+      <div style="padding: 16px 24px; border-top: 1px solid var(--wf-color-border); display: flex; justify-content: space-between;">
+        <button class="wf-button wf-button-secondary">Back</button>
+        <button class="wf-button wf-button-primary">Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Usage Examples -->
+  <div class="demo-section">
+    <div class="demo-title">Code Examples</div>
+    <pre style="background: var(--wf-color-gray-100); padding: 16px; border-radius: 6px; overflow-x: auto; font-size: 13px;"><code>&lt;!-- Horizontal Stepper --&gt;
+&lt;div class="wf-stepper"&gt;
+  &lt;div class="wf-step wf-step-completed"&gt;
+    &lt;span class="wf-step-indicator"&gt;✓&lt;/span&gt;
+    &lt;span class="wf-step-label"&gt;Select Type&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="wf-step-connector wf-step-connector-completed"&gt;&lt;/div&gt;
+  &lt;div class="wf-step wf-step-active"&gt;
+    &lt;span class="wf-step-indicator"&gt;2&lt;/span&gt;
+    &lt;span class="wf-step-label"&gt;Add Details&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="wf-step-connector"&gt;&lt;/div&gt;
+  &lt;div class="wf-step"&gt;
+    &lt;span class="wf-step-indicator"&gt;3&lt;/span&gt;
+    &lt;span class="wf-step-label"&gt;Review&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- With Descriptions --&gt;
+&lt;div class="wf-step wf-step-active"&gt;
+  &lt;span class="wf-step-indicator"&gt;2&lt;/span&gt;
+  &lt;span class="wf-step-label"&gt;Payment&lt;/span&gt;
+  &lt;span class="wf-step-description"&gt;Add payment method&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- Vertical Stepper --&gt;
+&lt;div class="wf-stepper wf-stepper-vertical"&gt;
+  &lt;div class="wf-step wf-step-completed"&gt;
+    &lt;span class="wf-step-indicator"&gt;✓&lt;/span&gt;
+    &lt;div class="wf-step-content"&gt;
+      &lt;span class="wf-step-label"&gt;Order Placed&lt;/span&gt;
+      &lt;span class="wf-step-description"&gt;Your order has been received&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="wf-step-connector wf-step-connector-completed"&gt;&lt;/div&gt;
+  ...
+&lt;/div&gt;
+
+&lt;!-- Compact Stepper --&gt;
+&lt;div class="wf-stepper wf-stepper-compact"&gt;
+  ...
+&lt;/div&gt;
+
+&lt;!-- Error State --&gt;
+&lt;div class="wf-step wf-step-error"&gt;
+  &lt;span class="wf-step-indicator"&gt;!&lt;/span&gt;
+  &lt;span class="wf-step-label"&gt;Payment Failed&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+  </div>
+</body>
+</html>

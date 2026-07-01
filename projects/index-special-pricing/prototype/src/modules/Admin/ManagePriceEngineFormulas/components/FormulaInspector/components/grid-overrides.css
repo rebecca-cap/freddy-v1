@@ -1,0 +1,11 @@
+/*#affectedQuotesWrapper .ag-header {*/
+/*  display: none;*/
+/*}*/
+
+#affectedQuotesWrapper .ag-side-buttons {
+  display: none;
+}
+
+#appliesToWrapper .ag-side-buttons {
+  display: none;
+}

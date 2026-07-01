@@ -1,0 +1,4 @@
+.purchaseTypeSegmented {
+  pointer-events: none;
+  background: var(--gray-200);
+}

@@ -1,0 +1,64 @@
+/*
+ * ScoutColumnLegend — toolbar legend strip (Phase 4.2).
+ *
+ * Compact horizontal list of color swatches with labels, intended to live
+ * inside the QuoteBook toolbar. Stamps `.scout-scope` so it picks up
+ * Scout tokens. Transitions in via the panel's slide-in alongside the
+ * `.scout-active` body class — the legend itself appears the moment
+ * state.open flips true (it conditionally renders).
+ */
+
+.scout-scope.scout-legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 10px;
+  background: var(--scout-surface-2);
+  border: 0.5px solid var(--scout-border);
+  border-radius: var(--scout-radius);
+  font-family: var(--scout-font-family);
+  font-size: 11px;
+  color: var(--scout-text-muted);
+  flex-wrap: wrap;
+  animation: scoutLegendIn 200ms ease-out;
+}
+
+@keyframes scoutLegendIn {
+  from { opacity: 0; transform: translateY(-2px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.scout-scope .scout-legend__hint {
+  font-style: italic;
+  color: var(--scout-text-subtle);
+  margin-right: 2px;
+}
+
+.scout-scope .scout-legend__row {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.scout-scope .scout-legend__sw {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.scout-scope .scout-legend__sw--row-none {
+  background: var(--scout-surface-3);
+  border: 1px dashed var(--scout-border-strong);
+}
+.scout-scope .scout-legend__sw--benchmark { background: var(--scout-col-benchmark-sw); }
+.scout-scope .scout-legend__sw--proposed  { background: var(--scout-col-proposed-sw); }
+.scout-scope .scout-legend__sw--margin    { background: var(--scout-col-margin-sw); }
+.scout-scope .scout-legend__sw--delta     { background: var(--scout-col-delta-sw); }
+.scout-scope .scout-legend__sw--flags     { background: var(--scout-col-flags-sw); }
+
+.scout-scope .scout-legend__label {
+  font-size: 11px;
+  color: var(--scout-text-muted);
+  letter-spacing: 0;
+}

@@ -1,0 +1,12 @@
+{
+  "path": "/Admin/Products",
+  "title": "Products",
+  "finalUrl": "http://localhost:3001/Admin/Products",
+  "rootLen": 117891,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 12
+}

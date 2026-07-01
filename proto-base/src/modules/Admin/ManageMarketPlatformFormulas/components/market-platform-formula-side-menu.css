@@ -1,0 +1,21 @@
+li.ant-menu-item.ant-menu-item-selected {
+    background-color: white;
+}
+
+.custom-menu-item-padding {
+    padding-left: 25px;
+}
+
+.ant-menu:not(.ant-menu-horizontal) li.ant-menu-item.ant-menu-item-selected {
+    background-color: var(--theme-color-1-trans) !important;
+    color: var(--gray-700);
+}
+
+.formula-title {
+    font-family: Lato;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+}

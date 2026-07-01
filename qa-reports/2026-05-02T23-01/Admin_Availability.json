@@ -1,0 +1,14 @@
+{
+  "path": "/Admin/Availability",
+  "title": "Availability",
+  "finalUrl": "http://localhost:3001/Admin/Availability",
+  "rootLen": 129144,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 10,
+  "stuckLoaders": [],
+  "emptyGrids": []
+}

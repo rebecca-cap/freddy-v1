@@ -1,0 +1,36 @@
+<h2>Panel anatomy &amp; layout</h2>
+
+<p class="lead">The panel is a single vertical stack of five regions, ordered top to bottom, that stays consistent whether Scout floats as a card or docks as a full-height sidebar. Everything an analyst can do to Scout itself lives in these regions; a handful of supporting surfaces deliberately render outside the panel.</p>
+
+<h3>Top-to-bottom chrome</h3>
+<ol>
+<li><b>Title row</b> — the mascot mark and <span class="tok">Scout</span> wordmark sit on the left; a control cluster sits on the right, in order: <span class="tok">Save as path</span>, <span class="tok">Clear</span>, <span class="tok">Mode</span> (float/dock), <span class="tok">Minimize</span>, and <span class="tok">Close</span>. Save-as-path and Clear appear greyed and inert when there is nothing to act on (see 2, 3). In floating mode this whole row doubles as the drag handle (see 1).</li>
+<li><b>View nav</b> — the <span class="tok">Chats</span> / <span class="tok">Library</span> tab strip. The Chats tab carries an unseen-count badge when background answers are ready. Inside an open conversation, a <span class="tok">‹ All Chats</span> back control replaces the tab strip.</li>
+<li><b>Context-chips bar</b> (Chats only) — the current scope shown as removable pills, or, when empty, the hint <span class="tok">Nothing in focus · click a cell</span> alongside a <span class="tok">+ Add a cell</span> affordance.</li>
+<li><b>Body</b> — the active view: welcome, conversation, chats list, or library. It slides horizontally when switching views, the push/pop direction matching the nav direction.</li>
+<li><b>Composer footer</b> (Chats only) — a multi-line input that grows with content, placeholder <span class="tok">Ask Scout about your quote book…</span>, a <span class="tok">Send</span> button (inert while empty or busy), and a circular <span class="tok">Undo</span> affordance to the left that reverses the last turn.</li>
+</ol>
+
+{{figure:c1-header}}
+
+{{figure:c1-composer}}
+
+<h3>Geometry &amp; behavior</h3>
+<p>In floating mode the panel anchors top-right with a margin and auto-fits to its content height, growing until it reaches a cap of roughly <span class="pill">80vh</span>, after which the body scrolls and the chrome stays put. A resize grip at the bottom-right adjusts <b>height only</b> — width is fixed in floating mode and the cursor reads as a vertical-resize. Dragging the title row repositions the floating card; that position persists across a minimize and resets only on discard.</p>
+
+<p>The <span class="tok">Mode</span> control toggles between floating and docked. Docked, the panel becomes a full-height sidebar that pushes the grid left rather than overlaying it (see 1).</p>
+
+{{figure:c3-sidebar}}
+
+<h3>Surfaces that render outside the panel</h3>
+<p>Several elements live beyond the panel frame and persist as the analyst works:</p>
+<ul>
+<li>the <span class="tok">Ask Scout</span> trigger and its first-run intro bubble</li>
+<li>the minimized mini-bubble (<span class="tok">Resume conversation</span>)</li>
+<li>grid cell highlighting and the per-row ready dots</li>
+<li>the cross-page name tag and the Control-Panel alert cards</li>
+<li>toasts</li>
+<li>the bottom prototype-timer bar</li>
+</ul>
+
+<div class="callout callout--note"><b>One ring, always on</b> An animated shimmer border rings the panel in both modes; it signals "a thinking machine" and is detailed under Motion.</div>

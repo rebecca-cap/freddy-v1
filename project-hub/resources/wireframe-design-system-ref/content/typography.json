@@ -1,0 +1,154 @@
+{
+  "slug": "typography",
+  "title": "Typography",
+  "order": 3,
+  "group": "Foundations",
+  "intro": "Typography in the wireframe system is two layers: a token file that defines the type scale, weights, and line heights as `--wf-*` variables, and a flat set of `wf-text-*` classes you compose by hand. Every text element starts with the base `.wf-text` class and adds a size, then optional weight and color modifiers.",
+  "searchTerms": ["wf-text", "wf-text-h1", "wf-text-h2", "wf-text-h3", "wf-text-h4", "wf-text-body", "wf-text-label", "wf-text-helper", "wf-text-caption", "wf-label-group", "wf-label-horizontal", "wf-label-spread", "type scale", "headings", "body text", "font weight", "--wf-text-base", "--wf-font-family", "Text component", "Label component"],
+  "blocks": [
+    {
+      "type": "usage",
+      "body": "The contract is `.wf-text` first, then one size class. `.wf-text` sets the system font stack, `line-height: 1.5`, zeroes the margin, and paints `#1a1a2e` — so a bare `<p class=\"wf-text\">` already reads correctly. Layer a size on top: `wf-text-h1` through `wf-text-h4` for headings, `wf-text-body` for paragraphs, `wf-text-label` / `wf-text-helper` / `wf-text-caption` for the small print.\n\nWeight and color are separate modifier axes. Headings and labels carry their own weight, but body text starts at `400` and you promote it with `wf-text-medium`, `wf-text-semibold`, or `wf-text-bold`. Color modifiers (`wf-text-secondary`, `wf-text-error`, and friends) override the base `#1a1a2e` — they win because they come later in the stylesheet.\n\nThe `--wf-*` tokens in `tokens/typography.css` are the design source of truth: a 7-level scale from `--wf-text-xs` (11px) to `--wf-text-2xl` (32px), four weights, three line heights. The `wf-text-*` classes are a curated subset wired with literal px values rather than `var()` references — so the tokens document the system and the classes are what you actually type."
+    },
+    {
+      "type": "specimen",
+      "title": "Headings — the wf-text-h* scale",
+      "image": "specimens/typography/01-headings.png",
+      "caption": ".wf-text-h1 Page Title (24px), .wf-text-h2 Section Header (18px), .wf-text-h3 Subsection (16px), .wf-text-h4 Card Title (14px) — all semibold (600), all tightened by line-height and the h1/h2 negative letter-spacing."
+    },
+    {
+      "type": "tokens",
+      "title": "Type scale tokens",
+      "intro": "The 7-level scale from tokens/typography.css. The wf-text-* classes lock in a subset of these as literal px — the tokens are the full vocabulary and the comment on each documents its intended home.",
+      "rows": [
+        { "token": "--wf-text-xs", "value": "0.6875rem (11px)", "use": "Fine print, badges, timestamps — the size behind .wf-text-caption." },
+        { "token": "--wf-text-sm", "value": "0.75rem (12px)", "use": "Captions, helper text, table cells — the size behind .wf-text-label and .wf-text-helper." },
+        { "token": "--wf-text-base", "value": "0.875rem (14px)", "use": "Body text, default size — the compact default behind .wf-text-body and .wf-text-h4." },
+        { "token": "--wf-text-md", "value": "1rem (16px)", "use": "Emphasized body, large inputs — the size behind .wf-text-h3." },
+        { "token": "--wf-text-lg", "value": "1.125rem (18px)", "use": "Section headings, card titles — the size behind .wf-text-h2." },
+        { "token": "--wf-text-xl", "value": "1.5rem (24px)", "use": "Page headings, modal titles — the size behind .wf-text-h1." },
+        { "token": "--wf-text-2xl", "value": "2rem (32px)", "use": "Hero text, major headings — defined for reach; no default class ships at this size." }
+      ]
+    },
+    {
+      "type": "tokens",
+      "title": "Weight, line-height & letter-spacing tokens",
+      "intro": "The supporting axes. Weights map one-to-one onto the wf-text-{normal,medium,semibold,bold} modifiers; the line-height and tracking tokens are baked into the size classes.",
+      "rows": [
+        { "token": "--wf-font-family", "value": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, … sans-serif", "use": "The system font stack — native look, zero web-font load. Mirrored literally in .wf-text." },
+        { "token": "--wf-font-mono", "value": "ui-monospace, SFMono-Regular, 'SF Mono', Menlo, … monospace", "use": "Monospace for code, data, and technical content." },
+        { "token": "--wf-font-normal", "value": "400", "use": "Regular body text — .wf-text-normal and the resting weight of .wf-text-body." },
+        { "token": "--wf-font-medium", "value": "500", "use": "Subtle emphasis, labels — .wf-text-medium and the weight inside .wf-text-label." },
+        { "token": "--wf-font-semibold", "value": "600", "use": "Strong emphasis, buttons, headings — .wf-text-semibold and the weight of every wf-text-h*." },
+        { "token": "--wf-font-bold", "value": "700", "use": "Maximum emphasis, critical text — .wf-text-bold." },
+        { "token": "--wf-leading-tight", "value": "1.25", "use": "Headings, single-line elements." },
+        { "token": "--wf-leading-normal", "value": "1.5", "use": "Body text default — the line-height baked into .wf-text and .wf-text-body." },
+        { "token": "--wf-leading-relaxed", "value": "1.75", "use": "Long-form content, improved readability." },
+        { "token": "--wf-tracking-wide", "value": "0.025em", "use": "All caps, labels — the spacing intent behind .wf-text-label's uppercase treatment." }
+      ]
+    },
+    {
+      "type": "variants",
+      "title": "Size classes",
+      "intro": "Pick exactly one and pair it with .wf-text. Headings carry their own 600 weight and tightened line-height; body and small-print sizes carry their own color where it differs from the base.",
+      "rows": [
+        { "name": "wf-text-h1", "when": "Page titles and modal titles. 24px / 600 / line-height 1.3, letter-spacing -0.02em.", "code": "<h1 class=\"wf-text wf-text-h1\">Page Title</h1>" },
+        { "name": "wf-text-h2", "when": "Section headers. 18px / 600 / line-height 1.4, letter-spacing -0.01em.", "code": "<h2 class=\"wf-text wf-text-h2\">Section Header</h2>" },
+        { "name": "wf-text-h3", "when": "Subsections. 16px / 600 / line-height 1.4.", "code": "<h3 class=\"wf-text wf-text-h3\">Subsection</h3>" },
+        { "name": "wf-text-h4", "when": "Card titles and small headers. 14px / 600 / line-height 1.4.", "code": "<h4 class=\"wf-text wf-text-h4\">Card Title</h4>" },
+        { "name": "wf-text-body", "when": "Default paragraph and content text. 14px / 400 / line-height 1.5.", "code": "<p class=\"wf-text wf-text-body\">Regular body text for paragraphs and content.</p>" },
+        { "name": "wf-text-label", "when": "Form labels and data labels. 12px / 500 / uppercase, letter-spacing 0.05em, color #6b7280.", "code": "<span class=\"wf-text wf-text-label\">FIELD NAME</span>" },
+        { "name": "wf-text-helper", "when": "Form hints and descriptions under an input. 12px / 400 / color #6b7280.", "code": "<span class=\"wf-text wf-text-helper\">We'll never share your email.</span>" },
+        { "name": "wf-text-caption", "when": "Small annotations and timestamps. 11px / 400 / color #9ca3af.", "code": "<span class=\"wf-text wf-text-caption\">Last updated 2 hours ago</span>" }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "Body text and weight modifiers",
+      "image": "specimens/typography/02-body-text.png",
+      "caption": ".wf-text-body resting at 14px / 400, then promoted with .wf-text-medium (500) and .wf-text-semibold (600). Weight is a separate axis layered on top of the size class."
+    },
+    {
+      "type": "variants",
+      "title": "Weight & color modifiers",
+      "intro": "Optional axes layered after the size class. Stack one weight and one color as needed — they override the base because they come later in the stylesheet.",
+      "rows": [
+        { "name": "wf-text-normal", "when": "Force 400 — the resting weight, rarely needed explicitly.", "code": "<span class=\"wf-text wf-text-body wf-text-normal\">Normal weight</span>" },
+        { "name": "wf-text-medium", "when": "Promote body to 500 for subtle emphasis.", "code": "<span class=\"wf-text wf-text-body wf-text-medium\">Medium weight body</span>" },
+        { "name": "wf-text-semibold", "when": "Promote to 600 — emphasized values, inline strong text.", "code": "<span class=\"wf-text wf-text-body wf-text-semibold\">Semibold body text</span>" },
+        { "name": "wf-text-bold", "when": "Promote to 700 — maximum emphasis, critical text.", "code": "<span class=\"wf-text wf-text-body wf-text-bold\">Bold weight</span>" },
+        { "name": "wf-text-secondary", "when": "Muted gray (#6b7280) for supporting copy.", "code": "<p class=\"wf-text wf-text-body wf-text-secondary\">Manage and track all your active contracts</p>" },
+        { "name": "wf-text-error", "when": "Negative states (#dc2626) — validation messages, error copy.", "code": "<span class=\"wf-text wf-text-helper wf-text-error\">Please enter a valid email address</span>" },
+        { "name": "wf-text-link", "when": "Clickable text (#2563eb) — underlines and darkens to #1d4ed8 on hover.", "code": "<a href=\"#\" class=\"wf-text wf-text-body wf-text-link\">Edit</a>" },
+        { "name": "wf-text-inverse", "when": "White (#ffffff) for text on dark backgrounds.", "code": "<span class=\"wf-text wf-text-body wf-text-inverse\">Inverse text on dark background</span>" }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "Labels and helper text",
+      "image": "specimens/typography/03-labels-and-helper-text.png",
+      "caption": ".wf-text-label (12px uppercase, wide tracking, #6b7280) for form labels and .wf-text-helper (12px, muted #6b7280) for hints — the small print of a form field."
+    },
+    {
+      "type": "specimen",
+      "title": "Label component — vertical (stacked)",
+      "image": "specimens/typography/04-vertical-label-stacked.png",
+      "caption": "The .wf-label-group pairing: an uppercase .wf-text-label stacked above its value with a 4px gap. The default narrative-first form posture; horizontal and spread are the sibling layouts."
+    },
+    {
+      "type": "variants",
+      "title": "Label group layouts",
+      "intro": "Key-value pairs use .wf-label-group as the wrapper, then a layout modifier changes the axis. Stacked is the default; add a modifier for inline or justified.",
+      "rows": [
+        { "name": "wf-label-group", "when": "Default stacked pairing — label above value, column flex, 4px gap.", "code": "<div class=\"wf-label-group\">\n  <span class=\"wf-text wf-text-label\">Contract ID</span>\n  <span class=\"wf-text wf-text-body wf-text-semibold\">CNT-2024-001</span>\n</div>" },
+        { "name": "wf-label-horizontal", "when": "Inline label + value on one row — switches to row flex, 8px gap, label gets a 100px min-width.", "code": "<div class=\"wf-label-group wf-label-horizontal\">\n  <span class=\"wf-text wf-text-label\">Status:</span>\n  <span class=\"wf-text wf-text-body\">Active</span>\n</div>" },
+        { "name": "wf-label-spread", "when": "Label left, value right — row flex with justify-content: space-between. Totals and summary rows.", "code": "<div class=\"wf-label-group wf-label-spread\">\n  <span class=\"wf-text wf-text-label\">Total Amount</span>\n  <span class=\"wf-text wf-text-body wf-text-semibold\">$12,500.00</span>\n</div>" },
+        { "name": "wf-label-colon", "when": "Appends a ':' to the label via ::after — for inline label styling without typing the colon.", "code": "<div class=\"wf-label-group wf-label-horizontal wf-label-colon\">\n  <span class=\"wf-text wf-text-label\">Status</span>\n  <span class=\"wf-text wf-text-body\">Active</span>\n</div>" }
+      ]
+    },
+    {
+      "type": "code",
+      "title": "Composing a form field",
+      "lang": "html",
+      "code": "<!-- Stack a label, an input, and helper text -->\n<label class=\"wf-text wf-text-label wf-required\">Email Address</label>\n<input type=\"email\" placeholder=\"you@example.com\">\n<span class=\"wf-text wf-text-helper\">We'll never share your email.</span>\n\n<!-- Error state: same classes, error color on the helper -->\n<label class=\"wf-text wf-text-label wf-required\">Email Address</label>\n<input type=\"email\" value=\"invalid-email\">\n<span class=\"wf-text wf-text-helper wf-text-error\">Please enter a valid email address</span>",
+      "note": "Add .wf-required to a label and a red asterisk is appended via ::after — no markup change needed."
+    },
+    {
+      "type": "code",
+      "title": "A detail card header and value grid",
+      "lang": "html",
+      "code": "<div class=\"wf-section-header\">\n  <h3 class=\"wf-text wf-text-h3\">Order Details</h3>\n  <span class=\"wf-status-text wf-status-text-success\">Confirmed</span>\n</div>\n\n<div class=\"wf-data-grid\">\n  <div class=\"wf-label-group\">\n    <span class=\"wf-text wf-text-label\">Order Number</span>\n    <span class=\"wf-text wf-text-body wf-text-semibold\">ORD-2024-78542</span>\n  </div>\n  <div class=\"wf-label-group\">\n    <span class=\"wf-text wf-text-label\">Customer</span>\n    <span class=\"wf-text wf-text-body\">John Smith</span>\n  </div>\n</div>",
+      "note": "wf-section-header pairs a heading with a trailing action or status and draws a bottom border; add wf-section-header-simple to drop the border."
+    },
+    {
+      "type": "rules",
+      "title": "Composition rules",
+      "items": [
+        { "rule": "Always start with .wf-text, then add exactly one size class.", "why": ".wf-text carries the font stack, line-height, margin reset, and base color — without it a size class inherits whatever the surrounding element happens to be." },
+        { "rule": "Body text is 14px (--wf-text-base), not 16px.", "why": "The system defaults compact: .wf-text-body and .wf-text-h4 both sit at 14px. Reach for .wf-text-md (16px) deliberately when you want emphasized body, not by accident." },
+        { "rule": "Promote weight with a modifier; don't switch to a heading class for emphasis.", "why": "A heading class also changes size and line-height. To bold a value inside a sentence, add .wf-text-semibold — the size stays put." },
+        { "rule": "Use .wf-text-label for form and data labels, .wf-text-helper for hints, .wf-text-caption for timestamps.", "why": "They share the 12px/11px small-print band but encode different intent — label is uppercase 500, helper is muted 400, caption is the faintest 11px #9ca3af." },
+        { "rule": "Wrap key-value pairs in .wf-label-group and let a layout modifier set the axis.", "why": "Stacked, horizontal, and spread all share the same wrapper — switching layout is a one-class change, not a markup rewrite." }
+      ]
+    },
+    {
+      "type": "dosdonts",
+      "items": [
+        { "do": "<p class=\"wf-text wf-text-body\">", "dont": "<p class=\"wf-text-body\">", "why": "The size classes set only size/weight/line-height — they rely on .wf-text for the font stack, margin reset, and color. Omit it and you inherit the page's defaults." },
+        { "do": "<span class=\"wf-text wf-text-body wf-text-semibold\">", "dont": "<span class=\"wf-text wf-text-h4\"> just to bold it", "why": "wf-text-h4 is 14px/600 too, but it's semantically a heading — using it for inline emphasis muddies the document outline and the wireframe's intent." },
+        { "do": "<span class=\"wf-text wf-text-label\">FIELD NAME</span>", "dont": "<span class=\"wf-text wf-text-body wf-text-uppercase\">field name</span>", "why": "wf-text-label already encodes the 12px size, 500 weight, muted color, and wide tracking that defines a label — rebuilding it from body + transform drifts off-spec." },
+        { "do": "<label class=\"wf-text wf-text-label wf-required\">", "dont": "<label class=\"wf-text wf-text-label\">Email *</label>", "why": ".wf-required appends the red asterisk via ::after — typing it manually loses the consistent #dc2626 color and 2px offset." }
+      ]
+    },
+    {
+      "type": "gotchas",
+      "items": [
+        { "title": "The wf-text-* classes use literal px, not the tokens", "detail": "tokens/typography.css defines --wf-text-base etc., but components/typography/typography.css hardcodes font-size: 14px instead of var(--wf-text-base). Edit a token and the wf-text-* classes won't move — change both, or treat the tokens as documentation of the scale the classes already follow." },
+        { "title": "Headings ship their own weight and line-height", "detail": "All four wf-text-h* are 600 with line-height 1.3–1.4, and h1/h2 add negative letter-spacing. They override .wf-text's 1.5 line-height — so a heading is more than just a bigger size, and stacking a weight modifier on it is redundant." },
+        { "title": ".wf-text-label and .wf-text-helper carry color, not just size", "detail": "Both paint #6b7280 (gray) out of the box, and .wf-text-caption paints #9ca3af. If you need them dark, you'll fight the class — they're built for muted small print, which is usually what you want." },
+        { "title": "Headings shrink at the 640px breakpoint", "detail": "A max-width: 640px media query drops h1 to 20px, h2 to 16px, h3 to 14px, and collapses wf-label-horizontal into a stacked column. Wireframes captured wide will read smaller on narrow viewports — expected, but worth knowing before you screenshot." },
+        { "title": "wf-label-horizontal pins a 100px label column", "detail": "The label gets min-width: 100px and flex-shrink: 0, so short labels still reserve the full column. Below 640px that min-width is removed and the layout stacks — so inline labels are a desktop affordance." }
+      ]
+    }
+  ]
+}

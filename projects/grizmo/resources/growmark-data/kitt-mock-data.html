@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KITT Chatbot — Mock Data</title>
+<style>
+  :root {
+    --bg: #1a1d21;
+    --panel: #222529;
+    --bot-bubble: #2a2e33;
+    --text: #d1d2d3;
+    --muted: #8e9297;
+    --accent: #4ec9b0;
+    --warn: #e8a33d;
+    --border: #3a3d42;
+    --code-bg: #14161a;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.46; font-size: 15px; }
+  .chat { max-width: 820px; margin: 0 auto; padding: 24px 16px 80px; }
+  .msg { display: flex; gap: 10px; padding: 10px 8px; border-radius: 8px; }
+  .msg:hover { background: rgba(255,255,255,0.02); }
+  .avatar { width: 36px; height: 36px; border-radius: 6px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; color: #fff; }
+  .avatar.user { background: #4a154b; }
+  .avatar.bot { background: #007a5a; }
+  .body { flex: 1; min-width: 0; }
+  .head { display: flex; align-items: baseline; gap: 8px; margin-bottom: 2px; }
+  .name { font-weight: 700; color: #fff; }
+  .bot-tag { background: var(--border); color: var(--muted); font-size: 10px; font-weight: 700; padding: 1px 5px; border-radius: 3px; text-transform: uppercase; }
+  .time { color: var(--muted); font-size: 12px; }
+  .text code { background: var(--code-bg); padding: 1px 5px; border-radius: 4px; font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; color: var(--accent); }
+  .text strong { color: #fff; }
+  .section-label { font-weight: 700; color: #fff; margin: 12px 0 4px; }
+  ul { margin: 4px 0; padding-left: 22px; }
+  li { margin: 3px 0; }
+  .warn-icon { color: var(--warn); }
+  .bulb { color: var(--warn); }
+  table { border-collapse: collapse; margin: 10px 0; width: 100%; font-size: 13px; font-family: "SF Mono", Menlo, Consolas, monospace; }
+  th, td { border: 1px solid var(--border); padding: 6px 10px; text-align: right; }
+  th { background: var(--code-bg); color: var(--accent); }
+  td:first-child, th:first-child { text-align: left; }
+  .meta { margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--border); color: var(--muted); font-size: 12px; font-style: italic; }
+  .file-attach { display: inline-flex; align-items: center; gap: 8px; margin-top: 8px; background: var(--panel); border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px; font-size: 13px; }
+  .file-attach .fname { color: #fff; font-weight: 600; }
+  .file-attach .fmeta { color: var(--muted); }
+  .corrected { border-left: 3px solid var(--accent); padding-left: 10px; }
+</style>
+</head>
+<body>
+<div class="chat">
+
+  <div class="msg">
+    <div class="avatar user">AR</div>
+    <div class="body">
+      <div class="head"><span class="name">Agustin Reichhardt</span><span class="time">10:40 AM</span></div>
+      <div class="text">
+        <span style="color:#1d9bd1">@KITT Dev</span> can you give me the average price and cost for the past 7 days for
+        <code>1207 - NORTH LITTLE ROCK, AR - MPL- N</code> / <code>189877 - #2 ULS CL</code>
+        Inventory Replacement Cost Unbranded for <code>prod-growmark-pe.database.windows.net</code> ?
+      </div>
+    </div>
+  </div>
+
+  <div class="msg">
+    <div class="avatar bot">K</div>
+    <div class="body">
+      <div class="head"><span class="name">KITT Dev</span><span class="bot-tag">App</span><span class="time">10:44 AM</span></div>
+      <div class="text">
+        <div class="section-label">Answer</div>
+        For <strong>quote mapping #163043</strong> (<code>Inventory Replacement Cost Unbranded</code> config) covering
+        <code>189877 - #2 ULS CL</code> at <code>1207 - NORTH LITTLE ROCK, AR - MPL- N</code> on <code>prod-growmark-pe</code>,
+        here are the past 7 days (May 22 &ndash; May 29, 2026):
+        <div class="section-label">Details:</div>
+        <ul>
+          <li>Because this row lives in a <strong>cost-tracking</strong> configuration, the published "Output" value <strong>is</strong> the calculated replacement cost &mdash; there is no separate price-vs-cost split inside the config itself.</li>
+          <li>The <code>OPIS Low 6 PM</code> benchmark is shown for context as the underlying market reference that feeds into the cost build-up.</li>
+          <li>Posting type was <code>Posting</code> across all rows; mix of <code>Intra Day</code> and <code>End Of Day</code> curve points.</li>
+          <li><span class="warn-icon">&#9888;</span> No <code>BillOfLadingDetail</code> liftings posted against this mapping in the past 7 days, so a lifted-volume-weighted average isn't available.</li>
+        </ul>
+        <p><span class="bulb">&#128161;</span> If by "price and cost" you actually mean a <strong>customer-facing</strong> quote vs the inventory replacement cost as the cost basis, let me know and I can pull that comparison instead.</p>
+        <div class="section-label">Sources:</div>
+        <ul>
+          <li><code>Quote Book</code> &rarr; config <code>Inventory Replacement Cost Unbranded</code> (QuoteConfigurationId=29) &rarr; mapping 163043</li>
+          <li><code>CurvePoint</code> / <code>CurvePointPrice</code> for <code>PriceInstrumentId=995325</code> (Output) and <code>1259108</code> (OPIS Low 6 PM benchmark)</li>
+          <li>Environment: <code>growmark-pe-prod</code></li>
+        </ul>
+        <div class="meta">Used: /kitt:query-database<br>[Session: e4f2fb03&hellip; | Model: opus | Env: DEV | Time: 251.0s]</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="msg">
+    <div class="avatar user">AR</div>
+    <div class="body">
+      <div class="head"><span class="name">Agustin Reichhardt</span><span class="time">10:47 AM</span></div>
+      <div class="text">
+        <span style="color:#1d9bd1">@KITT Dev</span> Wrong. The price and cost would be separate for the row. The output would be the <strong>price</strong>. Which includes the cost build up plus the diff (adjustment) entered by the user.
+      </div>
+    </div>
+  </div>
+
+  <div class="msg">
+    <div class="avatar bot">K</div>
+    <div class="body">
+      <div class="head"><span class="name">KITT Dev</span><span class="bot-tag">App</span><span class="time">10:50 AM</span></div>
+      <div class="text corrected">
+        <div class="section-label">Answer</div>
+        For <code>quote mapping #163043</code> (<code>Inventory Replacement Cost Unbranded</code> config),
+        <code>189877 - #2 ULS CL</code> at <code>1207 - NORTH LITTLE ROCK, AR - MPL- N</code> on <code>prod-growmark-pe</code>,
+        over the past 7 days (May 22 &ndash; May 29, 2026):
+        <div class="section-label">Details:</div>
+        <ul>
+          <li><strong>Price</strong> comes from the <code>Inventory Replacement Cost Unbranded Output</code> publisher (PriceInstrumentID <code>995325</code>) &mdash; these are the actual published curve points.</li>
+          <li><strong>Adjustment</strong> comes from the <code>Inventory Replacement Cost Unbranded Adjustments</code> publisher (PriceInstrumentID <code>995329</code>) &mdash; user-entered differential. Each Output posting was paired with the most recent Adjustment effective at or before its timestamp.</li>
+          <li><strong>Cost</strong> is computed as <code>Price &minus; Adjustment</code> (the cost build-up). The <code>Build Up</code> instrument itself (<code>995331</code>) stores no curve points directly &mdash; it's a formula-only role that feeds the Output.</li>
+          <li>No May 23 / May 24 / May 25 postings exist (weekend); May 21 is outside the 7-day window.</li>
+          <li><span class="bulb">&#128161;</span> If you'd rather see this weighted by lifted volume, no <code>BillOfLadingDetail</code> rows tied to this mapping in the window &mdash; so a volume-weighted avg isn't computable for this period.</li>
+        </ul>
+        <div class="section-label">Sources:</div>
+        <ul>
+          <li><code>Quote Book</code> &rarr; config <code>Inventory Replacement Cost Unbranded</code> (QuoteConfigurationId <code>29</code>), mapping <code>163043</code></li>
+          <li>Output: <code>CurvePoint</code> / <code>CurvePointPrice</code> for PriceInstrumentID <code>995325</code></li>
+          <li>Adjustment: <code>CurvePoint</code> / <code>CurvePointPrice</code> for PriceInstrumentID <code>995329</code></li>
+          <li>Environment: <code>growmark-pe-prod</code></li>
+        </ul>
+        <div class="meta">Used: /kitt:query-database<br>[Session: e4f2fb03&hellip; | Model: opus | Env: DEV | Time: 144.2s]</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="msg">
+    <div class="avatar bot">K</div>
+    <div class="body">
+      <div class="head"><span class="name">KITT Dev</span><span class="bot-tag">App</span><span class="time">10:50 AM</span></div>
+      <div class="text">
+        &#128202; <strong>End-Of-Day Only</strong> (too large for inline display)
+        <div class="file-attach">&#128196; <span class="fname">End-Of-Day_Only.csv</span> <span class="fmeta">text/csv &middot; 202 B &middot; F0B6Z3SK48M</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="msg">
+    <div class="avatar bot">K</div>
+    <div class="body">
+      <div class="head"><span class="name">KITT Dev</span><span class="bot-tag">App</span><span class="time">10:50 AM</span></div>
+      <div class="text">
+        &#128202; <strong>Per-Posting Detail</strong> (too large for inline display)
+        <div class="file-attach">&#128196; <span class="fname">Per-Posting_Detail.csv</span> <span class="fmeta">text/csv &middot; 527 B &middot; F0B72FB8HH8</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="msg">
+    <div class="avatar user">AR</div>
+    <div class="body">
+      <div class="head"><span class="name">Agustin Reichhardt</span><span class="time">10:51 AM</span></div>
+      <div class="text">
+        <span style="color:#1d9bd1">@Frank Overland</span> this is an example of a real use case that we could use for the design.
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

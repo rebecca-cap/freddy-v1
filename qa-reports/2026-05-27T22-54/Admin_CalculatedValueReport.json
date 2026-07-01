@@ -1,0 +1,14 @@
+{
+  "path": "/Admin/CalculatedValueReport",
+  "title": "Current Prices",
+  "finalUrl": "http://localhost:5173/Admin/CalculatedValueReport",
+  "rootLen": 120368,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 24,
+  "stuckLoaders": [],
+  "emptyGrids": []
+}

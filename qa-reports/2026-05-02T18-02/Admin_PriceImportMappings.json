@@ -1,0 +1,17 @@
+{
+  "path": "/Admin/PriceImportMappings",
+  "title": "Price Import Mappings",
+  "finalUrl": "http://localhost:3001/Admin/PriceImportMappings",
+  "rootLen": 74868,
+  "crashed": false,
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 429 ()"
+  ],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [
+    "PriceImport/TranslationManagement/GetMetadata",
+    "PriceImport/TranslationManagement/GetPriceTranslationData"
+  ],
+  "consoleEventCount": 15
+}

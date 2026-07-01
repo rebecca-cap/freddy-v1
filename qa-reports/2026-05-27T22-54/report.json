@@ -1,0 +1,481 @@
+{
+  "generatedAt": "2026-05-27T22:56:30.501Z",
+  "summary": {
+    "total": 52,
+    "pass": 52,
+    "fail": 0,
+    "errors": 0,
+    "stuckLoaders": 0,
+    "emptyGrids": 0
+  },
+  "routes": {
+    "/": {
+      "status": "pass",
+      "rootLen": 127989,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/AllocationAssociationManagement": {
+      "status": "pass",
+      "rootLen": 177532,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/AllocationMappings": {
+      "status": "pass",
+      "rootLen": 74496,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/AppliedAllocationReport": {
+      "status": "pass",
+      "rootLen": 212811,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/AuthorizationAllocationAssociations": {
+      "status": "pass",
+      "rootLen": 127298,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/Availability": {
+      "status": "pass",
+      "rootLen": 133672,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/CalculatedValueReport": {
+      "status": "pass",
+      "rootLen": 120368,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/CalendarManagement": {
+      "status": "pass",
+      "rootLen": 119838,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/CalendarPeriods": {
+      "status": "pass",
+      "rootLen": 56887,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/Counterparties": {
+      "status": "pass",
+      "rootLen": 135687,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/CounterpartyHierarchy": {
+      "status": "pass",
+      "rootLen": 86422,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/DeliveryPeriods": {
+      "status": "pass",
+      "rootLen": 149863,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/FormulaTemplates": {
+      "status": "pass",
+      "rootLen": 114835,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/Instruments": {
+      "status": "pass",
+      "rootLen": 132544,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/IntegrationStatus": {
+      "status": "pass",
+      "rootLen": 116660,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/Locations": {
+      "status": "pass",
+      "rootLen": 135074,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/ManageOpisPrices": {
+      "status": "pass",
+      "rootLen": 200630,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/MarketPlatformSetups": {
+      "status": "pass",
+      "rootLen": 123971,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/NetGrossDefaults": {
+      "status": "pass",
+      "rootLen": 110867,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/PlaceholderManagement": {
+      "status": "pass",
+      "rootLen": 154458,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/PriceConfiguration": {
+      "status": "pass",
+      "rootLen": 72736,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/PriceImportMappings": {
+      "status": "pass",
+      "rootLen": 87334,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/PriceNotifications": {
+      "status": "pass",
+      "rootLen": 106742,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/PriceTranslations": {
+      "status": "pass",
+      "rootLen": 121599,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/Products": {
+      "status": "pass",
+      "rootLen": 151691,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/Publishers": {
+      "status": "pass",
+      "rootLen": 94885,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/QuantityDistributionManagement": {
+      "status": "pass",
+      "rootLen": 116049,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/Users": {
+      "status": "pass",
+      "rootLen": 159716,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Admin/VolumeThresholds": {
+      "status": "pass",
+      "rootLen": 134874,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/AdminDashboard": {
+      "status": "pass",
+      "rootLen": 260205,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Analytics/ByChannel": {
+      "status": "pass",
+      "rootLen": 187744,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Analytics/ByContract": {
+      "status": "pass",
+      "rootLen": 231641,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Analytics/ByCustomer": {
+      "status": "pass",
+      "rootLen": 118475,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/Analytics/ByTerminal": {
+      "status": "pass",
+      "rootLen": 111434,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/BuyNow/Forward": {
+      "status": "pass",
+      "rootLen": 122113,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/BuyNow/Offers": {
+      "status": "pass",
+      "rootLen": 158373,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/BuyNow/Prompt": {
+      "status": "pass",
+      "rootLen": 107576,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/ContractManagement/ContractRevaluation": {
+      "status": "pass",
+      "rootLen": 150633,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/ContractManagement/Contracts": {
+      "status": "pass",
+      "rootLen": 190942,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/ContractManagement/FormulaTemplates": {
+      "status": "pass",
+      "rootLen": 115548,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/ContractManagement/Measurements": {
+      "status": "pass",
+      "rootLen": 216379,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/ContractManagement/MissingPrices": {
+      "status": "pass",
+      "rootLen": 146760,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/ContractManagement/Valuations": {
+      "status": "pass",
+      "rootLen": 131860,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/OnlineOrders": {
+      "status": "pass",
+      "rootLen": 198052,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/OrderDashboard": {
+      "status": "pass",
+      "rootLen": 259330,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/PricingEngine/Calculations": {
+      "status": "pass",
+      "rootLen": 26440,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/PricingEngine/CommandCenter": {
+      "status": "pass",
+      "rootLen": 306183,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/PricingEngine/Prices": {
+      "status": "pass",
+      "rootLen": 26440,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/PricingEngine/QuoteBookEOD": {
+      "status": "pass",
+      "rootLen": 180939,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/PricingEngine/QuoteBookMidday": {
+      "status": "pass",
+      "rootLen": 175763,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/SpecialOffers": {
+      "status": "pass",
+      "rootLen": 163641,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    },
+    "/SuperUserAdmin/MPIManagement": {
+      "status": "pass",
+      "rootLen": 209252,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    }
+  }
+}

@@ -1,0 +1,51 @@
+/*
+ * ScoutMessageList — scrollable conversation surface.
+ *
+ * Mirrors `.gizmo-body` in the round-4 wireframe (gizmo-demo.html, ~line 995):
+ *   flex: 1; overflow-y: auto;
+ *   padding: 14px 16px 8px;
+ *   display: flex; flex-direction: column; gap: 10px;
+ *
+ * The container is placed directly inside `.scout-panel__body` (which already
+ * has padding). To avoid double padding we let this component own scroll +
+ * layout and strip the body's padding when the message list is active — see
+ * `ScoutPanel.css` `.scout-panel__body.has-messages` selector.
+ */
+
+.scout-message-list {
+  flex: 1;
+  min-height: 0; /* required for scroll inside flex */
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 16px 18px 12px;
+}
+
+/* Quieter scrollbar to match Scout's chrome. WebKit-only — Firefox falls
+   back to its default narrow track, which is already restrained. */
+.scout-message-list::-webkit-scrollbar {
+  width: 6px;
+}
+.scout-message-list::-webkit-scrollbar-thumb {
+  background: var(--scout-border-strong);
+  border-radius: 999px;
+}
+.scout-message-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Group each bubble + its optional candidate prompt so they hug each other. */
+.scout-message-list .scout-message-list__item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Breathing room between consecutive items within a block (e.g. the blue ask
+   bubble and the answer/thinking card, or the "Processing…" separator and the
+   card it heads) so bubbles never touch. Block boundaries keep their own
+   divider margin / list gap, so this only affects in-block siblings. */
+.scout-message-list .scout-message-list__item + .scout-message-list__item {
+  margin-top: 12px;
+}

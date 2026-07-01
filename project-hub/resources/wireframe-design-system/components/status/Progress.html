@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Progress Component - Gravitate Wireframe Design System</title>
+  <link rel="stylesheet" href="../../tokens/index.css">
+  <link rel="stylesheet" href="status.css">
+  <style>
+    body {
+      font-family: var(--wf-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+      padding: 32px;
+      background-color: var(--wf-color-bg, #ffffff);
+      color: var(--wf-color-text, #1e293b);
+    }
+    .demo-section {
+      margin-bottom: 48px;
+    }
+    .demo-section h2 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--wf-color-text, #1e293b);
+    }
+    .demo-section h3 {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 12px;
+      color: var(--wf-color-text-muted, #64748b);
+    }
+    .demo-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      max-width: 400px;
+    }
+    .demo-row {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid var(--wf-color-border, #cbd5e1);
+      margin: 32px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Progress Component</h1>
+  <p style="color: var(--wf-color-text-muted); margin-bottom: 32px;">
+    Progress indicators show the completion status of a task or process.
+  </p>
+
+  <!-- Basic Progress Bar -->
+  <div class="demo-section">
+    <h2>Basic Progress Bar</h2>
+    <div class="demo-grid">
+      <!-- Bar progress with label -->
+      <div class="wf-progress">
+        <div class="wf-progress-label">
+          <span>Volume Fulfilled</span>
+          <span>75%</span>
+        </div>
+        <div class="wf-progress-bar">
+          <div class="wf-progress-fill" style="width: 75%"></div>
+        </div>
+      </div>
+
+      <!-- Different percentages -->
+      <div class="wf-progress">
+        <div class="wf-progress-label">
+          <span>Upload Progress</span>
+          <span>25%</span>
+        </div>
+        <div class="wf-progress-bar">
+          <div class="wf-progress-fill" style="width: 25%"></div>
+        </div>
+      </div>
+
+      <div class="wf-progress">
+        <div class="wf-progress-label">
+          <span>Processing</span>
+          <span>100%</span>
+        </div>
+        <div class="wf-progress-bar">
+          <div class="wf-progress-fill" style="width: 100%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Color Variants -->
+  <div class="demo-section">
+    <h2>Color Variants</h2>
+    <div class="demo-grid">
+      <!-- Default (Primary) -->
+      <div class="wf-progress">
+        <div class="wf-progress-label">
+          <span>Default (Primary)</span>
+          <span>60%</span>
+        </div>
+        <div class="wf-progress-bar">
+          <div class="wf-progress-fill" style="width: 60%"></div>
+        </div>
+      </div>
+
+      <!-- Success -->
+      <div class="wf-progress wf-progress-success">
+        <div class="wf-progress-label">
+          <span>Success</span>
+          <span>80%</span>
+        </div>
+        <div class="wf-progress-bar">
+          <div class="wf-progress-fill" style="width: 80%"></div>
+        </div>
+      </div>
+
+      <!-- Warning -->
+      <div class="wf-progress wf-progress-warning">
+        <div class="wf-progress-label">
+          <span>Warning</span>
+          <span>45%</span>
+        </div>
+        <div class="wf-progress-bar">
+          <div class="wf-progress-fill" style="width: 45%"></div>
+        </div>
+      </div>
+
+      <!-- Error -->
+      <div class="wf-progress wf-progress-error">
+        <div class="wf-progress-label">
+          <span>Error / Danger</span>
+          <span>15%</span>
+        </div>
+        <div class="wf-progress-bar">
+          <div class="wf-progress-fill" style="width: 15%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Size Variants -->
+  <div class="demo-section">
+    <h2>Size Variants</h2>
+    <div class="demo-grid">
+      <!-- Small -->
+      <div class="wf-progress wf-progress-sm">
+        <div class="wf-progress-label">
+          <span>Small</span>
+          <span>50%</span>
+        </div>
+        <div class="wf-progress-bar">
+          <div class="wf-progress-fill" style="width: 50%"></div>
+        </div>
+      </div>
+
+      <!-- Medium (Default) -->
+      <div class="wf-progress">
+        <div class="wf-progress-label">
+          <span>Medium (Default)</span>
+          <span>50%</span>
+        </div>
+        <div class="wf-progress-bar">
+          <div class="wf-progress-fill" style="width: 50%"></div>
+        </div>
+      </div>
+
+      <!-- Large -->
+      <div class="wf-progress wf-progress-lg">
+        <div class="wf-progress-label">
+          <span>Large</span>
+          <span>50%</span>
+        </div>
+        <div class="wf-progress-bar">
+          <div class="wf-progress-fill" style="width: 50%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Without Label -->
+  <div class="demo-section">
+    <h2>Progress Bar Only (No Label)</h2>
+    <div class="demo-grid">
+      <div class="wf-progress wf-progress-bar-only">
+        <div class="wf-progress-bar">
+          <div class="wf-progress-fill" style="width: 65%"></div>
+        </div>
+      </div>
+
+      <div class="wf-progress wf-progress-bar-only wf-progress-success wf-progress-sm">
+        <div class="wf-progress-bar">
+          <div class="wf-progress-fill" style="width: 90%"></div>
+        </div>
+      </div>
+
+      <div class="wf-progress wf-progress-bar-only wf-progress-warning wf-progress-lg">
+        <div class="wf-progress-bar">
+          <div class="wf-progress-fill" style="width: 35%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Indeterminate Progress -->
+  <div class="demo-section">
+    <h2>Indeterminate Progress</h2>
+    <p style="color: var(--wf-color-text-muted); font-size: 13px; margin-bottom: 16px;">
+      Use when the progress percentage is unknown.
+    </p>
+    <div class="demo-grid">
+      <div class="wf-progress wf-progress-indeterminate">
+        <div class="wf-progress-label">
+          <span>Loading...</span>
+          <span></span>
+        </div>
+        <div class="wf-progress-bar">
+          <div class="wf-progress-fill"></div>
+        </div>
+      </div>
+
+      <div class="wf-progress wf-progress-indeterminate wf-progress-bar-only">
+        <div class="wf-progress-bar">
+          <div class="wf-progress-fill"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Usage Examples -->
+  <div class="demo-section">
+    <h2>Real-World Examples</h2>
+
+    <h3>File Upload</h3>
+    <div style="max-width: 400px; padding: 16px; border: 1px solid var(--wf-color-border); border-radius: 8px; margin-bottom: 24px;">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+        <span style="font-size: 24px;">📄</span>
+        <div style="flex: 1;">
+          <div style="font-size: 14px; font-weight: 500;">document.pdf</div>
+          <div style="font-size: 12px; color: var(--wf-color-text-muted);">2.4 MB of 3.2 MB</div>
+        </div>
+      </div>
+      <div class="wf-progress wf-progress-sm wf-progress-bar-only">
+        <div class="wf-progress-bar">
+          <div class="wf-progress-fill" style="width: 75%"></div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Multi-step Process</h3>
+    <div style="max-width: 400px; padding: 16px; border: 1px solid var(--wf-color-border); border-radius: 8px;">
+      <div style="font-size: 14px; font-weight: 500; margin-bottom: 8px;">Step 2 of 4: Verify Information</div>
+      <div class="wf-progress wf-progress-bar-only">
+        <div class="wf-progress-bar">
+          <div class="wf-progress-fill" style="width: 50%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

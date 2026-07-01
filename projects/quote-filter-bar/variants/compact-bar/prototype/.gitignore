@@ -1,0 +1,40 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+.idea/**
+/logseq/bak
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+.env
+.env.local
+.env.development
+.env.development.bak
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+.python-version
+
+debug.log
+
+.eslintcache
+.vscode
+.yalc
+yalc.lock
+
+.yarn/cache
+.yarn/install-state.gz
+.vite-cache/

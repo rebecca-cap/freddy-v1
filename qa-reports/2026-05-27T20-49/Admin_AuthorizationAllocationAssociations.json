@@ -1,0 +1,14 @@
+{
+  "path": "/Admin/AuthorizationAllocationAssociations",
+  "title": "Authorization Allocations",
+  "finalUrl": "http://localhost:5173/Admin/AuthorizationAllocationAssociations",
+  "rootLen": 127298,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 8,
+  "stuckLoaders": [],
+  "emptyGrids": []
+}

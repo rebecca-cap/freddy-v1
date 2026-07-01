@@ -1,0 +1,51 @@
+/*
+ * ScoutConfidence — confidence badge pill.
+ *
+ * Spec style: a soft-tinted pill with a leading colored dot, color-coded by
+ * level. Migrated out of ScoutSourcesFooter.css (confidence used to live in
+ * the footer); now sits at the top of the answer card.
+ */
+
+.scout-conf {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 9px;
+  border-radius: var(--scout-radius-pill);
+  font-size: var(--scout-font-size-sm);
+  font-weight: var(--scout-font-weight-semibold);
+  line-height: 1.2;
+}
+
+.scout-conf__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.scout-conf.is-high {
+  background: var(--scout-accent-bg);
+  color: var(--scout-accent-text);
+}
+.scout-conf.is-high .scout-conf__dot {
+  background: var(--scout-accent);
+}
+
+.scout-conf.is-medium {
+  background: var(--scout-warn-bg);
+  color: var(--scout-warn);
+}
+.scout-conf.is-medium .scout-conf__dot {
+  background: var(--scout-warn);
+}
+
+.scout-conf.is-low {
+  background: var(--scout-danger-bg);
+  color: var(--scout-danger);
+}
+.scout-conf.is-low .scout-conf__dot {
+  background: var(--scout-danger);
+}

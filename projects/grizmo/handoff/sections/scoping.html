@@ -1,0 +1,45 @@
+<h2>Scoping &amp; context</h2>
+
+<p class="lead">Every conversation is anchored to a <span class="tok">context</span> — the slice of the grid the analyst is asking about. Context is captured as removable chips in a bar at the top of the Chats view, set by clicking cells in the grid, and mirrored back as colored highlighting on the grid itself. With nothing in focus, Scout answers about the whole view.</p>
+
+<h3>Context chips</h3>
+<p>The context bar holds one or more chips describing the current scope. Three kinds exist:</p>
+<ul>
+  <li><b>Row chip</b> — a whole row (one customer / location / product line).</li>
+  <li><b>Cell chip</b> — one specific value, such as a single proposed price.</li>
+  <li><b>Selection chip</b> — a multi-cell pick made within the scoping rules.</li>
+</ul>
+<p>When empty, the bar shows the hint <span class="tok">Nothing in focus · click a cell</span> alongside a <span class="tok">+ Add a cell</span> affordance (see 1, 2). When populated, each chip is a removable pill.</p>
+
+{{figure:c1-context-empty}}
+
+{{figure:c1-context-populated}}
+
+<h3>Default click behavior</h3>
+<p>While the panel is open, clicking a grid cell <b>replaces</b> the current non-pinned context with a fresh chip — a cell chip for a data column, a row chip for an identity column. Once any chip is <b>explicitly pinned</b>, further clicks <b>append</b> instead of replace. Clicking a chip's own target toggles that chip off. With the panel open, Scout's scoping <b>intercepts</b> the grid's normal click so a click scopes Scout rather than opening the row's drawer.</p>
+
+<div class="callout callout--note"><b>Click interception</b> Interception applies only while the panel is open. When Scout is closed, grid clicks behave normally. A rebuild must scope Scout without breaking the grid's own row interactions.</div>
+
+<h3>+Add mode and the no-diagonal rule</h3>
+<p>The <span class="tok">+ Add a cell</span> affordance enters a focused picking mode: the cursor becomes a copy cursor and eligible cells gain a dashed outline. A multi-cell pick must share <b>one row</b> <i>or</i> <b>one scope-group column</b> — never a diagonal. Off-axis cells and identity cells are disabled while picking (see 1, 2). Pressing <span class="kbd">Esc</span> exits the mode.</p>
+
+{{figure:c3-cell-addmode}}
+
+<h3>Grid cell highlighting</h3>
+<p>Highlighting appears only while Scout is open, and it encodes scope at a glance:</p>
+<table>
+  <thead><tr><th>Treatment</th><th>Meaning</th></tr></thead>
+  <tbody>
+    <tr><td>Soft <b>green</b> tint, inset outline, accented text</td><td>Scope cells — what the current context covers</td></tr>
+    <tr><td>Faint <b>grey</b> overlay</td><td>Identity cells — the row's descriptive columns</td></tr>
+    <tr><td>Subtle background tint per group</td><td>Column-group tints — Cost, Proposed, Margin, Δ-vs-prior, Flags</td></tr>
+    <tr><td><b>Violet</b> outline badge</td><td>An explicit cell chip, marking its exact cell</td></tr>
+  </tbody>
+</table>
+
+{{figure:c3-cell-scope}}
+
+<h3>The "How cell colors work" tour</h3>
+<p>A <span class="tok">How cell colors work</span> text link near the grid's toolbar opens a popover explaining identity versus scope coloring (see 1). It replaces an earlier color-key legend strip, which was retired in favor of this lighter affordance.</p>
+
+{{figure:c3-tour}}

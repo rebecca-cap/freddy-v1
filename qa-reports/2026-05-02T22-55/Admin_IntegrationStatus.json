@@ -1,0 +1,14 @@
+{
+  "path": "/Admin/IntegrationStatus",
+  "title": "Extract Status Report",
+  "finalUrl": "http://localhost:3001/Admin/IntegrationStatus",
+  "rootLen": 115785,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 29,
+  "stuckLoaders": [],
+  "emptyGrids": []
+}

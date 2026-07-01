@@ -1,0 +1,7 @@
+li.ant-menu-item.ant-menu-item-selected {
+    background-color: white;
+}
+
+.ant-menu:not(.ant-menu-horizontal) li.ant-menu-item.ant-menu-item-selected {
+    background-color: var(--theme-color-2-dim) !important;
+}

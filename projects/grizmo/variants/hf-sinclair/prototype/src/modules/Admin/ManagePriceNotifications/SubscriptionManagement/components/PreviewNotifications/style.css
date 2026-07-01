@@ -1,0 +1,15 @@
+.notification-summary {
+  font-size: 14px;
+}
+
+.notification-summary .issues-detected {
+  background-color: rgb(254 242 242);
+  color: var(--theme-error);
+  border: 1px solid rgb(254 226 226);
+  border-radius: 4px;
+}
+
+.notification-alert {
+  margin-bottom: 16px;
+}
+

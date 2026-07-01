@@ -1,0 +1,65 @@
+/*
+ * ScoutEmptyState — first-frame layout inside the panel body.
+ *
+ * Centered column: portrait → title → body → chips. Spacing mirrors the
+ * round-4 wireframe's `.first-time-intro` block (Kit Round 4 - Gizmo
+ * Option A/gizmo-demo.html, lines 167–219), with one deliberate change:
+ * portrait height is 100px per the implementation plan (Step 2.1), not the
+ * wireframe's 160px. All sizes / colors come from --scout-* tokens.
+ */
+
+.scout-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 12px 4px 4px;
+  gap: 8px;
+}
+
+.scout-empty-state__portrait {
+  width: auto;
+  height: 150px;
+  margin: 4px auto 6px;
+  /* Match the wireframe's subtle idle sway so the portrait reads as alive,
+     not as a stamped illustration. 4.5s loop, ~2° rotation, anchored bottom-
+     center so it pivots like a head, not a coin. */
+  animation: scout-empty-state-wave 4.5s ease-in-out infinite;
+  transform-origin: bottom center;
+  user-select: none;
+}
+
+@keyframes scout-empty-state-wave {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-2px) rotate(-1.2deg); }
+  75% { transform: translateY(-2px) rotate(1.2deg); }
+}
+
+/* Specificity bump (3-class) so token-driven styling beats Excalibrr/antd
+   defaults regardless of CSS import order. Title is the wireframe's
+   `.fti-title` — brand-tinted, semibold. */
+.scout-scope .scout-empty-state .scout-empty-state__title {
+  font-size: 18px;
+  /* Heaviest weight the loaded Lato faces offer (Black/900 → falls back to
+     Bold where 900 isn't a real face). */
+  font-weight: 900;
+  color: var(--scout-brand);
+  line-height: var(--scout-line-height-tight);
+  margin: 0;
+}
+
+.scout-scope .scout-empty-state .scout-empty-state__body {
+  font-size: var(--scout-font-size-sm-plus);
+  font-weight: var(--scout-font-weight-regular);
+  color: var(--scout-text-muted);
+  line-height: var(--scout-line-height-base);
+  max-width: 280px;
+  margin: 0 auto;
+  /* Texto applies its own left alignment (wins on cascade), so force center. */
+  text-align: center !important;
+}
+
+.scout-scope .scout-empty-state .scout-empty-state__body b {
+  color: var(--scout-text);
+  font-weight: var(--scout-font-weight-semibold);
+}

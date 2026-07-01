@@ -1,0 +1,12 @@
+{
+  "path": "/PricingEngine/QuoteBookEOD",
+  "title": "Daily",
+  "finalUrl": "http://localhost:3001/PricingEngine/QuoteBookEOD",
+  "rootLen": 162856,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 12
+}

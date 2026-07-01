@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Index Special Offers — Round 1 Wireframe Guide</title>
+  <link rel="stylesheet" href="wireframes/assets/wireframe.css">
+  <style>
+    :root {
+      --iso-accent: var(--wf-color-primary);
+      --iso-sidebar-bg: #0f172a;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--wf-color-background); color: var(--wf-color-text-primary); font-family: var(--wf-font-family); line-height: 1.5; }
+
+    /* ---- sidebar TOC ---- */
+    .toc { position: fixed; top: 0; left: 0; width: 260px; height: 100vh; background: var(--iso-sidebar-bg); color: #cbd5e1; overflow-y: auto; padding: 28px 22px 60px; }
+    .toc .toc-brand { color: #fff; font-size: var(--wf-text-base); font-weight: var(--wf-font-bold); letter-spacing: .02em; margin-bottom: 4px; }
+    .toc .toc-sub { color: #64748b; font-size: var(--wf-text-xs); margin-bottom: 26px; }
+    .toc h4 { color: #64748b; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; margin: 22px 0 8px; }
+    .toc a { display: block; color: #cbd5e1; text-decoration: none; font-size: var(--wf-text-sm); padding: 4px 0; }
+    .toc a:hover { color: #fff; }
+    .toc a.mono { font-family: var(--wf-font-mono, ui-monospace, monospace); font-size: var(--wf-text-xs); color: #94a3b8; }
+    .toc a.mono:hover { color: var(--iso-accent); }
+
+    /* ---- main ---- */
+    main { margin-left: 260px; max-width: 1040px; padding: 56px 72px 120px; }
+    .eyebrow { text-transform: uppercase; letter-spacing: .1em; font-size: 12px; font-weight: var(--wf-font-bold); color: var(--iso-accent); }
+    h1.doc-title { font-size: 34px; line-height: 1.15; margin: 10px 0 14px; }
+    .lead { font-size: 15px; color: var(--wf-color-text-secondary); max-width: 720px; }
+    .meta { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin: 28px 0 6px; padding-bottom: 26px; border-bottom: 3px solid #111; }
+    .meta .k { font-size: 11px; text-transform: uppercase; letter-spacing: .07em; color: var(--wf-color-text-tertiary); }
+    .meta .v { font-size: var(--wf-text-sm); font-weight: var(--wf-font-medium); margin-top: 3px; }
+
+    h2 { font-size: 22px; margin: 52px 0 16px; padding-bottom: 8px; border-bottom: 2px solid var(--wf-color-border); scroll-margin-top: 24px; }
+    h3 { scroll-margin-top: 24px; }
+    p { margin: 10px 0; }
+    main a { color: var(--iso-accent); }
+
+    /* ---- file cards ---- */
+    .file-card { border: 1px solid var(--wf-color-border); border-radius: 8px; background: var(--wf-color-surface); padding: 20px 22px; margin: 18px 0; scroll-margin-top: 24px; }
+    .file-card-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+    .file-card-head h3 { font-family: var(--wf-font-mono, ui-monospace, monospace); font-size: 15px; color: var(--iso-accent); margin: 0; }
+    .file-card-head .scr { color: var(--wf-color-text-tertiary); font-size: var(--wf-text-sm); }
+    .file-card-head .open { margin-left: auto; font-size: 12px; text-decoration: none; color: var(--iso-accent); border: 1px solid var(--iso-accent); border-radius: 5px; padding: 4px 10px; }
+    .file-card-head .open:hover { background: var(--iso-accent); color: #fff; }
+    .file-card h4 { margin: 14px 0 4px; font-size: var(--wf-text-sm); }
+
+    /* ---- tables ---- */
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; border: 1px solid var(--wf-color-border); border-radius: 8px; overflow: hidden; font-size: var(--wf-text-sm); }
+    thead th { background: var(--wf-color-neutral-100, #f1f5f9); text-align: left; text-transform: uppercase; letter-spacing: .05em; font-size: 11px; color: var(--wf-color-text-secondary); padding: 9px 12px; }
+    td { padding: 9px 12px; border-top: 1px solid var(--wf-color-border); vertical-align: top; }
+    tbody tr:hover { background: var(--wf-color-surface-sunken); }
+    code { font-family: var(--wf-font-mono, ui-monospace, monospace); font-size: .92em; background: var(--wf-color-surface-sunken); padding: 1px 5px; border-radius: 4px; }
+
+    /* ---- callouts ---- */
+    .callout { border-left: 4px solid var(--iso-accent); background: #f0f9ff; border-radius: 0 6px 6px 0; padding: 12px 16px; margin: 16px 0; }
+    .callout.decision { border-left-color: #16a34a; background: #ecfdf5; }
+    .callout.warn { border-left-color: #d97706; background: #fffbeb; }
+    .callout-label { text-transform: uppercase; letter-spacing: .07em; font-size: 11px; font-weight: var(--wf-font-bold); color: var(--iso-accent); }
+    .callout.decision .callout-label { color: #16a34a; }
+    .callout.warn .callout-label { color: #d97706; }
+    .callout p { margin: 4px 0 0; font-size: var(--wf-text-sm); }
+
+    /* ---- decision / open-question lists ---- */
+    ol.decisions { padding-left: 20px; }
+    ol.decisions li { margin: 12px 0; line-height: 1.55; }
+    ol.open-questions { list-style: none; padding: 0; }
+    ol.open-questions li { background: #fffbeb; border-left: 3px solid #d97706; border-radius: 0 6px 6px 0; padding: 10px 14px; margin: 10px 0; font-size: var(--wf-text-sm); }
+    ol.open-questions li b { color: #92400e; }
+
+    /* ---- swatches ---- */
+    .swatch { display: inline-block; width: 14px; height: 14px; border-radius: 4px; vertical-align: middle; margin-right: 5px; border: 1px solid rgba(0,0,0,.1); }
+    .swatch-line { display: inline-block; width: 28px; height: 2px; vertical-align: middle; margin-right: 5px; background: var(--iso-accent); }
+    .swatch-line.dashed { height: 0; border-top: 2px dashed var(--wf-color-border); background: none; }
+
+    @media (max-width: 900px) {
+      .toc { display: none; }
+      main { margin-left: 0; padding: 32px 24px 80px; }
+      .meta { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="toc">
+    <div class="toc-brand">Index Special Offers</div>
+    <div class="toc-sub">Lo-fi · Round 1 guide</div>
+
+    <h4>Introduction</h4>
+    <a href="#overview">Overview</a>
+    <a href="#flow">The user flow</a>
+    <a href="#layout">Shared layout</a>
+    <a href="#language">Color &amp; status language</a>
+    <a href="#inventory">File inventory</a>
+
+    <h4>Per-screen docs</h4>
+    <a href="#s01">01 · Offers launchpad</a>
+    <a href="#s02">02 · Quick create (hero)</a>
+    <a href="#s03">03 · Create from prior</a>
+    <a href="#s04">04 · Mobile quick create</a>
+    <a href="#s05">05 · Offer sent</a>
+
+    <h4>Rationale</h4>
+    <a href="#decisions">Design decisions</a>
+    <a href="#open">Open for round 2</a>
+    <a href="#view">How to view</a>
+
+    <h4>Wireframes</h4>
+    <a class="mono" href="wireframes/01-launchpad.html" target="_blank">01-launchpad.html</a>
+    <a class="mono" href="wireframes/02-quick-create-index.html" target="_blank">02-quick-create-index.html</a>
+    <a class="mono" href="wireframes/03-create-from-prior.html" target="_blank">03-create-from-prior.html</a>
+    <a class="mono" href="wireframes/04-mobile-quick-create.html" target="_blank">04-mobile-quick-create.html</a>
+    <a class="mono" href="wireframes/05-review-send.html" target="_blank">05-review-send.html</a>
+  </nav>
+
+  <main>
+    <div class="eyebrow">Wireframe Index &amp; Guide · Round 1</div>
+    <h1 class="doc-title">Index Special Offers — Quick Create</h1>
+    <p class="lead">A fresh, true lo-fi exploration of a <strong>single-view Quick Create for an index special offer</strong> in the Gravitate selling platform. The goal set in the kickoff: let a sales rep fire off an index offer in roughly <strong>10–12 clicks and under 30 seconds</strong> — down from ~25 clicks and a minute today — without cramming the flow into the old quick-create drawer.</p>
+
+    <div class="meta">
+      <div><div class="k">Project</div><div class="v">Index Special Offers (OSP)</div></div>
+      <div><div class="k">Round</div><div class="v">1 · kickoff (Reece + Agustin, Jun 15 sync)</div></div>
+      <div><div class="k">Designer</div><div class="v">Frank Overland</div></div>
+      <div><div class="k">Date</div><div class="v">June 2026</div></div>
+    </div>
+
+    <!-- ===================== OVERVIEW ===================== -->
+    <h2 id="overview">Overview</h2>
+    <p>These five wireframes are self-contained, static HTML prototypes built from the vendored Gravitate <code>WireframeDesignSystem</code> (<code>wf-</code> components, <code>--wf-</code> tokens). They cover one job: a power-user sales rep creating and sending an <strong>index-priced special offer</strong> on a Group 3 gas product. Index offers are the case where today's quick-create drawer breaks down, because index pricing needs choices the drawer never represented.</p>
+    <p>This is a <em>direction-finding</em> round, not a requirements build. Per the kickoff, current designs are "more a feedback canvas than ready requirements," so round 1 deliberately starts from a clean slate to test whether a from-scratch single-view flow lands somewhere better than the iterated drawer.</p>
+
+    <div class="callout">
+      <div class="callout-label">The premise</div>
+      <p>"If I'm a sales rep sitting at lunch and the market moves and I want to fire off an offer fast — what we have today is too cumbersome." The whole round optimizes for that moment.</p>
+    </div>
+
+    <!-- ===================== FLOW ===================== -->
+    <h2 id="flow">The user flow</h2>
+    <p>The screens follow the speed path end-to-end: <strong>Launch → (prefill) → one-view fill → Send → payoff</strong>.</p>
+    <table>
+      <thead><tr><th>Step</th><th>Screen</th><th>What happens</th></tr></thead>
+      <tbody>
+        <tr><td>Launch</td><td>01 · Launchpad</td><td>One menu, three paths: Quick create, Create from prior, Full setup.</td></tr>
+        <tr><td>Author fast</td><td>02 · Quick create (hero)</td><td>Everything in one scrollless view; price formula is the centerpiece.</td></tr>
+        <tr><td>Clone faster</td><td>03 · Create from prior</td><td>Same view, prefilled from a sent offer — tweak only what changed.</td></tr>
+        <tr><td>On the go</td><td>04 · Mobile</td><td>Identical field sequence collapsed to one column with a pinned send bar.</td></tr>
+        <tr><td>Payoff</td><td>05 · Offer sent</td><td>Confirmation plus a click/time scorecard proving the budget was met.</td></tr>
+      </tbody>
+    </table>
+
+    <!-- ===================== LAYOUT ===================== -->
+    <h2 id="layout">Shared layout structure</h2>
+    <p>The two quick-create screens (02, 03) deliberately reuse the <strong>production "Create New Offer" surface</strong> so they read as the same page the wizard-based offers already use — stakeholders shouldn't have to learn a new screen. That surface is a full-screen takeover with no app sidebar:</p>
+    <ul>
+      <li><strong>Top app bar</strong> (<code>lf-topbar</code>) — a <code>&times;</code> close affordance and the bold "Create New Offer" title, matching the real create flow. A small dashed "Round 1 index" link sits at the right as reviewer-only scaffolding.</li>
+      <li><strong>"Back to Offers" link</strong> (<code>lf-backtolist</code>) above the content, as on the production page.</li>
+      <li><strong>Two-column body</strong> (<code>lf-offer-grid</code>) — a wide left <strong>content card</strong> (<code>wf-card</code>) holding the whole offer, and a narrower (~360px) right <strong>"What customers will see"</strong> preview card (<code>lf-preview</code>) with the same four labelled sections the wizard shows: Product &amp; Location, Pricing Strategy (Index Pricing), Timing Windows, Target Customers.</li>
+      <li><strong>Footer action bar</strong> (<code>lf-offer-footer</code>) — occupies the wizard footer's position, but since this is a single view it carries <em>Cancel</em> + <em>Send offer</em> with a muted speed note instead of Previous / Step N of 4 / Next.</li>
+    </ul>
+    <p>Screens 01 (offers list) and 05 (sent confirmation) still use the app shell (<code>wf-page-with-sidebar</code>) since they are not the create-offer surface; the mobile screen (04) uses its own phone frame.</p>
+    <div class="callout decision">
+      <div class="callout-label">Fit the existing surface, drop the stepper</div>
+      <p>Per Frank's R1 feedback, quick-create adopts the real Create New Offer chrome (top bar, Back to Offers, left content + right "what customers will see") so it feels native alongside the wizard-based offers. The only structural change is removing the <code>stepper</code>: the wizard's gated steps collapse into one scannable card, so the rep tweaks the few cells that matter (mainly the price formula) and sends. Inside the card, groups are plain heading-plus-fields rather than <code>wf-form-section</code> blocks, to respect the "no form-section inside a card" rule.</p>
+    </div>
+
+    <!-- ===================== LANGUAGE ===================== -->
+    <h2 id="language">Color &amp; status language</h2>
+    <p>Color follows the design system's reservation rule — status colors mean status, primary blue means interactive intent, everything else is neutral. The specific signals used in this round:</p>
+    <ul>
+      <li><span class="swatch" style="background: var(--wf-color-primary);"></span><strong>Primary blue</strong> — the Send CTA, the selected duration/group chip (<code>.lf-chip.is-selected</code>), the left edge of the price-formula readout, and the key preview section's left edge. Interactive intent and the user's current choices only.</li>
+      <li><span class="swatch" style="background: var(--wf-color-success);"></span><strong>Success green</strong> — reserved for genuine status: a <code>wf-badge-success</code> "Live" offer and the green metric cards on the <em>Offer sent</em> scorecard.</li>
+      <li><span class="swatch" style="background: var(--wf-color-warning);"></span><strong>Warning amber</strong> — a <code>wf-badge-warning</code> "Closing" offer in the list. Pending/attention only.</li>
+      <li><span class="swatch" style="background: var(--wf-color-error);"></span><strong>Error red</strong> — only on a real validation gap: the unconfirmed <em>Volume</em> field on screen 03 (<code>wf-field-error</code> + inline message + the rail showing "needs input").</li>
+      <li><span class="swatch-line"></span><strong>Formula readout</strong> — the index price (<code>.lf-readout</code>) gets a primary left border to mark it as the screen's most important decision, with the result rendered in <code>wf-mono</code>.</li>
+      <li><span class="swatch-line dashed"></span><strong>Designer annotations</strong> (<code>.lf-anno</code>, dashed border) — lo-fi commentary for reviewers, not product UI.</li>
+    </ul>
+
+    <!-- ===================== INVENTORY ===================== -->
+    <h2 id="inventory">File inventory</h2>
+    <table>
+      <thead><tr><th>File</th><th>Screen</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td><code>wireframes/assets/wireframe.css</code></td><td>—</td><td>Vendored Gravitate WireframeDesignSystem bundle (tokens + all component CSS).</td></tr>
+        <tr><td><code>wireframes/assets/lofi-chrome.css</code></td><td>—</td><td>Lo-fi annotation chrome (<code>lf-</code> classes): screen bar, click meter, chips, phone frame, notes. Never part of the design system.</td></tr>
+        <tr><td><code>wireframes/01-launchpad.html</code></td><td>Offers launchpad</td><td>Entry point — recent-offers grid and the Create menu's three paths.</td></tr>
+        <tr><td><code>wireframes/02-quick-create-index.html</code></td><td>Quick create — Index special <strong>(hero)</strong></td><td>The single-view authoring flow.</td></tr>
+        <tr><td><code>wireframes/03-create-from-prior.html</code></td><td>Create from prior</td><td>Same view, prefilled from a sent offer.</td></tr>
+        <tr><td><code>wireframes/04-mobile-quick-create.html</code></td><td>Mobile quick create</td><td>The field sequence on a phone, single column.</td></tr>
+        <tr><td><code>wireframes/05-review-send.html</code></td><td>Offer sent</td><td>Confirmation + speed scorecard.</td></tr>
+        <tr><td><code>index.html</code></td><td>Round gallery</td><td>Thumbnail launcher for the round (the Hub "Launch" target).</td></tr>
+      </tbody>
+    </table>
+
+    <!-- ===================== PER-SCREEN ===================== -->
+    <h2 id="s01">Per-screen documentation</h2>
+
+    <div class="file-card" id="card01">
+      <div class="file-card-head">
+        <h3>01-launchpad.html</h3><span class="scr">— Offers launchpad</span>
+        <a class="open" href="wireframes/01-launchpad.html" target="_blank">Open wireframe →</a>
+      </div>
+      <h4>Screen purpose</h4>
+      <p>Where speed starts. The rep lives on the <em>Offers</em> page; the fast paths must be one click away, so the primary <code>+ Create</code> button (shortcut <code>⌘N</code>) opens a <code>wf-menu</code> shown here in its open state.</p>
+      <h4>Component breakdown</h4>
+      <p>The Create menu lists three items: <strong>Quick create — Index special</strong> (<code>⌘N</code>, → screen 02), <strong>Create from prior</strong> (<code>⌘P</code>, → screen 03), and, below a divider, <strong>Full setup (prescriptive)</strong> — the existing detailed flow, kept as the no-template fallback. Below an annotation banner, a <code>wf-action-bar</code> ("Recent offers · 12 active", product filter, search, Export) sits over a <code>wf-datagrid</code> of four recent offers.</p>
+      <h4>Data shown</h4>
+      <p>Each grid row shows the product/terminal, the index <strong>price formula</strong> in <code>wf-mono</code> (e.g. <code>OPIS G3 +$0.0250</code>), volume, the recipient group, and a status badge — <span class="swatch" style="background:var(--wf-color-success)"></span>Live, <span class="swatch" style="background:var(--wf-color-warning)"></span>Closing, and neutral "Filled".</p>
+    </div>
+
+    <div class="file-card" id="s02">
+      <div class="file-card-head">
+        <h3>02-quick-create-index.html</h3><span class="scr">— Quick create (the hero)</span>
+        <a class="open" href="wireframes/02-quick-create-index.html" target="_blank">Open wireframe →</a>
+      </div>
+      <h4>Screen purpose</h4>
+      <p>The core proposal: author a complete index offer from one view, inside the standard <strong>Create New Offer</strong> page (top bar + "Back to Offers", left content card, right "What customers will see" preview). No app sidebar, no stepper — the wizard's steps collapse into one card.</p>
+      <h4>Left content card — five groups (heading + fields)</h4>
+      <p><strong>A · Start</strong> — a <em>Template</em> select (Group 3 Suboctane — OPIS, etc., plus "No template (start blank)") beside a <em>Create from prior</em> button (<code>⌘P</code>). Either prefills everything below.<br>
+      <strong>B · Product &amp; volume</strong> — a 3-up grid: Product, Terminal/location, Volume (42,000 gal).<br>
+      <strong>C · Price formula (the meat)</strong> — Index (OPIS/Platts/Argus Group 3), Index product (Suboctane Gross/Net…), and a Differential in <code>wf-mono</code> (<code>+0.0250</code>). Below it the <strong>price readout</strong> (<code>.lf-readout</code>) renders the resulting price — <code>OPIS Group 3 Suboctane Gross + $0.0250/gal</code> — and the note "Settles &amp; invoices at <strong>lift time</strong>."<br>
+      <strong>D · Timing</strong> — durations, not dates. Two chip groups: <em>Visible for</em> (2h / <strong>4h</strong> / Until close / Custom) and <em>Pickup window</em> (24h / <strong>48h</strong> / 3 days / Custom).<br>
+      <strong>E · Invite</strong> — existing groups as selectable chips with member counts: <strong>Gulf Coast (3)</strong> selected, Midcon (5), Chicago (4), Rack — Tulsa (6), + Add customer. A helper line summarizes "3 customers selected · Gulf Coast group."<br>
+      Groups are separated by hairlines (<code>lf-group</code>) rather than wrapped in <code>wf-form-section</code> cards, since the whole thing already sits in one content card.</p>
+      <h4>Right preview — "What customers will see"</h4>
+      <p>The same four labelled sections the wizard preview uses: <strong>Product &amp; Location</strong>, <strong>Pricing Strategy → Index Pricing</strong> (formula in <code>wf-mono</code>, "Invoices at lift time", marked as the key section with a primary left edge), <strong>Timing Windows</strong> (Visible 4h · Pickup 48h), <strong>Target Customers</strong> (Gulf Coast group · 3 customers). Unlike the wizard's "Not configured" placeholders, these are filled because template/prior prefills the offer.</p>
+      <h4>Footer</h4>
+      <p>A footer action bar in the wizard's footer position: <em>Cancel</em> (back to Offers), a muted speed note ("target ≤ 12 clicks · ≤ 30s"), and the primary <strong>Send offer</strong> (<code>⌘↵</code>). No "Step N of 4" since there are no steps.</p>
+      <div class="callout decision"><div class="callout-label">Centerpiece</div><p>The price formula is the only field that requires real thought; the readout makes "index + differential, invoiced at lift" legible at a glance. Everything else is a pick from presets.</p></div>
+    </div>
+
+    <div class="file-card" id="s03">
+      <div class="file-card-head">
+        <h3>03-create-from-prior.html</h3><span class="scr">— Create from prior</span>
+        <a class="open" href="wireframes/03-create-from-prior.html" target="_blank">Open wireframe →</a>
+      </div>
+      <h4>Screen purpose</h4>
+      <p>Abdul's create-from-prior pattern, but <em>intersecting</em> the quick-create view instead of a separate wizard — and on the same Create New Offer surface as screen 02. The rep lands on a near-complete offer cloned from a previous send.</p>
+      <h4>Initial state</h4>
+      <p>Inside the content card, a <code>wf-alert-info</code> banner: "Prefilled from a prior offer — cloned from <em>Suboctane · Tulsa · sent May 28</em>" (with a "Change source" action). Prefilled fields carry an italic <code>kept from prior</code> tag (product, terminal, index, index product, timing, invite). Two fields draw the eye: <strong>Volume</strong> is empty and in a <code>wf-field-error</code> state ("Confirm volume for this offer"), and <strong>Differential</strong> shows a helper "Prior was +$0.0225 · market moved."</p>
+      <h4>Right preview</h4>
+      <p>The same "What customers will see" panel, but the Product &amp; Location section flags <em>Volume — needs input</em> — making it obvious that prefill collapses the work to the two cells that actually changed. The footer note reads "From prior · ~3 clicks to send."</p>
+      <div class="callout decision"><div class="callout-label">The intersection</div><p>Create-from-prior reuses the exact Create New Offer surface. One mental model, two entry speeds.</p></div>
+    </div>
+
+    <div class="file-card" id="s04">
+      <div class="file-card-head">
+        <h3>04-mobile-quick-create.html</h3><span class="scr">— Mobile quick create</span>
+        <a class="open" href="wireframes/04-mobile-quick-create.html" target="_blank">Open wireframe →</a>
+      </div>
+      <h4>Screen purpose</h4>
+      <p>Tests Reece's ask that the field <em>sequence</em> also work on mobile. Shown in a 390px phone frame.</p>
+      <h4>Layout</h4>
+      <p>A compact app bar (back, "Index special / Group 3 gas", Draft badge) over a single-column body that keeps the exact desktop order — <strong>Start → Product &amp; volume → Price formula → Timing → Invite</strong> — with <code>wf-divider</code>s between zones and the same <code>.lf-readout</code> for the formula. A <strong>pinned send bar</strong> at the bottom carries the tap-count meter ("8 of 12 taps, ~26s") and a full-width Send button.</p>
+    </div>
+
+    <div class="file-card" id="s05">
+      <div class="file-card-head">
+        <h3>05-review-send.html</h3><span class="scr">— Offer sent</span>
+        <a class="open" href="wireframes/05-review-send.html" target="_blank">Open wireframe →</a>
+      </div>
+      <h4>Screen purpose</h4>
+      <p>The payoff. A <code>wf-toast-success</code> confirms "Index special sent to 3 customers," and the page shows the created offer plus a speed scorecard.</p>
+      <h4>Component breakdown</h4>
+      <p>A <code>wf-card</code> for "Suboctane · Tulsa" (ref <code>OFR-2026-0617-14</code>, <code>wf-badge-success</code> "Live") with <code>wf-data-row</code>s for the full price formula, "Invoices: At lift time," volume, visibility window, pickup, and recipients; footer actions Save as template / Duplicate / Withdraw. Beside it, two <code>wf-metric-card-success</code> cards — <strong>9 clicks</strong> (target ≤ 12) and <strong>24s</strong> (target ≤ 30s) — and an annotation contrasting that with today's ~25 clicks / ~1 min.</p>
+    </div>
+
+    <!-- ===================== DECISIONS ===================== -->
+    <h2 id="decisions">Design decisions reflected</h2>
+    <ol class="decisions">
+      <li><strong>One scrollless view, not a wizard.</strong> Index quick-create is a single surface (no <code>wf-stepper</code>); the rep scans and tweaks rather than paging through gated steps. Directly answers "don't make it a cousin in a drawer."</li>
+      <li><strong>The price formula is the centerpiece.</strong> Index + differential gets its own emphasized section and a live readout that states it settles/invoices at lift time — the one field that needs real thought.</li>
+      <li><strong>Template and create-from-prior share the same surface.</strong> Both prefill the quick-create view; create-from-prior is the same screen at a higher starting speed, not a separate wizard.</li>
+      <li><strong>Timing is expressed as durations, not dates.</strong> "Visible for" and "Pickup window" use duration chips that roll from "now," matching the rep's mental model and cutting date-picker clicks.</li>
+      <li><strong>Invite by existing groups.</strong> Group chips with member counts (Gulf Coast = 3) let one tap add a whole audience, reusing the platform's groups rather than picking customers one by one.</li>
+      <li><strong>The speed budget stays visible.</strong> A muted speed note in the footer (and the post-send scorecard on screen 05) keep the ≤12-clicks / ≤30s goal testable, without cluttering the customer-facing preview. (An earlier draft put a live click meter in the right rail; that was dropped when the rail became the production "What customers will see" preview.)</li>
+      <li><strong>Keyboard-first power use.</strong> Shortcuts (<code>⌘N</code>, <code>⌘P</code>, <code>⌘↵</code>, <code>⌘F</code>, <code>G</code>) are surfaced on-screen; chips are focusable. The flow never requires a mouse.</li>
+      <li><strong>No AI in this design.</strong> Per the kickoff, speed comes from templates, prior-cloning, durations, and groups — not assistance.</li>
+      <li><strong>The prescriptive flow stays as a fallback.</strong> "Full setup" remains in the Create menu for the no-template case; this round designs the template/prior happy path, not the deep authoring flow.</li>
+      <li><strong>Built strictly from the design system.</strong> Only real <code>wf-</code> classes and <code>--wf-</code> tokens; lo-fi scaffolding is isolated under a separate <code>lf-</code> namespace so it never leaks into a production read.</li>
+    </ol>
+
+    <!-- ===================== OPEN ===================== -->
+    <h2 id="open">Open for round 2</h2>
+    <ol class="open-questions">
+      <li><b>Essential clicks:</b> which fields are truly the "10–12 essential clicks" vs. deferrable to advanced/collapsed? The hero currently shows everything expanded.</li>
+      <li><b>Desktop vs mobile:</b> one shared flow or a segmented mobile design? Does the right-rail live preview need a mobile equivalent (a peek sheet), or is the pinned tap-count enough?</li>
+      <li><b>No-template branch:</b> how prescriptive must the fallback be, and how is the hand-off from "blank" to full setup surfaced inside the single view?</li>
+      <li><b>Duration controls:</b> do "Visible for / Pickup window" need custom ranges beyond presets, and how is "Until close" defined against market hours?</li>
+      <li><b>Differential entry:</b> is a plain ± input enough, or do reps need step/nudge controls and a market reference (e.g. "prior was +$0.0225") inline?</li>
+      <li><b>Requirements confidence:</b> are business rules defined enough to commit, or does round 1 stay a direction-finding canvas? (Reece/Agustin flagged current designs as "more a feedback canvas.")</li>
+    </ol>
+
+    <!-- ===================== VIEW ===================== -->
+    <h2 id="view">How to view</h2>
+    <p>Open any file in <code>wireframes/</code> directly in a browser — each is self-contained static HTML, no build step or server. Start from <code>index.html</code> for the gallery.</p>
+    <p>Recommended sequence:</p>
+    <ol>
+      <li><code>01-launchpad.html</code> — see the Create menu and its three paths; note the price formula already reads in the recent-offers grid.</li>
+      <li><code>02-quick-create-index.html</code> — the hero. Read top-to-bottom; the price-formula readout and the right-rail click meter are the things to react to.</li>
+      <li><code>03-create-from-prior.html</code> — same view prefilled; note the <em>kept from prior</em> tags and that only Volume + Differential need attention (meter drops to 3 of 12).</li>
+      <li><code>04-mobile-quick-create.html</code> — confirm the field order survives the phone form factor.</li>
+      <li><code>05-review-send.html</code> — the payoff and the 9-clicks / 24s scorecard.</li>
+    </ol>
+    <div class="callout"><div class="callout-label">Provenance</div><p>Rationale is mined from the Jun 15 2026 Product–Design sync — full transcript at <code>context/2026-06-15-product-design-sync-transcript.md</code> and the distilled brief at <code>context/insights.md</code>.</p></div>
+
+  </main>
+</body>
+</html>

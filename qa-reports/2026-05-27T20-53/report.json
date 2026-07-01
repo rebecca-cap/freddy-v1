@@ -1,0 +1,22 @@
+{
+  "generatedAt": "2026-05-27T20:54:09.536Z",
+  "summary": {
+    "total": 1,
+    "pass": 1,
+    "fail": 0,
+    "errors": 0,
+    "stuckLoaders": 0,
+    "emptyGrids": 0
+  },
+  "routes": {
+    "/PricingEngine/CommandCenter": {
+      "status": "pass",
+      "rootLen": 332279,
+      "errors": [],
+      "consoleErrors": [],
+      "stuckLoaders": [],
+      "emptyGrids": [],
+      "missingFixtures": []
+    }
+  }
+}

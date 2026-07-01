@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sidebar Component - Gravitate Wireframe Design System</title>
+  <link rel="stylesheet" href="../../tokens/tokens.css">
+  <link rel="stylesheet" href="../controls/controls.css">
+  <link rel="stylesheet" href="navigation.css">
+  <style>
+    body {
+      font-family: var(--wf-font-family);
+      margin: 0;
+      background-color: var(--wf-color-gray-50);
+    }
+    .demo-container {
+      padding: 40px;
+    }
+    .demo-section {
+      background: white;
+      padding: 24px;
+      border-radius: 8px;
+      margin-bottom: 24px;
+      border: 1px solid var(--wf-color-border);
+    }
+    .demo-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--wf-color-text-muted);
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .sidebar-preview {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .sidebar-wrapper {
+      height: 500px;
+      overflow: hidden;
+      border-radius: 8px;
+      border: 1px solid var(--wf-color-border);
+      background: var(--wf-color-gray-100);
+    }
+    .sidebar-wrapper .wf-sidebar {
+      min-height: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-container">
+    <h1 style="margin-bottom: 32px; color: var(--wf-color-text);">Sidebar Component</h1>
+
+    <!-- Expanded Sidebar -->
+    <div class="demo-section">
+      <div class="demo-title">Expanded Sidebar (Default)</div>
+      <div class="sidebar-preview">
+        <div class="sidebar-wrapper">
+          <aside class="wf-sidebar">
+            <div class="wf-sidebar-header">
+              <span style="font-size: 20px;">🚀</span>
+              <span class="wf-sidebar-logo">Gravitate</span>
+            </div>
+            <nav class="wf-sidebar-nav">
+              <a href="#" class="wf-sidebar-item wf-sidebar-item-active">
+                <span class="wf-sidebar-icon">📊</span>
+                <span class="wf-sidebar-label">Dashboard</span>
+              </a>
+              <a href="#" class="wf-sidebar-item">
+                <span class="wf-sidebar-icon">📋</span>
+                <span class="wf-sidebar-label">Contracts</span>
+                <span class="wf-badge wf-badge-sm">5</span>
+              </a>
+              <a href="#" class="wf-sidebar-item">
+                <span class="wf-sidebar-icon">👥</span>
+                <span class="wf-sidebar-label">Customers</span>
+              </a>
+              <a href="#" class="wf-sidebar-item">
+                <span class="wf-sidebar-icon">📦</span>
+                <span class="wf-sidebar-label">Orders</span>
+                <span class="wf-badge wf-badge-sm wf-badge-danger">12</span>
+              </a>
+              <a href="#" class="wf-sidebar-item">
+                <span class="wf-sidebar-icon">📈</span>
+                <span class="wf-sidebar-label">Reports</span>
+              </a>
+
+              <div class="wf-sidebar-divider"></div>
+
+              <div class="wf-sidebar-group">
+                <span class="wf-sidebar-group-label">Settings</span>
+                <a href="#" class="wf-sidebar-item">
+                  <span class="wf-sidebar-icon">👤</span>
+                  <span class="wf-sidebar-label">Profile</span>
+                </a>
+                <a href="#" class="wf-sidebar-item">
+                  <span class="wf-sidebar-icon">⚙️</span>
+                  <span class="wf-sidebar-label">Preferences</span>
+                </a>
+                <a href="#" class="wf-sidebar-item">
+                  <span class="wf-sidebar-icon">🔐</span>
+                  <span class="wf-sidebar-label">Security</span>
+                </a>
+              </div>
+            </nav>
+            <div class="wf-sidebar-footer">
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <div style="width: 32px; height: 32px; background: var(--wf-color-gray-200); border-radius: 50%;"></div>
+                <div>
+                  <div style="font-weight: 500; color: var(--wf-color-text);">John Doe</div>
+                  <div style="font-size: 12px;">Admin</div>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+
+    <!-- Collapsed Sidebar -->
+    <div class="demo-section">
+      <div class="demo-title">Collapsed Sidebar (Icons Only)</div>
+      <div class="sidebar-preview">
+        <div class="sidebar-wrapper" style="width: fit-content;">
+          <aside class="wf-sidebar wf-sidebar-collapsed">
+            <div class="wf-sidebar-header">
+              <span style="font-size: 20px; margin: 0 auto;">🚀</span>
+            </div>
+            <nav class="wf-sidebar-nav">
+              <a href="#" class="wf-sidebar-item wf-sidebar-item-active" title="Dashboard">
+                <span class="wf-sidebar-icon">📊</span>
+                <span class="wf-sidebar-label">Dashboard</span>
+              </a>
+              <a href="#" class="wf-sidebar-item" title="Contracts">
+                <span class="wf-sidebar-icon">📋</span>
+                <span class="wf-sidebar-label">Contracts</span>
+                <span class="wf-badge wf-badge-sm">5</span>
+              </a>
+              <a href="#" class="wf-sidebar-item" title="Customers">
+                <span class="wf-sidebar-icon">👥</span>
+                <span class="wf-sidebar-label">Customers</span>
+              </a>
+              <a href="#" class="wf-sidebar-item" title="Orders">
+                <span class="wf-sidebar-icon">📦</span>
+                <span class="wf-sidebar-label">Orders</span>
+              </a>
+              <a href="#" class="wf-sidebar-item" title="Reports">
+                <span class="wf-sidebar-icon">📈</span>
+                <span class="wf-sidebar-label">Reports</span>
+              </a>
+
+              <div class="wf-sidebar-divider"></div>
+
+              <a href="#" class="wf-sidebar-item" title="Profile">
+                <span class="wf-sidebar-icon">👤</span>
+                <span class="wf-sidebar-label">Profile</span>
+              </a>
+              <a href="#" class="wf-sidebar-item" title="Settings">
+                <span class="wf-sidebar-icon">⚙️</span>
+                <span class="wf-sidebar-label">Settings</span>
+              </a>
+            </nav>
+            <div class="wf-sidebar-footer" style="padding: 16px 8px;">
+              <div style="width: 32px; height: 32px; background: var(--wf-color-gray-200); border-radius: 50%; margin: 0 auto;"></div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dark Sidebar -->
+    <div class="demo-section">
+      <div class="demo-title">Dark Sidebar</div>
+      <div class="sidebar-preview">
+        <div class="sidebar-wrapper">
+          <aside class="wf-sidebar wf-sidebar-dark">
+            <div class="wf-sidebar-header">
+              <span style="font-size: 20px;">🚀</span>
+              <span class="wf-sidebar-logo">Gravitate</span>
+            </div>
+            <nav class="wf-sidebar-nav">
+              <a href="#" class="wf-sidebar-item wf-sidebar-item-active">
+                <span class="wf-sidebar-icon">📊</span>
+                <span class="wf-sidebar-label">Dashboard</span>
+              </a>
+              <a href="#" class="wf-sidebar-item">
+                <span class="wf-sidebar-icon">📋</span>
+                <span class="wf-sidebar-label">Contracts</span>
+                <span class="wf-badge wf-badge-sm">5</span>
+              </a>
+              <a href="#" class="wf-sidebar-item">
+                <span class="wf-sidebar-icon">👥</span>
+                <span class="wf-sidebar-label">Customers</span>
+              </a>
+              <a href="#" class="wf-sidebar-item">
+                <span class="wf-sidebar-icon">📦</span>
+                <span class="wf-sidebar-label">Orders</span>
+                <span class="wf-badge wf-badge-sm wf-badge-danger">12</span>
+              </a>
+
+              <div class="wf-sidebar-divider"></div>
+
+              <div class="wf-sidebar-group">
+                <span class="wf-sidebar-group-label">Settings</span>
+                <a href="#" class="wf-sidebar-item">
+                  <span class="wf-sidebar-icon">👤</span>
+                  <span class="wf-sidebar-label">Profile</span>
+                </a>
+                <a href="#" class="wf-sidebar-item">
+                  <span class="wf-sidebar-icon">⚙️</span>
+                  <span class="wf-sidebar-label">Preferences</span>
+                </a>
+              </div>
+            </nav>
+            <div class="wf-sidebar-footer">
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <div style="width: 32px; height: 32px; background: var(--wf-color-gray-600); border-radius: 50%;"></div>
+                <div>
+                  <div style="font-weight: 500; color: var(--wf-color-white);">John Doe</div>
+                  <div style="font-size: 12px;">Admin</div>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar with Nested Navigation -->
+    <div class="demo-section">
+      <div class="demo-title">Sidebar with Nested Navigation</div>
+      <div class="sidebar-preview">
+        <div class="sidebar-wrapper">
+          <aside class="wf-sidebar">
+            <div class="wf-sidebar-header">
+              <span style="font-size: 20px;">🚀</span>
+              <span class="wf-sidebar-logo">Gravitate</span>
+            </div>
+            <nav class="wf-sidebar-nav">
+              <a href="#" class="wf-sidebar-item">
+                <span class="wf-sidebar-icon">📊</span>
+                <span class="wf-sidebar-label">Dashboard</span>
+              </a>
+              <a href="#" class="wf-sidebar-item wf-sidebar-item-active">
+                <span class="wf-sidebar-icon">📋</span>
+                <span class="wf-sidebar-label">Contracts</span>
+              </a>
+              <div class="wf-sidebar-nested">
+                <a href="#" class="wf-sidebar-item">
+                  <span class="wf-sidebar-label">All Contracts</span>
+                </a>
+                <a href="#" class="wf-sidebar-item">
+                  <span class="wf-sidebar-label">Pending Review</span>
+                  <span class="wf-badge wf-badge-sm">3</span>
+                </a>
+                <a href="#" class="wf-sidebar-item">
+                  <span class="wf-sidebar-label">Expiring Soon</span>
+                </a>
+                <a href="#" class="wf-sidebar-item">
+                  <span class="wf-sidebar-label">Templates</span>
+                </a>
+              </div>
+              <a href="#" class="wf-sidebar-item">
+                <span class="wf-sidebar-icon">👥</span>
+                <span class="wf-sidebar-label">Customers</span>
+              </a>
+              <a href="#" class="wf-sidebar-item">
+                <span class="wf-sidebar-icon">📈</span>
+                <span class="wf-sidebar-label">Reports</span>
+              </a>
+            </nav>
+            <div class="wf-sidebar-footer">
+              User info
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+
+    <!-- Usage Examples -->
+    <div class="demo-section">
+      <div class="demo-title">Code Examples</div>
+      <pre style="background: var(--wf-color-gray-100); padding: 16px; border-radius: 6px; overflow-x: auto; font-size: 13px;"><code>&lt;!-- Expanded Sidebar --&gt;
+&lt;aside class="wf-sidebar"&gt;
+  &lt;div class="wf-sidebar-header"&gt;
+    &lt;span class="wf-sidebar-logo"&gt;Gravitate&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;nav class="wf-sidebar-nav"&gt;
+    &lt;a href="#" class="wf-sidebar-item wf-sidebar-item-active"&gt;
+      &lt;span class="wf-sidebar-icon"&gt;📊&lt;/span&gt;
+      &lt;span class="wf-sidebar-label"&gt;Dashboard&lt;/span&gt;
+    &lt;/a&gt;
+    &lt;a href="#" class="wf-sidebar-item"&gt;
+      &lt;span class="wf-sidebar-icon"&gt;📋&lt;/span&gt;
+      &lt;span class="wf-sidebar-label"&gt;Contracts&lt;/span&gt;
+      &lt;span class="wf-badge wf-badge-sm"&gt;5&lt;/span&gt;
+    &lt;/a&gt;
+
+    &lt;!-- Divider --&gt;
+    &lt;div class="wf-sidebar-divider"&gt;&lt;/div&gt;
+
+    &lt;!-- Grouped Items --&gt;
+    &lt;div class="wf-sidebar-group"&gt;
+      &lt;span class="wf-sidebar-group-label"&gt;Settings&lt;/span&gt;
+      &lt;a href="#" class="wf-sidebar-item"&gt;Profile&lt;/a&gt;
+      &lt;a href="#" class="wf-sidebar-item"&gt;Preferences&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/nav&gt;
+  &lt;div class="wf-sidebar-footer"&gt;
+    User info / logout
+  &lt;/div&gt;
+&lt;/aside&gt;
+
+&lt;!-- Collapsed Sidebar --&gt;
+&lt;aside class="wf-sidebar wf-sidebar-collapsed"&gt;
+  ...
+&lt;/aside&gt;
+
+&lt;!-- Dark Sidebar --&gt;
+&lt;aside class="wf-sidebar wf-sidebar-dark"&gt;
+  ...
+&lt;/aside&gt;
+
+&lt;!-- Nested Navigation --&gt;
+&lt;a href="#" class="wf-sidebar-item wf-sidebar-item-active"&gt;
+  &lt;span class="wf-sidebar-icon"&gt;📋&lt;/span&gt;
+  &lt;span class="wf-sidebar-label"&gt;Contracts&lt;/span&gt;
+&lt;/a&gt;
+&lt;div class="wf-sidebar-nested"&gt;
+  &lt;a href="#" class="wf-sidebar-item"&gt;All Contracts&lt;/a&gt;
+  &lt;a href="#" class="wf-sidebar-item"&gt;Pending Review&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+  </div>
+</body>
+</html>

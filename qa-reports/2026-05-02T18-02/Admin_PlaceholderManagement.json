@@ -1,0 +1,16 @@
+{
+  "path": "/Admin/PlaceholderManagement",
+  "title": "Placeholder Management",
+  "finalUrl": "http://localhost:3001/Admin/PlaceholderManagement",
+  "rootLen": 130942,
+  "crashed": false,
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 429 ()"
+  ],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [
+    "MarketPlatform/PlaceholderPriceManagement/GetPlaceholders"
+  ],
+  "consoleEventCount": 14
+}

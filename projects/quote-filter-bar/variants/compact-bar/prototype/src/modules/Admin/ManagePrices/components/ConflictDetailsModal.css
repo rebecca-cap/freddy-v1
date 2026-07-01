@@ -1,0 +1,8 @@
+.uploaded-row-highlight {
+  background-color: var(--theme-color-2-dim) !important;
+  font-weight: 500;
+}
+
+.uploaded-row-highlight:hover {
+  background-color: var(--theme-color-2-dim) !important;
+}

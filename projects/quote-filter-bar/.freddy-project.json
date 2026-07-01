@@ -1,0 +1,15 @@
+{
+  "slug": "quote-filter-bar",
+  "name": "Quote Filter Bar",
+  "description": "Add a filter + sort bar to the QuoteBook quotes list so traders can quickly narrow by status, product, and date.",
+  "product": "cross",
+  "branch": "project/quote-filter-bar",
+  "port": 5185,
+  "createdAt": "2026-06-12T17:09:22.939Z",
+  "paths": {
+    "project": "/Users/frankoverland/freddy/projects/quote-filter-bar",
+    "prototype": "/Users/frankoverland/freddy/projects/quote-filter-bar/prototype",
+    "lofi": "/Users/frankoverland/freddy/projects/quote-filter-bar/design-system/lofi",
+    "resources": "/Users/frankoverland/freddy/projects/quote-filter-bar/resources"
+  }
+}

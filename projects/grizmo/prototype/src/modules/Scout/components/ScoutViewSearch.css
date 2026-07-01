@@ -1,0 +1,93 @@
+/*
+ * ScoutViewSearch — search input + bookmarked-only filter toggle.
+ * Shared between library and activity views.
+ */
+
+.scout-view-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: var(--scout-surface);
+  flex-shrink: 0;
+}
+
+.scout-view-search__input-wrap {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.scout-view-search__lead {
+  position: absolute;
+  left: 12px;
+  font-size: var(--scout-font-size-md);
+  color: var(--scout-text-subtle);
+  pointer-events: none;
+}
+
+/* Mirror the composer "Ask" field treatment: white surface, pill radius, and
+   the soft brand focus glow. Keeps the leading search icon + the × clear (and
+   no submit button) — functionality is unchanged. */
+.scout-view-search__input {
+  appearance: none;
+  width: 100%;
+  height: 32px;
+  padding: 0 32px;
+  border: 0.5px solid var(--scout-border-strong);
+  border-radius: var(--scout-radius-pill);
+  background: var(--scout-surface);
+  color: var(--scout-text);
+  font-family: var(--scout-font-family);
+  font-size: var(--scout-font-size-md);
+  line-height: var(--scout-line-height-base);
+  outline: none;
+  box-shadow: none;
+  transition: border-color 80ms ease, box-shadow 120ms ease;
+}
+
+.scout-view-search__input::placeholder {
+  color: var(--scout-text-subtle);
+}
+
+.scout-view-search__input:hover {
+  border-color: var(--scout-border-strong);
+}
+
+.scout-view-search__input:focus,
+.scout-view-search__input:focus-visible {
+  border-color: var(--scout-brand);
+  background: var(--scout-surface);
+  /* Soft purple glow ring — identical to the Ask field. */
+  box-shadow: 0 0 0 3px rgba(113, 93, 170, 0.18);
+}
+
+/* Strip the browser default search-cancel button — we ship our own × */
+.scout-view-search__input::-webkit-search-cancel-button {
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.scout-view-search__clear {
+  position: absolute;
+  right: 4px;
+  appearance: none;
+  background: transparent;
+  border: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--scout-radius-sm);
+  color: var(--scout-text-subtle);
+  font-size: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 100ms ease, color 100ms ease;
+}
+
+.scout-view-search__clear:hover {
+  background: var(--scout-surface-3);
+  color: var(--scout-text);
+}

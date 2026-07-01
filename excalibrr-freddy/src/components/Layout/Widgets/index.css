@@ -1,0 +1,17 @@
+.widget-header {
+  padding: 0.75em;
+  border-bottom: solid 1px var(--gray-300);
+}
+.widget-title {
+  color: var(--gray-600);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.widget-title svg {
+  position: absolute;
+  left: 0;
+  top: 1.5em;
+}
+.widget-underline {
+  margin-top: -1em;
+}

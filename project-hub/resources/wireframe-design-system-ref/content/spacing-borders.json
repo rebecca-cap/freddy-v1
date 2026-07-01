@@ -1,0 +1,166 @@
+{
+  "slug": "spacing-borders",
+  "title": "Spacing, Density & Borders",
+  "order": 4,
+  "group": "Foundations",
+  "intro": "Spacing in this system is a closed set, not a free dial. Every gap, pad, and margin resolves to one of eleven `--wf-space-*` tokens on an 8px grid, density defaults to compact because the users are analysts who want one more row over one more breath of margin, and visual hierarchy comes from border weight — not blur. There are no 7px gaps here.",
+  "searchTerms": [
+    "--wf-space-1", "--wf-space-2", "--wf-space-4", "--wf-space-6", "--wf-space-8", "--wf-space-stack-sm", "--wf-space-stack", "--wf-space-stack-lg", "--wf-space-page-x", "--wf-space-page-y", "--wf-space-gutter",
+    "--wf-radius-sm", "--wf-radius-md", "--wf-radius-lg", "--wf-radius-full", "--wf-border-width", "--wf-elevation-1", "--wf-elevation-2", "--wf-elevation-3", "--wf-focus-ring", "--wf-divider", "--wf-border-input", "--wf-border-card", "--wf-border-table",
+    "wf-gap-1", "wf-gap-2", "wf-gap-4", "wf-gap-6", "wf-gap-8", "wf-p-4", "wf-mb-6",
+    "8px grid", "spacing scale", "density", "compact", "comfortable", "vertical rhythm", "radius", "elevation", "border", "focus ring", "tap target", "44x44"
+  ],
+  "blocks": [
+    {
+      "type": "usage",
+      "body": "The spacing scale lives in `tokens/spacing.css` and is built on an 8px base unit (`--wf-space-2`) with a single 4px half-step (`--wf-space-1`) for fine adjustments. Above the base it climbs 12 / 16 / 24 / 32 / 40 / 48 / 64 — every value a multiple of 4. Reach for tokens by name, never by pixel literal; if the number you want isn't in the scale, the answer is one step up or one step down, not a custom value (DESIGN.md §5.2).\n\nDensity is the system's posture, not a setting you tune per element. The default is compact: 14px body text, 8px (`--wf-space-stack-sm`) between related rows, 24px (`--wf-space-stack-lg`) between sections. \"Comfortable\" mode — 16px body, looser stacking — is an explicit opt-in for onboarding-shaped screens, never the default \"because it looks cleaner\" (DESIGN.md §5.1).\n\nBorders carry hierarchy that a consumer UI would hand to drop shadows. `tokens/borders.css` defines radius, border width, and an elevation system built entirely from solid border weight: 1px for cards, 2px for popovers, 2px primary-colored for modals and focus. Combined with the radius scale and the layered focus ring, this keeps wireframes flat, fast, and legible against any background."
+    },
+    {
+      "type": "specimen",
+      "title": "The 8px grid",
+      "image": "specimens/spacing-borders/01-spacing-scale.png",
+      "caption": "The non-negotiable 8px grid (DESIGN.md §5.2) shown as growing blocks — 4 / 8 / 12 / 16 / 24 / 32 / 48px — beside the wf-gap utility table. 8px (--wf-space-2) is the base unit; 4px (--wf-space-1) is the only half-step.",
+      "wide": true
+    },
+    {
+      "type": "tokens",
+      "title": "Spacing scale",
+      "intro": "The full scale from `tokens/spacing.css`. Note the gap: there is no `--wf-space-7`, `-9`, or `-11` — the system jumps from 6 to 8 to 10 to 12 to 16. Component aliases (`--wf-space-card`, `--wf-space-stack-*`, `--wf-space-page-*`, `--wf-space-gutter`) all resolve back into this same scale.",
+      "rows": [
+        { "token": "--wf-space-0", "value": "0", "use": "No spacing — collapse a gap explicitly." },
+        { "token": "--wf-space-1", "value": "4px (0.25rem)", "use": "The only half-step. Tight spacing between inline elements and icon padding." },
+        { "token": "--wf-space-2", "value": "8px (0.5rem)", "use": "The base unit. Compact layouts and tight row stacking (--wf-space-stack-sm aliases this)." },
+        { "token": "--wf-space-3", "value": "12px (0.75rem)", "use": "Small gaps; horizontal input padding (--wf-space-input-x)." },
+        { "token": "--wf-space-4", "value": "16px (1rem)", "use": "Default padding and form-field gaps. Card padding (--wf-space-card) and default stacking (--wf-space-stack) alias this." },
+        { "token": "--wf-space-5", "value": "20px (1.25rem)", "use": "Medium spacing — the in-between step you rarely need." },
+        { "token": "--wf-space-6", "value": "24px (1.5rem)", "use": "Section padding and card gutters. Page horizontal padding, grid gutter, and loose stacking all alias this." },
+        { "token": "--wf-space-8", "value": "32px (2rem)", "use": "Large gaps and section breaks. Page vertical padding (--wf-space-page-y) aliases this." },
+        { "token": "--wf-space-10", "value": "40px (2.5rem)", "use": "Major section spacing." },
+        { "token": "--wf-space-12", "value": "48px (3rem)", "use": "Page sections." },
+        { "token": "--wf-space-16", "value": "64px (4rem)", "use": "Large section breaks and hero areas." }
+      ]
+    },
+    {
+      "type": "tokens",
+      "title": "Spacing aliases — density & layout",
+      "intro": "Semantic spacing tokens that encode intent. Reach for these in component code rather than the raw scale when the meaning matters: `--wf-space-stack-sm` reads as \"related rows,\" not \"8px.\"",
+      "rows": [
+        { "token": "--wf-space-stack-sm", "value": "8px (= --wf-space-2)", "use": "Vertical rhythm between related rows inside a section (DESIGN.md §5.4)." },
+        { "token": "--wf-space-stack", "value": "16px (= --wf-space-4)", "use": "Default stacking and form-field gap." },
+        { "token": "--wf-space-stack-lg", "value": "24px (= --wf-space-6)", "use": "Loose stacking — between sections." },
+        { "token": "--wf-space-card", "value": "16px (= --wf-space-4)", "use": "Default card padding." },
+        { "token": "--wf-space-card-lg", "value": "24px (= --wf-space-6)", "use": "Large card padding (comfortable opt-in)." },
+        { "token": "--wf-space-modal", "value": "24px (= --wf-space-6)", "use": "Modal content padding." },
+        { "token": "--wf-space-input-x", "value": "12px (= --wf-space-3)", "use": "Horizontal input padding." },
+        { "token": "--wf-space-input-y", "value": "8px (= --wf-space-2)", "use": "Vertical input padding." },
+        { "token": "--wf-space-page-x", "value": "24px (= --wf-space-6)", "use": "Page horizontal padding." },
+        { "token": "--wf-space-page-y", "value": "32px (= --wf-space-8)", "use": "Page vertical padding." },
+        { "token": "--wf-space-gutter", "value": "24px (= --wf-space-6)", "use": "Grid gutter width." }
+      ]
+    },
+    {
+      "type": "variants",
+      "title": "Gap utilities",
+      "intro": "Apply spacing-scale gaps to any flex or grid container with the `wf-gap-*` family from `tokens/utilities.css`. Directional variants exist too — `wf-gap-x-*` for column-gap, `wf-gap-y-*` for row-gap — and the same scale drives `wf-p-*` padding and `wf-mb-*` / `wf-mt-*` margins.",
+      "rows": [
+        { "name": "wf-gap-1", "when": "Tight spacing — icon-to-label, inline element clusters (4px).", "code": "<div class=\"wf-flex wf-gap-1\"><span class=\"icon\"></span><span>Label</span></div>" },
+        { "name": "wf-gap-2", "when": "Default element spacing in compact layouts (8px, the base unit).", "code": "<div class=\"wf-flex wf-gap-2\"><button>One</button><button>Two</button></div>" },
+        { "name": "wf-gap-4", "when": "Form-field gaps and default content separation (16px).", "code": "<div class=\"wf-flex wf-flex-col wf-gap-4\"><input /><input /></div>" },
+        { "name": "wf-gap-6", "when": "Section padding and card gutters (24px).", "code": "<div class=\"wf-grid wf-gap-6\"><div class=\"wf-card\"></div><div class=\"wf-card\"></div></div>" },
+        { "name": "wf-gap-8", "when": "Large section gaps and major breaks (32px).", "code": "<div class=\"wf-flex wf-flex-col wf-gap-8\"><section></section><section></section></div>" }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "Borders & elevation",
+      "image": "specimens/spacing-borders/02-borders-elevation.png",
+      "caption": "Radius from 4px (sm) through 50%/--wf-radius-full, and the elevation system built from border weight — 1px for cards, 2px for popovers, 2px primary for modals — plus the layered focus ring.",
+      "wide": true
+    },
+    {
+      "type": "tokens",
+      "title": "Border radius",
+      "intro": "The radius scale from `tokens/borders.css`. Match the radius to the component class, not to taste — buttons and inputs are `-sm`, cards and modals are `-md`, panels are `-lg`.",
+      "rows": [
+        { "token": "--wf-radius-none", "value": "0", "use": "Sharp corners — full-bleed regions, grid cells." },
+        { "token": "--wf-radius-sm", "value": "4px (0.25rem)", "use": "Buttons, inputs, and small elements." },
+        { "token": "--wf-radius-md", "value": "8px (0.5rem)", "use": "Cards, modals, and dropdowns — the default container radius." },
+        { "token": "--wf-radius-lg", "value": "12px (0.75rem)", "use": "Large containers and panels." },
+        { "token": "--wf-radius-full", "value": "9999px", "use": "Pills, avatars, and badges — fully rounded." }
+      ]
+    },
+    {
+      "type": "tokens",
+      "title": "Border width & elevation",
+      "intro": "Elevation here is border weight, not shadow (`tokens/borders.css`). Higher levels mean thicker — or primary-colored — borders, so hierarchy survives in flat wireframes and against any background. Each elevation value composes the width tokens with `--wf-color-border` / `--wf-color-primary`.",
+      "rows": [
+        { "token": "--wf-border-width", "value": "1px", "use": "Default border width." },
+        { "token": "--wf-border-width-2", "value": "2px", "use": "Emphasis and focus states." },
+        { "token": "--wf-border-width-3", "value": "3px", "use": "Strong emphasis." },
+        { "token": "--wf-elevation-0", "value": "none", "use": "Flat — inline elements, no separation." },
+        { "token": "--wf-elevation-1", "value": "1px solid var(--wf-color-border, #d1d5db)", "use": "Subtle elevation — cards and containers." },
+        { "token": "--wf-elevation-2", "value": "2px solid var(--wf-color-border, #d1d5db)", "use": "Medium elevation — dropdowns and popovers." },
+        { "token": "--wf-elevation-3", "value": "2px solid var(--wf-color-primary, #2563eb)", "use": "High elevation / focus state — modals and focus rings." }
+      ]
+    },
+    {
+      "type": "tokens",
+      "title": "Focus ring, dividers & component border aliases",
+      "intro": "Pre-composed border styles for common patterns, plus the keyboard focus indicator. Use the alias (`--wf-border-card`) over re-deriving the rule — the alias keeps intent legible and updates in one place.",
+      "rows": [
+        { "token": "--wf-focus-ring", "value": "0 0 0 2px surface, 0 0 0 4px primary (#2563eb)", "use": "Accessible keyboard focus halo — a 2px surface gap then a 4px primary ring, so focus reads against any background (DESIGN.md §6.2)." },
+        { "token": "--wf-focus-ring-offset", "value": "2px", "use": "Offset focus ring for elements that sit on a background." },
+        { "token": "--wf-divider", "value": "1px solid var(--wf-color-border, #d1d5db)", "use": "Horizontal and vertical separators." },
+        { "token": "--wf-divider-light", "value": "1px solid var(--wf-color-border-light, #f3f4f6)", "use": "Subtle divider between closely related rows." },
+        { "token": "--wf-border-input", "value": "1px solid var(--wf-color-border, #d1d5db)", "use": "Default input border." },
+        { "token": "--wf-border-input-hover", "value": "1px solid var(--wf-color-neutral-500, #6b7280)", "use": "Input border on hover." },
+        { "token": "--wf-border-input-focus", "value": "2px solid var(--wf-color-primary, #2563eb)", "use": "Input border on focus." },
+        { "token": "--wf-border-input-error", "value": "1px solid var(--wf-color-error, #dc2626)", "use": "Input border in a validation-error state (pair with icon + message)." },
+        { "token": "--wf-border-card", "value": "var(--wf-elevation-1)", "use": "Default card border — 1px solid border." },
+        { "token": "--wf-border-table", "value": "var(--wf-divider)", "use": "Table cell and row borders — 1px solid border." }
+      ]
+    },
+    {
+      "type": "code",
+      "title": "Spacing and borders in practice",
+      "lang": "html",
+      "code": "<!-- A card: --wf-radius-md corner, --wf-elevation-1 border, --wf-space-card padding -->\n<div class=\"wf-card\">\n  <!-- Related rows stack at --wf-space-stack-sm (8px) -->\n  <div class=\"wf-flex wf-flex-col wf-gap-2\">\n    <div class=\"wf-row\">Contract 4471</div>\n    <div class=\"wf-row\">Contract 4472</div>\n  </div>\n</div>\n\n<!-- Between sections: --wf-space-stack-lg (24px) -->\n<div class=\"wf-flex wf-flex-col wf-gap-6\">\n  <section class=\"wf-card\">Summary</section>\n  <section class=\"wf-card\">Detail</section>\n</div>",
+      "note": "Every gap, pad, and radius above resolves to a token on the 8px grid. No literal touches the markup."
+    },
+    {
+      "type": "rules",
+      "title": "The grid & density laws",
+      "intro": "These are floor requirements, not preferences. A wireframe that breaks one is wrong even if it looks polished.",
+      "items": [
+        { "rule": "Every gap, pad, and margin comes from `--wf-space-0` through `--wf-space-16`.", "why": "There are no 7px gaps, no 10px paddings, no 18px margins (DESIGN.md §5.2). If the scale lacks your value, step up or down one — don't invent." },
+        { "rule": "Default to compact: 14px body, 8px between related rows, 24px between sections.", "why": "The users are analysts under time pressure who'd rather see one more row than one more breath of margin (DESIGN.md §5.1, §5.4)." },
+        { "rule": "\"Comfortable\" density is an explicit opt-in, never the default.", "why": "16px body and looser stacking are for onboarding-shaped screens only — not \"because it looks cleaner\" (DESIGN.md §5.1)." },
+        { "rule": "Tap targets stay 44×44 even at high density.", "why": "Compactness applies to spacing and text, not hit boxes. A button can have `--wf-space-2` visual padding and still meet 44×44 via min-height/min-width (DESIGN.md §5.3)." },
+        { "rule": "One region uses one vertical rhythm.", "why": "A page that mixes 3+ different vertical rhythms inside one region is broken (DESIGN.md §5.4)." },
+        { "rule": "Reach for the semantic alias over the raw token when meaning matters.", "why": "`--wf-space-stack-sm` reads as \"related rows\" and `--wf-border-card` as \"card edge\" — both update in one place and survive a scale change." },
+        { "rule": "Elevation is border weight, not shadow.", "why": "Solid borders keep wireframes flat and fast, and read against any background — that's why focus uses a layered surface+primary ring rather than a blur (DESIGN.md §6.2)." }
+      ]
+    },
+    {
+      "type": "dosdonts",
+      "items": [
+        { "do": "gap: var(--wf-space-3)  /* 12px */", "dont": "gap: 10px", "why": "10px isn't on the grid. The scale jumps 8 → 12 → 16; pick the nearest token, never a custom literal (DESIGN.md §5.2, §7.6)." },
+        { "do": "Default body at 14px (--wf-text-base)", "dont": "Default body at 16px", "why": "16px is the comfortable opt-in. Compact is the house default (DESIGN.md §5.1, §7.6)." },
+        { "do": "min-height: 44px on a compact button", "dont": "Shrinking the hit box to match tight padding", "why": "Density never touches tap targets — 44×44 is the floor at any density (DESIGN.md §5.3)." },
+        { "do": "border: var(--wf-elevation-1)", "dont": "box-shadow: 0 1px 3px rgba(0,0,0,.1)", "why": "Hierarchy comes from border weight in this system, not blur. Use the elevation tokens." },
+        { "do": "var(--wf-border-card)", "dont": "1px solid #d1d5db", "why": "The alias encodes intent and tracks the border color token; a hardcoded hex drifts the moment the palette changes (DESIGN.md §2.7)." },
+        { "do": "border-radius: var(--wf-radius-md) on a card", "dont": "border-radius: var(--wf-radius-full) on a card", "why": "Radius is keyed to component type — `-full` (9999px) is for pills, avatars, and badges, not rectangular containers." }
+      ]
+    },
+    {
+      "type": "gotchas",
+      "items": [
+        { "title": "The scale skips 7, 9, and 11", "detail": "There is no `--wf-space-7`, `-9`, or `-11`. After `--wf-space-6` (24px) the scale jumps to `-8` (32px), `-10` (40px), `-12` (48px), `-16` (64px). Don't assume an evenly-numbered token exists — check the scale." },
+        { "title": "Aliases are the same value, but not interchangeable in meaning", "detail": "`--wf-space-stack` and `--wf-space-card` both resolve to 16px (`--wf-space-4`), and `--wf-space-stack-lg`, `--wf-space-card-lg`, `--wf-space-modal`, `--wf-space-page-x`, and `--wf-space-gutter` all resolve to 24px (`--wf-space-6`). Pick the alias whose name matches the job — they may diverge in value later." },
+        { "title": "Elevation tokens are full border declarations, not just widths", "detail": "`--wf-elevation-1` is `1px solid var(--wf-color-border)`, ready to drop into `border:` or `outline:`. `--wf-elevation-3` swaps in `--wf-color-primary`, so it doubles as the focus/modal accent. Don't wrap them in another `Npx solid` — that double-declares." },
+        { "title": "The reference guide labels lg radius as 16px, the token is 12px", "detail": "reference-guide.html renders the \"lg\" radius swatch at 16px for visual contrast, but `--wf-radius-lg` in `tokens/borders.css` is 12px (0.75rem). Trust the token: panels get 12px." },
+        { "title": "Elevation hexes are fallbacks, not the source of truth", "detail": "The `#d1d5db` and `#2563eb` literals in the elevation/border tokens are CSS custom-property fallbacks (`var(--wf-color-border, #d1d5db)`). The live color comes from `tokens/colors.css`; the fallback only applies if that variable is missing." }
+      ]
+    }
+  ]
+}

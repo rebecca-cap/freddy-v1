@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Retro — Quick-Create Offer</title>
+<style>
+:root{
+  --bg:#0E1016; --panel:#161A23; --panel2:#1C2130; --line:#272D3C;
+  --ink:#E7E9F0; --mut:#98A0B3; --faint:#69708199; --faint2:#6B7280;
+  --good:#5BD6A0; --bad:#F2685C; --warn:#E8A93C; --info:#4BADE9; --viol:#9B7EDE;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+  line-height:1.55;-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(1200px 600px at 80% -10%,#1a2030 0,transparent 60%);}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+a{color:var(--info)}
+h1,h2,h3{line-height:1.2;margin:0}
+.eyebrow{font:600 12px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--info)}
+.sect-title{font-size:26px;font-weight:740;letter-spacing:-.01em;margin:6px 0 4px}
+.sect-sub{color:var(--mut);max-width:74ch;margin:0 0 22px}
+
+/* header */
+header.top{padding:64px 0 40px;border-bottom:1px solid var(--line);position:relative}
+header.top .kicker{font:600 12px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--faint2)}
+header.top h1{font-size:clamp(30px,4.6vw,50px);font-weight:780;letter-spacing:-.02em;margin:14px 0 10px;max-width:20ch}
+header.top h1 .hl{color:var(--bad)}
+header.top .dek{font-size:18px;color:var(--mut);max-width:80ch}
+.meta-row{display:flex;gap:18px;flex-wrap:wrap;margin-top:22px;font:500 13px/1 var(--mono);color:var(--faint2)}
+.meta-row span b{color:var(--mut);font-weight:600}
+
+/* hero stats */
+.hero{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:34px 0 14px}
+.hero-stat{background:var(--panel);padding:20px 18px}
+.hs-num{font-size:34px;font-weight:780;letter-spacing:-.02em}
+.hs-lab{font-size:13px;font-weight:600;color:var(--ink);margin-top:2px}
+.hs-sub{font-size:12px;color:var(--faint2);margin-top:3px}
+.hero2{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:8px}
+.hs2{display:flex;align-items:baseline;gap:8px;background:var(--panel);border:1px solid var(--line);
+  border-radius:999px;padding:8px 16px}
+.hs2-num{font-weight:740;font-size:16px}
+.hs2-lab{font-size:13px;color:var(--mut)}
+
+section{padding:46px 0;border-bottom:1px solid var(--line)}
+.lead{font-size:18px;color:var(--ink);max-width:82ch;margin:0 0 8px}
+.callout{background:linear-gradient(180deg,#191e2b,#141824);border:1px solid var(--line);
+  border-left:3px solid var(--info);border-radius:12px;padding:22px 24px;margin:8px 0}
+.callout p{margin:0;font-size:17px;color:#d7dbe7}
+
+/* two-col charts row */
+.chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:8px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+.panel h3{font-size:15px;font-weight:680;margin-bottom:4px}
+.panel .ph-sub{font-size:13px;color:var(--mut);margin-bottom:16px}
+
+/* ribbon */
+.ribbon{display:flex;gap:3px;overflow-x:auto;padding-bottom:8px}
+.rib-cell{flex:1 0 38px;min-width:38px;height:70px;background:color-mix(in srgb,var(--c) 22%,var(--panel));
+  border-top:3px solid var(--c);border-radius:0 0 6px 6px;display:flex;align-items:flex-end;justify-content:center;
+  padding-bottom:7px;position:relative}
+.rib-round{font:600 11px/1 var(--mono);color:var(--ink)}
+.ribbon-note{font-size:13px;color:var(--mut);margin-top:6px}
+
+/* legend */
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:14px;font-size:13px;color:var(--mut)}
+.legend.col{flex-direction:column;gap:8px}
+.leg-item{display:flex;align-items:center;gap:8px}
+.leg-item b{color:var(--ink)}
+.dot{width:11px;height:11px;border-radius:3px;display:inline-block;flex:0 0 auto}
+
+/* donut */
+.donut-wrap{display:flex;align-items:center;gap:22px}
+.donut-num{fill:var(--ink);font:780 30px var(--sans)}
+.donut-lab{fill:var(--mut);font:500 12px var(--sans)}
+
+/* horizontal bars */
+.hb{display:flex;flex-direction:column;gap:11px}
+.hb-row{display:grid;grid-template-columns:1fr 130px auto;align-items:center;gap:12px}
+.hb-lab{font-size:13px;color:var(--mut);text-align:right;line-height:1.3}
+.hb-track{background:#222736;border-radius:6px;height:18px;overflow:hidden}
+.hb-fill{height:100%;border-radius:6px}
+.hb-val{font:700 13px var(--mono);color:var(--ink);min-width:22px}
+
+/* stacked 100 */
+.s100{display:flex;height:30px;border-radius:8px;overflow:hidden;border:1px solid var(--line)}
+.s100-seg{display:flex;align-items:center;justify-content:center;min-width:30px}
+.s100-seg span{font:700 12px var(--mono);color:#0E1016;mix-blend-mode:luminosity}
+
+/* effort chart */
+.ec{display:flex;align-items:flex-end;gap:10px;height:240px;padding-top:10px}
+.ec-col{flex:1;display:flex;flex-direction:column;align-items:center;height:100%}
+.ec-bars{position:relative;width:100%;max-width:46px;flex:1;display:flex;align-items:flex-end;justify-content:center}
+.ec-bar{position:absolute;bottom:0;width:100%;max-width:46px;background:linear-gradient(180deg,#39435a,#2a3140);border-radius:5px 5px 0 0}
+.ec-bar-edit{position:absolute;bottom:0;width:60%;background:var(--info);border-radius:4px 4px 0 0;opacity:.92}
+.ec-val{font:700 12px var(--mono);margin-top:6px}
+.ec-lab{font-size:11px;color:var(--faint2);margin-top:2px;white-space:nowrap}
+.ec-legend{display:flex;gap:18px;justify-content:center;margin-top:14px;font-size:12px;color:var(--mut)}
+
+/* detailed timeline */
+.tl{position:relative;margin-top:8px;padding-left:6px}
+.tl-date{font:600 12px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--faint2);
+  margin:20px 0 10px;padding-left:28px}
+.tl-row{display:grid;grid-template-columns:74px 1fr;gap:14px;align-items:start;position:relative;
+  padding:8px 0 8px 28px;border-left:1px solid var(--line);margin-left:5px}
+.tl-node{position:absolute;left:-5px;top:14px;width:11px;height:11px;border-radius:50%;
+  box-shadow:0 0 0 4px var(--bg)}
+.tl-round{font:700 13px var(--mono)}
+.tl-topic{font-size:14px;color:#cdd2df}
+.tl-kind{display:inline-block;font:600 10px/1 var(--mono);text-transform:uppercase;letter-spacing:.08em;
+  color:var(--c);border:1px solid color-mix(in srgb,var(--c) 45%,transparent);
+  background:color-mix(in srgb,var(--c) 12%,transparent);border-radius:5px;padding:3px 6px;margin-left:8px;
+  vertical-align:middle}
+
+/* cards */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:6px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:20px 22px}
+.card h3{font-size:16px;font-weight:700;margin-bottom:8px}
+.card p{margin:0 0 10px;font-size:14.5px;color:#cdd2df}
+.card.good{border-top:3px solid var(--good)}
+.card.bad{border-top:3px solid var(--bad)}
+.card .card-head{display:flex;justify-content:space-between;align-items:start;gap:10px;margin-bottom:8px}
+.card .rootcause{color:var(--ink)}
+.sev{font:700 10px/1 var(--mono);text-transform:uppercase;letter-spacing:.08em;padding:5px 8px;border-radius:6px;flex:0 0 auto}
+.sev-high{background:#3a1c1c;color:#ff8d82;border:1px solid #5e2a2a}
+.sev-medium{background:#3a2f17;color:#f0c069;border:1px solid #5e4a22}
+.sev-low{background:#26303a;color:#8fb6cf;border:1px solid #36505e}
+details{margin-top:4px}
+summary{cursor:pointer;font:600 12px var(--mono);color:var(--faint2);user-select:none}
+summary:hover{color:var(--info)}
+ul.ev{margin:10px 0 2px;padding-left:18px}
+ul.ev li{font-size:13px;color:var(--mut);margin-bottom:7px;line-height:1.5}
+
+/* improve list */
+.fixes{display:flex;flex-direction:column;gap:14px;margin-top:6px}
+.card.fix{display:grid;grid-template-columns:46px 1fr;gap:18px;align-items:start;border-top:3px solid var(--info)}
+.fix-num{font:780 24px var(--sans);color:var(--info);background:#10202c;border:1px solid #1d3645;
+  border-radius:10px;width:46px;height:46px;display:flex;align-items:center;justify-content:center}
+.fix-body h3{font-size:16px;margin-bottom:8px}
+.fix-body p{font-size:14px;margin:0 0 7px;color:#cdd2df}
+.fix-body .action{color:var(--ink)}
+.fix-body .impact{color:var(--good);font-size:13px;font-style:italic}
+
+/* ledger */
+.ledger{width:100%;border-collapse:collapse;margin-top:8px;font-size:13.5px}
+.ledger th{text-align:left;font:600 11px/1 var(--mono);text-transform:uppercase;letter-spacing:.1em;
+  color:var(--faint2);padding:0 12px 12px;border-bottom:1px solid var(--line)}
+.ledger td{padding:13px 12px;border-bottom:1px solid var(--line);vertical-align:top;color:#cdd2df}
+.ledger tr:hover td{background:#13171f}
+.lg-round{font:700 12px var(--mono);white-space:nowrap;color:var(--ink)}
+.lg-ev{max-width:560px}
+.tag{font:600 11px/1 var(--mono);color:var(--c);border:1px solid color-mix(in srgb,var(--c) 45%,transparent);
+  background:color-mix(in srgb,var(--c) 12%,transparent);border-radius:6px;padding:4px 7px;white-space:nowrap;display:inline-block}
+
+/* quotes */
+.quotes{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:6px}
+.quote{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:20px 22px}
+.quote.q-frank{border-left:3px solid var(--warn)}
+.quote.q-claude{border-left:3px solid var(--info)}
+.quote blockquote{margin:0 0 12px;font-size:16px;line-height:1.5;color:#e9ebf2}
+.quote figcaption{font-size:13px;color:var(--mut)}
+.q-who{font:700 12px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--ink)}
+
+/* method + footer */
+.method{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:18px 22px;
+  font-size:13.5px;color:var(--mut)}
+.method b{color:var(--ink)}
+footer{padding:40px 0 70px;color:var(--faint2);font-size:13px}
+
+@media(max-width:880px){
+  .hero{grid-template-columns:repeat(2,1fr)}
+  .chart-grid,.cards,.quotes{grid-template-columns:1fr}
+  .hb-row{grid-template-columns:1fr 90px auto}
+}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div class="kicker">Feature Retrospective · Gravitate · Index Special Offers</div>
+  <h1>Quick-Create Offer: a great build with <span class="hl">no finish line</span></h1>
+  <p class="dek">Core feature shipped on day 1, then 20+ rounds of polish churn, repeat gotchas, and color flip-flops — still uncommitted past R5</p>
+  <div class="meta-row">
+    <span><b>Window:</b> Jun 24 – Jun 30, 2026</span>
+    <span><b>Sessions analyzed:</b> 11</span>
+    <span><b>Method:</b> agent swarm over ~40&nbsp;MB of transcripts</span>
+    <span><b>Branch:</b> project/index-special-pricing</span>
+  </div>
+
+  <div class="hero"><div class="hero-stat"><div class="hs-num">7</div><div class="hs-lab">days</div><div class="hs-sub">Jun 24 → Jun 30</div></div><div class="hero-stat"><div class="hs-num">22</div><div class="hs-lab">revision rounds</div><div class="hs-sub">R2 through R11</div></div><div class="hero-stat"><div class="hs-num">1</div><div class="hs-lab">round to build the core</div><div class="hs-sub">done day one (R2)</div></div><div class="hero-stat"><div class="hs-num">117</div><div class="hs-lab">Frank review messages</div><div class="hs-sub">the iteration loop</div></div><div class="hero-stat"><div class="hs-num">401</div><div class="hs-lab">file edits</div><div class="hs-sub">across 11 sessions</div></div><div class="hero-stat"><div class="hs-num">1,818</div><div class="hs-lab">tool calls</div><div class="hs-sub">813 of them Bash</div></div></div>
+  <div class="hero2"><div class="hs2"><span class="hs2-num">~349</span><span class="hs2-lab">screenshots reviewed</span></div><div class="hs2"><span class="hs2-num">1,153</span><span class="hs2-lab">reasoning passes</span></div><div class="hs2"><span class="hs2-num">31</span><span class="hs2-lab">subagents spawned</span></div><div class="hs2"><span class="hs2-num">3×</span><span class="hs2-lab">color reversals (cyan↔navy)</span></div><div class="hs2"><span class="hs2-num">~7</span><span class="hs2-lab">self-inflicted regressions</span></div><div class="hs2"><span class="hs2-num">0</span><span class="hs2-lab">commits since R5 (uncommitted)</span></div></div>
+</div></header>
+
+<section id="summary"><div class="wrap">
+  <div class="eyebrow">The one-paragraph version</div>
+  <h2 class="sect-title">Executive summary</h2>
+  <div class="callout"><p>The real story isn&#x27;t slowness, it&#x27;s lack of a finish line. The actual feature — the two-step preset-led Quick-Create Special Offer drawer — was assembled correctly and verified live on day 1 (R2, Jun24). Everything after that, roughly 20 of the ~22 rounds, was visual polish and rework, and that long tail is where the pain lived: a cyan-vs-navy color decision that flipped three times, the same excalibrr gap={N} no-op gotcha rediscovered in at least five separate sessions, AG-grid and antd-v4 traps re-hit despite being in memory, and several regressions (copy-button outside the box, preset Save dirty-flag, spacing collapse) that shipped because side-effects weren&#x27;t checked before declaring done. Claude&#x27;s craft was genuinely strong inside each round — disciplined Playwright verification, real reuse instead of rebuilds, careful scoping that protected the full-setup wizard — but it had no mechanism to say &quot;this is good enough, stop.&quot; Two compounding risks: the whole feature is STILL uncommitted/unpushed past R5, so weeks of work sit in a working tree, and the favorites bug Frank reported was never reproduced or root-caused before the thread ended. The fix is process, not capability: a gotchas pre-flight, batched polish passes with a round budget, confirm-then-build on ambiguous asks, a regression check before &quot;done,&quot; and a commit cadence.</p></div>
+</div></section>
+
+<section id="shape"><div class="wrap">
+  <div class="eyebrow">Where the week went</div>
+  <h2 class="sect-title">The shape of the work</h2>
+  <p class="sect-sub">Two rounds delivered the working feature. Then twenty more rounds of polish and rework followed. The ribbon below is every round in order — the two cyan blocks at the left are the build; everything after is the long tail.</p>
+  <div class="ribbon"><div class="rib-cell" style="--c:#4BADE9" title="R2 (Jun24) — Core feature: re-align to approved lo-fi; new QuickProductSelect/QuickIndexPrice/FullCustomerPicker; seed fixtures"><div class="rib-round">R2</div></div><div class="rib-cell" style="--c:#4BADE9" title="R2b (Jun24) — In-drawer multi-view navigation (no second drawer)"><div class="rib-round">R2b</div></div><div class="rib-cell" style="--c:#7E8AA3" title="R2c (Jun24) — Alignment/spacing polish; new SectionHeader; gap fixes"><div class="rib-round">R2c</div></div><div class="rib-cell" style="--c:#F2685C" title="R2c-fix (Jun24) — Regression: excalibrr gap={N} no-op collapsed all spacing; fixed with style gap"><div class="rib-round">R2c-fix</div></div><div class="rib-cell" style="--c:#F2685C" title="R2d (Jun25) — Formula-grid fix: AG-grid zero columns on preset apply; placeholder-token row"><div class="rib-round">R2d</div></div><div class="rib-cell" style="--c:#4BADE9" title="R2e (Jun25) — Live preview rail (reused full-wizard PreviewPanel)"><div class="rib-round">R2e</div></div><div class="rib-cell" style="--c:#4BADE9" title="R2f (Jun25) — Customer favorites star-pin column"><div class="rib-round">R2f</div></div><div class="rib-cell" style="--c:#7E8AA3" title="R3a (Jun25) — Micro-polish: chip counts, link underline"><div class="rib-round">R3a</div></div><div class="rib-cell" style="--c:#7E8AA3" title="R3b (Jun25) — Theme recolor to CYAN (later superseded)"><div class="rib-round">R3b</div></div><div class="rib-cell" style="--c:#E8A93C" title="R3c (Jun25) — Design-quality pass -&gt; decided NAVY, no cyan (reverted R3b)"><div class="rib-round">R3c</div></div><div class="rib-cell" style="--c:#E8A93C" title="R3d (Jun25) — Review pass 2 -&gt; CYAN CTAs on navy chrome (color flips again); progressive-disclosure timing; gap no-op fixes"><div class="rib-round">R3d</div></div><div class="rib-cell" style="--c:#F2685C" title="R4 (Jun25) — Finish-pass; timing custom-only; formula spacing; copy-button regression (rendered outside box)"><div class="rib-round">R4</div></div><div class="rib-cell" style="--c:#F2685C" title="R5 (Jun25) — Preset Save/Update regression (dirty flag never flipped); from-scratch save; formula-persists bug"><div class="rib-round">R5</div></div><div class="rib-cell" style="--c:#7E8AA3" title="R6 (Jun25) — Step-2 timing restructure (calendar always shown)"><div class="rib-round">R6</div></div><div class="rib-cell" style="--c:#F2685C" title="R7 (Jun25) — Calendar didn&#x27;t reflect quick-timeframe picks (unmounted Form.Items returned undefined)"><div class="rib-round">R7</div></div><div class="rib-cell" style="--c:#7E8AA3" title="R8 (Jun26) — PresetBar inline name field placement"><div class="rib-round">R8</div></div><div class="rib-cell" style="--c:#9B7EDE" title="R9 (Jun29) — Reece presets-breakdown realignment; mid-stream correction dropped offer/auction; filters tabs-&gt;toggles"><div class="rib-round">R9</div></div><div class="rib-cell" style="--c:#7E8AA3" title="R9b (Jun29) — Widen formula grid (instrument/display truncation)"><div class="rib-round">R9b</div></div><div class="rib-cell" style="--c:#4BADE9" title="R9c (Jun30) — Per-deal volume min/max/increment override (progressive disclosure)"><div class="rib-round">R9c</div></div><div class="rib-cell" style="--c:#4BADE9" title="R9d (Jun30) — Editable pricing context (3-stage disclosure)"><div class="rib-round">R9d</div></div><div class="rib-cell" style="--c:#E8A93C" title="R10 (Jun30) — Price-formula spacing/consistency (/impeccable); follow-up misread of &#x27;tight&#x27;, reverted"><div class="rib-round">R10</div></div><div class="rib-cell" style="--c:#7E8AA3" title="R11 (Jun30) — Group/favorites chips filter -&gt; quick-select"><div class="rib-round">R11</div></div></div>
+  <div class="legend"><div class="leg-item"><span class="dot" style="background:#4BADE9"></span>New capability</div><div class="leg-item"><span class="dot" style="background:#7E8AA3"></span>Polish</div><div class="leg-item"><span class="dot" style="background:#F2685C"></span>Regression fix</div><div class="leg-item"><span class="dot" style="background:#E8A93C"></span>Rework / thrown away</div><div class="leg-item"><span class="dot" style="background:#9B7EDE"></span>Re-alignment</div></div>
+  <p class="ribbon-note">Read left → right. Each cell is one revision round. Hover any cell for its topic.</p>
+
+  <div class="chart-grid" style="margin-top:30px">
+    <div class="panel">
+      <h3>Rounds by type</h3>
+      <div class="ph-sub">Of 22 rounds, only the first few added new capability.</div>
+      <div class="donut-wrap"><svg viewBox="0 0 180 180" width="180" height="180" role="img" aria-label="breakdown"><circle cx="90" cy="90" r="62" fill="none" stroke="#222736" stroke-width="26"/><circle cx="90" cy="90" r="62" fill="none" stroke="#4BADE9" stroke-width="26" stroke-dasharray="123.95 265.61" stroke-dashoffset="-0.00" transform="rotate(-90 90 90)"/><circle cx="90" cy="90" r="62" fill="none" stroke="#7E8AA3" stroke-width="26" stroke-dasharray="106.24 283.31" stroke-dashoffset="-123.95" transform="rotate(-90 90 90)"/><circle cx="90" cy="90" r="62" fill="none" stroke="#F2685C" stroke-width="26" stroke-dasharray="88.54 301.02" stroke-dashoffset="-230.19" transform="rotate(-90 90 90)"/><circle cx="90" cy="90" r="62" fill="none" stroke="#E8A93C" stroke-width="26" stroke-dasharray="53.12 336.44" stroke-dashoffset="-318.73" transform="rotate(-90 90 90)"/><circle cx="90" cy="90" r="62" fill="none" stroke="#9B7EDE" stroke-width="26" stroke-dasharray="17.71 371.85" stroke-dashoffset="-371.85" transform="rotate(-90 90 90)"/><text x="90" y="86" text-anchor="middle" class="donut-num">22</text><text x="90" y="106" text-anchor="middle" class="donut-lab">rounds</text></svg><div class="legend col"><div class="leg-item"><span class="dot" style="background:#4BADE9"></span>New capability <b>7</b></div><div class="leg-item"><span class="dot" style="background:#7E8AA3"></span>Polish <b>6</b></div><div class="leg-item"><span class="dot" style="background:#F2685C"></span>Regression fix <b>5</b></div><div class="leg-item"><span class="dot" style="background:#E8A93C"></span>Rework / thrown away <b>3</b></div><div class="leg-item"><span class="dot" style="background:#9B7EDE"></span>Re-alignment <b>1</b></div></div></div>
+    </div>
+    <div class="panel">
+      <h3>What drove the friction</h3>
+      <div class="ph-sub">Honest attribution of the time lost to churn.</div>
+      <div class="s100"><div class="s100-seg" style="width:55.00%;background:#F2685C" title="Claude — regressions, rediscovered gotchas, intent misreads, unverified side-effects: 55%"><span>55%</span></div><div class="s100-seg" style="width:25.00%;background:#E8A93C" title="Shared — ambiguous asks, scope expansion, no commit cadence, no finish line: 25%"><span>25%</span></div><div class="s100-seg" style="width:12.00%;background:#7E8AA3" title="Frank — color decision changes, mid-stream corrections: 12%"><span>12%</span></div><div class="s100-seg" style="width:8.00%;background:#9B7EDE" title="Environment — Playwright/portal/HMR thrashing, antd-v4/AG-grid platform traps, accidental /clear: 8%"><span>8%</span></div></div><div class="legend col"><div class="leg-item"><span class="dot" style="background:#F2685C"></span>Claude — regressions, rediscovered gotchas, intent misreads, unverified side-effects</div><div class="leg-item"><span class="dot" style="background:#E8A93C"></span>Shared — ambiguous asks, scope expansion, no commit cadence, no finish line</div><div class="leg-item"><span class="dot" style="background:#7E8AA3"></span>Frank — color decision changes, mid-stream corrections</div><div class="leg-item"><span class="dot" style="background:#9B7EDE"></span>Environment — Playwright/portal/HMR thrashing, antd-v4/AG-grid platform traps, accidental /clear</div></div>
+    </div>
+  </div>
+</div></section>
+
+<section id="effort"><div class="wrap">
+  <div class="eyebrow">Effort, session by session</div>
+  <h2 class="sect-title">Tool calls were back-loaded into polish</h2>
+  <p class="sect-sub">Each bar is one session. The grey bar is total tool calls; the cyan overlay is file edits. Notice how most effort isn't editing — it's the verification round-trips (Reads + Bash) around small tweaks. The build session (Jun 24·b) is dwarfed by the polish sessions that followed.</p>
+  <div class="ec"><div class="ec-col" title="Jun 24·a — 41 tool calls, 0 edits, 5 Frank msgs, 0 screenshots"><div class="ec-bars"><div class="ec-bar" style="height:16.5%"></div><div class="ec-bar-edit" style="height:0.0%"></div></div><div class="ec-val">41</div><div class="ec-lab">Jun 24·a</div></div><div class="ec-col" title="Jun 24·b — 151 tool calls, 34 edits, 8 Frank msgs, 32 screenshots"><div class="ec-bars"><div class="ec-bar" style="height:60.9%"></div><div class="ec-bar-edit" style="height:13.7%"></div></div><div class="ec-val">151</div><div class="ec-lab">Jun 24·b</div></div><div class="ec-col" title="Jun 24·c — 174 tool calls, 47 edits, 8 Frank msgs, 29 screenshots"><div class="ec-bars"><div class="ec-bar" style="height:70.2%"></div><div class="ec-bar-edit" style="height:19.0%"></div></div><div class="ec-val">174</div><div class="ec-lab">Jun 24·c</div></div><div class="ec-col" title="Jun 25·a — 194 tool calls, 59 edits, 7 Frank msgs, 32 screenshots"><div class="ec-bars"><div class="ec-bar" style="height:78.2%"></div><div class="ec-bar-edit" style="height:23.8%"></div></div><div class="ec-val">194</div><div class="ec-lab">Jun 25·a</div></div><div class="ec-col" title="Jun 25·b — 232 tool calls, 40 edits, 7 Frank msgs, 36 screenshots"><div class="ec-bars"><div class="ec-bar" style="height:93.5%"></div><div class="ec-bar-edit" style="height:16.1%"></div></div><div class="ec-val">232</div><div class="ec-lab">Jun 25·b</div></div><div class="ec-col" title="Jun 26 — 248 tool calls, 40 edits, 18 Frank msgs, 53 screenshots"><div class="ec-bars"><div class="ec-bar" style="height:100.0%"></div><div class="ec-bar-edit" style="height:16.1%"></div></div><div class="ec-val">248</div><div class="ec-lab">Jun 26</div></div><div class="ec-col" title="Jun 29·a — 53 tool calls, 22 edits, 10 Frank msgs, 16 screenshots"><div class="ec-bars"><div class="ec-bar" style="height:21.4%"></div><div class="ec-bar-edit" style="height:8.9%"></div></div><div class="ec-val">53</div><div class="ec-lab">Jun 29·a</div></div><div class="ec-col" title="Jun 29·b — 150 tool calls, 22 edits, 13 Frank msgs, 36 screenshots"><div class="ec-bars"><div class="ec-bar" style="height:60.5%"></div><div class="ec-bar-edit" style="height:8.9%"></div></div><div class="ec-val">150</div><div class="ec-lab">Jun 29·b</div></div><div class="ec-col" title="Jun 30·a — 233 tool calls, 69 edits, 17 Frank msgs, 53 screenshots"><div class="ec-bars"><div class="ec-bar" style="height:94.0%"></div><div class="ec-bar-edit" style="height:27.8%"></div></div><div class="ec-val">233</div><div class="ec-lab">Jun 30·a</div></div><div class="ec-col" title="Jun 30·b — 242 tool calls, 43 edits, 11 Frank msgs, 39 screenshots"><div class="ec-bars"><div class="ec-bar" style="height:97.6%"></div><div class="ec-bar-edit" style="height:17.3%"></div></div><div class="ec-val">242</div><div class="ec-lab">Jun 30·b</div></div><div class="ec-col" title="Jun 30·c — 100 tool calls, 25 edits, 13 Frank msgs, 23 screenshots"><div class="ec-bars"><div class="ec-bar" style="height:40.3%"></div><div class="ec-bar-edit" style="height:10.1%"></div></div><div class="ec-val">100</div><div class="ec-lab">Jun 30·c</div></div></div>
+  <div class="ec-legend">
+    <div class="leg-item"><span class="dot" style="background:#39435a"></span>Total tool calls</div>
+    <div class="leg-item"><span class="dot" style="background:var(--info)"></span>File edits</div>
+  </div>
+</div></section>
+
+<section id="themes"><div class="wrap">
+  <div class="eyebrow">Patterns that repeated</div>
+  <h2 class="sect-title">Recurring friction themes</h2>
+  <p class="sect-sub">How many times each pattern showed up across the week. The top two — endless polish and re-hitting known gotchas — account for most of the felt slowness.</p>
+  <div class="panel"><div class="hb"><div class="hb-row"><div class="hb-lab">Polish/rework micro-iteration with no finish line</div><div class="hb-track"><div class="hb-fill" style="width:100.0%;background:#F2685C"></div></div><div class="hb-val">12×</div></div><div class="hb-row"><div class="hb-lab">Rediscovered framework gotchas (gap no-op, !important utils, antd-v4, AG-grid, GraviButton)</div><div class="hb-track"><div class="hb-fill" style="width:58.3%;background:#F2685C"></div></div><div class="hb-val">7×</div></div><div class="hb-row"><div class="hb-lab">Regressions shipped without side-effect verification</div><div class="hb-track"><div class="hb-fill" style="width:58.3%;background:#F2685C"></div></div><div class="hb-val">7×</div></div><div class="hb-row"><div class="hb-lab">Color/decision flip-flops (cyan&lt;-&gt;navy)</div><div class="hb-track"><div class="hb-fill" style="width:33.3%;background:#F2685C"></div></div><div class="hb-val">4×</div></div><div class="hb-row"><div class="hb-lab">Intent misreads from building before confirming</div><div class="hb-track"><div class="hb-fill" style="width:33.3%;background:#F2685C"></div></div><div class="hb-val">4×</div></div><div class="hb-row"><div class="hb-lab">Playwright/portal/HMR verification thrashing</div><div class="hb-track"><div class="hb-fill" style="width:66.7%;background:#F2685C"></div></div><div class="hb-val">8×</div></div><div class="hb-row"><div class="hb-lab">Work left uncommitted/unpushed (loss + recovery risk)</div><div class="hb-track"><div class="hb-fill" style="width:25.0%;background:#F2685C"></div></div><div class="hb-val">3×</div></div></div></div>
+</div></section>
+
+<section id="right"><div class="wrap">
+  <div class="eyebrow">Credit where due</div>
+  <h2 class="sect-title">What went right</h2>
+  <p class="sect-sub">The craft inside each round was genuinely strong. These are real strengths worth keeping.</p>
+  <div class="cards"><div class="card good"><h3>Core feature built fast and correctly on day 1</h3><p>R2 (Jun24-b) correctly reframed the job as assembly/reuse rather than a from-scratch rebuild — Claude discovered the prototype already contained the real production Special Offers feature and wired its existing pickers into the approved two-step flow. End-to-end paths (preset population, dirty/save, validation, Step 2, Send, handoff) were Playwright-verified the same day.</p><details><summary>Evidence</summary><ul class="ev"><li>&#x27;the prototype already contains the real production Special Offers feature ... The hi-fi job is to assemble these into the approved two-step preset-led quick-create flow, not build from scratch.&#x27;</li><li>&#x27;Verification caught a real bug: the preset&#x27;s TotalVolume (42,000) is less than the template&#x27;s max-per-order (50,000), so the volume validator rejects and blocks Next.&#x27;</li><li>Round log: R2 (Jun24) CORE FEATURE built and verified day 1</li></ul></details></div><div class="card good"><h3>Disciplined live verification was the norm, not the exception</h3><p>Across nearly every session, changes were confirmed in a running browser with Playwright — computed-style checks, pixel measurement, console inspection — instead of being asserted from the diff. This caught genuine defects and avoided phantom-bug reports.</p><details><summary>Evidence</summary><ul class="ev"><li>&#x27;Select panel = 8px, Select input box = 5px&#x27;; &#x27;minute column shows only 00/15/30/45&#x27;</li><li>&#x27;the grid toolbar says 4 Selected while the bin shows 2 ... The live toolbar actually reads 2 Selected — the screenshot just caught a mid-update frame. All counts agree&#x27;</li><li>1153 thinking blocks and heavy Read/Bash verification effort across 11 sessions</li></ul></details></div><div class="card good"><h3>Reuse-first instincts instead of rebuilding</h3><p>Repeatedly chose to wire existing components with back-compatible props rather than build parallel copies — the shared template selector got an initialFilters prop, the full-wizard PreviewPanel was reused for the live rail, volumeInputList and toggleGroup were reused for overrides and chips.</p><details><summary>Evidence</summary><ul class="ev"><li>&#x27;add the back-compatible initialFilters prop to the shared template selector&#x27; (after Frank warned &#x27;It looks like you were trying to rebuild it&#x27;)</li><li>&#x27;Reused the existing PreviewPanel (the same tile component the full 4-step wizard uses) rather than rebuild&#x27;</li><li>&#x27;displayGroups ... plus toggleGroup is already in scope ... net -18 lines&#x27;</li></ul></details></div><div class="card good"><h3>Scoping that protected the existing full-setup wizard</h3><p>Shared-component edits were consistently made opt-in (new optional props defaulting to current behavior) and gated behind variant=&#x27;quick&#x27;, then regression-spot-checked against the full 4-step wizard so it never broke.</p><details><summary>Evidence</summary><ul class="ev"><li>&#x27;make chrome-strip opt-in via new optional props (defaults preserve current behavior) — zero risk to the full wizard&#x27;</li><li>&#x27;timing restructure gated behind variant=quick (full wizard untouched)&#x27;</li><li>&#x27;full-setup primary button stays navy rgb(15,17,33) ... header stays light #EEF0F8 after each color pass&#x27;</li></ul></details></div><div class="card good"><h3>Honest flagging of limitations and contradictions</h3><p>Claude surfaced spec/implementation mismatches and instruction contradictions to Frank instead of silently guessing or silently flip-flopping, and admitted its own regressions plainly.</p><details><summary>Evidence</summary><ul class="ev"><li>&#x27;Reece describes the customer filters as additive toggles ... but in the prototype they&#x27;re mutually-exclusive tabs -&gt; raised via AskUserQuestion before building&#x27;</li><li>&#x27;There&#x27;s also a button-color instruction that contradicts the earlier navy, no cyan decision — I&#x27;ll need to clarify that&#x27;</li><li>&#x27;the going backwards feeling is fair. That copy-button regression was mine: I shipped a fragile positioning fix and verified it by looking at a screenshot instead of actually measuring&#x27;</li></ul></details></div><div class="card good"><h3>Clean commit hygiene when commits did happen</h3><p>When Claude committed, it staged only src/, deliberately excluding package.json/yarn.lock churn and .playwright-cli/scratch PNG junk per the workspace memory rules.</p><details><summary>Evidence</summary><ul class="ev"><li>&#x27;18 source files staged; package.json, yarn.lock, and .playwright-cli/ correctly excluded&#x27;</li><li>&#x27;Staged only src/, excluding package.json file: path dirt, yarn.lock, .playwright-cli/ and scratch PNGs; committed d062547&#x27;</li></ul></details></div></div>
+</div></section>
+
+<section id="wrong"><div class="wrap">
+  <div class="eyebrow">The honest part</div>
+  <h2 class="sect-title">What went wrong</h2>
+  <p class="sect-sub">Root-caused and sorted by severity. Most of these are process gaps, not capability gaps.</p>
+  <div class="cards"><div class="card bad"><div class="card-head"><h3>No &#x27;good enough&#x27; line — endless polish micro-iteration</h3><span class="sev sev-high">high</span></div><p class="rootcause"><b>Root cause.</b> Neither Claude nor the workflow had a defined finish state or round/effort budget for the polish phase, so each Frank observation spawned another full open-browser-edit-measure cycle. Polish was handled reactively, one instance at a time, instead of batched.</p><p>The core feature was done in R2 but ~20 more rounds of spacing, color, rounding, and copy tweaks followed. Single-file or single-number changes routinely triggered multi-agent analysis and long verification loops. The metrics show the scale: 4073 assistant turns and 1818 tool calls (813 Bash) across the week, the vast majority post-feature.</p><details><summary>Evidence</summary><ul class="ev"><li>Round log: ~22 rounds, core done R2, the rest polish/rework</li><li>Frank: &#x27;i&#x27;m really kind of surprised the context window is so high. Are you using efficient ways to do this with loops?&#x27;</li><li>Jun30-b polish session: 489 asst turns / 242 tool calls for a UI pass; Jun30-c: 53 Bash calls for a handful of margin changes</li></ul></details></div><div class="card bad"><div class="card-head"><h3>Same framework gotchas rediscovered over and over</h3><span class="sev sev-high">high</span></div><p class="rootcause"><b>Root cause.</b> Documented gotchas were not loaded/checked before writing the kind of code that trips them. Memory existed but wasn&#x27;t consulted pre-flight; it was written to after each rediscovery instead of read before.</p><p>The excalibrr Vertical/Horizontal gap={N} no-op, the !important utility-class override fight, the antd-v4 theme.useToken() crash, GraviButton-ignores-children, and AG-grid quirks were each hit multiple times — despite several already being documented in MEMORY.md and gotchas.md. The gap no-op alone surfaced as a &#x27;discovery&#x27; in at least five sessions (R2c-fix, Jun25-a, Jun25-b, Jun30-b, Jun30-c).</p><details><summary>Evidence</summary><ul class="ev"><li>&#x27;The catalog already has a Vertical/Horizontal entry (line 12).&#x27; — yet the regression occurred and was only found after Frank flagged it</li><li>&#x27;Every touching gap issue ... traces to the same root cause: excalibrr Horizontal/Vertical ignore the gap={N} prop (8 instances in the timing files alone)&#x27;</li><li>&#x27;GraviButton ignores children (known gotcha) — I must use buttonText&#x27;; &#x27;MEMORY already lists this exact [useToken] gotcha&#x27;</li></ul></details></div><div class="card bad"><div class="card-head"><h3>Regressions shipped because side-effects weren&#x27;t checked before &#x27;done&#x27;</h3><span class="sev sev-high">high</span></div><p class="rootcause"><b>Root cause.</b> Verification confirmed the intended change rendered but did not check for collateral breakage; screenshot-glancing substituted for measurement on positioning fixes.</p><p>Several defects were introduced and declared complete, then caught by Frank: the copy button rendered outside the form field, the spacing collapse from swapping margins for no-op gaps, and the preset Save/Update dirty-flag that stopped firing. The copy-button case is the clearest — it was &#x27;verified&#x27; by glancing at a screenshot rather than measuring.</p><details><summary>Evidence</summary><ul class="ev"><li>Frank: &#x27;now the copy icon is outside of the form field. What is going on? Why are you making such weird design decisions?&#x27;</li><li>Frank: &#x27;There seems to be no gap between the items in each section ... everything is touching.&#x27;</li><li>Frank: &#x27;the save as new preset or update preset feature that we used to have is no longer working&#x27;</li></ul></details></div><div class="card bad"><div class="card-head"><h3>Large uncommitted/unpushed pile — bus-factor and loss risk</h3><span class="sev sev-high">high</span></div><p class="rootcause"><b>Root cause.</b> No commit cadence during the polish phase; commits happened opportunistically rather than at the end of each verified round.</p><p>The feature is still uncommitted past R5 and not pushed. Weeks of polish across many sessions sit in a working tree on project/index-special-pricing, recoverable only via memory resume docs. A crash or accidental /clear already cost real recovery time once.</p><details><summary>Evidence</summary><ul class="ev"><li>Brief: &#x27;Feature is STILL UNCOMMITTED past R5 / not pushed&#x27;</li><li>Jun26 session opened by reconstructing a crashed session&#x27;s state after an accidental /clear</li><li>Multiple memory docs note work &#x27;UNCOMMITTED&#x27; as the resume state</li></ul></details></div><div class="card bad"><div class="card-head"><h3>Color decision churned three times (cyan &lt;-&gt; navy)</h3><span class="sev sev-medium">medium</span></div><p class="rootcause"><b>Root cause.</b> Shared between Claude and Frank — Frank changed his mind, but the decisions were also never locked in a single durable place, so each session re-litigated them. Largely attributable to Frank&#x27;s direction, but the process offered no decision log to anchor against.</p><p>The primary accent was decided and fully re-implemented three times across R3b/R3c/R3d and Jun30-b: black/white -&gt; cyan -&gt; navy &#x27;no cyan&#x27; -&gt; cyan CTAs on navy chrome. Each swing meant rewriting the same CSS color blocks, and work from one round was thrown away and redone twice.</p><details><summary>Evidence</summary><ul class="ev"><li>#8 &#x27;Footer Next button: cyan&#x27;; #9 &#x27;drop cyan -&gt; navy blue ... zero cyan&#x27;; #10 &#x27;make the primary buttons ... cyan ... but make sure the cyan buttons have white text&#x27;</li><li>Round log: R3b CYAN -&gt; R3c NAVY (reverted R3b) -&gt; R3d CYAN CTAs (flips again)</li><li>&#x27;#9 most of it is removing my cyan overrides&#x27;; &#x27;#10 Recolor the in-drawer primary buttons to cyan + white (re-adding what #9 removed)&#x27;</li></ul></details></div><div class="card bad"><div class="card-head"><h3>Intent misreads from building before confirming</h3><span class="sev sev-medium">medium</span></div><p class="rootcause"><b>Root cause.</b> Acted on an interpretation of an ambiguous instruction instead of confirming scope first; misread Reece&#x27;s note and Frank&#x27;s deictic references.</p><p>On ambiguous asks, Claude sometimes built the wrong thing and had to rip it out: the Offer/Auction deal-type dimension Frank never wanted (whole sub-round to remove), the R10 &#x27;tight spacing&#x27; read as internal rows when Frank meant flanking space, and cutting the All-customers tab without checking the remaining tabs had data.</p><details><summary>Evidence</summary><ul class="ev"><li>Frank: &#x27;Okay, in the toggles, there is no offer or auction, it&#x27;s only index and fixed.&#x27; — full sub-round to remove the dimension</li><li>Frank: &#x27;no the space between the formula differential and the Price formula display&#x27; (R10 misread)</li><li>Frank: &#x27;i need some authorized to lift to choose from we would have a group if it had no customers&#x27;</li></ul></details></div><div class="card bad"><div class="card-head"><h3>Unresolved user-reported bug never root-caused</h3><span class="sev sev-medium">medium</span></div><p class="rootcause"><b>Root cause.</b> When the test environment couldn&#x27;t reproduce a user-reported failure, Claude concluded &#x27;works on my end&#x27; rather than investigating the environment gap (stale build, cache, different state path).</p><p>Frank reported the favorites star not adding to favorites; Claude&#x27;s repeated live tests all passed, so the discrepancy between Frank&#x27;s real environment and Claude&#x27;s passing tests was never reconciled before the thread ended.</p><details><summary>Evidence</summary><ul class="ev"><li>Frank: &#x27;I see the star in the row, but it&#x27;s not adding anything to the favorites&#x27;</li><li>Claude: &#x27;I just re-verified it live on a freshly reloaded page ... So the wiring works on a clean load.&#x27; — turn ends with discrepancy unexplained</li></ul></details></div></div>
+</div></section>
+
+<section id="ledger"><div class="wrap">
+  <div class="eyebrow">Receipts</div>
+  <h2 class="sect-title">Rework ledger</h2>
+  <p class="sect-sub">Every concrete revert, regression, dead-end, and flip-flop — what it was, what kind, and who/what it's on.</p>
+  <table class="ledger"><thead><tr><th>Round</th><th>Event</th><th>Type</th><th>On</th></tr></thead><tbody><tr><td class="lg-round">R2c-fix</td><td class="lg-ev">Swapped working mb-* margins for excalibrr gap={N} (a no-op); all section items collapsed to touching. Frank caught it visually; required a second full spacing sweep.</td><td><span class="tag" style="--c:#F2685C">regression</span></td><td><span class="tag" style="--c:#F2685C">claude</span></td></tr><tr><td class="lg-round">R3b-&gt;R3c</td><td class="lg-ev">Recolored the flow to cyan, then reverted all cyan overrides to navy (&#x27;no cyan&#x27;) one round later.</td><td><span class="tag" style="--c:#E8A93C">flip-flop/revert</span></td><td><span class="tag" style="--c:#7E8AA3">frank</span></td></tr><tr><td class="lg-round">R3c-&gt;R3d</td><td class="lg-ev">Flipped back to cyan CTAs on navy chrome; CSS color blocks rewritten a third time.</td><td><span class="tag" style="--c:#E8A93C">flip-flop/revert</span></td><td><span class="tag" style="--c:#7E8AA3">frank</span></td></tr><tr><td class="lg-round">R4</td><td class="lg-ev">Copy-button positioning fix shipped with the icon outside the form field; &#x27;verified&#x27; by screenshot glance, caught by Frank.</td><td><span class="tag" style="--c:#F2685C">regression</span></td><td><span class="tag" style="--c:#F2685C">claude</span></td></tr><tr><td class="lg-round">R4</td><td class="lg-ev">Copy-button position churned across three turns (centered+nudged -&gt; wrong-direction edit -&gt; re-pinned to top-right).</td><td><span class="tag" style="--c:#E8A93C">flip-flop/revert</span></td><td><span class="tag" style="--c:#F2685C">claude</span></td></tr><tr><td class="lg-round">R5</td><td class="lg-ev">Preset Save-as-new/Update stopped flagging dirty (imperative setFieldsValue bypassed onValuesChange); regression of a previously working feature.</td><td><span class="tag" style="--c:#F2685C">regression</span></td><td><span class="tag" style="--c:#F2685C">claude</span></td></tr><tr><td class="lg-round">R7</td><td class="lg-ev">Calendar didn&#x27;t reflect quick-timeframe picks because window Form.Items were unmounted in quick mode; chased a timezone hypothesis first before finding the unmount/useWatch cause.</td><td><span class="tag" style="--c:#F2685C">regression+dead-end</span></td><td><span class="tag" style="--c:#F2685C">claude</span></td></tr><tr><td class="lg-round">R9</td><td class="lg-ev">Built an Offer/Auction deal-type dimension (segmented control, data model, 4-way presets) Frank never wanted; a full sub-round spent ripping it out.</td><td><span class="tag" style="--c:#9B7EDE">dead-end/misread</span></td><td><span class="tag" style="--c:#F2685C">claude</span></td></tr><tr><td class="lg-round">R9c</td><td class="lg-ev">First volume min/max/increment caption didn&#x27;t render (Form.useWatch on an unregistered field); reworked to read constraints off the template.</td><td><span class="tag" style="--c:#F2685C">regression</span></td><td><span class="tag" style="--c:#F2685C">claude</span></td></tr><tr><td class="lg-round">R10</td><td class="lg-ev">Read Frank&#x27;s &#x27;give it more vertical space&#x27; as internal row spacing; opened up the wrong gap, reverted, then fixed the flanking space Frank actually meant.</td><td><span class="tag" style="--c:#E8A93C">misread/revert</span></td><td><span class="tag" style="--c:#E8A93C">shared</span></td></tr><tr><td class="lg-round">Jun24-c</td><td class="lg-ev">Built FullCustomerPicker.tsx as a standalone overlay, then deleted it one turn later when Frank asked for in-drawer navigation.</td><td><span class="tag" style="--c:#9B7EDE">dead-end</span></td><td><span class="tag" style="--c:#E8A93C">shared</span></td></tr><tr><td class="lg-round">Jun25-b</td><td class="lg-ev">Favorites bug reported by Frank never reproduced or root-caused; Claude&#x27;s live tests passed and the discrepancy was left unresolved.</td><td><span class="tag" style="--c:#F2685C">unresolved-defect</span></td><td><span class="tag" style="--c:#E8A93C">shared</span></td></tr><tr><td class="lg-round">Jun26</td><td class="lg-ev">Recovery overhead: an accidental /clear forced reconstructing crashed-session state before any new work.</td><td><span class="tag" style="--c:#7E8AA3">recovery</span></td><td><span class="tag" style="--c:#9B7EDE">environment</span></td></tr><tr><td class="lg-round">Jun30-b</td><td class="lg-ev">Underline/bold link fix didn&#x27;t render correctly first try (&#x27;bold not underline&#x27;); needed a deeper CSS-specificity pass.</td><td><span class="tag" style="--c:#F2685C">regression</span></td><td><span class="tag" style="--c:#F2685C">claude</span></td></tr><tr><td class="lg-round">Jun29-a</td><td class="lg-ev">A complexity-only ponytail review expanded into UX changes (cutting the All-customers tab) that exposed an empty &#x27;Authorized to lift&#x27; state needing a same-turn patch.</td><td><span class="tag" style="--c:#9B7EDE">scope-creep/misread</span></td><td><span class="tag" style="--c:#E8A93C">shared</span></td></tr></tbody></table>
+</div></section>
+
+<section id="quotes"><div class="wrap">
+  <div class="eyebrow">In their own words</div>
+  <h2 class="sect-title">Quotable moments</h2>
+  <p class="sect-sub">Pulled verbatim from the transcripts.</p>
+  <div class="quotes"><figure class="quote q-frank"><blockquote>“i&#x27;m really kind of surprised the context window is so high. Are you using efficient ways to do this with loops? Things just look so often. I&#x27;m wondering why we&#x27;re not... I wonder if it&#x27;s because we&#x27;re not managing the context”</blockquote><figcaption><span class="q-who">Frank</span> — Frank named the core symptom mid-week — the polish loop felt inefficient and endless. This is the thesis stated by the user himself.</figcaption></figure><figure class="quote q-frank"><blockquote>“now the copy icon is outside of the form field. What is going on? Why are you making such weird design decisions? Why are there some weird results going backwards and stuff?”</blockquote><figcaption><span class="q-who">Frank</span> — Captures the &#x27;going backwards&#x27; feeling that defines regression-driven frustration — fixes that broke other things and shipped unverified.</figcaption></figure><figure class="quote q-claude"><blockquote>“the going backwards feeling is fair. That copy-button regression was mine: I shipped a fragile positioning fix and verified it by looking at a screenshot instead of actually measuring whether the button was inside the box, so it broke later without me catching it.”</blockquote><figcaption><span class="q-who">Claude</span> — Claude&#x27;s own clean diagnosis of the verification gap — the single most actionable root cause in the whole retro.</figcaption></figure><figure class="quote q-frank"><blockquote>“let&#x27;s not use cyan. Let&#x27;s use navy blue. The next button has a black text as well. I shouldn&#x27;t be there. There&#x27;s a lot of gap issues still on the manage offers page.”</blockquote><figcaption><span class="q-who">Frank</span> — One message containing a color flip, a regression callout, and a re-reported gap issue — a microcosm of the polish-tail churn.</figcaption></figure><figure class="quote q-claude"><blockquote>“The catalog already has a Vertical/Horizontal entry (line 12). So every gap={N} I put on a Vertical is silently ignored.”</blockquote><figcaption><span class="q-who">Claude</span> — Proof the gotcha was already documented yet re-hit — memory was written-to after the burn, not read before it.</figcaption></figure><figure class="quote q-frank"><blockquote>“It looks like you were trying to rebuild it and it just has to narrow the templates to the clients that are selected by the previous fields”</blockquote><figcaption><span class="q-who">Frank</span> — Frank steering Claude back from a rebuild to reuse — the reuse instinct was right when applied, but needed redirection when missed.</figcaption></figure></div>
+</div></section>
+
+<section id="improve"><div class="wrap">
+  <div class="eyebrow">The point of all this</div>
+  <h2 class="sect-title">What to improve</h2>
+  <p class="sect-sub">Seven concrete changes to how we work. None require new capability — they're guardrails that give the work a finish line.</p>
+  <div class="fixes"><div class="card fix"><div class="fix-num">1</div><div class="fix-body"><h3>Gotchas pre-flight before writing UI code</h3><p class="action"><b>Do this.</b> Before any spacing/styling/grid edit in this proto-base, read gotchas.md and the relevant MEMORY gotcha files and state the applicable traps up front (gap={N} is a no-op -&gt; use style gap or mb-*; excalibrr utilities ship !important; GraviButton needs buttonText; antd-v4 useToken shim; AG-grid first-mount zero-column race). Treat memory as a checklist to read, not just a place to write after getting burned.</p><p class="why"><b>Why.</b> The same five-ish gotchas were rediscovered across at least 5 sessions despite being documented. Reading them costs seconds; rediscovering each costs a regression and a Frank correction.</p><p class="impact">Eliminates most of the repeated-gotcha class (counted ~13 times across sessions) and the regressions that flow from them.</p></div></div><div class="card fix"><div class="fix-num">2</div><div class="fix-body"><h3>Batch polish into one scoped pass with a round budget</h3><p class="action"><b>Do this.</b> When entering a polish phase, do a single full design sweep (spacing, color, typography, rounding) against the target wireframe, list every issue, fix them in one pass, then verify once. Set an explicit budget (e.g. 2 polish rounds) and surface to Frank when it&#x27;s exceeded: &#x27;we&#x27;re past budget — is this shippable or is there a specific blocker?&#x27;</p><p class="why"><b>Why.</b> Polish was handled one reactive instance at a time, so Frank re-reported the same class of issue (gaps, spacing) round after round and the session count ballooned to ~22.</p><p class="impact">Collapses the ~20-round tail toward 3-5 rounds; gives the work a finish line.</p></div></div><div class="card fix"><div class="fix-num">3</div><div class="fix-body"><h3>Confirm-then-build on any ambiguous or deictic ask</h3><p class="action"><b>Do this.</b> When an instruction is ambiguous (a &#x27;this/that&#x27; reference, a third-party note like Reece&#x27;s, a &#x27;make it tighter&#x27; with no anchor), restate the interpretation in one line and either get a yes or check the data/screenshot before building. Reserve building-first for unambiguous asks.</p><p class="why"><b>Why.</b> Every intent misread (Offer/Auction, R10 flanking spacing, empty All-customers tab) came from acting on a guess. A one-line confirm would have prevented the discarded sub-rounds.</p><p class="impact">Removes the misread-driven dead-ends (~4 events), each of which cost a partial or full round.</p></div></div><div class="card fix"><div class="fix-num">4</div><div class="fix-body"><h3>Regression check before declaring done</h3><p class="action"><b>Do this.</b> After any visual/positioning fix, verify the specific thing changed AND spot-check the neighbors: measure (don&#x27;t glance at a screenshot) that the element is still inside its container, re-check adjacent spacing, and re-run the one workflow most likely to break. For positioning, assert bounding-box containment, not visual plausibility.</p><p class="why"><b>Why.</b> The copy-button-outside-the-box and spacing-collapse regressions both passed a screenshot glance and shipped. Claude itself diagnosed the root cause as &#x27;verified by looking at a screenshot instead of actually measuring.&#x27;</p><p class="impact">Catches the regression class (~7 shipped regressions) before Frank does.</p></div></div><div class="card fix"><div class="fix-num">5</div><div class="fix-body"><h3>Commit at the end of every verified round</h3><p class="action"><b>Do this.</b> After each round passes verification, commit src/ with a one-line round summary (per existing hygiene rules). Push at least daily. Stop treating commit as a separate end-of-everything event.</p><p class="why"><b>Why.</b> The feature is uncommitted past R5 and a crash already forced a costly recovery. A week of polish living in one working tree is pure downside risk.</p><p class="impact">Eliminates loss/recovery risk and makes /clear genuinely safe at any point.</p></div></div><div class="card fix"><div class="fix-num">6</div><div class="fix-body"><h3>Lock decisions in a durable decision log</h3><p class="action"><b>Do this.</b> Maintain a short DECISIONS section (in the project memory or PROJECT_NOTES) with the current locked answer to recurring questions — accent color, button style, title scheme. On any reversal, update the one entry rather than re-deriving from scratch each session.</p><p class="why"><b>Why.</b> The cyan/navy color flipped three times partly because there was no single anchored decision to point back to; each session re-litigated it.</p><p class="impact">Stops decision re-litigation churn; makes flip-flops a one-line edit instead of a CSS rewrite.</p></div></div><div class="card fix"><div class="fix-num">7</div><div class="fix-body"><h3>Treat &#x27;can&#x27;t reproduce a user-reported bug&#x27; as an environment investigation, not a pass</h3><p class="action"><b>Do this.</b> When Frank reports a failure that tests pass, do not conclude &#x27;works on my end.&#x27; Investigate the gap: confirm Frank&#x27;s build/branch, check for stale HMR/cache, ask what exact steps and which environment, and diff the state path Frank uses vs the test path.</p><p class="why"><b>Why.</b> The favorites bug was left unresolved because passing tests were treated as the final word over Frank&#x27;s lived failure.</p><p class="impact">Closes the loop on real defects instead of leaving the user with a known-broken feeling.</p></div></div></div>
+</div></section>
+
+<section id="method"><div class="wrap">
+  <div class="eyebrow">For transparency</div>
+  <h2 class="sect-title">How this retro was made</h2>
+  <div class="method">
+    <p><b>Source.</b> 11 Claude Code session transcripts from Jun 24–30, 2026 (~40&nbsp;MB of JSONL), plus the project memory round-log and the prototype's git history.</p>
+    <p><b>Process.</b> Each transcript was compressed to a high-signal digest (Frank's verbatim messages, assistant summaries, per-turn tool tallies). A workflow then fanned out one analyst agent per session to extract wins, friction, and quotes, and a synthesis agent consolidated them into the themes, timeline, and ledger you see here. 12 agents ran in total; the heavy transcript reading happened in their context, not in the main thread, to keep the working context small.</p>
+    <p><b>One caveat on the numbers.</b> The raw totals (4073 assistant turns, 1818 tool calls, 813 Bash, 401 Edits, ~349 Frank screenshots, 1153 thinking blocks) are large for one drawer feature, and the shape confirms the thesis: effort was back-loaded into polish, not the build. R2 produced the working feature in one session; the remaining ten sessions are dominated by verification round-trips (Bash 813, Reads 387) on small CSS/UX tweaks. The 31 subagent spawns and frequent multi-agent recon for what resolved to one-to-five-file edits show analysis overhead disproportionate to change size. Do not read the duration_min column as work time — sessions left open overnight (e.g. 1143, 1006, 1070 min) inflate it; the honest effort proxy is 117 Frank review messages and ~22 rounds, both heavily weighted toward polish and rework rather than new capability.</p>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  Retrospective generated Jun 30, 2026 · Index Special Offers — Quick-Create Hi-Fi · This is a candid internal review intended to improve how Frank + Claude work together, not a performance scorecard.
+</div></footer>
+</body>
+</html>

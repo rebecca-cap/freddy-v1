@@ -1,0 +1,14 @@
+{
+  "path": "/PricingEngine/CommandCenter",
+  "title": "Command Center",
+  "finalUrl": "http://localhost:5173/PricingEngine/CommandCenter",
+  "rootLen": 306183,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 77,
+  "stuckLoaders": [],
+  "emptyGrids": []
+}

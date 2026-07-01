@@ -1,0 +1,21 @@
+{
+  "path": "/AdminDashboard",
+  "title": "Admin Dashboard",
+  "finalUrl": "http://localhost:3001/AdminDashboard",
+  "rootLen": 237923,
+  "crashed": false,
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 429 ()"
+  ],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [
+    "MarketPlatform/AdminOrderDashboard/GetPendingOrders",
+    "MarketPlatform/AdminOrderDashboard/GetProcessedForwardVolume",
+    "MarketPlatform/AdminOrderDashboard/GetProcessedProfit",
+    "MarketPlatform/AdminOrderDashboard/GetProcessedPromptVolume",
+    "MarketPlatform/AdminOrderDashboard/GetProcessedVolume",
+    "MarketPlatform/AdminOrderDashboard/GetRecentlyProcessedOrders"
+  ],
+  "consoleEventCount": 25
+}

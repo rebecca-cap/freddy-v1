@@ -1,0 +1,12 @@
+{
+  "path": "/ContractManagement/Contracts",
+  "title": "Contracts",
+  "finalUrl": "http://localhost:3001/ContractManagement/Contracts",
+  "rootLen": 142442,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 10
+}

@@ -1,0 +1,14 @@
+{
+  "path": "/Admin/PriceTranslations",
+  "title": "Price Translations",
+  "finalUrl": "http://localhost:5173/Admin/PriceTranslations",
+  "rootLen": 121599,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 10,
+  "stuckLoaders": [],
+  "emptyGrids": []
+}

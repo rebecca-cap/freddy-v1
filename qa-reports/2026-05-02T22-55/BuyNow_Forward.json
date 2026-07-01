@@ -1,0 +1,21 @@
+{
+  "path": "/BuyNow/Forward",
+  "title": "Forward",
+  "finalUrl": "http://localhost:3001/BuyNow/Forward",
+  "rootLen": 50010,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [
+    "MarketPlatform/OrderEntry/GetItemsAvailableForOrder"
+  ],
+  "consoleEventCount": 11,
+  "stuckLoaders": [],
+  "emptyGrids": [
+    {
+      "containerSelector": ".ag-root",
+      "gridCount": 1
+    }
+  ]
+}

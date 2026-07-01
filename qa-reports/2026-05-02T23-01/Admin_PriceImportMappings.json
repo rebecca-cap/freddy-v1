@@ -1,0 +1,14 @@
+{
+  "path": "/Admin/PriceImportMappings",
+  "title": "Price Import Mappings",
+  "finalUrl": "http://localhost:3001/Admin/PriceImportMappings",
+  "rootLen": 87879,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 10,
+  "stuckLoaders": [],
+  "emptyGrids": []
+}

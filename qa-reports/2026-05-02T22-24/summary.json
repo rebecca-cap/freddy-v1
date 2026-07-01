@@ -1,0 +1,15 @@
+{
+  "stamp": "2026-05-02T22-24",
+  "base": "http://localhost:3001",
+  "routes": 1,
+  "totalCrashes": 0,
+  "totalPageErrors": 0,
+  "totalConsoleErrors": 0,
+  "distinctMissingFixtures": 4,
+  "missingFixtures": [
+    "MarketPlatform/OrderEntry/GetPricesForDashboard",
+    "MarketPlatform/OrderReporting/GetCreditWidget",
+    "MarketPlatform/OrderReporting/GetPendingOrders",
+    "MarketPlatform/OrderReporting/GetRecentlyProcessedOrders"
+  ]
+}

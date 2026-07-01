@@ -1,0 +1,2114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gravitate Wireframe Design System - Reference Guide</title>
+  <link rel="stylesheet" href="wireframe.css">
+  <style>
+    /* ============================================
+       REFERENCE GUIDE SHELL STYLES
+       ============================================ */
+
+    * { box-sizing: border-box; }
+
+    :root {
+      --sidebar-width: 280px;
+      --header-height: 56px;
+      --sidebar-bg: #1e1e2e;
+      --sidebar-text: #cdd6f4;
+      --sidebar-hover: #313244;
+      --sidebar-active: #45475a;
+      --content-bg: #ffffff;
+      --code-bg: #f6f8fa;
+      --border-color: #e5e7eb;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--content-bg);
+      color: #1f2937;
+    }
+
+    /* Header */
+    .ref-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--header-height);
+      background: var(--sidebar-bg);
+      color: white;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      z-index: 100;
+      border-bottom: 1px solid #313244;
+    }
+
+    .ref-header h1 {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .ref-header span {
+      font-size: 12px;
+      background: #45475a;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-left: 12px;
+    }
+
+    /* Sidebar */
+    .ref-sidebar {
+      position: fixed;
+      top: var(--header-height);
+      left: 0;
+      bottom: 0;
+      width: var(--sidebar-width);
+      background: var(--sidebar-bg);
+      color: var(--sidebar-text);
+      overflow-y: auto;
+      padding: 16px 0;
+      z-index: 90;
+    }
+
+    .ref-sidebar::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .ref-sidebar::-webkit-scrollbar-thumb {
+      background: #45475a;
+      border-radius: 3px;
+    }
+
+    .nav-section {
+      margin-bottom: 8px;
+    }
+
+    .nav-section-title {
+      display: flex;
+      align-items: center;
+      padding: 8px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #a6adc8;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .nav-section-title:hover {
+      background: var(--sidebar-hover);
+    }
+
+    .nav-section-title .icon {
+      margin-right: 8px;
+      font-size: 14px;
+    }
+
+    .nav-section-title .arrow {
+      margin-left: auto;
+      transition: transform 0.2s;
+    }
+
+    .nav-section.collapsed .arrow {
+      transform: rotate(-90deg);
+    }
+
+    .nav-section.collapsed .nav-items {
+      display: none;
+    }
+
+    .nav-items {
+      padding-left: 0;
+    }
+
+    .nav-item {
+      display: block;
+      padding: 8px 16px 8px 40px;
+      font-size: 14px;
+      color: var(--sidebar-text);
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .nav-item:hover {
+      background: var(--sidebar-hover);
+    }
+
+    .nav-item.active {
+      background: var(--sidebar-active);
+      color: white;
+      border-left: 3px solid #89b4fa;
+      padding-left: 37px;
+    }
+
+    .nav-subsection {
+      padding-left: 24px;
+    }
+
+    .nav-subsection-title {
+      padding: 6px 16px 6px 40px;
+      font-size: 12px;
+      font-weight: 500;
+      color: #a6adc8;
+    }
+
+    /* Main Content */
+    .ref-content {
+      margin-left: var(--sidebar-width);
+      margin-top: var(--header-height);
+      padding: 32px 48px;
+      min-height: calc(100vh - var(--header-height));
+    }
+
+    /* Section Styling */
+    .section {
+      display: none;
+      max-width: 1000px;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    .section-title {
+      font-size: 32px;
+      font-weight: 700;
+      margin: 0 0 8px 0;
+      color: #111827;
+    }
+
+    .section-description {
+      font-size: 16px;
+      color: #6b7280;
+      margin: 0 0 32px 0;
+      line-height: 1.6;
+    }
+
+    /* Component Preview */
+    .component-preview {
+      margin-bottom: 48px;
+    }
+
+    .preview-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 0 0 8px 0;
+      color: #374151;
+    }
+
+    .preview-description {
+      font-size: 14px;
+      color: #6b7280;
+      margin: 0 0 16px 0;
+    }
+
+    .preview-box {
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+
+    .preview-display {
+      padding: 24px;
+      background: #fafafa;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .preview-display.dark {
+      background: #1f2937;
+    }
+
+    .preview-code {
+      position: relative;
+    }
+
+    .preview-code pre {
+      margin: 0;
+      padding: 16px;
+      background: var(--code-bg);
+      overflow-x: auto;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .preview-code code {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      color: #1f2937;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      padding: 4px 12px;
+      font-size: 12px;
+      background: white;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .copy-btn:hover {
+      background: #f3f4f6;
+    }
+
+    /* Token Displays */
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .color-swatch {
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .color-swatch-preview {
+      height: 80px;
+    }
+
+    .color-swatch-info {
+      padding: 12px;
+      background: white;
+    }
+
+    .color-swatch-name {
+      font-size: 13px;
+      font-weight: 600;
+      margin: 0 0 4px 0;
+    }
+
+    .color-swatch-value {
+      font-size: 12px;
+      color: #6b7280;
+      font-family: monospace;
+    }
+
+    .spacing-demo {
+      display: flex;
+      align-items: flex-end;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+
+    .spacing-item {
+      text-align: center;
+    }
+
+    .spacing-box {
+      background: var(--wf-color-primary);
+      margin-bottom: 8px;
+    }
+
+    .spacing-label {
+      font-size: 12px;
+      color: #6b7280;
+    }
+
+    .type-scale {
+      margin-bottom: 32px;
+    }
+
+    .type-row {
+      display: flex;
+      align-items: baseline;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .type-label {
+      width: 120px;
+      font-size: 12px;
+      color: #6b7280;
+      font-family: monospace;
+    }
+
+    .type-sample {
+      flex: 1;
+    }
+
+    /* Props Table */
+    .props-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 32px;
+      font-size: 14px;
+    }
+
+    .props-table th,
+    .props-table td {
+      text-align: left;
+      padding: 12px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .props-table th {
+      background: #f9fafb;
+      font-weight: 600;
+    }
+
+    .props-table code {
+      background: #f3f4f6;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 13px;
+    }
+
+    /* Variant Grid */
+    .variant-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .variant-item {
+      text-align: center;
+    }
+
+    .variant-label {
+      font-size: 12px;
+      color: #6b7280;
+      margin-top: 8px;
+    }
+
+    /* States Row */
+    .states-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .state-item {
+      text-align: center;
+    }
+
+    .state-label {
+      font-size: 11px;
+      color: #9ca3af;
+      margin-top: 4px;
+    }
+
+    /* Search */
+    .search-box {
+      padding: 8px 16px;
+      margin-bottom: 8px;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid #45475a;
+      border-radius: 6px;
+      background: #313244;
+      color: white;
+      font-size: 14px;
+    }
+
+    .search-input::placeholder {
+      color: #6c7086;
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: #89b4fa;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .ref-sidebar {
+        width: 240px;
+      }
+      .ref-content {
+        margin-left: 240px;
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="ref-header">
+  <h1>Gravitate Wireframe Design System</h1>
+  <span>v1.0.0</span>
+</header>
+
+<!-- Sidebar Navigation -->
+<nav class="ref-sidebar">
+  <div class="search-box">
+    <input type="text" class="search-input" placeholder="Search components..." id="searchInput">
+  </div>
+
+  <!-- Getting Started -->
+  <div class="nav-section" data-section="getting-started">
+    <div class="nav-section-title">
+      <span class="icon">📐</span>
+      Getting Started
+      <span class="arrow">▼</span>
+    </div>
+    <div class="nav-items">
+      <a class="nav-item active" data-target="introduction">Introduction</a>
+      <a class="nav-item" data-target="quick-start">Quick Start</a>
+      <a class="nav-item" data-target="how-to-use">How to Use</a>
+    </div>
+  </div>
+
+  <!-- Design Tokens -->
+  <div class="nav-section" data-section="tokens">
+    <div class="nav-section-title">
+      <span class="icon">🎨</span>
+      Design Tokens
+      <span class="arrow">▼</span>
+    </div>
+    <div class="nav-items">
+      <a class="nav-item" data-target="colors">Colors</a>
+      <a class="nav-item" data-target="typography">Typography</a>
+      <a class="nav-item" data-target="spacing">Spacing</a>
+      <a class="nav-item" data-target="borders">Borders</a>
+    </div>
+  </div>
+
+  <!-- Components -->
+  <div class="nav-section" data-section="components">
+    <div class="nav-section-title">
+      <span class="icon">📦</span>
+      Components
+      <span class="arrow">▼</span>
+    </div>
+    <div class="nav-items">
+      <div class="nav-subsection-title">Layout</div>
+      <a class="nav-item" data-target="comp-row">Row</a>
+      <a class="nav-item" data-target="comp-column">Column</a>
+      <a class="nav-item" data-target="comp-container">Container</a>
+      <a class="nav-item" data-target="comp-page">Page</a>
+      <a class="nav-item" data-target="comp-card">Card</a>
+
+      <div class="nav-subsection-title">Typography</div>
+      <a class="nav-item" data-target="comp-text">Text</a>
+
+      <div class="nav-subsection-title">Controls</div>
+      <a class="nav-item" data-target="comp-button">Button</a>
+      <a class="nav-item" data-target="comp-input">Input</a>
+      <a class="nav-item" data-target="comp-select">Select</a>
+      <a class="nav-item" data-target="comp-checkbox">Checkbox</a>
+      <a class="nav-item" data-target="comp-radio">Radio</a>
+      <a class="nav-item" data-target="comp-toggle">Toggle</a>
+
+      <div class="nav-subsection-title">Data Display</div>
+      <a class="nav-item" data-target="comp-datagrid">DataGrid</a>
+      <a class="nav-item" data-target="comp-metriccard">MetricCard</a>
+      <a class="nav-item" data-target="comp-badge">Badge</a>
+      <a class="nav-item" data-target="comp-avatar">Avatar</a>
+
+      <div class="nav-subsection-title">Navigation</div>
+      <a class="nav-item" data-target="comp-tabs">Tabs</a>
+      <a class="nav-item" data-target="comp-breadcrumb">Breadcrumb</a>
+      <a class="nav-item" data-target="comp-sidebar">Sidebar</a>
+      <a class="nav-item" data-target="comp-stepper">Stepper</a>
+
+      <div class="nav-subsection-title">Feedback</div>
+      <a class="nav-item" data-target="comp-modal">Modal</a>
+      <a class="nav-item" data-target="comp-toast">Toast</a>
+      <a class="nav-item" data-target="comp-alert">Alert</a>
+
+      <div class="nav-subsection-title">Status</div>
+      <a class="nav-item" data-target="comp-progress">Progress</a>
+      <a class="nav-item" data-target="comp-loader">Loader</a>
+      <a class="nav-item" data-target="comp-skeleton">Skeleton</a>
+      <a class="nav-item" data-target="comp-emptystate">EmptyState</a>
+    </div>
+  </div>
+
+  <!-- Patterns -->
+  <div class="nav-section" data-section="patterns">
+    <div class="nav-section-title">
+      <span class="icon">📋</span>
+      Patterns
+      <span class="arrow">▼</span>
+    </div>
+    <div class="nav-items">
+      <a class="nav-item" data-target="pattern-dashboard">Dashboard Layout</a>
+      <a class="nav-item" data-target="pattern-masterdetail">Master-Detail</a>
+      <a class="nav-item" data-target="pattern-wizard">Form Wizard</a>
+      <a class="nav-item" data-target="pattern-datatable">Data Table Page</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Main Content -->
+<main class="ref-content">
+
+  <!-- ============================================
+       GETTING STARTED
+       ============================================ -->
+
+  <!-- Introduction -->
+  <section class="section active" id="introduction">
+    <h1 class="section-title">Gravitate Wireframe Design System</h1>
+    <p class="section-description">
+      A comprehensive, pure HTML/CSS design system for creating consistent, interactive low-fidelity wireframes for Gravitate applications.
+    </p>
+
+    <div class="component-preview">
+      <h3 class="preview-title">What is this?</h3>
+      <p class="preview-description">
+        This design system enables rapid creation of wireframes that communicate layout, hierarchy, and interaction patterns without needing a build system or JavaScript framework.
+      </p>
+
+      <h3 class="preview-title" style="margin-top: 32px;">Key Features</h3>
+      <ul style="line-height: 2;">
+        <li><strong>60+ component variations</strong> across 8 categories</li>
+        <li><strong>6 full-page pattern templates</strong> for common layouts</li>
+        <li><strong>Pure HTML/CSS</strong> - no build step required</li>
+        <li><strong>Interactive states</strong> - hover, focus, disabled, all via CSS</li>
+        <li><strong>Maps to Excalibrr</strong> - clean transition to production</li>
+      </ul>
+
+      <h3 class="preview-title" style="margin-top: 32px;">Design Principles</h3>
+      <ul style="line-height: 2;">
+        <li><strong>Structure over style</strong> - Focus on layout and hierarchy</li>
+        <li><strong>Semantic naming</strong> - Classes describe purpose, not appearance</li>
+        <li><strong>Consistent patterns</strong> - Same approach across all components</li>
+        <li><strong>Low-fidelity friendly</strong> - Works without images or icons</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Quick Start -->
+  <section class="section" id="quick-start">
+    <h1 class="section-title">Quick Start</h1>
+    <p class="section-description">Get up and running in under a minute.</p>
+
+    <div class="component-preview">
+      <h3 class="preview-title">1. Include the CSS</h3>
+      <div class="preview-box">
+        <div class="preview-code">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre><code>&lt;link rel="stylesheet" href="wireframe.css"&gt;</code></pre>
+        </div>
+      </div>
+
+      <h3 class="preview-title">2. Create a basic page</h3>
+      <div class="preview-box">
+        <div class="preview-code">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;link rel="stylesheet" href="wireframe.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="wf-page"&gt;
+    &lt;header class="wf-page-header"&gt;
+      &lt;h1 class="wf-text wf-text-h1"&gt;My Wireframe&lt;/h1&gt;
+      &lt;button class="wf-button wf-button-primary"&gt;Action&lt;/button&gt;
+    &lt;/header&gt;
+    &lt;main class="wf-page-content"&gt;
+      &lt;div class="wf-card"&gt;
+        &lt;div class="wf-card-body"&gt;
+          Your content here
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/main&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </div>
+      </div>
+
+      <h3 class="preview-title">3. Browse this guide</h3>
+      <p class="preview-description">
+        Use the sidebar to explore all available components, see live previews, and copy code snippets.
+      </p>
+    </div>
+  </section>
+
+  <!-- How to Use -->
+  <section class="section" id="how-to-use">
+    <h1 class="section-title">How to Use</h1>
+    <p class="section-description">Understanding the class naming conventions and patterns.</p>
+
+    <div class="component-preview">
+      <h3 class="preview-title">Class Naming Convention</h3>
+      <p class="preview-description">All classes use the <code>wf-</code> prefix (wireframe):</p>
+
+      <table class="props-table">
+        <thead>
+          <tr>
+            <th>Pattern</th>
+            <th>Example</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>wf-{component}</code></td>
+            <td><code>wf-button</code></td>
+            <td>Base component class</td>
+          </tr>
+          <tr>
+            <td><code>wf-{component}-{variant}</code></td>
+            <td><code>wf-button-primary</code></td>
+            <td>Component variant</td>
+          </tr>
+          <tr>
+            <td><code>wf-{component}-{size}</code></td>
+            <td><code>wf-button-sm</code></td>
+            <td>Size modifier</td>
+          </tr>
+          <tr>
+            <td><code>wf-{utility}</code></td>
+            <td><code>wf-gap-4</code></td>
+            <td>Utility class</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 class="preview-title" style="margin-top: 32px;">Combining Classes</h3>
+      <div class="preview-box">
+        <div class="preview-display">
+          <button class="wf-button wf-button-primary wf-button-lg">Large Primary Button</button>
+        </div>
+        <div class="preview-code">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre><code>&lt;button class="wf-button wf-button-primary wf-button-lg"&gt;
+  Large Primary Button
+&lt;/button&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       DESIGN TOKENS
+       ============================================ -->
+
+  <!-- Colors -->
+  <section class="section" id="colors">
+    <h1 class="section-title">Colors</h1>
+    <p class="section-description">Semantic color palette for wireframes. Use CSS variables for consistency.</p>
+
+    <h3 class="preview-title">Primary & Status Colors</h3>
+    <div class="color-grid">
+      <div class="color-swatch">
+        <div class="color-swatch-preview" style="background: #2563eb;"></div>
+        <div class="color-swatch-info">
+          <p class="color-swatch-name">Primary</p>
+          <p class="color-swatch-value">--wf-color-primary<br>#2563eb</p>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-preview" style="background: #22c55e;"></div>
+        <div class="color-swatch-info">
+          <p class="color-swatch-name">Success</p>
+          <p class="color-swatch-value">--wf-color-success<br>#22c55e</p>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-preview" style="background: #f59e0b;"></div>
+        <div class="color-swatch-info">
+          <p class="color-swatch-name">Warning</p>
+          <p class="color-swatch-value">--wf-color-warning<br>#f59e0b</p>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-preview" style="background: #ef4444;"></div>
+        <div class="color-swatch-info">
+          <p class="color-swatch-name">Error</p>
+          <p class="color-swatch-value">--wf-color-error<br>#ef4444</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="preview-title">Neutral Scale</h3>
+    <div class="color-grid">
+      <div class="color-swatch">
+        <div class="color-swatch-preview" style="background: #111827;"></div>
+        <div class="color-swatch-info">
+          <p class="color-swatch-name">Gray 900</p>
+          <p class="color-swatch-value">--wf-gray-900<br>#111827</p>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-preview" style="background: #374151;"></div>
+        <div class="color-swatch-info">
+          <p class="color-swatch-name">Gray 700</p>
+          <p class="color-swatch-value">--wf-gray-700<br>#374151</p>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-preview" style="background: #6b7280;"></div>
+        <div class="color-swatch-info">
+          <p class="color-swatch-name">Gray 500</p>
+          <p class="color-swatch-value">--wf-gray-500<br>#6b7280</p>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-preview" style="background: #d1d5db;"></div>
+        <div class="color-swatch-info">
+          <p class="color-swatch-name">Gray 300</p>
+          <p class="color-swatch-value">--wf-gray-300<br>#d1d5db</p>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-preview" style="background: #f3f4f6; border: 1px solid #e5e7eb;"></div>
+        <div class="color-swatch-info">
+          <p class="color-swatch-name">Gray 100</p>
+          <p class="color-swatch-value">--wf-gray-100<br>#f3f4f6</p>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-preview" style="background: #ffffff; border: 1px solid #e5e7eb;"></div>
+        <div class="color-swatch-info">
+          <p class="color-swatch-name">White</p>
+          <p class="color-swatch-value">--wf-white<br>#ffffff</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Typography -->
+  <section class="section" id="typography">
+    <h1 class="section-title">Typography</h1>
+    <p class="section-description">Type scale for headings and body text.</p>
+
+    <div class="type-scale">
+      <div class="type-row">
+        <span class="type-label">wf-text-h1</span>
+        <span class="type-sample wf-text wf-text-h1">Page Title (24px, semibold)</span>
+      </div>
+      <div class="type-row">
+        <span class="type-label">wf-text-h2</span>
+        <span class="type-sample wf-text wf-text-h2">Section Header (18px, semibold)</span>
+      </div>
+      <div class="type-row">
+        <span class="type-label">wf-text-h3</span>
+        <span class="type-sample wf-text wf-text-h3">Card Title (16px, semibold)</span>
+      </div>
+      <div class="type-row">
+        <span class="type-label">wf-text-body</span>
+        <span class="type-sample wf-text wf-text-body">Body text for paragraphs and content (14px)</span>
+      </div>
+      <div class="type-row">
+        <span class="type-label">wf-text-label</span>
+        <span class="type-sample wf-text wf-text-label">FORM LABEL (12px, uppercase)</span>
+      </div>
+      <div class="type-row">
+        <span class="type-label">wf-text-helper</span>
+        <span class="type-sample wf-text wf-text-helper">Helper text and hints (12px, muted)</span>
+      </div>
+    </div>
+
+    <h3 class="preview-title">Usage</h3>
+    <div class="preview-box">
+      <div class="preview-code">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code>&lt;h1 class="wf-text wf-text-h1"&gt;Page Title&lt;/h1&gt;
+&lt;p class="wf-text wf-text-body"&gt;Body text&lt;/p&gt;
+&lt;span class="wf-text wf-text-label"&gt;Label&lt;/span&gt;</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- Spacing -->
+  <section class="section" id="spacing">
+    <h1 class="section-title">Spacing</h1>
+    <p class="section-description">8px base grid with consistent spacing scale.</p>
+
+    <div class="spacing-demo">
+      <div class="spacing-item">
+        <div class="spacing-box" style="width: 4px; height: 4px;"></div>
+        <span class="spacing-label">4px<br>space-1</span>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-box" style="width: 8px; height: 8px;"></div>
+        <span class="spacing-label">8px<br>space-2</span>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-box" style="width: 12px; height: 12px;"></div>
+        <span class="spacing-label">12px<br>space-3</span>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-box" style="width: 16px; height: 16px;"></div>
+        <span class="spacing-label">16px<br>space-4</span>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-box" style="width: 24px; height: 24px;"></div>
+        <span class="spacing-label">24px<br>space-6</span>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-box" style="width: 32px; height: 32px;"></div>
+        <span class="spacing-label">32px<br>space-8</span>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-box" style="width: 48px; height: 48px;"></div>
+        <span class="spacing-label">48px<br>space-12</span>
+      </div>
+    </div>
+
+    <h3 class="preview-title">Gap Utilities</h3>
+    <table class="props-table">
+      <thead>
+        <tr>
+          <th>Class</th>
+          <th>Value</th>
+          <th>Use Case</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>wf-gap-1</code></td><td>4px</td><td>Tight spacing (icons)</td></tr>
+        <tr><td><code>wf-gap-2</code></td><td>8px</td><td>Default element spacing</td></tr>
+        <tr><td><code>wf-gap-4</code></td><td>16px</td><td>Form field gaps</td></tr>
+        <tr><td><code>wf-gap-6</code></td><td>24px</td><td>Section padding</td></tr>
+        <tr><td><code>wf-gap-8</code></td><td>32px</td><td>Large section gaps</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Borders -->
+  <section class="section" id="borders">
+    <h1 class="section-title">Borders</h1>
+    <p class="section-description">Border radius and border styles.</p>
+
+    <h3 class="preview-title">Border Radius</h3>
+    <div class="states-row" style="gap: 32px;">
+      <div class="state-item">
+        <div style="width: 80px; height: 80px; background: var(--wf-color-primary); border-radius: 4px;"></div>
+        <div class="state-label">4px (sm)<br>Buttons, inputs</div>
+      </div>
+      <div class="state-item">
+        <div style="width: 80px; height: 80px; background: var(--wf-color-primary); border-radius: 8px;"></div>
+        <div class="state-label">8px (md)<br>Cards, modals</div>
+      </div>
+      <div class="state-item">
+        <div style="width: 80px; height: 80px; background: var(--wf-color-primary); border-radius: 16px;"></div>
+        <div class="state-label">16px (lg)<br>Large containers</div>
+      </div>
+      <div class="state-item">
+        <div style="width: 80px; height: 80px; background: var(--wf-color-primary); border-radius: 50%;"></div>
+        <div class="state-label">50% (full)<br>Avatars, dots</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       COMPONENTS
+       ============================================ -->
+
+  <!-- Button -->
+  <section class="section" id="comp-button">
+    <h1 class="section-title">Button</h1>
+    <p class="section-description">Buttons for actions and form submissions.</p>
+
+    <div class="component-preview">
+      <h3 class="preview-title">Variants</h3>
+      <div class="preview-box">
+        <div class="preview-display">
+          <div class="states-row">
+            <button class="wf-button wf-button-primary">Primary</button>
+            <button class="wf-button wf-button-secondary">Secondary</button>
+            <button class="wf-button wf-button-success">Success</button>
+            <button class="wf-button wf-button-danger">Danger</button>
+            <button class="wf-button wf-button-ghost">Ghost</button>
+          </div>
+        </div>
+        <div class="preview-code">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre><code>&lt;button class="wf-button wf-button-primary"&gt;Primary&lt;/button&gt;
+&lt;button class="wf-button wf-button-secondary"&gt;Secondary&lt;/button&gt;
+&lt;button class="wf-button wf-button-success"&gt;Success&lt;/button&gt;
+&lt;button class="wf-button wf-button-danger"&gt;Danger&lt;/button&gt;
+&lt;button class="wf-button wf-button-ghost"&gt;Ghost&lt;/button&gt;</code></pre>
+        </div>
+      </div>
+
+      <h3 class="preview-title">Sizes</h3>
+      <div class="preview-box">
+        <div class="preview-display">
+          <div class="states-row" style="align-items: center;">
+            <button class="wf-button wf-button-primary wf-button-sm">Small</button>
+            <button class="wf-button wf-button-primary">Medium (Default)</button>
+            <button class="wf-button wf-button-primary wf-button-lg">Large</button>
+          </div>
+        </div>
+        <div class="preview-code">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre><code>&lt;button class="wf-button wf-button-primary wf-button-sm"&gt;Small&lt;/button&gt;
+&lt;button class="wf-button wf-button-primary"&gt;Medium&lt;/button&gt;
+&lt;button class="wf-button wf-button-primary wf-button-lg"&gt;Large&lt;/button&gt;</code></pre>
+        </div>
+      </div>
+
+      <h3 class="preview-title">States</h3>
+      <div class="preview-box">
+        <div class="preview-display">
+          <div class="states-row">
+            <div class="state-item">
+              <button class="wf-button wf-button-primary">Default</button>
+              <div class="state-label">Default</div>
+            </div>
+            <div class="state-item">
+              <button class="wf-button wf-button-primary" disabled>Disabled</button>
+              <div class="state-label">Disabled</div>
+            </div>
+            <div class="state-item">
+              <button class="wf-button wf-button-primary wf-button-loading">Loading</button>
+              <div class="state-label">Loading</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="preview-title">Props</h3>
+    <table class="props-table">
+      <thead>
+        <tr><th>Class</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>wf-button</code></td><td>Base button class (required)</td></tr>
+        <tr><td><code>wf-button-primary</code></td><td>Blue filled button</td></tr>
+        <tr><td><code>wf-button-secondary</code></td><td>Gray outlined button</td></tr>
+        <tr><td><code>wf-button-success</code></td><td>Green button</td></tr>
+        <tr><td><code>wf-button-danger</code></td><td>Red button</td></tr>
+        <tr><td><code>wf-button-ghost</code></td><td>Transparent button</td></tr>
+        <tr><td><code>wf-button-sm</code></td><td>Small size</td></tr>
+        <tr><td><code>wf-button-lg</code></td><td>Large size</td></tr>
+        <tr><td><code>wf-button-loading</code></td><td>Loading state</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Input -->
+  <section class="section" id="comp-input">
+    <h1 class="section-title">Input</h1>
+    <p class="section-description">Text input fields for forms.</p>
+
+    <div class="component-preview">
+      <h3 class="preview-title">Basic Input</h3>
+      <div class="preview-box">
+        <div class="preview-display">
+          <div class="wf-field">
+            <label class="wf-field-label">Email Address</label>
+            <input type="email" class="wf-input" placeholder="Enter your email">
+            <span class="wf-field-helper">We'll never share your email.</span>
+          </div>
+        </div>
+        <div class="preview-code">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre><code>&lt;div class="wf-field"&gt;
+  &lt;label class="wf-field-label"&gt;Email Address&lt;/label&gt;
+  &lt;input type="email" class="wf-input" placeholder="Enter your email"&gt;
+  &lt;span class="wf-field-helper"&gt;We'll never share your email.&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </div>
+
+      <h3 class="preview-title">States</h3>
+      <div class="preview-box">
+        <div class="preview-display">
+          <div class="wf-row wf-gap-4" style="flex-wrap: wrap;">
+            <div class="wf-field" style="flex: 1; min-width: 200px;">
+              <label class="wf-field-label">Default</label>
+              <input type="text" class="wf-input" placeholder="Default state">
+            </div>
+            <div class="wf-field" style="flex: 1; min-width: 200px;">
+              <label class="wf-field-label">Disabled</label>
+              <input type="text" class="wf-input" placeholder="Disabled" disabled>
+            </div>
+            <div class="wf-field wf-field-error" style="flex: 1; min-width: 200px;">
+              <label class="wf-field-label">Error</label>
+              <input type="text" class="wf-input wf-input-error" value="Invalid value">
+              <span class="wf-field-error-message">This field is required.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Select -->
+  <section class="section" id="comp-select">
+    <h1 class="section-title">Select</h1>
+    <p class="section-description">Dropdown selection fields.</p>
+
+    <div class="component-preview">
+      <div class="preview-box">
+        <div class="preview-display">
+          <div class="wf-field" style="max-width: 300px;">
+            <label class="wf-field-label">Select Option</label>
+            <select class="wf-select">
+              <option value="">Choose...</option>
+              <option value="1">Option 1</option>
+              <option value="2">Option 2</option>
+              <option value="3">Option 3</option>
+            </select>
+          </div>
+        </div>
+        <div class="preview-code">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre><code>&lt;div class="wf-field"&gt;
+  &lt;label class="wf-field-label"&gt;Select Option&lt;/label&gt;
+  &lt;select class="wf-select"&gt;
+    &lt;option value=""&gt;Choose...&lt;/option&gt;
+    &lt;option value="1"&gt;Option 1&lt;/option&gt;
+    &lt;option value="2"&gt;Option 2&lt;/option&gt;
+  &lt;/select&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Checkbox -->
+  <section class="section" id="comp-checkbox">
+    <h1 class="section-title">Checkbox</h1>
+    <p class="section-description">Multiple selection controls.</p>
+
+    <div class="component-preview">
+      <div class="preview-box">
+        <div class="preview-display">
+          <div class="wf-column wf-gap-2">
+            <label class="wf-checkbox">
+              <input type="checkbox" class="wf-checkbox-input" checked>
+              <span class="wf-checkbox-label">Option 1 (checked)</span>
+            </label>
+            <label class="wf-checkbox">
+              <input type="checkbox" class="wf-checkbox-input">
+              <span class="wf-checkbox-label">Option 2</span>
+            </label>
+            <label class="wf-checkbox">
+              <input type="checkbox" class="wf-checkbox-input" disabled>
+              <span class="wf-checkbox-label">Option 3 (disabled)</span>
+            </label>
+          </div>
+        </div>
+        <div class="preview-code">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre><code>&lt;label class="wf-checkbox"&gt;
+  &lt;input type="checkbox" class="wf-checkbox-input" checked&gt;
+  &lt;span class="wf-checkbox-label"&gt;Option 1&lt;/span&gt;
+&lt;/label&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Radio -->
+  <section class="section" id="comp-radio">
+    <h1 class="section-title">Radio</h1>
+    <p class="section-description">Single selection from multiple options.</p>
+
+    <div class="component-preview">
+      <div class="preview-box">
+        <div class="preview-display">
+          <div class="wf-column wf-gap-2">
+            <label class="wf-radio">
+              <input type="radio" name="demo-radio" class="wf-radio-input" checked>
+              <span class="wf-radio-label">Option A</span>
+            </label>
+            <label class="wf-radio">
+              <input type="radio" name="demo-radio" class="wf-radio-input">
+              <span class="wf-radio-label">Option B</span>
+            </label>
+            <label class="wf-radio">
+              <input type="radio" name="demo-radio" class="wf-radio-input">
+              <span class="wf-radio-label">Option C</span>
+            </label>
+          </div>
+        </div>
+        <div class="preview-code">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre><code>&lt;label class="wf-radio"&gt;
+  &lt;input type="radio" name="group" class="wf-radio-input"&gt;
+  &lt;span class="wf-radio-label"&gt;Option A&lt;/span&gt;
+&lt;/label&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Toggle -->
+  <section class="section" id="comp-toggle">
+    <h1 class="section-title">Toggle</h1>
+    <p class="section-description">On/off switch control.</p>
+
+    <div class="component-preview">
+      <div class="preview-box">
+        <div class="preview-display">
+          <div class="wf-column wf-gap-4">
+            <label class="wf-toggle">
+              <input type="checkbox" class="wf-toggle-input" checked>
+              <span class="wf-toggle-track"></span>
+              <span class="wf-toggle-label">Notifications enabled</span>
+            </label>
+            <label class="wf-toggle">
+              <input type="checkbox" class="wf-toggle-input">
+              <span class="wf-toggle-track"></span>
+              <span class="wf-toggle-label">Dark mode</span>
+            </label>
+          </div>
+        </div>
+        <div class="preview-code">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre><code>&lt;label class="wf-toggle"&gt;
+  &lt;input type="checkbox" class="wf-toggle-input" checked&gt;
+  &lt;span class="wf-toggle-track"&gt;&lt;/span&gt;
+  &lt;span class="wf-toggle-label"&gt;Enabled&lt;/span&gt;
+&lt;/label&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Row -->
+  <section class="section" id="comp-row">
+    <h1 class="section-title">Row</h1>
+    <p class="section-description">Horizontal flex container for laying out elements side by side.</p>
+
+    <div class="component-preview">
+      <div class="preview-box">
+        <div class="preview-display">
+          <div class="wf-row wf-gap-4">
+            <div style="padding: 16px; background: #dbeafe; border-radius: 4px;">Item 1</div>
+            <div style="padding: 16px; background: #dbeafe; border-radius: 4px;">Item 2</div>
+            <div style="padding: 16px; background: #dbeafe; border-radius: 4px;">Item 3</div>
+          </div>
+        </div>
+        <div class="preview-code">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre><code>&lt;div class="wf-row wf-gap-4"&gt;
+  &lt;div&gt;Item 1&lt;/div&gt;
+  &lt;div&gt;Item 2&lt;/div&gt;
+  &lt;div&gt;Item 3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </div>
+
+      <h3 class="preview-title">With Justify</h3>
+      <div class="preview-box">
+        <div class="preview-display">
+          <div class="wf-row wf-justify-between wf-align-center" style="padding: 16px; background: #f3f4f6; border-radius: 4px;">
+            <span>Left content</span>
+            <button class="wf-button wf-button-primary">Right action</button>
+          </div>
+        </div>
+        <div class="preview-code">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre><code>&lt;div class="wf-row wf-justify-between wf-align-center"&gt;
+  &lt;span&gt;Left content&lt;/span&gt;
+  &lt;button class="wf-button wf-button-primary"&gt;Right action&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Column -->
+  <section class="section" id="comp-column">
+    <h1 class="section-title">Column</h1>
+    <p class="section-description">Vertical flex container for stacking elements.</p>
+
+    <div class="component-preview">
+      <div class="preview-box">
+        <div class="preview-display">
+          <div class="wf-column wf-gap-2" style="max-width: 200px;">
+            <div style="padding: 12px; background: #dcfce7; border-radius: 4px;">Row 1</div>
+            <div style="padding: 12px; background: #dcfce7; border-radius: 4px;">Row 2</div>
+            <div style="padding: 12px; background: #dcfce7; border-radius: 4px;">Row 3</div>
+          </div>
+        </div>
+        <div class="preview-code">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre><code>&lt;div class="wf-column wf-gap-2"&gt;
+  &lt;div&gt;Row 1&lt;/div&gt;
+  &lt;div&gt;Row 2&lt;/div&gt;
+  &lt;div&gt;Row 3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Container -->
+  <section class="section" id="comp-container">
+    <h1 class="section-title">Container</h1>
+    <p class="section-description">Content wrapper with max-width and padding options.</p>
+
+    <div class="component-preview">
+      <div class="preview-box">
+        <div class="preview-display" style="background: #e5e7eb;">
+          <div class="wf-container wf-container-md" style="background: white;">
+            <p>Container with max-width and padding</p>
+          </div>
+        </div>
+        <div class="preview-code">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre><code>&lt;div class="wf-container wf-container-md"&gt;
+  &lt;p&gt;Content here&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <table class="props-table">
+      <thead>
+        <tr><th>Class</th><th>Max Width</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>wf-container-sm</code></td><td>640px</td></tr>
+        <tr><td><code>wf-container-md</code></td><td>768px</td></tr>
+        <tr><td><code>wf-container-lg</code></td><td>1024px</td></tr>
+        <tr><td><code>wf-container-xl</code></td><td>1280px</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Page -->
+  <section class="section" id="comp-page">
+    <h1 class="section-title">Page</h1>
+    <p class="section-description">Full page layout with header and content areas.</p>
+
+    <div class="component-preview">
+      <div class="preview-box">
+        <div class="preview-display" style="background: #e5e7eb; padding: 0;">
+          <div class="wf-page" style="min-height: 300px;">
+            <header class="wf-page-header">
+              <div class="wf-page-title">
+                <h1 class="wf-text wf-text-h1">Page Title</h1>
+                <p class="wf-text wf-text-helper">Optional subtitle</p>
+              </div>
+              <div class="wf-page-actions">
+                <button class="wf-button wf-button-secondary">Cancel</button>
+                <button class="wf-button wf-button-primary">Save</button>
+              </div>
+            </header>
+            <main class="wf-page-content">
+              <p>Page content goes here</p>
+            </main>
+          </div>
+        </div>
+        <div class="preview-code">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre><code>&lt;div class="wf-page"&gt;
+  &lt;header class="wf-page-header"&gt;
+    &lt;div class="wf-page-title"&gt;
+      &lt;h1 class="wf-text wf-text-h1"&gt;Page Title&lt;/h1&gt;
+    &lt;/div&gt;
+    &lt;div class="wf-page-actions"&gt;
+      &lt;button class="wf-button wf-button-primary"&gt;Save&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/header&gt;
+  &lt;main class="wf-page-content"&gt;
+    &lt;!-- Content --&gt;
+  &lt;/main&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Card -->
+  <section class="section" id="comp-card">
+    <h1 class="section-title">Card</h1>
+    <p class="section-description">Content containers with optional header and footer.</p>
+
+    <div class="component-preview">
+      <h3 class="preview-title">Basic Card</h3>
+      <div class="preview-box">
+        <div class="preview-display">
+          <div class="wf-card" style="max-width: 400px;">
+            <div class="wf-card-header">
+              <h3 class="wf-card-title">Card Title</h3>
+            </div>
+            <div class="wf-card-body">
+              <p>Card content goes here. This is some example text to show the card layout.</p>
+            </div>
+            <div class="wf-card-footer">
+              <button class="wf-button wf-button-ghost">Cancel</button>
+              <button class="wf-button wf-button-primary">Confirm</button>
+            </div>
+          </div>
+        </div>
+        <div class="preview-code">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre><code>&lt;div class="wf-card"&gt;
+  &lt;div class="wf-card-header"&gt;
+    &lt;h3 class="wf-card-title"&gt;Card Title&lt;/h3&gt;
+  &lt;/div&gt;
+  &lt;div class="wf-card-body"&gt;
+    &lt;p&gt;Card content&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="wf-card-footer"&gt;
+    &lt;button class="wf-button wf-button-primary"&gt;Action&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Text -->
+  <section class="section" id="comp-text">
+    <h1 class="section-title">Text</h1>
+    <p class="section-description">Typography component with variants for all text styles.</p>
+
+    <div class="component-preview">
+      <div class="preview-box">
+        <div class="preview-display">
+          <div class="wf-column wf-gap-4">
+            <h1 class="wf-text wf-text-h1">Heading 1</h1>
+            <h2 class="wf-text wf-text-h2">Heading 2</h2>
+            <h3 class="wf-text wf-text-h3">Heading 3</h3>
+            <p class="wf-text wf-text-body">Body text for paragraphs and general content.</p>
+            <span class="wf-text wf-text-label">LABEL TEXT</span>
+            <span class="wf-text wf-text-helper">Helper text</span>
+          </div>
+        </div>
+        <div class="preview-code">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre><code>&lt;h1 class="wf-text wf-text-h1"&gt;Heading 1&lt;/h1&gt;
+&lt;h2 class="wf-text wf-text-h2"&gt;Heading 2&lt;/h2&gt;
+&lt;h3 class="wf-text wf-text-h3"&gt;Heading 3&lt;/h3&gt;
+&lt;p class="wf-text wf-text-body"&gt;Body text&lt;/p&gt;
+&lt;span class="wf-text wf-text-label"&gt;LABEL&lt;/span&gt;
+&lt;span class="wf-text wf-text-helper"&gt;Helper&lt;/span&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DataGrid -->
+  <section class="section" id="comp-datagrid">
+    <h1 class="section-title">DataGrid</h1>
+    <p class="section-description">Data tables with headers, rows, and cell variants.</p>
+
+    <div class="component-preview">
+      <div class="preview-box">
+        <div class="preview-display" style="overflow-x: auto;">
+          <div class="wf-datagrid">
+            <div class="wf-datagrid-header">
+              <div class="wf-datagrid-cell" style="width: 40px;"><input type="checkbox" class="wf-checkbox-input"></div>
+              <div class="wf-datagrid-cell" style="flex: 2;">Contract ID</div>
+              <div class="wf-datagrid-cell" style="flex: 2;">Customer</div>
+              <div class="wf-datagrid-cell" style="flex: 1;">Status</div>
+              <div class="wf-datagrid-cell wf-datagrid-cell-number" style="flex: 1;">Volume</div>
+            </div>
+            <div class="wf-datagrid-body">
+              <div class="wf-datagrid-row">
+                <div class="wf-datagrid-cell" style="width: 40px;"><input type="checkbox" class="wf-checkbox-input"></div>
+                <div class="wf-datagrid-cell" style="flex: 2;">CNT-2024-001</div>
+                <div class="wf-datagrid-cell" style="flex: 2;">Acme Corp</div>
+                <div class="wf-datagrid-cell" style="flex: 1;"><span class="wf-badge wf-badge-success">Active</span></div>
+                <div class="wf-datagrid-cell wf-datagrid-cell-number" style="flex: 1;">2,400,000</div>
+              </div>
+              <div class="wf-datagrid-row">
+                <div class="wf-datagrid-cell" style="width: 40px;"><input type="checkbox" class="wf-checkbox-input"></div>
+                <div class="wf-datagrid-cell" style="flex: 2;">CNT-2024-002</div>
+                <div class="wf-datagrid-cell" style="flex: 2;">Beta Industries</div>
+                <div class="wf-datagrid-cell" style="flex: 1;"><span class="wf-badge wf-badge-warning">Pending</span></div>
+                <div class="wf-datagrid-cell wf-datagrid-cell-number" style="flex: 1;">1,800,000</div>
+              </div>
+              <div class="wf-datagrid-row wf-datagrid-row-selected">
+                <div class="wf-datagrid-cell" style="width: 40px;"><input type="checkbox" class="wf-checkbox-input" checked></div>
+                <div class="wf-datagrid-cell" style="flex: 2;">CNT-2024-003</div>
+                <div class="wf-datagrid-cell" style="flex: 2;">Gamma LLC</div>
+                <div class="wf-datagrid-cell" style="flex: 1;"><span class="wf-badge wf-badge-error">At Risk</span></div>
+                <div class="wf-datagrid-cell wf-datagrid-cell-number" style="flex: 1;">950,000</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="preview-code">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre><code>&lt;div class="wf-datagrid"&gt;
+  &lt;div class="wf-datagrid-header"&gt;
+    &lt;div class="wf-datagrid-cell"&gt;Column 1&lt;/div&gt;
+    &lt;div class="wf-datagrid-cell"&gt;Column 2&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="wf-datagrid-body"&gt;
+    &lt;div class="wf-datagrid-row"&gt;
+      &lt;div class="wf-datagrid-cell"&gt;Cell 1&lt;/div&gt;
+      &lt;div class="wf-datagrid-cell"&gt;Cell 2&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MetricCard -->
+  <section class="section" id="comp-metriccard">
+    <h1 class="section-title">MetricCard</h1>
+    <p class="section-description">Dashboard metrics with values and trends.</p>
+
+    <div class="component-preview">
+      <div class="preview-box">
+        <div class="preview-display">
+          <div class="wf-row wf-gap-4" style="flex-wrap: wrap;">
+            <div class="wf-metric-card" style="flex: 1; min-width: 200px;">
+              <div class="wf-metric-header">
+                <span class="wf-metric-title">Total Volume</span>
+              </div>
+              <div class="wf-metric-value">2.4M</div>
+              <div class="wf-metric-subtitle">
+                <span class="wf-metric-trend wf-metric-trend-up">↑ 12%</span>
+                vs last month
+              </div>
+            </div>
+            <div class="wf-metric-card wf-metric-card-success" style="flex: 1; min-width: 200px;">
+              <div class="wf-metric-header">
+                <span class="wf-metric-title">Fulfillment</span>
+              </div>
+              <div class="wf-metric-value">94%</div>
+              <div class="wf-metric-subtitle">On track</div>
+            </div>
+            <div class="wf-metric-card wf-metric-card-warning" style="flex: 1; min-width: 200px;">
+              <div class="wf-metric-header">
+                <span class="wf-metric-title">At Risk</span>
+              </div>
+              <div class="wf-metric-value">3</div>
+              <div class="wf-metric-subtitle">Contracts need attention</div>
+            </div>
+          </div>
+        </div>
+        <div class="preview-code">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre><code>&lt;div class="wf-metric-card"&gt;
+  &lt;div class="wf-metric-header"&gt;
+    &lt;span class="wf-metric-title"&gt;Total Volume&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="wf-metric-value"&gt;2.4M&lt;/div&gt;
+  &lt;div class="wf-metric-subtitle"&gt;
+    &lt;span class="wf-metric-trend wf-metric-trend-up"&gt;↑ 12%&lt;/span&gt;
+    vs last month
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Badge -->
+  <section class="section" id="comp-badge">
+    <h1 class="section-title">Badge</h1>
+    <p class="section-description">Status indicators and labels.</p>
+
+    <div class="component-preview">
+      <div class="preview-box">
+        <div class="preview-display">
+          <div class="states-row">
+            <span class="wf-badge">Default</span>
+            <span class="wf-badge wf-badge-primary">Primary</span>
+            <span class="wf-badge wf-badge-success">Success</span>
+            <span class="wf-badge wf-badge-warning">Warning</span>
+            <span class="wf-badge wf-badge-error">Error</span>
+          </div>
+        </div>
+        <div class="preview-code">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre><code>&lt;span class="wf-badge"&gt;Default&lt;/span&gt;
+&lt;span class="wf-badge wf-badge-primary"&gt;Primary&lt;/span&gt;
+&lt;span class="wf-badge wf-badge-success"&gt;Success&lt;/span&gt;
+&lt;span class="wf-badge wf-badge-warning"&gt;Warning&lt;/span&gt;
+&lt;span class="wf-badge wf-badge-error"&gt;Error&lt;/span&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Avatar -->
+  <section class="section" id="comp-avatar">
+    <h1 class="section-title">Avatar</h1>
+    <p class="section-description">User representation with initials or images.</p>
+
+    <div class="component-preview">
+      <div class="preview-box">
+        <div class="preview-display">
+          <div class="states-row">
+            <div class="state-item">
+              <div class="wf-avatar wf-avatar-sm"><span class="wf-avatar-initials">JD</span></div>
+              <div class="state-label">Small</div>
+            </div>
+            <div class="state-item">
+              <div class="wf-avatar"><span class="wf-avatar-initials">JD</span></div>
+              <div class="state-label">Medium</div>
+            </div>
+            <div class="state-item">
+              <div class="wf-avatar wf-avatar-lg"><span class="wf-avatar-initials">JD</span></div>
+              <div class="state-label">Large</div>
+            </div>
+          </div>
+        </div>
+        <div class="preview-code">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre><code>&lt;div class="wf-avatar"&gt;
+  &lt;span class="wf-avatar-initials"&gt;JD&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tabs -->
+  <section class="section" id="comp-tabs">
+    <h1 class="section-title">Tabs</h1>
+    <p class="section-description">Tab navigation for switching between views.</p>
+
+    <div class="component-preview">
+      <div class="preview-box">
+        <div class="preview-display">
+          <div class="wf-tabs">
+            <button class="wf-tab wf-tab-active">Overview</button>
+            <button class="wf-tab">Details</button>
+            <button class="wf-tab">History</button>
+            <button class="wf-tab" disabled>Settings</button>
+          </div>
+        </div>
+        <div class="preview-code">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre><code>&lt;div class="wf-tabs"&gt;
+  &lt;button class="wf-tab wf-tab-active"&gt;Overview&lt;/button&gt;
+  &lt;button class="wf-tab"&gt;Details&lt;/button&gt;
+  &lt;button class="wf-tab"&gt;History&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Breadcrumb -->
+  <section class="section" id="comp-breadcrumb">
+    <h1 class="section-title">Breadcrumb</h1>
+    <p class="section-description">Navigation path display.</p>
+
+    <div class="component-preview">
+      <div class="preview-box">
+        <div class="preview-display">
+          <nav class="wf-breadcrumb">
+            <a href="#" class="wf-breadcrumb-item">Home</a>
+            <span class="wf-breadcrumb-separator">/</span>
+            <a href="#" class="wf-breadcrumb-item">Contracts</a>
+            <span class="wf-breadcrumb-separator">/</span>
+            <span class="wf-breadcrumb-item wf-breadcrumb-current">CNT-2024-001</span>
+          </nav>
+        </div>
+        <div class="preview-code">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre><code>&lt;nav class="wf-breadcrumb"&gt;
+  &lt;a href="#" class="wf-breadcrumb-item"&gt;Home&lt;/a&gt;
+  &lt;span class="wf-breadcrumb-separator"&gt;/&lt;/span&gt;
+  &lt;a href="#" class="wf-breadcrumb-item"&gt;Contracts&lt;/a&gt;
+  &lt;span class="wf-breadcrumb-separator"&gt;/&lt;/span&gt;
+  &lt;span class="wf-breadcrumb-current"&gt;Detail&lt;/span&gt;
+&lt;/nav&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sidebar Nav -->
+  <section class="section" id="comp-sidebar">
+    <h1 class="section-title">Sidebar</h1>
+    <p class="section-description">Vertical navigation sidebar.</p>
+
+    <div class="component-preview">
+      <div class="preview-box">
+        <div class="preview-display" style="background: #f3f4f6;">
+          <div class="wf-sidebar" style="position: relative; width: 240px; height: 300px;">
+            <div class="wf-sidebar-header">
+              <span style="font-weight: 600;">Navigation</span>
+            </div>
+            <nav class="wf-sidebar-nav">
+              <a href="#" class="wf-sidebar-item wf-sidebar-item-active">Dashboard</a>
+              <a href="#" class="wf-sidebar-item">Contracts</a>
+              <a href="#" class="wf-sidebar-item">Pricing</a>
+              <a href="#" class="wf-sidebar-item">Reports</a>
+              <a href="#" class="wf-sidebar-item">Settings</a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stepper -->
+  <section class="section" id="comp-stepper">
+    <h1 class="section-title">Stepper</h1>
+    <p class="section-description">Multi-step progress indicator.</p>
+
+    <div class="component-preview">
+      <div class="preview-box">
+        <div class="preview-display">
+          <div class="wf-stepper">
+            <div class="wf-step wf-step-completed">
+              <div class="wf-step-indicator">✓</div>
+              <span class="wf-step-label">Details</span>
+            </div>
+            <div class="wf-step-connector wf-step-connector-completed"></div>
+            <div class="wf-step wf-step-active">
+              <div class="wf-step-indicator">2</div>
+              <span class="wf-step-label">Products</span>
+            </div>
+            <div class="wf-step-connector"></div>
+            <div class="wf-step">
+              <div class="wf-step-indicator">3</div>
+              <span class="wf-step-label">Review</span>
+            </div>
+          </div>
+        </div>
+        <div class="preview-code">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre><code>&lt;div class="wf-stepper"&gt;
+  &lt;div class="wf-step wf-step-completed"&gt;
+    &lt;div class="wf-step-indicator"&gt;✓&lt;/div&gt;
+    &lt;span class="wf-step-label"&gt;Step 1&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="wf-step-connector wf-step-connector-completed"&gt;&lt;/div&gt;
+  &lt;div class="wf-step wf-step-active"&gt;
+    &lt;div class="wf-step-indicator"&gt;2&lt;/div&gt;
+    &lt;span class="wf-step-label"&gt;Step 2&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="wf-step-connector"&gt;&lt;/div&gt;
+  &lt;div class="wf-step"&gt;
+    &lt;div class="wf-step-indicator"&gt;3&lt;/div&gt;
+    &lt;span class="wf-step-label"&gt;Step 3&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <section class="section" id="comp-modal">
+    <h1 class="section-title">Modal</h1>
+    <p class="section-description">Centered dialog overlay.</p>
+
+    <div class="component-preview">
+      <div class="preview-box">
+        <div class="preview-display" style="background: #374151; min-height: 300px; position: relative;">
+          <div class="wf-modal" style="position: relative; margin: 24px auto;">
+            <div class="wf-modal-header">
+              <h3 class="wf-modal-title">Confirm Action</h3>
+              <button class="wf-modal-close">×</button>
+            </div>
+            <div class="wf-modal-body">
+              <p>Are you sure you want to proceed with this action?</p>
+            </div>
+            <div class="wf-modal-footer">
+              <button class="wf-button wf-button-secondary">Cancel</button>
+              <button class="wf-button wf-button-primary">Confirm</button>
+            </div>
+          </div>
+        </div>
+        <div class="preview-code">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre><code>&lt;div class="wf-modal-backdrop"&gt;
+  &lt;div class="wf-modal"&gt;
+    &lt;div class="wf-modal-header"&gt;
+      &lt;h3 class="wf-modal-title"&gt;Title&lt;/h3&gt;
+      &lt;button class="wf-modal-close"&gt;×&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="wf-modal-body"&gt;
+      &lt;p&gt;Content&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="wf-modal-footer"&gt;
+      &lt;button class="wf-button"&gt;Action&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Toast -->
+  <section class="section" id="comp-toast">
+    <h1 class="section-title">Toast</h1>
+    <p class="section-description">Notification messages.</p>
+
+    <div class="component-preview">
+      <div class="preview-box">
+        <div class="preview-display">
+          <div class="wf-column wf-gap-2" style="max-width: 400px;">
+            <div class="wf-toast wf-toast-success">
+              <span class="wf-toast-icon">✓</span>
+              <span class="wf-toast-message">Changes saved successfully</span>
+            </div>
+            <div class="wf-toast wf-toast-error">
+              <span class="wf-toast-icon">✕</span>
+              <span class="wf-toast-message">Failed to save changes</span>
+            </div>
+            <div class="wf-toast wf-toast-warning">
+              <span class="wf-toast-icon">!</span>
+              <span class="wf-toast-message">Please review before submitting</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Alert -->
+  <section class="section" id="comp-alert">
+    <h1 class="section-title">Alert</h1>
+    <p class="section-description">Inline alert messages.</p>
+
+    <div class="component-preview">
+      <div class="preview-box">
+        <div class="preview-display">
+          <div class="wf-column wf-gap-4">
+            <div class="wf-alert wf-alert-info">
+              <strong>Info:</strong> This is an informational alert.
+            </div>
+            <div class="wf-alert wf-alert-success">
+              <strong>Success:</strong> Operation completed successfully.
+            </div>
+            <div class="wf-alert wf-alert-warning">
+              <strong>Warning:</strong> Please review before proceeding.
+            </div>
+            <div class="wf-alert wf-alert-error">
+              <strong>Error:</strong> Something went wrong.
+            </div>
+          </div>
+        </div>
+        <div class="preview-code">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre><code>&lt;div class="wf-alert wf-alert-info"&gt;
+  &lt;strong&gt;Info:&lt;/strong&gt; Message here
+&lt;/div&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Progress -->
+  <section class="section" id="comp-progress">
+    <h1 class="section-title">Progress</h1>
+    <p class="section-description">Progress bars for showing completion.</p>
+
+    <div class="component-preview">
+      <div class="preview-box">
+        <div class="preview-display">
+          <div class="wf-column wf-gap-6" style="max-width: 400px;">
+            <div>
+              <div class="wf-row wf-justify-between wf-mb-1">
+                <span class="wf-text wf-text-label">Progress</span>
+                <span class="wf-text wf-text-helper">75%</span>
+              </div>
+              <div class="wf-progress">
+                <div class="wf-progress-bar" style="width: 75%;"></div>
+              </div>
+            </div>
+            <div>
+              <div class="wf-progress wf-progress-success">
+                <div class="wf-progress-bar" style="width: 100%;"></div>
+              </div>
+              <span class="wf-text wf-text-helper">Complete</span>
+            </div>
+          </div>
+        </div>
+        <div class="preview-code">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre><code>&lt;div class="wf-progress"&gt;
+  &lt;div class="wf-progress-bar" style="width: 75%;"&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Loader -->
+  <section class="section" id="comp-loader">
+    <h1 class="section-title">Loader</h1>
+    <p class="section-description">Loading spinner indicator.</p>
+
+    <div class="component-preview">
+      <div class="preview-box">
+        <div class="preview-display">
+          <div class="states-row">
+            <div class="state-item">
+              <div class="wf-loader wf-loader-sm"></div>
+              <div class="state-label">Small</div>
+            </div>
+            <div class="state-item">
+              <div class="wf-loader"></div>
+              <div class="state-label">Medium</div>
+            </div>
+            <div class="state-item">
+              <div class="wf-loader wf-loader-lg"></div>
+              <div class="state-label">Large</div>
+            </div>
+          </div>
+        </div>
+        <div class="preview-code">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre><code>&lt;div class="wf-loader"&gt;&lt;/div&gt;
+&lt;div class="wf-loader wf-loader-sm"&gt;&lt;/div&gt;
+&lt;div class="wf-loader wf-loader-lg"&gt;&lt;/div&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skeleton -->
+  <section class="section" id="comp-skeleton">
+    <h1 class="section-title">Skeleton</h1>
+    <p class="section-description">Loading placeholder shapes.</p>
+
+    <div class="component-preview">
+      <div class="preview-box">
+        <div class="preview-display">
+          <div class="wf-card" style="max-width: 300px;">
+            <div class="wf-card-body">
+              <div class="wf-row wf-gap-4 wf-align-center">
+                <div class="wf-skeleton wf-skeleton-circle" style="width: 48px; height: 48px;"></div>
+                <div class="wf-column wf-gap-2" style="flex: 1;">
+                  <div class="wf-skeleton wf-skeleton-text" style="width: 60%;"></div>
+                  <div class="wf-skeleton wf-skeleton-text" style="width: 40%;"></div>
+                </div>
+              </div>
+              <div class="wf-column wf-gap-2" style="margin-top: 16px;">
+                <div class="wf-skeleton wf-skeleton-text"></div>
+                <div class="wf-skeleton wf-skeleton-text"></div>
+                <div class="wf-skeleton wf-skeleton-text" style="width: 80%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="preview-code">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre><code>&lt;div class="wf-skeleton wf-skeleton-text"&gt;&lt;/div&gt;
+&lt;div class="wf-skeleton wf-skeleton-circle"&gt;&lt;/div&gt;
+&lt;div class="wf-skeleton wf-skeleton-rect"&gt;&lt;/div&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EmptyState -->
+  <section class="section" id="comp-emptystate">
+    <h1 class="section-title">EmptyState</h1>
+    <p class="section-description">Placeholder for empty data.</p>
+
+    <div class="component-preview">
+      <div class="preview-box">
+        <div class="preview-display">
+          <div class="wf-empty-state">
+            <div class="wf-empty-state-icon">📋</div>
+            <h3 class="wf-empty-state-title">No contracts found</h3>
+            <p class="wf-empty-state-description">Get started by creating your first contract.</p>
+            <button class="wf-button wf-button-primary">Create Contract</button>
+          </div>
+        </div>
+        <div class="preview-code">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre><code>&lt;div class="wf-empty-state"&gt;
+  &lt;div class="wf-empty-state-icon"&gt;📋&lt;/div&gt;
+  &lt;h3 class="wf-empty-state-title"&gt;No data&lt;/h3&gt;
+  &lt;p class="wf-empty-state-description"&gt;Description&lt;/p&gt;
+  &lt;button class="wf-button wf-button-primary"&gt;Action&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       PATTERNS
+       ============================================ -->
+
+  <!-- Dashboard Pattern -->
+  <section class="section" id="pattern-dashboard">
+    <h1 class="section-title">Dashboard Layout</h1>
+    <p class="section-description">Analytics dashboard with metrics, charts, and data tables.</p>
+
+    <div class="component-preview">
+      <p><strong>Structure:</strong></p>
+      <pre style="background: #f6f8fa; padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 13px;">
+┌─────────────────────────────────────────────────────────────────┐
+│ Page Header (Title + Actions)                                   │
+├─────────────────────────────────────────────────────────────────┤
+│ ┌───────┐ ┌───────┐ ┌───────┐ ┌───────┐                        │
+│ │Metric │ │Metric │ │Metric │ │Metric │  (4 metric cards)      │
+│ └───────┘ └───────┘ └───────┘ └───────┘                        │
+├─────────────────────────────────────────────────────────────────┤
+│ ┌─────────────────────────┐ ┌─────────────────┐                │
+│ │   Primary Content       │ │   Secondary     │                │
+│ │   (Grid/Table)          │ │   Content       │                │
+│ └─────────────────────────┘ └─────────────────┘                │
+└─────────────────────────────────────────────────────────────────┘</pre>
+
+      <p style="margin-top: 24px;"><strong>View full example:</strong> <a href="patterns/DashboardLayout.html" target="_blank">patterns/DashboardLayout.html</a></p>
+    </div>
+  </section>
+
+  <!-- Master-Detail Pattern -->
+  <section class="section" id="pattern-masterdetail">
+    <h1 class="section-title">Master-Detail Layout</h1>
+    <p class="section-description">List view with side panel for selected item details.</p>
+
+    <div class="component-preview">
+      <pre style="background: #f6f8fa; padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 13px;">
+┌─────────────────────────────────────────────────────────────────┐
+│ Page Header                                                     │
+├─────────────────────────────────────────────────────────────────┤
+│ Action Bar (Search, Filters, Bulk Actions)                      │
+├───────────────────────────────────┬─────────────────────────────┤
+│                                   │                             │
+│   Data Grid (List)                │  Detail Panel               │
+│                                   │  (Selected Item)            │
+│   - Click row to select           │                             │
+│   - Row highlights                │  - Tabs/sections            │
+│                                   │  - Edit form                │
+│                                   │  - Related data             │
+└───────────────────────────────────┴─────────────────────────────┘</pre>
+
+      <p style="margin-top: 24px;"><strong>View full example:</strong> <a href="patterns/MasterDetailLayout.html" target="_blank">patterns/MasterDetailLayout.html</a></p>
+    </div>
+  </section>
+
+  <!-- Form Wizard Pattern -->
+  <section class="section" id="pattern-wizard">
+    <h1 class="section-title">Form Wizard</h1>
+    <p class="section-description">Multi-step form with progress stepper.</p>
+
+    <div class="component-preview">
+      <pre style="background: #f6f8fa; padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 13px;">
+┌─────────────────────────────────────────────────────────────────┐
+│ Wizard Header (Title + Close)                                   │
+├─────────────────────────────────────────────────────────────────┤
+│ Stepper                                                         │
+│ ┌──────────┐    ┌──────────┐    ┌──────────┐    ┌──────────┐   │
+│ │ Step 1   │ ─▶ │ Step 2   │ ─▶ │ Step 3   │ ─▶ │ Review   │   │
+│ │ ●        │    │ ○        │    │ ○        │    │ ○        │   │
+│ └──────────┘    └──────────┘    └──────────┘    └──────────┘   │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│                    Step Content (Form Fields)                   │
+│                                                                 │
+├─────────────────────────────────────────────────────────────────┤
+│ Footer (Back | Progress | Next/Submit)                          │
+└─────────────────────────────────────────────────────────────────┘</pre>
+
+      <p style="margin-top: 24px;"><strong>View full example:</strong> <a href="patterns/FormWizard.html" target="_blank">patterns/FormWizard.html</a></p>
+    </div>
+  </section>
+
+  <!-- Data Table Pattern -->
+  <section class="section" id="pattern-datatable">
+    <h1 class="section-title">Data Table Page</h1>
+    <p class="section-description">Full data management page with filters, sorting, and pagination.</p>
+
+    <div class="component-preview">
+      <pre style="background: #f6f8fa; padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 13px;">
+┌─────────────────────────────────────────────────────────────────┐
+│ Page Header (Title + Create Button)                             │
+├─────────────────────────────────────────────────────────────────┤
+│ Filter Bar (Search | Status | Date Range | More Filters)        │
+├─────────────────────────────────────────────────────────────────┤
+│ Action Bar (Selected: 3 | Delete | Export | Bulk Edit)          │
+├─────────────────────────────────────────────────────────────────┤
+│ ┌─────────────────────────────────────────────────────────────┐ │
+│ │ □  | Contract ID  | Customer     | Status    | Volume ↓    │ │
+│ ├─────────────────────────────────────────────────────────────┤ │
+│ │ ☑  | CNT-001      | Acme Corp    | Active    | 2,400,000   │ │
+│ │ □  | CNT-002      | Beta Inc     | Pending   | 1,800,000   │ │
+│ │ ☑  | CNT-003      | Gamma LLC    | At Risk   | 950,000     │ │
+│ └─────────────────────────────────────────────────────────────┘ │
+├─────────────────────────────────────────────────────────────────┤
+│ Pagination (Showing 1-10 of 156 | ◀ 1 2 3 ... 16 ▶)            │
+└─────────────────────────────────────────────────────────────────┘</pre>
+
+      <p style="margin-top: 24px;"><strong>View full example:</strong> <a href="patterns/DataTablePage.html" target="_blank">patterns/DataTablePage.html</a></p>
+    </div>
+  </section>
+
+</main>
+
+<!-- JavaScript for Navigation -->
+<script>
+  // Navigation handling
+  document.querySelectorAll('.nav-item').forEach(item => {
+    item.addEventListener('click', function(e) {
+      e.preventDefault();
+
+      // Remove active from all nav items
+      document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+
+      // Add active to clicked item
+      this.classList.add('active');
+
+      // Hide all sections
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+
+      // Show target section
+      const target = this.getAttribute('data-target');
+      const section = document.getElementById(target);
+      if (section) {
+        section.classList.add('active');
+      }
+    });
+  });
+
+  // Section toggle
+  document.querySelectorAll('.nav-section-title').forEach(title => {
+    title.addEventListener('click', function() {
+      this.parentElement.classList.toggle('collapsed');
+    });
+  });
+
+  // Copy code functionality
+  function copyCode(btn) {
+    const codeBlock = btn.parentElement.querySelector('code');
+    const text = codeBlock.textContent;
+
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = 'Copied!';
+      setTimeout(() => {
+        btn.textContent = 'Copy';
+      }, 2000);
+    });
+  }
+
+  // Search functionality
+  document.getElementById('searchInput').addEventListener('input', function(e) {
+    const query = e.target.value.toLowerCase();
+
+    document.querySelectorAll('.nav-item').forEach(item => {
+      const text = item.textContent.toLowerCase();
+      if (query === '' || text.includes(query)) {
+        item.style.display = 'block';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+
+    // Expand all sections when searching
+    if (query) {
+      document.querySelectorAll('.nav-section').forEach(section => {
+        section.classList.remove('collapsed');
+      });
+    }
+  });
+</script>
+
+</body>
+</html>

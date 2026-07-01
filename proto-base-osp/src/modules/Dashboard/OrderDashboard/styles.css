@@ -1,0 +1,17 @@
+ .product-listing:first-child {
+     margin-top: 20px;
+ }
+
+ .header-container {
+     border: 1px solid #e0e0e0;
+     border-radius: 4px;
+     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+     padding: 8px;
+     background: #fff;
+ }
+
+ /* Fix antd v5 Collapse expand icon vertical alignment and spacing */
+ .product-listing .ant-collapse-header {
+     align-items: center !important;
+     padding-right: 16px !important;
+ }

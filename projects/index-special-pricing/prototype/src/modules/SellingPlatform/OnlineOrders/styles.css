@@ -1,0 +1,22 @@
+.online-orders-actions-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.online-orders-actions-menu {
+    width: 160px;
+    border-inline-end: none !important;
+    padding: 0 !important;
+}
+
+.online-orders-actions-popover.ant-popover .ant-popover-content .ant-popover-inner {
+    border-radius: 5px !important;
+    overflow: hidden;
+    padding: 0 !important;
+}
+
+.online-orders-actions-popover .ant-popover-inner-content {
+    padding: 0 !important;
+}

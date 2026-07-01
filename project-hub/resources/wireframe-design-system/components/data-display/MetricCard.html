@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MetricCard Component - Gravitate Wireframe Design System</title>
+  <link rel="stylesheet" href="../../tokens/tokens.css">
+  <link rel="stylesheet" href="../controls/controls.css">
+  <link rel="stylesheet" href="data-display.css">
+  <style>
+    body {
+      font-family: var(--wf-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+      background-color: var(--wf-color-background, #f9fafb);
+      margin: 0;
+      padding: 32px;
+      color: var(--wf-color-text-primary, #111827);
+    }
+    .demo-section {
+      margin-bottom: 48px;
+    }
+    .demo-section h2 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--wf-color-text-primary, #111827);
+    }
+    .demo-section p {
+      font-size: 14px;
+      color: var(--wf-color-text-secondary, #374151);
+      margin-bottom: 16px;
+    }
+    .demo-container {
+      background: white;
+      border-radius: 8px;
+      padding: 24px;
+      border: 1px solid var(--wf-color-border, #d1d5db);
+    }
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+    }
+    .demo-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .demo-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      font-size: 16px;
+      color: var(--wf-color-text-secondary, #374151);
+      margin-bottom: 32px;
+    }
+    @media (max-width: 768px) {
+      .demo-grid-3 {
+        grid-template-columns: 1fr;
+      }
+      .demo-grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>MetricCard Component</h1>
+  <p class="subtitle">Dashboard metric cards for displaying key performance indicators and statistics.</p>
+
+  <!-- Basic Metric Card -->
+  <section class="demo-section">
+    <h2>Basic Metric Card</h2>
+    <p>Simple metric card with value and title.</p>
+    <div class="demo-container" style="background: var(--wf-color-neutral-50);">
+      <div class="demo-grid">
+        <div class="wf-metric-card">
+          <div class="wf-metric-header">
+            <span class="wf-metric-title">Total Revenue</span>
+          </div>
+          <div class="wf-metric-value">$124,500</div>
+        </div>
+
+        <div class="wf-metric-card">
+          <div class="wf-metric-header">
+            <span class="wf-metric-title">Active Users</span>
+          </div>
+          <div class="wf-metric-value">2,847</div>
+        </div>
+
+        <div class="wf-metric-card">
+          <div class="wf-metric-header">
+            <span class="wf-metric-title">Conversion Rate</span>
+          </div>
+          <div class="wf-metric-value">3.24%</div>
+        </div>
+
+        <div class="wf-metric-card">
+          <div class="wf-metric-header">
+            <span class="wf-metric-title">Avg Order Value</span>
+          </div>
+          <div class="wf-metric-value">$89.50</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Metric Card with Icon -->
+  <section class="demo-section">
+    <h2>Metric Card with Icon</h2>
+    <p>Metric cards with an icon indicator in the header.</p>
+    <div class="demo-container" style="background: var(--wf-color-neutral-50);">
+      <div class="demo-grid">
+        <div class="wf-metric-card">
+          <div class="wf-metric-header">
+            <span class="wf-metric-icon">[icon]</span>
+            <span class="wf-metric-title">Total Volume</span>
+          </div>
+          <div class="wf-metric-value">2.4M</div>
+          <div class="wf-metric-subtitle">
+            MMBtu delivered
+          </div>
+        </div>
+
+        <div class="wf-metric-card">
+          <div class="wf-metric-header">
+            <span class="wf-metric-icon">[icon]</span>
+            <span class="wf-metric-title">Active Contracts</span>
+          </div>
+          <div class="wf-metric-value">156</div>
+          <div class="wf-metric-subtitle">
+            Across 42 counterparties
+          </div>
+        </div>
+
+        <div class="wf-metric-card">
+          <div class="wf-metric-header">
+            <span class="wf-metric-icon">[icon]</span>
+            <span class="wf-metric-title">Open Invoices</span>
+          </div>
+          <div class="wf-metric-value">$847K</div>
+          <div class="wf-metric-subtitle">
+            23 invoices pending
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Metric Card with Trend -->
+  <section class="demo-section">
+    <h2>Metric Card with Trend Indicator</h2>
+    <p>Show percentage changes with up/down/neutral trend indicators.</p>
+    <div class="demo-container" style="background: var(--wf-color-neutral-50);">
+      <div class="demo-grid">
+        <div class="wf-metric-card">
+          <div class="wf-metric-header">
+            <span class="wf-metric-icon">[icon]</span>
+            <span class="wf-metric-title">Total Revenue</span>
+          </div>
+          <div class="wf-metric-value">$124,500</div>
+          <div class="wf-metric-subtitle">
+            <span class="wf-metric-trend wf-metric-trend-up">&#9650; 12.5%</span>
+            vs last month
+          </div>
+        </div>
+
+        <div class="wf-metric-card">
+          <div class="wf-metric-header">
+            <span class="wf-metric-icon">[icon]</span>
+            <span class="wf-metric-title">Support Tickets</span>
+          </div>
+          <div class="wf-metric-value">847</div>
+          <div class="wf-metric-subtitle">
+            <span class="wf-metric-trend wf-metric-trend-down">&#9660; 8.3%</span>
+            vs last month
+          </div>
+        </div>
+
+        <div class="wf-metric-card">
+          <div class="wf-metric-header">
+            <span class="wf-metric-icon">[icon]</span>
+            <span class="wf-metric-title">Response Time</span>
+          </div>
+          <div class="wf-metric-value">2.4h</div>
+          <div class="wf-metric-subtitle">
+            <span class="wf-metric-trend wf-metric-trend-neutral">&#8212; 0%</span>
+            vs last month
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Status Variant Metric Cards -->
+  <section class="demo-section">
+    <h2>Status Variants</h2>
+    <p>Colored accent border to indicate status or category.</p>
+    <div class="demo-container" style="background: var(--wf-color-neutral-50);">
+      <div class="demo-grid-4">
+        <div class="wf-metric-card wf-metric-card-primary">
+          <div class="wf-metric-header">
+            <span class="wf-metric-title">Total Orders</span>
+          </div>
+          <div class="wf-metric-value">1,284</div>
+          <div class="wf-metric-subtitle">
+            <span class="wf-metric-trend wf-metric-trend-up">&#9650; 5.2%</span>
+          </div>
+        </div>
+
+        <div class="wf-metric-card wf-metric-card-success">
+          <div class="wf-metric-header">
+            <span class="wf-metric-title">Completed</span>
+          </div>
+          <div class="wf-metric-value">1,156</div>
+          <div class="wf-metric-subtitle">
+            90% completion rate
+          </div>
+        </div>
+
+        <div class="wf-metric-card wf-metric-card-warning">
+          <div class="wf-metric-header">
+            <span class="wf-metric-title">Pending</span>
+          </div>
+          <div class="wf-metric-value">98</div>
+          <div class="wf-metric-subtitle">
+            Awaiting review
+          </div>
+        </div>
+
+        <div class="wf-metric-card wf-metric-card-error">
+          <div class="wf-metric-header">
+            <span class="wf-metric-title">Failed</span>
+          </div>
+          <div class="wf-metric-value">30</div>
+          <div class="wf-metric-subtitle">
+            Requires attention
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Compact Metric Cards -->
+  <section class="demo-section">
+    <h2>Compact Size</h2>
+    <p>Smaller metric cards for tighter layouts or secondary metrics.</p>
+    <div class="demo-container" style="background: var(--wf-color-neutral-50);">
+      <div class="demo-grid-4">
+        <div class="wf-metric-card wf-metric-card-compact">
+          <div class="wf-metric-header">
+            <span class="wf-metric-title">Views</span>
+          </div>
+          <div class="wf-metric-value">45.2K</div>
+          <div class="wf-metric-subtitle">
+            <span class="wf-metric-trend wf-metric-trend-up">&#9650; 12%</span>
+          </div>
+        </div>
+
+        <div class="wf-metric-card wf-metric-card-compact">
+          <div class="wf-metric-header">
+            <span class="wf-metric-title">Clicks</span>
+          </div>
+          <div class="wf-metric-value">3,847</div>
+          <div class="wf-metric-subtitle">
+            <span class="wf-metric-trend wf-metric-trend-up">&#9650; 8%</span>
+          </div>
+        </div>
+
+        <div class="wf-metric-card wf-metric-card-compact">
+          <div class="wf-metric-header">
+            <span class="wf-metric-title">CTR</span>
+          </div>
+          <div class="wf-metric-value">8.5%</div>
+          <div class="wf-metric-subtitle">
+            <span class="wf-metric-trend wf-metric-trend-down">&#9660; 2%</span>
+          </div>
+        </div>
+
+        <div class="wf-metric-card wf-metric-card-compact">
+          <div class="wf-metric-header">
+            <span class="wf-metric-title">Conversions</span>
+          </div>
+          <div class="wf-metric-value">412</div>
+          <div class="wf-metric-subtitle">
+            <span class="wf-metric-trend wf-metric-trend-up">&#9650; 15%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Elevated Metric Cards -->
+  <section class="demo-section">
+    <h2>Elevated Metric Cards</h2>
+    <p>Cards with shadow instead of border for visual depth.</p>
+    <div class="demo-container" style="background: var(--wf-color-neutral-100);">
+      <div class="demo-grid-3">
+        <div class="wf-metric-card wf-metric-card-elevated">
+          <div class="wf-metric-header">
+            <span class="wf-metric-icon">[icon]</span>
+            <span class="wf-metric-title">Monthly Sales</span>
+          </div>
+          <div class="wf-metric-value">$284,500</div>
+          <div class="wf-metric-subtitle">
+            <span class="wf-metric-trend wf-metric-trend-up">&#9650; 18.2%</span>
+            vs last month
+          </div>
+        </div>
+
+        <div class="wf-metric-card wf-metric-card-elevated">
+          <div class="wf-metric-header">
+            <span class="wf-metric-icon">[icon]</span>
+            <span class="wf-metric-title">New Customers</span>
+          </div>
+          <div class="wf-metric-value">1,847</div>
+          <div class="wf-metric-subtitle">
+            <span class="wf-metric-trend wf-metric-trend-up">&#9650; 24.5%</span>
+            vs last month
+          </div>
+        </div>
+
+        <div class="wf-metric-card wf-metric-card-elevated">
+          <div class="wf-metric-header">
+            <span class="wf-metric-icon">[icon]</span>
+            <span class="wf-metric-title">Churn Rate</span>
+          </div>
+          <div class="wf-metric-value">2.1%</div>
+          <div class="wf-metric-subtitle">
+            <span class="wf-metric-trend wf-metric-trend-down">&#9660; 0.5%</span>
+            vs last month
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dashboard Example -->
+  <section class="demo-section">
+    <h2>Dashboard Example</h2>
+    <p>Complete dashboard layout using metric cards.</p>
+    <div class="demo-container" style="background: var(--wf-color-neutral-50);">
+      <div style="margin-bottom: 24px;">
+        <h3 style="margin: 0 0 4px 0; font-size: 18px; font-weight: 600;">Overview</h3>
+        <p style="margin: 0; font-size: 14px; color: var(--wf-color-text-secondary);">Key metrics for January 2024</p>
+      </div>
+      <div class="demo-grid-4">
+        <div class="wf-metric-card">
+          <div class="wf-metric-header">
+            <span class="wf-metric-icon">[icon]</span>
+            <span class="wf-metric-title">Total Revenue</span>
+          </div>
+          <div class="wf-metric-value">$1.24M</div>
+          <div class="wf-metric-subtitle">
+            <span class="wf-metric-trend wf-metric-trend-up">&#9650; 12%</span>
+            from Dec
+          </div>
+        </div>
+
+        <div class="wf-metric-card">
+          <div class="wf-metric-header">
+            <span class="wf-metric-icon">[icon]</span>
+            <span class="wf-metric-title">Active Users</span>
+          </div>
+          <div class="wf-metric-value">24.8K</div>
+          <div class="wf-metric-subtitle">
+            <span class="wf-metric-trend wf-metric-trend-up">&#9650; 8%</span>
+            from Dec
+          </div>
+        </div>
+
+        <div class="wf-metric-card">
+          <div class="wf-metric-header">
+            <span class="wf-metric-icon">[icon]</span>
+            <span class="wf-metric-title">Conversion</span>
+          </div>
+          <div class="wf-metric-value">3.24%</div>
+          <div class="wf-metric-subtitle">
+            <span class="wf-metric-trend wf-metric-trend-down">&#9660; 0.5%</span>
+            from Dec
+          </div>
+        </div>
+
+        <div class="wf-metric-card">
+          <div class="wf-metric-header">
+            <span class="wf-metric-icon">[icon]</span>
+            <span class="wf-metric-title">Avg Session</span>
+          </div>
+          <div class="wf-metric-value">4m 32s</div>
+          <div class="wf-metric-subtitle">
+            <span class="wf-metric-trend wf-metric-trend-neutral">&#8212; 0%</span>
+            from Dec
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Inline Stats (Alternative Layout) -->
+  <section class="demo-section">
+    <h2>Inline Stats (Alternative)</h2>
+    <p>Use wf-stat for inline statistics without card wrapper.</p>
+    <div class="demo-container">
+      <div class="wf-stat-group wf-stat-group-divider">
+        <div class="wf-stat">
+          <span class="wf-stat-label">Total Revenue</span>
+          <span class="wf-stat-value">$124,500</span>
+        </div>
+        <div class="wf-stat">
+          <span class="wf-stat-label">Orders</span>
+          <span class="wf-stat-value">1,284</span>
+        </div>
+        <div class="wf-stat">
+          <span class="wf-stat-label">Customers</span>
+          <span class="wf-stat-value">847</span>
+        </div>
+        <div class="wf-stat">
+          <span class="wf-stat-label">Avg Order</span>
+          <span class="wf-stat-value">$97</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

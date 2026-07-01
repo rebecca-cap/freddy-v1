@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>03 · The KB stub goes live — Obsidian KB in the Hub</title>
+<link rel="stylesheet" href="wf-base.css" />
+</head>
+<body>
+<div class="wfp wfp-wide">
+  <div class="wf-banner">Concept wireframe · <b>03 / KB Browser</b> · rough &amp; low-fi — layout and idea, not final visuals. Obsidian-purple = the vault; Hub-green/blue = the app.</div>
+
+  <p class="scr-eyebrow">Move 2 · In the Hub</p>
+  <h1 class="scr-title">The KB stub goes live</h1>
+  <p class="scr-sub">Today the Hub sidebar has an <b>Obsidian KB</b> item under System that's a disabled stub. This move makes it a <b>read-only vault browser</b> — a 3-pane page that renders the markdown notes straight from <span class="wf-mono" style="font-size:12px;">/vault</span>. So teammates who haven't set up Obsidian still get the second brain inside the web app they already use.</p>
+
+  <!-- ===== the live page ===== -->
+  <div class="frame-label">◇ Obsidian KB — now a real page (System ▸ Obsidian KB)</div>
+  <div class="frame">
+    <div class="hub">
+      <!-- ---------- Hub sidebar ---------- -->
+      <aside class="hub-side">
+        <div class="hub-brand"><span class="mark">P</span> Project Hub</div>
+
+        <div class="hub-navlbl">Projects</div>
+        <div class="hub-nav"><span class="nico">📊</span> Quote Filter Bar</div>
+        <div class="hub-nav"><span class="nico">🤖</span> Grizmo</div>
+
+        <div class="hub-navlbl">System</div>
+        <div class="hub-nav"><span class="nico">🎨</span> Design System</div>
+        <div class="hub-nav"><span class="nico">🧩</span> Design Patterns</div>
+        <div class="hub-nav"><span class="nico">▢</span> Wireframe DS</div>
+        <div class="hub-nav hub-nav-active"><span class="nico">🧠</span> Obsidian KB</div>
+      </aside>
+
+      <!-- ---------- Hub main ---------- -->
+      <div class="hub-main">
+        <!-- page header -->
+        <div class="spread" style="margin-bottom:var(--wf-space-4);">
+          <div>
+            <h2 style="margin:0;font-size:var(--wf-text-lg);font-weight:var(--wf-font-semibold);">🧠 Obsidian KB</h2>
+            <p class="wf-tert" style="margin:2px 0 0;font-size:var(--wf-text-xs);">read-only · rendered from /vault</p>
+          </div>
+          <button class="wf-button wf-button-obsidian wf-button-sm">↗ Open in Obsidian</button>
+        </div>
+
+        <!-- 3-pane KB browser -->
+        <div class="kb">
+          <!-- pane 1 — folders -->
+          <div class="kb-rail">
+            <div class="kb-railitem"><span>🗳️</span> Decisions <span class="c">6</span></div>
+            <div class="kb-railitem"><span>🧩</span> Patterns <span class="c">9</span></div>
+            <div class="kb-railitem kb-railitem-active"><span>💡</span> Learnings <span class="c">7</span></div>
+            <div class="kb-railitem"><span>📁</span> Projects <span class="c">5</span></div>
+            <div class="kb-railitem"><span>🎨</span> Design System <span class="c">15</span></div>
+            <div class="kb-railitem"><span>🔁</span> Retros <span class="c">1</span></div>
+            <div class="kb-railitem"><span>🗓️</span> Syncs <span class="c">2</span></div>
+            <div class="kb-railitem"><span>📄</span> Templates <span class="c">7</span></div>
+          </div>
+
+          <!-- pane 2 — notes in Learnings -->
+          <div class="kb-list">
+            <div class="kb-li kb-li-active">
+              <p class="t">Tailwind Merge Class Conflicts</p>
+              <div class="m">severity: high · project: GDS</div>
+            </div>
+            <div class="kb-li">
+              <p class="t">Cell Editor Stale Closure</p>
+              <div class="m">severity: med · project: Grizmo</div>
+            </div>
+            <div class="kb-li">
+              <p class="t">AG Grid onSelectionChanged Placement</p>
+              <div class="m">severity: med · project: Grizmo</div>
+            </div>
+            <div class="kb-li">
+              <p class="t">AG Grid externalRef for GridApi</p>
+              <div class="m">severity: low · project: Grizmo</div>
+            </div>
+            <div class="kb-li">
+              <p class="t">Vertical Overflow Hidden Default</p>
+              <div class="m">severity: low · project: GDS</div>
+            </div>
+          </div>
+
+          <!-- pane 3 — rendered note -->
+          <div class="kb-note">
+            <div class="fm"><span class="k">type:</span> <span class="v">learning</span>
+<span class="k">status:</span> <span class="v">active</span>
+<span class="k">tags:</span> <span class="v">[tailwind, css, build-tooling]</span>
+<span class="k">severity:</span> <span class="v">high</span>
+<span class="k">project:</span> <span class="vl">"[[GDS Design System]]"</span>
+<span class="k">date:</span> <span class="v">2026-03-18</span></div>
+
+            <h1>Tailwind Merge Class Conflicts</h1>
+
+            <h2>Problem</h2>
+            <p>After a build, <span class="wf-mono" style="font-size:12px;">tailwind-merge</span> silently stripped color and font-size classes off some components — text rendered at the wrong size and lost its color with no error.</p>
+
+            <h2>Root Cause</h2>
+            <p>Arbitrary values like <span class="wf-mono" style="font-size:12px;">text-[var(--gds-font-size-lg)]</span> were read as part of the <span class="wf-mono" style="font-size:12px;">textColor</span> group, so merge treated font-size and color as conflicting and dropped one.</p>
+
+            <h2>Fix</h2>
+            <p>Replaced arbitrary <span class="wf-mono" style="font-size:12px;">text-[…]</span> utilities with named classes that map to the tokens. No more group collision; merge keeps both.</p>
+
+            <h2>Related</h2>
+            <p><span class="wl">GDS Design System</span> &nbsp; <span class="wl">GDS Token Naming</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== annotations ===== -->
+  <div class="callout callout-obsidian" style="margin-top:var(--wf-space-5);">
+    <b>How it works</b> — an Express route fast-globs <span class="wf-mono" style="font-size:12px;">/vault</span>, parses each note with <span class="wf-mono" style="font-size:12px;">gray-matter</span> (YAML frontmatter + body), and serves JSON. <span class="wf-mono" style="font-size:12px;">markdown-it</span> plus a small wikilink plugin render <span class="wf-mono" style="font-size:12px;">[[links]]</span> as in-Hub <span class="wf-mono" style="font-size:12px;">/kb/:slug</span> anchors. <b>No Obsidian install or running app required to read.</b>
+  </div>
+  <div class="callout callout-why">
+    <b>Why this matters — graceful degradation</b> — engineers and PMs can read the second brain right in the browser. The <b>Open in Obsidian</b> deep-link (<span class="wf-mono" style="font-size:12px;">obsidian://</span>) is there for anyone who wants the full graph + editing — but it's optional, not a prerequisite.
+  </div>
+</div>
+</body>
+</html>

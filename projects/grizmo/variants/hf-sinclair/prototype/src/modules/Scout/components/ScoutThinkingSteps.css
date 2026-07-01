@@ -1,0 +1,171 @@
+/*
+ * ScoutThinkingSteps — wireframe `.thinking-card` + `.thinking-step`.
+ *
+ * Source: gizmo-demo.html lines 347–434. Brand-edge card with a spinner +
+ * a vertical list of steps. Active step shimmers; done steps render plain.
+ */
+
+.scout-thinking {
+  background: var(--scout-surface);
+  border-left: 3px solid var(--scout-brand);
+  border-radius: 0;
+  padding: 9px 11px 7px;
+}
+
+/* Header (while still thinking) */
+.scout-thinking__header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--scout-font-size-sm-plus);
+  color: var(--scout-brand);
+  font-weight: var(--scout-font-weight-semibold);
+  margin-bottom: 6px;
+}
+
+.scout-thinking__spinner {
+  width: 10px;
+  height: 10px;
+  border: 1.5px solid var(--scout-brand);
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: scout-thinking-spin 0.7s linear infinite;
+}
+
+@keyframes scout-thinking-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Toggle (once thinking is done — collapsible) */
+.scout-thinking__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: transparent;
+  border: 0;
+  padding: 2px 0 4px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: var(--scout-font-size-xs);
+  color: var(--scout-brand);
+  font-weight: var(--scout-font-weight-medium);
+  user-select: none;
+}
+
+.scout-thinking__toggle:hover .scout-thinking__toggle-label {
+  text-decoration: underline;
+}
+
+.scout-thinking__chev {
+  display: inline-block;
+  transition: transform 160ms ease;
+  font-size: 11px;
+  line-height: 1;
+}
+
+.scout-thinking__toggle.is-expanded .scout-thinking__chev {
+  transform: rotate(90deg);
+}
+
+.scout-thinking__count {
+  color: var(--scout-text-subtle);
+  font-weight: var(--scout-font-weight-regular);
+  font-size: 10px;
+}
+
+/* List */
+.scout-thinking__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.scout-thinking__step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 0;
+  font-size: var(--scout-font-size-sm-plus);
+  line-height: var(--scout-line-height-tight);
+}
+
+.scout-thinking__icon {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: var(--scout-font-weight-bold);
+  flex-shrink: 0;
+}
+
+/* Done — green check */
+.scout-thinking__step.is-done {
+  color: var(--scout-text-muted);
+}
+.scout-thinking__step.is-done .scout-thinking__icon {
+  background: var(--scout-accent);
+  color: #ffffff;
+}
+
+/* Active — pulsing brand dot + label shimmer */
+.scout-thinking__step.is-active {
+  color: var(--scout-brand);
+  font-weight: var(--scout-font-weight-medium);
+}
+.scout-thinking__step.is-active .scout-thinking__icon {
+  background: var(--scout-brand);
+  color: #ffffff;
+  animation: scout-thinking-pulse 1.2s ease-in-out infinite;
+}
+@keyframes scout-thinking-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(113, 93, 170, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(113, 93, 170, 0);
+  }
+}
+
+/* Shimmer the active label — gradient-clip text trick, copied from the
+   wireframe (lines 407–419). */
+.scout-thinking__step.is-active .scout-thinking__label {
+  background: linear-gradient(
+    90deg,
+    rgba(113, 93, 170, 0.55) 0%,
+    var(--scout-brand) 40%,
+    rgba(113, 93, 170, 1) 50%,
+    var(--scout-brand) 60%,
+    rgba(113, 93, 170, 0.55) 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: scout-thinking-shimmer 1.6s linear infinite;
+}
+@keyframes scout-thinking-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Pending styles are unused in practice (we hide pending steps), but kept
+   here so the spec-described status set is complete. */
+.scout-thinking__step.is-pending {
+  color: var(--scout-text-subtle);
+}
+.scout-thinking__step.is-pending .scout-thinking__icon {
+  background: transparent;
+  color: var(--scout-text-subtle);
+  border: 1px solid var(--scout-border-strong);
+}

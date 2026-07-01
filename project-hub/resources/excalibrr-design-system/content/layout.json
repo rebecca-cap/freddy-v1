@@ -1,0 +1,289 @@
+{
+  "slug": "layout",
+  "title": "Layout Primitives",
+  "order": 3,
+  "group": "Foundations",
+  "intro": "Vertical and Horizontal are Excalibrr's flexbox primitives — every page scaffold, split pane, and toolbar is composed from them, with all geometry set through props. DashboardWidget and WidgetHeader frame content tiles; Overlay gates a region behind an antd Spin while it loads.",
+  "demoPath": "/DesignSystem/Layout",
+  "searchTerms": [
+    "Vertical",
+    "Horizontal",
+    "DashboardWidget",
+    "WidgetHeader",
+    "UnderlineHeader",
+    "Overlay",
+    "flex",
+    "gap",
+    "stack",
+    "row",
+    "column",
+    "spacing",
+    "scroll",
+    "flexbox",
+    "spin",
+    "loading"
+  ],
+  "blocks": [
+    {
+      "type": "usage",
+      "title": "When to reach for these",
+      "body": "Use `Vertical` and `Horizontal` anywhere you would otherwise write `<div style={{ display: 'flex' }}>` — page scaffolds, split panes, control bars, button rows, form footers. Each renders a single flex `div` whose geometry is set entirely by props (`flex`, `gap`, `width`, `height`, `justifyContent`, `alignItems`), which keeps layout declarative and reviewable. Passing the same values through `style` is the #1 reviewed-out mistake in generated code.\n\nThe two are not symmetric. `Vertical` is greedy: it defaults to `flex: '1 1 auto'` and `height: '100%'`, so it fills whatever its parent gives it. `Horizontal` hugs content: it defaults to `flex: '0 1 auto'` with no height. Both set `overflow: hidden` unless you pass `scroll` — pick the one pane that scrolls and mark it explicitly."
+    },
+    {
+      "type": "specimen",
+      "title": "Horizontal",
+      "image": "specimens/layout/01-horizontal-row.png",
+      "caption": "Horizontal states: default row hugging its children; justifyContent=\"space-between\" splitting a full-width row; alignItems=\"center\" cross-axis alignment with mixed-height children; gap={16} spacing. The \"via style\" card label is a showcase typo — the code behind it passes gap={16} as a prop."
+    },
+    {
+      "type": "specimen",
+      "title": "Vertical",
+      "image": "specimens/layout/02-vertical-stack.png",
+      "caption": "Vertical states: \"Default\" stack (children stretch full-width) and flex=\"1\" claiming all available space inside a fixed-height flex parent. The \"Default\" card is not pure default — the showcase overrides with style={{ height: 'auto' }} so the card hugs content; a true default Vertical fills its parent via height '100%'."
+    },
+    {
+      "type": "props",
+      "title": "Vertical / Horizontal props",
+      "intro": "Both share one prop surface; defaults differ where noted. Every layout concern has a prop — `style` exists only as an escape hatch for properties with no prop equivalent.",
+      "rows": [
+        {
+          "prop": "flex",
+          "type": "CSSProperties['flex']",
+          "default": "Vertical '1 1 auto' · Horizontal '0 1 auto'",
+          "notes": "Vertical grows to fill by default; Horizontal hugs content. Pass flex=\"1\" to make a row claim remaining space. Never style={{ flex: 1 }}."
+        },
+        {
+          "prop": "gap",
+          "type": "CSSProperties['gap']",
+          "default": "0",
+          "notes": "Spacing between children; a number is pixels (gap={12}). The sanctioned spacing mechanism — never style={{ gap: '12px' }} and never margin on children."
+        },
+        {
+          "prop": "height / width",
+          "type": "CSSProperties values",
+          "default": "Vertical height '100%' · Horizontal none",
+          "notes": "Explicit sizing as props: height=\"100%\", width={320}. Horizontal also has fullHeight (boolean) which adds the h-100 utility class."
+        },
+        {
+          "prop": "justifyContent / alignItems",
+          "type": "standard flex values",
+          "notes": "Main-axis and cross-axis alignment, passed as props: justifyContent=\"space-between\", alignItems=\"center\"."
+        },
+        {
+          "prop": "verticalCenter / horizontalCenter",
+          "type": "boolean",
+          "default": "false",
+          "notes": "Screen-axis centering shorthands. verticalCenter centers along the screen's vertical axis — justifyContent in Vertical, alignItems in Horizontal. horizontalCenter mirrors. They are not flex-axis aliases."
+        },
+        {
+          "prop": "scroll",
+          "type": "boolean",
+          "default": "false",
+          "notes": "true → overflow: auto. false → overflow: hidden — overflowing content is clipped, not scrolled. Mark exactly one pane per region as the scroller."
+        },
+        {
+          "prop": "bg",
+          "type": "'default' | 'elevated' | 'layout' | 'primary' | 'info' | 'success' | 'warning' | 'error'",
+          "notes": "Tonal background resolved from theme tokens — theme-safe in light and dark. Prefer this over background. See the bg tones table."
+        },
+        {
+          "prop": "background",
+          "type": "string (CSS variable name)",
+          "notes": "Renders var(--<value>): background=\"bg-2\" → var(--bg-2). A raw color like \"#fff\" produces invalid CSS and silently fails. Legacy — prefer bg."
+        },
+        {
+          "prop": "border",
+          "type": "'all' | 'top' | 'bottom' | 'left' | 'right'",
+          "notes": "1px solid on the named side(s). Color comes from the theme's colorBorder token — or the matching status border color when bg is a status tone."
+        },
+        {
+          "prop": "borderRadius",
+          "type": "CSSProperties['borderRadius']",
+          "notes": "Corner rounding, usually paired with bg + border to make a soft panel."
+        },
+        {
+          "prop": "style",
+          "type": "React.CSSProperties",
+          "notes": "Escape hatch, spread last so it wins. Use only for properties with no prop equivalent (e.g. position, minWidth) — never for flex, gap, height, or alignment."
+        }
+      ]
+    },
+    {
+      "type": "variants",
+      "title": "bg tones",
+      "intro": "The bg prop is the real variant axis on both primitives — a fixed set of theme-resolved surface tones.",
+      "rows": [
+        {
+          "name": "default",
+          "when": "Card-on-page content surface; resolves to the antd colorBgContainer token.",
+          "code": "<Vertical bg='default'>"
+        },
+        {
+          "name": "elevated",
+          "when": "Raised panels, drawers, control bars; resolves to var(--bg-2).",
+          "code": "<Vertical bg='elevated' border='all' borderRadius={8}>"
+        },
+        {
+          "name": "layout",
+          "when": "Page chrome and recessed wells behind cards; resolves to var(--bg-3).",
+          "code": "<Vertical bg='layout'>"
+        },
+        {
+          "name": "primary / info / success / warning / error",
+          "when": "Status-tinted callout regions; resolves to the matching antd colorXxxBg token. Pair with border and the border color switches to the matching colorXxxBorder automatically.",
+          "code": "<Horizontal bg='warning' border='all' borderRadius={6} gap={8}>"
+        }
+      ]
+    },
+    {
+      "type": "code",
+      "title": "Canonical page scaffold",
+      "code": "// All layout via props — never style\n<Vertical height='100%' gap={12}>\n  {/* Header row: hugs its content height */}\n  <Horizontal justifyContent='space-between' verticalCenter gap={8}>\n    <Texto category='h4'>Quote Book</Texto>\n    <GraviButton theme1 buttonText='Publish Prices' onClick={onPublish} />\n  </Horizontal>\n\n  {/* Body row: flex='1' claims remaining height */}\n  <Horizontal flex='1' gap={12}>\n    <Vertical flex='2' scroll>\n      {/* main content / grid */}\n    </Vertical>\n    <Vertical flex='1' bg='elevated' border='left'>\n      {/* side panel */}\n    </Vertical>\n  </Horizontal>\n</Vertical>",
+      "note": "Vertical fills by default, so the inner panes need no height. The body Horizontal needs flex='1' explicitly — rows hug content unless told to grow. The main pane gets scroll; everything else clips."
+    },
+    {
+      "type": "specimen",
+      "title": "DashboardWidget",
+      "image": "specimens/layout/03-dashboard-widget.png",
+      "caption": "DashboardWidget with no widgetTitle — a bare wrapper around children, no header row. The showcase's title=\"Revenue Summary\" annotation is wrong twice over: the prop is widgetTitle, and it was never passed here."
+    },
+    {
+      "type": "specimen",
+      "title": "WidgetHeader",
+      "image": "specimens/layout/04-widget-header.png",
+      "caption": "WidgetHeader with title=\"Monthly Stats\" and an empty controls slot. The flair is the WidgetUnderline SVG; the uppercase/gray title styling from the library source CSS does not ship in the current package, so the text renders plain."
+    },
+    {
+      "type": "props",
+      "title": "DashboardWidget / WidgetHeader props",
+      "intro": "DashboardWidget is a `driver-widget` wrapper that optionally renders a WidgetHeader above its children. WidgetHeader is also exported standalone (as is UnderlineHeader, the title-plus-flair on its own). The header is an antd Row split into two Cols.",
+      "rows": [
+        {
+          "prop": "widgetTitle",
+          "type": "string",
+          "notes": "DashboardWidget. Renders a WidgetHeader above children; omit it and the wrapper renders headerless. The prop is widgetTitle — title is silently ignored."
+        },
+        {
+          "prop": "headerChildren",
+          "type": "ReactNode",
+          "notes": "DashboardWidget. Right-side header controls, forwarded to WidgetHeader's controls slot."
+        },
+        {
+          "prop": "title / controls",
+          "type": "string / ReactNode",
+          "notes": "WidgetHeader. title is required and gets the WidgetUnderline flair; controls fills the right Col."
+        },
+        {
+          "prop": "titleSpan / controlSpan",
+          "type": "number",
+          "default": "12 / 12",
+          "notes": "antd 24-column split between title and controls — keep the sum at 24 or the header wraps."
+        },
+        {
+          "prop": "alignControls",
+          "type": "string",
+          "default": "''",
+          "notes": "Col align passthrough; 'right' pushes controls to the header's right edge."
+        },
+        {
+          "prop": "useWhiteIcon",
+          "type": "boolean",
+          "default": "false",
+          "notes": "White underline flair for headers on dark surfaces."
+        }
+      ]
+    },
+    {
+      "type": "props",
+      "title": "Overlay props",
+      "intro": "Overlay wraps a region in an antd `Spin` while it loads. When `renderOverlay` is true the children render dimmed behind the spinner; when false they render bare inside a Fragment. Toggling `renderOverlay` swaps the root element between `Spin` and `Fragment`, so React remounts the children subtree — component state and scroll position do NOT survive the flip. Hoist any state that must outlive the loading flash above the Overlay. No demo specimen exists yet; the surface below is verified against package types.",
+      "rows": [
+        {
+          "prop": "renderOverlay",
+          "type": "boolean",
+          "notes": "Required. true wraps children in <Spin>; false renders them untouched."
+        },
+        {
+          "prop": "overlayContent",
+          "type": "SpinProps['tip']",
+          "notes": "Text under the spinner — Spin's tip, renamed."
+        },
+        {
+          "prop": "overlayIndicator",
+          "type": "SpinProps['indicator']",
+          "notes": "Custom spinner element — Spin's indicator, renamed."
+        },
+        {
+          "prop": "...SpinProps",
+          "type": "antd SpinProps",
+          "notes": "Declared in the type but only tip/indicator are forwarded in the current implementation — do not rely on size or delay reaching the Spin."
+        }
+      ]
+    },
+    {
+      "type": "dosdonts",
+      "title": "Do / Don't",
+      "items": [
+        {
+          "do": "<Vertical flex=\"1\"> / <Vertical height=\"100%\">",
+          "dont": "<Vertical style={{ flex: 1 }}> / style={{ height: '100%' }}",
+          "why": "Layout goes through props — this is the #1 reviewed-out mistake in generated Excalibrr code. style is the escape hatch, not the API."
+        },
+        {
+          "do": "<Horizontal gap={12}>",
+          "dont": "<Horizontal style={{ gap: '12px' }}> or margins on children",
+          "why": "gap is the sanctioned spacing mechanism; numbers are pixels."
+        },
+        {
+          "do": "Pass scroll on the one pane that scrolls",
+          "dont": "Expect overflowing content to scroll on its own",
+          "why": "Both primitives set overflow: hidden by default — unscrolled overflow is clipped silently."
+        },
+        {
+          "do": "<Horizontal flex=\"1\"> when a row must fill remaining height",
+          "dont": "Assume rows grow like columns do",
+          "why": "Horizontal defaults to flex '0 1 auto' (hugs); Vertical defaults to '1 1 auto' (fills)."
+        },
+        {
+          "do": "<DashboardWidget widgetTitle=\"Revenue Summary\">",
+          "dont": "<DashboardWidget title=\"Revenue Summary\">",
+          "why": "The prop is widgetTitle; title is silently dropped and the header never renders."
+        }
+      ]
+    },
+    {
+      "type": "gotchas",
+      "title": "Gotchas",
+      "items": [
+        {
+          "title": "Layout props, never style",
+          "detail": "flex=\"1\" not style={{ flex: 1 }}; height=\"100%\" not style={{ height: '100%' }}; gap={12} not style={{ gap: '12px' }}; justifyContent=\"space-between\" as a prop. style technically wins (it is spread last) which is exactly why it slips through review — hold the line."
+        },
+        {
+          "title": "Both primitives clip by default",
+          "detail": "overflow is hidden unless scroll is passed. Content that outgrows its pane disappears with no scrollbar and no error — if something is missing at the bottom of a panel, check for a missing scroll first."
+        },
+        {
+          "title": "Vertical fills, Horizontal hugs",
+          "detail": "Vertical defaults to flex '1 1 auto' + height '100%'; Horizontal defaults to flex '0 1 auto' with no height. Stacked Verticals split space evenly without any props; stacked Horizontals collapse to content height until one gets flex=\"1\"."
+        },
+        {
+          "title": "verticalCenter / horizontalCenter are screen-axis, not flex-axis",
+          "detail": "verticalCenter means \"center along the screen's vertical axis\": it sets justifyContent in Vertical but alignItems in Horizontal. horizontalCenter mirrors. Read them as visual intent and they always do the right thing; read them as flex aliases and they look swapped."
+        },
+        {
+          "title": "background takes a CSS variable name, not a color",
+          "detail": "background=\"bg-2\" renders background: var(--bg-2). Passing \"#fff\" or \"white\" produces var(--#fff) — invalid CSS, silently no background. Prefer the bg tonal prop, which resolves real theme tokens in both light and dark."
+        },
+        {
+          "title": "DashboardWidget's flex prop is broken",
+          "detail": "The class logic is inverted (flex ? '' : `flex-${flex}`): omitting flex emits a junk flex-undefined class, and passing it emits nothing. Size widgets with a parent Vertical/Horizontal and ignore this prop."
+        },
+        {
+          "title": "WidgetHeader spans are an antd 24-column split",
+          "detail": "titleSpan and controlSpan default to 12/12 and must sum to 24 — a 16/12 split wraps the controls onto a second line."
+        }
+      ]
+    }
+  ]
+}

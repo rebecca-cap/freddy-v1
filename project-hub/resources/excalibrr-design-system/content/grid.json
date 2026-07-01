@@ -1,0 +1,330 @@
+{
+  "slug": "grid",
+  "title": "Grid (GraviGrid)",
+  "order": 10,
+  "group": "Data",
+  "intro": "GraviGrid is the only sanctioned way to put AG Grid Enterprise on a page. It wraps AgGridReact with Gravitate defaults — theme sync, layout persistence, a sidebar, editing pipelines, row pinning — so a working grid is four props, and a wrong one is usually a missing agPropOverrides.",
+  "demoPath": "/DesignSystem/Grid",
+  "searchTerms": [
+    "GraviGrid",
+    "AG Grid",
+    "data grid",
+    "table",
+    "GridControlBar",
+    "useGridFetch",
+    "columnDefs",
+    "bulk change",
+    "row pinning",
+    "grid views",
+    "agPropOverrides"
+  ],
+  "blocks": [
+    {
+      "type": "usage",
+      "body": "Reach for GraviGrid for any tabular data — quote books, admin lists, pricing sheets. Never render `AgGridReact` directly: GraviGrid supplies the alpine theme synced to light/dark via `ThemeContext`, 50px rows, range selection, 25-step undo/redo on cell edits, a custom context menu, and a right-edge sidebar (Filters, Columns, Grid Views). Every column is sortable, filterable, resizable, and groupable by default.\n\nColumn order, widths, sorts, filters, and groupings persist to localStorage under `gridConfig::<storageKey>` and are reapplied on mount — users keep their layout across sessions without any code. For fetched data, `useGridFetch(fetcher)` returns `{ rowData, refresh, isLoading }` and expects the response shape `{ data: { rows: T[] } }`; wire `isLoading` straight into the `loading` prop."
+    },
+    {
+      "type": "specimen",
+      "title": "GraviGrid — default",
+      "image": "specimens/grid/01-gravigrid-default.png",
+      "caption": "Read-only grid with domLayout=\"autoHeight\": row-group drop zone (rowGroupPanelShow defaults to 'always'), sortable/filterable columns, numeric right-aligned columns, and the right-edge sidebar tabs — Filters, Columns, Grid Views. Price formatted as decimal dollars ($2.4567/gal)."
+    },
+    {
+      "type": "props",
+      "title": "GraviGrid props",
+      "intro": "The props that matter in practice, verified against GraviGrid.tsx and index.types.ts. T is the row type.",
+      "rows": [
+        {
+          "prop": "agPropOverrides",
+          "type": "Partial<AgGridReactProps<T>>",
+          "notes": "REQUIRED even when empty ({}) — GraviGrid dereferences it unconditionally and throws without it. Escape hatch to raw AG Grid props (domLayout, rowHeight, getRowId, getRowClass…). Handlers for onGridReady, onCellValueChanged, onSortChanged, onColumnMoved/Pinned/Resized, onColumnRowGroupChanged, onColumnGroupOpened, and onSelectionChanged are silently clobbered — see gotchas."
+        },
+        {
+          "prop": "columnDefs",
+          "type": "ColDef<T>[]",
+          "notes": "Always memoize with useMemo. defaultColDef gives every column initialFlex 1, minWidth 100, sortable, filter, resizable, enableRowGroup."
+        },
+        {
+          "prop": "rowData",
+          "type": "T[]",
+          "notes": "Rows must carry an `id` field — the default getRowId reads data.id. Different key? Pass getRowId in agPropOverrides."
+        },
+        {
+          "prop": "storageKey",
+          "type": "string",
+          "notes": "Namespace for persisted layout state (localStorage key gridConfig::<storageKey>). Unique per grid — shared keys bleed layouts between grids."
+        },
+        {
+          "prop": "loading",
+          "type": "boolean",
+          "notes": "Drives the built-in spinner overlay; empty rowData shows the no-rows overlay automatically. Never hand-roll a spinner over the grid."
+        },
+        {
+          "prop": "controlBarProps",
+          "type": "ControlBarProps<F>",
+          "notes": "Renders GridControlBar above the grid: title + live result count, quick search wired to setQuickFilter, filter drawer + filter tags, and an actionButtons slot. See the controlBarProps table below."
+        },
+        {
+          "prop": "updateEP",
+          "type": "(row: T | T[], meta?) => Promise<any>",
+          "notes": "Called on every committed cell edit. Setting it flips defaultColDef.editable to true for ALL columns — opt out per column with editable: false. Must merge the updated row back into React state."
+        },
+        {
+          "prop": "createEP",
+          "type": "(row: T | T[], meta?) => Promise<any>",
+          "notes": "Adds a success-green Create button and a CreateModal. Pair with createConfig + createSelectOptions; shouldInsertCreated inserts the response at row 0."
+        },
+        {
+          "prop": "externalRef",
+          "type": "MutableRefObject<GridApi>",
+          "notes": "Handle to the grid API, extended with applyGridView(view) and resetGridToDefault()."
+        },
+        {
+          "prop": "columnDefaultOverrides",
+          "type": "AgGridReactProps<T>['defaultColDef']",
+          "notes": "Merged over the built-in defaultColDef — the right place to turn off enableRowGroup or filter globally."
+        },
+        {
+          "prop": "onSelectionChanged",
+          "type": "AgGridReactProps['onSelectionChanged']",
+          "notes": "Proxied safely — the one selection hook that is NOT clobbered. Use this prop, not agPropOverrides.onSelectionChanged."
+        },
+        {
+          "prop": "isDirtyEdit / dirtyChangesRef",
+          "type": "boolean / MutableRefObject<dirtyGridApi>",
+          "default": "false",
+          "notes": "Batch-edit mode: edits accumulate against a structuredClone of rowData, dirty cells get the dirty-grid-edited class, and a DirtyEditBar appears with Save/Discard (onDirtyChangeSave / onDirtyChangeDiscard). The bar renders inside the control bar block — set controlBarProps or it never appears."
+        },
+        {
+          "prop": "isBulkChangeVisible / setIsBulkChangeVisible",
+          "type": "boolean / Dispatch<SetStateAction<boolean>>",
+          "notes": "Passing the setter adds a Bulk Change button; toggling on prepends a checkbox-selection column and opens the BulkChangeDrawer for selected rows. Columns must opt in with isBulkEditable: true."
+        },
+        {
+          "prop": "enableRowPinning / pinnedRowPosition",
+          "type": "boolean / 'top' | 'bottom'",
+          "default": "false / 'top'",
+          "notes": "Adds Pin Row to the context menu; pinned rows move to pinnedTopRowData/pinnedBottomRowData with accent styling and a Clear Pinned button in the control bar. Programmatic access via rowPinningRef."
+        },
+        {
+          "prop": "hideSaveDisplay",
+          "type": "boolean",
+          "default": "false",
+          "notes": "Hides the SaveDisplay ('Changes Saved: h:mm A') indicator that appears once updateEP grids save."
+        }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "Columns tool panel",
+      "image": "specimens/grid/02-columns-tool-panel.png",
+      "caption": "Sidebar Columns panel open: per-column visibility checkboxes, column search, drag handles, and a Row Groups drop zone. Everything the user changes here persists under the grid's storageKey."
+    },
+    {
+      "type": "variants",
+      "title": "Grid modes",
+      "intro": "One component, layered modes — each enabled by a prop cluster, all freely combinable.",
+      "rows": [
+        {
+          "name": "Read-only",
+          "when": "Default. Display, sort, filter, group, export — no editing.",
+          "code": "<GraviGrid agPropOverrides={{}} columnDefs={cols} rowData={rows} storageKey=\"MyGrid\" />"
+        },
+        {
+          "name": "Inline edit",
+          "when": "Each cell commit saves immediately and SaveDisplay shows the save time. Use for low-stakes admin data.",
+          "code": "updateEP={saveRow}"
+        },
+        {
+          "name": "Dirty edit",
+          "when": "Edits accumulate with visual dirty-cell marking and an explicit Save/Discard bar. Use when users review a batch before committing — pricing, publish workflows.",
+          "code": "isDirtyEdit dirtyChangesRef={ref} onDirtyChangeSave={...}"
+        },
+        {
+          "name": "Bulk change",
+          "when": "Apply one change to many selected rows via the BulkChangeDrawer. Columns need isBulkEditable: true.",
+          "code": "isBulkChangeVisible={open} setIsBulkChangeVisible={setOpen}"
+        },
+        {
+          "name": "Create",
+          "when": "Green Create button + modal form for new rows.",
+          "code": "createEP={createRow} createConfig={...} createSelectOptions={...}"
+        },
+        {
+          "name": "Row pinning",
+          "when": "Users pin reference rows to the top while scrolling — comparisons, benchmarks.",
+          "code": "enableRowPinning"
+        },
+        {
+          "name": "Control bar",
+          "when": "Title, live result count, quick search, server-side filter drawer, and action buttons in one bar above the grid. Use on every full-page grid.",
+          "code": "controlBarProps={{ title: 'Quotes', actionButtons: <…/> }}"
+        }
+      ]
+    },
+    {
+      "type": "props",
+      "title": "controlBarProps (GridControlBar)",
+      "intro": "Shape of the controlBarProps object, from GridControlBar.tsx.",
+      "rows": [
+        {
+          "prop": "title",
+          "type": "string",
+          "notes": "Grid title (Texto h4) with a live '<n> Results' count that tracks filters and row updates."
+        },
+        {
+          "prop": "showSelectedCount",
+          "type": "boolean",
+          "notes": "Switches the count to '<n> Selected | <m> Results' when rows are selected."
+        },
+        {
+          "prop": "actionButtons",
+          "type": "ReactNode",
+          "notes": "Right-aligned slot. GraviGrid composes its own buttons into the same slot when those modes are on — SaveDisplay and Bulk Change before yours, Create after."
+        },
+        {
+          "prop": "serverParams / filters / setFilters",
+          "type": "BaseFieldProps<F>[] / F / (f: F) => void",
+          "notes": "Declarative filter fields rendered in a collapsible filter drawer, with applied filters shown as removable FilterTags under the bar."
+        },
+        {
+          "prop": "customSearchBar / customFilterDrawer",
+          "type": "ReactNode / JSX.Element",
+          "notes": "Replace the built-in quick-search input or the generated filter drawer wholesale."
+        },
+        {
+          "prop": "warning",
+          "type": "string",
+          "notes": "Shows a warning icon with tooltip next to the search input."
+        },
+        {
+          "prop": "filterDrawerDefaultExpanded",
+          "type": "boolean",
+          "default": "false",
+          "notes": "Open the filter drawer on first render."
+        },
+        {
+          "prop": "hideActiveFilters",
+          "type": "boolean",
+          "notes": "Suppresses the FilterTags row; maxFilterTagsArrayLength truncates long array values."
+        }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "Custom context menu",
+      "image": "specimens/grid/03-context-menu.png",
+      "caption": "Right-click anywhere in the grid: GraviGrid replaces AG Grid's default menu with a row-pin item (Unpin Row here), Autosize All Columns, Copy, Expand All, and Collapse All. Extend it per-column with agPropOverrides.getAdditionContextMenuItems(colId, rowData)."
+    },
+    {
+      "type": "specimen",
+      "title": "Row grouping",
+      "image": "specimens/grid/04-row-grouping.png",
+      "caption": "Product dragged into the group drop zone: groupDisplayType defaults to 'groupRows', so groups render as full-width collapsible rows with counts. The group chip is removable; the grouping persists under storageKey."
+    },
+    {
+      "type": "code",
+      "title": "Canonical editable grid",
+      "code": "import { useCallback, useMemo, useState } from 'react'\nimport { GraviGrid } from '@gravitate-js/excalibrr'\nimport type { ColDef } from 'ag-grid-community'\n\ninterface QuoteRow {\n  id: number\n  customer: string\n  product: string\n  price: number\n}\n\nconst [rowData, setRowData] = useState<QuoteRow[]>(seedRows)\n\n// Memoize — unmemoized defs rebuild the grid's columns every render\nconst columnDefs = useMemo<ColDef<QuoteRow>[]>(\n  () => [\n    // updateEP makes columns editable by default — opt read-only columns out\n    { field: 'customer', headerName: 'Customer', flex: 1, editable: false },\n    { field: 'product', headerName: 'Product', width: 140, editable: false },\n    {\n      field: 'price',\n      headerName: 'Price ($/gal)',\n      type: 'numericColumn',\n      valueFormatter: (p) => (p.value != null ? `$${p.value.toFixed(4)}` : ''),\n      editable: true,\n      isBulkEditable: true, // required for the bulk change drawer\n    },\n  ],\n  []\n)\n\n// Called on every committed cell edit — MUST merge the row back into state\nconst updateEP = useCallback(async (updated: QuoteRow | QuoteRow[]) => {\n  const rows = Array.isArray(updated) ? updated : [updated]\n  setRowData((prev) => prev.map((r) => rows.find((u) => u.id === r.id) ?? r))\n}, [])\n\n<GraviGrid\n  agPropOverrides={{\n    domLayout: 'autoHeight',\n    // GraviGrid clobbers onGridReady etc. — attach AG Grid listeners here\n    onFirstDataRendered: ({ api }) =>\n      api.addEventListener('columnRowGroupChanged', handleGroupChange),\n  }}\n  columnDefs={columnDefs}\n  rowData={rowData}\n  storageKey=\"QuoteBookGrid\"\n  updateEP={updateEP}\n/>",
+      "note": "Every row carries an id (the default getRowId reads data.id). Quick search, sidebar, grouping, the context menu, and layout persistence all come free — do not rebuild them."
+    },
+    {
+      "type": "tokens",
+      "title": "Grid constants & pinning styles",
+      "intro": "Source-exact values from GraviGrid.tsx and its co-located styles.css.",
+      "rows": [
+        {
+          "token": "rowHeight",
+          "value": "50px",
+          "use": "Default row height unless agPropOverrides.rowHeight is set"
+        },
+        {
+          "token": "ag-theme-alpine / ag-theme-alpine-dark",
+          "value": "set automatically from ThemeContext",
+          "use": "Never set the AG theme class yourself"
+        },
+        {
+          "token": ".gravi-grid-row-pinned",
+          "value": "background: var(--theme-color-2-dim); border-top: 1px solid var(--gray-200)",
+          "use": "Every pinned row"
+        },
+        {
+          "token": ".gravi-grid-column-pinned",
+          "value": "border-left: 4px solid var(--theme-color-2)",
+          "use": "First displayed cell of a pinned row — the accent edge marker"
+        }
+      ]
+    },
+    {
+      "type": "dosdonts",
+      "items": [
+        {
+          "do": "Memoize columnDefs (and anything inside agPropOverrides) with useMemo",
+          "dont": "Build the defs array inline in JSX",
+          "why": "GraviGrid calls api.setColumnDefs whenever the reference changes — inline arrays rebuild columns every render and thrash persisted column state."
+        },
+        {
+          "do": "Format display values with valueFormatter — money as decimal dollars ($2.4567/gal)",
+          "dont": "Use cellRenderer for plain text or number formatting",
+          "why": "cellRenderer mounts a React component per cell; valueFormatter is a string transform with no mount cost."
+        },
+        {
+          "do": "Give every grid a unique storageKey",
+          "dont": "Copy-paste a storageKey between grids or omit it",
+          "why": "Layout state persists under gridConfig::<storageKey> — collisions bleed one grid's column layout into another."
+        },
+        {
+          "do": "Drive overlays with the loading prop",
+          "dont": "Hand-roll a spinner stacked over the grid",
+          "why": "GraviGrid already orchestrates the loading and no-rows overlays from loading + rowData.length."
+        },
+        {
+          "do": "Add page-level chrome through controlBarProps.actionButtons",
+          "dont": "Float your own button row above the grid",
+          "why": "The control bar slots actions next to the built-in Bulk Change / Create buttons with correct spacing and alignment."
+        }
+      ]
+    },
+    {
+      "type": "gotchas",
+      "items": [
+        {
+          "title": "agPropOverrides={{}} is mandatory",
+          "detail": "GraviGrid dereferences agPropOverrides unconditionally (agPropOverrides.columnDefs, .rowHeight, .getRowClass…). Omitting the prop throws on first render. Pass an empty object when there is nothing to override."
+        },
+        {
+          "title": "AG Grid event handlers in agPropOverrides are silently clobbered",
+          "detail": "GraviGrid spreads agPropOverrides first, then pins its own onGridReady, onCellValueChanged (the edit pipeline), onSortChanged, onColumnMoved, onColumnPinned, onColumnResized, onColumnRowGroupChanged, onColumnGroupOpened, and onSelectionChanged. Your handler for any of those keys never fires and nothing warns. Register listeners via agPropOverrides.onFirstDataRendered: ({ api }) => api.addEventListener('eventName', fn). Only onFilterChanged and onRowDataUpdated are proxied; for selection use the top-level onSelectionChanged prop."
+        },
+        {
+          "title": "Unmemoized columnDefs rebuild the grid every render",
+          "detail": "An internal effect re-applies column defs whenever the array reference changes. Inline defs reset column state, flicker headers, and cancel in-flight edits. Always useMemo."
+        },
+        {
+          "title": "cellClass/cellStyle never re-run on external React state changes",
+          "detail": "AG Grid evaluates these callbacks on its own schedule, not on React re-renders — reading component state inside them shows stale styling. Keep the live value in a ref and call gridApi.refreshCells({ force: true }) when it changes."
+        },
+        {
+          "title": "editable: true alone does not enable bulk editing",
+          "detail": "The BulkChangeDrawer only offers columns flagged isBulkEditable: true. Without it the column edits inline but is missing from bulk change."
+        },
+        {
+          "title": "valueGetter on an editable column silently swallows edits",
+          "detail": "Without a matching valueSetter the commit has nowhere to write — the cell reverts with no error. Pair them, or edit the raw field instead."
+        },
+        {
+          "title": "updateEP must merge updated rows back into state",
+          "detail": "GraviGrid calls updateEP on every cell commit and flashes SaveDisplay regardless of what it does. A no-op Promise.resolve() looks saved while edits evaporate on the next render. Merge the row into React state via setRowData, keyed by id."
+        },
+        {
+          "title": "updateEP makes every column editable",
+          "detail": "defaultColDef.editable is literally !!updateEP. The moment you add an update endpoint, all columns become editable — set editable: false explicitly on read-only columns."
+        },
+        {
+          "title": "Rows need an id field",
+          "detail": "The default getRowId returns data.id. Rows without it break selection, pinning, and row transactions. Use a different key by passing getRowId in agPropOverrides."
+        }
+      ]
+    }
+  ]
+}

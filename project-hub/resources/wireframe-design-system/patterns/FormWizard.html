@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Wizard - Gravitate Wireframe Design System</title>
+
+  <!-- Design System CSS -->
+  <link rel="stylesheet" href="../tokens/index.css">
+  <link rel="stylesheet" href="../components/layout/layout.css">
+  <link rel="stylesheet" href="../components/controls/controls.css">
+  <link rel="stylesheet" href="../components/data-display/data-display.css">
+  <link rel="stylesheet" href="../components/navigation/navigation.css">
+  <link rel="stylesheet" href="../components/feedback/feedback.css">
+  <link rel="stylesheet" href="../components/status/status.css">
+
+  <style>
+    /* Page background for demo */
+    body {
+      background-color: var(--wf-color-background-subtle, #f9fafb);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    /* Wizard Container (acts like a drawer or large modal) */
+    .wizard-container {
+      width: 100%;
+      max-width: 800px;
+      background-color: var(--wf-color-surface, #ffffff);
+      border: 1px solid var(--wf-color-border, #d1d5db);
+      border-radius: 12px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      max-height: 90vh;
+    }
+
+    .wizard-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--wf-color-border, #d1d5db);
+    }
+
+    .wizard-stepper {
+      padding: 20px 24px;
+      background-color: var(--wf-color-neutral-50, #f9fafb);
+      border-bottom: 1px solid var(--wf-color-border, #d1d5db);
+    }
+
+    .wizard-body {
+      flex: 1;
+      padding: 24px;
+      overflow-y: auto;
+    }
+
+    .wizard-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      border-top: 1px solid var(--wf-color-border, #d1d5db);
+      background-color: var(--wf-color-neutral-50, #f9fafb);
+      border-radius: 0 0 12px 12px;
+    }
+
+    .form-section {
+      margin-bottom: 32px;
+    }
+
+    .form-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .form-section-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--wf-color-text, #1e293b);
+      margin: 0 0 16px 0;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 0;
+    }
+
+    .form-row .wf-field {
+      flex: 1;
+    }
+  </style>
+</head>
+<body>
+  <!-- Wizard Container -->
+  <div class="wizard-container">
+    <!-- Wizard Header -->
+    <div class="wizard-header">
+      <div class="wf-row wf-align-center" style="justify-content: space-between;">
+        <div>
+          <h2 class="wf-text-h3" style="margin: 0 0 4px 0;">Create New Contract</h2>
+          <p class="wf-text-helper" style="margin: 0;">Complete all steps to create a new contract</p>
+        </div>
+        <button class="wf-modal-close" aria-label="Close">&#x2715;</button>
+      </div>
+    </div>
+
+    <!-- Stepper -->
+    <div class="wizard-stepper">
+      <div class="wf-stepper">
+        <!-- Step 1: Completed -->
+        <div class="wf-step wf-step-completed">
+          <div class="wf-step-indicator">&#x2713;</div>
+          <span class="wf-step-label">Basic Info</span>
+        </div>
+        <div class="wf-step-connector wf-step-connector-completed"></div>
+
+        <!-- Step 2: Active -->
+        <div class="wf-step wf-step-active">
+          <div class="wf-step-indicator">2</div>
+          <span class="wf-step-label">Contract Terms</span>
+        </div>
+        <div class="wf-step-connector"></div>
+
+        <!-- Step 3: Pending -->
+        <div class="wf-step">
+          <div class="wf-step-indicator">3</div>
+          <span class="wf-step-label">Pricing</span>
+        </div>
+        <div class="wf-step-connector"></div>
+
+        <!-- Step 4: Pending -->
+        <div class="wf-step">
+          <div class="wf-step-indicator">4</div>
+          <span class="wf-step-label">Review</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wizard Body (Form Content) -->
+    <div class="wizard-body">
+      <!-- Step 2: Contract Terms -->
+      <div class="form-section">
+        <h3 class="form-section-title">Contract Duration</h3>
+        <div class="form-row">
+          <div class="wf-field">
+            <label class="wf-field-label">Start Date<span class="wf-required">*</span></label>
+            <input type="date" class="wf-input" value="2025-02-01">
+          </div>
+          <div class="wf-field">
+            <label class="wf-field-label">End Date<span class="wf-required">*</span></label>
+            <input type="date" class="wf-input" value="2026-01-31">
+          </div>
+        </div>
+        <div class="wf-field">
+          <label class="wf-field-label">Contract Length</label>
+          <select class="wf-select">
+            <option>1 Year</option>
+            <option>2 Years</option>
+            <option>3 Years</option>
+            <option>Custom</option>
+          </select>
+          <span class="wf-field-helper">Auto-calculated based on start and end dates</span>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h3 class="form-section-title">Terms & Conditions</h3>
+        <div class="form-row">
+          <div class="wf-field">
+            <label class="wf-field-label">Payment Terms<span class="wf-required">*</span></label>
+            <select class="wf-select">
+              <option>Net 30</option>
+              <option>Net 45</option>
+              <option>Net 60</option>
+              <option>Due on Receipt</option>
+            </select>
+          </div>
+          <div class="wf-field">
+            <label class="wf-field-label">Currency<span class="wf-required">*</span></label>
+            <select class="wf-select">
+              <option>USD - US Dollar</option>
+              <option>EUR - Euro</option>
+              <option>GBP - British Pound</option>
+              <option>CAD - Canadian Dollar</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Field with Validation Error -->
+        <div class="wf-field wf-field-error">
+          <label class="wf-field-label">Auto-Renewal Terms<span class="wf-required">*</span></label>
+          <select class="wf-select">
+            <option value="">Select renewal option...</option>
+            <option>No auto-renewal</option>
+            <option>Annual renewal</option>
+            <option>Auto-renew for same term</option>
+          </select>
+          <span class="wf-field-error-message">Please select a renewal option</span>
+        </div>
+
+        <div class="wf-field">
+          <label class="wf-field-label">Termination Notice Period</label>
+          <div class="form-row" style="margin-bottom: 0;">
+            <input type="number" class="wf-input" placeholder="30" value="30" style="width: 100px;">
+            <select class="wf-select" style="width: 150px;">
+              <option>Days</option>
+              <option>Weeks</option>
+              <option>Months</option>
+            </select>
+          </div>
+          <span class="wf-field-helper">Required notice period before contract termination</span>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h3 class="form-section-title">Service Levels</h3>
+        <div class="wf-field">
+          <label class="wf-checkbox">
+            <input type="checkbox" class="wf-checkbox-input" checked>
+            <span class="wf-checkbox-box"></span>
+            <span class="wf-checkbox-label">Include Service Level Agreement (SLA)</span>
+          </label>
+        </div>
+        <div class="wf-field">
+          <label class="wf-field-label">SLA Response Time</label>
+          <select class="wf-select">
+            <option>Standard (24 hours)</option>
+            <option>Priority (4 hours)</option>
+            <option>Critical (1 hour)</option>
+            <option>Custom</option>
+          </select>
+        </div>
+        <div class="wf-field">
+          <label class="wf-field-label">Uptime Guarantee</label>
+          <select class="wf-select">
+            <option>99.0%</option>
+            <option>99.5%</option>
+            <option>99.9%</option>
+            <option>99.99%</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h3 class="form-section-title">Additional Options</h3>
+        <div class="wf-checkbox-group">
+          <label class="wf-checkbox">
+            <input type="checkbox" class="wf-checkbox-input" checked>
+            <span class="wf-checkbox-box"></span>
+            <span class="wf-checkbox-label">Include liability insurance requirements</span>
+          </label>
+          <label class="wf-checkbox">
+            <input type="checkbox" class="wf-checkbox-input">
+            <span class="wf-checkbox-box"></span>
+            <span class="wf-checkbox-label">Require background checks for personnel</span>
+          </label>
+          <label class="wf-checkbox">
+            <input type="checkbox" class="wf-checkbox-input" checked>
+            <span class="wf-checkbox-box"></span>
+            <span class="wf-checkbox-label">Include confidentiality/NDA clause</span>
+          </label>
+          <label class="wf-checkbox">
+            <input type="checkbox" class="wf-checkbox-input">
+            <span class="wf-checkbox-box"></span>
+            <span class="wf-checkbox-label">Enable performance-based bonuses</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wizard Footer -->
+    <div class="wizard-footer">
+      <button class="wf-button wf-button-secondary">
+        <span class="wf-icon">&#x2190;</span>
+        Back
+      </button>
+      <div class="wf-row wf-gap-3">
+        <button class="wf-button wf-button-ghost">Save Draft</button>
+        <button class="wf-button wf-button-primary">
+          Continue
+          <span class="wf-icon">&#x2192;</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Alternative: Show Step with Error State -->
+  <div style="margin-top: 32px; padding: 24px; background: white; border-radius: 8px; border: 1px solid #d1d5db; max-width: 800px; width: 100%;">
+    <h3 style="margin: 0 0 16px 0; font-size: 14px; font-weight: 600; color: #6b7280;">Alternative: Stepper with Error State</h3>
+    <div class="wf-stepper">
+      <div class="wf-step wf-step-completed">
+        <div class="wf-step-indicator">&#x2713;</div>
+        <span class="wf-step-label">Basic Info</span>
+      </div>
+      <div class="wf-step-connector wf-step-connector-completed"></div>
+
+      <div class="wf-step wf-step-error">
+        <div class="wf-step-indicator">!</div>
+        <span class="wf-step-label">Contract Terms</span>
+      </div>
+      <div class="wf-step-connector"></div>
+
+      <div class="wf-step">
+        <div class="wf-step-indicator">3</div>
+        <span class="wf-step-label">Pricing</span>
+      </div>
+      <div class="wf-step-connector"></div>
+
+      <div class="wf-step">
+        <div class="wf-step-indicator">4</div>
+        <span class="wf-step-label">Review</span>
+      </div>
+    </div>
+
+    <!-- Validation Alert -->
+    <div class="wf-alert wf-alert-error" style="margin-top: 16px;">
+      <span class="wf-alert-icon">&#x26A0;</span>
+      <div class="wf-alert-content">
+        <p class="wf-alert-title">Please fix the following errors</p>
+        <p class="wf-alert-description">
+          Complete all required fields before continuing to the next step.
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

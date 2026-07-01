@@ -1,0 +1,14 @@
+{
+  "slug": "test-3",
+  "name": "Test 3",
+  "description": "This is to tst lo fi features",
+  "branch": "project/test-3",
+  "port": 5184,
+  "createdAt": "2026-06-08T23:08:44.910Z",
+  "paths": {
+    "project": "/Users/frankoverland/freddy/projects/test-3",
+    "prototype": "/Users/frankoverland/freddy/projects/test-3/prototype",
+    "lofi": "/Users/frankoverland/freddy/projects/test-3/design-system/lofi",
+    "resources": "/Users/frankoverland/freddy/projects/test-3/resources"
+  }
+}

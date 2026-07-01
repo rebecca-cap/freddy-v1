@@ -1,0 +1,121 @@
+/*
+ * ScoutTrigger — toolbar "G" button.
+ *
+ * Mirrors the wireframe (gizmo-demo.html) `.app-nav .icon-btn.gizmo-trigger`
+ * rules. All color / radius / shadow values come from `--scout-*` tokens
+ * scoped under `.scout-scope` (see ../styles/scout-tokens.css). No hardcoded
+ * colors live here — swap a token to retheme.
+ *
+ * Class names are namespaced (`scout-trigger-btn`) so they cannot collide
+ * with other `.icon-btn` rules elsewhere in the host app.
+ */
+
+/* Specificity note: the selector includes `.ant-btn` because GraviButton
+   renders as an antd Button under the hood. Adding `.ant-btn` raises our
+   specificity to (0,3,0) which decisively beats antd's `.ant-btn.ant-btn-sm`
+   = (0,2,0) and any hover/focus rules of equal weight, so token-driven
+   styling wins regardless of CSS-import order or future antd theme updates. */
+.scout-scope .ant-btn.gravi-button.scout-trigger-btn {
+  width: auto;
+  height: 30px;
+  min-width: auto; /* antd small Button enforces min-width — override it */
+  gap: 6px;
+  border-radius: var(--scout-radius-sm);
+  border: 0.5px solid var(--scout-brand);
+  background: var(--scout-brand);
+  color: #fff;
+  font-family: var(--scout-font-family);
+  font-size: var(--scout-font-size-body);
+  font-weight: var(--scout-font-weight-semibold);
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0 12px;
+  position: relative;
+  transition: background 80ms ease, box-shadow 120ms ease, transform 120ms ease;
+}
+
+/* Sparkle sits just left of the label; nudge it to optically center. */
+.scout-scope .ant-btn.gravi-button.scout-trigger-btn .scout-trigger-btn__sparkle {
+  flex-shrink: 0;
+  margin-top: -1px;
+}
+
+.scout-trigger-wrap {
+  display: inline-flex;
+}
+
+/* Welcome-state shimmer — a light sheen sweeps across the button background
+   while the intro bubble is up. It's a clipped `::after` overlay (contained
+   entirely inside the button), so no ancestor overflow can crop it. Dropped
+   the moment the panel opens or the bubble is dismissed (class removed). */
+.scout-scope .ant-btn.gravi-button.scout-trigger-btn.is-welcoming {
+  overflow: hidden;
+}
+
+.scout-scope .ant-btn.gravi-button.scout-trigger-btn.is-welcoming::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    110deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.45) 50%,
+    transparent 65%
+  );
+  background-size: 220% 100%;
+  background-position: 180% 0;
+  animation: scout-trigger-shimmer 2.4s linear infinite;
+}
+
+/* Keep the icon + label above the sheen so they stay crisp. */
+.scout-scope .ant-btn.gravi-button.scout-trigger-btn.is-welcoming > * {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes scout-trigger-shimmer {
+  to {
+    background-position: -80% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scout-scope .ant-btn.gravi-button.scout-trigger-btn.is-welcoming::after {
+    animation: none;
+  }
+}
+
+.scout-scope .ant-btn.gravi-button.scout-trigger-btn:hover {
+  background: var(--scout-brand-hover);
+  border-color: var(--scout-brand-hover);
+  color: #fff; /* antd hover sets color to brand on default buttons */
+}
+
+.scout-scope .ant-btn.gravi-button.scout-trigger-btn:focus,
+.scout-scope .ant-btn.gravi-button.scout-trigger-btn:focus-visible {
+  outline: none;
+  background: var(--scout-brand);
+  border-color: var(--scout-brand);
+  color: #fff;
+  box-shadow: 0 0 0 2px var(--scout-surface), 0 0 0 4px var(--scout-brand);
+}
+
+.scout-scope .ant-btn.gravi-button.scout-trigger-btn:active {
+  transform: scale(0.96);
+  background: var(--scout-brand-hover);
+  border-color: var(--scout-brand-hover);
+  color: #fff;
+}
+
+/* Active (panel open) — slightly recessed brand-hover fill so the button
+   reads as "engaged" without losing its identity. */
+.scout-scope .ant-btn.gravi-button.scout-trigger-btn.is-open {
+  background: var(--scout-brand-hover);
+  border-color: var(--scout-brand-hover);
+  box-shadow: var(--scout-shadow-brand);
+  color: #fff;
+}

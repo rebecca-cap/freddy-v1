@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Component - Wireframe Design System</title>
+  <link rel="stylesheet" href="typography.css">
+  <style>
+    /* Demo page styles */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #f8fafc;
+      padding: 32px;
+      margin: 0;
+      color: #1a1a2e;
+    }
+
+    .demo-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .demo-section {
+      background: white;
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .demo-section-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .demo-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .demo-row {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+    }
+
+    .demo-label {
+      flex: 0 0 120px;
+      font-size: 11px;
+      color: #9ca3af;
+      font-family: 'SF Mono', Monaco, monospace;
+    }
+
+    .demo-colors {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .demo-inline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .demo-dark-bg {
+      background: #1a1a2e;
+      padding: 16px;
+      border-radius: 6px;
+    }
+
+    .code-block {
+      background: #f1f5f9;
+      border-radius: 4px;
+      padding: 12px 16px;
+      font-family: 'SF Mono', Monaco, monospace;
+      font-size: 12px;
+      color: #475569;
+      overflow-x: auto;
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-container">
+
+    <!-- Page Title -->
+    <div class="demo-section">
+      <h1 class="wf-text wf-text-h1">Text Component</h1>
+      <p class="wf-text wf-text-body wf-text-secondary" style="margin-top: 8px;">
+        Universal typography classes for wireframe text elements.
+      </p>
+    </div>
+
+    <!-- Headings -->
+    <div class="demo-section">
+      <div class="demo-section-title">Headings</div>
+      <div class="demo-grid">
+        <div class="demo-row">
+          <span class="demo-label">.wf-text-h1</span>
+          <h1 class="wf-text wf-text-h1">Page Title (24px)</h1>
+        </div>
+        <div class="demo-row">
+          <span class="demo-label">.wf-text-h2</span>
+          <h2 class="wf-text wf-text-h2">Section Header (18px)</h2>
+        </div>
+        <div class="demo-row">
+          <span class="demo-label">.wf-text-h3</span>
+          <h3 class="wf-text wf-text-h3">Subsection (16px)</h3>
+        </div>
+        <div class="demo-row">
+          <span class="demo-label">.wf-text-h4</span>
+          <h4 class="wf-text wf-text-h4">Card Title (14px)</h4>
+        </div>
+      </div>
+      <div class="code-block">
+&lt;h1 class="wf-text wf-text-h1"&gt;Page Title&lt;/h1&gt;
+&lt;h2 class="wf-text wf-text-h2"&gt;Section Header&lt;/h2&gt;
+&lt;h3 class="wf-text wf-text-h3"&gt;Subsection&lt;/h3&gt;
+&lt;h4 class="wf-text wf-text-h4"&gt;Card Title&lt;/h4&gt;
+      </div>
+    </div>
+
+    <!-- Body Text -->
+    <div class="demo-section">
+      <div class="demo-section-title">Body Text</div>
+      <div class="demo-grid">
+        <div class="demo-row">
+          <span class="demo-label">.wf-text-body</span>
+          <p class="wf-text wf-text-body">Regular body text for paragraphs and content (14px)</p>
+        </div>
+        <div class="demo-row">
+          <span class="demo-label">+ .wf-text-medium</span>
+          <p class="wf-text wf-text-body wf-text-medium">Medium weight body text (14px, 500)</p>
+        </div>
+        <div class="demo-row">
+          <span class="demo-label">+ .wf-text-semibold</span>
+          <p class="wf-text wf-text-body wf-text-semibold">Semibold body text (14px, 600)</p>
+        </div>
+      </div>
+      <div class="code-block">
+&lt;p class="wf-text wf-text-body"&gt;Regular body text&lt;/p&gt;
+&lt;p class="wf-text wf-text-body wf-text-medium"&gt;Medium weight body&lt;/p&gt;
+&lt;p class="wf-text wf-text-body wf-text-semibold"&gt;Semibold body text&lt;/p&gt;
+      </div>
+    </div>
+
+    <!-- Labels and Helper Text -->
+    <div class="demo-section">
+      <div class="demo-section-title">Labels &amp; Helper Text</div>
+      <div class="demo-grid">
+        <div class="demo-row">
+          <span class="demo-label">.wf-text-label</span>
+          <span class="wf-text wf-text-label">LABEL TEXT (12px, uppercase)</span>
+        </div>
+        <div class="demo-row">
+          <span class="demo-label">.wf-text-helper</span>
+          <span class="wf-text wf-text-helper">Helper text for form hints and descriptions (12px)</span>
+        </div>
+        <div class="demo-row">
+          <span class="demo-label">.wf-text-caption</span>
+          <span class="wf-text wf-text-caption">Caption text for annotations (11px)</span>
+        </div>
+      </div>
+      <div class="code-block">
+&lt;span class="wf-text wf-text-label"&gt;LABEL TEXT&lt;/span&gt;
+&lt;span class="wf-text wf-text-helper"&gt;Helper text for hints&lt;/span&gt;
+&lt;span class="wf-text wf-text-caption"&gt;Caption text&lt;/span&gt;
+      </div>
+    </div>
+
+    <!-- Colors -->
+    <div class="demo-section">
+      <div class="demo-section-title">Text Colors</div>
+      <div class="demo-colors">
+        <span class="wf-text wf-text-body wf-text-primary">Primary</span>
+        <span class="wf-text wf-text-body wf-text-secondary">Secondary</span>
+        <span class="wf-text wf-text-body wf-text-success">Success</span>
+        <span class="wf-text wf-text-body wf-text-warning">Warning</span>
+        <span class="wf-text wf-text-body wf-text-error">Error</span>
+        <a href="#" class="wf-text wf-text-body wf-text-link">Link Text</a>
+        <span class="wf-text wf-text-body wf-text-disabled">Disabled</span>
+      </div>
+      <div class="demo-dark-bg" style="margin-top: 16px;">
+        <span class="wf-text wf-text-body wf-text-inverse">Inverse text on dark background</span>
+      </div>
+      <div class="code-block">
+&lt;span class="wf-text wf-text-primary"&gt;Primary color&lt;/span&gt;
+&lt;span class="wf-text wf-text-secondary"&gt;Secondary (muted)&lt;/span&gt;
+&lt;span class="wf-text wf-text-success"&gt;Success&lt;/span&gt;
+&lt;span class="wf-text wf-text-warning"&gt;Warning&lt;/span&gt;
+&lt;span class="wf-text wf-text-error"&gt;Error&lt;/span&gt;
+&lt;a href="#" class="wf-text wf-text-link"&gt;Link text&lt;/a&gt;
+&lt;span class="wf-text wf-text-inverse"&gt;Inverse text&lt;/span&gt;
+      </div>
+    </div>
+
+    <!-- Weight Modifiers -->
+    <div class="demo-section">
+      <div class="demo-section-title">Weight Modifiers</div>
+      <div class="demo-grid">
+        <div class="demo-row">
+          <span class="demo-label">.wf-text-normal</span>
+          <span class="wf-text wf-text-body wf-text-normal">Normal weight (400)</span>
+        </div>
+        <div class="demo-row">
+          <span class="demo-label">.wf-text-medium</span>
+          <span class="wf-text wf-text-body wf-text-medium">Medium weight (500)</span>
+        </div>
+        <div class="demo-row">
+          <span class="demo-label">.wf-text-semibold</span>
+          <span class="wf-text wf-text-body wf-text-semibold">Semibold weight (600)</span>
+        </div>
+        <div class="demo-row">
+          <span class="demo-label">.wf-text-bold</span>
+          <span class="wf-text wf-text-body wf-text-bold">Bold weight (700)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Alignment -->
+    <div class="demo-section">
+      <div class="demo-section-title">Text Alignment</div>
+      <p class="wf-text wf-text-body wf-text-left" style="background: #f1f5f9; padding: 8px;">Left aligned text</p>
+      <p class="wf-text wf-text-body wf-text-center" style="background: #f1f5f9; padding: 8px; margin-top: 8px;">Center aligned text</p>
+      <p class="wf-text wf-text-body wf-text-right" style="background: #f1f5f9; padding: 8px; margin-top: 8px;">Right aligned text</p>
+      <div class="code-block">
+&lt;p class="wf-text wf-text-body wf-text-left"&gt;Left aligned&lt;/p&gt;
+&lt;p class="wf-text wf-text-body wf-text-center"&gt;Center aligned&lt;/p&gt;
+&lt;p class="wf-text wf-text-body wf-text-right"&gt;Right aligned&lt;/p&gt;
+      </div>
+    </div>
+
+    <!-- Text Transforms -->
+    <div class="demo-section">
+      <div class="demo-section-title">Text Transforms</div>
+      <div class="demo-inline">
+        <span class="wf-text wf-text-body wf-text-uppercase">uppercase text</span>
+        <span class="wf-text wf-text-body wf-text-capitalize">capitalize text</span>
+        <span class="wf-text wf-text-body wf-text-lowercase">LOWERCASE TEXT</span>
+      </div>
+      <div class="code-block">
+&lt;span class="wf-text wf-text-uppercase"&gt;uppercase text&lt;/span&gt;
+&lt;span class="wf-text wf-text-capitalize"&gt;capitalize text&lt;/span&gt;
+      </div>
+    </div>
+
+    <!-- Truncation -->
+    <div class="demo-section">
+      <div class="demo-section-title">Text Overflow</div>
+      <div style="max-width: 300px; background: #f1f5f9; padding: 8px; border-radius: 4px;">
+        <p class="wf-text wf-text-body wf-text-truncate">
+          This is a very long text that will be truncated with an ellipsis when it overflows the container.
+        </p>
+      </div>
+      <div class="code-block">
+&lt;p class="wf-text wf-text-body wf-text-truncate"&gt;
+  Long text that will truncate...
+&lt;/p&gt;
+      </div>
+    </div>
+
+    <!-- Required Field Indicator -->
+    <div class="demo-section">
+      <div class="demo-section-title">Required Field Indicator</div>
+      <span class="wf-text wf-text-label wf-required">Required Field</span>
+      <div class="code-block">
+&lt;span class="wf-text wf-text-label wf-required"&gt;Required Field&lt;/span&gt;
+      </div>
+    </div>
+
+    <!-- Status Text -->
+    <div class="demo-section">
+      <div class="demo-section-title">Status Text with Indicator</div>
+      <div class="demo-inline">
+        <span class="wf-status-text wf-status-text-success">Active</span>
+        <span class="wf-status-text wf-status-text-warning">Pending</span>
+        <span class="wf-status-text wf-status-text-error">Failed</span>
+        <span class="wf-status-text wf-status-text-info">Processing</span>
+        <span class="wf-status-text wf-status-text-neutral">Draft</span>
+      </div>
+      <div class="code-block">
+&lt;span class="wf-status-text wf-status-text-success"&gt;Active&lt;/span&gt;
+&lt;span class="wf-status-text wf-status-text-warning"&gt;Pending&lt;/span&gt;
+&lt;span class="wf-status-text wf-status-text-error"&gt;Failed&lt;/span&gt;
+      </div>
+    </div>
+
+    <!-- Combined Examples -->
+    <div class="demo-section">
+      <div class="demo-section-title">Combined Usage Examples</div>
+
+      <!-- Example: Card header -->
+      <div style="background: #f8fafc; padding: 16px; border-radius: 6px; margin-bottom: 16px;">
+        <h4 class="wf-text wf-text-h4">Contract Details</h4>
+        <p class="wf-text wf-text-helper" style="margin-top: 4px;">Last updated 2 hours ago</p>
+      </div>
+
+      <!-- Example: Form field -->
+      <div style="background: #f8fafc; padding: 16px; border-radius: 6px; margin-bottom: 16px;">
+        <label class="wf-text wf-text-label wf-required" style="display: block; margin-bottom: 4px;">Email Address</label>
+        <input type="email" placeholder="you@example.com" style="padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 4px; font-size: 14px; width: 100%; max-width: 300px;">
+        <span class="wf-text wf-text-helper" style="display: block; margin-top: 4px;">We'll never share your email.</span>
+      </div>
+
+      <!-- Example: Error state -->
+      <div style="background: #fef2f2; padding: 16px; border-radius: 6px; border: 1px solid #fecaca;">
+        <span class="wf-text wf-text-body wf-text-error wf-text-semibold">Error: Invalid input</span>
+        <p class="wf-text wf-text-helper wf-text-error" style="margin-top: 4px;">Please enter a valid email address.</p>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

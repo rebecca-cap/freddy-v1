@@ -1,0 +1,14 @@
+{
+  "path": "/",
+  "title": "Home",
+  "finalUrl": "http://localhost:3001/SpecialOffers",
+  "rootLen": 126645,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 11,
+  "stuckLoaders": [],
+  "emptyGrids": []
+}

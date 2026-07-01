@@ -1,0 +1,15 @@
+{
+  "path": "/SpecialOffers",
+  "title": "Offers",
+  "finalUrl": "http://localhost:3001/SpecialOffers",
+  "rootLen": 135745,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [
+    "MarketPlatform/SpecialOfferAdmin/GetMetadata",
+    "MarketPlatform/SpecialOfferAdmin/GetSpecialOffers"
+  ],
+  "consoleEventCount": 13
+}

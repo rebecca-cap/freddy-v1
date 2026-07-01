@@ -1,0 +1,14 @@
+{
+  "path": "/",
+  "title": "Home",
+  "finalUrl": "http://localhost:5181/Admin/Counterparties",
+  "rootLen": 117628,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 10,
+  "stuckLoaders": [],
+  "emptyGrids": []
+}

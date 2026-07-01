@@ -1,0 +1,18 @@
+{
+  "path": "/Admin/PriceNotifications",
+  "title": "Price Notifications",
+  "finalUrl": "http://localhost:3001/Admin/PriceNotifications",
+  "rootLen": 81865,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [
+    "PriceNotifications/SubscriptionManagement/GetAvailableLocations",
+    "PriceNotifications/SubscriptionManagement/GetAvailableProducts",
+    "PriceNotifications/SubscriptionManagement/GetMetadata",
+    "PriceNotifications/SubscriptionManagement/GetRecipientData",
+    "PriceNotifications/SubscriptionManagement/GetSubscriptions"
+  ],
+  "consoleEventCount": 15
+}

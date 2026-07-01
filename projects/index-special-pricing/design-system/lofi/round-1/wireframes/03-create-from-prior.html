@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create New Offer — from prior · Round 1</title>
+  <link rel="stylesheet" href="assets/wireframe.css">
+  <link rel="stylesheet" href="assets/lofi-chrome.css">
+</head>
+<body>
+
+  <div class="lf-topbar">
+    <a class="lf-topbar-x" href="01-launchpad.html" title="Close">&times;</a>
+    <span class="lf-topbar-title">Create New Offer</span>
+    <a class="lf-backlink" href="../index.html">Round 1 index</a>
+  </div>
+
+  <div class="lf-offer-page">
+    <a class="lf-backtolist" href="01-launchpad.html">&#8592; Back to Offers</a>
+
+    <div class="lf-offer-grid">
+
+      <!-- ============ LEFT: content card ============ -->
+      <div class="lf-offer-main">
+        <div class="wf-card">
+          <div class="wf-card-header">
+            <div>
+              <h1 class="wf-text-h1">Create New Offer</h1>
+              <p class="wf-text-helper">Index Special &middot; created from a prior offer</p>
+            </div>
+            <span class="wf-badge wf-badge-primary">Index Special</span>
+          </div>
+
+          <div class="wf-card-body">
+
+            <div class="wf-alert wf-alert-info" style="margin-bottom: var(--wf-space-4);">
+              <span class="wf-alert-icon">&#8505;</span>
+              <div class="wf-alert-content">
+                <h4 class="wf-alert-title">Prefilled from a prior offer</h4>
+                <p class="wf-alert-description">Cloned from <strong>Suboctane &middot; Tulsa &middot; sent May 28</strong> to Gulf Coast. Product, formula, timing and recipients carried over — just confirm volume and the differential, then send.</p>
+                <div class="wf-alert-actions">
+                  <button class="wf-button wf-button-secondary wf-button-sm">Change source</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product & volume -->
+            <div class="lf-group">
+              <h3 class="wf-text wf-text-h3 lf-group-title">Product &amp; volume</h3>
+              <div class="wf-form-grid wf-form-grid-3">
+                <div class="wf-field">
+                  <label class="wf-field-label">Product</label>
+                  <select class="wf-select"><option>Group 3 Suboctane (87)</option></select>
+                  <span class="lf-kept">kept from prior</span>
+                </div>
+                <div class="wf-field">
+                  <label class="wf-field-label">Terminal / location</label>
+                  <select class="wf-select"><option>Tulsa — Magellan</option></select>
+                  <span class="lf-kept">kept from prior</span>
+                </div>
+                <div class="wf-field wf-field-error">
+                  <label class="wf-field-label">Volume (gal) <span class="wf-required">*</span></label>
+                  <input type="text" class="wf-input" value="">
+                  <span class="wf-field-error-message">Confirm volume for this offer</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Price formula -->
+            <div class="lf-group">
+              <h3 class="wf-text wf-text-h3 lf-group-title">Price formula</h3>
+              <p class="wf-text wf-text-helper lf-group-desc">Index-based, invoiced at lift time. Nudge the differential to today's market.</p>
+              <div class="wf-form-grid wf-form-grid-3">
+                <div class="wf-field">
+                  <label class="wf-field-label">Index</label>
+                  <select class="wf-select"><option>OPIS Group 3</option></select>
+                  <span class="lf-kept">kept from prior</span>
+                </div>
+                <div class="wf-field">
+                  <label class="wf-field-label">Index product</label>
+                  <select class="wf-select"><option>Suboctane Gross</option></select>
+                  <span class="lf-kept">kept from prior</span>
+                </div>
+                <div class="wf-field">
+                  <label class="wf-field-label">Differential ($/gal)</label>
+                  <input type="text" class="wf-input wf-mono" value="+0.0250">
+                  <span class="wf-field-helper">Prior was +$0.0225 &middot; market moved</span>
+                </div>
+              </div>
+              <div class="lf-readout" style="margin-top: var(--wf-space-4);">
+                <span class="lf-readout-label">Resulting price</span>
+                <span class="lf-readout-formula wf-mono"><strong>OPIS Group 3 Suboctane Gross</strong> + <strong>$0.0250</strong>/gal</span>
+                <span class="lf-readout-note">&#9202; Settles &amp; invoices at <strong>lift time</strong> against the day's posted index.</span>
+              </div>
+            </div>
+
+            <!-- Timing & invite -->
+            <div class="lf-group">
+              <h3 class="wf-text wf-text-h3 lf-group-title">Timing &amp; invite</h3>
+              <div class="wf-form-grid wf-form-grid-2">
+                <div class="wf-field">
+                  <label class="wf-field-label">Visible for</label>
+                  <div class="lf-chiprow">
+                    <span class="lf-chip" tabindex="0">2h</span>
+                    <span class="lf-chip is-selected" tabindex="0">4h</span>
+                    <span class="lf-chip" tabindex="0">Until close</span>
+                  </div>
+                  <span class="lf-kept">kept from prior</span>
+                </div>
+                <div class="wf-field">
+                  <label class="wf-field-label">Pickup window</label>
+                  <div class="lf-chiprow">
+                    <span class="lf-chip" tabindex="0">24h</span>
+                    <span class="lf-chip is-selected" tabindex="0">48h</span>
+                    <span class="lf-chip" tabindex="0">3 days</span>
+                  </div>
+                  <span class="lf-kept">kept from prior</span>
+                </div>
+              </div>
+              <div style="margin-top: var(--wf-space-4);">
+                <label class="wf-field-label">Invite</label>
+                <div class="lf-chiprow">
+                  <span class="lf-chip is-selected" tabindex="0">Gulf Coast <span class="lf-chip-count">3</span></span>
+                  <span class="lf-chip" tabindex="0">Midcon <span class="lf-chip-count">5</span></span>
+                  <span class="lf-chip" tabindex="0">+ Add customer</span>
+                </div>
+                <p class="wf-text wf-text-helper" style="margin-top: var(--wf-space-2);">3 customers &middot; <span class="lf-kept">kept from prior</span></p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="lf-offer-footer">
+          <a class="wf-button wf-button-secondary" href="01-launchpad.html">Cancel</a>
+          <span class="lf-footer-mid">From prior &middot; ~3 clicks to send</span>
+          <button class="wf-button wf-button-primary">Send offer <span class="kbd">&#8984;&#8629;</span></button>
+        </div>
+      </div>
+
+      <!-- ============ RIGHT: customer preview ============ -->
+      <div class="lf-offer-side">
+        <div class="wf-card">
+          <div class="wf-card-header">
+            <div>
+              <h3 class="wf-card-title">Index Special</h3>
+              <p class="wf-card-subtitle">What customers will see</p>
+            </div>
+          </div>
+          <div class="wf-card-body">
+            <div class="lf-preview">
+              <div class="lf-preview-sec">
+                <div class="lf-preview-label">Product &amp; Location</div>
+                <div class="lf-preview-value">Group 3 Suboctane (87) &middot; Tulsa — Magellan</div>
+                <div class="lf-preview-value is-empty">Volume — needs input</div>
+              </div>
+              <div class="lf-preview-sec is-key">
+                <div class="lf-preview-label">Pricing Strategy</div>
+                <div class="lf-preview-strategy">Index Pricing</div>
+                <div class="lf-preview-value wf-mono">OPIS G3 Suboctane Gross + $0.0250/gal</div>
+                <div class="lf-preview-value lf-muted">Invoices at lift time</div>
+              </div>
+              <div class="lf-preview-sec">
+                <div class="lf-preview-label">Timing Windows</div>
+                <div class="lf-preview-value">Visible 4h &middot; Pickup 48h</div>
+              </div>
+              <div class="lf-preview-sec">
+                <div class="lf-preview-label">Target Customers</div>
+                <div class="lf-preview-value">Gulf Coast group &middot; 3 customers</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lf-anno" style="margin-top: var(--wf-space-4);">
+          <b>The intersection.</b> Create-from-prior prefills this same Create New Offer surface instead of opening a separate wizard. The rep lands on a near-complete offer and only touches what changed — here, volume and the differential.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Layout - Gravitate Wireframe Design System</title>
+
+  <!-- Design System CSS -->
+  <link rel="stylesheet" href="../tokens/index.css">
+  <link rel="stylesheet" href="../components/layout/layout.css">
+  <link rel="stylesheet" href="../components/controls/controls.css">
+  <link rel="stylesheet" href="../components/data-display/data-display.css">
+  <link rel="stylesheet" href="../components/navigation/navigation.css">
+  <link rel="stylesheet" href="../components/feedback/feedback.css">
+  <link rel="stylesheet" href="../components/status/status.css">
+</head>
+<body>
+  <div class="wf-page wf-page-with-sidebar">
+    <!-- Sidebar Navigation -->
+    <aside class="wf-sidebar">
+      <div class="wf-sidebar-header">
+        <span class="wf-sidebar-logo">Gravitate</span>
+      </div>
+      <nav class="wf-sidebar-nav">
+        <a href="#" class="wf-sidebar-item wf-sidebar-item-active">
+          <span class="wf-sidebar-icon">&#x1F4CA;</span>
+          <span class="wf-sidebar-label">Dashboard</span>
+        </a>
+        <a href="#" class="wf-sidebar-item">
+          <span class="wf-sidebar-icon">&#x1F4C4;</span>
+          <span class="wf-sidebar-label">Contracts</span>
+          <span class="wf-badge wf-badge-sm">12</span>
+        </a>
+        <a href="#" class="wf-sidebar-item">
+          <span class="wf-sidebar-icon">&#x1F465;</span>
+          <span class="wf-sidebar-label">Suppliers</span>
+        </a>
+        <a href="#" class="wf-sidebar-item">
+          <span class="wf-sidebar-icon">&#x1F4E6;</span>
+          <span class="wf-sidebar-label">Orders</span>
+        </a>
+
+        <div class="wf-sidebar-group">
+          <span class="wf-sidebar-group-label">Reports</span>
+          <a href="#" class="wf-sidebar-item">
+            <span class="wf-sidebar-icon">&#x1F4C8;</span>
+            <span class="wf-sidebar-label">Analytics</span>
+          </a>
+          <a href="#" class="wf-sidebar-item">
+            <span class="wf-sidebar-icon">&#x1F4B0;</span>
+            <span class="wf-sidebar-label">Spend</span>
+          </a>
+        </div>
+
+        <div class="wf-sidebar-divider"></div>
+
+        <a href="#" class="wf-sidebar-item">
+          <span class="wf-sidebar-icon">&#x2699;</span>
+          <span class="wf-sidebar-label">Settings</span>
+        </a>
+      </nav>
+      <div class="wf-sidebar-footer">
+        <div class="wf-row wf-align-center wf-gap-2">
+          <div class="wf-avatar wf-avatar-sm">
+            <span class="wf-avatar-initials">JD</span>
+          </div>
+          <span>John Doe</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="wf-main">
+      <!-- Page Header -->
+      <header class="wf-page-header">
+        <div class="wf-page-title">
+          <h1 class="wf-text-h2">Dashboard</h1>
+          <p class="wf-text-helper">Overview of your procurement activity</p>
+        </div>
+        <div class="wf-page-actions">
+          <button class="wf-button wf-button-secondary">
+            <span class="wf-icon">&#x1F4E5;</span>
+            Export
+          </button>
+          <button class="wf-button wf-button-primary">
+            <span class="wf-icon">&#x2795;</span>
+            New Contract
+          </button>
+        </div>
+      </header>
+
+      <!-- Page Content -->
+      <div class="wf-page-content">
+        <!-- Metrics Row -->
+        <div class="wf-row wf-gap-4 wf-wrap" style="margin-bottom: 24px;">
+          <div class="wf-metric-card" style="flex: 1; min-width: 200px;">
+            <div class="wf-metric-header">
+              <span class="wf-metric-icon">&#x1F4C4;</span>
+              <span class="wf-metric-title">Active Contracts</span>
+            </div>
+            <div class="wf-metric-value">247</div>
+            <div class="wf-metric-subtitle">
+              <span class="wf-metric-trend wf-metric-trend-up">+12%</span>
+              <span>vs last month</span>
+            </div>
+          </div>
+
+          <div class="wf-metric-card" style="flex: 1; min-width: 200px;">
+            <div class="wf-metric-header">
+              <span class="wf-metric-icon">&#x1F4B0;</span>
+              <span class="wf-metric-title">Total Spend</span>
+            </div>
+            <div class="wf-metric-value">$2.4M</div>
+            <div class="wf-metric-subtitle">
+              <span class="wf-metric-trend wf-metric-trend-down">-5%</span>
+              <span>vs last month</span>
+            </div>
+          </div>
+
+          <div class="wf-metric-card" style="flex: 1; min-width: 200px;">
+            <div class="wf-metric-header">
+              <span class="wf-metric-icon">&#x1F465;</span>
+              <span class="wf-metric-title">Active Suppliers</span>
+            </div>
+            <div class="wf-metric-value">89</div>
+            <div class="wf-metric-subtitle">
+              <span class="wf-metric-trend wf-metric-trend-neutral">0%</span>
+              <span>vs last month</span>
+            </div>
+          </div>
+
+          <div class="wf-metric-card wf-metric-card-warning" style="flex: 1; min-width: 200px;">
+            <div class="wf-metric-header">
+              <span class="wf-metric-icon">&#x26A0;</span>
+              <span class="wf-metric-title">Expiring Soon</span>
+            </div>
+            <div class="wf-metric-value">14</div>
+            <div class="wf-metric-subtitle">
+              <span>Within 30 days</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Two Column Layout: Main Content + Sidebar -->
+        <div class="wf-row wf-gap-6" style="align-items: flex-start;">
+          <!-- Main Content (2/3) -->
+          <div class="wf-column wf-w-2\/3 wf-gap-4">
+            <!-- Recent Contracts Card -->
+            <div class="wf-card">
+              <div class="wf-card-header">
+                <h3 class="wf-card-title">Recent Contracts</h3>
+                <button class="wf-button wf-button-ghost wf-button-sm">View All</button>
+              </div>
+              <div class="wf-datagrid wf-datagrid-borderless">
+                <div class="wf-datagrid-header">
+                  <div class="wf-datagrid-cell" style="flex: 2;">Contract Name</div>
+                  <div class="wf-datagrid-cell">Supplier</div>
+                  <div class="wf-datagrid-cell wf-datagrid-cell-number">Value</div>
+                  <div class="wf-datagrid-cell">Status</div>
+                  <div class="wf-datagrid-cell">Expiry</div>
+                </div>
+                <div class="wf-datagrid-body">
+                  <div class="wf-datagrid-row">
+                    <div class="wf-datagrid-cell" style="flex: 2;">
+                      <span class="wf-truncate">IT Infrastructure Services Agreement</span>
+                    </div>
+                    <div class="wf-datagrid-cell">TechCorp Inc.</div>
+                    <div class="wf-datagrid-cell wf-datagrid-cell-number wf-mono">$450,000</div>
+                    <div class="wf-datagrid-cell">
+                      <span class="wf-badge wf-badge-success">Active</span>
+                    </div>
+                    <div class="wf-datagrid-cell">Dec 31, 2025</div>
+                  </div>
+                  <div class="wf-datagrid-row">
+                    <div class="wf-datagrid-cell" style="flex: 2;">
+                      <span class="wf-truncate">Office Supplies Contract</span>
+                    </div>
+                    <div class="wf-datagrid-cell">SupplyMax</div>
+                    <div class="wf-datagrid-cell wf-datagrid-cell-number wf-mono">$85,000</div>
+                    <div class="wf-datagrid-cell">
+                      <span class="wf-badge wf-badge-success">Active</span>
+                    </div>
+                    <div class="wf-datagrid-cell">Jun 30, 2025</div>
+                  </div>
+                  <div class="wf-datagrid-row">
+                    <div class="wf-datagrid-cell" style="flex: 2;">
+                      <span class="wf-truncate">Marketing Services Agreement</span>
+                    </div>
+                    <div class="wf-datagrid-cell">BrandPro Agency</div>
+                    <div class="wf-datagrid-cell wf-datagrid-cell-number wf-mono">$220,000</div>
+                    <div class="wf-datagrid-cell">
+                      <span class="wf-badge wf-badge-warning">Expiring</span>
+                    </div>
+                    <div class="wf-datagrid-cell">Feb 15, 2025</div>
+                  </div>
+                  <div class="wf-datagrid-row">
+                    <div class="wf-datagrid-cell" style="flex: 2;">
+                      <span class="wf-truncate">Cloud Hosting Services</span>
+                    </div>
+                    <div class="wf-datagrid-cell">CloudNine</div>
+                    <div class="wf-datagrid-cell wf-datagrid-cell-number wf-mono">$180,000</div>
+                    <div class="wf-datagrid-cell">
+                      <span class="wf-badge wf-badge-success">Active</span>
+                    </div>
+                    <div class="wf-datagrid-cell">Sep 30, 2025</div>
+                  </div>
+                  <div class="wf-datagrid-row">
+                    <div class="wf-datagrid-cell" style="flex: 2;">
+                      <span class="wf-truncate">Facilities Management Contract</span>
+                    </div>
+                    <div class="wf-datagrid-cell">FacilityPro</div>
+                    <div class="wf-datagrid-cell wf-datagrid-cell-number wf-mono">$320,000</div>
+                    <div class="wf-datagrid-cell">
+                      <span class="wf-badge wf-badge-error">Expired</span>
+                    </div>
+                    <div class="wf-datagrid-cell">Jan 01, 2025</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Activity Timeline Card -->
+            <div class="wf-card">
+              <div class="wf-card-header">
+                <h3 class="wf-card-title">Recent Activity</h3>
+              </div>
+              <div class="wf-card-body">
+                <div class="wf-list" style="border: none;">
+                  <div class="wf-list-item" style="border-bottom: 1px solid var(--wf-color-border);">
+                    <span class="wf-status-dot wf-status-dot-success"></span>
+                    <div class="wf-list-item-content">
+                      <div class="wf-list-item-title">Contract approved</div>
+                      <div class="wf-list-item-description">IT Infrastructure Services Agreement was approved by Finance</div>
+                    </div>
+                    <span class="wf-list-item-meta">2 hours ago</span>
+                  </div>
+                  <div class="wf-list-item" style="border-bottom: 1px solid var(--wf-color-border);">
+                    <span class="wf-status-dot wf-status-dot-info"></span>
+                    <div class="wf-list-item-content">
+                      <div class="wf-list-item-title">New supplier added</div>
+                      <div class="wf-list-item-description">DataSecure Ltd. was added to the supplier database</div>
+                    </div>
+                    <span class="wf-list-item-meta">5 hours ago</span>
+                  </div>
+                  <div class="wf-list-item">
+                    <span class="wf-status-dot wf-status-dot-warning"></span>
+                    <div class="wf-list-item-content">
+                      <div class="wf-list-item-title">Contract expiring soon</div>
+                      <div class="wf-list-item-description">Marketing Services Agreement expires in 30 days</div>
+                    </div>
+                    <span class="wf-list-item-meta">1 day ago</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sidebar Stats (1/3) -->
+          <div class="wf-column wf-w-1\/3 wf-gap-4">
+            <!-- Spend by Category -->
+            <div class="wf-card">
+              <div class="wf-card-header">
+                <h3 class="wf-card-title">Spend by Category</h3>
+              </div>
+              <div class="wf-card-body">
+                <div class="wf-column wf-gap-4">
+                  <div class="wf-progress">
+                    <div class="wf-progress-label">
+                      <span>Technology</span>
+                      <span>$890K (37%)</span>
+                    </div>
+                    <div class="wf-progress-bar">
+                      <div class="wf-progress-fill" style="width: 37%;"></div>
+                    </div>
+                  </div>
+                  <div class="wf-progress">
+                    <div class="wf-progress-label">
+                      <span>Marketing</span>
+                      <span>$620K (26%)</span>
+                    </div>
+                    <div class="wf-progress-bar">
+                      <div class="wf-progress-fill" style="width: 26%;"></div>
+                    </div>
+                  </div>
+                  <div class="wf-progress">
+                    <div class="wf-progress-label">
+                      <span>Operations</span>
+                      <span>$520K (22%)</span>
+                    </div>
+                    <div class="wf-progress-bar">
+                      <div class="wf-progress-fill" style="width: 22%;"></div>
+                    </div>
+                  </div>
+                  <div class="wf-progress">
+                    <div class="wf-progress-label">
+                      <span>Other</span>
+                      <span>$370K (15%)</span>
+                    </div>
+                    <div class="wf-progress-bar">
+                      <div class="wf-progress-fill" style="width: 15%;"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Top Suppliers -->
+            <div class="wf-card">
+              <div class="wf-card-header">
+                <h3 class="wf-card-title">Top Suppliers</h3>
+              </div>
+              <div class="wf-card-body" style="padding: 0;">
+                <div class="wf-list" style="border: none; border-radius: 0;">
+                  <div class="wf-list-item">
+                    <div class="wf-avatar wf-avatar-sm">
+                      <span class="wf-avatar-initials">TC</span>
+                    </div>
+                    <div class="wf-list-item-content">
+                      <div class="wf-list-item-title">TechCorp Inc.</div>
+                      <div class="wf-list-item-description">12 contracts</div>
+                    </div>
+                    <span class="wf-list-item-meta wf-mono">$1.2M</span>
+                  </div>
+                  <div class="wf-list-item">
+                    <div class="wf-avatar wf-avatar-sm">
+                      <span class="wf-avatar-initials">BP</span>
+                    </div>
+                    <div class="wf-list-item-content">
+                      <div class="wf-list-item-title">BrandPro Agency</div>
+                      <div class="wf-list-item-description">8 contracts</div>
+                    </div>
+                    <span class="wf-list-item-meta wf-mono">$620K</span>
+                  </div>
+                  <div class="wf-list-item">
+                    <div class="wf-avatar wf-avatar-sm">
+                      <span class="wf-avatar-initials">CN</span>
+                    </div>
+                    <div class="wf-list-item-content">
+                      <div class="wf-list-item-title">CloudNine</div>
+                      <div class="wf-list-item-description">5 contracts</div>
+                    </div>
+                    <span class="wf-list-item-meta wf-mono">$380K</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="wf-card">
+              <div class="wf-card-header">
+                <h3 class="wf-card-title">Quick Actions</h3>
+              </div>
+              <div class="wf-card-body">
+                <div class="wf-column wf-gap-2">
+                  <button class="wf-button wf-button-secondary" style="width: 100%; justify-content: flex-start;">
+                    <span class="wf-icon">&#x2795;</span>
+                    Create New Contract
+                  </button>
+                  <button class="wf-button wf-button-secondary" style="width: 100%; justify-content: flex-start;">
+                    <span class="wf-icon">&#x1F465;</span>
+                    Add Supplier
+                  </button>
+                  <button class="wf-button wf-button-secondary" style="width: 100%; justify-content: flex-start;">
+                    <span class="wf-icon">&#x1F4C8;</span>
+                    Generate Report
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

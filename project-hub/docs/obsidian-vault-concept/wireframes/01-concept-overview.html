@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>01 · Two Surfaces, One Brain — Concept Overview</title>
+<link rel="stylesheet" href="wf-base.css" />
+</head>
+<body>
+<div class="wfp wfp-wide">
+  <div class="wf-banner">Concept wireframe · <b>01 / Overview</b> · rough &amp; low-fi — layout and idea, not final visuals. Obsidian-purple = the vault; Hub-green/blue = the app.</div>
+
+  <p class="scr-eyebrow">Project Hub × Obsidian Vault</p>
+  <h1 class="scr-title">Two surfaces, one brain</h1>
+  <p class="scr-sub">The Hub and your Obsidian vault hold the <b>same product-design knowledge</b> in two modes. The Hub is the <b>operational</b> surface — projects, prototypes, the lo-fi→hi-fi→handoff flow, generated design-system specs. The vault is the <b>cognitive</b> surface — decisions, patterns, learnings, and the linked graph that connects them. Today the vault is a private silo on one machine. Move it into the shared repo and bridge the two, and the team inherits the <i>why</i> behind every project — not just the <i>what</i>.</p>
+
+  <!-- ===== master architecture diagram ===== -->
+  <div class="frame-label">◇ The shape of it</div>
+  <div class="d-wrap" style="margin-bottom:var(--wf-space-6);">
+    <div class="d-row" style="align-items:stretch;">
+      <!-- Hub -->
+      <div class="d-node d-node-primary" style="flex:1.1;text-align:left;">
+        <h4>🗂️ Project Hub <span class="wf-badge wf-badge-primary wf-badge-sm">operational</span></h4>
+        <p style="margin-top:6px;">Projects · runtime servers · lo-fi → hi-fi → handoff · generated Design&nbsp;System / Patterns specs.</p>
+        <span class="d-tag">React + Express · localhost</span>
+      </div>
+      <div class="d-arrow d-arrow-2way" title="bidirectional"></div>
+      <!-- Repo -->
+      <div class="d-node d-node-repo" style="flex:1;text-align:left;">
+        <h4>📦 Shared GitHub repo</h4>
+        <p style="margin-top:6px;">The Hub app <b>and</b> the vault live here together. One clone delivers both. Version-controlled, reviewed in PRs.</p>
+        <span class="d-tag">/project-hub + /vault</span>
+      </div>
+      <div class="d-arrow d-arrow-2way" title="bidirectional"></div>
+      <!-- Vault -->
+      <div class="d-node d-node-obsidian" style="flex:1.1;text-align:left;">
+        <h4>🧠 Obsidian Vault <span class="wf-badge wf-badge-obsidian wf-badge-sm">cognitive</span></h4>
+        <p style="margin-top:6px;">Decisions (ADRs) · Patterns · Learnings · Projects · Retros · Syncs — linked by <span class="wf-mono" style="font-size:11px;">[[wikilinks]]</span> into one graph.</p>
+        <span class="d-tag">markdown + YAML on disk</span>
+      </div>
+    </div>
+
+    <div class="row" style="justify-content:center;margin:var(--wf-space-5) 0 var(--wf-space-2);">
+      <span class="muted-box" style="border-style:solid;border-color:var(--wf-obsidian);background:var(--wf-obsidian-bg);color:var(--wf-obsidian-text);">
+        The join key everywhere → <span class="wf-mono" style="font-weight:600;">project: [[Quote&nbsp;Filter&nbsp;Bar]]</span> in a note's frontmatter binds it to a Hub project. One field, both directions.
+      </span>
+    </div>
+  </div>
+
+  <!-- ===== division of labor ===== -->
+  <h2 class="scr-section-h">Who owns what — split by volatility, not by topic</h2>
+  <p class="scr-sub" style="margin-bottom:var(--wf-space-4);">The one architectural trap (from the research): plain markdown <b>rots as a design-system spec</b> because it can't sync token/component values from code — "Stale Documentation Syndrome." So the vault owns the <i>durable, narrative</i> knowledge and <i>links to</i> the Hub's already-generated specs as the single source of truth. Each does the job it's actually good at.</p>
+  <div class="grid2">
+    <div class="wf-card">
+      <div class="wf-card-header" style="background:var(--wf-obsidian-bg);"><div><h3 class="wf-card-title" style="font-size:var(--wf-text-base);">🧠 Vault owns — durable &amp; narrative</h3></div></div>
+      <div class="wf-card-body stack" style="gap:8px;font-size:var(--wf-text-sm);">
+        <div class="row"><span class="wf-dot wf-dot-obsidian"></span> <b>Decisions</b> — ADR-style: why we chose X, what we rejected</div>
+        <div class="row"><span class="wf-dot wf-dot-obsidian"></span> <b>Patterns</b> — how-to / reusable conventions</div>
+        <div class="row"><span class="wf-dot wf-dot-obsidian"></span> <b>Learnings</b> — gotchas, root-cause, how-to-avoid</div>
+        <div class="row"><span class="wf-dot wf-dot-obsidian"></span> <b>Projects · Retros · Syncs</b> — the story &amp; the graph</div>
+        <div class="row"><span class="wf-dot wf-dot-obsidian"></span> Design-system <b>narrative</b> — principles, do/don't, intent</div>
+      </div>
+    </div>
+    <div class="wf-card">
+      <div class="wf-card-header" style="background:#eff6ff;"><div><h3 class="wf-card-title" style="font-size:var(--wf-text-base);">🗂️ Hub owns — generated &amp; live</h3></div></div>
+      <div class="wf-card-body stack" style="gap:8px;font-size:var(--wf-text-sm);">
+        <div class="row"><span class="wf-dot wf-dot-primary"></span> <b>Token / component specs</b> — values from the JSON source</div>
+        <div class="row"><span class="wf-dot wf-dot-primary"></span> <b>Interactive specimens</b> — /design-system, /wireframe-system</div>
+        <div class="row"><span class="wf-dot wf-dot-primary"></span> <b>Runtime</b> — which prototypes are running, on which port</div>
+        <div class="row"><span class="wf-dot wf-dot-primary"></span> <b>Project lifecycle</b> — phase, versions, covers, handoff</div>
+        <div class="muted-box" style="margin-top:4px;">Vault DS notes <span class="wl">link to</span> these instead of restating values → no drift.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== before / after ===== -->
+  <h2 class="scr-section-h">What changes</h2>
+  <div class="grid2">
+    <div class="frame frame-dashed" style="padding:var(--wf-space-4);">
+      <div class="frame-label" style="color:var(--wf-color-error);">▲ today — siloed</div>
+      <div class="stack" style="gap:7px;font-size:var(--wf-text-sm);">
+        <div class="row"><span class="wf-dot wf-dot-error"></span> Vault lives only on Frank's machine</div>
+        <div class="row"><span class="wf-dot wf-dot-error"></span> Teammates never see the decisions or learnings</div>
+        <div class="row"><span class="wf-dot wf-dot-error"></span> Hub "Obsidian KB" sidebar item is a dead stub</div>
+        <div class="row"><span class="wf-dot wf-dot-error"></span> Project rationale lives in one person's head — bus-factor risk</div>
+      </div>
+    </div>
+    <div class="frame" style="padding:var(--wf-space-4);border-color:var(--wf-color-success);">
+      <div class="frame-label" style="color:var(--wf-color-success);">▼ after — shared in the repo</div>
+      <div class="stack" style="gap:7px;font-size:var(--wf-text-sm);">
+        <div class="row"><span class="wf-dot wf-dot-success"></span> Vault ships in the repo → one clone, everyone has it</div>
+        <div class="row"><span class="wf-dot wf-dot-success"></span> Open as a <b>second vault</b> in Obsidian, toggle anytime</div>
+        <div class="row"><span class="wf-dot wf-dot-success"></span> Hub renders notes read-only — no Obsidian required to read</div>
+        <div class="row"><span class="wf-dot wf-dot-success"></span> Each project shows its own Decisions / Patterns / Learnings</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== the ideas map ===== -->
+  <h2 class="scr-section-h">Six moves, smallest-lift first</h2>
+  <table class="t">
+    <thead><tr><th style="width:26px;">#</th><th>Move</th><th>What it is</th><th style="width:74px;">Value</th><th style="width:74px;">Lift</th><th style="width:96px;">Wireframe</th></tr></thead>
+    <tbody>
+      <tr><td><span class="anno">1</span></td><td><b>Co-locate the vault</b></td><td>Move the vault into the repo; teammates open it as a 2nd vault &amp; toggle.</td>
+        <td><span class="lvl"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></td>
+        <td><span class="lvl lvl-eff"><i class="on"></i><i></i><i></i><i></i></span></td><td class="wf-mono" style="font-size:11px;">02</td></tr>
+      <tr><td><span class="anno">2</span></td><td><b>Live "Obsidian KB" page</b></td><td>The dead sidebar stub becomes a read-only vault browser inside the Hub.</td>
+        <td><span class="lvl"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></td>
+        <td><span class="lvl lvl-eff"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></td><td class="wf-mono" style="font-size:11px;">03</td></tr>
+      <tr><td><span class="anno">3</span></td><td><b>Project ↔ Knowledge</b></td><td>Each project's detail page surfaces its linked Decisions / Patterns / Learnings.</td>
+        <td><span class="lvl"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></td>
+        <td><span class="lvl lvl-eff"><i class="on"></i><i class="on"></i><i></i><i></i></span></td><td class="wf-mono" style="font-size:11px;">04</td></tr>
+      <tr><td><span class="anno">4</span></td><td><b>Capture loop</b></td><td>Hub events + PD-sync + Claude Code keep the vault populated as a side effect.</td>
+        <td><span class="lvl"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></td>
+        <td><span class="lvl lvl-eff"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></td><td class="wf-mono" style="font-size:11px;">05</td></tr>
+      <tr><td><span class="anno">5</span></td><td><b>Decisions = MADR ADRs</b></td><td>Conform Decisions to numbered, immutable ADRs + a Bases dashboard.</td>
+        <td><span class="lvl"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></td>
+        <td><span class="lvl lvl-eff"><i class="on"></i><i></i><i></i><i></i></span></td><td class="wf-mono" style="font-size:11px;">06</td></tr>
+      <tr><td><span class="anno">6</span></td><td><b>Graph as team memory</b></td><td>The projects↔decisions↔patterns graph becomes shared institutional memory.</td>
+        <td><span class="lvl"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></td>
+        <td><span class="lvl lvl-eff"><i class="on"></i><i></i><i></i><i></i></span></td><td class="wf-mono" style="font-size:11px;">06</td></tr>
+    </tbody>
+  </table>
+  <p class="wf-tert" style="font-size:var(--wf-text-xs);margin-top:var(--wf-space-3);">Value &amp; lift are rough relative reads to sequence the work, not estimates. Moves 1–3 are the spine; 4–6 compound over time.</p>
+</div>
+</body>
+</html>

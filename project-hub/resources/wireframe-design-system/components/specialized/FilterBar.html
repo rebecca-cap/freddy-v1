@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Filter Bar Component - Gravitate Wireframe Design System</title>
+  <link rel="stylesheet" href="../../tokens/index.css">
+  <link rel="stylesheet" href="../controls/controls.css">
+  <link rel="stylesheet" href="specialized.css">
+  <style>
+    body {
+      font-family: var(--wf-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+      background-color: var(--wf-color-background, #f9fafb);
+      margin: 0;
+      padding: 32px;
+      color: var(--wf-color-text-primary, #111827);
+    }
+    .demo-section {
+      margin-bottom: 48px;
+    }
+    .demo-section h2 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--wf-color-text-primary, #111827);
+    }
+    .demo-section p {
+      font-size: 14px;
+      color: var(--wf-color-text-secondary, #374151);
+      margin-bottom: 16px;
+    }
+    .demo-container {
+      background: white;
+      border-radius: 8px;
+      padding: 24px;
+      border: 1px solid var(--wf-color-border, #d1d5db);
+    }
+    .demo-row {
+      margin-bottom: 24px;
+    }
+    .demo-row:last-child {
+      margin-bottom: 0;
+    }
+    .demo-label {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--wf-color-text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      font-size: 16px;
+      color: var(--wf-color-text-secondary, #374151);
+      margin-bottom: 32px;
+    }
+    code {
+      display: block;
+      background: var(--wf-color-neutral-100, #f3f4f6);
+      padding: 16px;
+      border-radius: 6px;
+      font-size: 13px;
+      overflow-x: auto;
+      white-space: pre;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Filter Bar Component</h1>
+  <p class="subtitle">Filter controls for filtering and searching data in tables and grids.</p>
+
+  <!-- Basic Filter Bar -->
+  <section class="demo-section">
+    <h2>Basic Filter Bar</h2>
+    <p>Standard filter bar with filter controls and action buttons.</p>
+    <div class="demo-container">
+      <div class="wf-filter-bar">
+        <div class="wf-filter-bar-filters">
+          <div class="wf-filter-item">
+            <label class="wf-filter-label">Status</label>
+            <select class="wf-select wf-select-sm" style="width: 140px;">
+              <option>All</option>
+              <option>Active</option>
+              <option>Pending</option>
+              <option>Expired</option>
+            </select>
+          </div>
+          <div class="wf-filter-item">
+            <label class="wf-filter-label">Date Range</label>
+            <input type="date" class="wf-input wf-input-sm" style="width: 140px;">
+            <span>to</span>
+            <input type="date" class="wf-input wf-input-sm" style="width: 140px;">
+          </div>
+        </div>
+        <div class="wf-filter-bar-actions">
+          <button class="wf-button wf-button-ghost wf-button-sm">Clear All</button>
+          <button class="wf-button wf-button-primary wf-button-sm">Apply</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filter Bar with Multiple Filters -->
+  <section class="demo-section">
+    <h2>Multiple Filters</h2>
+    <p>Filter bar with additional filter options.</p>
+    <div class="demo-container">
+      <div class="wf-filter-bar">
+        <div class="wf-filter-bar-filters">
+          <div class="wf-filter-item">
+            <label class="wf-filter-label">Status</label>
+            <select class="wf-select wf-select-sm" style="width: 120px;">
+              <option>All</option>
+              <option>Active</option>
+              <option>Pending</option>
+            </select>
+          </div>
+          <div class="wf-filter-item">
+            <label class="wf-filter-label">Type</label>
+            <select class="wf-select wf-select-sm" style="width: 140px;">
+              <option>All Types</option>
+              <option>Supply</option>
+              <option>Transportation</option>
+              <option>Storage</option>
+            </select>
+          </div>
+          <div class="wf-filter-item">
+            <label class="wf-filter-label">Customer</label>
+            <select class="wf-select wf-select-sm" style="width: 160px;">
+              <option>All Customers</option>
+              <option>Acme Corp</option>
+              <option>Global Inc</option>
+            </select>
+          </div>
+        </div>
+        <div class="wf-filter-bar-actions">
+          <button class="wf-button wf-button-ghost wf-button-sm">Reset</button>
+          <button class="wf-button wf-button-primary wf-button-sm">Apply Filters</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Active Filters Pills -->
+  <section class="demo-section">
+    <h2>Active Filters Pills</h2>
+    <p>Display of currently active filters as removable pills.</p>
+    <div class="demo-container">
+      <div class="wf-filter-bar" style="margin-bottom: 12px;">
+        <div class="wf-filter-bar-filters">
+          <div class="wf-filter-item">
+            <label class="wf-filter-label">Status</label>
+            <select class="wf-select wf-select-sm" style="width: 120px;">
+              <option>Active</option>
+            </select>
+          </div>
+          <div class="wf-filter-item">
+            <label class="wf-filter-label">Type</label>
+            <select class="wf-select wf-select-sm" style="width: 140px;">
+              <option>Supply</option>
+            </select>
+          </div>
+        </div>
+        <div class="wf-filter-bar-actions">
+          <button class="wf-button wf-button-ghost wf-button-sm">Clear All</button>
+          <button class="wf-button wf-button-primary wf-button-sm">Apply</button>
+        </div>
+      </div>
+      <div class="wf-active-filters">
+        <span class="wf-active-filter">
+          Status: Active <button class="wf-active-filter-remove">x</button>
+        </span>
+        <span class="wf-active-filter">
+          Type: Supply <button class="wf-active-filter-remove">x</button>
+        </span>
+        <span class="wf-active-filter">
+          Date: Jan 2024 <button class="wf-active-filter-remove">x</button>
+        </span>
+        <button class="wf-clear-filters">Clear All</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Inline Filter Bar -->
+  <section class="demo-section">
+    <h2>Inline Filter Bar</h2>
+    <p>Minimal filter bar without background styling.</p>
+    <div class="demo-container">
+      <div class="wf-filter-bar wf-filter-bar-inline">
+        <div class="wf-filter-bar-filters">
+          <div class="wf-filter-item">
+            <label class="wf-filter-label">Show:</label>
+            <select class="wf-select wf-select-sm" style="width: 120px;">
+              <option>All Items</option>
+              <option>Active Only</option>
+              <option>Archived</option>
+            </select>
+          </div>
+          <div class="wf-filter-item">
+            <label class="wf-filter-label">Sort by:</label>
+            <select class="wf-select wf-select-sm" style="width: 140px;">
+              <option>Date Created</option>
+              <option>Name</option>
+              <option>Status</option>
+            </select>
+          </div>
+        </div>
+        <div class="wf-filter-bar-actions">
+          <input type="search" class="wf-input wf-input-sm" placeholder="Search..." style="width: 200px;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filter Bar with Search -->
+  <section class="demo-section">
+    <h2>Filter Bar with Search</h2>
+    <p>Filter bar combining dropdown filters with a search input.</p>
+    <div class="demo-container">
+      <div class="wf-filter-bar">
+        <div class="wf-filter-bar-filters">
+          <input type="search" class="wf-input wf-input-sm" placeholder="Search contracts..." style="width: 240px;">
+          <div class="wf-filter-item">
+            <select class="wf-select wf-select-sm" style="width: 140px;">
+              <option>All Status</option>
+              <option>Active</option>
+              <option>Pending</option>
+            </select>
+          </div>
+          <div class="wf-filter-item">
+            <select class="wf-select wf-select-sm" style="width: 140px;">
+              <option>All Types</option>
+              <option>Supply</option>
+              <option>Storage</option>
+            </select>
+          </div>
+        </div>
+        <div class="wf-filter-bar-actions">
+          <button class="wf-button wf-button-secondary wf-button-sm">More Filters</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Active Filters Only -->
+  <section class="demo-section">
+    <h2>Active Filters Display</h2>
+    <p>Standalone active filters display without the filter bar.</p>
+    <div class="demo-container" style="background: var(--wf-color-neutral-50);">
+      <div class="wf-active-filters">
+        <span class="wf-active-filter">
+          Status: Active <button class="wf-active-filter-remove">x</button>
+        </span>
+        <span class="wf-active-filter">
+          Customer: Acme Corp <button class="wf-active-filter-remove">x</button>
+        </span>
+        <span class="wf-active-filter">
+          Type: Supply Agreement <button class="wf-active-filter-remove">x</button>
+        </span>
+        <span class="wf-active-filter">
+          Region: Northeast <button class="wf-active-filter-remove">x</button>
+        </span>
+        <button class="wf-clear-filters">Clear All (4)</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Usage Guidelines -->
+  <section class="demo-section">
+    <h2>Usage Guidelines</h2>
+    <div class="demo-container">
+      <div style="display: grid; gap: 16px; font-size: 14px;">
+        <div>
+          <strong>Filter Bar</strong> - Use for complex filtering scenarios with multiple filter options
+        </div>
+        <div>
+          <strong>Active Filters Pills</strong> - Show applied filters as removable pills for easy management
+        </div>
+        <div>
+          <strong>Clear All</strong> - Always provide a way to reset all filters at once
+        </div>
+        <div>
+          <strong>Apply Button</strong> - Use explicit apply when filters should not auto-apply
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Code Example -->
+  <section class="demo-section">
+    <h2>Code Example</h2>
+    <code>&lt;!-- Filter Bar --&gt;
+&lt;div class="wf-filter-bar"&gt;
+  &lt;div class="wf-filter-bar-filters"&gt;
+    &lt;div class="wf-filter-item"&gt;
+      &lt;label class="wf-filter-label"&gt;Status&lt;/label&gt;
+      &lt;select class="wf-select wf-select-sm"&gt;
+        &lt;option&gt;All&lt;/option&gt;
+        &lt;option&gt;Active&lt;/option&gt;
+        &lt;option&gt;Pending&lt;/option&gt;
+      &lt;/select&gt;
+    &lt;/div&gt;
+    &lt;div class="wf-filter-item"&gt;
+      &lt;label class="wf-filter-label"&gt;Date Range&lt;/label&gt;
+      &lt;input type="date" class="wf-input wf-input-sm"&gt;
+      &lt;span&gt;to&lt;/span&gt;
+      &lt;input type="date" class="wf-input wf-input-sm"&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="wf-filter-bar-actions"&gt;
+    &lt;button class="wf-button wf-button-ghost wf-button-sm"&gt;Clear All&lt;/button&gt;
+    &lt;button class="wf-button wf-button-primary wf-button-sm"&gt;Apply&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Active Filters Pills --&gt;
+&lt;div class="wf-active-filters"&gt;
+  &lt;span class="wf-active-filter"&gt;
+    Status: Active &lt;button class="wf-active-filter-remove"&gt;x&lt;/button&gt;
+  &lt;/span&gt;
+  &lt;button class="wf-clear-filters"&gt;Clear All&lt;/button&gt;
+&lt;/div&gt;</code>
+  </section>
+
+</body>
+</html>

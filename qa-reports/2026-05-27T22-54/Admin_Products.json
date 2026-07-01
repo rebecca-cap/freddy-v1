@@ -1,0 +1,14 @@
+{
+  "path": "/Admin/Products",
+  "title": "Products",
+  "finalUrl": "http://localhost:5173/Admin/Products",
+  "rootLen": 151691,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 13,
+  "stuckLoaders": [],
+  "emptyGrids": []
+}

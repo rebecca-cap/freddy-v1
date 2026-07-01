@@ -1,0 +1,14 @@
+{
+  "path": "/Analytics/ByContract",
+  "title": "By Contract",
+  "finalUrl": "http://localhost:3001/Analytics/ByContract",
+  "rootLen": 238530,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 10,
+  "stuckLoaders": [],
+  "emptyGrids": []
+}

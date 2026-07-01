@@ -1,0 +1,195 @@
+{
+  "slug": "sections",
+  "title": "Sections & Content",
+  "order": 3,
+  "group": "Page anatomy",
+  "intro": "How page content organises into sections, cards, and nested groups. One spacing hierarchy — 48 / 32 / 24 / 16 / 4 — governs every container, and every section header follows the same recipe.",
+  "demoPath": "/DesignSystem/Sections",
+  "searchTerms": [
+    "section",
+    "content area",
+    "card",
+    "panel",
+    "section header",
+    "divider",
+    "nesting",
+    "subsection",
+    "spacing hierarchy",
+    "Vertical",
+    "Horizontal",
+    "Texto"
+  ],
+  "blocks": [
+    {
+      "type": "rules",
+      "title": "The laws of sections",
+      "intro": "These rules are non-negotiable. Every page, drawer, and panel in the product follows the same containment model.",
+      "items": [
+        {
+          "rule": "Padding steps down one level per nesting depth — 48 / 32 / 24 / 16 / 4, never flat.",
+          "why": "Uniform padding at every depth erases containment; the step-down is what makes parent/child structure legible at a glance."
+        },
+        {
+          "rule": "A container's padding is never smaller than the gap between its children.",
+          "why": "When padding undercuts the child gap, content sits closer to the frame than to its siblings and the grouping collapses."
+        },
+        {
+          "rule": "Section headers are one fixed recipe: `h4`/600 title, optional `p2`/medium subtitle, then a 1px #e8e8e8 divider 12px below the text and 24px above the content.",
+          "why": "Heading drift — different sizes, weights, or missing dividers per section — destroys the scan rhythm of the page."
+        },
+        {
+          "rule": "Major sections stack on a 32px (`--space-6`) rhythm.",
+          "why": "A section gap larger than any intra-section spacing is the signal that separates topics from items."
+        },
+        {
+          "rule": "Card anatomy is fixed: 1px #e8e8e8 border, 8px radius, `overflow: hidden`, #fafafa header at 16px padding, body at 24px.",
+          "why": "The tighter header against the roomier body guides the eye from label to content; ad-hoc paddings break that contrast."
+        },
+        {
+          "rule": "Nested sub-sections step down: 16px padding, 6px radius, lighter #f0f0f0 border.",
+          "why": "Same-weight borders at two depths read as siblings, not parent and child."
+        },
+        {
+          "rule": "Dividers separate sections; spacing alone separates items within a section.",
+          "why": "A ruled line signals a topic change — between fields it only adds noise."
+        },
+        {
+          "rule": "Layout flows through `Vertical`/`Horizontal` props (`gap`, `flex`, `height`, `justifyContent`), never inline flex styles.",
+          "why": "Style overrides bypass the layout API, so spacing can no longer be audited against the token scale."
+        }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "Nesting hierarchy",
+      "image": "specimens/sections/01-nesting-hierarchy.png",
+      "caption": "The 48 / 32 / 24 / 16 / 4 step-down visualised as nested containers — page canvas, section gap, card padding, subsection padding, field gap, label-input — with the token quick-reference below."
+    },
+    {
+      "type": "specimen",
+      "title": "Section headers",
+      "image": "specimens/sections/02-section-headers.png",
+      "caption": "The fixed header recipe with and without a subtitle: h4/600 title, p2/medium subtitle, 1px divider 12px below the text and 24px above the content."
+    },
+    {
+      "type": "specimen",
+      "title": "Section card anatomy",
+      "image": "specimens/sections/03-section-card.png",
+      "caption": "Bordered card with shaded 16px header and 24px body, plus the structure-to-token mapping breakdown (header → space-4, body → space-5, field gaps → space-4, label-input → space-1)."
+    },
+    {
+      "type": "specimen",
+      "title": "Nested sub-sections",
+      "image": "specimens/sections/04-nested-sections.png",
+      "caption": "Parent card at 24px body padding containing 16px children with the lighter #f0f0f0 border — the one-step padding drop that makes nesting read as containment."
+    },
+    {
+      "type": "specimen",
+      "title": "Dividers vs spacing",
+      "image": "specimens/sections/05-dividers.png",
+      "caption": "Divider + 32px gap between major sections, and spacing-only 16px gaps between fields in a group — no divider lines. The full when-to-use-which lists live in the decision table below."
+    },
+    {
+      "type": "specimen",
+      "title": "Do / don't pairs",
+      "image": "specimens/sections/06-dos-donts.png",
+      "caption": "Stepped padding vs flat 12px everywhere; consistent header recipe vs mixed heading levels with no dividers."
+    },
+    {
+      "type": "tokens",
+      "title": "Spacing scale",
+      "intro": "Memorise the step-down: 48 > 32 > 24 > 16 > 4. Each level is visually contained within its parent.",
+      "rows": [
+        { "token": "--space-8", "value": "48px", "use": "Page canvas padding — the outermost frame" },
+        { "token": "--space-6", "value": "32px", "use": "Vertical gap between major sections" },
+        { "token": "--space-5", "value": "24px", "use": "Card / panel body padding" },
+        { "token": "--space-4", "value": "16px", "use": "Card header padding, sub-section padding, field gaps" },
+        { "token": "--space-1", "value": "4px", "use": "Label-to-input gap — the innermost step" }
+      ]
+    },
+    {
+      "type": "tokens",
+      "title": "Surface values",
+      "rows": [
+        { "token": "#e8e8e8", "value": "1px solid", "use": "Card borders, section dividers, card header border-bottom" },
+        { "token": "#f0f0f0", "value": "1px solid", "use": "Nested sub-section borders — one shade lighter than the parent card" },
+        { "token": "#fafafa", "value": "fill", "use": "Card and sub-section header background" },
+        { "token": "8px", "value": "border-radius", "use": "Parent card corners" },
+        { "token": "6px", "value": "border-radius", "use": "Nested sub-section corners" }
+      ]
+    },
+    {
+      "type": "code",
+      "title": "Canonical section skeleton",
+      "code": "// One page = stacked sections on a 32px rhythm\n<Vertical gap={32}>\n  <section>\n    {/* Section header — fixed recipe */}\n    <Vertical gap={4}>\n      <Texto category='h4' weight='600'>Pricing Configuration</Texto>\n      <Texto category='p2' appearance='medium'>Base rates and adjustments for this contract.</Texto>\n    </Vertical>\n    <div style={{ borderBottom: '1px solid #e8e8e8', marginTop: 12, marginBottom: 24 }} />\n\n    {/* Section card */}\n    <div style={{ border: '1px solid #e8e8e8', borderRadius: 8, overflow: 'hidden' }}>\n      <div style={{ padding: 16, background: '#fafafa', borderBottom: '1px solid #e8e8e8' }}>\n        <Texto category='p1' weight='600'>Contract Details</Texto>\n      </div>\n      <div style={{ padding: 24 }}>\n        <Vertical gap={16}>\n          {/* Nested sub-section: one step down */}\n          <div style={{ border: '1px solid #f0f0f0', borderRadius: 6, overflow: 'hidden' }}>\n            <div style={{ padding: '10px 16px', background: '#fafafa', borderBottom: '1px solid #f0f0f0' }}>\n              <Texto category='p2' weight='600'>Base Rates</Texto>\n            </div>\n            <div style={{ padding: 16 }}>\n              <Vertical gap={16}>{/* fields — label sits 4px above its input */}</Vertical>\n            </div>\n          </div>\n        </Vertical>\n      </div>\n    </div>\n  </section>\n</Vertical>",
+      "note": "Gaps and flex go through Vertical/Horizontal props, never style. Texto categories used here (h4, p1, p2) are all valid; there is no p3 or h6."
+    },
+    {
+      "type": "variants",
+      "title": "Section formats",
+      "intro": "Three containment levels, one decision: how much framing does the content need?",
+      "rows": [
+        {
+          "name": "Bare section header",
+          "when": "Default for page-level structure. Title + divider, content sits directly on the canvas — the canvas itself is the container."
+        },
+        {
+          "name": "Section card",
+          "when": "Related fields or mixed content that needs explicit containment: 1px border, 8px radius, shaded 16px header, 24px body.",
+          "code": "<div style={{ border: '1px solid #e8e8e8', borderRadius: 8, overflow: 'hidden' }}>"
+        },
+        {
+          "name": "Nested sub-section",
+          "when": "Sub-grouping inside a card body. One step down: 16px padding, 6px radius, #f0f0f0 border, p2/600 title in a 10px 16px header bar.",
+          "code": "<div style={{ border: '1px solid #f0f0f0', borderRadius: 6, overflow: 'hidden' }}>"
+        }
+      ]
+    },
+    {
+      "type": "dosdonts",
+      "items": [
+        {
+          "do": "Step padding down inward: card header 16px, body 24px, sub-sections 16px, field gaps 16px.",
+          "dont": "Flatten everything to one value — 12px on header, body, sub-sections, and gaps alike.",
+          "why": "Stepped padding creates visual containment; flat padding makes content feel uncontained and hard to scan."
+        },
+        {
+          "do": "Give every section the identical header recipe and a uniform 32px gap between sections.",
+          "dont": "Mix heading levels per section — h4 here, an oversized p1 there, a small p2 next, some with dividers and some without.",
+          "why": "A predictable rhythm lets readers locate sections without reading them."
+        },
+        {
+          "do": "Rule a divider below section headers and between major content blocks, card groups, and tab content areas.",
+          "dont": "Draw dividers between form fields, list items, or paragraphs — 16px spacing already separates them.",
+          "why": "Lines accumulate into clutter; spacing is invisible structure."
+        }
+      ]
+    },
+    {
+      "type": "usage",
+      "title": "Divider decision table",
+      "body": "Use a divider: between page sections, between card groups, below section headers, between tab content areas.\n\nUse spacing only: between form fields, between list items, between paragraphs, between inline elements."
+    },
+    {
+      "type": "gotchas",
+      "items": [
+        {
+          "title": "Texto has no p3 or h6",
+          "detail": "Valid categories are p1, p2, label, heading, heading-small, and h1-h5 only. Sub-section titles use `category='p2' weight='600'`, not a smaller heading category."
+        },
+        {
+          "title": "appearance='secondary' is blue, not gray",
+          "detail": "The muted subtitle under a section title uses `appearance='medium'`. `secondary` maps to the brand blue and reads as a link."
+        },
+        {
+          "title": "overflow: hidden is load-bearing on cards",
+          "detail": "The card wrapper clips its #fafafa header fill to the 8px radius. Drop `overflow: 'hidden'` and the header paints square corners over the rounded border."
+        },
+        {
+          "title": "Don't stack borders at container seams",
+          "detail": "A card's border-top must not sit flush against a wrapper that also draws border-top — the doubled 2px line reads as a rendering bug. One element owns each seam."
+        }
+      ]
+    }
+  ]
+}

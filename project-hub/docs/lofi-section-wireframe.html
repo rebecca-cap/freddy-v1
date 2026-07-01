@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lo-fi Section — Project Hub Wireframe</title>
+<style>
+/* ==========================================================================
+   WireframeDesignSystem tokens (inlined from ~/Documents/WireframeDesignSystem/tokens)
+   Token prefix --wf- ; app-layout classes use the lf- prefix (not DS components).
+   ========================================================================== */
+:root{
+  /* colors */
+  --wf-color-primary:#2563eb; --wf-color-primary-hover:#1d4ed8; --wf-color-primary-dim:#1e40af;
+  --wf-color-success:#16a34a; --wf-color-warning:#d97706; --wf-color-error:#dc2626;
+  --wf-color-neutral-900:#111827; --wf-color-neutral-700:#374151; --wf-color-neutral-500:#6b7280;
+  --wf-color-neutral-300:#d1d5db; --wf-color-neutral-100:#f3f4f6; --wf-color-neutral-50:#f9fafb;
+  --wf-color-border:#d1d5db; --wf-color-border-light:#f3f4f6;
+  --wf-color-surface:#fff; --wf-color-surface-raised:#f9fafb; --wf-color-surface-sunken:#f3f4f6;
+  --wf-color-text-primary:#111827; --wf-color-text-secondary:#374151; --wf-color-text-tertiary:#6b7280;
+  --wf-color-text-inverse:#fff; --wf-color-background:#f9fafb;
+  /* badge palette */
+  --wf-badge-default-bg:#f3f4f6; --wf-badge-default-text:#374151;
+  --wf-badge-primary-bg:#dbeafe; --wf-badge-primary-text:#1e40af;
+  --wf-badge-success-bg:#dcfce7; --wf-badge-success-text:#166534;
+  --wf-badge-warning-bg:#fef3c7; --wf-badge-warning-text:#92400e;
+  /* typography */
+  --wf-font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+  --wf-font-mono:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace;
+  --wf-text-xs:0.6875rem; --wf-text-sm:0.75rem; --wf-text-base:0.875rem; --wf-text-md:1rem;
+  --wf-text-lg:1.125rem; --wf-text-xl:1.5rem;
+  --wf-font-normal:400; --wf-font-medium:500; --wf-font-semibold:600; --wf-font-bold:700;
+  --wf-leading-tight:1.25; --wf-leading-normal:1.5; --wf-tracking-wide:0.025em;
+  /* spacing */
+  --wf-space-1:.25rem; --wf-space-2:.5rem; --wf-space-3:.75rem; --wf-space-4:1rem;
+  --wf-space-5:1.25rem; --wf-space-6:1.5rem; --wf-space-8:2rem;
+  /* borders */
+  --wf-radius-sm:.25rem; --wf-radius-md:.5rem; --wf-radius-lg:.75rem; --wf-radius-full:9999px;
+  --wf-shadow-focus:0 0 0 3px rgba(37,99,235,.25);
+}
+*,*::before,*::after{box-sizing:border-box;}
+body{
+  margin:0; font-family:var(--wf-font-family); font-size:var(--wf-text-base);
+  color:var(--wf-color-text-primary); background:var(--wf-color-background);
+  line-height:var(--wf-leading-normal); -webkit-font-smoothing:antialiased;
+}
+
+/* ---- DS components used (wf-) ---- */
+.wf-button{display:inline-flex;align-items:center;justify-content:center;gap:var(--wf-space-2);
+  padding:6px 12px;font-family:inherit;font-size:var(--wf-text-sm);font-weight:var(--wf-font-medium);
+  line-height:1.4;border:1px solid transparent;border-radius:var(--wf-radius-sm);cursor:pointer;
+  transition:all 150ms ease;white-space:nowrap;user-select:none;}
+.wf-button:focus-visible{outline:none;box-shadow:var(--wf-shadow-focus);}
+.wf-button:disabled,.wf-button[disabled]{cursor:not-allowed;opacity:.5;}
+.wf-button-primary{background:var(--wf-color-primary);border-color:var(--wf-color-primary);color:#fff;}
+.wf-button-primary:hover:not(:disabled){background:var(--wf-color-primary-hover);border-color:var(--wf-color-primary-hover);}
+.wf-button-secondary{background:#fff;border-color:var(--wf-color-border);color:var(--wf-color-text-primary);}
+.wf-button-secondary:hover:not(:disabled){background:var(--wf-color-neutral-50);border-color:var(--wf-color-neutral-500);}
+.wf-button-success{background:var(--wf-color-success);border-color:var(--wf-color-success);color:#fff;}
+.wf-button-success:hover:not(:disabled){background:#15803d;border-color:#15803d;}
+.wf-button-ghost{background:transparent;border-color:transparent;color:var(--wf-color-text-secondary);}
+.wf-button-ghost:hover:not(:disabled){background:var(--wf-color-neutral-100);}
+.wf-button-sm{padding:3px 8px;font-size:var(--wf-text-xs);}
+.wf-icon{display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;font-size:13px;line-height:1;}
+
+.wf-badge{display:inline-flex;align-items:center;justify-content:center;gap:4px;padding:2px 8px;
+  font-size:12px;font-weight:500;line-height:1.4;border-radius:9999px;white-space:nowrap;
+  background:var(--wf-badge-default-bg);color:var(--wf-badge-default-text);}
+.wf-badge-primary{background:var(--wf-badge-primary-bg);color:var(--wf-badge-primary-text);}
+.wf-badge-success{background:var(--wf-badge-success-bg);color:var(--wf-badge-success-text);}
+.wf-badge-warning{background:var(--wf-badge-warning-bg);color:var(--wf-badge-warning-text);}
+.wf-badge-sm{padding:1px 6px;font-size:11px;}
+.wf-badge-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#9ca3af;}
+.wf-badge-dot-success{background:var(--wf-color-success);}
+.wf-badge-dot-warning{background:var(--wf-color-warning);}
+.wf-badge-dot-primary{background:var(--wf-color-primary);}
+
+.wf-card{background:#fff;border:1px solid var(--wf-color-border);border-radius:var(--wf-radius-md);overflow:hidden;}
+.wf-card-header{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--wf-space-4);
+  padding:var(--wf-space-4);border-bottom:1px solid var(--wf-color-border);}
+.wf-card-title{margin:0;font-size:var(--wf-text-lg);font-weight:var(--wf-font-semibold);line-height:1.4;}
+.wf-card-subtitle{margin:4px 0 0;font-size:var(--wf-text-sm);color:var(--wf-color-text-secondary);}
+.wf-card-body{padding:var(--wf-space-4);}
+
+.wf-mono{font-family:var(--wf-font-mono);font-variant-numeric:tabular-nums;}
+.wf-text-tertiary{color:var(--wf-color-text-tertiary);}
+
+/* ==========================================================================
+   lf- : app-layout composition (not DS component primitives)
+   ========================================================================== */
+.lf-shell{max-width:980px;margin:0 auto;padding:var(--wf-space-8) var(--wf-space-6) 64px;}
+.lf-banner{font-size:var(--wf-text-xs);color:var(--wf-color-text-tertiary);
+  border:1px dashed var(--wf-color-neutral-300);border-radius:var(--wf-radius-sm);
+  padding:6px 10px;margin-bottom:var(--wf-space-5);background:#fff;}
+.lf-banner b{color:var(--wf-color-text-secondary);}
+
+/* hub chrome mimic */
+.lf-crumb{display:flex;align-items:center;gap:8px;font-size:var(--wf-text-sm);color:var(--wf-color-text-tertiary);margin-bottom:var(--wf-space-3);}
+.lf-proj-title{font-size:var(--wf-text-xl);font-weight:var(--wf-font-bold);margin:0 0 var(--wf-space-4);letter-spacing:-.01em;}
+.lf-tabs{display:flex;gap:2px;border-bottom:1px solid var(--wf-color-border);margin-bottom:var(--wf-space-6);}
+.lf-tab{padding:8px 14px;font-size:var(--wf-text-sm);font-weight:var(--wf-font-medium);color:var(--wf-color-text-tertiary);
+  border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;}
+.lf-tab:hover{color:var(--wf-color-text-secondary);}
+.lf-tab[aria-selected="true"]{color:var(--wf-color-primary);border-bottom-color:var(--wf-color-primary);}
+
+.lf-section-actions{display:flex;flex-wrap:wrap;gap:var(--wf-space-2);align-items:center;}
+
+/* kickoff strip */
+.lf-kickoff{display:flex;align-items:center;gap:var(--wf-space-3);padding:10px var(--wf-space-4);
+  background:var(--wf-color-neutral-50);border:1px solid var(--wf-color-border-light);
+  border-radius:var(--wf-radius-sm);margin-bottom:var(--wf-space-5);font-size:var(--wf-text-sm);}
+.lf-kickoff .lf-k-ico{font-size:16px;}
+.lf-kickoff .lf-k-meta{color:var(--wf-color-text-tertiary);font-size:var(--wf-text-xs);}
+
+/* ---- timeline ---- */
+.lf-timeline{display:flex;flex-direction:column;gap:var(--wf-space-5);}
+.lf-track{display:flex;align-items:center;gap:var(--wf-space-3);}
+.lf-track-label{width:128px;flex-shrink:0;font-size:var(--wf-text-xs);font-weight:var(--wf-font-semibold);
+  text-transform:uppercase;letter-spacing:var(--wf-tracking-wide);color:var(--wf-color-text-tertiary);}
+.lf-track-label small{display:block;text-transform:none;letter-spacing:0;font-weight:var(--wf-font-normal);
+  font-family:var(--wf-font-mono);font-size:10px;color:var(--wf-color-text-tertiary);margin-top:2px;}
+.lf-rail{display:flex;align-items:center;flex:1;min-width:0;}
+.lf-rail.lf-dashed{margin-left:24px;}
+.lf-connector{height:2px;width:28px;background:var(--wf-color-neutral-300);flex-shrink:0;}
+.lf-connector.lf-dashed{background:repeating-linear-gradient(90deg,var(--wf-color-neutral-300) 0 5px,transparent 5px 10px);}
+.lf-elbow{width:24px;height:34px;border-left:2px solid var(--wf-color-neutral-300);
+  border-bottom:2px solid var(--wf-color-neutral-300);border-bottom-left-radius:8px;
+  margin:-24px 0 0 12px;flex-shrink:0;}
+
+.lf-chip{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;
+  min-width:54px;height:40px;padding:0 10px;border:1px solid var(--wf-color-border);background:#fff;
+  border-radius:var(--wf-radius-md);cursor:pointer;font-size:var(--wf-text-xs);font-weight:var(--wf-font-bold);
+  color:var(--wf-color-text-secondary);transition:all 120ms ease;position:relative;}
+.lf-chip:hover{border-color:var(--wf-color-neutral-500);}
+.lf-chip:focus-visible{outline:none;box-shadow:var(--wf-shadow-focus);}
+.lf-chip small{font-weight:var(--wf-font-normal);font-size:9px;color:var(--wf-color-text-tertiary);margin-top:1px;}
+.lf-chip[aria-pressed="true"]{border-color:var(--wf-color-primary);background:#eff6ff;color:var(--wf-color-primary-dim);}
+.lf-chip[aria-pressed="true"] small{color:var(--wf-color-primary);}
+.lf-chip.lf-chosen::after{content:"✓";position:absolute;top:-6px;right:-6px;width:15px;height:15px;
+  background:var(--wf-color-success);color:#fff;border-radius:50%;font-size:9px;display:flex;
+  align-items:center;justify-content:center;font-weight:700;}
+.lf-add{display:inline-flex;align-items:center;justify-content:center;width:34px;height:40px;
+  border:1px dashed var(--wf-color-neutral-300);background:#fff;border-radius:var(--wf-radius-md);
+  cursor:pointer;color:var(--wf-color-text-tertiary);}
+.lf-add:hover{border-color:var(--wf-color-primary);color:var(--wf-color-primary);}
+.lf-branch-wrap{display:flex;flex-direction:column;}
+
+/* ---- round detail ---- */
+.lf-detail{margin-top:var(--wf-space-6);}
+.lf-detail-head{display:flex;align-items:center;justify-content:space-between;gap:var(--wf-space-4);flex-wrap:wrap;}
+.lf-detail-titlewrap{display:flex;align-items:center;gap:var(--wf-space-3);min-width:0;}
+.lf-detail-title{font-size:var(--wf-text-md);font-weight:var(--wf-font-semibold);margin:0;}
+.lf-detail-actions{display:flex;flex-wrap:wrap;gap:var(--wf-space-2);}
+.lf-brief{margin:var(--wf-space-4) 0;padding:var(--wf-space-3) var(--wf-space-4);
+  background:var(--wf-color-neutral-50);border-left:3px solid var(--wf-color-primary);
+  border-radius:0 var(--wf-radius-sm) var(--wf-radius-sm) 0;font-size:var(--wf-text-sm);color:var(--wf-color-text-secondary);}
+.lf-brief b{color:var(--wf-color-text-primary);}
+.lf-wf-list{list-style:none;margin:var(--wf-space-3) 0 0;padding:0;border:1px solid var(--wf-color-border);border-radius:var(--wf-radius-md);overflow:hidden;}
+.lf-wf-list li{display:flex;align-items:center;gap:var(--wf-space-3);padding:9px var(--wf-space-4);
+  border-bottom:1px solid var(--wf-color-border-light);font-size:var(--wf-text-sm);}
+.lf-wf-list li:last-child{border-bottom:none;}
+.lf-wf-list .lf-wf-name{flex:1;font-weight:var(--wf-font-medium);}
+.lf-empty{padding:var(--wf-space-6);text-align:center;border:1px dashed var(--wf-color-neutral-300);
+  border-radius:var(--wf-radius-md);color:var(--wf-color-text-tertiary);font-size:var(--wf-text-sm);}
+.lf-empty code{font-family:var(--wf-font-mono);font-size:var(--wf-text-xs);}
+.lf-meta-row{display:flex;gap:var(--wf-space-4);flex-wrap:wrap;margin-top:var(--wf-space-3);font-size:var(--wf-text-xs);color:var(--wf-color-text-tertiary);}
+.lf-meta-row .wf-mono{color:var(--wf-color-text-secondary);}
+
+/* ---- side panels (decisions / handoff) ---- */
+.lf-panel{margin-top:var(--wf-space-5);border:1px solid var(--wf-color-border);border-radius:var(--wf-radius-md);background:#fff;}
+.lf-panel[hidden]{display:none;}
+.lf-panel-head{display:flex;align-items:center;justify-content:space-between;padding:10px var(--wf-space-4);
+  border-bottom:1px solid var(--wf-color-border);background:var(--wf-color-neutral-50);}
+.lf-panel-title{font-size:var(--wf-text-sm);font-weight:var(--wf-font-semibold);display:flex;align-items:center;gap:8px;}
+.lf-panel-body{padding:var(--wf-space-4);}
+.lf-log{list-style:none;margin:0;padding:0;}
+.lf-log li{position:relative;padding:0 0 var(--wf-space-4) var(--wf-space-5);border-left:2px solid var(--wf-color-border);}
+.lf-log li:last-child{padding-bottom:0;}
+.lf-log li::before{content:"";position:absolute;left:-5px;top:3px;width:8px;height:8px;border-radius:50%;background:var(--wf-color-primary);}
+.lf-log .lf-log-when{font-size:var(--wf-text-xs);color:var(--wf-color-text-tertiary);font-family:var(--wf-font-mono);}
+.lf-log .lf-log-what{font-size:var(--wf-text-sm);margin:2px 0;}
+.lf-log .lf-log-why{font-size:var(--wf-text-xs);color:var(--wf-color-text-secondary);}
+.lf-open-q{margin-top:var(--wf-space-4);padding:var(--wf-space-3);background:#fef3c7;border-radius:var(--wf-radius-sm);font-size:var(--wf-text-xs);color:#92400e;}
+
+.lf-handoff-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--wf-space-3);}
+.lf-handoff-item{border:1px solid var(--wf-color-border-light);border-radius:var(--wf-radius-sm);padding:var(--wf-space-3);font-size:var(--wf-text-sm);}
+.lf-handoff-item .lf-hi-h{font-weight:var(--wf-font-semibold);display:flex;align-items:center;gap:6px;margin-bottom:3px;}
+.lf-handoff-item .lf-hi-d{font-size:var(--wf-text-xs);color:var(--wf-color-text-tertiary);}
+
+/* legend */
+.lf-legend{margin-top:var(--wf-space-8);padding-top:var(--wf-space-4);border-top:1px dashed var(--wf-color-neutral-300);
+  display:flex;flex-wrap:wrap;gap:var(--wf-space-5);font-size:var(--wf-text-xs);color:var(--wf-color-text-tertiary);}
+.lf-legend div{max-width:280px;}
+.lf-legend b{color:var(--wf-color-text-secondary);}
+
+/* toast */
+.lf-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);
+  background:var(--wf-color-neutral-900);color:#fff;padding:10px 16px;border-radius:var(--wf-radius-md);
+  font-size:var(--wf-text-sm);opacity:0;pointer-events:none;transition:all 200ms ease;max-width:90vw;}
+.lf-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.lf-toast code{font-family:var(--wf-font-mono);font-size:var(--wf-text-xs);color:#93c5fd;}
+</style>
+</head>
+<body>
+<div class="lf-shell">
+
+  <div class="lf-banner">
+    <b>Wireframe — Project Hub · lo-fi section.</b> Static mock, opens via <span class="wf-mono">file://</span> (no server). Built with the WireframeDesignSystem (<span class="wf-mono">--wf-</span> tokens). <span class="wf-mono">lf-</span> classes are app-layout, not DS components. Click rounds, chips, and the action buttons — they're live.
+  </div>
+
+  <!-- Hub chrome mimic -->
+  <div class="lf-crumb">Projects <span aria-hidden="true">›</span> <span style="color:var(--wf-color-text-secondary)">Tiered Pricing Redesign</span></div>
+  <h1 class="lf-proj-title">Tiered Pricing Redesign</h1>
+  <div class="lf-tabs" role="tablist">
+    <button class="lf-tab" role="tab" aria-selected="true">Prototypes</button>
+    <button class="lf-tab" role="tab" aria-selected="false">Branch</button>
+    <button class="lf-tab" role="tab" aria-selected="false">Resources</button>
+  </div>
+
+  <!-- ======================= LO-FI SECTION ======================= -->
+  <div class="wf-card">
+    <div class="wf-card-header">
+      <div>
+        <h2 class="wf-card-title">Lo-fi <span class="wf-mono wf-text-tertiary" style="font-size:var(--wf-text-sm);font-weight:400;">· design-system/lofi/</span></h2>
+        <p class="wf-card-subtitle">Static HTML wireframe rounds. Sequential rounds, parallel branch-options. Built against the shared WireframeDesignSystem.</p>
+      </div>
+      <div class="lf-section-actions">
+        <button class="wf-button wf-button-ghost wf-button-sm" onclick="togglePanel('decisions')"><span class="wf-icon">📓</span> Decisions</button>
+        <button class="wf-button wf-button-secondary wf-button-sm" onclick="toast('Created <code>round-4/</code> referencing round-3 → scaffolds CLAUDE.md, brief.md, context/, wireframes/')"><span class="wf-icon">＋</span> New round</button>
+      </div>
+    </div>
+    <div class="wf-card-body">
+
+      <!-- kickoff strip -->
+      <div class="lf-kickoff">
+        <span class="lf-k-ico" aria-hidden="true">🚩</span>
+        <div style="flex:1;min-width:0;">
+          <b>Kickoff</b> — Tiered pricing must support per-customer overrides; PM wants clarity over density.
+          <div class="lf-k-meta wf-mono">KICKOFF.md · seeds round 1</div>
+        </div>
+        <button class="wf-button wf-button-ghost wf-button-sm" onclick="toast('Opened <code>KICKOFF.md</code>')">Open brief</button>
+      </div>
+
+      <!-- timeline -->
+      <div class="lf-timeline">
+        <div class="lf-track">
+          <div class="lf-track-label">Rounds</div>
+          <div class="lf-rail">
+            <button class="lf-chip" aria-pressed="false" onclick="selectRound('r1',this)">R1<small>built</small></button>
+            <span class="lf-connector"></span>
+            <button class="lf-chip" aria-pressed="false" onclick="selectRound('r2',this)">R2<small>built</small></button>
+            <span class="lf-connector"></span>
+            <button class="lf-chip" aria-pressed="true" onclick="selectRound('r3',this)">R3<small>draft</small></button>
+            <span class="lf-connector lf-dashed"></span>
+            <button class="lf-add" title="New round" onclick="toast('Created <code>round-4/</code> referencing round-3')">＋</button>
+          </div>
+        </div>
+
+        <!-- branch-options off R2 -->
+        <div class="lf-track">
+          <div class="lf-track-label">Options <small>off R2</small></div>
+          <div class="lf-branch-wrap">
+            <div class="lf-rail lf-dashed" style="margin-top:-8px;">
+              <span class="lf-elbow" aria-hidden="true"></span>
+              <button class="lf-chip lf-chosen" aria-pressed="false" onclick="selectRound('r2-two-pane',this)" title="Chosen — folded into R3">two-pane<small>chosen</small></button>
+              <span class="lf-connector lf-dashed"></span>
+              <button class="lf-chip" aria-pressed="false" onclick="selectRound('r2-stacked',this)">stacked<small>option</small></button>
+              <span class="lf-connector lf-dashed"></span>
+              <button class="lf-add" title="New branch-option" onclick="toast('Created branch-option under <code>round-2/options/</code>')">＋</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- selected round detail -->
+      <div class="lf-detail">
+        <div class="lf-detail-head">
+          <div class="lf-detail-titlewrap">
+            <h3 class="lf-detail-title" id="d-title">Round 3</h3>
+            <span class="wf-badge wf-badge-warning" id="d-status"><span class="wf-badge-dot wf-badge-dot-warning"></span> Drafted</span>
+          </div>
+          <div class="lf-detail-actions">
+            <button class="wf-button wf-button-primary wf-button-sm" id="d-send" onclick="sendToClaude()"><span class="wf-icon">✦</span> Send to Claude</button>
+            <button class="wf-button wf-button-secondary wf-button-sm" id="d-launch" onclick="launch()"><span class="wf-icon">↗</span> Launch</button>
+            <button class="wf-button wf-button-ghost wf-button-sm" onclick="toast('Spawned branch-option under this round → <code>options/&lt;name&gt;/</code>')"><span class="wf-icon">⌥</span> Branch option</button>
+            <button class="wf-button wf-button-ghost wf-button-sm" onclick="togglePanel('decisions')"><span class="wf-icon">📓</span> Decisions</button>
+          </div>
+        </div>
+
+        <div class="lf-brief" id="d-brief"></div>
+
+        <div id="d-wireframes"></div>
+
+        <div class="lf-meta-row">
+          <span>Folder <span class="wf-mono" id="d-path">design-system/lofi/round-3/</span></span>
+          <span>Base <span class="wf-mono" id="d-base">round-2 (two-pane)</span></span>
+        </div>
+      </div>
+
+      <!-- decisions / changelog panel -->
+      <div class="lf-panel" id="panel-decisions" hidden>
+        <div class="lf-panel-head">
+          <span class="lf-panel-title"><span aria-hidden="true">📓</span> Decisions &amp; changelog <span class="wf-mono wf-text-tertiary" style="font-weight:400;font-size:var(--wf-text-xs);">· WIREFRAME-GUIDE.html</span></span>
+          <button class="wf-button wf-button-ghost wf-button-sm" onclick="togglePanel('decisions')">Close</button>
+        </div>
+        <div class="lf-panel-body">
+          <p style="margin:0 0 var(--wf-space-3);font-size:var(--wf-text-xs);color:var(--wf-color-text-tertiary);">Generated by the <span class="wf-mono">/wireframe-index</span> skill after each round — round context, per-screen docs, changes &amp; rationale.</p>
+          <ul class="lf-log">
+            <li><div class="lf-log-when">R3 · 2026-06-08</div><div class="lf-log-what">Drafted round 3 from the <b>two-pane</b> option.</div><div class="lf-log-why">Why: two-pane tested clearer with the PM; stacked buried the override controls.</div></li>
+            <li><div class="lf-log-when">R2 · 2026-06-05</div><div class="lf-log-what">Explored <b>two-pane</b> vs <b>stacked</b> branch-options. Chose two-pane.</div><div class="lf-log-why">Why: side-by-side keeps tier list and override editor visible at once.</div></li>
+            <li><div class="lf-log-when">R2 · 2026-06-05</div><div class="lf-log-what">Moved per-customer override out of a modal into an inline panel.</div><div class="lf-log-why">Why: modal hid the tier context the user was editing against.</div></li>
+            <li><div class="lf-log-when">R1 · 2026-06-03</div><div class="lf-log-what">Established the tier-list-first layout and density posture (compact).</div><div class="lf-log-why">Why: kickoff favored clarity; compact grid matches Excalibrr production.</div></li>
+          </ul>
+          <div class="lf-open-q"><b>Open question (R3):</b> Should override history live in the panel or a separate drawer? — to resolve with PM next round.</div>
+        </div>
+      </div>
+
+      <!-- promote to hi-fi -->
+      <div style="margin-top:var(--wf-space-6);display:flex;align-items:center;justify-content:space-between;gap:var(--wf-space-4);flex-wrap:wrap;padding-top:var(--wf-space-4);border-top:1px solid var(--wf-color-border-light);">
+        <div style="font-size:var(--wf-text-sm);color:var(--wf-color-text-secondary);max-width:520px;">
+          <b style="color:var(--wf-color-text-primary);">Ready for hi-fi?</b> Promoting wires the chosen round into a hi-fi project's <span class="wf-mono">CLAUDE.md</span> and generates a handoff doc — so the build references all this automatically.
+        </div>
+        <button class="wf-button wf-button-success" onclick="togglePanel('handoff')"><span class="wf-icon">→</span> Promote to hi-fi</button>
+      </div>
+
+      <!-- handoff preview panel -->
+      <div class="lf-panel" id="panel-handoff" hidden>
+        <div class="lf-panel-head">
+          <span class="lf-panel-title"><span aria-hidden="true">→</span> What gets wired into hi-fi</span>
+          <button class="wf-button wf-button-ghost wf-button-sm" onclick="togglePanel('handoff')">Close</button>
+        </div>
+        <div class="lf-panel-body">
+          <div class="lf-handoff-grid">
+            <div class="lf-handoff-item"><div class="lf-hi-h"><span aria-hidden="true">🖼️</span> Chosen wireframes</div><div class="lf-hi-d wf-mono">round-3/wireframes/ → referenced in hi-fi CLAUDE.md</div></div>
+            <div class="lf-handoff-item"><div class="lf-hi-h"><span aria-hidden="true">🚩</span> Kickoff + decisions</div><div class="lf-hi-d wf-mono">KICKOFF.md · CHANGELOG.md · decisions.md</div></div>
+            <div class="lf-handoff-item"><div class="lf-hi-h"><span aria-hidden="true">🎨</span> Design system</div><div class="lf-hi-d wf-mono">WireframeDesignSystem + /wireframe-design-index</div></div>
+            <div class="lf-handoff-item"><div class="lf-hi-h"><span aria-hidden="true">📄</span> Handoff doc</div><div class="lf-hi-d wf-mono">HANDOFF.md generated via /handoff-doc</div></div>
+          </div>
+          <div style="margin-top:var(--wf-space-4);display:flex;justify-content:flex-end;">
+            <button class="wf-button wf-button-success wf-button-sm" onclick="toast('Promoted to hi-fi · wrote HANDOFF.md and injected references into the hi-fi CLAUDE.md')">Confirm promote</button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /card-body -->
+  </div><!-- /card -->
+
+  <!-- legend -->
+  <div class="lf-legend">
+    <div><b>Rounds</b> are sequential iterations (R1→R2→R3). Each is a plain folder referencing the previous — no git worktree.</div>
+    <div><b>Branch-options</b> are parallel directions off a round (sibling <span class="wf-mono">options/*</span> folders). One is chosen ✓ and folds into the next round.</div>
+    <div><b>Launch</b> opens static HTML via <span class="wf-mono">file://</span> — enabled only once <span class="wf-mono">wireframes/</span> has files. No dev server, no port.</div>
+    <div><b>Send to Claude</b> copies a prompt to <b>build from</b> the WireframeDesignSystem, then <b>document with</b> <span class="wf-mono">/wireframe-index</span> → each round's <span class="wf-mono">WIREFRAME-GUIDE.html</span> is the transparency/decisions layer.</div>
+  </div>
+
+</div>
+
+<div class="lf-toast" id="toast"></div>
+
+<script>
+const ROUNDS = {
+  'r1':{title:'Round 1', status:'built', path:'design-system/lofi/round-1/', base:'kickoff',
+        brief:'<b>Goal:</b> establish layout & IA for the tier list. Resolve density posture.',
+        wireframes:['tier-list.html','tier-detail.html']},
+  'r2':{title:'Round 2', status:'built', path:'design-system/lofi/round-2/', base:'round-1',
+        brief:'<b>Goal:</b> where do per-customer overrides live? Compare two directions.',
+        wireframes:['overview.html','override-inline.html','tier-list.html']},
+  'r3':{title:'Round 3', status:'drafted', path:'design-system/lofi/round-3/', base:'round-2 (two-pane)',
+        brief:'<b>Goal:</b> refine the two-pane override editor; add override history. <b>Drafted</b> — no wireframes yet.',
+        wireframes:[]},
+  'r2-two-pane':{title:'R2 · option: two-pane', status:'chosen', path:'round-2/options/two-pane/', base:'round-2',
+        brief:'<b>Direction A:</b> tier list and override editor side-by-side. <b>Chosen</b> — folded into R3.',
+        wireframes:['two-pane.html']},
+  'r2-stacked':{title:'R2 · option: stacked', status:'option', path:'round-2/options/stacked/', base:'round-2',
+        brief:'<b>Direction B:</b> override editor stacked below the tier list. Not chosen.',
+        wireframes:['stacked.html']},
+};
+const STATUS = {
+  built:  {cls:'wf-badge-success', dot:'wf-badge-dot-success', label:'Built'},
+  drafted:{cls:'wf-badge-warning', dot:'wf-badge-dot-warning', label:'Drafted'},
+  chosen: {cls:'wf-badge-primary', dot:'wf-badge-dot-primary', label:'Chosen'},
+  option: {cls:'wf-badge',         dot:'wf-badge-dot',         label:'Option'},
+};
+let current = 'r3';
+
+function selectRound(id, el){
+  current = id;
+  document.querySelectorAll('.lf-chip').forEach(c=>c.setAttribute('aria-pressed','false'));
+  if(el) el.setAttribute('aria-pressed','true');
+  const r = ROUNDS[id], s = STATUS[r.status];
+  document.getElementById('d-title').textContent = r.title;
+  const st = document.getElementById('d-status');
+  st.className = 'wf-badge '+s.cls;
+  st.innerHTML = '<span class="wf-badge-dot '+s.dot+'"></span> '+s.label;
+  document.getElementById('d-brief').innerHTML = r.brief;
+  document.getElementById('d-path').textContent = r.path;
+  document.getElementById('d-base').textContent = r.base;
+
+  const built = r.wireframes.length>0;
+  const launch = document.getElementById('d-launch');
+  launch.disabled = !built;
+  launch.title = built ? 'Open wireframes (file://)' : 'No wireframes yet — Launch disabled';
+
+  const wrap = document.getElementById('d-wireframes');
+  if(!built){
+    wrap.innerHTML = '<div class="lf-empty">No wireframes yet. <b>Send to Claude</b> to build into <code>'+r.path+'wireframes/</code>, then Launch.</div>';
+  } else {
+    wrap.innerHTML = '<ul class="lf-wf-list">'+r.wireframes.map(f=>
+      '<li><span aria-hidden="true">🖼️</span><span class="lf-wf-name">'+f+'</span>'+
+      '<span class="wf-badge wf-badge-sm">wireframe</span>'+
+      '<button class="wf-button wf-button-ghost wf-button-sm" onclick="toast(\'Opened <code>'+f+'</code> via file://\')">Open</button></li>'
+    ).join('')+'</ul>';
+  }
+}
+
+function launch(){
+  const r = ROUNDS[current];
+  if(r.wireframes.length>0) toast('Launched <code>'+r.path+'index.html</code> via file:// — no server');
+}
+function sendToClaude(){
+  const r = ROUNDS[current];
+  toast('Copied prompt → build from WireframeDesignSystem into <code>'+r.path+'wireframes/</code> (base: '+r.base+'), then run <code>/wireframe-index</code> to generate WIREFRAME-GUIDE.html');
+}
+function togglePanel(name){
+  const p = document.getElementById('panel-'+name);
+  const other = document.getElementById('panel-'+(name==='decisions'?'handoff':'decisions'));
+  if(other) other.hidden = true;
+  p.hidden = !p.hidden;
+  if(!p.hidden) p.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+let toastTimer;
+function toast(msg){
+  const t = document.getElementById('toast');
+  t.innerHTML = msg; t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>t.classList.remove('show'), 3200);
+}
+selectRound('r3', document.querySelector('.lf-chip[aria-pressed="true"]'));
+</script>
+</body>
+</html>

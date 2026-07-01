@@ -1,0 +1,99 @@
+.fbavFormulaBlock {
+  position: relative;
+  width: auto;
+  margin: 0 16px 16px 16px;
+}
+
+.fbavFormulaBlockHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 0 6px 0;
+}
+
+.fbavFormulaBlockLabel {
+  font-size: 13px;
+  color: var(--gravi-text-color, var(--gray-700));
+}
+
+.fbavMonacoWrapper {
+  position: relative;
+  width: 100%;
+  border: 1px solid var(--gravi-border-color, var(--gray-200));
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.fbavCopyButton {
+  border: 1px solid var(--gravi-border-color, var(--gray-300));
+  border-radius: 6px;
+}
+
+.fbavCopyButton:hover {
+  border-color: var(--gravi-primary-color, #1890ff);
+}
+
+.copyIcon {
+  font-size: 18px;
+}
+
+/* Resize handle on the drawer's left edge */
+.fbavResizeHandle {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 12px;
+  cursor: col-resize;
+  background-color: var(--gravi-border-color, #d9d9d9);
+  transition: background-color 0.15s ease;
+  touch-action: none;
+  z-index: 3;
+}
+
+.fbavResizeHandle:hover,
+.fbavResizeHandle.isDragging {
+  background-color: var(--gravi-primary-color, #1890ff);
+}
+
+.fbavResizeHandle::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 64px;
+  background-image: radial-gradient(circle, #fff 2px, transparent 2.5px);
+  background-size: 10px 10px;
+  background-repeat: repeat-y;
+  pointer-events: none;
+}
+
+.fbavDrawerBodyInner {
+  margin-left: 12px;
+  height: 100%;
+  overflow: auto;
+}
+
+/* While dragging the handle, suppress text selection across the document.
+   The body class is added imperatively via document.body.classList.add('fbav-resizing'),
+   so the selector must stay global. */
+:global(body.fbav-resizing),
+:global(body.fbav-resizing *) {
+  user-select: none !important;
+  cursor: col-resize !important;
+}
+
+/* Disable antd's drawer width tween while the user is actively dragging the
+   resize handle so the panel tracks the cursor 1:1 instead of easing into it. */
+:global(body.fbav-resizing .ant-drawer .ant-drawer-content-wrapper),
+:global(body.fbav-resizing .ant-drawer-content-wrapper) {
+  transition: none !important;
+}
+
+.fbavHoveredRow,
+.fbavHoveredRow:hover,
+.fbavHoveredRow > [class*='ag-cell'] {
+  background-color: rgba(24, 144, 255, 0.18) !important;
+}

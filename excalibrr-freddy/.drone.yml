@@ -1,0 +1,19 @@
+kind: pipeline
+name: default
+
+steps:
+  - name: build
+    image: node
+    commands:
+      - yarn install
+      - yarn run build
+
+  - name: npm
+    image: plugins/npm
+    settings:
+      token:
+        from_secret: npm_token
+
+trigger:
+  branch:
+    - main

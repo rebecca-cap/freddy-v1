@@ -1,0 +1,14 @@
+{
+  "path": "/Analytics/ByTerminal",
+  "title": "By Terminal",
+  "finalUrl": "http://localhost:3001/Analytics/ByTerminal",
+  "rootLen": 76385,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [
+    "PricePerformance/ByTerminal"
+  ],
+  "consoleEventCount": 11
+}

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Action Bar Component - Gravitate Wireframe Design System</title>
+  <link rel="stylesheet" href="../../tokens/index.css">
+  <link rel="stylesheet" href="../controls/controls.css">
+  <link rel="stylesheet" href="../data-display/data-display.css">
+  <link rel="stylesheet" href="specialized.css">
+  <style>
+    body {
+      font-family: var(--wf-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+      background-color: var(--wf-color-background, #f9fafb);
+      margin: 0;
+      padding: 32px;
+      color: var(--wf-color-text-primary, #111827);
+    }
+    .demo-section {
+      margin-bottom: 48px;
+    }
+    .demo-section h2 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--wf-color-text-primary, #111827);
+    }
+    .demo-section p {
+      font-size: 14px;
+      color: var(--wf-color-text-secondary, #374151);
+      margin-bottom: 16px;
+    }
+    .demo-container {
+      background: var(--wf-color-neutral-100, #f3f4f6);
+      border-radius: 8px;
+      padding: 24px;
+    }
+    .demo-row {
+      margin-bottom: 24px;
+    }
+    .demo-row:last-child {
+      margin-bottom: 0;
+    }
+    .demo-label {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--wf-color-text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      font-size: 16px;
+      color: var(--wf-color-text-secondary, #374151);
+      margin-bottom: 32px;
+    }
+    code {
+      display: block;
+      background: var(--wf-color-neutral-100, #f3f4f6);
+      padding: 16px;
+      border-radius: 6px;
+      font-size: 13px;
+      overflow-x: auto;
+      white-space: pre;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Action Bar Component</h1>
+  <p class="subtitle">Grid/table toolbar for managing data views with title, filters, and actions.</p>
+
+  <!-- Basic Action Bar -->
+  <section class="demo-section">
+    <h2>Basic Action Bar</h2>
+    <p>Standard action bar with title, item count, and action buttons.</p>
+    <div class="demo-container">
+      <div class="wf-action-bar">
+        <div class="wf-action-bar-left">
+          <h2 class="wf-action-bar-title">Contracts</h2>
+          <span class="wf-action-bar-count">24 items</span>
+        </div>
+        <div class="wf-action-bar-right">
+          <button class="wf-button wf-button-secondary wf-button-sm">Export</button>
+          <button class="wf-button wf-button-primary wf-button-sm">+ Add New</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Action Bar with Filters -->
+  <section class="demo-section">
+    <h2>Action Bar with Inline Filters</h2>
+    <p>Action bar with centered filter controls.</p>
+    <div class="demo-container">
+      <div class="wf-action-bar">
+        <div class="wf-action-bar-left">
+          <h2 class="wf-action-bar-title">Contracts</h2>
+          <span class="wf-action-bar-count">24 items</span>
+        </div>
+        <div class="wf-action-bar-center">
+          <div class="wf-action-bar-filters">
+            <select class="wf-select wf-select-sm" style="width: auto;">
+              <option>All Status</option>
+              <option>Active</option>
+              <option>Pending</option>
+              <option>Expired</option>
+            </select>
+            <input type="search" class="wf-input wf-input-sm" placeholder="Search..." style="width: 200px;">
+          </div>
+        </div>
+        <div class="wf-action-bar-right">
+          <button class="wf-button wf-button-secondary wf-button-sm">Export</button>
+          <button class="wf-button wf-button-primary wf-button-sm">+ Add New</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Selection Mode -->
+  <section class="demo-section">
+    <h2>Selection Mode</h2>
+    <p>Action bar state when items are selected in the grid.</p>
+    <div class="demo-container">
+      <div class="wf-action-bar wf-action-bar-selection">
+        <div class="wf-action-bar-left">
+          <label class="wf-checkbox">
+            <input type="checkbox" class="wf-checkbox-input" checked>
+            <span class="wf-checkbox-box"></span>
+          </label>
+          <span style="font-weight: 500; color: var(--wf-color-primary);">3 selected</span>
+        </div>
+        <div class="wf-action-bar-right">
+          <button class="wf-button wf-button-secondary wf-button-sm">Bulk Edit</button>
+          <button class="wf-button wf-button-danger wf-button-sm">Delete</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Compact Action Bar -->
+  <section class="demo-section">
+    <h2>Compact Action Bar</h2>
+    <p>Smaller action bar for tighter layouts.</p>
+    <div class="demo-container">
+      <div class="wf-action-bar wf-action-bar-compact">
+        <div class="wf-action-bar-left">
+          <h2 class="wf-action-bar-title" style="font-size: 14px;">Recent Activity</h2>
+          <span class="wf-action-bar-count">12 items</span>
+        </div>
+        <div class="wf-action-bar-right">
+          <button class="wf-button wf-button-ghost wf-button-sm">View All</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Borderless Action Bar -->
+  <section class="demo-section">
+    <h2>Borderless Action Bar</h2>
+    <p>Action bar without borders, using bottom border only.</p>
+    <div class="demo-container" style="background: white; padding: 0;">
+      <div class="wf-action-bar wf-action-bar-borderless">
+        <div class="wf-action-bar-left">
+          <h2 class="wf-action-bar-title">Orders</h2>
+          <span class="wf-action-bar-count">156 items</span>
+        </div>
+        <div class="wf-action-bar-center">
+          <div class="wf-action-bar-filters">
+            <select class="wf-select wf-select-sm" style="width: auto;">
+              <option>All Types</option>
+            </select>
+            <select class="wf-select wf-select-sm" style="width: auto;">
+              <option>All Dates</option>
+            </select>
+          </div>
+        </div>
+        <div class="wf-action-bar-right">
+          <button class="wf-button wf-button-secondary wf-button-sm">Filter</button>
+          <button class="wf-button wf-button-primary wf-button-sm">+ New Order</button>
+        </div>
+      </div>
+      <div style="padding: 24px; color: var(--wf-color-text-secondary); font-size: 14px;">
+        Table content would go here...
+      </div>
+    </div>
+  </section>
+
+  <!-- Action Bar with Multiple Filters -->
+  <section class="demo-section">
+    <h2>Action Bar with Multiple Actions</h2>
+    <p>Action bar with multiple grouped actions.</p>
+    <div class="demo-container">
+      <div class="wf-action-bar">
+        <div class="wf-action-bar-left">
+          <h2 class="wf-action-bar-title">Invoices</h2>
+          <span class="wf-action-bar-count">89 items</span>
+        </div>
+        <div class="wf-action-bar-right">
+          <button class="wf-button wf-button-ghost wf-button-sm">Import</button>
+          <button class="wf-button wf-button-ghost wf-button-sm">Export</button>
+          <span style="width: 1px; height: 24px; background: var(--wf-color-border);"></span>
+          <button class="wf-button wf-button-secondary wf-button-sm">Settings</button>
+          <button class="wf-button wf-button-primary wf-button-sm">+ Create Invoice</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Usage Example -->
+  <section class="demo-section">
+    <h2>Code Example</h2>
+    <p>HTML structure for action bar components.</p>
+    <code>&lt;!-- Basic Action Bar --&gt;
+&lt;div class="wf-action-bar"&gt;
+  &lt;div class="wf-action-bar-left"&gt;
+    &lt;h2 class="wf-action-bar-title"&gt;Contracts&lt;/h2&gt;
+    &lt;span class="wf-action-bar-count"&gt;24 items&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="wf-action-bar-center"&gt;
+    &lt;div class="wf-action-bar-filters"&gt;
+      &lt;select class="wf-select wf-select-sm"&gt;
+        &lt;option&gt;All Status&lt;/option&gt;
+      &lt;/select&gt;
+      &lt;input type="search" class="wf-input wf-input-sm" placeholder="Search..."&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="wf-action-bar-right"&gt;
+    &lt;button class="wf-button wf-button-secondary wf-button-sm"&gt;Export&lt;/button&gt;
+    &lt;button class="wf-button wf-button-primary wf-button-sm"&gt;+ Add New&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Selection Mode --&gt;
+&lt;div class="wf-action-bar wf-action-bar-selection"&gt;
+  &lt;div class="wf-action-bar-left"&gt;
+    &lt;input type="checkbox" class="wf-checkbox-input" checked&gt;
+    &lt;span&gt;3 selected&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="wf-action-bar-right"&gt;
+    &lt;button class="wf-button wf-button-secondary wf-button-sm"&gt;Bulk Edit&lt;/button&gt;
+    &lt;button class="wf-button wf-button-danger wf-button-sm"&gt;Delete&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code>
+  </section>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "path": "/Analytics/ByTerminal",
+  "title": "By Terminal",
+  "finalUrl": "http://localhost:3001/Analytics/ByTerminal",
+  "rootLen": 110557,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 10,
+  "stuckLoaders": [],
+  "emptyGrids": []
+}

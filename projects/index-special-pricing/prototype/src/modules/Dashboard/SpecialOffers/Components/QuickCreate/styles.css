@@ -1,0 +1,360 @@
+/* Quick-create (two-step preset) flow — visual polish layered on the shared offer-drawer.
+   Reuses the design-system tokens already in the app (--bg-*, --theme-color-1, --gray-*). */
+
+/* The offer body framed as "the object you've created": a tile with a subtle drop shadow
+   so it reads as an editor/viewer surface rather than floating chrome. Intentionally light. */
+.qc-offer-tile {
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 4px 16px rgba(16, 24, 40, 0.08);
+}
+
+/* One consistent divider between every major section inside the tile. With each section's 24px
+   (p-4) padding, this reads as the canonical "24px above / 24px below a divider" section rhythm. */
+.qc-section {
+  border-top: 1px solid var(--bg-3);
+}
+/* The shared StepIndicator ships its own top+bottom border; the bottom one would double up with
+   the first section's divider. Drop it inside quick-create only (scoped — the full wizard keeps it). */
+.qc-offer-tile .border-bottom {
+  border-bottom: none !important;
+}
+/* The shared SelectTimingWindows can't take the qc-section class without coupling it to this
+   feature, so give it the same divider here, scoped to the quick-create tile. */
+.qc-offer-tile .timing-window-container {
+  border-top: 1px solid var(--bg-3);
+}
+
+/* Text/link action — an underline link (not bold), per review (no off-system button colors). */
+.qc-link-btn,
+.qc-link-btn.ant-btn,
+.qc-link-btn.ant-btn.gravi-button {
+  padding: 0;
+  height: auto;
+  font-weight: 400;
+  text-decoration: underline;
+  text-decoration-color: currentColor;
+  text-underline-offset: 2px;
+  box-shadow: none;
+}
+/* antd v4 wraps button text in an inner <span>; draw the underline there too. */
+.qc-link-btn.ant-btn.gravi-button > span {
+  text-decoration: underline;
+}
+.qc-link-btn.ant-btn:hover,
+.qc-link-btn.ant-btn.gravi-button:hover {
+  text-decoration: underline;
+}
+
+/* Preset bar */
+.qc-presetbar {
+  background-color: var(--bg-2);
+  border: 1px solid var(--bg-3);
+  border-radius: 8px;
+}
+
+/* Quick-create stepper: fixed-width, left-aligned, steps close together (was full-width/spread).
+   Wraps the SHARED StepIndicator (root width:100% fills this 320px) so the full-setup wizard is
+   untouched. The full-width top divider would shrink to 320px and read worse than none — drop it;
+   the Product section's own .qc-section border-top provides the divider below. */
+.qc-stepper {
+  width: 320px;
+}
+.qc-stepper .border-top {
+  border-top: none;
+}
+
+/* Selected-customers chip bin */
+.qc-chipbin {
+  border: 1px dashed var(--bg-3);
+  border-radius: 8px;
+  background-color: var(--bg-2);
+  min-height: 56px;
+  /* Excalibrr's Vertical hard-codes inline `flex:1 1 auto; height:100%; overflow:hidden`, so the
+     bin stretches to fill the picker's tall flex column (only stopping at max-height) instead of
+     hugging its chips. !important is required to beat those inline styles — hug content, floor 56,
+     cap at 220 then scroll so a big selection never shoves the grid off-screen. */
+  flex: 0 0 auto !important;
+  height: auto !important;
+  max-height: 220px;
+  overflow-y: auto !important;
+}
+.qc-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 6px 3px 10px;
+  border: 1px solid var(--bg-3);
+  border-radius: 16px;
+  background-color: var(--bg-1);
+  font-size: 13px;
+}
+.qc-chip-src {
+  font-size: 11px;
+  color: var(--gray-600);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+.qc-chip-x {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--gray-600);
+  font-size: 14px;
+  line-height: 1;
+  padding: 2px 4px;
+  border-radius: 50%;
+}
+.qc-chip-x:hover {
+  background-color: var(--bg-3);
+  color: var(--gray-700);
+}
+
+/* Group quick-pick chips (Groups tab) */
+.qc-groupchip {
+  cursor: pointer;
+  border: 1px solid var(--bg-3);
+  border-radius: 16px;
+  padding: 4px 12px;
+  background-color: var(--bg-1);
+  font-size: 13px;
+  transition: background-color 0.12s ease;
+}
+.qc-groupchip:hover {
+  background-color: var(--bg-2);
+}
+.qc-groupchip.is-active {
+  border-color: var(--theme-color-1);
+  background-color: var(--theme-color-1);
+  color: #fff;
+}
+
+/* Product row — three even dropdowns (Product / Terminal / Volume), collapsing on narrow widths. */
+.qc-field-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+@media (max-width: 640px) {
+  .qc-field-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Price-formula empty state — the Σ "no formula yet" card, before a template is chosen/built. */
+.qc-formula-empty {
+  border: 1px dashed var(--bg-3);
+  background-color: var(--bg-2);
+}
+/* Ancestor-scoped (0,2,0) to outrank excalibrr's `p.p1` (0,1,1) base, which otherwise pins the
+   Texto glyph to 1em (~11px) — the reason the icon always rendered tiny. */
+.qc-formula-empty .qc-formula-sigma {
+  font-size: 72px;
+  line-height: 1;
+  color: var(--gray-500);
+}
+
+/* Populated formula — framed so the editable table reads as one object. */
+.qc-formula-built {
+  background-color: var(--bg-1);
+}
+
+/* One vertical rhythm inside the formula card. The shared FormulaDiff (.my-4 wrapper +
+   .mb-4 Form.Item) and PricingDisplaySection (.mb-3 wrapper) ship their own stacked
+   margins, which fought the card's 16px flex `gap` and left a tall void around the
+   differential. Neutralize them so the parent gap is the single source of vertical
+   spacing. Scoped — the full-setup wizard keeps the shared components' native margins. */
+.qc-formula-built .qc-diff .my-4 {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+.qc-formula-built .qc-diff .ant-form-item.mb-4 {
+  margin-bottom: 0 !important;
+}
+.qc-formula-built .mb-3 {
+  margin-bottom: 0 !important;
+}
+/* The differential is one small currency value — cap it so it reads as a compact field,
+   not a lonely input stretched across the full card width. The `$` prefix makes antd
+   render an affix-wrapper as the bordered box (it carries the inline width:100%), so cap
+   that; max-width leaves the inline width as the base. */
+.qc-formula-built .qc-diff .ant-input-number,
+.qc-formula-built .qc-diff .ant-input-number-affix-wrapper {
+  max-width: 240px;
+}
+/* Match the differential's field label to the card's other sub-headers — Components /
+   Pricing terms / Price formula (display) are bold — so the four read as peers. */
+.qc-formula-built .qc-diff .ant-form-item-label > label {
+  font-weight: 700;
+}
+
+/* Favorites star-pin — the in-cell star button + the "Favorites" group chip accent. */
+.qc-fav-btn.ant-btn {
+  padding: 0;
+  height: auto;
+  border: none;
+  box-shadow: none;
+  font-size: 16px;
+  line-height: 1;
+}
+.qc-fav-btn.ant-btn:hover {
+  opacity: 0.8;
+}
+.qc-favchip.is-active {
+  border-color: #faad14;
+  background-color: rgba(250, 173, 20, 0.18);
+  /* The base .qc-groupchip.is-active fills navy with WHITE text; the favorites chip uses a light
+     gold fill instead, so that white text is unreadable — force it back to near-black. */
+  color: #262626;
+}
+
+/* OSP brand chrome — scoped to the quick-create drawer so the full-setup wizard
+   and the rest of the app keep their defaults. Brand navy (--theme-color-1)
+   throughout; no cyan. */
+.qc-drawer .ant-drawer-header {
+  background-color: var(--theme-color-1);
+  border-bottom: none;
+}
+.qc-drawer .ant-drawer-title,
+.qc-drawer .ant-drawer-close {
+  color: #fff;
+}
+
+/* Primary CTAs: cyan fill + white text (cyan accent on navy chrome). The buttons ship as
+   theme1 (navy); recolor to cyan here so the shared Footer stays navy in the full-setup drawer. */
+.qc-drawer .gravi-button.filled.theme-1 {
+  background-color: var(--theme-color-2);
+  border-color: var(--theme-color-2);
+  color: #fff;
+}
+.qc-drawer .gravi-button.filled.theme-1:hover {
+  background-color: #3f9bd0;
+  border-color: #3f9bd0;
+  color: #fff;
+}
+
+/* antd primary controls render cyan (@primary-color = theme-color-2); force navy
+   inside the quick-create drawer so the flow has zero cyan. */
+.qc-drawer .ant-checkbox-checked .ant-checkbox-inner,
+.qc-drawer .ant-checkbox-indeterminate .ant-checkbox-inner::after {
+  background-color: var(--theme-color-1);
+}
+.qc-drawer .ant-checkbox-checked .ant-checkbox-inner,
+.qc-drawer .ant-checkbox:hover .ant-checkbox-inner,
+.qc-drawer .ant-checkbox-input:focus + .ant-checkbox-inner {
+  border-color: var(--theme-color-1);
+}
+.qc-drawer .ant-checkbox-checked::after {
+  border-color: var(--theme-color-1);
+}
+.qc-drawer .ant-radio-checked .ant-radio-inner,
+.qc-drawer .ant-radio:hover .ant-radio-inner {
+  border-color: var(--theme-color-1);
+}
+.qc-drawer .ant-radio-inner::after {
+  background-color: var(--theme-color-1);
+}
+.qc-drawer .ant-radio-button-wrapper-checked,
+.qc-drawer .ant-radio-button-wrapper-checked:hover {
+  color: var(--theme-color-1);
+  border-color: var(--theme-color-1);
+}
+.qc-drawer .ant-radio-button-wrapper-checked::before {
+  background-color: var(--theme-color-1);
+}
+.qc-drawer .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: var(--theme-color-1);
+}
+.qc-drawer .ant-tabs-ink-bar {
+  background: var(--theme-color-1);
+}
+
+/* The active stepper circle is navy by default (shared StepIndicator) — no override needed. */
+
+/* Captions/subtitles ship as Texto appearance hint(gray-400)/medium(gray-500) — too light on
+   the gray surfaces. Bump to gray-700 for WCAG-AA contrast, scoped to the quick-create flow. */
+.qc-drawer .text-hint,
+.qc-drawer .text-medium {
+  color: var(--gray-700);
+}
+/* text-secondary is cyan (theme-color-2); used by the $ differential + grid "N Selected"
+   count — force navy. */
+.qc-drawer .text-secondary {
+  color: var(--theme-color-1);
+}
+/* AG-grid checkbox accent defaults to theme-color-2 (cyan); re-point to navy. The var is set
+   on .ag-theme-alpine itself, so override at that element (an ancestor rule won't win). */
+.qc-drawer .ag-theme-alpine {
+  --ag-checkbox-checked-color: var(--theme-color-1);
+}
+
+/* No stray ALL-CAPS micro-labels: the preview rail + formula block uppercase a few eyebrow
+   labels via textTransform. Normalize them to sentence case (their strings already are). */
+.qc-preview-rail .texto,
+.qc-formula-built .texto {
+  text-transform: none !important;
+}
+
+/* The formula char-counter ("44 / 1000") is antd's showCount ::after; it inherits the textarea's
+   monospace and floats right. Make it a plain sans label, left-aligned with the field's content.
+   The formula text itself stays monospace (it's the generated formula name). */
+.qc-formula-built .ant-input-textarea-show-count::after {
+  font-family: 'Lato', sans-serif;
+  float: none;
+  text-align: left;
+  color: var(--gray-600);
+}
+
+/* Formula-template chooser — the bottom-sheet opened by "Choose a formula template" / "Add a
+   template". It renders in its own Drawer OUTSIDE .qc-drawer, so the shared antd inputs / buttons /
+   segmented ship with antd's ~2px radius. Round them here to match the quick-create house style
+   (5px fields, 8px buttons/segmented). Scoped to this drawer — full-setup + ContractManagement,
+   which render the same selector elsewhere, are untouched. */
+.qc-template-drawer .ant-input,
+.qc-template-drawer .ant-input-affix-wrapper,
+.qc-template-drawer .ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  border-radius: 5px;
+}
+.qc-template-drawer .ant-btn.gravi-button,
+.qc-template-drawer .ant-segmented {
+  border-radius: 8px;
+}
+.qc-template-drawer .ant-segmented .ant-segmented-item,
+.qc-template-drawer .ant-segmented .ant-segmented-thumb {
+  border-radius: 6px;
+}
+
+/* Dropdown/picker panels (Select/DatePicker/TimePicker) portal to <body>, so they escape the
+   .qc-drawer scope and fall back to antd's default 2px radius (looks square). The qc-pop class is
+   added by the quick-create pickers only and lands ON the portaled panel, so this rule is
+   intentionally NOT nested under .qc-drawer — qc-pop carries the scope. 8px = drawer house radius. */
+.ant-select-dropdown.qc-pop,
+.ant-picker-dropdown.qc-pop .ant-picker-panel-container {
+  border-radius: 8px;
+  overflow: hidden; /* clip inner columns/cells to the rounded corners */
+}
+
+/* Select input boxes are in-DOM (not portaled) but ship antd's 2px radius, while the date/time
+   inputs already carry border-radius-5 — round the Select boxes to match. Scoped to the drawer. */
+.qc-drawer .ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  border-radius: 5px;
+}
+
+/* The remaining form fields (text inputs, the Volume number input, search/affix inputs, and the
+   date/time picker wrappers) also ship antd's 2px radius — round them to 5px so every field in the
+   drawer matches the Select boxes and the border-radius-5 date/time inputs. Scoped to the drawer. */
+.qc-drawer .ant-input,
+.qc-drawer .ant-input-affix-wrapper,
+.qc-drawer .ant-input-number,
+.qc-drawer .ant-picker {
+  border-radius: 5px;
+}
+
+/* GraviButtons are the right component but the app theme (--button-border-radius via
+   .ant-btn[type=button]) overrides GraviButton's radius to ~2px app-wide, so they look square.
+   Round them to 8px to match the dropdowns/tiles — scoped to the drawer, plus .qc-pop for the
+   time-picker footer quick-starts (those portal to <body> with the picker). The 3-class selector
+   outranks the theme's .ant-btn[type=button] rule. Calendar day-cells aren't .gravi-button, so
+   they're untouched (left square, per design). */
+.qc-drawer .ant-btn.gravi-button,
+.qc-pop .ant-btn.gravi-button {
+  border-radius: 8px;
+}

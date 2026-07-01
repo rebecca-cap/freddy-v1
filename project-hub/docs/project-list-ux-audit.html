@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Project List — "Real vs Not-Real" UX Audit</title>
+<style>
+  :root{
+    --bg:#0f1115; --panel:#161922; --panel-2:#1c2030; --ink:#e7e9ee; --muted:#9aa3b2;
+    --line:#272c3a; --brand:#6ea8fe; --brand-2:#3b82f6;
+    --real:#34d399; --partial:#fbbf24; --placeholder:#f87171; --mislabel:#f59e0b; --decor:#a78bfa;
+    --can:#34d399; --cant:#f87171; --maybe:#fbbf24;
+    --chip:#222838;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+  a{color:var(--brand);text-decoration:none}
+  a:hover{text-decoration:underline}
+  code{font:12.5px/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    background:#0c0e13;border:1px solid var(--line);border-radius:5px;padding:1px 6px;color:#cdd5e3}
+  .wrap{display:grid;grid-template-columns:248px 1fr;max-width:1280px;margin:0 auto;min-height:100vh}
+  /* sidebar */
+  nav.side{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;
+    border-right:1px solid var(--line);padding:26px 18px;background:var(--panel)}
+  nav.side h2{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 12px}
+  nav.side a{display:block;color:var(--muted);padding:6px 9px;border-radius:7px;font-size:13.5px;margin-bottom:2px}
+  nav.side a:hover{background:var(--panel-2);color:var(--ink);text-decoration:none}
+  nav.side .sec{margin-top:18px}
+  .legend-dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:7px;vertical-align:middle}
+  /* main */
+  main{padding:42px 48px 96px;min-width:0}
+  header.hd{border-bottom:1px solid var(--line);padding-bottom:26px;margin-bottom:30px}
+  header.hd .kicker{color:var(--brand);font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+  header.hd h1{margin:8px 0 6px;font-size:30px;letter-spacing:-.01em}
+  header.hd p{color:var(--muted);margin:0;max-width:70ch}
+  .meta{margin-top:16px;display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:var(--muted)}
+  .meta b{color:var(--ink);font-weight:600}
+  /* verdict + feasibility badges */
+  .badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.04em;
+    text-transform:uppercase;padding:3px 9px;border-radius:999px;border:1px solid transparent;white-space:nowrap}
+  .v-real{background:rgba(52,211,153,.12);color:var(--real);border-color:rgba(52,211,153,.3)}
+  .v-partial{background:rgba(251,191,36,.12);color:var(--partial);border-color:rgba(251,191,36,.3)}
+  .v-placeholder{background:rgba(248,113,113,.12);color:var(--placeholder);border-color:rgba(248,113,113,.3)}
+  .v-mislabel{background:rgba(245,158,11,.12);color:var(--mislabel);border-color:rgba(245,158,11,.3)}
+  .v-decor{background:rgba(167,139,250,.12);color:var(--decor);border-color:rgba(167,139,250,.3)}
+  .f-can{color:var(--can)} .f-cant{color:var(--cant)} .f-maybe{color:var(--maybe)}
+  .eff{font-size:11px;font-weight:700;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:2px 7px}
+  /* summary table */
+  table.sum{width:100%;border-collapse:collapse;margin:8px 0 8px;font-size:13.5px}
+  table.sum th{text-align:left;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);
+    border-bottom:1px solid var(--line);padding:9px 10px;font-weight:700}
+  table.sum td{border-bottom:1px solid var(--line);padding:10px;vertical-align:top}
+  table.sum tr:hover td{background:var(--panel)}
+  table.sum td.el{font-weight:600}
+  /* item cards */
+  section.item{background:var(--panel);border:1px solid var(--line);border-radius:13px;
+    padding:22px 24px;margin:18px 0;scroll-margin-top:20px}
+  section.item h3{margin:0 0 4px;font-size:18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .loc{font-size:12px;color:var(--muted);margin-bottom:14px}
+  .row{display:grid;grid-template-columns:130px 1fr;gap:6px 16px;margin:10px 0;align-items:start}
+  .row .lab{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding-top:2px;font-weight:700}
+  .row .val{font-size:14px}
+  .verdict-line{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:6px}
+  h2.group{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--brand);
+    margin:42px 0 6px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+  .callout{border-left:3px solid var(--brand-2);background:var(--panel-2);border-radius:0 8px 8px 0;
+    padding:12px 16px;margin:22px 0;font-size:13.5px;color:#cdd5e3}
+  .callout b{color:var(--ink)}
+  .do{margin:8px 0 0;padding-left:18px}
+  .do li{margin:4px 0}
+  ul.tight{margin:6px 0;padding-left:18px}
+  ul.tight li{margin:3px 0}
+  .pill{display:inline-block;background:var(--chip);border:1px solid var(--line);border-radius:6px;
+    padding:1px 8px;font-size:12px;color:#cdd5e3;margin:0 4px 4px 0}
+  footer{color:var(--muted);font-size:12px;border-top:1px solid var(--line);margin-top:48px;padding-top:18px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<nav class="side">
+  <h2>Legend</h2>
+  <div style="font-size:12.5px;color:var(--muted);line-height:2">
+    <div><span class="legend-dot" style="background:var(--real)"></span>Real — fully wired</div>
+    <div><span class="legend-dot" style="background:var(--partial)"></span>Partial — real-ish, limited</div>
+    <div><span class="legend-dot" style="background:var(--placeholder)"></span>Placeholder — inert</div>
+    <div><span class="legend-dot" style="background:var(--mislabel)"></span>Mislabeled — lies a little</div>
+    <div><span class="legend-dot" style="background:var(--decor)"></span>Decorative — fake by design</div>
+  </div>
+
+  <div class="sec">
+    <h2>Sections</h2>
+    <a href="#summary">At-a-glance table</a>
+    <a href="#real">✓ What's already real</a>
+    <a href="#search">Search box</a>
+    <a href="#filters">Filter chips (status)</a>
+    <a href="#product">Product filter + chip</a>
+    <a href="#creator">Creator filter + avatar</a>
+    <a href="#pin">Pin / favorite star</a>
+    <a href="#updated">"Updated" timestamp</a>
+    <a href="#status">Status chip states</a>
+    <a href="#cover">Card cover art</a>
+    <a href="#live">"live" badge</a>
+    <a href="#plan">Recommended order</a>
+  </div>
+</nav>
+
+<main>
+  <header class="hd">
+    <div class="kicker">Project Hub · UX Audit</div>
+    <h1>Project List — what's real, what's theater</h1>
+    <p>An item-by-item review of the Project List surface (the Hub home page): every control traced
+       to its handler and the data behind it, with a verdict on whether we can make it real on the
+       <b>current setup</b> (Express + JSON-file store + git worktrees + React) and what that would take.</p>
+    <div class="meta">
+      <span><b>Scope</b> HomePage · ProjectControlBar · ProjectList (cards) · ProjectListView (list) + atoms</span>
+      <span><b>Verified</b> by reading source + the <code>/api/projects</code> shape</span>
+      <span><b>Date</b> 2026-06-09</span>
+    </div>
+  </header>
+
+  <div class="callout">
+    <b>Headline:</b> the <b>data on each card/row is real</b> (name, branch, port, variant count, navigation).
+    What's <b>not</b> real is almost the entire <b>control bar</b> — search and every filter chip are explicitly
+    <code>disabled</code> "coming soon" stubs — plus three card details that present as fact but aren't:
+    the <b>creator</b> (hardcoded "Frank"), the <b>product</b> (a regex guess), and <b>"Updated"</b>
+    (it's actually the created time). Most of it is cheaply makeable; two things genuinely aren't worth it.
+  </div>
+
+  <!-- ===================== SUMMARY ===================== -->
+  <h2 class="group" id="summary">At a glance</h2>
+  <table class="sum">
+    <thead><tr><th>UI element</th><th>Verdict</th><th>Make it real?</th><th>Effort</th></tr></thead>
+    <tbody>
+      <tr><td class="el">Cards / List view toggle</td><td><span class="badge v-real">Real</span></td><td class="f-can">Already real</td><td>—</td></tr>
+      <tr><td class="el">Card / row core data + nav</td><td><span class="badge v-real">Real</span></td><td class="f-can">Already real</td><td>—</td></tr>
+      <tr><td class="el">Search box</td><td><span class="badge v-placeholder">Placeholder</span></td><td class="f-can">Yes — client-side filter</td><td><span class="eff">XS</span></td></tr>
+      <tr><td class="el">"All (N)" chip</td><td><span class="badge v-partial">Partial</span></td><td class="f-can">Yes — count real, filter is a no-op</td><td><span class="eff">XS</span></td></tr>
+      <tr><td class="el">Active filter</td><td><span class="badge v-placeholder">Placeholder</span></td><td class="f-can">Yes — status already derivable</td><td><span class="eff">S</span></td></tr>
+      <tr><td class="el">Review / Merged filters</td><td><span class="badge v-placeholder">Placeholder</span></td><td class="f-maybe">Partial — need a status model first</td><td><span class="eff">M</span></td></tr>
+      <tr><td class="el">Product filter + chip</td><td><span class="badge v-placeholder">Placeholder</span> <span class="badge v-partial">Guessed</span></td><td class="f-can">Yes — add a <code>product</code> field</td><td><span class="eff">S</span></td></tr>
+      <tr><td class="el">Creator filter + avatar/name</td><td><span class="badge v-placeholder">Placeholder</span> <span class="badge v-mislabel">Hardcoded</span></td><td class="f-maybe">Technically — but pointless (single user)</td><td><span class="eff">S</span></td></tr>
+      <tr><td class="el">Pin / favorite star</td><td><span class="badge v-placeholder">Placeholder</span></td><td class="f-can">Yes — add <code>pinned</code> + toggle endpoint</td><td><span class="eff">S</span></td></tr>
+      <tr><td class="el">"Updated &lt;time&gt;"</td><td><span class="badge v-mislabel">Mislabeled</span></td><td class="f-can">Yes — relabel now, or add <code>updatedAt</code></td><td><span class="eff">XS–S</span></td></tr>
+      <tr><td class="el">Status chip (review/merged states)</td><td><span class="badge v-partial">Partial</span></td><td class="f-maybe">Partial — only 2 of 4 states reachable</td><td><span class="eff">M</span></td></tr>
+      <tr><td class="el">Card cover art</td><td><span class="badge v-decor">Decorative</span></td><td class="f-maybe">Possible but costly — intentionally faked</td><td><span class="eff">L</span></td></tr>
+      <tr><td class="el">Main-prototype "live" badge</td><td><span class="badge v-mislabel">Hardcoded</span></td><td class="f-can">Yes — health-probe :5173</td><td><span class="eff">S</span></td></tr>
+    </tbody>
+  </table>
+
+  <!-- ===================== REAL ===================== -->
+  <h2 class="group" id="real">✓ What's already real (so we don't touch it)</h2>
+  <section class="item">
+    <h3>View toggle &amp; all per-project data <span class="badge v-real">Real</span></h3>
+    <div class="loc"><code>ProjectControlBar.tsx:53</code> · <code>ProjectList.tsx</code> · <code>ProjectListView.tsx</code> · fed by <code>/api/projects</code></div>
+    <ul class="tight">
+      <li><b>Cards ⇄ List toggle</b> — works and persists to <code>localStorage["freddy.hub.view"]</code>.</li>
+      <li><b>Card/row content</b> — <span class="pill">name</span><span class="pill">branch (Main → branch)</span><span class="pill">:port</span><span class="pill">variant count</span> all come straight from the API and are accurate.</li>
+      <li><b>Navigation</b> — clicking a card (<code>Link to /p/:slug</code>) or a row (<code>navigate()</code> with Enter/Space keyboard support) is real.</li>
+      <li><b>Empty state</b> — real, renders when <code>projects.length === 0</code>.</li>
+    </ul>
+  </section>
+
+  <!-- ===================== SEARCH ===================== -->
+  <h2 class="group">The control bar (mostly theater)</h2>
+  <section class="item" id="search">
+    <h3>Search box</h3>
+    <div class="loc"><code>ProjectControlBar.tsx:128</code> — <code>SearchPlaceholder()</code></div>
+    <div class="verdict-line"><span class="badge v-placeholder">Placeholder</span><span class="f-can">✓ Can make real — easiest win on the page</span><span class="eff">XS</span></div>
+    <div class="row"><div class="lab">What it is</div><div class="val">A <code>&lt;div&gt;</code> styled like an input, <code>aria-disabled</code>, <code>cursor-not-allowed</code>, title "Search — coming soon". It is not an <code>&lt;input&gt;</code> and captures nothing.</div></div>
+    <div class="row"><div class="lab">Why not real</div><div class="val">Never built — placeholder pending a decision on client vs server search.</div></div>
+    <div class="row"><div class="lab">To make real</div><div class="val"><code>HomePage</code> already holds the full <code>projects</code> array in state. Add a search string + filter before passing to the lists — no backend needed.
+      <ol class="do">
+        <li>Make it a real <code>&lt;input&gt;</code> with controlled state in <code>ProjectControlBar</code> (lift to <code>HomePage</code>).</li>
+        <li>Filter on <code>name</code> + <code>branch</code> (case-insensitive substring) before <code>&lt;ProjectList /&gt;</code> / <code>&lt;ProjectListView /&gt;</code>.</li>
+        <li>Reflect the filtered count in the "All (N)" chip.</li>
+      </ol>
+      <span style="color:var(--muted)">Note: <code>PROJECT-DETAIL-PLAN.md:136</code> already specs a richer scoped search (rounds, commits, resources) as a "P3 server-side ripgrep" — but the basic name/branch filter is pure client-side and ships today.</span></div></div>
+  </section>
+
+  <!-- ===================== FILTERS ===================== -->
+  <section class="item" id="filters">
+    <h3>Status filter chips — Active / Review / Merged</h3>
+    <div class="loc"><code>ProjectControlBar.tsx:22–45</code></div>
+    <div class="verdict-line"><span class="badge v-placeholder">Placeholder</span><span class="f-maybe">◑ Partly — "Active" yes; "Review"/"Merged" need a status model</span><span class="eff">S–M</span></div>
+    <div class="row"><div class="lab">What it is</div><div class="val">"All (N)" is the only <code>active</code> chip — and even it doesn't <em>filter</em>, it just shows the count. Pinned, Active, Review, Merged are all <code>disabled</code> "coming soon".</div></div>
+    <div class="row"><div class="lab">The catch</div><div class="val">Status today is <b>binary</b>: <code>util.statusFor()</code> returns <code>"active"</code> if the dev server is running, else <code>"draft"</code>. The chip set promises four states (Active / Review / Merged) that the data can't currently produce — so two of them would always come back empty.</div></div>
+    <div class="row"><div class="lab">To make real</div><div class="val">
+      <ul class="tight">
+        <li><b>All / Active</b> — wire immediately; filter the in-memory list on derived status. <span class="f-can">Doable now.</span></li>
+        <li><b>Review</b> — <span class="f-cant">no source of truth.</span> Needs an explicit <code>status</code> field on <code>ProjectRecord</code> someone sets — a <em>product decision</em>, not just code.</li>
+        <li><b>Merged</b> — semi-derivable: promote machinery exists (<code>promotedTo</code> on variants, <code>promoteVariant()</code>). Could mark a project "merged" once promoted, but the rule needs defining.</li>
+      </ul></div></div>
+  </section>
+
+  <!-- ===================== PRODUCT ===================== -->
+  <section class="item" id="product">
+    <h3>Product filter + the product chip on every card</h3>
+    <div class="loc">filter: <code>ProjectControlBar.tsx:36</code> · chip: <code>ProductChip.tsx</code> + <code>util.productFor()</code></div>
+    <div class="verdict-line"><span class="badge v-placeholder">Placeholder</span><span class="badge v-partial">Guessed</span><span class="f-can">✓ Can make real</span><span class="eff">S</span></div>
+    <div class="row"><div class="lab">What it is</div><div class="val">The "Product: All ▾" dropdown is disabled. The colored <b>product label on every card</b> (Pricing Engine / Selling Solutions / S&amp;D·Incab / Cross-product) <em>looks</em> like real metadata but is a <b>regex guess</b> from the project name + branch (<code>util.productFor</code>). The code itself admits it: <span style="color:var(--muted)">"Until backend tags projects per product, derive a product hint…"</span></div></div>
+    <div class="row"><div class="lab">Risk</div><div class="val">It presents a confident, color-coded fact that's actually inferred — a project named "test-3" silently becomes "Cross-product". That's the kind of "not-real" that misleads rather than just sitting inert.</div></div>
+    <div class="row"><div class="lab">To make real</div><div class="val">
+      <ol class="do">
+        <li>Add <code>product</code> to <code>ProjectRecord</code> (<code>server/store.ts</code>).</li>
+        <li>Capture it in <code>NewProjectDialog</code> (a 4-option select) at create time.</li>
+        <li><code>ProductChip</code> reads the real field; keep <code>productFor()</code> as the default/fallback for legacy projects.</li>
+        <li>Wire the dropdown to filter the list on it.</li>
+      </ol></div></div>
+  </section>
+
+  <!-- ===================== CREATOR ===================== -->
+  <section class="item" id="creator">
+    <h3>Creator filter + the avatar &amp; name on every card</h3>
+    <div class="loc">filter: <code>ProjectControlBar.tsx:41</code> · avatar: <code>ProjectList.tsx:60</code>, <code>ProjectListView.tsx:71</code></div>
+    <div class="verdict-line"><span class="badge v-placeholder">Placeholder</span><span class="badge v-mislabel">Hardcoded</span><span class="f-maybe">◑ Technically yes — but low value</span><span class="eff">S</span></div>
+    <div class="row"><div class="lab">What it is</div><div class="val">Every card hardcodes <code>initials="FO"</code> / "Frank" and every row hardcodes "Frank Overland". There is no <code>creator</code> field in the data. The "Creator: All ▾" filter is disabled.</div></div>
+    <div class="row"><div class="lab">Honest take</div><div class="val">The Hub is a <b>single-user local tool</b>. We <em>can</em> add a <code>creator</code> field and wire the filter, but with one user the avatar is decoration and "Creator: All" filters nothing meaningful. <span class="f-cant">Recommend: don't build the filter</span> — either keep the avatar as static branding or drop the creator column until it's genuinely multi-user.</div></div>
+  </section>
+
+  <!-- ===================== PIN ===================== -->
+  <section class="item" id="pin">
+    <h3>Pin / favorite star</h3>
+    <div class="loc">filter chip: <code>ProjectControlBar.tsx:23</code> · star on cards/rows: <code>PinStar.tsx</code></div>
+    <div class="verdict-line"><span class="badge v-placeholder">Placeholder</span><span class="f-can">✓ Can make real — clean, self-contained</span><span class="eff">S</span></div>
+    <div class="row"><div class="lab">What it is</div><div class="val">The star renders on every card/row but is <code>aria-disabled</code> with "Pin to favorites — coming soon"; its <code>onClick</code> only <code>stopPropagation()</code>s. No <code>pinned</code> data exists, and the "Pinned" filter chip is disabled.</div></div>
+    <div class="row"><div class="lab">To make real</div><div class="val">
+      <ol class="do">
+        <li>Add <code>pinned: boolean</code> to <code>ProjectRecord</code>.</li>
+        <li>Add a tiny <code>PATCH /api/projects/:slug/pin</code> endpoint (the store-mutation pattern already exists for versions/variants).</li>
+        <li><code>PinStar</code> takes <code>pinned</code> + <code>onToggle</code>; wire the "Pinned" filter + sort pinned-first.</li>
+      </ol>
+      Fully doable on the current stack — no new infrastructure.</div></div>
+  </section>
+
+  <!-- ===================== UPDATED ===================== -->
+  <section class="item" id="updated">
+    <h3>"Updated &lt;time&gt;"</h3>
+    <div class="loc"><code>ProjectList.tsx:71</code>, <code>ProjectListView.tsx:76</code> → <code>util.relativeTime(p.createdAt)</code></div>
+    <div class="verdict-line"><span class="badge v-mislabel">Mislabeled</span><span class="f-can">✓ Can make real — or just relabel</span><span class="eff">XS–S</span></div>
+    <div class="row"><div class="lab">What it is</div><div class="val">The label says <b>"Updated"</b> but the value is <code>createdAt</code> — there is no <code>updatedAt</code> field anywhere. <code>relativeTime()</code> itself is real and correct; it's pointed at the wrong timestamp.</div></div>
+    <div class="row"><div class="lab">Two options</div><div class="val">
+      <ul class="tight">
+        <li><b>Honest now (XS):</b> relabel to "Created" — zero backend change, instantly truthful.</li>
+        <li><b>Real "Updated" (S):</b> add <code>updatedAt</code> to <code>ProjectRecord</code> and stamp it on mutations (version stamp, lofi changes, pin, etc.), then point the label at it.</li>
+      </ul></div></div>
+  </section>
+
+  <!-- ===================== STATUS ===================== -->
+  <section class="item" id="status">
+    <h3>Status chip — two of its four states are unreachable</h3>
+    <div class="loc"><code>StatusChip.tsx</code> (defines draft/review/active/merged) · <code>util.statusFor()</code></div>
+    <div class="verdict-line"><span class="badge v-partial">Partial</span><span class="f-maybe">◑ See the Status filters above — same root cause</span><span class="eff">M</span></div>
+    <div class="row"><div class="lab">What it is</div><div class="val"><code>StatusChip</code> can render four styled states, but <code>statusFor()</code> only ever returns <code>active</code> (running) or <code>draft</code> (stopped). "In review" and "Merged" are dead code paths today.</div></div>
+    <div class="row"><div class="lab">To make real</div><div class="val">Same fix as the Review/Merged filters: introduce a real status model — an explicit field for "review", a promote-derived rule for "merged". Until then the chip is honest for what it shows, just under-using its vocabulary.</div></div>
+  </section>
+
+  <!-- ===================== COVER ===================== -->
+  <h2 class="group">Faked on purpose (call it, don't necessarily fix it)</h2>
+  <section class="item" id="cover">
+    <h3>Card cover art</h3>
+    <div class="loc"><code>ProjectCardCover.tsx</code></div>
+    <div class="verdict-line"><span class="badge v-decor">Decorative</span><span class="f-maybe">◑ Possible but costly — and a deliberate choice</span><span class="eff">L</span></div>
+    <div class="row"><div class="lab">What it is</div><div class="val">Four hand-drawn stock SVGs (chart / table / bulk-edit / form) picked by a hash of the slug. Not a screenshot of the project — purely cosmetic variety. The file says so outright.</div></div>
+    <div class="row"><div class="lab">Can we make it real?</div><div class="val"><b>Yes, but it's a real jump.</b> A true preview means screenshotting each prototype via Playwright — which requires the dev server <em>running</em>, is async, and needs a thumbnail cache + invalidation. The stock cover was the <b>intentional</b> dodge of exactly that cost. <span class="f-cant">Recommend leaving it</span> unless previews become a priority; if so, capture a thumbnail on launch/stop and cache it per slug.</div></div>
+  </section>
+
+  <!-- ===================== LIVE BADGE ===================== -->
+  <section class="item" id="live">
+    <h3>Main-prototype "live" badge</h3>
+    <div class="loc"><code>HomePage.tsx:81</code></div>
+    <div class="verdict-line"><span class="badge v-mislabel">Hardcoded</span><span class="f-can">✓ Can make real — minor</span><span class="eff">S</span></div>
+    <div class="row"><div class="lab">What it is</div><div class="val">The proto-base card always shows a green <code>live</code> badge — it's a literal, not a probe. If <code>:5173</code> is down, it still says "live".</div></div>
+    <div class="row"><div class="lab">To make real</div><div class="val">A health <code>fetch</code> to <code>:5173</code> (or a hub-side reachability check) gated behind a small interval. Cheap, slightly flaky across CORS — worth it only if the false-positive ever bites.</div></div>
+  </section>
+
+  <!-- ===================== PLAN ===================== -->
+  <h2 class="group" id="plan">If you want to make it real — recommended order</h2>
+  <section class="item">
+    <h3>Highest honesty-per-effort first</h3>
+    <ol class="do">
+      <li><b>Relabel "Updated" → "Created"</b> <span class="eff">XS</span> — kills a lie in one line, no backend.</li>
+      <li><b>Wire the search box</b> <span class="eff">XS</span> — client-side name/branch filter; the biggest "why doesn't this work" gap.</li>
+      <li><b>Pin / favorites</b> <span class="eff">S</span> — clean vertical slice (field + toggle endpoint + filter + sort); good proof the pattern works end-to-end.</li>
+      <li><b>Product field + chip + filter</b> <span class="eff">S</span> — replaces the misleading regex guess with truth.</li>
+      <li><b>Status model</b> <span class="eff">M</span> — unlocks Active/Review/Merged filters <em>and</em> the status chip together. Needs a product decision on what "review" means.</li>
+      <li><b>Defer:</b> creator filter (single-user → low value), real cover previews (costly), live-probe badge (cosmetic).</li>
+    </ol>
+    <div class="callout" style="margin-top:18px">
+      <b>The one principle:</b> the inert placeholders (search, pin, filters) are honest — they're visibly disabled and say "coming soon". The three that deserve attention <em>regardless</em> of whether we build the features are the ones that <b>present guesses or stale data as fact</b>: <b>Product</b> (regex guess), <b>Creator</b> (hardcoded), and <b>"Updated"</b> (wrong timestamp). Those mislead; the others merely wait.
+    </div>
+  </section>
+
+  <footer>
+    Project List UX audit · generated from source read of <code>project-hub/src</code> + <code>/api/projects</code> ·
+    verdicts reflect the code as of 2026-06-09. File references are <code>file:line</code> for jump-to in your editor.
+  </footer>
+</main>
+</div>
+</body>
+</html>

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Section Component - Gravitate Wireframe Design System</title>
+  <link rel="stylesheet" href="../../tokens/index.css">
+  <link rel="stylesheet" href="../controls/controls.css">
+  <link rel="stylesheet" href="specialized.css">
+  <style>
+    body {
+      font-family: var(--wf-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+      background-color: var(--wf-color-background, #f9fafb);
+      margin: 0;
+      padding: 32px;
+      color: var(--wf-color-text-primary, #111827);
+    }
+    .demo-section {
+      margin-bottom: 48px;
+    }
+    .demo-section > h2 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--wf-color-text-primary, #111827);
+    }
+    .demo-section > p {
+      font-size: 14px;
+      color: var(--wf-color-text-secondary, #374151);
+      margin-bottom: 16px;
+    }
+    .demo-container {
+      background: white;
+      border-radius: 8px;
+      padding: 24px;
+      border: 1px solid var(--wf-color-border, #d1d5db);
+    }
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      font-size: 16px;
+      color: var(--wf-color-text-secondary, #374151);
+      margin-bottom: 32px;
+    }
+    code {
+      display: block;
+      background: var(--wf-color-neutral-100, #f3f4f6);
+      padding: 16px;
+      border-radius: 6px;
+      font-size: 13px;
+      overflow-x: auto;
+      white-space: pre;
+      margin-top: 8px;
+    }
+    /* Small select/input overrides for demo */
+    .wf-input-sm, .wf-select-sm {
+      padding: 6px 10px;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Form Section Component</h1>
+  <p class="subtitle">Organize forms into logical sections with headers, descriptions, and grouped fields.</p>
+
+  <!-- Basic Form Section -->
+  <section class="demo-section">
+    <h2>Basic Form Section</h2>
+    <p>Standard form section with header, description, and form fields.</p>
+    <div class="demo-container">
+      <div class="wf-form-section">
+        <div class="wf-form-section-header">
+          <h3 class="wf-form-section-title">Basic Information</h3>
+          <p class="wf-form-section-description">Enter the contract details below.</p>
+        </div>
+        <div class="wf-form-section-body">
+          <div class="wf-form-grid wf-form-grid-2">
+            <div class="wf-field">
+              <label class="wf-field-label">Contract Name <span class="wf-required">*</span></label>
+              <input type="text" class="wf-input" placeholder="Enter contract name">
+            </div>
+            <div class="wf-field">
+              <label class="wf-field-label">Contract Type <span class="wf-required">*</span></label>
+              <select class="wf-select">
+                <option value="">Select type...</option>
+                <option>Supply Agreement</option>
+                <option>Transportation</option>
+                <option>Storage</option>
+              </select>
+            </div>
+            <div class="wf-field">
+              <label class="wf-field-label">Start Date</label>
+              <input type="date" class="wf-input">
+            </div>
+            <div class="wf-field">
+              <label class="wf-field-label">End Date</label>
+              <input type="date" class="wf-input">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Multiple Form Sections -->
+  <section class="demo-section">
+    <h2>Multiple Form Sections</h2>
+    <p>Forms with multiple sections for organizing complex data entry.</p>
+    <div class="demo-container">
+      <div class="wf-form-section">
+        <div class="wf-form-section-header">
+          <h3 class="wf-form-section-title">Customer Information</h3>
+          <p class="wf-form-section-description">Enter the customer's contact details.</p>
+        </div>
+        <div class="wf-form-section-body">
+          <div class="wf-form-grid wf-form-grid-2">
+            <div class="wf-field">
+              <label class="wf-field-label">Company Name <span class="wf-required">*</span></label>
+              <input type="text" class="wf-input" placeholder="Company name">
+            </div>
+            <div class="wf-field">
+              <label class="wf-field-label">Contact Person</label>
+              <input type="text" class="wf-input" placeholder="Full name">
+            </div>
+            <div class="wf-field">
+              <label class="wf-field-label">Email</label>
+              <input type="email" class="wf-input" placeholder="email@company.com">
+            </div>
+            <div class="wf-field">
+              <label class="wf-field-label">Phone</label>
+              <input type="tel" class="wf-input" placeholder="(555) 123-4567">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="wf-form-section">
+        <div class="wf-form-section-header">
+          <h3 class="wf-form-section-title">Billing Address</h3>
+          <p class="wf-form-section-description">Enter the billing address for invoices.</p>
+        </div>
+        <div class="wf-form-section-body">
+          <div class="wf-form-grid">
+            <div class="wf-field">
+              <label class="wf-field-label">Street Address</label>
+              <input type="text" class="wf-input" placeholder="123 Main Street">
+            </div>
+          </div>
+          <div class="wf-form-grid wf-form-grid-3" style="margin-top: 16px;">
+            <div class="wf-field">
+              <label class="wf-field-label">City</label>
+              <input type="text" class="wf-input" placeholder="City">
+            </div>
+            <div class="wf-field">
+              <label class="wf-field-label">State</label>
+              <select class="wf-select">
+                <option value="">Select state...</option>
+                <option>California</option>
+                <option>New York</option>
+                <option>Texas</option>
+              </select>
+            </div>
+            <div class="wf-field">
+              <label class="wf-field-label">ZIP Code</label>
+              <input type="text" class="wf-input" placeholder="12345">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="wf-form-section">
+        <div class="wf-form-section-header">
+          <h3 class="wf-form-section-title">Additional Notes</h3>
+        </div>
+        <div class="wf-form-section-body">
+          <div class="wf-field" style="margin-bottom: 0;">
+            <label class="wf-field-label">Notes</label>
+            <textarea class="wf-input" rows="4" placeholder="Enter any additional notes..."></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Card Style Form Section -->
+  <section class="demo-section">
+    <h2>Card Style Form Section</h2>
+    <p>Form section styled as a card with border and padding.</p>
+    <div class="demo-container" style="background: var(--wf-color-neutral-50); border: none;">
+      <div class="wf-form-section wf-form-section-card">
+        <div class="wf-form-section-header">
+          <h3 class="wf-form-section-title">Account Settings</h3>
+          <p class="wf-form-section-description">Manage your account preferences and settings.</p>
+        </div>
+        <div class="wf-form-section-body">
+          <div class="wf-form-grid wf-form-grid-2">
+            <div class="wf-field">
+              <label class="wf-field-label">Display Name</label>
+              <input type="text" class="wf-input" value="John Smith">
+            </div>
+            <div class="wf-field">
+              <label class="wf-field-label">Email</label>
+              <input type="email" class="wf-input" value="john@example.com">
+            </div>
+            <div class="wf-field">
+              <label class="wf-field-label">Language</label>
+              <select class="wf-select">
+                <option>English (US)</option>
+                <option>Spanish</option>
+                <option>French</option>
+              </select>
+            </div>
+            <div class="wf-field">
+              <label class="wf-field-label">Timezone</label>
+              <select class="wf-select">
+                <option>Eastern Time (ET)</option>
+                <option>Pacific Time (PT)</option>
+                <option>Central Time (CT)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="wf-form-section wf-form-section-card" style="margin-top: 24px;">
+        <div class="wf-form-section-header">
+          <h3 class="wf-form-section-title">Notification Preferences</h3>
+          <p class="wf-form-section-description">Choose how you want to receive notifications.</p>
+        </div>
+        <div class="wf-form-section-body">
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <label class="wf-checkbox">
+              <input type="checkbox" class="wf-checkbox-input" checked>
+              <span class="wf-checkbox-box"></span>
+              <span class="wf-checkbox-label">Email notifications for new contracts</span>
+            </label>
+            <label class="wf-checkbox">
+              <input type="checkbox" class="wf-checkbox-input" checked>
+              <span class="wf-checkbox-box"></span>
+              <span class="wf-checkbox-label">Weekly summary reports</span>
+            </label>
+            <label class="wf-checkbox">
+              <input type="checkbox" class="wf-checkbox-input">
+              <span class="wf-checkbox-box"></span>
+              <span class="wf-checkbox-label">SMS alerts for urgent items</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Form Grid Layouts -->
+  <section class="demo-section">
+    <h2>Form Grid Layouts</h2>
+    <p>Different grid configurations for form fields.</p>
+    <div class="demo-container">
+      <div class="wf-form-section">
+        <div class="wf-form-section-header">
+          <h3 class="wf-form-section-title">2-Column Grid</h3>
+        </div>
+        <div class="wf-form-section-body">
+          <div class="wf-form-grid wf-form-grid-2">
+            <div class="wf-field" style="margin-bottom: 0;">
+              <label class="wf-field-label">Field 1</label>
+              <input type="text" class="wf-input">
+            </div>
+            <div class="wf-field" style="margin-bottom: 0;">
+              <label class="wf-field-label">Field 2</label>
+              <input type="text" class="wf-input">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="wf-form-section">
+        <div class="wf-form-section-header">
+          <h3 class="wf-form-section-title">3-Column Grid</h3>
+        </div>
+        <div class="wf-form-section-body">
+          <div class="wf-form-grid wf-form-grid-3">
+            <div class="wf-field" style="margin-bottom: 0;">
+              <label class="wf-field-label">Field 1</label>
+              <input type="text" class="wf-input">
+            </div>
+            <div class="wf-field" style="margin-bottom: 0;">
+              <label class="wf-field-label">Field 2</label>
+              <input type="text" class="wf-input">
+            </div>
+            <div class="wf-field" style="margin-bottom: 0;">
+              <label class="wf-field-label">Field 3</label>
+              <input type="text" class="wf-input">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="wf-form-section" style="margin-bottom: 0;">
+        <div class="wf-form-section-header">
+          <h3 class="wf-form-section-title">4-Column Grid</h3>
+        </div>
+        <div class="wf-form-section-body">
+          <div class="wf-form-grid wf-form-grid-4">
+            <div class="wf-field" style="margin-bottom: 0;">
+              <label class="wf-field-label">Field 1</label>
+              <input type="text" class="wf-input">
+            </div>
+            <div class="wf-field" style="margin-bottom: 0;">
+              <label class="wf-field-label">Field 2</label>
+              <input type="text" class="wf-input">
+            </div>
+            <div class="wf-field" style="margin-bottom: 0;">
+              <label class="wf-field-label">Field 3</label>
+              <input type="text" class="wf-input">
+            </div>
+            <div class="wf-field" style="margin-bottom: 0;">
+              <label class="wf-field-label">Field 4</label>
+              <input type="text" class="wf-input">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Code Example -->
+  <section class="demo-section">
+    <h2>Code Example</h2>
+    <code>&lt;div class="wf-form-section"&gt;
+  &lt;div class="wf-form-section-header"&gt;
+    &lt;h3 class="wf-form-section-title"&gt;Basic Information&lt;/h3&gt;
+    &lt;p class="wf-form-section-description"&gt;Enter the contract details below.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="wf-form-section-body"&gt;
+    &lt;div class="wf-form-grid wf-form-grid-2"&gt;
+      &lt;div class="wf-field"&gt;
+        &lt;label class="wf-field-label"&gt;Contract Name&lt;/label&gt;
+        &lt;input type="text" class="wf-input"&gt;
+      &lt;/div&gt;
+      &lt;div class="wf-field"&gt;
+        &lt;label class="wf-field-label"&gt;Contract Type&lt;/label&gt;
+        &lt;select class="wf-select"&gt;...&lt;/select&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Card style --&gt;
+&lt;div class="wf-form-section wf-form-section-card"&gt;
+  ...
+&lt;/div&gt;
+
+&lt;!-- Grid variants --&gt;
+&lt;div class="wf-form-grid wf-form-grid-2"&gt;...&lt;/div&gt;
+&lt;div class="wf-form-grid wf-form-grid-3"&gt;...&lt;/div&gt;
+&lt;div class="wf-form-grid wf-form-grid-4"&gt;...&lt;/div&gt;</code>
+  </section>
+
+</body>
+</html>

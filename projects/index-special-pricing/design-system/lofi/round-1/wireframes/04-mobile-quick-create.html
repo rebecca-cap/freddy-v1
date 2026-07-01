@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mobile quick create · Round 1 · Index Special Offers</title>
+  <link rel="stylesheet" href="assets/wireframe.css">
+  <link rel="stylesheet" href="assets/lofi-chrome.css">
+  <style>
+    /* mobile-only demo chrome */
+    .lf-mobile-appbar { display:flex; align-items:center; gap: var(--wf-space-3); padding: var(--wf-space-3) var(--wf-space-4); border-bottom:1px solid var(--wf-color-border); background: var(--wf-color-surface); }
+    .lf-mobile-body { padding: var(--wf-space-4); display:flex; flex-direction:column; gap: var(--wf-space-5); }
+    .lf-mobile-sendbar { position: sticky; bottom: 0; background: var(--wf-color-surface-raised); border-top:1px solid var(--wf-color-border); padding: var(--wf-space-3) var(--wf-space-4); }
+  </style>
+</head>
+<body>
+
+  <div class="lf-screenbar">
+    <a href="../index.html">&#9664; Round 1 index</a>
+    <span class="lf-sep">/</span>
+    <span class="lf-screen-name">04 · Mobile quick create</span>
+    <span class="lf-goal">Same field sequence, one column</span>
+  </div>
+
+  <div class="lf-phone-wrap">
+    <div class="lf-phone">
+      <div class="lf-phone-screen">
+
+        <div class="lf-phone-statusbar"><span>9:41</span><span>5G &#9211; 100%</span></div>
+
+        <div class="lf-mobile-appbar">
+          <button class="wf-button wf-button-ghost wf-button-sm">&#9664;</button>
+          <div class="wf-flex-1">
+            <div class="wf-text wf-text-h4">Index special</div>
+            <div class="wf-text wf-text-helper">Group 3 gas</div>
+          </div>
+          <span class="wf-badge wf-badge-primary">Draft</span>
+        </div>
+
+        <div class="lf-mobile-body">
+
+          <!-- Start -->
+          <div class="wf-field">
+            <label class="wf-field-label">Start from</label>
+            <select class="wf-select">
+              <option>Template — Suboctane / OPIS</option>
+              <option>Prior offer — May 28</option>
+              <option value="">Blank</option>
+            </select>
+          </div>
+
+          <!-- Product & volume -->
+          <div class="wf-field">
+            <label class="wf-field-label">Product</label>
+            <select class="wf-select"><option>Group 3 Suboctane (87)</option></select>
+          </div>
+          <div class="wf-field">
+            <label class="wf-field-label">Terminal</label>
+            <select class="wf-select"><option>Tulsa — Magellan</option></select>
+          </div>
+          <div class="wf-field">
+            <label class="wf-field-label">Volume (gal)</label>
+            <input type="text" class="wf-input" value="42,000">
+          </div>
+
+          <hr class="wf-divider">
+
+          <!-- Price formula -->
+          <div class="wf-text wf-text-label">Price formula</div>
+          <div class="wf-field">
+            <label class="wf-field-label">Index</label>
+            <select class="wf-select"><option>OPIS Group 3 — Suboctane Gross</option></select>
+          </div>
+          <div class="wf-field">
+            <label class="wf-field-label">Differential ($/gal)</label>
+            <input type="text" class="wf-input wf-mono" value="+0.0250">
+          </div>
+          <div class="lf-readout">
+            <span class="lf-readout-label">Resulting price</span>
+            <span class="lf-readout-formula wf-mono"><strong>OPIS G3 Suboctane</strong> + <strong>$0.0250</strong></span>
+            <span class="lf-readout-note">&#9202; Invoices at <strong>lift time</strong>.</span>
+          </div>
+
+          <hr class="wf-divider">
+
+          <!-- Timing -->
+          <div class="wf-field">
+            <label class="wf-field-label">Visible for</label>
+            <div class="lf-chiprow">
+              <span class="lf-chip" tabindex="0">2h</span>
+              <span class="lf-chip is-selected" tabindex="0">4h</span>
+              <span class="lf-chip" tabindex="0">Until close</span>
+            </div>
+          </div>
+          <div class="wf-field">
+            <label class="wf-field-label">Pickup window</label>
+            <div class="lf-chiprow">
+              <span class="lf-chip" tabindex="0">24h</span>
+              <span class="lf-chip is-selected" tabindex="0">48h</span>
+              <span class="lf-chip" tabindex="0">3 days</span>
+            </div>
+          </div>
+
+          <hr class="wf-divider">
+
+          <!-- Invite -->
+          <div class="wf-field">
+            <label class="wf-field-label">Invite</label>
+            <div class="lf-chiprow">
+              <span class="lf-chip is-selected" tabindex="0">Gulf Coast <span class="lf-chip-count">3</span></span>
+              <span class="lf-chip" tabindex="0">Midcon <span class="lf-chip-count">5</span></span>
+              <span class="lf-chip" tabindex="0">+ Add</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="lf-mobile-sendbar">
+          <div class="lf-meter" style="margin-bottom: var(--wf-space-2);">
+            <div class="lf-meter-row"><span class="lf-muted">8 of 12 taps</span><span>~26s</span></div>
+            <div class="lf-meter-track"><div class="lf-meter-fill" style="width:67%;"></div></div>
+          </div>
+          <button class="wf-button wf-button-primary" style="width:100%;">Send offer</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div style="max-width: 560px; margin: 0 auto var(--wf-space-8); padding: 0 var(--wf-space-4);">
+    <div class="lf-anno">
+      <b>One sequence, two form factors.</b> The mobile flow keeps the exact desktop field order — Start &rarr; Product &amp; volume &rarr; Price formula &rarr; Timing &rarr; Invite — collapsed to a single scroll with a pinned send bar. Same muscle memory; no separate mental model. <b>Open question:</b> does the right rail's live preview need a mobile equivalent (e.g. a peek sheet), or is the pinned tap-count enough?
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "path": "/Admin/VolumeThresholds",
+  "title": "Volume Thresholds",
+  "finalUrl": "http://localhost:3001/Admin/VolumeThresholds",
+  "rootLen": 106382,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [
+    "MarketPlatform/Admin/TradeEntrySetupVolumeConstraints/ReadTradeEntrySetupVolumeThresholds"
+  ],
+  "consoleEventCount": 11
+}

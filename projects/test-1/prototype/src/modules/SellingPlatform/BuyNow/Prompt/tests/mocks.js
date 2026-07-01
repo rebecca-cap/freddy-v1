@@ -1,0 +1,103 @@
+export const selectedItemMetaStub = {
+  IsInternalUser: true,
+  ProductName: '#2 ULSD',
+  LocationName: 'Test Location Group',
+  Price: 2.3643,
+  OverridePrice: 2.3643,
+  AdditionalItems: [],
+  ExternalColleagueOverride: [
+    {
+      key: '446',
+      value: 'Energy, John',
+      selected: true,
+    },
+    {
+      key: '455',
+      value: 'Kirkconnell, Evan',
+      selected: false,
+    },
+    {
+      key: '457',
+      value: 'Demo, Test',
+      selected: false,
+    },
+    {
+      key: '460',
+      value: 'Kirkconnell3, Evan',
+      selected: false,
+    },
+    {
+      key: '463',
+      value: 'Test, Whitney',
+      selected: false,
+    },
+    {
+      key: '466',
+      value: 'Test, Noah',
+      selected: false,
+    },
+    {
+      key: '467',
+      value: 'Test4, Test4',
+      selected: false,
+    },
+    {
+      key: '468',
+      value: 'test5, test5',
+      selected: false,
+    },
+    {
+      key: '469',
+      value: 'test, Whitney',
+      selected: false,
+    },
+  ],
+  InternalCounterPartyOverride: [
+    {
+      key: '1',
+      value: 'OpenLink',
+      selected: true,
+    },
+    {
+      key: '1688',
+      value: 'capSpire',
+      selected: false,
+    },
+    {
+      key: '1690',
+      value: 'Whitney Test Internal Company',
+      selected: false,
+    },
+  ],
+  IndexPrice: 2.3643,
+  Constraints: {
+    VolumeIncrement: 50,
+    MinVolume: 1000,
+    MaxVolume: 168000,
+    MinMonthlyVolume: 6000,
+    MaxMonthlyVolume: 168000,
+    WarningVolume: 50000,
+    AllowMultipleLoadingNumbers: false,
+    AllowNoteEntry: true,
+    MaximumBidExpiration: '2023-05-31T23:59:59.997',
+    OriginLocationMinimumReqSelection: 1,
+  },
+  ItemKey: {
+    TradeEntrySetupId: 68,
+    DeliveryPeriodConfigurationId: 67,
+    DeliveryPeriodGroupId: null,
+  },
+  FuturesMonth: '2023-06-01T05:00:00.000Z',
+  MaxBidExpiration: '2023-05-31T23:59:59.997',
+  LoadingNumbersList: [],
+  PriceAdjustments: [],
+  LiftingLocationsList: [],
+  Type: 'market',
+  CreditData: {
+    creditHold: false,
+    totalCreditBalance: null,
+    remainingCreditBalance: null,
+  },
+  TradeNote: '',
+  ExternalNotification: true,
+}

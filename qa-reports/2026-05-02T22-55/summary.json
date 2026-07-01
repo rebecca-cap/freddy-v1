@@ -1,0 +1,14 @@
+{
+  "stamp": "2026-05-02T22-55",
+  "base": "http://localhost:3001",
+  "routes": 52,
+  "totalCrashes": 0,
+  "totalPageErrors": 2,
+  "totalConsoleErrors": 5,
+  "distinctMissingFixtures": 3,
+  "missingFixtures": [
+    "MarketPlatform/OrderEntry/GetItemsAvailableForOrder",
+    "ReferenceData/Hierarchy/Location/List",
+    "ReferenceData/Hierarchy/Product/List"
+  ]
+}

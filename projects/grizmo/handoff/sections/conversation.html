@@ -1,0 +1,81 @@
+<h2>Conversation lifecycle</h2>
+
+<p class="lead">Every exchange with Scout moves through three phases — <span class="tok">ask</span>, <span class="tok">thinking</span>, and <span class="tok">answered</span> — and each phase paints a distinct surface so the analyst always knows whether Scout is waiting, working, or done.</p>
+
+<h3>The three phases</h3>
+<p>A turn begins when the analyst clicks a suggestion chip, types a question in the composer, or runs a saved prompt or path. The empty conversation opens on the welcome surface — a greeting plus closed suggestion chips and a free-text composer.</p>
+
+{{figure:c1-welcome}}
+
+<p><b>Ask.</b> The question appears immediately as a right-aligned <span class="tok">user bubble</span> carrying the analyst's exact wording.</p>
+<p><b>Thinking.</b> A left-aligned Scout bubble appears showing <b>live thinking steps</b> — for example <span class="tok">Reading flagged rows → Clustering causes → Checking policy bands</span>. Steps reveal progressively under a gentle shimmer. When reasoning completes, the steps <b>auto-collapse</b> into a <span class="tok">Show details</span> disclosure (see 1).</p>
+
+{{figure:c1-thinking}}
+
+<p><b>Answered.</b> The bubble fills in top to bottom, in a fixed order described below.</p>
+
+{{figure:c1-answered}}
+
+<h3>Answer bubble anatomy</h3>
+<p>Reading down the answered bubble (see 1–7):</p>
+<ul>
+<li><b>Scope tag</b> — an <span class="tok">All rows</span> / <span class="tok">This row</span> indicator of what the answer covers.</li>
+<li><b>Confidence line</b> — a colored dot plus label, often with a short caveat such as <span class="tok">Medium confidence · Cluster counts are estimated</span>.</li>
+<li><b>Answer body</b> — one or more typed blocks (see below).</li>
+<li><b>Action chips</b> — scenario-specific next steps, e.g. <span class="tok">Open 11 margin-guard rows</span>, <span class="tok">Open 8 over-band rows</span>.</li>
+<li><b>Details disclosure</b> — collapsed reasoning and sources.</li>
+<li><b>Answer footer</b> — feedback controls and an overflow menu.</li>
+<li><b>Follow-up chips</b> — suggested next questions.</li>
+</ul>
+
+<h4>Answer-body block types</h4>
+<p>The body supports several block types, mixed as the answer requires:</p>
+<ul>
+<li><b>Paragraph</b> — free prose.</li>
+<li><b>Bullet list</b> — enumerated points.</li>
+<li><b>Table</b> — rows and columns.</li>
+<li><b>Breakdown</b> — a labeled tally, e.g. <span class="tok">FLAGS BY CLUSTER — Margin guard 11, Above peer band 8, Stale benchmark 4, Total flagged 23</span>.</li>
+<li><b>CSV-link</b> — an export affordance for the underlying data.</li>
+</ul>
+
+<h3>Confidence &amp; sources</h3>
+<p>Confidence and sources are first-class, never decoration. The confidence line maps one of three levels to a color:</p>
+<table>
+<thead><tr><th>Level</th><th>Dot color</th></tr></thead>
+<tbody>
+<tr><td>High</td><td>Green</td></tr>
+<tr><td>Medium</td><td>Amber</td></tr>
+<tr><td>Low</td><td>Red</td></tr>
+</tbody>
+</table>
+<p>The <span class="tok">Show details · N steps · M sources</span> disclosure expands to reveal the full thinking steps and the cited sources, each rendered as a clickable pill.</p>
+
+{{figure:c1-details}}
+
+<h3>Feedback flow</h3>
+<p>The answer footer carries a thumbs-up / thumbs-down rating and a <span class="tok">⋯</span> overflow menu (copy, export, save, and similar).</p>
+
+{{figure:c1-footer}}
+
+<p>Choosing thumbs-down opens an inline <b>feedback form</b>: a reason picker — <span class="tok">wrong data</span> / <span class="tok">misread</span> / <span class="tok">made up</span> — plus an optional note.</p>
+
+{{figure:c1-feedback-form}}
+
+<p>Submitting swaps the form for a <b>receipt</b> reading <span class="tok">Thanks — this helps Scout improve</span>.</p>
+
+{{figure:c1-feedback-receipt}}
+
+<h3>Follow-ups</h3>
+<p>Under the heading <span class="tok">TRY A FOLLOW-UP</span>, Scout offers suggested next questions such as <span class="tok">Where am I leaving margin?</span>. Tapping one continues the conversation as a fresh ask.</p>
+
+{{figure:c1-followups}}
+
+<h3>Clearing &amp; undo</h3>
+<p>The <span class="tok">Clear</span> control archives the current conversation and empties the surface; an <b>Undo</b> affordance restores it. Starting a new question after clearing retires the undo buffer, so the restore is no longer available.</p>
+
+<h3>Toast</h3>
+<p>At most one <b>toast</b> is shown at a time, anchored at the bottom of the viewport. It auto-dismisses and carries a success, warning, or error tone depending on the event.</p>
+
+{{figure:c2-toast}}
+
+<div class="callout callout--note"><b>Build note</b> The phase order — ask, thinking, answered — and the fixed top-to-bottom order of the answered bubble are product rules. Every answer must carry an explicit confidence level and citable sources.</div>

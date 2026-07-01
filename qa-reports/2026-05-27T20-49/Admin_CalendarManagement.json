@@ -1,0 +1,14 @@
+{
+  "path": "/Admin/CalendarManagement",
+  "title": "Calendar Management",
+  "finalUrl": "http://localhost:5173/Admin/CalendarManagement",
+  "rootLen": 119838,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 10,
+  "stuckLoaders": [],
+  "emptyGrids": []
+}

@@ -1,0 +1,229 @@
+{
+  "slug": "worked-examples",
+  "title": "Worked Examples",
+  "order": 13,
+  "group": "Worked examples",
+  "intro": "Four assembled pages — full-width, sidebar + main, dashboard, and grid — showing every prior entry composed into shippable screens. Start from the nearest one: the skeletons already carry the header anatomy, scroll ownership, and chrome budget, so a new page is a content swap, not a layout decision.",
+  "demoPath": "/DesignSystem/ExFullWidth",
+  "searchTerms": [
+    "worked example",
+    "example page",
+    "full-width page",
+    "sidebar main",
+    "dashboard",
+    "grid page",
+    "ExFullWidth",
+    "ExSidebarMain",
+    "ExDashboard",
+    "ExGridPage",
+    "page skeleton",
+    "recipe",
+    "archetype",
+    "stat card",
+    "section card",
+    "counter card",
+    "control bar",
+    "detail drawer",
+    "config rail",
+    "GraviGrid",
+    "activity feed"
+  ],
+  "blocks": [
+    {
+      "type": "rules",
+      "title": "Laws of assembling a page",
+      "intro": "Every rule below is demonstrated live by the four example routes. A hi-fi screen that breaks one is diverging from the system, not interpreting it.",
+      "items": [
+        {
+          "rule": "Build every hi-fi page by copying the nearest worked example and swapping the content — never assemble a new shape from raw containers.",
+          "why": "The skeletons already encode scroll ownership, header anatomy, and the chrome budget. A from-scratch shape re-litigates all three and usually loses."
+        },
+        {
+          "rule": "Page header anatomy never varies: quiet back link above a `Texto` h3 weight-600 title on the left; actions on the right, secondary before primary, 8px gap.",
+          "why": "Users orient by the header. All four archetypes share it exactly, so every page reads as the same product at a glance."
+        },
+        {
+          "rule": "The page root is `<Vertical height=\"100%\">`; chrome rows never flex, and exactly one pane scrolls via `flex=\"1\"` + `scroll`.",
+          "why": "Competing scroll regions create double scrollbars and let headers drift off-screen. One explicit scroll owner keeps chrome pinned."
+        },
+        {
+          "rule": "Content areas take 24px padding and 24px gaps between top-level zones; sibling cards inside a zone sit at 16px.",
+          "why": "Two steps of the scale separate 'between zones' from 'within a zone'. A third value blurs the boundary and forks the rhythm."
+        },
+        {
+          "rule": "Cards are the only content container: flat stat cards (24px padding) and headed section cards (16px header strip on `--surface-muted`, 24px body). No bespoke boxes.",
+          "why": "Two known shapes mean every box on screen is instantly parseable. Each invented container costs the reader a re-orientation."
+        },
+        {
+          "rule": "Secondary surfaces are drawers, not pages: edit forms and row detail open in a 520px right drawer; export and history workflows open in a 50–70vh bottom drawer. Drawer footers right-align Cancel before the primary at 8px.",
+          "why": "Drawers preserve the page underneath — grid scroll position, applied filters, selection. Navigating away to edit one record throws all of that out."
+        },
+        {
+          "rule": "Grid pages get exactly one control bar between header and grid, and zero wrapper padding around `GraviGrid`.",
+          "why": "The grid is the page. Every extra chrome row steals data rows from the ~320px budget, and wrapper padding only shrinks the viewport the grid was given."
+        },
+        {
+          "rule": "Money is decimal dollars — $0.0100/gal, $84.20/bbl — never cents symbols.",
+          "why": "Gravitate pricing copy is standardized on decimal dollars; a stray ¢ breaks scanning across every pricing screen that follows the standard."
+        }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "Full-width page — the default archetype",
+      "image": "specimens/worked-examples/01-full-width-page.png",
+      "caption": "Contract detail page (/DesignSystem/ExFullWidth). Zones top to bottom: header (16px 24px, border-bottom) with back link, h3 title, and History / Edit / Publish actions; then the flex: 1 scroll pane at 24px padding stacking a 4-up stat-card row (16px gaps) and two section cards — a two-column field grid and an activity log — at 24px zone gaps."
+    },
+    {
+      "type": "specimen",
+      "title": "Sidebar + main — config rail driving a results pane",
+      "image": "specimens/worked-examples/02-sidebar-main.png",
+      "caption": "Contract analysis (/DesignSystem/ExSidebarMain). Header spans the full width; below it a 320px fixed config rail — titled header strip, scrollable filter sections at 16px padding split by 1px dividers, pinned footer with a full-width Apply Filters primary — beside a flex: 1 results pane on --surface-sunken holding a filter-tag echo bar and a two-column card grid at 16px gaps."
+    },
+    {
+      "type": "specimen",
+      "title": "Dashboard — read-heavy full-width",
+      "image": "specimens/worked-examples/03-dashboard.png",
+      "caption": "Dashboard (/DesignSystem/ExDashboard). One counter card split into four equal columns by 1px dividers, a stat row whose cards carry green/red delta lines and click through to detail drawers, then two section cards side by side at a 24px gap: an activity feed keyed by status-solid dots and a labeled bar-chart list."
+    },
+    {
+      "type": "specimen",
+      "title": "Grid page — the grid is the page",
+      "image": "specimens/worked-examples/04-grid-page.png",
+      "caption": "Contracts (/DesignSystem/ExGridPage). Header with the New Contract primary; one control bar (12px 24px on --surface-muted, border-bottom) holding search, a status select, and a Filters toggle on the left with Export on the right; then GraviGrid at flex: 1 with zero wrapper padding."
+    },
+    {
+      "type": "specimen",
+      "title": "Grid row drill-in — 520px right detail drawer",
+      "image": "specimens/worked-examples/05-grid-detail-drawer.png",
+      "caption": "Row click on the grid page opens the standard detail drawer over the page: title is the row id, body stacks section cards at 24px gaps, footer right-aligns Close before the Edit Contract primary at an 8px gap. The grid — scroll, filters, selection — waits untouched underneath."
+    },
+    {
+      "type": "tokens",
+      "title": "Zone spacing the archetypes prescribe",
+      "intro": "The complete spacing vocabulary used across all four examples. Anything outside this table needs a reason in review.",
+      "rows": [
+        {
+          "token": "Content padding",
+          "value": "24px (space-5)",
+          "use": "Scroll pane on full-width, dashboard, and the sidebar + main results pane; grid pages take none"
+        },
+        {
+          "token": "Zone gap",
+          "value": "24px (space-5)",
+          "use": "Between top-level zones in a content area — stat row to section card, card to card down the page"
+        },
+        {
+          "token": "Inter-card gap",
+          "value": "16px (space-4)",
+          "use": "Between sibling cards inside one zone — stat rows, the results card grid"
+        },
+        {
+          "token": "Page header padding",
+          "value": "16px 24px",
+          "use": "Header row on all four archetypes, with a 1px --border-default bottom edge"
+        },
+        {
+          "token": "Control bar padding",
+          "value": "12px 24px",
+          "use": "Grid-page filter/action bar on --surface-muted; 24px horizontal keeps its contents aligned with the header"
+        },
+        {
+          "token": "Config rail width",
+          "value": "320px fixed",
+          "use": "Sidebar + main left rail; pin with `flex=\"0 0 320px\"` on a Vertical or width + min-width 320px in CSS so it never grows or collapses"
+        },
+        {
+          "token": "Rail section padding",
+          "value": "16px (space-4)",
+          "use": "Each rail section, separated by 1px dividers; rail footer takes 12px 16px"
+        },
+        {
+          "token": "Right drawer width",
+          "value": "520px",
+          "use": "Edit forms and row-detail drill-ins on any archetype"
+        },
+        {
+          "token": "Bottom drawer height",
+          "value": "50–70vh",
+          "use": "Export, bulk, and history workflows — wide content that would cramp a right drawer"
+        }
+      ]
+    },
+    {
+      "type": "code",
+      "title": "Full-width skeleton",
+      "code": "<Vertical height=\"100%\">\n  <header className={s.header}>                        {/* 16px 24px, border-bottom */}\n    <Horizontal justifyContent=\"space-between\" alignItems=\"center\">\n      <Vertical gap={4}>\n        <BackLink />                                     {/* quiet 12px link above the title */}\n        <Texto category=\"h3\" weight=\"600\">Contract Details</Texto>\n      </Vertical>\n      <Horizontal gap={8}>\n        <GraviButton buttonText=\"History\" icon={<HistoryOutlined />} />\n        <GraviButton buttonText=\"Edit\" icon={<EditOutlined />} />\n        <GraviButton buttonText=\"Publish\" theme1 />      {/* primary last */}\n      </Horizontal>\n    </Horizontal>\n  </header>\n\n  <Vertical flex=\"1\" scroll gap={24} style={{ padding: 24 }}>\n    <Horizontal gap={16}>{/* stat cards — flex: 1 each, one line */}</Horizontal>\n    <SectionCard title=\"Contract Information\">{/* two-column field grid, 16px gap */}</SectionCard>\n    <SectionCard title=\"Activity Log\">{/* entries at 16px, --border-subtle dividers */}</SectionCard>\n  </Vertical>\n</Vertical>",
+      "note": "Geometry goes through props — `flex=\"1\"`, `height=\"100%\"`, `gap={24}` — never style objects; `style` appears only for `padding`, which has no prop equivalent. Edit opens a 520px right `<Drawer open destroyOnHidden>`, never a separate page."
+    },
+    {
+      "type": "code",
+      "title": "Sidebar + main skeleton",
+      "code": "<Vertical height=\"100%\">\n  <PageHeader />                                         {/* spans the full width */}\n  <Horizontal flex=\"1\">\n    <Vertical flex=\"0 0 320px\" className={s.rail}>      {/* fixed 320px — Vertical defaults to flex: 1 1 auto, so pin it */}\n      <RailHeader />                                     {/* 16px padding, border-bottom */}\n      <Vertical flex=\"1\" scroll>                         {/* sections: 16px padding, 1px dividers */}\n        <FilterSection />\n        <ToggleSection />\n        <ThresholdSection />\n      </Vertical>\n      <div className={s.railFooter}>                     {/* pinned: 12px 16px, border-top */}\n        <GraviButton buttonText=\"Apply Filters\" theme1 /> {/* full width */}\n      </div>\n    </Vertical>\n    <Vertical flex=\"1\" scroll style={{ padding: 24 }}>   {/* results pane, --surface-sunken */}\n      <FilterTagBar />                                   {/* echoes applied state, 8px gaps */}\n      <CardGrid />                                       {/* two columns, 16px gap */}\n    </Vertical>\n  </Horizontal>\n</Vertical>",
+      "note": "The rail is a three-row column: fixed header, the one scrollable middle, pinned footer. Horizontal hugs content by default — the split row collapses unless it gets `flex=\"1\"` explicitly."
+    },
+    {
+      "type": "code",
+      "title": "Dashboard skeleton",
+      "code": "<Vertical height=\"100%\">\n  <PageHeader />                                         {/* title + Live badge; Refresh, Export */}\n  <Vertical flex=\"1\" scroll gap={24} style={{ padding: 24 }}>\n    <CounterCard />                                      {/* one card, four equal columns, 1px dividers */}\n    <Horizontal gap={16}>\n      {/* stat cards with delta lines — clickable, each opens a 520px detail drawer */}\n    </Horizontal>\n    <Horizontal gap={24}>\n      <SectionCard title=\"Recent Activity\" />            {/* dot feed — --status-*-solid dots */}\n      <SectionCard title=\"Top Commodities\" />            {/* labeled bar rows */}\n    </Horizontal>\n  </Vertical>\n</Vertical>",
+      "note": "The dashboard is the full-width archetype with read-heavy zones, not a separate layout. Deltas use `Texto` appearance success/error; feed dots take the status `-solid` channel, never raw hex."
+    },
+    {
+      "type": "code",
+      "title": "Grid page skeleton",
+      "code": "const columnDefs = useMemo(() => COLUMN_DEFS, [])      // always memoized\nconst rowData = useMemo(() => ROW_DATA, [])\n\n<Vertical height=\"100%\">\n  <PageHeader />                                         {/* New Contract (theme1) on the right */}\n  <Horizontal justifyContent=\"space-between\" alignItems=\"center\" className={s.controlBar}>\n    <Horizontal gap={8} alignItems=\"center\">\n      <Input placeholder=\"Search contracts...\" style={{ width: 240 }} />\n      <Select options={statusOptions} style={{ width: 160 }} />\n      <GraviButton buttonText=\"Filters\" icon={<FilterOutlined />} />\n    </Horizontal>\n    <GraviButton buttonText=\"Export\" icon={<DownloadOutlined />} />\n  </Horizontal>\n  <Vertical flex=\"1\">                                    {/* the grid owns the rest — no padding */}\n    <GraviGrid\n      storageKey=\"contracts-grid\"\n      rowData={rowData}\n      columnDefs={columnDefs}\n      agPropOverrides={{ onRowClicked: (e) => setDetailRow(e.data) }}\n    />\n  </Vertical>\n</Vertical>\n\n<Drawer\n  open={!!detailRow}\n  onClose={() => setDetailRow(null)}\n  title={detailRow?.id}\n  width={520}\n  destroyOnHidden\n  footer={/* Close, then primary — right-aligned, 8px gap */}\n>\n  {/* section cards at 24px gaps */}\n</Drawer>",
+      "note": "`GraviGrid` always receives `agPropOverrides`, even when empty. Unmemoized `columnDefs`/`rowData` change identity every render — GraviGrid re-runs `setColumnDefs` and re-applies the stored grid config each time, churning column state. An expanding inline filter panel is the one extra chrome row allowed — it must be dismissible and count against the 320px budget while open."
+    },
+    {
+      "type": "dosdonts",
+      "items": [
+        {
+          "do": "Copy the nearest worked example and swap the data, labels, and columns.",
+          "dont": "Compose a new page from raw divs because the content feels unique.",
+          "why": "Content is what varies; the shell — scroll owner, header, chrome budget — is already solved and verified on the four routes."
+        },
+        {
+          "do": "Open edit forms and row detail in a 520px right drawer over the page.",
+          "dont": "Route to a separate edit page for one record.",
+          "why": "The drawer keeps grid scroll, filters, and selection alive underneath; a navigation throws away the user's working state."
+        },
+        {
+          "do": "Keep stat rows to one line of equal flex: 1 cards — three or four.",
+          "dont": "Wrap stat cards to a second row or mix card widths in one row.",
+          "why": "A single equal-width line reads as one scannable summary; wrapping turns the page header zone into a content zone and eats the viewport."
+        },
+        {
+          "do": "Echo applied filters as a tag bar at the top of the results pane.",
+          "dont": "Leave filter state visible only inside the rail.",
+          "why": "Results are interpreted where they render — without the echo, a filtered list is indistinguishable from a short one."
+        }
+      ]
+    },
+    {
+      "type": "usage",
+      "title": "Working from an example",
+      "body": "Match the page you are building to its archetype before writing code. Record detail, forms, and overview pages start from Full-Width (`/DesignSystem/ExFullWidth`). Pages where a persistent configuration rail drives a results pane — analysis, profile management, settings — start from Sidebar + Main (`/DesignSystem/ExSidebarMain`). Read-heavy KPI overviews start from Dashboard (`/DesignSystem/ExDashboard`). Any manage-X table, quote book, or pricing screen starts from Grid Page (`/DesignSystem/ExGridPage`).\n\nEach example also carries its secondary surfaces: the full-width page has a right edit drawer and a bottom history drawer, the dashboard has stat-card detail drawers and a bottom export drawer, and the grid page has a row-click detail drawer. Take the drawer with the page — the pairing is part of the recipe, and the size tiers (520px right, 50–70vh bottom) come from `tokens.css`, not ad-hoc widths.\n\nThe examples are live routes in the demo, not mockups. When a spacing or anatomy question comes up mid-build, open the route and measure the running page rather than guessing from memory."
+    },
+    {
+      "type": "gotchas",
+      "items": [
+        {
+          "title": "Vertical stretches its children inside fixed-height drawers",
+          "detail": "Vertical children default to height: '100%', so a stack of nested `<Vertical gap={4}>` label-input pairs inside a Drawer body distributes the drawer's full height across the pairs — labels drift hundreds of pixels from their inputs. Wrap each pair in a plain div or a non-stretching row component inside any fixed-height surface; never lean on Vertical defaults there."
+        },
+        {
+          "title": "GraviGrid silently replaces some agPropOverrides handlers",
+          "detail": "GraviGrid wires its own `onGridReady`, `onColumnRowGroupChanged`, and other lifecycle handlers, clobbering yours even when passed via `agPropOverrides`. Row-level handlers like `onRowClicked` survive. For lifecycle events, hook `onFirstDataRendered` and register listeners with `api.addEventListener`."
+        },
+        {
+          "title": "GraviButton labels go through buttonText, not children",
+          "detail": "Children support is version-dependent: the Excalibrr library source renders only `buttonText`, so `<GraviButton>Save</GraviButton>` ships an empty button there; newer demo builds fall back to children. Self-close and pass `buttonText=\"Save\"` everywhere; primaries take the `theme1` boolean, never `type=\"primary\"`."
+        },
+        {
+          "title": "The chrome budget counts everything between viewport and grid",
+          "detail": "Header (~56px) + control bar (~48px) leaves most of the 320px budget unspent — by design. Tab strips, summary card rows, and persistent footers added 'just for this page' are how grid pages end up scrolling the shell instead of the data. Audit the running total before adding any chrome row."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+/*#affectedSetupsWrapper .ag-header {*/
+/*  display: none;*/
+/*}*/
+
+#affectedSetupsWrapper .ag-side-buttons {
+  display: none;
+}
+
+#appliesToWrapper .ag-side-buttons {
+  display: none;
+}

@@ -1,0 +1,481 @@
+.columns-bbd-tag {
+    text-align: center;
+    width: auto;
+    min-width: fit-content;
+    white-space: nowrap;
+    padding: 4px 8px;
+    height: auto;
+    line-height: 1.5;
+}
+
+.columns-bbd-tag-completed {
+    background-color: var(--theme-color-2) !important;
+    color: white !important;
+    border-color: var(--theme-color-2) !important;
+
+}
+
+.ant-btn.gravi-button.send-reminder-btn {
+    border-radius: 5px;
+}
+
+.ant-btn.gravi-button.close-deal-btn {
+    border-radius: 5px;
+}
+
+.send-reminder-icon {
+    display: inline-block;
+    transform: rotate(-45deg);
+    margin-bottom: 2px;
+}
+
+/* Base card (no left accent) */
+.offer-info-card.ant-card,
+.offer-info-card.ant-card-bordered {
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid var(--gray-300); /* all sides */
+}
+
+/* Softer directional shadows (top/right/bottom only) */
+.offer-info-card {
+    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.04), /* top */ 2px 0 6px rgba(0, 0, 0, 0.04),
+        /* right */ 0 2px 8px rgba(0, 0, 0, 0.05); /* bottom */
+}
+
+/* Left blue accent (opt-in) */
+.offer-info-card--accent.ant-card,
+.offer-info-card--accent.ant-card-bordered {
+    border-left: 4px solid #20c55e;
+}
+
+.offer-info-card--accent-visibility-window.ant-card,
+.offer-info-card--accent-visibility-window.ant-card-bordered {
+    border-left: 4px solid #3c82f6;
+}
+
+/* Swap Meta styles: title like description; description like title */
+.offer-info-card .ant-card-meta-title {
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.45);
+    margin-bottom: 0;
+    font-size: 12px;
+}
+
+.offer-info-card .ant-card-meta-description {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.85);
+    font-size: 14px;
+}
+
+/* Container uses your Horizontal; this adds gap & wrap variables */
+.offer-info-wrap {
+    --gap: 24px;
+    flex-wrap: wrap;
+    gap: var(--gap);
+    padding: 8px 4px 8px 4px;
+}
+
+/* Second row (items 3–5) → 3-up */
+.offer-info-item {
+    flex-basis: calc((100% - 2 * var(--gap)) / 3);
+    min-width: 260px;
+}
+
+/* Tablet: fall back to 2-up for all */
+@media (max-width: 1024px) {
+    .offer-info-item {
+        flex-basis: calc((100% - var(--gap)) / 2);
+    }
+}
+
+/* Mobile: 1-up */
+@media (max-width: 600px) {
+    .offer-info-item {
+        flex-basis: 100%;
+    }
+}
+
+.created-by-container {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--gray-300);
+    background-color: var(--bg-2);
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.offer-info-header-container {
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 10px;
+}
+
+.info-container {
+    margin-top: 8px;
+    background-color: var(--bg-1);
+    border: 1px solid var(--gray-300);
+    border-radius: 8px;
+    padding: 32px 16px;
+}
+
+/* Card container */
+.funnel-card.ant-card,
+.funnel-card.ant-card-bordered {
+    border-radius: 8px;
+    border: 1px solid var(--gray-300);
+    min-width: 250px;
+}
+
+.funnel-card.ant-card:hover {
+    border-color: var(--theme-color-2);
+    cursor: pointer;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+}
+
+.funnel-card .ant-card-body {
+    padding: 16px 18px;
+}
+
+/* Step badge */
+.funnel-card__step {
+    display: inline-flex;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--bg-2);
+    border: 1px solid var(--gray-300);
+    font-size: 12px;
+    font-weight: 600;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Green percent */
+.funnel-card__percent {
+    color: var(--theme-success);
+}
+
+/* Link */
+.funnel-card-link {
+    color: #1677ff !important;
+    cursor: pointer;
+    margin-top: 6px;
+}
+
+.funnel-card-link:hover {
+    text-decoration: underline;
+}
+
+.send-reminder-modal .ant-modal-content {
+    border-radius: 10px !important;
+}
+
+.send-reminder-select-buttons-container {
+    background-color: var(--bg-2);
+    width: 100%;
+    padding: 15px 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+}
+
+.send-reminder-select-buttons {
+    border-radius: 5px !important;
+    background-color: white !important;
+    border: 1px solid var(--gray-300) !important;
+}
+
+.send-reminder-list-item {
+    border: 1px solid var(--gray-300);
+    padding: 15px !important;
+    margin: 10px 10px 10px 5px !important;
+    border-radius: 10px;
+}
+
+.send-reminder-list-item-selected {
+    border: 1px solid var(--theme-success);
+    padding: 15px !important;
+    margin: 10px 10px 10px 5px !important;
+    border-radius: 10px;
+    background-color: var(--theme-success-dim);
+}
+
+.send-reminder-list-item:hover {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06), 0 0 8px 2px rgba(0, 0, 0, 0.14);
+}
+
+.send-reminder-banner-container {
+    margin-top: 10px;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--theme-error);
+    background-color: var(--theme-error-trans);
+}
+
+.send-reminder-footer-container {
+    width: 100%;
+    margin-top: 20px;
+    border-top: 1px solid var(--gray-300);
+    padding-top: 20px;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.send-reminder-footer-cancel-button {
+    width: 100%;
+    border-radius: 5px !important;
+    background-color: white !important;
+    border: 1px solid var(--gray-300) !important;
+    font-size: 14px !important;
+}
+
+.send-reminder-footer-send-reminder-button {
+    width: 100%;
+    border-radius: 5px !important;
+    background-color: var(--theme-color-1) !important;
+    font-size: 14px !important;
+    color: white !important;
+}
+
+.customer-engagement-view-customers-modal .ant-modal-content {
+    border-radius: 10px !important;
+}
+
+.view-customer-search-input {
+    border-radius: 10px !important;
+    overflow: hidden; /* keeps corners rounded on focus/hover shadows */
+}
+
+.view-customers-collapse .ant-collapse-header-text {
+    flex: 1 1 auto;
+    min-width: 0; /* allows ellipsis inside */
+    display: block; /* span -> block so width:100% works well */
+    width: 100%;
+    padding-bottom: 0;
+    padding-top: 0;
+}
+
+.view-customers-collapse,
+.ant-collapse-header,
+.ant-collapse-header-collapsible-only {
+    /*padding: 0 !important;*/
+    padding: 10px 0 0 0 !important;
+}
+
+.view-customers-collapse-panel-container,
+.ant-collapse-content,
+.ant-collapse-content-box {
+    background-color: var(--bg-2);
+    padding: 0;
+    margin: 0 0 0 10px;
+}
+
+.volume-analysis-status-banner-container {
+    margin: 5px 50px 5px 50px !important;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--theme-warning);
+    background-color: var(--theme-warning-trans);
+}
+
+.pd-tooltip-container {
+    width: 150px;
+    background-color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--gray-300);
+}
+
+.view-customers-panel-body {
+    margin-bottom: 10px;
+}
+
+.text-14 {
+    font-size: 0.875rem !important;
+}
+
+.text-16 {
+    font-size: 1rem !important;
+}
+
+.text-18 {
+    font-size: 1.125rem !important;
+}
+
+.text-20 {
+    font-size: 1.25rem !important;
+}
+
+.text-24 {
+    font-size: 1.5rem !important;
+}
+
+.text-muted {
+    color: #787878 !important;
+}
+
+.gap-24 {
+    gap: 24px;
+}
+
+.dotted-border {
+    border: 1px dashed var(--gray-300);
+    border-radius: 8px;
+}
+
+.back-button {
+    align-self: flex-start;
+}
+
+.manage-special-offer-page {
+    background-color: var(--bg-2);
+    padding: 20px;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.visibility-range-picker .ant-picker-input > input {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 15px;
+    color: #000;
+}
+
+.visibility-range-picker.ant-picker-focused {
+    box-shadow: none;
+}
+
+.visibility-range-picker {
+    background: transparent;
+}
+
+.volume-h4-input.ant-input-number {
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 33px;
+    color: #000;
+    height: auto;
+    width: 100%;
+}
+
+.volume-h4-input.ant-input-number .ant-input-number-input {
+    padding: 0;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 33px;
+    color: #000;
+}
+
+.volume-h4-input.ant-input-number::placeholder {
+    color: rgba(0, 0, 0, 0.35);
+}
+
+.volume-h4-input.ant-input-number:focus {
+    box-shadow: none;
+}
+
+.volume-h4-input--editing.ant-input-number {
+    border: none !important;
+    border-bottom: 2px solid var(--theme-warning) !important;
+    transition: border-bottom-color 0.2s ease;
+}
+
+.volume-h4-input--editing.ant-input-number:hover,
+.volume-h4-input--editing.ant-input-number:focus,
+.volume-h4-input--editing.ant-input-number:focus-within {
+    border: none !important;
+    border-bottom: 2px solid var(--theme-warning) !important;
+}
+
+.formula-string-mono {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.85);
+}
+
+/* Index Formula Display Styles */
+.index-formula-section {
+    margin-bottom: 16px;
+}
+
+.index-formula-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.65);
+    margin-bottom: 8px;
+}
+
+.index-formula-label-uppercase {
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.45);
+    text-transform: uppercase;
+    padding-bottom: 8px;
+}
+
+.index-formula-value-box {
+    padding: 12px;
+    background-color: var(--bg-2);
+    border: 1px solid var(--gray-300);
+    border-radius: 6px;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.85);
+}
+
+.index-formula-table.ant-table-wrapper {
+    border: 1px solid var(--gray-300);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.index-formula-table.ant-table-wrapper .ant-table {
+    border: none;
+    border-radius: 0;
+}
+
+.index-formula-table.ant-table-wrapper .ant-table-container {
+    border: none !important;
+}
+
+.index-formula-table.ant-table-wrapper .ant-table-thead > tr > th {
+    background-color: var(--bg-2);
+    font-size: 12px;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.85);
+    padding: 10px 16px;
+}
+
+.index-formula-table.ant-table-wrapper .ant-table-tbody > tr > td {
+    font-size: 14px;
+    padding: 12px 16px;
+}
+
+.index-formula-table.ant-table-wrapper .ant-table-thead > tr > th:first-child,
+.index-formula-table.ant-table-wrapper .ant-table-tbody > tr > td:first-child {
+    padding-left: 21px;
+}
+
+.ant-btn.special-offers-action-icon {
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+    transition: transform 0.15s ease;
+}
+
+.ant-btn.special-offers-action-icon .anticon {
+    font-size: 18px;
+}
+
+.ant-btn.special-offers-action-icon:hover {
+    transform: scale(1.1);
+}

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formula library · Round 2 · REVISED</title>
+  <link rel="stylesheet" href="assets/wireframe.css">
+  <link rel="stylesheet" href="assets/lofi-chrome.revised.css">
+</head>
+<body>
+
+  <!-- create surface behind (dimmed by the sheet) -->
+  <div class="lf-topbar">
+    <a class="lf-topbar-x" href="02-quick-create-index.revised.html" title="Close">&times;</a>
+    <span class="lf-topbar-title">Create New Offer</span>
+    <a class="lf-backlink" href="../index.html">Round 2 index</a>
+  </div>
+  <div class="lf-offer-page">
+    <a class="lf-backtolist" href="02-quick-create-index.revised.html">&#8592; Back to the offer</a>
+    <div class="wf-card">
+      <div class="wf-card-body">
+        <h1 class="wf-text-h1">Create New Offer</h1>
+        <p class="wf-text-helper">Index Special · choosing a saved formula…</p>
+        <div class="lf-group" style="border-top:none;margin-top:var(--wf-space-3);padding-top:0;">
+          <h3 class="wf-text wf-text-h3 lf-group-title">Price formula</h3>
+          <p class="wf-text wf-text-helper lf-group-desc">The library is filtered to <strong>Group 3 Suboctane · Tulsa</strong> — pick a saved formula below.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Formula library sheet (escalation from the inline picker) ===== -->
+  <div class="lf-bottomsheet-host">
+    <div class="lf-bottomsheet-backdrop"></div>
+    <section class="lf-bottomsheet" role="dialog" aria-label="Formula library">
+
+      <div class="lf-bottomsheet-header">
+        <div>
+          <p class="wf-text wf-text-label">Effective: 06/18/2026 – 06/20/2026</p>
+          <h2 class="wf-text wf-text-h2">Formula library</h2>
+          <p class="wf-text wf-text-helper">Pick a saved formula to apply to this offer. You finish it on the page — edit in the drawer if it's close but not exact.</p>
+        </div>
+        <div class="lf-bs-actions">
+          <button class="wf-button wf-button-secondary wf-button-sm">Manage formulas</button>
+          <a class="wf-button wf-button-ghost wf-button-sm" href="02-quick-create-index.revised.html">&#8592; Exit library</a>
+        </div>
+      </div>
+
+      <div class="lf-bottomsheet-body">
+
+        <!-- filters bar (REVISED #6 — pre-set to the chosen product/location, not "All") -->
+        <div class="wf-filter-bar" style="margin-bottom: var(--wf-space-3);">
+          <div class="wf-filter-bar-filters">
+            <div class="wf-tabs wf-tabs-pill"><div class="wf-tabs-list">
+              <button class="wf-tab wf-tab-active">Cards</button>
+              <button class="wf-tab">List</button>
+            </div></div>
+            <div class="wf-filter-item">
+              <label class="wf-filter-label">Search</label>
+              <input type="search" class="wf-input" placeholder="Search formulas by keyword">
+            </div>
+            <div class="wf-filter-item">
+              <label class="wf-filter-label">Category</label>
+              <select class="wf-select"><option>Index</option><option>All</option></select>
+            </div>
+            <div class="wf-filter-item">
+              <label class="wf-filter-label">Products</label>
+              <select class="wf-select"><option>G3 Suboctane</option><option>All</option></select>
+            </div>
+            <div class="wf-filter-item">
+              <label class="wf-filter-label">Locations</label>
+              <select class="wf-select"><option>Tulsa</option><option>All</option></select>
+            </div>
+            <div class="wf-filter-item">
+              <label class="wf-filter-label">Price Type</label>
+              <select class="wf-select"><option>Index</option><option>All</option></select>
+            </div>
+          </div>
+        </div>
+        <p class="lf-filterhint">Showing formulas for <strong>Group 3 Suboctane · Tulsa</strong>. <a href="#">Clear filters to see all</a></p>
+
+        <!-- wrapping grid of formula cards (REVISED #6 — was a horizontal scroll) -->
+        <div class="lf-cardgrid">
+
+          <!-- card 1 -->
+          <div class="wf-card wf-card-selected">
+            <div class="wf-card-header">
+              <div>
+                <h3 class="wf-card-title">G3 Suboctane — OPIS/Platts blend</h3>
+              </div>
+              <span class="wf-badge wf-badge-primary">Selected</span>
+            </div>
+            <div class="wf-card-body">
+              <div class="wf-data-row"><span class="wf-data-label">Category</span><span class="wf-data-value">Index</span></div>
+              <div class="wf-data-row"><span class="wf-data-label">Products</span><span class="wf-data-value">G3 Suboctane</span></div>
+              <div class="wf-data-row"><span class="wf-data-label">Location</span><span class="wf-data-value">Tulsa</span></div>
+              <div class="wf-row wf-justify-between wf-align-center" style="margin:var(--wf-space-3) 0 var(--wf-space-2);">
+                <span class="wf-text wf-text-body wf-text-semibold">Variables</span>
+                <span class="wf-text wf-text-link">3 variables</span>
+              </div>
+              <div class="lf-comp-list">
+                <div class="lf-comp-item">
+                  <input type="checkbox" class="wf-checkbox-input" checked>
+                  <div class="lf-comp-lines"><div><span class="wf-mono">50%</span> <span class="lf-comp-op">+</span> OPIS · G3 Suboctane Gross</div><div class="lf-muted">Prior day &middot; Low</div></div>
+                </div>
+                <div class="lf-comp-item">
+                  <input type="checkbox" class="wf-checkbox-input" checked>
+                  <div class="lf-comp-lines"><div><span class="wf-mono">50%</span> <span class="lf-comp-op">+</span> Platts · G3 Suboctane</div><div class="lf-muted">Same day &middot; Mean</div></div>
+                </div>
+                <div class="lf-comp-item">
+                  <input type="checkbox" class="wf-checkbox-input" checked>
+                  <div class="lf-comp-lines"><div><span class="wf-mono">100%</span> &minus; OPIS · G3 Ethanol Adj</div><div class="lf-muted">2-day avg &middot; Settle</div></div>
+                </div>
+              </div>
+              <p class="wf-text wf-text-label" style="margin:var(--wf-space-3) 0 var(--wf-space-1);">Display Name</p>
+              <div class="lf-readout"><span class="lf-readout-formula wf-mono">0.5·OPIS Sub Low + 0.5·Platts Sub Mean &minus; OPIS Ethanol</span></div>
+            </div>
+            <div class="wf-card-footer">
+              <a class="wf-button wf-button-primary wf-button-sm" href="02-quick-create-index.revised.html" style="width:100%;">Use this formula</a>
+            </div>
+          </div>
+
+          <!-- card 2 -->
+          <div class="wf-card wf-card-clickable">
+            <div class="wf-card-header"><div><h3 class="wf-card-title">OPIS Low — prior day</h3></div></div>
+            <div class="wf-card-body">
+              <div class="wf-data-row"><span class="wf-data-label">Category</span><span class="wf-data-value">Index</span></div>
+              <div class="wf-data-row"><span class="wf-data-label">Products</span><span class="wf-data-value">G3 Suboctane</span></div>
+              <div class="wf-data-row"><span class="wf-data-label">Location</span><span class="wf-data-value">Tulsa</span></div>
+              <div class="wf-row wf-justify-between wf-align-center" style="margin:var(--wf-space-3) 0 var(--wf-space-2);">
+                <span class="wf-text wf-text-body wf-text-semibold">Variables</span>
+                <span class="wf-text wf-text-link">1 variable</span>
+              </div>
+              <div class="lf-comp-list">
+                <div class="lf-comp-item">
+                  <input type="checkbox" class="wf-checkbox-input" checked>
+                  <div class="lf-comp-lines"><div><span class="wf-mono">100%</span> <span class="lf-comp-op">+</span> OPIS · G3 Suboctane Gross</div><div class="lf-muted">Prior day &middot; Low</div></div>
+                </div>
+              </div>
+              <p class="wf-text wf-text-label" style="margin:var(--wf-space-3) 0 var(--wf-space-1);">Display Name</p>
+              <div class="lf-readout"><span class="lf-readout-formula wf-mono">OPIS G3 Suboctane Low (prior)</span></div>
+            </div>
+            <div class="wf-card-footer"><button class="wf-button wf-button-secondary wf-button-sm" style="width:100%;">Use this formula</button></div>
+          </div>
+
+          <!-- card 3 -->
+          <div class="wf-card wf-card-clickable">
+            <div class="wf-card-header"><div><h3 class="wf-card-title">Platts settle avg</h3></div></div>
+            <div class="wf-card-body">
+              <div class="wf-data-row"><span class="wf-data-label">Category</span><span class="wf-data-value">Index</span></div>
+              <div class="wf-data-row"><span class="wf-data-label">Products</span><span class="wf-data-value">G3 Suboctane</span></div>
+              <div class="wf-data-row"><span class="wf-data-label">Location</span><span class="wf-data-value">Tulsa</span></div>
+              <div class="wf-row wf-justify-between wf-align-center" style="margin:var(--wf-space-3) 0 var(--wf-space-2);">
+                <span class="wf-text wf-text-body wf-text-semibold">Variables</span>
+                <span class="wf-text wf-text-link">2 variables</span>
+              </div>
+              <div class="lf-comp-list">
+                <div class="lf-comp-item">
+                  <input type="checkbox" class="wf-checkbox-input" checked>
+                  <div class="lf-comp-lines"><div><span class="wf-mono">50%</span> <span class="lf-comp-op">+</span> Platts · G3 Suboctane</div><div class="lf-muted">2-day avg &middot; Settle</div></div>
+                </div>
+                <div class="lf-comp-item">
+                  <input type="checkbox" class="wf-checkbox-input" checked>
+                  <div class="lf-comp-lines"><div><span class="wf-mono">50%</span> <span class="lf-comp-op">+</span> Platts · G3 Suboctane</div><div class="lf-muted">Prior day &middot; Settle</div></div>
+                </div>
+              </div>
+              <p class="wf-text wf-text-label" style="margin:var(--wf-space-3) 0 var(--wf-space-1);">Display Name</p>
+              <div class="lf-readout"><span class="lf-readout-formula wf-mono">avg(Platts Sub Settle, 2-day)</span></div>
+            </div>
+            <div class="wf-card-footer"><button class="wf-button wf-button-secondary wf-button-sm" style="width:100%;">Use this formula</button></div>
+          </div>
+
+          <!-- card 4: build new (now visible in the grid, not off-screen) -->
+          <div class="wf-card wf-card-clickable">
+            <div class="wf-card-body" style="display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:200px; text-align:center;">
+              <span class="wf-text wf-text-h4">+ Build a new formula</span>
+              <p class="wf-text wf-text-helper">Start from a blank 3-variable formula</p>
+            </div>
+          </div>
+
+        </div>
+        <p class="wf-text wf-text-helper" style="margin-top: var(--wf-space-4);">Choosing a formula loads its lines into the read-only summary on the offer — where you add the differential and, if needed, edit in the drawer.</p>
+      </div>
+    </section>
+  </div>
+
+</body>
+</html>

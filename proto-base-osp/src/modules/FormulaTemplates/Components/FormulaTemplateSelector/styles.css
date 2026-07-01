@@ -1,0 +1,276 @@
+.template-chooser-cards-view {
+  position: relative;
+  overflow: hidden;
+}
+
+.template-chooser-cards-scroll {
+  flex: 1;
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  overflow-y: scroll !important;
+  padding: 20px 50px;
+  background-color: transparent;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  position: relative;
+  z-index: 1;
+}
+
+/* Hide scrollbar for cards container */
+.template-chooser-cards-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* ============================================
+   SCROLL CONTROLS
+   ============================================ */
+.template-chooser-scroll-arrow {
+  position: absolute !important;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  border-radius: 50% !important;
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+  transition: background-color 0.2s;
+}
+
+.template-chooser-scroll-arrow:hover {
+  background-color: var(--bg-1) !important;
+}
+
+.template-chooser-scroll-arrow .anticon {
+  font-size: 16px;
+  color: var(--gray-600);
+}
+
+.template-chooser-scroll-arrow-left {
+  left: 0;
+}
+
+.template-chooser-scroll-arrow-right {
+  right: 0;
+}
+
+/* LIST VIEW */
+.template-chooser-list-view {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* EMPTY STATE */
+.template-selector-empty-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+/*  LIST ITEM */
+.template-list-item {
+  width: 100%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.2s;
+  height: fit-content !important;
+}
+
+.template-list-item:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.template-list-item-has-placeholders {
+  border-left: 3px solid var(--placeholder-color, #722ed1);
+  border-radius: 4px;
+  border-top: 1px solid var(--gray-200);
+  border-bottom: 1px solid var(--gray-200);
+  border-right: 1px solid var(--gray-200);
+}
+
+.template-list-item-header {
+  border-bottom: 1px solid var(--gray-200);
+  min-height: fit-content;
+}
+
+.template-list-item-placeholder-tag {
+  background-color: var(--placeholder-color-dim, #f3e8ff);
+  color: var(--placeholder-color, #722ed1);
+  border: 1px solid var(--placeholder-color, #722ed1);
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 8px;
+}
+
+/* FORMULA PREVIEW */
+.formula-preview-compact {
+  border-left: #1890ff 3px solid;
+  border-radius: 4px;
+}
+
+.formula-preview-label {
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.formula-preview-box {
+  padding: 4px 6px;
+  min-height: 24px;
+  overflow-y: auto;
+}
+
+.formula-preview-code {
+  font-family: monospace;
+}
+
+.formula-preview-code-small {
+  font-family: monospace;
+  font-size: 12px !important;
+  width: 100%;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+/* COMPONENT ITEM */
+
+.component-item {
+  padding: 10px 12px;
+  opacity: 0.6;
+  transition: all 0.2s;
+}
+
+.component-item-compact {
+  gap: 6px;
+  padding: 6px 8px;
+  margin-bottom: 4px;
+  border-radius: 4px;
+  max-width: 340px;
+}
+
+.component-item-selected {
+  background-color: #e8f4fd;
+  border: 1px solid #1890ff;
+  opacity: 1;
+}
+.component-item-unselected {
+  background-color: #f5f5f5;
+}
+.component-item-checkbox {
+  margin-top: 2px;
+}
+
+.component-item-content {
+  height: fit-content;
+  min-height: fit-content;
+}
+
+.component-item-info-row {
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 2px;
+}
+
+.component-item-info-row-compact {
+  gap: 4px;
+}
+
+/* TEMPLATE CARD (Ant Design Card) */
+
+.template-card {
+  width: 380px;
+  min-width: 380px;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s, box-shadow 0.2s;
+  z-index: 1;
+  height: 650px;
+  border-radius: 5px;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.template-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+}
+.template-card.ant-card {
+  height: 650px;
+  border-radius: 5px !important;
+  border: 1px solid var(--gray-300);
+}
+
+.z {
+  border-left: 3px solid var(--placeholder-color, #722ed1);
+  border-color: rgb(217, 217, 217) rgb(217, 217, 217) rgb(217, 217, 217) rgb(114, 46, 209);
+  border-image: initial;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 8px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  z-index: 1;
+  transform: translateY(0px);
+}
+
+.template-card .ant-card-head {
+  background-color: var(--bg-2);
+  min-height: auto;
+  border-radius: 5px 5px 0 0 !important;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--gray-300);
+}
+
+.template-card .ant-card-head-title {
+  padding: 0;
+}
+.template-chooser-cards-view .template-card .ant-card-body,
+.template-card .ant-card-body {
+  flex: 1 !important;
+  overflow: hidden;
+  padding: 8px 12px;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.template-card .ant-card-actions {
+  border-top: none;
+  padding: 0 12px 12px;
+  background: transparent;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.template-card .ant-card-actions > li {
+  margin: 0;
+}
+
+.template-card-select-button {
+  width: 100%;
+}
+.text-10 {
+  font-size: 10px !important;
+}
+.text-11 {
+  font-size: 11px !important;
+}
+.component-blue-text {
+  color: #1890ff !important;
+}
+.component-placeholder-text {
+  color: #722ed1;
+  font-weight: 700;
+  font-family: monospace;
+}
+.component-container {
+  background: #fafafa;
+  overflow-y: auto;
+  flex: 2;
+  min-height: 120px;
+}

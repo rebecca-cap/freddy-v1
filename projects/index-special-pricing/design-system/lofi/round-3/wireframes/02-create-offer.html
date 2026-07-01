@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create New Offer — two-step (Offer details · Time frame) · Round 3</title>
+  <link rel="stylesheet" href="assets/wireframe.css">
+  <link rel="stylesheet" href="assets/lofi-chrome.css">
+</head>
+<body>
+
+  <div class="lf-topbar">
+    <a class="lf-topbar-x" href="01-launchpad.html" title="Close">&times;</a>
+    <span class="lf-topbar-title">Create New Offer</span>
+    <a class="lf-backlink" href="../index.html">Round 3 index</a>
+  </div>
+
+  <div class="lf-offer-page">
+    <a class="lf-backtolist" href="01-launchpad.html">&#8592; Back to Offers</a>
+
+    <div class="lf-offer-main">
+      <div class="wf-card">
+        <div class="wf-card-header">
+          <div>
+            <h1 class="wf-text-h1">Create New Offer</h1>
+            <p class="wf-text-helper">Index Special · two steps — <strong>Offer details</strong>, then <strong>Time frame</strong></p>
+          </div>
+          <span class="wf-badge wf-badge-primary">Index Special</span>
+        </div>
+        <div class="wf-card-body">
+
+          <!-- PRESET BAR: blank by default; populate; edit → two save paths (save-as-new discloses a name) -->
+          <div class="lf-presetbar-r3">
+            <div class="wf-field" style="min-width: 240px;">
+              <label class="wf-field-label">Preset <span class="wf-text-helper" style="font-weight:var(--wf-font-normal)">· your saved way of doing business</span></label>
+              <div class="wf-row wf-gap-2 wf-align-center">
+                <select class="wf-select" id="presetSelect">
+                  <option value="">No preset selected</option>
+                  <option value="g3">G3 Suboctane fast-fill</option>
+                  <option value="kc">Premium — KC daily</option>
+                </select>
+                <span class="wf-badge" id="presetState" style="display:none;"></span>
+              </div>
+            </div>
+            <a class="wf-button wf-button-ghost wf-button-sm lf-presetbar-end" href="#">Switch to full setup</a>
+
+            <!-- two save paths, shown only after a populated preset is edited -->
+            <div class="lf-savepaths" id="savePaths">
+              <button class="wf-button wf-button-secondary wf-button-sm" id="btnUpdate">Update preset</button>
+              <button class="wf-button wf-button-secondary wf-button-sm" id="btnSaveNew">Save as new preset</button>
+              <!-- progressive: the new-preset name appears only after Save as new -->
+              <span id="saveNewName" style="display:none; align-items:center; gap:var(--wf-space-2);">
+                <input type="text" class="wf-input wf-input-sm" placeholder="New preset name" style="max-width:200px;">
+                <button class="wf-button wf-button-primary wf-button-sm">Save</button>
+              </span>
+            </div>
+          </div>
+
+          <p class="wf-text wf-text-helper" id="emptyHint">Start from a preset to pre-fill everything, or fill the two steps below from scratch. <strong>Nothing is assumed</strong> — no preset is selected.</p>
+
+          <!-- STEPPER -->
+          <div class="lf-stepper" id="stepper">
+            <button class="lf-step is-active" data-step="1"><span class="lf-step-circle">1</span><span class="lf-step-label">Offer details</span></button>
+            <span class="lf-step-line"></span>
+            <button class="lf-step" data-step="2"><span class="lf-step-circle">2</span><span class="lf-step-label">Time frame</span></button>
+          </div>
+
+          <!-- ===================== STEP 1 — OFFER DETAILS ===================== -->
+          <div class="lf-steppanel is-current" data-step="1">
+
+            <!-- Product (no offer type — all Index Special) -->
+            <div class="lf-block">
+              <h3 class="lf-block-title">Product</h3>
+              <div class="wf-form-grid wf-form-grid-3">
+                <div class="wf-field">
+                  <label class="wf-field-label">Product</label>
+                  <select class="wf-select lf-fld">
+                    <option value="">Select product…</option>
+                    <option>Group 3 Suboctane (87)</option>
+                    <option>Group 3 Premium (91)</option>
+                    <option>ULSD</option>
+                  </select>
+                </div>
+                <div class="wf-field">
+                  <label class="wf-field-label">Terminal / location</label>
+                  <select class="wf-select lf-fld">
+                    <option value="">Select terminal…</option>
+                    <option>Tulsa — Magellan</option>
+                    <option>Kansas City</option>
+                    <option>Wichita</option>
+                  </select>
+                </div>
+                <div class="wf-field">
+                  <label class="wf-field-label">Volume (gal)</label>
+                  <input type="text" class="wf-input wf-mono lf-fld" placeholder="e.g. 42,000">
+                </div>
+              </div>
+            </div>
+
+            <!-- Price formula -->
+            <div class="lf-block">
+              <h3 class="lf-block-title">Price formula <span class="lf-block-hint">· invoiced at lift</span></h3>
+
+              <div class="lf-formula-chosen" id="formulaChosen" style="margin-bottom: var(--wf-space-3); display:none;">
+                <span class="wf-text wf-text-label">Formula</span>
+                <span class="lf-formula-name" id="formulaName">G3 Suboctane — OPIS/Platts blend</span>
+                <span class="lf-formula-actions">
+                  <a class="wf-button wf-button-secondary wf-button-sm" href="03-price-formula.html">Choose another</a>
+                </span>
+              </div>
+
+              <div class="wf-empty-state wf-empty-state-compact wf-empty-state-bordered" id="formulaEmpty">
+                <div class="wf-empty-state-icon">&#931;</div>
+                <h3 class="wf-empty-state-title">No price formula yet</h3>
+                <p class="wf-empty-state-description">Pick a saved formula template (recommended), or build from scratch. Picking a product first filters the list.</p>
+                <div class="wf-empty-state-actions">
+                  <a class="wf-button wf-button-primary wf-button-sm" href="03-price-formula.html">Choose a formula template</a>
+                  <button class="wf-button wf-button-secondary wf-button-sm">Build from scratch</button>
+                </div>
+              </div>
+
+              <div id="formulaBuilt" style="display:none;">
+                <!-- 1) variable grid -->
+                <div class="wf-datagrid wf-datagrid-compact">
+                  <div class="wf-datagrid-header">
+                    <div class="wf-datagrid-cell wf-datagrid-cell-number" style="flex:0 0 56px">%</div>
+                    <div class="wf-datagrid-cell" style="flex:2">Publisher</div>
+                    <div class="wf-datagrid-cell" style="flex:2.6">Instrument</div>
+                    <div class="wf-datagrid-cell" style="flex:1.4">Type</div>
+                    <div class="wf-datagrid-cell" style="flex:1.8">Date Rule</div>
+                    <div class="wf-datagrid-cell" style="flex:1.6">Display</div>
+                    <div class="wf-datagrid-cell wf-datagrid-cell-actions" style="flex:0 0 40px"></div>
+                  </div>
+                  <div class="wf-datagrid-body">
+                    <div class="wf-datagrid-row">
+                      <div class="wf-datagrid-cell lf-cell-edit wf-datagrid-cell-number" style="flex:0 0 56px"><input type="text" class="wf-input wf-mono lf-fld" value="50"></div>
+                      <div class="wf-datagrid-cell lf-cell-edit" style="flex:2"><select class="wf-select lf-fld"><option>OPIS</option><option>Platts</option><option>Argus</option></select></div>
+                      <div class="wf-datagrid-cell lf-cell-edit" style="flex:2.6"><select class="wf-select lf-fld"><option>G3 Suboctane Gross</option><option>G3 Suboctane Net</option></select></div>
+                      <div class="wf-datagrid-cell lf-cell-edit" style="flex:1.4"><select class="wf-select lf-fld"><option>Low</option><option>High</option><option>Mean</option><option>Settle</option></select></div>
+                      <div class="wf-datagrid-cell lf-cell-edit" style="flex:1.8"><select class="wf-select lf-fld"><option>Prior day</option><option>Same day</option><option>2-day avg</option></select></div>
+                      <div class="wf-datagrid-cell lf-cell-edit" style="flex:1.6"><input type="text" class="wf-input lf-fld" value="OPIS leg"></div>
+                      <div class="wf-datagrid-cell wf-datagrid-cell-actions" style="flex:0 0 40px"><button class="wf-button wf-button-ghost wf-button-sm" title="Row options">&#8943;</button></div>
+                    </div>
+                    <div class="wf-datagrid-row">
+                      <div class="wf-datagrid-cell lf-cell-edit wf-datagrid-cell-number" style="flex:0 0 56px"><input type="text" class="wf-input wf-mono lf-fld" value="50"></div>
+                      <div class="wf-datagrid-cell lf-cell-edit" style="flex:2"><select class="wf-select lf-fld"><option>Platts</option><option>OPIS</option><option>Argus</option></select></div>
+                      <div class="wf-datagrid-cell lf-cell-edit" style="flex:2.6"><select class="wf-select lf-fld"><option>G3 Suboctane</option></select></div>
+                      <div class="wf-datagrid-cell lf-cell-edit" style="flex:1.4"><select class="wf-select lf-fld"><option>Mean</option><option>Low</option><option>High</option><option>Settle</option></select></div>
+                      <div class="wf-datagrid-cell lf-cell-edit" style="flex:1.8"><select class="wf-select lf-fld"><option>Same day</option><option>Prior day</option><option>2-day avg</option></select></div>
+                      <div class="wf-datagrid-cell lf-cell-edit" style="flex:1.6"><input type="text" class="wf-input lf-fld" value="Platts leg"></div>
+                      <div class="wf-datagrid-cell wf-datagrid-cell-actions" style="flex:0 0 40px"><button class="wf-button wf-button-ghost wf-button-sm" title="Row options">&#8943;</button></div>
+                    </div>
+                    <div class="wf-datagrid-row">
+                      <div class="wf-datagrid-cell lf-cell-edit wf-datagrid-cell-number" style="flex:0 0 56px"><input type="text" class="wf-input wf-mono lf-fld" value="-100"></div>
+                      <div class="wf-datagrid-cell lf-cell-edit" style="flex:2"><select class="wf-select lf-fld"><option>OPIS</option><option>Platts</option><option>Argus</option></select></div>
+                      <div class="wf-datagrid-cell lf-cell-edit" style="flex:2.6"><select class="wf-select lf-fld"><option>G3 Ethanol Adj</option></select></div>
+                      <div class="wf-datagrid-cell lf-cell-edit" style="flex:1.4"><select class="wf-select lf-fld"><option>Settle</option><option>Low</option><option>High</option><option>Mean</option></select></div>
+                      <div class="wf-datagrid-cell lf-cell-edit" style="flex:1.8"><select class="wf-select lf-fld"><option>2-day avg</option><option>Same day</option><option>Prior day</option></select></div>
+                      <div class="wf-datagrid-cell lf-cell-edit" style="flex:1.6"><input type="text" class="wf-input lf-fld" value="Ethanol adj"></div>
+                      <div class="wf-datagrid-cell wf-datagrid-cell-actions" style="flex:0 0 40px"><button class="wf-button wf-button-ghost wf-button-sm" title="Row options">&#8943;</button></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="wf-row wf-gap-2" style="margin-top: var(--wf-space-2);"><button class="wf-button wf-button-ghost wf-button-sm">+ Add row</button></div>
+
+                <!-- 2) basis + differential BELOW the grid -->
+                <div class="wf-form-grid wf-form-grid-2" style="margin-top: var(--wf-space-4);">
+                  <div class="wf-field">
+                    <label class="wf-field-label">Basis</label>
+                    <select class="wf-select lf-fld"><option>Argus</option><option>Rack</option></select>
+                  </div>
+                  <div class="wf-field">
+                    <label class="wf-field-label">Differential ($/gal)</label>
+                    <input type="text" class="wf-input wf-mono lf-fld" value="+0.0250">
+                  </div>
+                </div>
+
+                <!-- 3) read-only price-formula display -->
+                <div class="wf-field" style="margin-top: var(--wf-space-3);">
+                  <label class="wf-field-label">Price formula (display)</label>
+                  <input type="text" class="wf-input wf-mono" readonly value="0.5·OPIS G3 Sub Low (prior) + 0.5·Platts G3 Sub Mean (same) − 1.0·OPIS Ethanol Adj (2-day) + $0.0250" aria-label="Price formula display (read-only)">
+                  <p class="wf-text wf-text-helper">Read-only — reflects the grid above plus the differential. This is the string customers see.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Customers -->
+            <div class="lf-block">
+              <h3 class="lf-block-title">Customers</h3>
+              <p class="lf-block-desc">Pick people by whatever gets you there fastest — group, who’s authorized to lift, or available credit. Everyone you select stacks below, no matter which tab you found them in.</p>
+
+              <div class="lf-chipbar">
+                <div class="lf-chipbar-head">
+                  <span class="lf-chipbar-title">Selected customers</span>
+                  <span class="lf-chipbar-count" id="custCount">0 selected</span>
+                </div>
+                <div class="lf-chipbar-list" id="chipList">
+                  <span class="lf-chipbar-empty" id="chipEmpty">Nobody selected yet — pick from any tab below.</span>
+                </div>
+              </div>
+
+              <div class="wf-tabs wf-tabs-pill" style="margin-bottom: var(--wf-space-3);">
+                <div class="wf-tabs-list" id="inviteTabs">
+                  <button class="wf-tab wf-tab-active" data-panel="groups">Groups</button>
+                  <button class="wf-tab" data-panel="auth">Authorized to lift</button>
+                  <button class="wf-tab" data-panel="credit">Credit</button>
+                  <button class="wf-tab" data-panel="all">All customers</button>
+                </div>
+              </div>
+
+              <div class="lf-invite-panel" data-panel="groups">
+                <p class="lf-pinned-label">&#11088; Favorites</p>
+                <div class="lf-chiprow">
+                  <span class="lf-chip lf-pickchip" data-id="grp-gulf" data-src="Group" data-label="Gulf Coast group" tabindex="0">Gulf Coast <span class="lf-chip-count">3</span></span>
+                  <span class="lf-chip lf-pickchip" data-id="grp-midcon" data-src="Group" data-label="Midcon group" tabindex="0">Midcon <span class="lf-chip-count">5</span></span>
+                  <span class="lf-chip lf-pickchip" data-id="grp-chi" data-src="Group" data-label="Chicago lifting group" tabindex="0">Chicago lifting <span class="lf-chip-count">4</span></span>
+                </div>
+              </div>
+
+              <div class="lf-invite-panel" data-panel="auth" style="display:none;">
+                <p class="wf-text wf-text-helper lf-block-desc">Customers authorized for <strong>Group 3 Suboctane @ Tulsa</strong>.</p>
+                <div class="wf-datagrid wf-datagrid-compact">
+                  <div class="wf-datagrid-header">
+                    <div class="wf-datagrid-cell wf-datagrid-cell-checkbox">&nbsp;</div>
+                    <div class="wf-datagrid-cell" style="flex:3">Customer</div>
+                    <div class="wf-datagrid-cell" style="flex:2">Authorized product</div>
+                    <div class="wf-datagrid-cell" style="flex:2">Location</div>
+                  </div>
+                  <div class="wf-datagrid-body">
+                    <div class="wf-datagrid-row lf-pickrow" data-id="cust-qt" data-src="Authorized" data-label="QuikTrip"><div class="wf-datagrid-cell wf-datagrid-cell-checkbox"><input type="checkbox" class="wf-checkbox-input"></div><div class="wf-datagrid-cell" style="flex:3">QuikTrip</div><div class="wf-datagrid-cell" style="flex:2">G3 Suboctane</div><div class="wf-datagrid-cell" style="flex:2">Tulsa</div></div>
+                    <div class="wf-datagrid-row lf-pickrow" data-id="cust-caseys" data-src="Authorized" data-label="Casey’s"><div class="wf-datagrid-cell wf-datagrid-cell-checkbox"><input type="checkbox" class="wf-checkbox-input"></div><div class="wf-datagrid-cell" style="flex:3">Casey’s</div><div class="wf-datagrid-cell" style="flex:2">G3 Suboctane</div><div class="wf-datagrid-cell" style="flex:2">Tulsa</div></div>
+                    <div class="wf-datagrid-row lf-pickrow" data-id="cust-loves" data-src="Authorized" data-label="Love’s"><div class="wf-datagrid-cell wf-datagrid-cell-checkbox"><input type="checkbox" class="wf-checkbox-input"></div><div class="wf-datagrid-cell" style="flex:3">Love’s</div><div class="wf-datagrid-cell" style="flex:2">G3 Suboctane</div><div class="wf-datagrid-cell" style="flex:2">Tulsa</div></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="lf-invite-panel" data-panel="credit" style="display:none;">
+                <p class="wf-text wf-text-helper lf-block-desc">Ranked by available credit — who has the capacity to lift this.</p>
+                <div class="wf-datagrid wf-datagrid-compact">
+                  <div class="wf-datagrid-header">
+                    <div class="wf-datagrid-cell wf-datagrid-cell-checkbox">&nbsp;</div>
+                    <div class="wf-datagrid-cell" style="flex:3">Customer</div>
+                    <div class="wf-datagrid-cell wf-datagrid-cell-number" style="flex:2">Available credit</div>
+                    <div class="wf-datagrid-cell" style="flex:2">Utilization</div>
+                  </div>
+                  <div class="wf-datagrid-body">
+                    <div class="wf-datagrid-row lf-pickrow" data-id="cust-loves" data-src="Credit" data-label="Love’s"><div class="wf-datagrid-cell wf-datagrid-cell-checkbox"><input type="checkbox" class="wf-checkbox-input"></div><div class="wf-datagrid-cell" style="flex:3">Love’s</div><div class="wf-datagrid-cell wf-datagrid-cell-number wf-mono" style="flex:2">$4.2M</div><div class="wf-datagrid-cell" style="flex:2">31%</div></div>
+                    <div class="wf-datagrid-row lf-pickrow" data-id="cust-7e" data-src="Credit" data-label="7-Eleven"><div class="wf-datagrid-cell wf-datagrid-cell-checkbox"><input type="checkbox" class="wf-checkbox-input"></div><div class="wf-datagrid-cell" style="flex:3">7-Eleven</div><div class="wf-datagrid-cell wf-datagrid-cell-number wf-mono" style="flex:2">$3.1M</div><div class="wf-datagrid-cell" style="flex:2">44%</div></div>
+                    <div class="wf-datagrid-row lf-pickrow" data-id="cust-caseys" data-src="Credit" data-label="Casey’s"><div class="wf-datagrid-cell wf-datagrid-cell-checkbox"><input type="checkbox" class="wf-checkbox-input"></div><div class="wf-datagrid-cell" style="flex:3">Casey’s</div><div class="wf-datagrid-cell wf-datagrid-cell-number wf-mono" style="flex:2">$0.9M</div><div class="wf-datagrid-cell" style="flex:2"><span class="wf-text wf-text-warning">86%</span></div></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="lf-invite-panel" data-panel="all" style="display:none;">
+                <div class="lf-searchrow"><input type="search" class="wf-input" placeholder="Search all customers…"></div>
+                <div class="wf-datagrid wf-datagrid-compact">
+                  <div class="wf-datagrid-header">
+                    <div class="wf-datagrid-cell wf-datagrid-cell-checkbox">&nbsp;</div>
+                    <div class="wf-datagrid-cell" style="flex:3">Customer</div>
+                    <div class="wf-datagrid-cell" style="flex:2">Region</div>
+                  </div>
+                  <div class="wf-datagrid-body">
+                    <div class="wf-datagrid-row lf-pickrow" data-id="cust-7e" data-src="All" data-label="7-Eleven"><div class="wf-datagrid-cell wf-datagrid-cell-checkbox"><input type="checkbox" class="wf-checkbox-input"></div><div class="wf-datagrid-cell" style="flex:3">7-Eleven</div><div class="wf-datagrid-cell" style="flex:2">South Central</div></div>
+                    <div class="wf-datagrid-row lf-pickrow" data-id="cust-murphy" data-src="All" data-label="Murphy USA"><div class="wf-datagrid-cell wf-datagrid-cell-checkbox"><input type="checkbox" class="wf-checkbox-input"></div><div class="wf-datagrid-cell" style="flex:3">Murphy USA</div><div class="wf-datagrid-cell" style="flex:2">Gulf Coast</div></div>
+                  </div>
+                </div>
+              </div>
+
+              <p class="wf-text wf-text-helper" style="margin-top:var(--wf-space-3);"><a class="lf-link" href="04-invite.html">Open the full customer picker &rarr;</a> — same consolidated chips, more room to work.</p>
+            </div>
+          </div>
+
+          <!-- ===================== STEP 2 — TIME FRAME ===================== -->
+          <div class="lf-steppanel" data-step="2">
+            <h3 class="lf-block-title" style="margin-bottom:2px;">Configure timing</h3>
+            <p class="lf-block-desc">Set when customers can see and respond to your deal. Times are in <strong>America/Chicago</strong>.</p>
+
+            <!-- Visibility Window -->
+            <div class="lf-window" data-win="vis">
+              <div class="lf-tw-head"><span class="lf-window-name">Visibility Window</span><span class="lf-tw-ok" data-ok style="display:none;">&#10003;</span></div>
+              <p class="lf-block-desc" style="margin:2px 0 0;">When customers can see and bid on your deal</p>
+              <label class="lf-tw-check"><input type="checkbox" class="wf-checkbox-input" data-startnow="vis"> Start Now</label>
+              <div class="lf-dtrow" data-row="visStart">
+                <span class="lf-dt-lead">Start:</span>
+                <input type="text" class="wf-input lf-datefield lf-calfield" data-f="visStart" placeholder="Select date" readonly>
+                <span class="wf-text-helper">at</span>
+                <span class="lf-pop-anchor"><input type="text" class="wf-input lf-timefield" data-t="visStartTime" value="12:21 PM" readonly></span>
+                <span class="lf-tz">America/Chicago</span>
+              </div>
+              <div class="lf-dtrow" data-row="visEnd">
+                <span class="lf-dt-lead">End:</span>
+                <input type="text" class="wf-input lf-datefield lf-calfield" data-f="visEnd" placeholder="Select date" readonly>
+                <span class="wf-text-helper">at</span>
+                <span class="lf-pop-anchor"><input type="text" class="wf-input lf-timefield" data-t="visEndTime" value="11:59 PM" readonly></span>
+                <span class="lf-tz">America/Chicago</span>
+              </div>
+              <div class="lf-tw-error" data-err="vis" style="display:none;"></div>
+            </div>
+
+            <!-- Pickup Window -->
+            <div class="lf-window" data-win="pick">
+              <div class="lf-tw-head"><span class="lf-window-name">Pickup Window</span><span class="lf-tw-ok" data-ok style="display:none;">&#10003;</span></div>
+              <p class="lf-block-desc" style="margin:2px 0 0;">When customers can pickup their product</p>
+              <label class="lf-tw-check"><input type="checkbox" class="wf-checkbox-input" data-startnow="pick"> Start Now</label>
+              <div class="lf-dtrow" data-row="pickStart">
+                <span class="lf-dt-lead">Start:</span>
+                <input type="text" class="wf-input lf-datefield lf-calfield" data-f="pickStart" placeholder="Select date" readonly>
+                <span class="wf-text-helper">at</span>
+                <span class="lf-pop-anchor"><input type="text" class="wf-input lf-timefield" data-t="pickStartTime" value="12:20 PM" readonly></span>
+                <span class="lf-tz">America/Chicago</span>
+              </div>
+              <div class="lf-dtrow" data-row="pickEnd">
+                <span class="lf-dt-lead">End:</span>
+                <input type="text" class="wf-input lf-datefield lf-calfield" data-f="pickEnd" placeholder="Select date" readonly>
+                <span class="wf-text-helper">at</span>
+                <span class="lf-pop-anchor"><input type="text" class="wf-input lf-timefield" data-t="pickEndTime" value="11:59 PM" readonly></span>
+                <span class="lf-tz">America/Chicago</span>
+              </div>
+              <div class="lf-tw-error" data-err="pick" style="display:none;"></div>
+            </div>
+
+            <!-- Calendar View — visualizes both windows -->
+            <div class="lf-window">
+              <div class="lf-calview-head">
+                <div>
+                  <span class="lf-window-name">Calendar View</span>
+                  <p class="lf-block-desc" style="margin:2px 0 0;">When customers can see and bid on your deal</p>
+                </div>
+                <div class="lf-calview-nav">
+                  <button class="wf-button wf-button-secondary wf-button-sm" id="calPrev">&#8249;</button>
+                  <span class="wf-text" id="calMonth">June 2026</span>
+                  <button class="wf-button wf-button-secondary wf-button-sm" id="calNext">&#8250;</button>
+                </div>
+              </div>
+              <div class="lf-callegend">
+                <span class="lf-callegend-item"><span class="lf-swatch vis"></span> Visibility</span>
+                <span class="lf-callegend-item"><span class="lf-swatch pick"></span> Pickup</span>
+              </div>
+              <div class="lf-cal2">
+                <div class="lf-cal2-dow"><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span></div>
+                <div class="lf-cal2-grid" id="calGrid"></div>
+              </div>
+              <p class="lf-calhint" id="calHint">Click any date to quickly fill the next empty field: Visibility Start Date</p>
+            </div>
+          </div>
+
+          <!-- WIZARD FOOTER -->
+          <div class="lf-wizfoot">
+            <button class="wf-button wf-button-secondary" id="btnPrev" disabled>&#8592; Previous</button>
+            <span class="lf-wizfoot-mid" id="stepCount">Step 1 of 2</span>
+            <button class="wf-button wf-button-primary" id="btnNext">Next &#8594;</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    var $ = function(s,r){ return (r||document).querySelector(s); };
+    var $$ = function(s,r){ return Array.prototype.slice.call((r||document).querySelectorAll(s)); };
+    function click(el){ el.dispatchEvent(new MouseEvent('click',{bubbles:true})); }
+
+    /* ---------- PRESET ---------- */
+    var presetSelect=$('#presetSelect'), presetState=$('#presetState'), savePaths=$('#savePaths'),
+        emptyHint=$('#emptyHint'), formulaEmpty=$('#formulaEmpty'), formulaBuilt=$('#formulaBuilt'),
+        formulaChosen=$('#formulaChosen'), formulaName=$('#formulaName'), saveNewName=$('#saveNewName');
+    var presetLoaded=false;
+    function showFormula(on){ formulaEmpty.style.display=on?'none':''; formulaBuilt.style.display=on?'':'none'; formulaChosen.style.display=on?'':'none'; }
+    function setState(t,v){ if(!t){presetState.style.display='none';return;} presetState.style.display=''; presetState.textContent=t; presetState.className='wf-badge'+(v?' '+v:''); }
+    presetSelect.addEventListener('change', function(){
+      saveNewName.style.display='none';
+      if(this.value){ presetLoaded=true; showFormula(true); formulaName.textContent=this.value==='kc'?'Premium — KC blend':'G3 Suboctane — OPIS/Platts blend'; setState('Populated from preset','wf-badge-success'); savePaths.classList.remove('is-shown'); emptyHint.style.display='none'; }
+      else { presetLoaded=false; showFormula(false); setState(''); savePaths.classList.remove('is-shown'); emptyHint.style.display=''; }
+    });
+    function markEdited(e){ if(presetLoaded && e.target.classList && e.target.classList.contains('lf-fld')){ savePaths.classList.add('is-shown'); setState('Edited · unsaved','wf-badge-warning'); } }
+    document.addEventListener('input', markEdited);
+    document.addEventListener('change', markEdited);
+    // progressive: Save as new reveals the name input
+    $('#btnSaveNew').addEventListener('click', function(){ saveNewName.style.display='inline-flex'; saveNewName.querySelector('input').focus(); });
+    $('#btnUpdate').addEventListener('click', function(){ setState('Preset updated','wf-badge-success'); savePaths.classList.remove('is-shown'); saveNewName.style.display='none'; });
+
+    /* ---------- STEPPER ---------- */
+    var curStep=1;
+    function goStep(n){
+      curStep=n;
+      $$('#stepper .lf-step').forEach(function(s){ var k=+s.dataset.step; s.classList.toggle('is-active',k===n); s.classList.toggle('is-done',k<n); });
+      $$('.lf-steppanel').forEach(function(p){ p.classList.toggle('is-current', +p.dataset.step===n); });
+      $('#stepCount').textContent='Step '+n+' of 2';
+      $('#btnPrev').disabled = n===1;
+      $('#btnNext').innerHTML = n===2 ? 'Send offer' : 'Next &#8594;';
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+    $$('#stepper .lf-step').forEach(function(s){ s.addEventListener('click', function(){ goStep(+s.dataset.step); }); });
+    $('#btnPrev').addEventListener('click', function(){ if(curStep>1) goStep(curStep-1); });
+    $('#btnNext').addEventListener('click', function(){ if(curStep<2) goStep(curStep+1); else window.location.href='05-offer-sent.html'; });
+
+    /* ---------- CUSTOMER CHIPS (tab-agnostic) ---------- */
+    var selected={}, chipList=$('#chipList'), chipEmpty=$('#chipEmpty'), custCount=$('#custCount');
+    function renderChips(){
+      $$('.lf-selchip',chipList).forEach(function(n){n.remove();});
+      var ids=Object.keys(selected); chipEmpty.style.display=ids.length?'none':'';
+      ids.forEach(function(id){ var c=selected[id], chip=document.createElement('span'); chip.className='lf-selchip';
+        chip.innerHTML='<span class="lf-selchip-src">'+c.src+'</span> '+c.label+' <button class="lf-selchip-x" data-rm="'+id+'" title="Remove" aria-label="Remove '+c.label+'">&times;</button>';
+        chipList.appendChild(chip); });
+      custCount.textContent=ids.length+' selected';
+    }
+    function toggle(id,label,src,on){
+      if(on) selected[id]={label:label,src:src}; else delete selected[id];
+      $$('.lf-pickrow[data-id="'+id+'"]').forEach(function(row){ var cb=$('input[type=checkbox]',row); if(cb) cb.checked=on; row.classList.toggle('wf-datagrid-row-selected',on); });
+      $$('.lf-pickchip[data-id="'+id+'"]').forEach(function(ch){ ch.classList.toggle('is-selected',on); });
+      renderChips();
+    }
+    $$('.lf-pickrow').forEach(function(row){
+      row.addEventListener('click', function(e){ if(e.target.tagName==='INPUT') return; var cb=$('input[type=checkbox]',row); toggle(row.dataset.id,row.dataset.label,row.dataset.src,!(cb&&cb.checked)); });
+      var cb=$('input[type=checkbox]',row); if(cb) cb.addEventListener('change', function(){ toggle(row.dataset.id,row.dataset.label,row.dataset.src,cb.checked); });
+    });
+    $$('.lf-pickchip').forEach(function(ch){ ch.addEventListener('click', function(){ toggle(ch.dataset.id,ch.dataset.label,ch.dataset.src,!selected[ch.dataset.id]); });
+      ch.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); ch.click(); } }); });
+    chipList.addEventListener('click', function(e){ var rm=e.target.getAttribute&&e.target.getAttribute('data-rm'); if(rm) toggle(rm,selected[rm].label,selected[rm].src,false); });
+    $$('#inviteTabs .wf-tab').forEach(function(tab){ tab.addEventListener('click', function(){ $$('#inviteTabs .wf-tab').forEach(function(t){t.classList.remove('wf-tab-active');}); tab.classList.add('wf-tab-active'); $$('.lf-invite-panel').forEach(function(p){ p.style.display=(p.dataset.panel===tab.dataset.panel)?'':'none'; }); }); });
+
+    /* ---------- TIMING: time popovers (quick-starts + 15-min clock times) ---------- */
+    function buildTimeList(){
+      var out='';
+      var quick=[['Now','12:23 PM'],['+1h','1:23 PM'],['+6h','6:23 PM'],['6:00 PM','6:00 PM'],['Midnight','12:00 AM']];
+      out+='<div class="lf-timepop-quick">';
+      quick.forEach(function(q){ out+='<button type="button" class="wf-button wf-button-secondary wf-button-sm lf-qstart" data-val="'+q[1]+'">'+q[0]+'</button>'; });
+      out+='</div>';
+      for(var h=0; h<24; h++){ for(var m=0; m<60; m+=15){
+        var ap=h<12?'AM':'PM'; var hh=h%12; if(hh===0) hh=12; var mm=m<10?'0'+m:m;
+        var v=hh+':'+mm+' '+ap;
+        out+='<div class="lf-timepop-item lf-qstart" data-val="'+v+'">'+v+'</div>';
+      }}
+      return out;
+    }
+    var timeListHTML=buildTimeList();
+    function closePops(){ $$('.lf-timepop.is-open').forEach(function(p){p.classList.remove('is-open');}); }
+    $$('.lf-timefield').forEach(function(inp){
+      var anchor=inp.closest('.lf-pop-anchor');
+      var pop=document.createElement('div'); pop.className='lf-timepop'; pop.innerHTML=timeListHTML; anchor.appendChild(pop);
+      inp.addEventListener('click', function(e){ e.stopPropagation(); if(inp.closest('.lf-dtrow') && inp.closest('.lf-dtrow').classList.contains('is-now')) return; closePops(); pop.classList.add('is-open'); });
+      pop.addEventListener('click', function(e){ var b=e.target.closest('.lf-qstart'); if(b){ inp.value=b.dataset.val; closePops(); } e.stopPropagation(); });
+    });
+    document.addEventListener('click', closePops);
+
+    /* ---------- TIMING: Start Now ---------- */
+    $$('[data-startnow]').forEach(function(cb){
+      cb.addEventListener('change', function(){
+        var win=cb.dataset.startnow;
+        var startRow=$('.lf-dtrow[data-row="'+win+'Start"]');
+        startRow.classList.toggle('is-now', cb.checked);
+        var df=$('.lf-datefield[data-f="'+win+'Start"]');
+        var tf=$('.lf-timefield[data-t="'+win+'StartTime"]');
+        if(cb.checked){ T[win+'Start']='now'; df.value='Now'; tf.value='Now'; }
+        else { T[win+'Start']=null; df.value=''; tf.value=(win==='vis'?'12:21 PM':'12:20 PM'); }
+        renderCalendar(); validate(); updateHint();
+      });
+    });
+
+    /* ---------- TIMING: calendar fill + visualize ---------- */
+    var T={ visStart:null, visEnd:null, pickStart:null, pickEnd:null };
+    var TODAY='2026-06-23';
+    var calY=2026, calM=5; // June (0-based)
+    var labelMap={visStart:'Visibility Start Date', visEnd:'Visibility End Date', pickStart:'Pickup Start Date', pickEnd:'Pickup End Date'};
+    function iso(y,m,d){ return y+'-'+('0'+(m+1)).slice(-2)+'-'+('0'+d).slice(-2); }
+    function fmtField(s){ var p=s.split('-'); return p[1]+'/'+p[2]+'/'+p[0]; }
+    function nextTarget(){
+      var visNow=$('[data-startnow="vis"]').checked, pickNow=$('[data-startnow="pick"]').checked;
+      var order=[]; if(!visNow) order.push('visStart'); order.push('visEnd'); if(!pickNow) order.push('pickStart'); order.push('pickEnd');
+      for(var i=0;i<order.length;i++){ if(!T[order[i]]) return order[i]; }
+      return null; // all filled → next click resets
+    }
+    function updateHint(){ var t=nextTarget(); $('#calHint').textContent = t ? ('Click any date to quickly fill the next empty field: '+labelMap[t]) : 'Click any date to reset'; }
+    function setField(f,val){ T[f]=val; var el=$('.lf-datefield[data-f="'+f+'"]'); if(el) el.value=val?fmtField(val):''; }
+    function between(d,a,b){ return d>=a && d<=b; }
+    function renderCalendar(){
+      $('#calMonth').textContent=new Date(calY,calM,1).toLocaleString('en-US',{month:'long'})+' '+calY;
+      var first=new Date(calY,calM,1).getDay();
+      var daysInMonth=new Date(calY,calM+1,0).getDate();
+      var grid=$('#calGrid'); grid.innerHTML='';
+      // leading days from prev month
+      var prevDays=new Date(calY,calM,0).getDate();
+      var cells=[];
+      for(var i=first-1;i>=0;i--) cells.push({d:prevDays-i, m:calM-1, y:calY, muted:true});
+      for(var d=1; d<=daysInMonth; d++) cells.push({d:d, m:calM, y:calY, muted:false});
+      var rem=(7-(cells.length%7))%7;
+      for(var n=1;n<=rem;n++) cells.push({d:n, m:calM+1, y:calY, muted:true});
+      cells.forEach(function(c){
+        var mm=c.m, yy=c.y; if(mm<0){mm=11;yy--;} if(mm>11){mm=0;yy++;}
+        var ds=iso(yy,mm,c.d);
+        var btn=document.createElement('button'); btn.className='lf-cal2-day'; btn.textContent=c.d; btn.dataset.iso=ds;
+        var isPast = ds<TODAY;
+        if(c.muted) btn.style.color='var(--wf-color-text-tertiary)';
+        if(isPast){ btn.classList.add('is-disabled'); btn.disabled=true; }
+        if(ds===TODAY) btn.classList.add('is-today');
+        // ranges
+        var inVis = T.visStart && (T.visStart!=='now') && T.visEnd ? between(ds,T.visStart,T.visEnd) : false;
+        var inPick = T.pickStart && (T.pickStart!=='now') && T.pickEnd ? between(ds,T.pickStart,T.pickEnd) : false;
+        if(inVis && inPick) btn.classList.add('is-both');
+        else if(inVis) btn.classList.add('is-vis-range');
+        else if(inPick) btn.classList.add('is-pick-range');
+        if((T.visStart===ds)||(T.visEnd===ds)) btn.classList.add('is-vis-edge');
+        if((T.pickStart===ds)||(T.pickEnd===ds)) btn.classList.add('is-pick-edge');
+        btn.addEventListener('click', function(){
+          if(btn.disabled) return;
+          var t=nextTarget();
+          if(!t){ T.visStart=T.visEnd=T.pickStart=T.pickEnd=null; ['visStart','visEnd','pickStart','pickEnd'].forEach(function(f){ var e=$('.lf-datefield[data-f="'+f+'"]'); if(e && e.value!=='Now') e.value=''; }); }
+          else setField(t, ds);
+          renderCalendar(); validate(); updateHint();
+        });
+        grid.appendChild(btn);
+      });
+      $$('.lf-window[data-win]').forEach(function(w){
+        var win=w.dataset.win, ok=$('[data-ok]',w);
+        var done = (win==='vis') ? ((T.visStart||$('[data-startnow="vis"]').checked)&&T.visEnd) : ((T.pickStart||$('[data-startnow="pick"]').checked)&&T.pickEnd);
+        ok.style.display=done?'':'none';
+      });
+    }
+    $('#calPrev').addEventListener('click', function(){ calM--; if(calM<0){calM=11;calY--;} renderCalendar(); });
+    $('#calNext').addEventListener('click', function(){ calM++; if(calM>11){calM=0;calY++;} renderCalendar(); });
+
+    /* ---------- TIMING: validation ---------- */
+    function validate(){
+      var visNow=$('[data-startnow="vis"]').checked, pickNow=$('[data-startnow="pick"]').checked;
+      var pe=$('[data-err="pick"]'); pe.style.display='none';
+      var vStart = visNow ? TODAY : T.visStart;
+      var pStart = pickNow ? TODAY : T.pickStart;
+      if(vStart && pStart && pStart!=='now' && vStart!=='now' && pStart < vStart){
+        pe.textContent='Pickup start must be at or after Visibility start'; pe.style.display='';
+      }
+    }
+
+    renderCalendar(); updateHint();
+  })();
+  </script>
+
+</body>
+</html>

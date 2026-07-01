@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Overlay Components - Gravitate Wireframe Design System</title>
+  <link rel="stylesheet" href="../../tokens/index.css">
+  <link rel="stylesheet" href="feedback.css">
+  <style>
+    /* Demo page styles */
+    .demo-section {
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--wf-color-border);
+    }
+    .demo-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--wf-color-text-primary);
+    }
+    .demo-description {
+      font-size: 0.875rem;
+      color: var(--wf-color-text-secondary);
+      margin-bottom: 1.5rem;
+    }
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .demo-item {
+      padding: 1.5rem;
+      background: var(--wf-color-surface);
+      border: 1px solid var(--wf-color-border);
+      border-radius: var(--wf-radius-md);
+    }
+    .demo-item h4 {
+      font-size: 0.875rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      color: var(--wf-color-text-secondary);
+    }
+    /* Static positioning for demo purposes */
+    .demo-static .wf-overlay {
+      position: relative;
+      height: 400px;
+      background: var(--wf-color-neutral-100);
+      border-radius: var(--wf-radius-md);
+    }
+    .demo-static .wf-overlay-backdrop {
+      border-radius: var(--wf-radius-md);
+    }
+    .demo-drawer-preview {
+      position: relative;
+      height: 300px;
+      background: var(--wf-color-neutral-100);
+      border-radius: var(--wf-radius-md);
+      overflow: hidden;
+    }
+    .demo-drawer-preview .wf-drawer {
+      position: absolute;
+    }
+    .demo-drawer-preview .wf-drawer-right {
+      width: 250px;
+      transform: translateX(0);
+    }
+    .demo-drawer-preview .wf-drawer-bottom {
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body style="padding: 2rem; background: var(--wf-color-background);">
+
+  <h1 style="margin-bottom: 0.5rem;">Overlay Components</h1>
+  <p style="color: var(--wf-color-text-secondary); margin-bottom: 2rem;">
+    Modals and drawers for dialogs, forms, and slide-in panels.
+  </p>
+
+  <!-- ============================================
+       MODAL EXAMPLES
+       ============================================ -->
+  <section class="demo-section">
+    <h2 class="demo-title">Modal</h2>
+    <p class="demo-description">
+      Centered dialog overlays for focused interactions. Available in default, small, large, and full sizes.
+    </p>
+
+    <div class="demo-grid">
+      <!-- Default Modal -->
+      <div class="demo-item">
+        <h4>Default Modal (500px)</h4>
+        <div class="demo-static">
+          <div class="wf-overlay wf-overlay-visible">
+            <div class="wf-overlay-backdrop"></div>
+            <div class="wf-modal">
+              <div class="wf-modal-header">
+                <h2 class="wf-modal-title">Modal Title</h2>
+                <button class="wf-modal-close">&times;</button>
+              </div>
+              <div class="wf-modal-body">
+                Modal content goes here. This is a default-sized modal that works well for most use cases.
+              </div>
+              <div class="wf-modal-footer">
+                <button class="wf-button wf-button-secondary">Cancel</button>
+                <button class="wf-button wf-button-primary">Confirm</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Small Modal -->
+      <div class="demo-item">
+        <h4>Small Modal (400px)</h4>
+        <div class="demo-static">
+          <div class="wf-overlay wf-overlay-visible">
+            <div class="wf-overlay-backdrop"></div>
+            <div class="wf-modal wf-modal-sm">
+              <div class="wf-modal-header">
+                <h2 class="wf-modal-title">Small Modal</h2>
+                <button class="wf-modal-close">&times;</button>
+              </div>
+              <div class="wf-modal-body">
+                A compact modal for simple confirmations.
+              </div>
+              <div class="wf-modal-footer">
+                <button class="wf-button wf-button-secondary">Cancel</button>
+                <button class="wf-button wf-button-primary">OK</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal without Footer -->
+  <section class="demo-section">
+    <h2 class="demo-title">Modal Variants</h2>
+    <p class="demo-description">
+      Modals can be configured with or without headers and footers.
+    </p>
+
+    <div class="demo-grid">
+      <!-- Header only -->
+      <div class="demo-item">
+        <h4>Modal with Header Only</h4>
+        <div class="demo-static">
+          <div class="wf-overlay wf-overlay-visible">
+            <div class="wf-overlay-backdrop"></div>
+            <div class="wf-modal wf-modal-sm">
+              <div class="wf-modal-header">
+                <h2 class="wf-modal-title">Information</h2>
+                <button class="wf-modal-close">&times;</button>
+              </div>
+              <div class="wf-modal-body">
+                This modal has no footer. The close button in the header is the only way to dismiss it.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Body only -->
+      <div class="demo-item">
+        <h4>Modal with Body Only</h4>
+        <div class="demo-static">
+          <div class="wf-overlay wf-overlay-visible">
+            <div class="wf-overlay-backdrop"></div>
+            <div class="wf-modal wf-modal-sm">
+              <div class="wf-modal-body">
+                <p style="margin: 0 0 1rem 0;">A minimal modal with just content and inline actions.</p>
+                <div style="display: flex; gap: 0.5rem; justify-content: flex-end;">
+                  <button class="wf-button wf-button-ghost">Dismiss</button>
+                  <button class="wf-button wf-button-primary">Got it</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       DRAWER EXAMPLES
+       ============================================ -->
+  <section class="demo-section">
+    <h2 class="demo-title">Drawer - Right</h2>
+    <p class="demo-description">
+      Slide-in panels from the right edge. Available in narrow (400px), default (600px), and wide (800px) widths.
+    </p>
+
+    <div class="demo-grid">
+      <!-- Right Drawer Default -->
+      <div class="demo-item">
+        <h4>Right Drawer (Default Width)</h4>
+        <div class="demo-drawer-preview">
+          <div class="wf-drawer wf-drawer-right">
+            <div class="wf-drawer-header">
+              <h2 class="wf-drawer-title">Drawer Title</h2>
+              <button class="wf-drawer-close">&times;</button>
+            </div>
+            <div class="wf-drawer-body">
+              Drawer content goes here. This panel slides in from the right edge.
+            </div>
+            <div class="wf-drawer-footer">
+              <button class="wf-button wf-button-secondary">Cancel</button>
+              <button class="wf-button wf-button-primary">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Narrow Drawer -->
+      <div class="demo-item">
+        <h4>Narrow Drawer (400px)</h4>
+        <div class="demo-drawer-preview">
+          <div class="wf-drawer wf-drawer-right wf-drawer-narrow" style="width: 200px;">
+            <div class="wf-drawer-header">
+              <h2 class="wf-drawer-title">Filters</h2>
+              <button class="wf-drawer-close">&times;</button>
+            </div>
+            <div class="wf-drawer-body">
+              Narrow drawer for filters or settings.
+            </div>
+            <div class="wf-drawer-footer">
+              <button class="wf-button wf-button-primary wf-button-sm">Apply</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom Drawer -->
+  <section class="demo-section">
+    <h2 class="demo-title">Drawer - Bottom</h2>
+    <p class="demo-description">
+      Slide-up panels from the bottom edge, useful for mobile-friendly interactions.
+    </p>
+
+    <div class="demo-item" style="max-width: 600px;">
+      <h4>Bottom Drawer</h4>
+      <div class="demo-drawer-preview" style="height: 250px;">
+        <div class="wf-drawer wf-drawer-bottom" style="height: 150px;">
+          <div class="wf-drawer-header">
+            <h2 class="wf-drawer-title">Select Option</h2>
+            <button class="wf-drawer-close">&times;</button>
+          </div>
+          <div class="wf-drawer-body">
+            Bottom drawer content. Great for action sheets on mobile.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       USAGE CODE EXAMPLES
+       ============================================ -->
+  <section class="demo-section">
+    <h2 class="demo-title">Usage</h2>
+    <p class="demo-description">Copy and paste these patterns into your wireframes.</p>
+
+    <div class="demo-item" style="background: var(--wf-color-neutral-900); color: var(--wf-color-neutral-100);">
+      <pre style="margin: 0; font-size: 0.8rem; overflow-x: auto; white-space: pre-wrap;"><code>&lt;!-- Modal (centered) --&gt;
+&lt;div class="wf-overlay wf-overlay-visible"&gt;
+  &lt;div class="wf-overlay-backdrop"&gt;&lt;/div&gt;
+  &lt;div class="wf-modal"&gt;
+    &lt;div class="wf-modal-header"&gt;
+      &lt;h2 class="wf-modal-title"&gt;Modal Title&lt;/h2&gt;
+      &lt;button class="wf-modal-close"&gt;&amp;times;&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="wf-modal-body"&gt;
+      Modal content goes here
+    &lt;/div&gt;
+    &lt;div class="wf-modal-footer"&gt;
+      &lt;button class="wf-button wf-button-secondary"&gt;Cancel&lt;/button&gt;
+      &lt;button class="wf-button wf-button-primary"&gt;Confirm&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Modal Sizes: wf-modal-sm, wf-modal-lg, wf-modal-xl, wf-modal-full --&gt;
+
+&lt;!-- Drawer (from right) --&gt;
+&lt;div class="wf-overlay wf-overlay-visible"&gt;
+  &lt;div class="wf-overlay-backdrop"&gt;&lt;/div&gt;
+  &lt;div class="wf-drawer wf-drawer-right"&gt;
+    &lt;div class="wf-drawer-header"&gt;
+      &lt;h2 class="wf-drawer-title"&gt;Drawer Title&lt;/h2&gt;
+      &lt;button class="wf-drawer-close"&gt;&amp;times;&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="wf-drawer-body"&gt;
+      Drawer content
+    &lt;/div&gt;
+    &lt;div class="wf-drawer-footer"&gt;
+      Actions
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Drawer Directions: wf-drawer-right, wf-drawer-left, wf-drawer-bottom, wf-drawer-top, wf-drawer-full --&gt;
+&lt;!-- Drawer Widths: wf-drawer-narrow (400px), default (600px), wf-drawer-wide (800px) --&gt;</code></pre>
+    </div>
+  </section>
+
+</body>
+</html>

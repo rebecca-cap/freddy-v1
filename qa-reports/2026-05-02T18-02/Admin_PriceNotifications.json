@@ -1,0 +1,20 @@
+{
+  "path": "/Admin/PriceNotifications",
+  "title": "Price Notifications",
+  "finalUrl": "http://localhost:3001/Admin/PriceNotifications",
+  "rootLen": 81863,
+  "crashed": false,
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 429 ()"
+  ],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [
+    "PriceNotifications/SubscriptionManagement/GetAvailableLocations",
+    "PriceNotifications/SubscriptionManagement/GetAvailableProducts",
+    "PriceNotifications/SubscriptionManagement/GetMetadata",
+    "PriceNotifications/SubscriptionManagement/GetRecipientData",
+    "PriceNotifications/SubscriptionManagement/GetSubscriptions"
+  ],
+  "consoleEventCount": 18
+}

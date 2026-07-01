@@ -1,0 +1,145 @@
+{
+  "slug": "cards",
+  "title": "Card & MetricCard",
+  "order": 9,
+  "group": "Data Display",
+  "intro": "Two containers that look alike and do opposite jobs. `wf-card` is the default content chunk — a record, a panel, a list — with header/body/footer regions you compose freely. `wf-metric-card` is the dashboard specialist: one big number, one label, one optional trend. The whole entry is one decision — when each is the right reach (DESIGN.md §4.1).",
+  "searchTerms": ["wf-card", "wf-metric-card", "card", "metric card", "MetricCard", "panel", "container", "wf-card-elevated", "wf-card-clickable", "wf-card-selected", "wf-card-compact", "wf-metric-trend", "wf-metric-value", "dashboard metric", "KPI", "stat card"],
+  "blocks": [
+    {
+      "type": "usage",
+      "body": "`wf-card` is the default content container. Reach for it whenever you have a discrete chunk of related content — a record, a summary panel, a settings group, a list — that needs visual separation from its siblings. It ships with a `--wf-card-bg` surface, a `--wf-card-border`, an 8px corner radius, and three optional regions: `wf-card-header`, `wf-card-body`, `wf-card-footer`. Compose only the regions you need; a body-only card is valid.\n\n`wf-metric-card` is *only* for dashboard metrics — a single headline `wf-metric-value`, a `wf-metric-title`, and an optional `wf-metric-subtitle` carrying a trend delta. It is not a generic \"highlighted card.\" The container-choice rule is sharp: if your card holds more than one metric, or any prose, it is a `wf-card`, not a `wf-metric-card` (DESIGN.md §4.1, §7.4).\n\nQuick lookup from the decision tree: highlighted single metric → `MetricCard`. Discrete content chunk → `Card`. Form fields → `FormSection` (not covered here). Width control only → `Container`."
+    },
+    {
+      "type": "specimen",
+      "title": "Card — Header / Body / Footer",
+      "image": "specimens/cards/01-card-header-body-footer.png",
+      "caption": "wf-card composed of header, body, and footer regions for richer container content. The header is a space-between flex row (title + action), the body holds free content, and the footer right-aligns its buttons on a tinted --wf-color-neutral-50 ground."
+    },
+    {
+      "type": "variants",
+      "title": "Card regions",
+      "intro": "The structural slots inside a wf-card. Each is optional — use only the regions the content needs. Header and footer each carry their own divider border; the footer gets a subtle tinted ground.",
+      "rows": [
+        { "name": "wf-card-header", "when": "Title row at the top. Lays out as a space-between flex row, so a title block sits left and an action (Edit, Add) sits right. Carries a bottom border.", "code": "<div class=\"wf-card-header\">\n  <div>\n    <h3 class=\"wf-card-title\">Contract Details</h3>\n    <p class=\"wf-card-subtitle\">CNT-2024-001</p>\n  </div>\n  <button class=\"wf-button wf-button-ghost wf-button-sm\">Edit</button>\n</div>" },
+        { "name": "wf-card-body", "when": "The main content region — 16px padding. Holds prose, fields, or a nested list. Set padding:0 inline when embedding a full-bleed wf-list.", "code": "<div class=\"wf-card-body\">\n  <p style=\"margin:0;\">Supply agreement between Acme Corp and Global Industries for Q1 2024.</p>\n</div>" },
+        { "name": "wf-card-footer", "when": "Action row at the bottom. Right-aligned flex with an 8px gap, a top border, and a --wf-color-neutral-50 ground. Park commit/cancel buttons here.", "code": "<div class=\"wf-card-footer\">\n  <button class=\"wf-button wf-button-secondary wf-button-sm\">Cancel</button>\n  <button class=\"wf-button wf-button-primary wf-button-sm\">Save Changes</button>\n</div>" }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "Card — Outlined vs Elevated",
+      "image": "specimens/cards/02-card-outlined-vs-elevated.png",
+      "caption": "Side-by-side outlined (border) and elevated (shadow) wf-card surface variants. The elevated variant drops its border to transparent and lifts its shadow on hover; the flat variant strips both."
+    },
+    {
+      "type": "variants",
+      "title": "Card surface & state variants",
+      "intro": "Modifiers added alongside the base wf-card. Surface variants (default, elevated, flat) are mutually exclusive; clickable and selected stack for card-based selection UIs.",
+      "rows": [
+        { "name": "wf-card (default)", "when": "Outlined — a 1px --wf-card-border on a white surface. The workhorse; works on white or light backgrounds.", "code": "<div class=\"wf-card\">\n  <div class=\"wf-card-body\">…</div>\n</div>" },
+        { "name": "wf-card-elevated", "when": "Trades the border for a shadow (border-color goes transparent). Lifts to a deeper shadow on hover. Use for depth/hierarchy when the card floats above a tinted ground.", "code": "<div class=\"wf-card wf-card-elevated\">…</div>" },
+        { "name": "wf-card-flat", "when": "No border, no shadow. For nested cards or where layout already implies the grouping. Note: nesting cards is itself an anti-pattern (see Rules).", "code": "<div class=\"wf-card wf-card-flat\">…</div>" },
+        { "name": "wf-card-compact", "when": "Tightens padding across all three regions (12px header/body, 8px 12px footer). For sidebars, dense lists, and data-heavy surfaces — the density default.", "code": "<div class=\"wf-card wf-card-compact\">…</div>" },
+        { "name": "wf-card-clickable", "when": "Makes the whole card a target: cursor, 150ms transition, border turns --wf-color-primary on hover, scales to 0.99 on active. For selectable tiles and link cards.", "code": "<div class=\"wf-card wf-card-clickable\">…</div>" },
+        { "name": "wf-card-selected", "when": "The chosen state in a card-based selection. Primary border plus a #eff6ff tinted fill. Pairs with wf-card-clickable.", "code": "<div class=\"wf-card wf-card-clickable wf-card-selected\">…</div>" }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "MetricCard — Trend Indicator",
+      "image": "specimens/cards/03-metric-card-trend.png",
+      "caption": "wf-metric-card showing a single headline value with up/down trend delta indicator. The trend pill lives inside wf-metric-subtitle; ▲ green for up, ▼ red for down, — gray for neutral."
+    },
+    {
+      "type": "variants",
+      "title": "MetricCard structure & trend",
+      "intro": "A metric card is header → value → subtitle. The subtitle is where the trend pill lives, alongside an optional comparison phrase like \"vs last month.\" Trend direction maps to a dedicated semantic color token.",
+      "rows": [
+        { "name": "wf-metric-header", "when": "The label row — an optional wf-metric-icon plus the wf-metric-title (13px, secondary text). Sits above the value.", "code": "<div class=\"wf-metric-header\">\n  <span class=\"wf-metric-icon\">[icon]</span>\n  <span class=\"wf-metric-title\">Total Revenue</span>\n</div>" },
+        { "name": "wf-metric-value", "when": "The headline number — 28px, 600 weight, primary text. The whole reason the card exists. Exactly one per card.", "code": "<div class=\"wf-metric-value\">$124,500</div>" },
+        { "name": "wf-metric-trend-up", "when": "Positive delta. Renders --wf-metric-trend-up (#16a34a) green. Pair the color with the ▲ glyph — never color alone (DESIGN.md §3.3).", "code": "<div class=\"wf-metric-subtitle\">\n  <span class=\"wf-metric-trend wf-metric-trend-up\">&#9650; 12.5%</span>\n  vs last month\n</div>" },
+        { "name": "wf-metric-trend-down", "when": "Negative delta. Renders --wf-metric-trend-down (#dc2626) red, paired with the ▼ glyph.", "code": "<span class=\"wf-metric-trend wf-metric-trend-down\">&#9660; 8.3%</span>" },
+        { "name": "wf-metric-trend-neutral", "when": "No meaningful change. Renders --wf-metric-trend-neutral (#6b7280) gray, paired with the — em-dash glyph.", "code": "<span class=\"wf-metric-trend wf-metric-trend-neutral\">&#8212; 0%</span>" }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "MetricCard — Status Variants",
+      "image": "specimens/cards/04-metric-card-status-variants.png",
+      "caption": "wf-metric-card status colorways (primary/success/warning/negative) tying the metric to a color intent via a 4px left accent border."
+    },
+    {
+      "type": "variants",
+      "title": "MetricCard status & size variants",
+      "intro": "Status variants add a 4px colored left border to tie the metric to a semantic intent. Honor §3.1: the accent color is a status signal, not decoration — use it only when the metric actually reports that status.",
+      "rows": [
+        { "name": "wf-metric-card-primary", "when": "Marks the headline / current-focus metric. 4px --wf-color-primary (#2563eb) left border.", "code": "<div class=\"wf-metric-card wf-metric-card-primary\">…</div>" },
+        { "name": "wf-metric-card-success", "when": "A healthy / passing metric. 4px --wf-color-success (#16a34a) left border. Not a decorative \"good\" accent.", "code": "<div class=\"wf-metric-card wf-metric-card-success\">…</div>" },
+        { "name": "wf-metric-card-warning", "when": "Attention-required / pending metric. 4px --wf-color-warning (#d97706) left border.", "code": "<div class=\"wf-metric-card wf-metric-card-warning\">…</div>" },
+        { "name": "wf-metric-card-error", "when": "A failing / hard-fail metric. 4px --wf-color-error (#dc2626) left border.", "code": "<div class=\"wf-metric-card wf-metric-card-error\">…</div>" },
+        { "name": "wf-metric-card-elevated", "when": "Shadow instead of border (border-color transparent). For metric grids that float above a tinted ground.", "code": "<div class=\"wf-metric-card wf-metric-card-elevated\">…</div>" },
+        { "name": "wf-metric-card-compact", "when": "Tighter padding (16px) and a smaller 24px value. For secondary metrics or dense KPI strips.", "code": "<div class=\"wf-metric-card wf-metric-card-compact\">…</div>" }
+      ]
+    },
+    {
+      "type": "tokens",
+      "title": "Card & metric tokens",
+      "intro": "The values both containers reach for. Surface and border tokens are shared; trend colors belong to the metric card.",
+      "rows": [
+        { "token": "--wf-card-bg", "value": "#ffffff", "use": "Surface fill for both wf-card and wf-metric-card." },
+        { "token": "--wf-card-border", "value": "var(--wf-color-border, #d1d5db)", "use": "1px outline on the default (outlined) variant of both cards." },
+        { "token": "--wf-card-shadow", "value": "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1)", "use": "Resting shadow for the elevated variant." },
+        { "token": "--wf-card-shadow-elevated", "value": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)", "use": "Deeper shadow on hover of an elevated wf-card." },
+        { "token": "--wf-metric-trend-up", "value": "#16a34a", "use": "Green text for a positive trend pill (wf-metric-trend-up)." },
+        { "token": "--wf-metric-trend-down", "value": "#dc2626", "use": "Red text for a negative trend pill (wf-metric-trend-down)." },
+        { "token": "--wf-metric-trend-neutral", "value": "#6b7280", "use": "Gray text for a no-change trend pill (wf-metric-trend-neutral)." }
+      ]
+    },
+    {
+      "type": "code",
+      "title": "Card with header, body, and footer",
+      "code": "<div class=\"wf-card\">\n  <div class=\"wf-card-header\">\n    <div>\n      <h3 class=\"wf-card-title\">Contract Details</h3>\n      <p class=\"wf-card-subtitle\">CNT-2024-001</p>\n    </div>\n    <button class=\"wf-button wf-button-ghost wf-button-sm\">Edit</button>\n  </div>\n  <div class=\"wf-card-body\">\n    <p style=\"margin: 0 0 12px 0;\">Supply agreement between Acme Corp and Global Industries for Q1 2024.</p>\n    <span class=\"wf-badge wf-badge-success\">Active</span>\n  </div>\n  <div class=\"wf-card-footer\">\n    <button class=\"wf-button wf-button-secondary wf-button-sm\">Cancel</button>\n    <button class=\"wf-button wf-button-primary wf-button-sm\">Save Changes</button>\n  </div>\n</div>",
+      "note": "Every region is optional — drop the header or footer for a body-only card. To embed a full-bleed wf-list, set the body to padding:0.",
+      "lang": "html"
+    },
+    {
+      "type": "code",
+      "title": "MetricCard with trend",
+      "code": "<div class=\"wf-metric-card\">\n  <div class=\"wf-metric-header\">\n    <span class=\"wf-metric-icon\">[icon]</span>\n    <span class=\"wf-metric-title\">Total Revenue</span>\n  </div>\n  <div class=\"wf-metric-value\">$124,500</div>\n  <div class=\"wf-metric-subtitle\">\n    <span class=\"wf-metric-trend wf-metric-trend-up\">&#9650; 12.5%</span>\n    vs last month\n  </div>\n</div>",
+      "note": "One value, one title, one optional trend. The moment you reach for a second metric or a paragraph of prose, switch to wf-card.",
+      "lang": "html"
+    },
+    {
+      "type": "rules",
+      "title": "Container choice (DESIGN.md §4.1)",
+      "intro": "The whole point of this entry: which container, and when. Get this right and the rest follows.",
+      "items": [
+        { "rule": "Discrete content chunk → wf-card.", "why": "A record, summary panel, settings group, or list that needs separation from its siblings is exactly what wf-card is for." },
+        { "rule": "A single highlighted metric → wf-metric-card.", "why": "It is purpose-built for one big number, one label, one optional trend — and nothing else." },
+        { "rule": "More than one metric, or any prose, lives in a wf-card — never a wf-metric-card.", "why": "The metric card has no room for it; cramming prose in breaks its scan-at-a-glance job (§7.4)." },
+        { "rule": "Don't reach for wf-metric-card as a generic \"highlighted card.\"", "why": "Highlight is a job for wf-card with emphasis (a heading, a badge), not for the metric primitive." },
+        { "rule": "Status accent borders are status signals, not decoration.", "why": "wf-metric-card-success/-warning/-error follow §3.1 — apply the colorway only when the metric reports that actual status." }
+      ]
+    },
+    {
+      "type": "dosdonts",
+      "items": [
+        { "do": "Two metrics → two separate wf-metric-cards in a grid", "dont": "Two values stuffed into one wf-metric-card", "why": "The metric card is one-number-only by contract (§7.4). Side-by-side cards stay scannable; a doubled-up card doesn't." },
+        { "do": "Prose + status + value → wf-card with body content", "dont": "Prose inside a wf-metric-card", "why": "Any prose disqualifies the metric card — that content belongs in wf-card-body (§4.1)." },
+        { "do": "Group a list inside one wf-card", "dont": "A wf-card nested inside another wf-card", "why": "Nested cards are two layers fighting for one job — pick the outer one (§7.1)." },
+        { "do": "Trend color + ▲/▼/— glyph together", "dont": "Trend communicated by color alone", "why": "Color is never the only signal (§3.3) — the arrow glyph carries the direction for color-blind and AT users." }
+      ]
+    },
+    {
+      "type": "gotchas",
+      "items": [
+        { "title": "Elevated variants drop their border", "detail": "Both wf-card-elevated and wf-metric-card-elevated set border-color: transparent and lean entirely on the shadow. On a white page background the shadow can read faintly — elevated cards are designed to sit on a tinted ground (--wf-color-neutral-50 / -100), as the demos do." },
+        { "title": "wf-card-footer carries its own ground and divider", "detail": "The footer is a right-aligned flex row with a top border and a --wf-color-neutral-50 background baked in. Don't add your own divider or fill — you'll double it." },
+        { "title": "Full-bleed body content needs padding:0", "detail": "wf-card-body has 16px padding. To embed a wf-list edge-to-edge, set the body to padding:0 and strip the list's own border/radius — otherwise you get a border inside a border with a 16px gutter." },
+        { "title": "Trend glyphs are HTML entities, not icons", "detail": "The up/down/neutral indicators are literal characters — &#9650; (▲), &#9660; (▼), &#8212; (—) — inside the wf-metric-trend span. There's no icon component; the color class colors the whole pill including the glyph." },
+        { "title": "Status accent is a left border only", "detail": "wf-metric-card-success/-warning/-error/-primary add a 4px left border and nothing else — no fill, no text recolor. The metric value and title stay neutral, so the accent reads as a category stripe, not a full-card alarm." }
+      ]
+    }
+  ]
+}

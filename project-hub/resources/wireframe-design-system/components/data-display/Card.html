@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Card Component - Gravitate Wireframe Design System</title>
+  <link rel="stylesheet" href="../../tokens/tokens.css">
+  <link rel="stylesheet" href="../controls/controls.css">
+  <link rel="stylesheet" href="data-display.css">
+  <style>
+    body {
+      font-family: var(--wf-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+      background-color: var(--wf-color-background, #f9fafb);
+      margin: 0;
+      padding: 32px;
+      color: var(--wf-color-text-primary, #111827);
+    }
+    .demo-section {
+      margin-bottom: 48px;
+    }
+    .demo-section h2 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--wf-color-text-primary, #111827);
+    }
+    .demo-section p {
+      font-size: 14px;
+      color: var(--wf-color-text-secondary, #374151);
+      margin-bottom: 16px;
+    }
+    .demo-container {
+      background: white;
+      border-radius: 8px;
+      padding: 24px;
+      border: 1px solid var(--wf-color-border, #d1d5db);
+    }
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .demo-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      font-size: 16px;
+      color: var(--wf-color-text-secondary, #374151);
+      margin-bottom: 32px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Card Component</h1>
+  <p class="subtitle">Flexible container component for grouping related content.</p>
+
+  <!-- Basic Card -->
+  <section class="demo-section">
+    <h2>Basic Card</h2>
+    <p>Simple card with body content only.</p>
+    <div class="demo-container">
+      <div class="demo-grid">
+        <div class="wf-card">
+          <div class="wf-card-body">
+            <p style="margin: 0;">This is a basic card with just body content. Cards are flexible containers that can hold any type of content including text, images, forms, and more.</p>
+          </div>
+        </div>
+
+        <div class="wf-card">
+          <div class="wf-card-body">
+            <h4 style="margin: 0 0 8px 0; font-weight: 600;">Card with Heading</h4>
+            <p style="margin: 0; color: var(--wf-color-text-secondary);">You can add headings directly in the body for simpler layouts.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Card with Header/Body/Footer -->
+  <section class="demo-section">
+    <h2>Card with Header, Body, and Footer</h2>
+    <p>Full-featured card with distinct sections.</p>
+    <div class="demo-container">
+      <div class="demo-grid">
+        <div class="wf-card">
+          <div class="wf-card-header">
+            <div>
+              <h3 class="wf-card-title">Contract Details</h3>
+              <p class="wf-card-subtitle">CNT-2024-001</p>
+            </div>
+            <button class="wf-button wf-button-ghost wf-button-sm">Edit</button>
+          </div>
+          <div class="wf-card-body">
+            <p style="margin: 0 0 12px 0;">This contract covers the supply agreement between Acme Corp and Global Industries for Q1 2024.</p>
+            <div style="display: flex; gap: 16px;">
+              <div>
+                <span style="font-size: 12px; color: var(--wf-color-text-secondary);">Status</span>
+                <div><span class="wf-badge wf-badge-success">Active</span></div>
+              </div>
+              <div>
+                <span style="font-size: 12px; color: var(--wf-color-text-secondary);">Value</span>
+                <div style="font-weight: 600;">$2,400,000</div>
+              </div>
+            </div>
+          </div>
+          <div class="wf-card-footer">
+            <button class="wf-button wf-button-secondary wf-button-sm">Cancel</button>
+            <button class="wf-button wf-button-primary wf-button-sm">Save Changes</button>
+          </div>
+        </div>
+
+        <div class="wf-card">
+          <div class="wf-card-header">
+            <h3 class="wf-card-title">Team Members</h3>
+            <button class="wf-button wf-button-primary wf-button-sm">Add Member</button>
+          </div>
+          <div class="wf-card-body" style="padding: 0;">
+            <div class="wf-list" style="border: none; border-radius: 0;">
+              <div class="wf-list-item">
+                <div class="wf-avatar wf-avatar-sm">
+                  <span class="wf-avatar-initials">JD</span>
+                </div>
+                <div class="wf-list-item-content">
+                  <div class="wf-list-item-title">John Doe</div>
+                  <div class="wf-list-item-description">Project Manager</div>
+                </div>
+              </div>
+              <div class="wf-list-item">
+                <div class="wf-avatar wf-avatar-sm">
+                  <span class="wf-avatar-initials">AS</span>
+                </div>
+                <div class="wf-list-item-content">
+                  <div class="wf-list-item-title">Alice Smith</div>
+                  <div class="wf-list-item-description">Designer</div>
+                </div>
+              </div>
+              <div class="wf-list-item" style="border-bottom: none;">
+                <div class="wf-avatar wf-avatar-sm">
+                  <span class="wf-avatar-initials">BJ</span>
+                </div>
+                <div class="wf-list-item-content">
+                  <div class="wf-list-item-title">Bob Johnson</div>
+                  <div class="wf-list-item-description">Developer</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="wf-card-footer">
+            <button class="wf-button wf-button-ghost wf-button-sm">View All Members</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Outlined vs Elevated -->
+  <section class="demo-section">
+    <h2>Outlined vs Elevated</h2>
+    <p>Cards can have a border (outlined) or shadow (elevated).</p>
+    <div class="demo-container" style="background: var(--wf-color-neutral-50);">
+      <div class="demo-grid">
+        <div class="wf-card">
+          <div class="wf-card-header">
+            <h3 class="wf-card-title">Outlined Card</h3>
+          </div>
+          <div class="wf-card-body">
+            <p style="margin: 0;">Default card style with a subtle border. Works well on white or light backgrounds.</p>
+          </div>
+        </div>
+
+        <div class="wf-card wf-card-elevated">
+          <div class="wf-card-header">
+            <h3 class="wf-card-title">Elevated Card</h3>
+          </div>
+          <div class="wf-card-body">
+            <p style="margin: 0;">Card with a shadow instead of a border. Creates visual depth and hierarchy.</p>
+          </div>
+        </div>
+
+        <div class="wf-card wf-card-flat">
+          <div class="wf-card-header" style="border-bottom: none;">
+            <h3 class="wf-card-title">Flat Card</h3>
+          </div>
+          <div class="wf-card-body">
+            <p style="margin: 0;">No border or shadow. Useful for nested cards or when grouping is implied by layout.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Clickable Card -->
+  <section class="demo-section">
+    <h2>Clickable Card</h2>
+    <p>Cards that act as links or buttons with hover effects.</p>
+    <div class="demo-container">
+      <div class="demo-grid">
+        <div class="wf-card wf-card-clickable">
+          <div class="wf-card-body">
+            <h4 style="margin: 0 0 8px 0; font-weight: 600;">Create New Project</h4>
+            <p style="margin: 0; color: var(--wf-color-text-secondary);">Start a new project from scratch or use a template.</p>
+          </div>
+        </div>
+
+        <div class="wf-card wf-card-clickable">
+          <div class="wf-card-body">
+            <h4 style="margin: 0 0 8px 0; font-weight: 600;">Import Existing</h4>
+            <p style="margin: 0; color: var(--wf-color-text-secondary);">Import an existing project from GitHub or upload files.</p>
+          </div>
+        </div>
+
+        <div class="wf-card wf-card-clickable">
+          <div class="wf-card-body">
+            <h4 style="margin: 0 0 8px 0; font-weight: 600;">Browse Templates</h4>
+            <p style="margin: 0; color: var(--wf-color-text-secondary);">Explore pre-built templates for common use cases.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Selected Card State -->
+  <section class="demo-section">
+    <h2>Selected Card State</h2>
+    <p>Visual indicator for selected items in card-based selections.</p>
+    <div class="demo-container">
+      <div class="demo-grid">
+        <div class="wf-card wf-card-clickable">
+          <div class="wf-card-body">
+            <h4 style="margin: 0 0 8px 0; font-weight: 600;">Basic Plan</h4>
+            <p style="margin: 0; color: var(--wf-color-text-secondary);">For individuals and small teams getting started.</p>
+            <p style="margin: 16px 0 0 0; font-size: 24px; font-weight: 600;">$9<span style="font-size: 14px; font-weight: 400;">/month</span></p>
+          </div>
+        </div>
+
+        <div class="wf-card wf-card-clickable wf-card-selected">
+          <div class="wf-card-body">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+              <h4 style="margin: 0 0 8px 0; font-weight: 600;">Pro Plan</h4>
+              <span class="wf-badge wf-badge-primary">Popular</span>
+            </div>
+            <p style="margin: 0; color: var(--wf-color-text-secondary);">For growing teams who need more features.</p>
+            <p style="margin: 16px 0 0 0; font-size: 24px; font-weight: 600;">$29<span style="font-size: 14px; font-weight: 400;">/month</span></p>
+          </div>
+        </div>
+
+        <div class="wf-card wf-card-clickable">
+          <div class="wf-card-body">
+            <h4 style="margin: 0 0 8px 0; font-weight: 600;">Enterprise</h4>
+            <p style="margin: 0; color: var(--wf-color-text-secondary);">For large organizations with advanced needs.</p>
+            <p style="margin: 16px 0 0 0; font-size: 24px; font-weight: 600;">Custom</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Compact Card -->
+  <section class="demo-section">
+    <h2>Compact Card</h2>
+    <p>Reduced padding for denser layouts.</p>
+    <div class="demo-container">
+      <div class="demo-grid">
+        <div class="wf-card wf-card-compact">
+          <div class="wf-card-header">
+            <h3 class="wf-card-title">Compact Header</h3>
+            <span class="wf-badge wf-badge-success">New</span>
+          </div>
+          <div class="wf-card-body">
+            <p style="margin: 0; font-size: 13px;">Compact cards use less padding, making them suitable for sidebars, lists, or data-dense interfaces.</p>
+          </div>
+          <div class="wf-card-footer">
+            <button class="wf-button wf-button-ghost wf-button-sm">Learn More</button>
+          </div>
+        </div>
+
+        <div class="wf-card wf-card-compact">
+          <div class="wf-card-header">
+            <h3 class="wf-card-title">Quick Stats</h3>
+          </div>
+          <div class="wf-card-body">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+              <div>
+                <div style="font-size: 11px; color: var(--wf-color-text-secondary);">Views</div>
+                <div style="font-size: 18px; font-weight: 600;">12.4k</div>
+              </div>
+              <div>
+                <div style="font-size: 11px; color: var(--wf-color-text-secondary);">Clicks</div>
+                <div style="font-size: 18px; font-weight: 600;">1,234</div>
+              </div>
+              <div>
+                <div style="font-size: 11px; color: var(--wf-color-text-secondary);">CTR</div>
+                <div style="font-size: 18px; font-weight: 600;">9.9%</div>
+              </div>
+              <div>
+                <div style="font-size: 11px; color: var(--wf-color-text-secondary);">Conversions</div>
+                <div style="font-size: 18px; font-weight: 600;">87</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Card with Image -->
+  <section class="demo-section">
+    <h2>Card with Media</h2>
+    <p>Cards can include images or other media at the top.</p>
+    <div class="demo-container">
+      <div class="demo-grid">
+        <div class="wf-card">
+          <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 160px; display: flex; align-items: center; justify-content: center; color: white; font-size: 14px;">
+            [Image Placeholder]
+          </div>
+          <div class="wf-card-body">
+            <h4 style="margin: 0 0 8px 0; font-weight: 600;">Mountain Retreat</h4>
+            <p style="margin: 0; color: var(--wf-color-text-secondary); font-size: 14px;">A peaceful getaway nestled in the heart of the mountains.</p>
+          </div>
+          <div class="wf-card-footer">
+            <span style="font-weight: 600;">$299/night</span>
+            <button class="wf-button wf-button-primary wf-button-sm">Book Now</button>
+          </div>
+        </div>
+
+        <div class="wf-card">
+          <div style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); height: 160px; display: flex; align-items: center; justify-content: center; color: white; font-size: 14px;">
+            [Image Placeholder]
+          </div>
+          <div class="wf-card-body">
+            <h4 style="margin: 0 0 8px 0; font-weight: 600;">Beach Villa</h4>
+            <p style="margin: 0; color: var(--wf-color-text-secondary); font-size: 14px;">Oceanfront property with stunning sunset views.</p>
+          </div>
+          <div class="wf-card-footer">
+            <span style="font-weight: 600;">$450/night</span>
+            <button class="wf-button wf-button-primary wf-button-sm">Book Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Card with Form -->
+  <section class="demo-section">
+    <h2>Card with Form</h2>
+    <p>Cards containing form elements for data entry.</p>
+    <div class="demo-container">
+      <div style="max-width: 400px;">
+        <div class="wf-card">
+          <div class="wf-card-header">
+            <h3 class="wf-card-title">Contact Information</h3>
+          </div>
+          <div class="wf-card-body">
+            <div class="wf-field">
+              <label class="wf-field-label">Full Name</label>
+              <input type="text" class="wf-input" placeholder="Enter your name">
+            </div>
+            <div class="wf-field">
+              <label class="wf-field-label">Email Address</label>
+              <input type="email" class="wf-input" placeholder="you@example.com">
+            </div>
+            <div class="wf-field" style="margin-bottom: 0;">
+              <label class="wf-field-label">Phone Number</label>
+              <input type="tel" class="wf-input" placeholder="+1 (555) 000-0000">
+            </div>
+          </div>
+          <div class="wf-card-footer">
+            <button class="wf-button wf-button-secondary">Cancel</button>
+            <button class="wf-button wf-button-primary">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

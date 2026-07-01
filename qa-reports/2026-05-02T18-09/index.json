@@ -1,0 +1,17 @@
+{
+  "path": "/",
+  "title": "Home",
+  "finalUrl": "http://localhost:3001/OrderDashboard",
+  "rootLen": 185927,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [
+    "MarketPlatform/OrderEntry/GetPricesForDashboard",
+    "MarketPlatform/OrderReporting/GetCreditWidget",
+    "MarketPlatform/OrderReporting/GetPendingOrders",
+    "MarketPlatform/OrderReporting/GetRecentlyProcessedOrders"
+  ],
+  "consoleEventCount": 18
+}

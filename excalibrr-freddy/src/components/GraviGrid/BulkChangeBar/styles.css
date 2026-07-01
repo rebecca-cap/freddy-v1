@@ -1,0 +1,33 @@
+.bulk-change-container {
+    position: relative;
+    bottom: 0;
+    height: 80px;
+    width: 100%;
+}
+.short-bulk-change-container {
+    height: 40px;
+    bottom: 0;
+    width: 100%;
+    position: relative;
+}
+.gap-1 {
+    gap: 1rem;
+}
+.gap-10 {
+    gap: 10px;
+}
+.grow-1 {
+    flex-grow: 1;
+}
+.ml-property {
+    margin-left: .75em;
+}
+.bulk-change-select-container {
+    padding: 0;
+    min-width: 250px;
+    width: auto;
+    vertical-align: middle;
+}
+.bulk-change-rounded-button {
+    border-radius: 5px !important;
+}

@@ -1,0 +1,8 @@
+.gravi-grid-row-pinned {
+  background: var(--theme-color-2-dim);
+  border-top: 1px solid var(--gray-200);
+}
+
+.gravi-grid-column-pinned {
+  border-left: 4px solid var(--theme-color-2);
+}

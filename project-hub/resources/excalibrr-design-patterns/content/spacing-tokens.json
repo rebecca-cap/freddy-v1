@@ -1,0 +1,207 @@
+{
+  "slug": "spacing-tokens",
+  "title": "Spacing & Tokens",
+  "order": 1,
+  "group": "Foundations",
+  "intro": "The 8-based spacing scale, four-channel status colors, and layout-layer neutrals that replace the hundred-plus arbitrary values scattered across legacy screens. If you are typing a raw hex code or a stray pixel value, the right token already exists — use it.",
+  "demoPath": "/DesignSystem/SpacingTokens",
+  "searchTerms": [
+    "tokens",
+    "spacing",
+    "space scale",
+    "tokens.css",
+    "design tokens",
+    "8px grid",
+    "status colors",
+    "semantic colors",
+    "neutrals",
+    "--space",
+    "--status",
+    "--border-default",
+    "--surface-muted",
+    "gap",
+    "padding"
+  ],
+  "blocks": [
+    {
+      "type": "rules",
+      "title": "The Laws of Spacing & Tokens",
+      "intro": "These rules govern every hi-fi screen. The tokens live in `demo/src/tokens.css` and are available globally — no import needed in CSS modules.",
+      "items": [
+        {
+          "rule": "Every spacing value maps to a token on the 8-based scale: 0, 4, 8, 12, 16, 24, 32, 40, 48.",
+          "why": "Values like 18px or 20px sit between steps — each one forks the rhythm and can never be retuned centrally."
+        },
+        {
+          "rule": "Parent padding is always at least one step above child gaps.",
+          "why": "Equal or inverted spacing collapses hierarchy; content reads as crowded siblings instead of contained children."
+        },
+        {
+          "rule": "Label-to-input is `space-1` (4px); field-to-field is `space-4` (16px).",
+          "why": "The 4x contrast binds a label to its input — loosen the pair and the form dissolves into floating text."
+        },
+        {
+          "rule": "Spacing on layout primitives goes through props — `<Horizontal gap={12}>`, `<Vertical flex='1'>` — never style objects.",
+          "why": "Style-object spacing bypasses the primitives' layout contract and fails review per the repo mistakes table."
+        },
+        {
+          "rule": "Status color comes from the four-channel tokens `--status-{tone}-{solid|text|bg|border}`, never raw hex.",
+          "why": "Raw hex copies are tiny forks of the palette — a designer retune reaches tokens, not the 113 files holding pasted values."
+        },
+        {
+          "rule": "Channels travel as a set: bg + border + text compose pills; solid drives dots and filled accents. Never mix channels across tones.",
+          "why": "Each tone's channels are contrast-tested together — a success bg under warning text has no guaranteed legibility."
+        },
+        {
+          "rule": "Neutral greys come from `--border-subtle`/`--border-default` and `--surface-muted`/`--surface-sunken`, not hex and not Excalibrr `--gray-*`.",
+          "why": "`--gray-*` belongs to the theme layer and inverts across themes (`--gray-100` is near-white). The layout neutrals are theme-stable."
+        },
+        {
+          "rule": "When no token fits, take the nearest step — never invent a value.",
+          "why": "A near-miss token keeps the page on the shared rhythm; a custom pixel value starts a second scale."
+        }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "The Scale",
+      "image": "specimens/spacing-tokens/01-spacing-scale.png",
+      "caption": "Nine steps, 8-based with 4px and 12px half-steps. Every spacing value in the app resolves to one of these tokens."
+    },
+    {
+      "type": "specimen",
+      "title": "Token Widths at 1:1",
+      "image": "specimens/spacing-tokens/02-token-widths.png",
+      "caption": "Relative size of each step at actual pixel width. The jump from space-4 to space-5 (16px to 24px) is where 'inside a card' becomes 'between cards'."
+    },
+    {
+      "type": "specimen",
+      "title": "Nesting Hierarchy",
+      "image": "specimens/spacing-tokens/03-nesting-hierarchy.png",
+      "caption": "Each container's padding sits at least one step above its children's gaps — 48px page padding stepping down to the 4px label-input gap. The right column shows the anti-pattern: gaps equal to or larger than their parent's padding."
+    },
+    {
+      "type": "specimen",
+      "title": "Token-by-Situation Map",
+      "image": "specimens/spacing-tokens/04-token-usage-map.png",
+      "caption": "Layout, cards, forms, and inline clusters each claim a fixed slice of the scale — no situation requires an off-scale value."
+    },
+    {
+      "type": "specimen",
+      "title": "Status Color Tokens",
+      "image": "specimens/spacing-tokens/05-status-color-tokens.png",
+      "caption": "Five tones, four channels each. Background + border + text compose a readable pill at any size; solid drives dots and filled accents. StatusBadge consumes all four channels automatically."
+    },
+    {
+      "type": "specimen",
+      "title": "Neutral Surfaces & Borders",
+      "image": "specimens/spacing-tokens/06-neutral-surfaces.png",
+      "caption": "Layout-layer neutrals: two border weights and two muted surfaces replace hand-typed #e8e8e8 and #fafafa greys."
+    },
+    {
+      "type": "specimen",
+      "title": "Token Discipline, Side by Side",
+      "image": "specimens/spacing-tokens/07-dos-donts.png",
+      "caption": "Scale-based spacing and channel tokens on the left; arbitrary pixels and forked hex on the right. The don't column's field gap exceeds its card padding — the container stops containing."
+    },
+    {
+      "type": "tokens",
+      "title": "Spacing Scale",
+      "intro": "Defined in `tokens.css` as `--space-0` through `--space-8`. In CSS use `var(--space-N)`; in JSX `gap`/`padding` props use the raw number.",
+      "rows": [
+        { "token": "--space-0", "value": "0px", "use": "Flush / zero spacing" },
+        { "token": "--space-1", "value": "4px", "use": "Tight: icon-to-text, label-to-input" },
+        { "token": "--space-2", "value": "8px", "use": "Compact: button group gaps, inline pairs" },
+        { "token": "--space-3", "value": "12px", "use": "Snug: card inner padding, footer bars" },
+        { "token": "--space-4", "value": "16px", "use": "Default: form field gaps, section inner padding" },
+        { "token": "--space-5", "value": "24px", "use": "Comfortable: section gaps, card padding, page content" },
+        { "token": "--space-6", "value": "32px", "use": "Spacious: major section breaks, page dividers" },
+        { "token": "--space-7", "value": "40px", "use": "Page: top-level padding, hero spacing" },
+        { "token": "--space-8", "value": "48px", "use": "Canvas: showcase-level page wrapper" }
+      ]
+    },
+    {
+      "type": "tokens",
+      "title": "Neutral Surfaces & Borders",
+      "intro": "Theme-stable greys for layout chrome. Use these instead of hex and instead of Excalibrr's theme-owned `--gray-*` ramp.",
+      "rows": [
+        { "token": "--border-subtle", "value": "#f0f0f0", "use": "Low-contrast divider (inside cards)" },
+        { "token": "--border-default", "value": "#e8e8e8", "use": "Card edges, toolbar separators" },
+        { "token": "--surface-muted", "value": "#fafafa", "use": "Footer bars, striped rows, code blocks" },
+        { "token": "--surface-sunken", "value": "#f5f5f5", "use": "Inset wells, disabled fields" }
+      ]
+    },
+    {
+      "type": "tokens",
+      "title": "Status Color Channels",
+      "intro": "Each tone exposes four channels: `-solid` (dots, filled chips, accents), `-text` (AA on its own `-bg`), `-bg` (tinted background), `-border` (pairs with `-bg`). Values listed solid · text · bg · border.",
+      "rows": [
+        { "token": "--status-success-*", "value": "#52c41a · #389e0d · #f6ffed · #b7eb8f", "use": "Positive, committed, on-track" },
+        { "token": "--status-warning-*", "value": "#faad14 · #d48806 · #fffbe6 · #ffe58f", "use": "Needs attention, at risk, behind" },
+        { "token": "--status-danger-*", "value": "#ff4d4f · #cf1322 · #fff2f0 · #ffa39e", "use": "Error, blocked, destructive" },
+        { "token": "--status-info-*", "value": "#1890ff · #096dd9 · #e6f7ff · #91d5ff", "use": "Neutral notice, in-progress" },
+        { "token": "--status-neutral-*", "value": "#8c8c8c · #595959 · #fafafa · #e8e8e8", "use": "Draft, archived, quiet state" }
+      ]
+    },
+    {
+      "type": "code",
+      "title": "Canonical CSS Module",
+      "code": "/* Panel.module.css — every value resolves to a token */\n.panel {\n  padding: var(--space-5);                  /* card padding: 24px */\n  border: 1px solid var(--border-default);\n  border-radius: 8px;\n}\n\n.panelFooter {\n  padding: var(--space-3) var(--space-4);   /* 12px vertical, 16px horizontal */\n  background: var(--surface-muted);\n  border-top: 1px solid var(--border-subtle);\n}\n\n.publishedChip {\n  background: var(--status-success-bg);\n  border: 1px solid var(--status-success-border);\n  color: var(--status-success-text);\n}\n\n.publishedDot {\n  background: var(--status-success-solid);\n}",
+      "note": "Tokens are globally available in any CSS module — no import. The chip pulls bg + border + text as a set; the dot is the only place solid appears."
+    },
+    {
+      "type": "code",
+      "title": "Canonical JSX Spacing",
+      "code": "// Layout primitives take scale numbers as props — never style objects\n<Vertical gap={16}>                               {/* field gap: space-4 */}\n  <FormFields />\n  <Horizontal gap={8} justifyContent='flex-end'>  {/* button group: space-2 */}\n    <GraviButton buttonText='Cancel' />\n    <GraviButton theme1 buttonText='Save' />\n  </Horizontal>\n</Vertical>",
+      "note": "gap={16} not style={{ gap: '16px' }}; flex='1' not style={{ flex: 1 }}. GraviButton renders buttonText, not children, and takes theme booleans (theme1, success) — never type='primary'."
+    },
+    {
+      "type": "dosdonts",
+      "title": "Do's & Don'ts",
+      "items": [
+        {
+          "do": "Step the hierarchy down: card padding space-5 (24px), field gap space-4 (16px), label gap space-1 (4px).",
+          "dont": "10px card padding around a 20px field gap — the gap exceeds its container.",
+          "why": "Containment is communicated by padding outweighing internal gaps; invert that and the card stops reading as a container."
+        },
+        {
+          "do": "gap: var(--space-4); padding: var(--space-5) — pull spacing from tokens.css.",
+          "dont": "gap: 20px; padding: 18px — values that exist on no scale.",
+          "why": "Token values retune in one file; stray pixels can't be found, let alone changed."
+        },
+        {
+          "do": "background: var(--status-success-bg) with its matching border and text channels.",
+          "dont": "background: #f6ffed pasted from another component.",
+          "why": "Identical pixels today, but the hex copy is invisible to every future palette change."
+        }
+      ]
+    },
+    {
+      "type": "usage",
+      "title": "Where Each Token Lives",
+      "body": "Layout: page wrapper padding `space-8` (48px); between major sections `space-6` (32px); page content area `space-5` (24px).\n\nCards & panels: card body padding `space-5` (24px); card header padding `space-4` (16px); footer bar padding `space-3` (12px).\n\nForms: between form sections `space-5` (24px); between fields `space-4` (16px); label to input `space-1` (4px).\n\nButtons & inline: button group gap `space-2` (8px); icon to text `space-1` (4px); inline element pairs `space-2` (8px)."
+    },
+    {
+      "type": "gotchas",
+      "title": "Gotchas",
+      "items": [
+        {
+          "title": "--gray-100 is near-white, not near-black",
+          "detail": "Excalibrr's theme greys run opposite to the usual convention and swap across themes. For layout chrome, use the theme-stable neutrals: --border-subtle, --border-default, --surface-muted, --surface-sunken."
+        },
+        {
+          "title": "--theme-color-2 changes hue across themes",
+          "detail": "It swings between green and blue depending on the active theme. Pin brand accents to --theme-color-1."
+        },
+        {
+          "title": "Texto appearance='secondary' is blue, not gray",
+          "detail": "For muted gray text use appearance='medium'. 'secondary' maps to the secondary brand color and will read as a link."
+        },
+        {
+          "title": "Size-tier tokens exist for overlays too",
+          "detail": "tokens.css also defines --modal-sm/md/lg/xl (480-1080px), --drawer-right-narrow/standard/wide, and --drawer-bottom-compact/standard/full. Pull a tier instead of typing a width; the Modals and Drawers entries prescribe which tier fits which job."
+        }
+      ]
+    }
+  ]
+}

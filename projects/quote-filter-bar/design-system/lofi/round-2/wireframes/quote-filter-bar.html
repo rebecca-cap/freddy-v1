@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>R2 — QuoteBook Filter Bar</title>
+<style>
+  :root{
+    --wf-color-primary:#2563eb; --wf-color-primary-dim:#1e40af;
+    --wf-color-neutral-900:#111827; --wf-color-neutral-700:#374151; --wf-color-neutral-500:#6b7280;
+    --wf-color-neutral-300:#d1d5db; --wf-color-neutral-100:#f3f4f6; --wf-color-neutral-50:#f9fafb;
+    --wf-color-border:#d1d5db; --wf-color-surface:#fff;
+    --wf-text-xs:.6875rem; --wf-text-sm:.75rem; --wf-text-base:.875rem; --wf-text-lg:1.125rem; --wf-text-xl:1.5rem;
+    --wf-radius-sm:4px; --wf-radius-md:8px; --wf-radius-full:9999px;
+    --wf-font:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:var(--wf-font);color:var(--wf-color-neutral-900);background:var(--wf-color-neutral-100);font-size:var(--wf-text-base);}
+  .wf-canvas{max-width:1180px;margin:0 auto;padding:32px 24px 64px;}
+  .wf-frame-label{font-size:var(--wf-text-sm);font-weight:600;color:var(--wf-color-neutral-500);text-transform:uppercase;letter-spacing:.04em;margin:32px 0 8px;}
+  .wf-screen{background:var(--wf-color-surface);border:1px solid var(--wf-color-border);border-radius:var(--wf-radius-md);overflow:hidden;}
+  .wf-pagehead{display:flex;align-items:flex-end;justify-content:space-between;padding:16px 24px;border-bottom:1px solid var(--wf-color-neutral-100);}
+  .wf-pagehead h1{font-size:var(--wf-text-xl);margin:0;}
+  .wf-pagehead .sub{font-size:var(--wf-text-sm);color:var(--wf-color-neutral-500);margin-top:2px;}
+  .wf-btn{font:inherit;font-size:var(--wf-text-sm);border:1px solid var(--wf-color-border);background:var(--wf-color-surface);border-radius:var(--wf-radius-sm);padding:6px 12px;cursor:pointer;color:var(--wf-color-neutral-700);}
+  .wf-btn-primary{background:var(--wf-color-primary);border-color:var(--wf-color-primary);color:#fff;}
+  /* sticky filter region */
+  .wf-sticky-wrap{position:relative;}
+  .wf-filterbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 24px;background:var(--wf-color-neutral-50);border-bottom:1px solid var(--wf-color-neutral-100);position:sticky;top:0;z-index:5;}
+  .wf-pin-note{font-size:var(--wf-text-xs);color:var(--wf-color-primary);border:1px dashed var(--wf-color-primary);border-radius:var(--wf-radius-sm);padding:1px 6px;}
+  .wf-fb-label{font-size:var(--wf-text-xs);text-transform:uppercase;letter-spacing:.04em;color:var(--wf-color-neutral-500);font-weight:600;}
+  .wf-chips{display:inline-flex;gap:4px;}
+  .wf-chip{font-size:var(--wf-text-sm);border:1px solid var(--wf-color-border);background:var(--wf-color-surface);border-radius:var(--wf-radius-full);padding:4px 12px;cursor:pointer;color:var(--wf-color-neutral-700);white-space:nowrap;}
+  .wf-chip-active{background:var(--wf-color-neutral-900);border-color:var(--wf-color-neutral-900);color:#fff;}
+  .wf-select{font:inherit;font-size:var(--wf-text-sm);border:1px solid var(--wf-color-border);background:var(--wf-color-surface);border-radius:var(--wf-radius-sm);padding:5px 10px;color:var(--wf-color-neutral-700);}
+  .wf-select.is-set{border-color:var(--wf-color-primary);color:var(--wf-color-neutral-900);font-weight:500;}
+  .wf-spacer{flex:1;}
+  .wf-count{font-size:var(--wf-text-sm);color:var(--wf-color-neutral-700);}
+  .wf-count b{color:var(--wf-color-neutral-900);}
+  .wf-clear{font-size:var(--wf-text-sm);color:var(--wf-color-primary);background:none;border:none;cursor:pointer;padding:4px 6px;}
+</style>
+</head>
+<body>
+<div class="wf-canvas">
+  <div style="font-size:1.5rem;font-weight:700;">QuoteBook Filter Bar — Round 2</div>
+  <div style="font-size:.875rem;color:#6b7280;margin-top:4px;">Iterates on Round 1. Adds: removable active-filter tokens · sticky bar on scroll · a designed zero-results state. Same chip/dropdown model, locked from R1.</div>
+
+<style>
+  /* active-filter token row */
+  .wf-tokenrow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:8px 24px;background:var(--wf-color-surface);border-bottom:1px solid var(--wf-color-neutral-100);}
+  .wf-tokenrow .lbl{font-size:var(--wf-text-xs);text-transform:uppercase;letter-spacing:.04em;color:var(--wf-color-neutral-500);font-weight:600;}
+  .wf-token{display:inline-flex;align-items:center;gap:6px;font-size:var(--wf-text-sm);background:#eff6ff;border:1px solid #bfdbfe;color:#1e40af;border-radius:var(--wf-radius-full);padding:3px 8px 3px 10px;}
+  .wf-token .x{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:50%;background:#bfdbfe;color:#1e40af;font-size:11px;cursor:pointer;}
+  /* table */
+  table.wf-table{width:100%;border-collapse:collapse;font-size:var(--wf-text-sm);}
+  .wf-table th{text-align:left;font-size:var(--wf-text-xs);text-transform:uppercase;letter-spacing:.03em;color:var(--wf-color-neutral-500);font-weight:600;padding:8px 24px;border-bottom:1px solid var(--wf-color-neutral-300);background:var(--wf-color-neutral-50);}
+  .wf-table td{padding:9px 24px;border-bottom:1px solid var(--wf-color-neutral-100);color:var(--wf-color-neutral-700);}
+  .wf-table td.num{font-variant-numeric:tabular-nums;color:var(--wf-color-neutral-900);}
+  .wf-badge{display:inline-block;font-size:var(--wf-text-xs);font-weight:600;padding:2px 8px;border-radius:var(--wf-radius-full);border:1px solid var(--wf-color-border);}
+  .wf-badge-pending{color:#b45309;border-color:#f59e0b;background:#fffbeb;}
+  .wf-badge-quoted{color:#1e40af;border-color:#93c5fd;background:#eff6ff;}
+  .wf-badge-accepted{color:#15803d;border-color:#86efac;background:#f0fdf4;}
+  /* zero-results empty state */
+  .wf-empty{padding:48px 24px 56px;text-align:center;}
+  .wf-empty .ico{width:44px;height:44px;border-radius:50%;border:2px dashed var(--wf-color-neutral-300);margin:0 auto 14px;display:flex;align-items:center;justify-content:center;color:var(--wf-color-neutral-500);font-size:20px;}
+  .wf-empty h3{margin:0 0 6px;font-size:var(--wf-text-lg);color:var(--wf-color-neutral-900);}
+  .wf-empty p{margin:0 auto 16px;font-size:var(--wf-text-sm);color:var(--wf-color-neutral-500);max-width:420px;}
+  .wf-empty .acts{display:flex;gap:8px;justify-content:center;}
+  .wf-note{display:flex;gap:8px;margin-top:10px;font-size:var(--wf-text-sm);color:var(--wf-color-neutral-700);}
+  .wf-note .pin{flex:none;width:18px;height:18px;border-radius:50%;background:var(--wf-color-primary);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+</style>
+
+  <!-- FRAME A — active filter tokens + sticky bar -->
+  <div class="wf-frame-label">Frame A · Active-filter tokens + sticky bar (3 of 24)</div>
+  <div class="wf-screen">
+    <div class="wf-pagehead">
+      <div><h1>QuoteBook</h1><div class="sub">Wholesale Rack · Houston Terminal &amp; Dallas Hub</div></div>
+      <div><button class="wf-btn">Export</button> <button class="wf-btn wf-btn-primary">New quote</button></div>
+    </div>
+    <div class="wf-sticky-wrap">
+      <div class="wf-filterbar">
+        <span class="wf-fb-label">Status</span>
+        <span class="wf-chips">
+          <button class="wf-chip">All</button>
+          <button class="wf-chip wf-chip-active">Pending</button>
+          <button class="wf-chip">Quoted</button>
+          <button class="wf-chip">Accepted</button>
+          <button class="wf-chip">Expired</button>
+        </span>
+        <select class="wf-select is-set"><option>Product: Gasoline ▾</option></select>
+        <select class="wf-select is-set"><option>Date: This week ▾</option></select>
+        <select class="wf-select"><option>Sort: Date ↓ (newest)</option></select>
+        <span class="wf-pin-note">⤓ pins on scroll</span>
+        <span class="wf-spacer"></span>
+        <span class="wf-count"><b>3</b> of 24 quotes</span>
+        <button class="wf-clear">Clear all</button>
+      </div>
+      <div class="wf-tokenrow">
+        <span class="lbl">Filters</span>
+        <span class="wf-token">Pending <span class="x">✕</span></span>
+        <span class="wf-token">Product: Gasoline 87 + 91 <span class="x">✕</span></span>
+        <span class="wf-token">This week <span class="x">✕</span></span>
+      </div>
+      <table class="wf-table">
+        <thead><tr><th>Status</th><th>Product</th><th>Location</th><th>Counterparty</th><th>Proposed price</th><th>Quote date ↓</th></tr></thead>
+        <tbody>
+          <tr><td><span class="wf-badge wf-badge-pending">Pending</span></td><td>Gasoline 87</td><td>Houston Terminal</td><td>Demo Trucking Co.</td><td class="num">$2.5821</td><td>Jun 12</td></tr>
+          <tr><td><span class="wf-badge wf-badge-pending">Pending</span></td><td>Gasoline 91</td><td>Houston Terminal</td><td>Demo Trucking Co.</td><td class="num">$2.8154</td><td>Jun 11</td></tr>
+          <tr><td><span class="wf-badge wf-badge-pending">Pending</span></td><td>Gasoline 87</td><td>Dallas Hub</td><td>Frontier Fuel Services</td><td class="num">$2.5874</td><td>Jun 10</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="wf-note"><span class="pin">1</span><span><b>Removable filter tokens</b> (R1 review #2). Every active filter is echoed as a token under the bar; each ✕ removes just that one — no hunting through controls to see or undo what's on.</span></div>
+  <div class="wf-note"><span class="pin">2</span><span><b>Bar pins on scroll</b> (R1 review #3). The filter bar + token row stay stuck to the top of the list region, so filters never scroll out of view across 200 rows.</span></div>
+  <div class="wf-note"><span class="pin">3</span><span><b>Sort moved in with the filters</b> (R1 review #4); count + Clear all now stand alone on the right.</span></div>
+
+  <!-- FRAME B — zero results -->
+  <div class="wf-frame-label">Frame B · Zero results — the "looked broken" case, designed</div>
+  <div class="wf-screen">
+    <div class="wf-pagehead">
+      <div><h1>QuoteBook</h1><div class="sub">Wholesale Rack · Houston Terminal &amp; Dallas Hub</div></div>
+      <div><button class="wf-btn">Export</button> <button class="wf-btn wf-btn-primary">New quote</button></div>
+    </div>
+    <div class="wf-sticky-wrap">
+      <div class="wf-filterbar">
+        <span class="wf-fb-label">Status</span>
+        <span class="wf-chips">
+          <button class="wf-chip">All</button>
+          <button class="wf-chip wf-chip-active">Pending</button>
+          <button class="wf-chip">Quoted</button>
+          <button class="wf-chip">Accepted</button>
+          <button class="wf-chip">Expired</button>
+        </span>
+        <select class="wf-select is-set"><option>Product: Biodiesel B20 ▾</option></select>
+        <select class="wf-select is-set"><option>Date: Today ▾</option></select>
+        <select class="wf-select"><option>Sort: Date ↓ (newest)</option></select>
+        <span class="wf-spacer"></span>
+        <span class="wf-count"><b>0</b> of 24 quotes</span>
+        <button class="wf-clear">Clear all</button>
+      </div>
+      <div class="wf-tokenrow">
+        <span class="lbl">Filters</span>
+        <span class="wf-token">Pending <span class="x">✕</span></span>
+        <span class="wf-token">Biodiesel B20 <span class="x">✕</span></span>
+        <span class="wf-token">Today <span class="x">✕</span></span>
+      </div>
+      <div class="wf-empty">
+        <div class="ico">⌕</div>
+        <h3>No quotes match these filters</h3>
+        <p>Nothing is <b>Pending</b> for <b>Biodiesel B20</b> <b>today</b>. Your quotes are still here — just filtered out. Remove a filter to widen the search.</p>
+        <div class="acts">
+          <button class="wf-btn">Remove “Today”</button>
+          <button class="wf-btn wf-btn-primary">Clear all filters</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wf-note"><span class="pin">4</span><span><b>Designed zero-results state</b> (R1 review #1 — the headline fix). A blank table read as "broken." This says it plainly, echoes the exact filters causing it, and reassures "your quotes are still here."</span></div>
+  <div class="wf-note"><span class="pin">5</span><span><b>Two escapes, ranked.</b> "Remove ‘Today’" relaxes the <i>last-applied</i> filter (most likely to bring rows back); "Clear all" is the full reset. Both also live in the always-visible bar.</span></div>
+  <div class="wf-note"><span class="pin">6</span><span><b>Open question resolved.</b> R1's three open questions (sticky, tokens, zero-results) are all answered here. This is the direction to promote to hi-fi.</span></div>
+</div>
+</body>
+</html>

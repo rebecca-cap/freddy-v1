@@ -1,0 +1,429 @@
+/* ==========================================================================
+   Wireframe Design System - Typography
+   Pure CSS classes for wireframe typography
+   ========================================================================== */
+
+/* ==========================================================================
+   Base Text Class
+   ========================================================================== */
+
+.wf-text {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.5;
+  margin: 0;
+  color: #1a1a2e;
+}
+
+/* ==========================================================================
+   Size Variants
+   ========================================================================== */
+
+/* Heading 1 - Page titles */
+.wf-text-h1 {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+/* Heading 2 - Section headers */
+.wf-text-h2 {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+
+/* Heading 3 - Subsections */
+.wf-text-h3 {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* Heading 4 - Card titles, small headers */
+.wf-text-h4 {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* Body text - Default paragraph text */
+.wf-text-body {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* Label - Form labels, data labels */
+.wf-text-label {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #6b7280;
+}
+
+/* Helper text - Form hints, descriptions */
+.wf-text-helper {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #6b7280;
+}
+
+/* Caption - Small annotations, timestamps */
+.wf-text-caption {
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #9ca3af;
+}
+
+/* ==========================================================================
+   Weight Modifiers
+   ========================================================================== */
+
+.wf-text-normal {
+  font-weight: 400;
+}
+
+.wf-text-medium {
+  font-weight: 500;
+}
+
+.wf-text-semibold {
+  font-weight: 600;
+}
+
+.wf-text-bold {
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   Color Modifiers
+   ========================================================================== */
+
+/* Primary - Default dark text */
+.wf-text-primary {
+  color: #1a1a2e;
+}
+
+/* Secondary - Muted/gray text */
+.wf-text-secondary {
+  color: #6b7280;
+}
+
+/* Success - Positive states */
+.wf-text-success {
+  color: #059669;
+}
+
+/* Warning - Caution states */
+.wf-text-warning {
+  color: #d97706;
+}
+
+/* Error - Negative states */
+.wf-text-error {
+  color: #dc2626;
+}
+
+/* Link - Clickable text */
+.wf-text-link {
+  color: #2563eb;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.wf-text-link:hover {
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
+/* Inverse - For dark backgrounds */
+.wf-text-inverse {
+  color: #ffffff;
+}
+
+/* Disabled - Non-interactive text */
+.wf-text-disabled {
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   Alignment
+   ========================================================================== */
+
+.wf-text-left {
+  text-align: left;
+}
+
+.wf-text-center {
+  text-align: center;
+}
+
+.wf-text-right {
+  text-align: right;
+}
+
+/* ==========================================================================
+   Text Transforms
+   ========================================================================== */
+
+.wf-text-uppercase {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.wf-text-capitalize {
+  text-transform: capitalize;
+}
+
+.wf-text-lowercase {
+  text-transform: lowercase;
+}
+
+.wf-text-none {
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+/* ==========================================================================
+   Text Decoration
+   ========================================================================== */
+
+.wf-text-underline {
+  text-decoration: underline;
+}
+
+.wf-text-line-through {
+  text-decoration: line-through;
+}
+
+.wf-text-no-underline {
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   Overflow Handling
+   ========================================================================== */
+
+.wf-text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.wf-text-wrap {
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+.wf-text-nowrap {
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Label Group Component
+   For key-value pair displays
+   ========================================================================== */
+
+.wf-label-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.wf-label-group .wf-text-label {
+  margin-bottom: 0;
+}
+
+/* Horizontal label layout */
+.wf-label-horizontal {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.wf-label-horizontal .wf-text-label {
+  min-width: 100px;
+  flex-shrink: 0;
+}
+
+/* Label group with colon separator */
+.wf-label-colon .wf-text-label::after {
+  content: ':';
+}
+
+/* Spread layout (label left, value right) */
+.wf-label-spread {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ==========================================================================
+   Page Header Pattern
+   ========================================================================== */
+
+.wf-page-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 24px;
+}
+
+.wf-page-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.wf-page-subtitle {
+  font-size: 14px;
+  font-weight: 400;
+  color: #6b7280;
+}
+
+/* ==========================================================================
+   Section Header Pattern
+   ========================================================================== */
+
+.wf-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.wf-section-header-simple {
+  border-bottom: none;
+  margin-bottom: 12px;
+  padding-bottom: 0;
+}
+
+/* ==========================================================================
+   Data Display Pattern
+   ========================================================================== */
+
+.wf-data-row {
+  display: flex;
+  align-items: flex-start;
+  padding: 8px 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.wf-data-row:last-child {
+  border-bottom: none;
+}
+
+.wf-data-label {
+  flex: 0 0 140px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.wf-data-value {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 400;
+  color: #1a1a2e;
+}
+
+/* Grid layout for data display */
+.wf-data-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+/* ==========================================================================
+   Inline Status Text
+   ========================================================================== */
+
+.wf-status-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.wf-status-text::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+}
+
+.wf-status-text-success {
+  color: #059669;
+}
+
+.wf-status-text-warning {
+  color: #d97706;
+}
+
+.wf-status-text-error {
+  color: #dc2626;
+}
+
+.wf-status-text-info {
+  color: #2563eb;
+}
+
+.wf-status-text-neutral {
+  color: #6b7280;
+}
+
+/* ==========================================================================
+   Required Field Indicator
+   ========================================================================== */
+
+.wf-required::after {
+  content: '*';
+  color: #dc2626;
+  margin-left: 2px;
+}
+
+/* ==========================================================================
+   Responsive Typography
+   ========================================================================== */
+
+@media (max-width: 640px) {
+  .wf-text-h1 {
+    font-size: 20px;
+  }
+
+  .wf-text-h2 {
+    font-size: 16px;
+  }
+
+  .wf-text-h3 {
+    font-size: 14px;
+  }
+
+  .wf-data-label {
+    flex: 0 0 100px;
+  }
+
+  .wf-label-horizontal {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .wf-label-horizontal .wf-text-label {
+    min-width: auto;
+  }
+}

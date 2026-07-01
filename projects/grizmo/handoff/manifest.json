@@ -1,0 +1,1175 @@
+[
+  {
+    "id": "c1-trigger",
+    "title": "Trigger & first-run intro bubble",
+    "section": "overview",
+    "file": "c1-trigger.png",
+    "target": "viewport",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Ask Scout trigger",
+        "note": "Toolbar entry point; also opens on ⌘G.",
+        "xPct": 82.97,
+        "yPct": 11.2,
+        "wPct": 6.17,
+        "hPct": 2.94,
+        "cxPct": 86.05,
+        "cyPct": 12.67
+      },
+      {
+        "n": 2,
+        "label": "First-run intro bubble",
+        "note": "One-time tip anchored to the trigger.",
+        "xPct": 67.53,
+        "yPct": 15.03,
+        "wPct": 20.24,
+        "hPct": 9.89,
+        "cxPct": 77.65,
+        "cyPct": 19.98
+      }
+    ]
+  },
+  {
+    "id": "c1-welcome",
+    "title": "Welcome / zero-chats state",
+    "section": "conversation",
+    "file": "c1-welcome.png",
+    "target": ".scout-panel-frame",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Chats / Library tabs",
+        "note": "Two-tab nav; Chats is list-first.",
+        "xPct": 0,
+        "yPct": 7.25,
+        "wPct": 100,
+        "hPct": 8.48,
+        "cxPct": 50,
+        "cyPct": 11.49
+      },
+      {
+        "n": 2,
+        "label": "Suggestion chips",
+        "note": "Closed prompts to get started.",
+        "xPct": 5,
+        "yPct": 68.47,
+        "wPct": 90,
+        "hPct": 18.45,
+        "cxPct": 50,
+        "cyPct": 77.69
+      },
+      {
+        "n": 3,
+        "label": "Composer",
+        "note": "Free-text ask.",
+        "xPct": 3,
+        "yPct": 90.99,
+        "wPct": 90.5,
+        "hPct": 6.19,
+        "cxPct": 48.25,
+        "cyPct": 94.08
+      }
+    ]
+  },
+  {
+    "id": "c1-thinking",
+    "title": "Thinking — live reasoning steps",
+    "section": "conversation",
+    "file": "c1-thinking.png",
+    "target": ".scout-panel-frame",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Scout is thinking",
+        "note": "Steps reveal progressively, then auto-collapse.",
+        "xPct": 4.5,
+        "yPct": 61.2,
+        "wPct": 91,
+        "hPct": 21.18,
+        "cxPct": 50,
+        "cyPct": 71.79
+      }
+    ]
+  },
+  {
+    "id": "c1-answered",
+    "title": "Answered — full Scout answer",
+    "section": "conversation",
+    "file": "c1-answered.png",
+    "target": ".scout-panel-frame",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Scope tag",
+        "note": "What rows the answer covers.",
+        "xPct": 16.5,
+        "yPct": 15.47,
+        "wPct": 14.04,
+        "hPct": 2.51,
+        "cxPct": 23.52,
+        "cyPct": 16.73
+      },
+      {
+        "n": 2,
+        "label": "Confidence",
+        "note": "High / Medium / Low + caveat.",
+        "xPct": 16.5,
+        "yPct": 19.21,
+        "wPct": 68.8,
+        "hPct": 2.35,
+        "cxPct": 50.9,
+        "cyPct": 20.39
+      },
+      {
+        "n": 3,
+        "label": "Breakdown block",
+        "note": "One of: paragraph, list, table, breakdown, CSV-link.",
+        "xPct": 16.5,
+        "yPct": 32.84,
+        "wPct": 75,
+        "hPct": 18.14,
+        "cxPct": 54,
+        "cyPct": 41.91
+      },
+      {
+        "n": 4,
+        "label": "Action chips",
+        "note": "Scenario-specific next steps.",
+        "xPct": 16.5,
+        "yPct": 52.2,
+        "wPct": 75,
+        "hPct": 8.28,
+        "cxPct": 54,
+        "cyPct": 56.34
+      },
+      {
+        "n": 5,
+        "label": "Details disclosure",
+        "note": "Steps + sources, collapsed.",
+        "xPct": 16.5,
+        "yPct": 61.71,
+        "wPct": 75,
+        "hPct": 3.45,
+        "cxPct": 54,
+        "cyPct": 63.44
+      },
+      {
+        "n": 6,
+        "label": "Feedback footer",
+        "note": "👍/👎 + ⋯ overflow.",
+        "xPct": 16.5,
+        "yPct": 66.38,
+        "wPct": 75,
+        "hPct": 4.29,
+        "cxPct": 54,
+        "cyPct": 68.52
+      },
+      {
+        "n": 7,
+        "label": "Follow-ups",
+        "note": "“TRY A FOLLOW-UP”.",
+        "xPct": 4.5,
+        "yPct": 74.22,
+        "wPct": 91,
+        "hPct": 16.81,
+        "cxPct": 50,
+        "cyPct": 82.63
+      }
+    ]
+  },
+  {
+    "id": "c1-followups",
+    "title": "Follow-up suggestions",
+    "section": "conversation",
+    "file": "c1-followups.png",
+    "target": ".scout-followups",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Suggested follow-ups",
+        "note": "Tap to continue the thread.",
+        "xPct": 3.57,
+        "yPct": 8.48,
+        "wPct": 92.86,
+        "hPct": 83.04,
+        "cxPct": 50,
+        "cyPct": 50
+      }
+    ]
+  },
+  {
+    "id": "c1-footer",
+    "title": "Answer footer — feedback & overflow",
+    "section": "conversation",
+    "file": "c1-footer.png",
+    "target": ".scout-answer-footer",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Thumbs",
+        "note": "👍 / 👎 rating.",
+        "xPct": 3.7,
+        "yPct": 35.59,
+        "wPct": 8.03,
+        "hPct": 44.07,
+        "cxPct": 7.71,
+        "cyPct": 57.63
+      },
+      {
+        "n": 2,
+        "label": "Overflow ⋯",
+        "note": "Copy, export, save…",
+        "xPct": 88.27,
+        "yPct": 35.59,
+        "wPct": 8.03,
+        "hPct": 44.07,
+        "cxPct": 92.28,
+        "cyPct": 57.63
+      }
+    ]
+  },
+  {
+    "id": "c1-feedback-form",
+    "title": "Feedback form (after 👎)",
+    "section": "conversation",
+    "file": "c1-feedback-form.png",
+    "target": ".scout-panel-frame",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Inline feedback",
+        "note": "Reason picker + optional note.",
+        "xPct": 16.5,
+        "yPct": 44.81,
+        "wPct": 75,
+        "hPct": 25.8,
+        "cxPct": 54,
+        "cyPct": 57.71
+      }
+    ]
+  },
+  {
+    "id": "c1-feedback-receipt",
+    "title": "Feedback receipt",
+    "section": "conversation",
+    "file": "c1-feedback-receipt.png",
+    "target": ".scout-panel-frame",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Receipt",
+        "note": "Confirms feedback logged.",
+        "xPct": 16.5,
+        "yPct": 64.05,
+        "wPct": 75,
+        "hPct": 6.62,
+        "cxPct": 54,
+        "cyPct": 67.36
+      }
+    ]
+  },
+  {
+    "id": "c1-details",
+    "title": "Details expanded — steps & sources",
+    "section": "conversation",
+    "file": "c1-details.png",
+    "target": ".scout-panel-frame",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Reasoning + sources",
+        "note": "Transparency: how Scout got here.",
+        "xPct": 16.5,
+        "yPct": 61.71,
+        "wPct": 75,
+        "hPct": 28.51,
+        "cxPct": 54,
+        "cyPct": 75.97
+      }
+    ]
+  },
+  {
+    "id": "c1-context-empty",
+    "title": "Context bar — empty",
+    "section": "scoping",
+    "file": "c1-context-empty.png",
+    "target": ".scout-ctx-chips",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Empty hint",
+        "note": "“Nothing in focus · click a cell.”",
+        "xPct": 5.24,
+        "yPct": 35.78,
+        "wPct": 29.75,
+        "hPct": 26.83,
+        "cxPct": 20.12,
+        "cyPct": 49.2
+      },
+      {
+        "n": 2,
+        "label": "+ Add a cell",
+        "note": "Enters focused pick mode.",
+        "xPct": 36.42,
+        "yPct": 29.27,
+        "wPct": 19.56,
+        "hPct": 39.84,
+        "cxPct": 46.2,
+        "cyPct": 49.19
+      }
+    ]
+  },
+  {
+    "id": "c1-context-populated",
+    "title": "Context bar — populated",
+    "section": "scoping",
+    "file": "c1-context-populated.png",
+    "target": ".scout-ctx-chips",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Context chip",
+        "note": "Removable scope pill (row / cell / selection).",
+        "xPct": 5.24,
+        "yPct": 28.57,
+        "wPct": 29.67,
+        "hPct": 41.27,
+        "cxPct": 20.08,
+        "cyPct": 49.2
+      }
+    ]
+  },
+  {
+    "id": "c1-viewnav",
+    "title": "View navigation",
+    "section": "ia",
+    "file": "c1-viewnav.png",
+    "target": ".scout-view-nav",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Tabs",
+        "note": "Chats / Library.",
+        "xPct": 2.88,
+        "yPct": 12.5,
+        "wPct": 20.96,
+        "hPct": 73.44,
+        "cxPct": 13.36,
+        "cyPct": 49.22
+      }
+    ]
+  },
+  {
+    "id": "c1-header",
+    "title": "Panel header & controls",
+    "section": "anatomy",
+    "file": "c1-header.png",
+    "target": ".scout-panel__title-row",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Mark + wordmark",
+        "note": "Drag handle in floating mode.",
+        "xPct": 4.81,
+        "yPct": 28.07,
+        "wPct": 6.25,
+        "hPct": 45.61,
+        "cxPct": 7.93,
+        "cyPct": 50.88
+      },
+      {
+        "n": 2,
+        "label": "Save as path",
+        "note": "Disabled until saveable.",
+        "xPct": 65.38,
+        "yPct": 29.82,
+        "wPct": 5.77,
+        "hPct": 42.11,
+        "cxPct": 68.27,
+        "cyPct": 50.88
+      },
+      {
+        "n": 3,
+        "label": "Clear",
+        "note": "Archive + empty (undoable).",
+        "xPct": 71.63,
+        "yPct": 29.82,
+        "wPct": 5.77,
+        "hPct": 42.11,
+        "cxPct": 74.52,
+        "cyPct": 50.88
+      },
+      {
+        "n": 4,
+        "label": "Mode",
+        "note": "Float ↔ dock.",
+        "xPct": 77.88,
+        "yPct": 29.82,
+        "wPct": 5.77,
+        "hPct": 42.11,
+        "cxPct": 80.77,
+        "cyPct": 50.88
+      },
+      {
+        "n": 5,
+        "label": "Minimize",
+        "note": "Collapse to mini-bubble.",
+        "xPct": 84.13,
+        "yPct": 29.82,
+        "wPct": 5.77,
+        "hPct": 42.11,
+        "cxPct": 87.02,
+        "cyPct": 50.88
+      },
+      {
+        "n": 6,
+        "label": "Close",
+        "note": "Opens discard confirm.",
+        "xPct": 90.38,
+        "yPct": 29.82,
+        "wPct": 5.77,
+        "hPct": 42.11,
+        "cxPct": 93.27,
+        "cyPct": 50.88
+      }
+    ]
+  },
+  {
+    "id": "c1-composer",
+    "title": "Composer",
+    "section": "anatomy",
+    "file": "c1-composer.png",
+    "target": ".scout-composer",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Input",
+        "note": "Grows to multi-line; ⌘Enter sends.",
+        "xPct": 12.43,
+        "yPct": 22.04,
+        "wPct": 68.26,
+        "hPct": 57.63,
+        "cxPct": 46.56,
+        "cyPct": 50.86
+      },
+      {
+        "n": 2,
+        "label": "Send",
+        "note": "Disabled while empty/busy.",
+        "xPct": 82.77,
+        "yPct": 28.82,
+        "wPct": 14.12,
+        "hPct": 50.84,
+        "cxPct": 89.83,
+        "cyPct": 54.24
+      },
+      {
+        "n": 3,
+        "label": "Undo",
+        "note": "Reverses the last turn.",
+        "xPct": 3.11,
+        "yPct": 20.34,
+        "wPct": 7.25,
+        "hPct": 59.32,
+        "cxPct": 6.73,
+        "cyPct": 50
+      }
+    ]
+  },
+  {
+    "id": "c1-mini",
+    "title": "Minimized mini-bubble",
+    "section": "crosspage",
+    "file": "c1-mini.png",
+    "target": ".scout-mini",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Resume pill",
+        "note": "Anchored above the trigger; reopens with state intact.",
+        "xPct": 9.14,
+        "yPct": 27.59,
+        "wPct": 81.72,
+        "hPct": 44.83,
+        "cxPct": 50,
+        "cyPct": 50
+      }
+    ]
+  },
+  {
+    "id": "c2-chats-inbox",
+    "title": "Chats inbox",
+    "section": "threading",
+    "file": "c2-chats-inbox.png",
+    "target": ".scout-panel-frame",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Conversation card",
+        "note": "Question-led; preview + timestamp.",
+        "xPct": 7,
+        "yPct": 50.3,
+        "wPct": 86,
+        "hPct": 18.45,
+        "cxPct": 50,
+        "cyPct": 59.52
+      },
+      {
+        "n": 2,
+        "label": "Lead question",
+        "note": "What was asked.",
+        "xPct": 10.75,
+        "yPct": 53.26,
+        "wPct": 79,
+        "hPct": 5.07,
+        "cxPct": 50.25,
+        "cyPct": 55.8
+      },
+      {
+        "n": 3,
+        "label": "Unseen badge",
+        "note": "Counts ready answers.",
+        "xPct": 7,
+        "yPct": 13.32,
+        "wPct": 3.75,
+        "hPct": 4.04,
+        "cxPct": 8.88,
+        "cyPct": 15.34
+      },
+      {
+        "n": 4,
+        "label": "New chat",
+        "note": "Start a fresh conversation.",
+        "xPct": 68,
+        "yPct": 29.86,
+        "wPct": 25,
+        "hPct": 7.53,
+        "cxPct": 80.5,
+        "cyPct": 33.63
+      }
+    ]
+  },
+  {
+    "id": "c2-library",
+    "title": "Library — saved prompts & paths",
+    "section": "library",
+    "file": "c2-library.png",
+    "target": ".scout-panel-frame",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Search & filters",
+        "note": "Search, starred-only, ownership filter.",
+        "xPct": 4,
+        "yPct": 12.62,
+        "wPct": 92,
+        "hPct": 4.04,
+        "cxPct": 50,
+        "cyPct": 14.64
+      },
+      {
+        "n": 2,
+        "label": "Kind pill",
+        "note": "“Path · N steps” or “Prompt”.",
+        "xPct": 10.75,
+        "yPct": 32.48,
+        "wPct": 19.43,
+        "hPct": 2.21,
+        "cxPct": 20.46,
+        "cyPct": 33.58
+      },
+      {
+        "n": 3,
+        "label": "Run / Open",
+        "note": "Run a path; open a prompt.",
+        "xPct": 79.1,
+        "yPct": 41.97,
+        "wPct": 10.15,
+        "hPct": 2.94,
+        "cxPct": 84.17,
+        "cyPct": 43.44
+      },
+      {
+        "n": 4,
+        "label": "Star",
+        "note": "Favorite (always visible).",
+        "xPct": 83.25,
+        "yPct": 28.55,
+        "wPct": 6,
+        "hPct": 2.94,
+        "cxPct": 86.25,
+        "cyPct": 30.02
+      },
+      {
+        "n": 5,
+        "label": "Description",
+        "note": "2-line clamp.",
+        "xPct": 10.75,
+        "yPct": 35.66,
+        "wPct": 78.5,
+        "hPct": 4.23,
+        "cxPct": 50,
+        "cyPct": 37.77
+      }
+    ]
+  },
+  {
+    "id": "c2-library-empty",
+    "title": "Library — no matches",
+    "section": "library",
+    "file": "c2-library-empty.png",
+    "target": ".scout-panel-frame",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Empty state",
+        "note": "“No matches · Clear filters.”",
+        "xPct": 4,
+        "yPct": 49.04,
+        "wPct": 92,
+        "hPct": 49.16,
+        "cxPct": 50,
+        "cyPct": 73.62
+      }
+    ]
+  },
+  {
+    "id": "c2-save-details",
+    "title": "Save modal — Details",
+    "section": "library",
+    "file": "c2-save-details.png",
+    "target": ".scout-save-modal",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Details / Share tabs",
+        "note": "Two-tab save.",
+        "xPct": 0,
+        "yPct": 9.03,
+        "wPct": 100,
+        "hPct": 4.95,
+        "cxPct": 50,
+        "cyPct": 11.5
+      },
+      {
+        "n": 2,
+        "label": "Name & description",
+        "note": "Name required.",
+        "xPct": 3.46,
+        "yPct": 16.08,
+        "wPct": 93.08,
+        "hPct": 9.35,
+        "cxPct": 50,
+        "cyPct": 20.75
+      },
+      {
+        "n": 3,
+        "label": "Step list",
+        "note": "Rename / reorder / drop.",
+        "xPct": 3.46,
+        "yPct": 59.88,
+        "wPct": 93.08,
+        "hPct": 11.91,
+        "cxPct": 50,
+        "cyPct": 65.84
+      },
+      {
+        "n": 4,
+        "label": "Flatten on save",
+        "note": "Collapse to a single prompt.",
+        "xPct": 3.46,
+        "yPct": 73.88,
+        "wPct": 93.08,
+        "hPct": 7.92,
+        "cxPct": 50,
+        "cyPct": 77.84
+      },
+      {
+        "n": 5,
+        "label": "Save",
+        "note": "Disabled until valid.",
+        "xPct": 84.38,
+        "yPct": 91.6,
+        "wPct": 12.16,
+        "hPct": 3.97,
+        "cxPct": 90.46,
+        "cyPct": 93.58
+      }
+    ]
+  },
+  {
+    "id": "c2-save-share",
+    "title": "Save modal — Share",
+    "section": "library",
+    "file": "c2-save-share.png",
+    "target": ".scout-save-modal",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Audience scope",
+        "note": "Only me / Team / Specific people.",
+        "xPct": 3.46,
+        "yPct": 32.89,
+        "wPct": 93.08,
+        "hPct": 40.92,
+        "cxPct": 50,
+        "cyPct": 53.35
+      },
+      {
+        "n": 2,
+        "label": "Scope card",
+        "note": "Pick who can see it.",
+        "xPct": 3.46,
+        "yPct": 32.89,
+        "wPct": 93.08,
+        "hPct": 12.55,
+        "cxPct": 50,
+        "cyPct": 39.16
+      }
+    ]
+  },
+  {
+    "id": "c2-path-editor",
+    "title": "Inline path editor",
+    "section": "library",
+    "file": "c2-path-editor.png",
+    "target": ".scout-save-modal__steps",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Inline rename",
+        "note": "Edit each step’s text.",
+        "xPct": 12.11,
+        "yPct": 23.07,
+        "wPct": 65.24,
+        "hPct": 18.48,
+        "cxPct": 44.73,
+        "cyPct": 32.31
+      },
+      {
+        "n": 2,
+        "label": "Reorder / drop",
+        "note": "Up · down · remove (restorable).",
+        "xPct": 78.91,
+        "yPct": 23.08,
+        "wPct": 14.84,
+        "hPct": 18.46,
+        "cxPct": 86.33,
+        "cyPct": 32.31
+      }
+    ]
+  },
+  {
+    "id": "c2-share-modal",
+    "title": "Share modal",
+    "section": "library",
+    "file": "c2-share-modal.png",
+    "target": ".scout-share-modal",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Item being shared",
+        "note": "Saved prompt / path.",
+        "xPct": 6.3,
+        "yPct": 26.72,
+        "wPct": 23.94,
+        "hPct": 5.43,
+        "cxPct": 18.27,
+        "cyPct": 29.43
+      },
+      {
+        "n": 2,
+        "label": "Audience",
+        "note": "Same picker as Save → Share.",
+        "xPct": 3.48,
+        "yPct": 38.81,
+        "wPct": 93.04,
+        "hPct": 34.85,
+        "cxPct": 50,
+        "cyPct": 56.23
+      },
+      {
+        "n": 3,
+        "label": "Share",
+        "note": "Confirm.",
+        "xPct": 81.43,
+        "yPct": 81.37,
+        "wPct": 15.1,
+        "hPct": 9.05,
+        "cxPct": 88.98,
+        "cyPct": 85.9
+      }
+    ]
+  },
+  {
+    "id": "c2-path-candidate",
+    "title": "Path-candidate nudge",
+    "section": "library",
+    "file": "c2-path-candidate.png",
+    "target": ".scout-panel-frame",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Save-as-path nudge",
+        "note": "Appears after ≥2 same-scope questions.",
+        "xPct": 4.5,
+        "yPct": 61.65,
+        "wPct": 91,
+        "hPct": 15.07,
+        "cxPct": 50,
+        "cyPct": 69.19
+      }
+    ]
+  },
+  {
+    "id": "c2-toast",
+    "title": "Toast notification",
+    "section": "conversation",
+    "file": "c2-toast.png",
+    "target": "viewport",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Toast",
+        "note": "Single, auto-dismiss; success/warn/error.",
+        "xPct": 42.71,
+        "yPct": 93.9,
+        "wPct": 14.57,
+        "hPct": 3.74,
+        "cxPct": 50,
+        "cyPct": 95.77
+      }
+    ]
+  },
+  {
+    "id": "c3-cell-scope",
+    "title": "Grid cell highlighting — scope",
+    "section": "scoping",
+    "file": "c3-cell-scope.png",
+    "target": "viewport",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": []
+  },
+  {
+    "id": "c3-cell-addmode",
+    "title": "Grid +Add pick mode",
+    "section": "scoping",
+    "file": "c3-cell-addmode.png",
+    "target": "viewport",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Picked / eligible",
+        "note": "Same row OR one scope-group column.",
+        "xPct": 47.92,
+        "yPct": 32.77,
+        "wPct": 5.95,
+        "hPct": 3.33,
+        "cxPct": 50.9,
+        "cyPct": 34.44
+      },
+      {
+        "n": 2,
+        "label": "Disabled",
+        "note": "Off-axis / identity cells can’t be picked.",
+        "xPct": 7.8,
+        "yPct": 39.63,
+        "wPct": 2.02,
+        "hPct": 3.33,
+        "cxPct": 8.81,
+        "cyPct": 41.3
+      }
+    ]
+  },
+  {
+    "id": "c3-ready-dots",
+    "title": "Per-row ready indicator",
+    "section": "threading",
+    "file": "c3-ready-dots.png",
+    "target": "viewport",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Ready dots",
+        "note": "Lights when that row’s background answer is ready.",
+        "xPct": 7.8,
+        "yPct": 32.77,
+        "wPct": 2.02,
+        "hPct": 3.33,
+        "cxPct": 8.81,
+        "cyPct": 34.44
+      }
+    ]
+  },
+  {
+    "id": "c3-timer-bar",
+    "title": "Prototype timer bar",
+    "section": "crosspage",
+    "file": "c3-timer-bar.png",
+    "target": ".scout-proto-timer",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Label",
+        "note": "“PROTOTYPE TIMER (simulated latency)”.",
+        "xPct": 1.07,
+        "yPct": 37.21,
+        "wPct": 20.81,
+        "hPct": 31.1,
+        "cxPct": 11.47,
+        "cyPct": 52.76
+      },
+      {
+        "n": 2,
+        "label": "Countdown",
+        "note": "Soonest ready answer.",
+        "xPct": 33.18,
+        "yPct": 37.21,
+        "wPct": 12,
+        "hPct": 31.1,
+        "cxPct": 39.18,
+        "cyPct": 52.76
+      }
+    ]
+  },
+  {
+    "id": "c3-sidebar",
+    "title": "Sidebar-docked mode",
+    "section": "anatomy",
+    "file": "c3-sidebar.png",
+    "target": "viewport",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Docked panel",
+        "note": "Full height; pushes the grid left.",
+        "xPct": 77.38,
+        "yPct": 0,
+        "wPct": 22.62,
+        "hPct": 100,
+        "cxPct": 88.69,
+        "cyPct": 50
+      }
+    ]
+  },
+  {
+    "id": "c3-name-tag",
+    "title": "Cross-page name tag",
+    "section": "crosspage",
+    "file": "c3-name-tag.png",
+    "target": "viewport",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Scout status",
+        "note": "“Scout is thinking / ready”.",
+        "xPct": 82.84,
+        "yPct": 2.21,
+        "wPct": 6.14,
+        "hPct": 1.86,
+        "cxPct": 85.91,
+        "cyPct": 3.14
+      }
+    ]
+  },
+  {
+    "id": "c3-control-panel",
+    "title": "Control Panel alert cards",
+    "section": "crosspage",
+    "file": "c3-control-panel.png",
+    "target": "viewport",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Ready alert cards",
+        "note": "Click jumps back into the thread.",
+        "xPct": 74.64,
+        "yPct": 51.78,
+        "wPct": 23.93,
+        "hPct": 10.39,
+        "cxPct": 86.61,
+        "cyPct": 56.98
+      }
+    ]
+  },
+  {
+    "id": "c3-tour",
+    "title": "How cell colors work",
+    "section": "scoping",
+    "file": "c3-tour.png",
+    "target": "viewport",
+    "viewport": {
+      "width": 1680,
+      "height": 1020
+    },
+    "dpr": 2,
+    "annotations": [
+      {
+        "n": 1,
+        "label": "Cell-color help",
+        "note": "Explains identity vs scope coloring.",
+        "xPct": 56.94,
+        "yPct": 11.67,
+        "wPct": 8.22,
+        "hPct": 2,
+        "cxPct": 61.05,
+        "cyPct": 12.67
+      }
+    ]
+  }
+]

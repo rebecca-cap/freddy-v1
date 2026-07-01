@@ -1,0 +1,14 @@
+{
+  "path": "/Admin/CalendarPeriods",
+  "title": "Calendar Periods",
+  "finalUrl": "http://localhost:3001/Admin/CalendarPeriods",
+  "rootLen": 57265,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 8,
+  "stuckLoaders": [],
+  "emptyGrids": []
+}

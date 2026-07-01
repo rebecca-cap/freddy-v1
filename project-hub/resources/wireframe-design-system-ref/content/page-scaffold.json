@@ -1,0 +1,126 @@
+{
+  "slug": "page-scaffold",
+  "title": "Page & PageWithSidebar",
+  "order": 14,
+  "group": "Layout",
+  "intro": "`wf-page` is the outermost shell every wireframe starts from — a full-height flex column that stacks a `wf-page-header` (title block + actions) over a `wf-page-content` region. Add `wf-page-with-sidebar` and the column becomes a row: a persistent `wf-sidebar` beside a `wf-main` that holds the same header/content pair. These are the two scaffolds DESIGN.md 5.5 funnels every page pattern through.",
+  "searchTerms": ["wf-page", "wf-page-header", "wf-page-title", "wf-page-actions", "wf-page-content", "wf-page-with-sidebar", "wf-sidebar", "wf-sidebar-header", "wf-sidebar-nav", "wf-sidebar-footer", "wf-sidebar-collapsed", "wf-main", "page scaffold", "app shell", "layout", "header", "toolbar", "content region"],
+  "blocks": [
+    {
+      "type": "usage",
+      "body": "Every wireframe page begins with `wf-page`: a `display: flex; flex-direction: column` container at `min-height: 100vh` that paints `--wf-color-background-subtle` and owns the page font and primary text color. Inside it, the three regions are fixed in role — a `wf-page-header` bar on top, a `wf-page-content` region that takes `flex: 1` and grows to fill the rest.\n\nThe header is a `space-between` row: a `wf-page-title` column on the left (h1 + optional `wf-text-helper` subtitle) and a `wf-page-actions` row on the right that pins its buttons with `flex-shrink: 0` so they never wrap under pressure. The header sits on its own `--wf-color-background` surface with a `--wf-color-border` bottom rule, so it reads as chrome above the content.\n\nWhen the page needs top-level navigation, add `wf-page-with-sidebar` to the same `wf-page` element. That single modifier flips the flex direction to `row`, and you nest a `wf-sidebar` (brand header, scrollable nav, user footer) ahead of a `wf-main` wrapper that carries the header + content pair. `wf-main` is `flex: 1` with `min-width: 0` so a wide grid inside it can't blow out the layout."
+    },
+    {
+      "type": "specimen",
+      "title": "Basic Page Structure",
+      "image": "specimens/page-scaffold/01-basic-page-structure.png",
+      "caption": "The canonical scaffold: a wf-page-header (wf-page-title with h1 + subtitle on the left, wf-page-actions on the right) above a wf-page-content region. The header sits on its own white surface with a bottom border; content grows to fill."
+    },
+    {
+      "type": "code",
+      "title": "Page skeleton",
+      "code": "<div class=\"wf-page\">\n  <header class=\"wf-page-header\">\n    <div class=\"wf-page-title\">\n      <h1 class=\"wf-text-h1\">Dashboard</h1>\n      <p class=\"wf-text-helper\">Welcome back! Here's what's happening today.</p>\n    </div>\n    <div class=\"wf-page-actions\">\n      <button class=\"wf-button\">Export</button>\n      <button class=\"wf-button wf-button-primary\">+ New Report</button>\n    </div>\n  </header>\n  <main class=\"wf-page-content\">\n    <!-- Page content here -->\n  </main>\n</div>",
+      "note": "The title block is a column (h1 stacked on the helper subtitle); the actions block is a non-shrinking row. Omit wf-page-actions entirely for a title-only header.",
+      "lang": "html"
+    },
+    {
+      "type": "variants",
+      "title": "Page regions",
+      "intro": "The page scaffold is a fixed set of regions, not a prop API. Compose them in order — header, then content — and reach for the content padding modifiers when density calls for it.",
+      "rows": [
+        { "name": "wf-page", "when": "The outermost shell. Full-height flex column on --wf-color-background-subtle. One per page.", "code": "<div class=\"wf-page\">...</div>" },
+        { "name": "wf-page-header", "when": "The title-and-actions bar. space-between row on its own --wf-color-background surface with a bottom border.", "code": "<header class=\"wf-page-header\">...</header>" },
+        { "name": "wf-page-title", "when": "The left side of the header: a column holding the h1 and an optional wf-text-helper subtitle (gap --wf-space-1).", "code": "<div class=\"wf-page-title\">\n  <h1 class=\"wf-text-h1\">Settings</h1>\n  <p class=\"wf-text-helper\">Manage team members</p>\n</div>" },
+        { "name": "wf-page-actions", "when": "The right side of the header: an aligned row of buttons that flex-shrinks to zero so it never wraps.", "code": "<div class=\"wf-page-actions\">\n  <button class=\"wf-button\">Filter</button>\n  <button class=\"wf-button wf-button-primary\">+ New Order</button>\n</div>" },
+        { "name": "wf-page-content", "when": "The main content region. flex: 1, --wf-space-6 (24px) padding. The default for almost every page.", "code": "<main class=\"wf-page-content\">...</main>" },
+        { "name": "wf-page-content-tight", "when": "Reduce content padding to --wf-space-4 (16px) for denser, grid-heavy pages.", "code": "<main class=\"wf-page-content wf-page-content-tight\">...</main>" },
+        { "name": "wf-page-content-spacious", "when": "Loosen content padding to --wf-space-8 (32px) for an onboarding-shaped or marketing surface.", "code": "<main class=\"wf-page-content wf-page-content-spacious\">...</main>" },
+        { "name": "wf-page-content-none", "when": "Drop content padding to 0 when a full-bleed grid or table owns its own edges.", "code": "<main class=\"wf-page-content wf-page-content-none\">...</main>" }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "Full Example: Dashboard Page",
+      "image": "specimens/page-scaffold/02-full-example-dashboard.png",
+      "caption": "The scaffold composed into a real page: a header with date-range and download actions over a wf-page-content holding a wf-row of stat cards and a Recent Orders table inside a wf-card.",
+      "wide": true
+    },
+    {
+      "type": "specimen",
+      "title": "Page with Sidebar Shell",
+      "image": "specimens/page-scaffold/03-page-with-sidebar-shell.png",
+      "caption": "The two-column app shell: a 256px wf-sidebar (brand header, wf-sidebar-nav, user footer) beside a wf-main that carries the page header and wf-page-content. wf-page-with-sidebar on the wf-page element flips the flex direction to row.",
+      "wide": true
+    },
+    {
+      "type": "code",
+      "title": "Page with sidebar skeleton",
+      "code": "<div class=\"wf-page wf-page-with-sidebar\">\n  <aside class=\"wf-sidebar\">\n    <div class=\"wf-sidebar-header\">\n      <!-- Logo / brand -->\n    </div>\n    <nav class=\"wf-sidebar-nav\">\n      <!-- Navigation items -->\n    </nav>\n    <div class=\"wf-sidebar-footer\">\n      <!-- User info / settings -->\n    </div>\n  </aside>\n  <main class=\"wf-main\">\n    <header class=\"wf-page-header\">\n      <!-- Page title and actions -->\n    </header>\n    <div class=\"wf-page-content\">\n      <!-- Page content -->\n    </div>\n  </main>\n</div>",
+      "note": "wf-page-with-sidebar lives on the same element as wf-page. The header/content pair moves inside wf-main — it does not sit directly under wf-page anymore.",
+      "lang": "html"
+    },
+    {
+      "type": "variants",
+      "title": "Sidebar shell parts",
+      "intro": "The sidebar is a three-zone column: a fixed-height brand header on top, a scrollable nav in the middle, and a footer pinned to the bottom. Beside it, wf-main wraps the page header and content.",
+      "rows": [
+        { "name": "wf-page-with-sidebar", "when": "Modifier on wf-page that flips flex-direction to row, turning the page into a two-column shell.", "code": "<div class=\"wf-page wf-page-with-sidebar\">...</div>" },
+        { "name": "wf-sidebar", "when": "Fixed 256px-wide, full-height navigation column on --wf-color-background with a right border. flex-shrink: 0 so it holds its width.", "code": "<aside class=\"wf-sidebar\">...</aside>" },
+        { "name": "wf-sidebar-collapsed", "when": "Narrow the sidebar to 64px for an icon-only rail. Pair with wf-sidebar.", "code": "<aside class=\"wf-sidebar wf-sidebar-collapsed\">...</aside>" },
+        { "name": "wf-sidebar-header", "when": "Brand/logo zone at the top: a fixed 64px-tall row (centered, --wf-space-4 horizontal padding) with a bottom border.", "code": "<div class=\"wf-sidebar-header\">...</div>" },
+        { "name": "wf-sidebar-nav", "when": "The scrollable middle. flex: 1 with overflow-y: auto and --wf-space-4 padding — nav items and sections live here.", "code": "<nav class=\"wf-sidebar-nav\">...</nav>" },
+        { "name": "wf-sidebar-footer", "when": "Pinned bottom zone with a top border, for the signed-in user or settings shortcut.", "code": "<div class=\"wf-sidebar-footer\">...</div>" },
+        { "name": "wf-main", "when": "The right column wrapper. flex: 1, column layout, min-width: 0 to prevent a wide grid from overflowing the shell. Holds the header + content.", "code": "<main class=\"wf-main\">...</main>" }
+      ]
+    },
+    {
+      "type": "tokens",
+      "title": "Structural tokens",
+      "intro": "The scaffold's fixed dimensions and surfaces. Padding and gaps come from the spacing scale; never write the literal alongside the token.",
+      "rows": [
+        { "token": "--wf-color-background-subtle", "value": "page bg", "use": "wf-page background — the muted base the chrome sits on." },
+        { "token": "--wf-color-background", "value": "surface bg", "use": "wf-page-header and wf-sidebar background — the chrome reads lighter than the page." },
+        { "token": "--wf-color-border", "value": "1px border", "use": "Header bottom rule, sidebar right border, sidebar header/footer dividers (with --wf-border-width)." },
+        { "token": "--wf-color-text-primary", "value": "primary text", "use": "Default page text color, set on wf-page." },
+        { "token": "--wf-space-6", "value": "24px", "use": "wf-page-header padding and the default wf-page-content padding." },
+        { "token": "--wf-space-4", "value": "16px", "use": "Header gap, sidebar nav/footer padding, and wf-page-content-tight." },
+        { "token": "--wf-space-3", "value": "12px", "use": "Gap between buttons in wf-page-actions." },
+        { "token": "--wf-space-1", "value": "4px", "use": "Gap between the h1 and subtitle inside wf-page-title." },
+        { "token": "(wf-sidebar width)", "value": "256px", "use": "Fixed sidebar width; collapses to 64px with wf-sidebar-collapsed." },
+        { "token": "(wf-sidebar-header height)", "value": "64px", "use": "Fixed brand-zone height — the scaffold's only set-height region." }
+      ]
+    },
+    {
+      "type": "rules",
+      "title": "Scaffolding rules",
+      "intro": "From DESIGN.md 5.5 and the layout source. Start from a scaffold, don't reinvent one.",
+      "items": [
+        { "rule": "Start every page from one of the six pattern scaffolds in 5.5 (DashboardLayout, MasterDetailLayout, FormWizard, SettingsPage, DataTablePage, ComparisonMatrix), each built on wf-page.", "why": "If the page doesn't fit one, that's a signal to check whether it's a genuinely new pattern or a variant of an existing one — most of the time it's the latter." },
+        { "rule": "wf-page-with-sidebar is a modifier on wf-page, not a replacement for it.", "why": "It only flips flex-direction to row; the page still needs the wf-page base for height, background, font, and text color." },
+        { "rule": "When you add a sidebar, the header and content move inside wf-main — they no longer sit directly under wf-page.", "why": "wf-main is the flexing right column (min-width: 0) that absorbs a wide grid; putting the header under wf-page instead would stretch it across the sidebar." },
+        { "rule": "Keep wf-page-actions a non-wrapping row of buttons only — no filters or search.", "why": "It carries flex-shrink: 0 so primary actions stay reachable; filtering belongs in a FilterBar inside the content, not the header (4.3)." },
+        { "rule": "Reach for the wf-page-content padding modifiers instead of inline padding.", "why": "Default 24px, tight 16px, spacious 32px, none 0 — all on the 8px grid (5.2). A custom value breaks the rhythm." },
+        { "rule": "One wf-page per page and one wf-page-header inside it.", "why": "The scaffold defines a single primary location and title; a second header reads as a second page." }
+      ]
+    },
+    {
+      "type": "dosdonts",
+      "items": [
+        { "do": "<div class=\"wf-page wf-page-with-sidebar\">", "dont": "<div class=\"wf-page-with-sidebar\">", "why": "wf-page-with-sidebar only sets flex-direction: row. Without wf-page there's no min-height, background, font, or text color — the shell collapses." },
+        { "do": "Header + content inside wf-main", "dont": "Header + content directly under wf-page when a sidebar is present", "why": "wf-main is the flex: 1 / min-width: 0 column that sits beside the sidebar. Skip it and the header stretches across the whole row instead of just the content side." },
+        { "do": "<main class=\"wf-page-content wf-page-content-tight\">", "dont": "<main class=\"wf-page-content\" style=\"padding: 16px\">", "why": "The modifier already maps to --wf-space-4 (16px) on the grid. The token is the source of truth (2.7); the literal isn't." },
+        { "do": "Subtitle as <p class=\"wf-text-helper\"> inside wf-page-title", "dont": "Subtitle as a second <h1> or a sized <span>", "why": "wf-page-title is a column with a --wf-space-1 gap built for an h1 + helper pair; a second heading breaks the type hierarchy." }
+      ]
+    },
+    {
+      "type": "gotchas",
+      "items": [
+        { "title": "The sidebar goes fixed-and-hidden on mobile", "detail": "At max-width 640px the layout.css moves wf-sidebar to position: fixed; left: -100% and reveals it with the wf-sidebar-open class (left: 0). Below that breakpoint you need a toggle to add wf-sidebar-open, or the nav is off-screen." },
+        { "title": "wf-page-header restacks under 640px", "detail": "The same media query flips wf-page-header to flex-direction: column; align-items: stretch and right-aligns wf-page-actions. The title-over-actions stack is automatic — don't fight it with inline flex overrides." },
+        { "title": "Component demos lean on demo-only classes", "detail": "Page.html and PageWithSidebar.html render buttons, placeholders, and nav items with page-local helpers (demo-btn, demo-placeholder, demo-nav-item) defined in their inline <style>. Those are scaffolding props for the demo, not part of layout.css — use the real wf- button/nav components in a build." },
+        { "title": "wf-main carries min-width: 0 on purpose", "detail": "Without it, a wide table or grid inside wf-page-content forces the flex item past the viewport and the sidebar gets squeezed. Keep min-width: 0 on wf-main when you swap in your own markup." },
+        { "title": "wf-sidebar-header height is locked to 64px", "detail": "It's a fixed 64px-tall row (the only fixed-height region in the scaffold; the page header is padding-driven, not a set height). A taller brand lockup will clip or push the divider — scale the logo down rather than growing the header." }
+      ]
+    }
+  ]
+}

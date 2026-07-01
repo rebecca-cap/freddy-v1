@@ -1,0 +1,4 @@
+Series,Rows,Avg,Min,Max
+Price (Output published),4,$3.4889,$3.4136,$3.5989
+Cost (Build Up = Output − Adjustment),4,$3.4570,$3.3886,$3.5589
+Adjustment (user-entered diff),4,$0.0319,$0.0250,$0.0400

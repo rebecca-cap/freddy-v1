@@ -1,0 +1,14 @@
+{
+  "path": "/ContractManagement/Valuations",
+  "title": "Contract Values",
+  "finalUrl": "http://localhost:5173/ContractManagement/Valuations",
+  "rootLen": 131867,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 13,
+  "stuckLoaders": [],
+  "emptyGrids": []
+}

@@ -1,0 +1,14 @@
+{
+  "path": "/BuyNow/Forward",
+  "title": "Forward",
+  "finalUrl": "http://localhost:5173/BuyNow/Forward",
+  "rootLen": 122113,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 10,
+  "stuckLoaders": [],
+  "emptyGrids": []
+}

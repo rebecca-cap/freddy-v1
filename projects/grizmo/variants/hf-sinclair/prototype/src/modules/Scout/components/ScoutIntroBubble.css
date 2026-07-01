@@ -1,0 +1,139 @@
+/*
+ * ScoutIntroBubble — first-time "Hi, I'm Scout" popover anchored to the
+ * toolbar G button. Mirrors the wireframe (gizmo-demo.html) `.tour-popover`
+ * rule set. The bubble portals to <body>, so its position is computed from
+ * the trigger's viewport-relative rect (see ScoutIntroBubble.tsx).
+ *
+ * All color / radius / shadow values come from `--scout-*` tokens scoped
+ * under `.scout-scope`. No hardcoded colors live here.
+ *
+ * z-index sits above the QuoteBook toolbar (which is < 1000) but below modal
+ * dialogs (antd modal mask defaults to 1000+, real modals 1050+). 1500 keeps
+ * the popover safely on top of the publish toolbar without covering modals
+ * that the host app may stack on top.
+ */
+
+.scout-scope.scout-intro-bubble {
+  position: fixed;
+  /* Shrink-wrap to the copy so there's no dead whitespace on the right; the
+     right padding below sets the deliberate gap. Right edge stays anchored by
+     the JS `right`, so the tail position is unaffected by the width. */
+  width: max-content;
+  max-width: 340px;
+  min-height: 72px;
+  background: var(--scout-surface);
+  border: 1px solid var(--scout-brand);
+  border-radius: var(--scout-radius-lg);
+  box-shadow: var(--scout-shadow-brand);
+  /* Left padding clears the overlapping Scout head; ~40px right padding gives
+     even breathing room beside the copy (and clears the close button). */
+  padding: 14px 40px 14px 66px;
+  z-index: 1500;
+  font-family: var(--scout-font-family);
+  color: var(--scout-text);
+  animation: scoutIntroBob 2.6s ease-in-out infinite;
+  transform-origin: top right;
+}
+
+@keyframes scoutIntroBob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+/* Tail — small rotated square that becomes the upward-pointing tip toward
+   the G button. The wireframe anchors the tail near the right edge of the
+   bubble (right: 22px) which lines it up with the rightmost icon-btn. We
+   replicate that offset; the JS computes the bubble's right edge to align
+   with the trigger so the tail meets the G. */
+.scout-scope.scout-intro-bubble::before {
+  content: '';
+  position: absolute;
+  top: -7px;
+  right: 22px;
+  width: 12px;
+  height: 12px;
+  background: var(--scout-surface);
+  border-top: 1px solid var(--scout-brand);
+  border-left: 1px solid var(--scout-brand);
+  transform: rotate(45deg);
+}
+
+/* Scout head — sits in the bubble but absolutely positioned to overlap the
+   left edge (negative left), vertically centered. The bubble's left padding is
+   sized so the text starts to the right of the head. Bobs along with the bubble
+   since it's a child of the animated container. */
+.scout-scope .scout-intro-bubble__head {
+  position: absolute;
+  left: -28px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 84px;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.14));
+}
+
+.scout-scope .scout-intro-bubble__body {
+  line-height: var(--scout-line-height-tight);
+}
+
+.scout-scope .scout-intro-bubble__title {
+  font-size: var(--scout-font-size-body);
+  font-weight: var(--scout-font-weight-semibold);
+  color: var(--scout-brand);
+  margin-bottom: 2px;
+}
+
+.scout-scope .scout-intro-bubble__text {
+  font-size: var(--scout-font-size-sm-plus);
+  color: var(--scout-text-muted);
+}
+
+.scout-scope .scout-intro-bubble__text b {
+  color: var(--scout-text);
+  font-weight: var(--scout-font-weight-semibold);
+}
+
+/* Specificity bump (`.ant-btn.gravi-button`) so Excalibrr's default filled
+   background (`.gravi-button.filled.default { background: var(--gray-200) }`)
+   doesn't leak onto the close button. The close is a bare X with no background
+   in any state — only the icon color shifts on hover. */
+.scout-scope .ant-btn.gravi-button.scout-intro-bubble__close,
+.scout-scope .ant-btn.gravi-button.scout-intro-bubble__close:hover,
+.scout-scope .ant-btn.gravi-button.scout-intro-bubble__close:focus {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  border-radius: var(--scout-radius-pill);
+  color: var(--scout-text-subtle);
+  font-size: 12px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: none;
+  transition: color 80ms ease;
+}
+
+.scout-scope .ant-btn.gravi-button.scout-intro-bubble__close:hover {
+  color: var(--scout-text);
+}
+
+.scout-scope .ant-btn.gravi-button.scout-intro-bubble__close:focus-visible {
+  outline: none;
+  color: var(--scout-text);
+  box-shadow: 0 0 0 2px var(--scout-surface), 0 0 0 4px var(--scout-brand);
+}

@@ -1,0 +1,14 @@
+{
+  "path": "/Admin/Counterparties",
+  "title": "Manage Counterparties",
+  "finalUrl": "http://localhost:5181/Admin/Counterparties",
+  "rootLen": 135687,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 11,
+  "stuckLoaders": [],
+  "emptyGrids": []
+}

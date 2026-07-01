@@ -1,0 +1,98 @@
+/*
+ * ScoutDetails — collapsible steps + sources panel.
+ * Spec `.details`: dashed top divider, quiet toggle line with chevron + count,
+ * open panel on surface-2 holding a Steps list and a Sources pill row.
+ */
+
+.scout-details {
+  padding-top: 8px;
+  border-top: 1px dashed var(--scout-border);
+}
+
+.scout-details__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-family: inherit;
+  font-size: var(--scout-font-size-sm-plus);
+  color: var(--scout-text-muted);
+  cursor: pointer;
+}
+
+.scout-details__toggle:hover {
+  color: var(--scout-text);
+}
+
+.scout-details__toggle:focus,
+.scout-details__toggle:focus-visible {
+  outline: 2px solid var(--scout-brand);
+  outline-offset: 2px;
+  border-radius: var(--scout-radius-sm);
+}
+
+.scout-details__chev {
+  display: inline-flex;
+  font-size: 11px;
+  transition: transform 120ms ease;
+}
+.scout-details.is-open .scout-details__chev {
+  transform: rotate(90deg);
+}
+
+.scout-details__count {
+  color: var(--scout-text-subtle);
+}
+
+.scout-details__panel {
+  margin-top: 8px;
+  padding: 8px 10px;
+  background: var(--scout-surface-2);
+  border-radius: var(--scout-radius);
+}
+
+.scout-details__section-label {
+  font-size: var(--scout-font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--scout-text-subtle);
+  font-weight: var(--scout-font-weight-semibold);
+  margin: 4px 0;
+}
+
+.scout-details__steps {
+  list-style: none;
+  margin: 0 0 4px;
+  padding: 0;
+}
+
+.scout-details__step {
+  display: flex;
+  gap: 6px;
+  align-items: baseline;
+  font-size: var(--scout-font-size-md);
+  color: var(--scout-text-muted);
+  padding: 2px 0;
+}
+
+.scout-details__step-ic {
+  color: var(--scout-accent);
+  flex-shrink: 0;
+}
+
+.scout-details__sources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.scout-details__src-pill {
+  display: inline-block;
+  font-size: var(--scout-font-size-sm);
+  background: var(--scout-surface-3);
+  color: var(--scout-text-muted);
+  padding: 2px 8px;
+  border-radius: var(--scout-radius-pill);
+}

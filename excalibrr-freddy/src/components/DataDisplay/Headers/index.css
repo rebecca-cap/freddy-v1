@@ -1,0 +1,33 @@
+/* DataSectionHeader | DataSectionValueHeader */
+.detail-section-header.success {
+  background-color: var(--gray-300);
+}
+.detail-section-header.success .detail-section-text {
+  color: white;
+  font-weight: bold;
+}
+.detail-section-header {
+  background: var(--theme-color-2-dim);
+  padding: 1.2em;
+}
+
+.detail-section-value {
+  font-size: 1.8em;
+  font-weight: bold;
+  color: var(--theme-option);
+}
+
+.detail-section-button {
+  margin-right: 0em;
+  float: right;
+}
+.detail-section-text {
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--gray-600);
+  vertical-align: -webkit-baseline-middle;
+}
+.detail-section-text.dark {
+  color: var(--gray-700);
+  font-size: 0.9em;
+}

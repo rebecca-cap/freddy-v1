@@ -1,0 +1,134 @@
+{
+  "slug": "aesthetic",
+  "title": "The Wireframe Aesthetic",
+  "order": 1,
+  "group": "Foundations",
+  "intro": "A pure HTML/CSS lo-fi system for Gravitate wireframes, built so AI agents and humans produce the same screen. The look is neutral gray with one blue accent, grid-first for data, and compact by default — because the users are analysts moving through dense screens dozens of times a week. Reuse a pattern before inventing one, and reach for a `--wf-` token before a hex.",
+  "searchTerms": [
+    "aesthetic",
+    "principles",
+    "philosophy",
+    "lo-fi",
+    "wireframe",
+    "wf-page",
+    "wf-sidebar",
+    "wf-metric-card",
+    "wf-datagrid",
+    "wf-card",
+    "wf-detail-panel",
+    "DashboardLayout",
+    "MasterDetailLayout",
+    "muted palette",
+    "density",
+    "grid-first",
+    "patterns over novelty",
+    "token is truth",
+    "anti-patterns"
+  ],
+  "blocks": [
+    {
+      "type": "usage",
+      "body": "This is a low-fidelity prototyping system: pure HTML and CSS, no JavaScript dependency, every interactive piece a real button or input. The point is not to look finished — it's to communicate layout, hierarchy, and interaction so clearly that the wireframe maps one-to-one onto the production Excalibrr components (`wf-button` becomes `<GraviButton>`, `wf-datagrid` becomes `<GraviGrid>`).\n\nThe aesthetic is downstream of the user. Gravitate is an enterprise data platform for the energy sector — analysts, traders, and operators working contracts, volumes, and reconciliations under time pressure. They would rather see one more row than one more breath of margin. So the system optimizes for scannability over delight: neutral gray canvas, one reserved accent, compact density, and patterns that look the same every session.\n\nEvery page starts from a named scaffold in `patterns/` — `DashboardLayout.html`, `MasterDetailLayout.html`, `FormWizard.html`, `SettingsPage.html`, `DataTablePage.html`, or `ComparisonMatrix.html`. If what you're building doesn't fit one of the six, that's a signal to pause and check whether the requirement is a genuinely new pattern or a variant of an existing one. It's almost always the latter."
+    },
+    {
+      "type": "specimen",
+      "title": "DashboardLayout — the system's look",
+      "image": "specimens/aesthetic/01-dashboard-layout.png",
+      "caption": "The hero of the aesthetic: neutral-gray canvas (--wf-color-background, #f9fafb) with a single blue accent (--wf-color-primary, #2563eb) reserved for the primary CTA and the active nav item. A persistent wf-sidebar on the left, a row of wf-metric-card KPIs, a grid-first wf-datagrid with wf-badge status pills, and a right rail. This is patterns-over-novelty made visible — start here, don't invent.",
+      "wide": true
+    },
+    {
+      "type": "rules",
+      "title": "The seven principles",
+      "intro": "From DESIGN.md §2. Apply in order — earlier principles win when they conflict with later ones.",
+      "items": [
+        { "rule": "Patterns over novelty. Reuse before inventing — start from a pattern scaffold or an existing component.", "why": "Every novel component is a future inconsistency; inventing is the last resort, not the first move." },
+        { "rule": "Grid-first for data, narrative-first for forms. Tables, dashboards, and comparisons align columns and share row rhythm; forms and settings read top-down in a single column.", "why": "The two postures serve different eyes — vertical scanning versus reading order. Don't mix them inside one page section." },
+        { "rule": "Muted palette; reserve color for status and interactive intent. The page reads as neutral gray with one accent.", "why": "Color is a signal, not decoration. Status colors appear only when there's actual status; primary blue appears only on interactive surfaces or to mark the user's current location." },
+        { "rule": "Keyboard-first interaction model. Every interactive element is reachable, operable, and visibly focused via keyboard alone.", "why": "Mouse is the fallback for these users, not the primary input. A flow that requires a mouse is a broken wireframe." },
+        { "rule": "Density is a feature, not a bug. Default to compact — 14px body (--wf-text-base), tight stacking (--wf-space-stack-sm), token-driven page padding.", "why": "Users return to the same dense screens dozens of times a week. Comfortable mode (16px body, looser spacing) is an explicit opt-in, never the default." },
+        { "rule": "Consistency trumps cleverness. When two solutions are roughly equivalent and one matches an established pattern, pick the established one.", "why": "The marginal benefit of a clever variation is almost always outweighed by the cost of users having to learn a new pattern." },
+        { "rule": "The token is the source of truth. Never write a hex value, a pixel literal, or a numeric font weight in component code.", "why": "Tokens encode intent; literals don't. If the token you need doesn't exist, the design isn't ready — ask, don't invent. This rule transfers verbatim to production." }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "MasterDetailLayout — the second archetype",
+      "image": "specimens/aesthetic/02-master-detail-layout.png",
+      "caption": "List on the left, detail panel on the right. The current selection is marked with interactive-intent color only (wf-datagrid-row-selected) — never a decorative highlight. Same token-is-truth, muted-neutral discipline as the dashboard: gray everywhere, blue only where the user is or can act.",
+      "wide": true
+    },
+    {
+      "type": "tokens",
+      "title": "The palette that carries the look",
+      "intro": "The aesthetic is mostly the neutral scale plus a single accent. These are the semantic aliases you reach for — never the raw `--wf-color-neutral-*` values when an alias says the same thing more clearly. Values are the real defaults from tokens/colors.css.",
+      "rows": [
+        { "token": "--wf-color-background", "value": "#f9fafb", "use": "Page canvas. The neutral-gray field everything sits on (aliases --wf-color-neutral-50)." },
+        { "token": "--wf-color-surface", "value": "#ffffff", "use": "Default surface — cards, modals, inputs. The white that lifts content off the gray canvas." },
+        { "token": "--wf-color-text-primary", "value": "#111827", "use": "Main content and headings (aliases --wf-color-neutral-900)." },
+        { "token": "--wf-color-text-secondary", "value": "#374151", "use": "Supporting text and labels (aliases --wf-color-neutral-700)." },
+        { "token": "--wf-color-text-tertiary", "value": "#6b7280", "use": "Hints, placeholders, timestamps (aliases --wf-color-neutral-500)." },
+        { "token": "--wf-color-border", "value": "#d1d5db", "use": "Default border and divider — borders carry elevation here, not shadows (aliases --wf-color-neutral-300)." },
+        { "token": "--wf-color-primary", "value": "#2563eb", "use": "The one accent. Interactive intent only: primary CTA, links, focus ring, selected state, current location." },
+        { "token": "--wf-color-success", "value": "#16a34a", "use": "Status only — confirmation of a completed positive action, 'healthy'/'passing' status. Never decorative." },
+        { "token": "--wf-color-warning", "value": "#d97706", "use": "Status only — pending state, attention required, soft-fail. Never a 'tip' highlight." },
+        { "token": "--wf-color-error", "value": "#dc2626", "use": "Status only — validation failure, destructive affordance, hard-fail. Never decorative red." }
+      ]
+    },
+    {
+      "type": "tokens",
+      "title": "Density tokens",
+      "intro": "Compact is the default. From tokens/typography.css and tokens/spacing.css — these set the rhythm that makes the screens dense without feeling cramped.",
+      "rows": [
+        { "token": "--wf-text-base", "value": "0.875rem (14px)", "use": "Body text and the default size. This is the compact default — not 16px." },
+        { "token": "--wf-text-md", "value": "1rem (16px)", "use": "The comfortable opt-in body size. Only when explicitly requested or onboarding-shaped." },
+        { "token": "--wf-space-stack-sm", "value": "0.5rem (8px)", "use": "Tight stacking between related rows — the default vertical rhythm within a section." },
+        { "token": "--wf-space-page-x", "value": "1.5rem (24px)", "use": "Page horizontal padding. Use this, not an arbitrary value." },
+        { "token": "--wf-space-page-y", "value": "2rem (32px)", "use": "Page vertical padding." },
+        { "token": "--wf-space-card", "value": "1rem (16px)", "use": "Default card padding (comfortable opt-in is --wf-space-card-lg, 24px)." }
+      ]
+    },
+    {
+      "type": "variants",
+      "title": "Composing a page",
+      "intro": "The aesthetic is assembled from a small set of structural classes. These are the real classes used in patterns/DashboardLayout.html and patterns/MasterDetailLayout.html — copy the markup verbatim, don't invent class names.",
+      "rows": [
+        { "name": "wf-page wf-page-with-sidebar", "when": "Top-level wrapper for any screen with persistent left nav — the dashboard archetype.", "code": "<div class=\"wf-page wf-page-with-sidebar\">\n  <aside class=\"wf-sidebar\">...</aside>\n  <main class=\"wf-main\">...</main>\n</div>" },
+        { "name": "wf-sidebar-item-active", "when": "Marks the user's current location in the sidebar — interactive-intent color, the only blue in the nav.", "code": "<a href=\"#\" class=\"wf-sidebar-item wf-sidebar-item-active\">\n  <span class=\"wf-sidebar-icon\">&#x1F4CA;</span>\n  <span class=\"wf-sidebar-label\">Dashboard</span>\n</a>" },
+        { "name": "wf-metric-card", "when": "A single KPI — one big number, one label, optional trend. The dashboard's stat row. Never more than one metric per card.", "code": "<div class=\"wf-metric-card\">\n  <div class=\"wf-metric-header\">\n    <span class=\"wf-metric-icon\">&#x1F4C4;</span>\n    <span class=\"wf-metric-title\">Active Contracts</span>\n  </div>\n</div>" },
+        { "name": "wf-datagrid", "when": "Grid-first data display — the table that does the scanning work. Use wf-badge cells for status.", "code": "<div class=\"wf-datagrid\">\n  <div class=\"wf-datagrid-header\">\n    <div class=\"wf-datagrid-cell\">Status</div>\n  </div>\n  <div class=\"wf-datagrid-body\">\n    <div class=\"wf-datagrid-row\">\n      <div class=\"wf-datagrid-cell\">\n        <span class=\"wf-badge wf-badge-success\">Active</span>\n      </div>\n    </div>\n  </div>\n</div>" },
+        { "name": "wf-datagrid-row-selected", "when": "The chosen row in a master/detail list — selection shown with interactive-intent color only.", "code": "<div class=\"wf-datagrid-row wf-datagrid-row-selected\">\n  <div class=\"wf-datagrid-cell\">IT Infrastructure Services Agreement</div>\n</div>" }
+      ]
+    },
+    {
+      "type": "code",
+      "title": "A page skeleton",
+      "lang": "html",
+      "note": "The starting shape every wireframe shares: gray wf-page canvas, wf-sidebar on the left with one active item, wf-main holding a wf-page-header and wf-page-content. Pull the full version from patterns/DashboardLayout.html rather than rebuilding it.",
+      "code": "<div class=\"wf-page wf-page-with-sidebar\">\n  <aside class=\"wf-sidebar\">\n    <div class=\"wf-sidebar-header\">\n      <span class=\"wf-sidebar-logo\">Gravitate</span>\n    </div>\n    <nav class=\"wf-sidebar-nav\">\n      <a href=\"#\" class=\"wf-sidebar-item wf-sidebar-item-active\">\n        <span class=\"wf-sidebar-label\">Dashboard</span>\n      </a>\n    </nav>\n  </aside>\n  <main class=\"wf-main\">\n    <header class=\"wf-page-header\">\n      <div class=\"wf-page-title\">\n        <h1 class=\"wf-text-h2\">Dashboard</h1>\n        <p class=\"wf-text-helper\">Overview of your procurement activity</p>\n      </div>\n      <div class=\"wf-page-actions\">\n        <button class=\"wf-button wf-button-secondary\">Export</button>\n        <button class=\"wf-button wf-button-primary\">New Contract</button>\n      </div>\n    </header>\n    <div class=\"wf-page-content\">\n      <!-- wf-metric-card row, then wf-datagrid -->\n    </div>\n  </main>\n</div>"
+    },
+    {
+      "type": "dosdonts",
+      "title": "Anti-patterns",
+      "items": [
+        { "do": "Pick one container — usually the outer wf-card.", "dont": "Nest a wf-card inside another wf-card.", "why": "Two card layers fighting for the same job. One container, every time." },
+        { "do": "Use the wf-card padding for grouping; wf-container only for max-width.", "dont": "Use wf-container as a styled box.", "why": "wf-container is structural — no border, padding, or background by design." },
+        { "do": "Use weight (--wf-font-semibold), size, or hierarchy for emphasis.", "dont": "Use --wf-color-primary for non-interactive emphasis.", "why": "Primary blue is for interactive intent only. Color emphasis trains users to stop reading the color." },
+        { "do": "Use status colors only when there's real status to report.", "dont": "Use success green or warning orange decoratively.", "why": "Success green is not an 'approval' accent for static labels; warning orange is not a 'notable' highlight. Dilute the signal and users stop trusting it." },
+        { "do": "Reach for the semantic alias — --wf-color-text-secondary.", "dont": "Reach for --wf-color-neutral-700 directly.", "why": "The alias is more meaningful even though the value is identical. Names encode intent." },
+        { "do": "Default body text to 14px (--wf-text-base).", "dont": "Default body text to 16px.", "why": "16px (--wf-text-md) is the explicit comfortable opt-in, not the default. Compact density is the point." },
+        { "do": "Reach for a --wf-space-* token; if the size you want isn't on the scale, go one step up or down.", "dont": "Write a pixel literal like a 10px padding or 18px margin.", "why": "The 8px grid is non-negotiable. No 7px gaps, no custom values — if the right token doesn't exist, ask." },
+        { "do": "Keep a keyboard path to every action and a visible focus ring.", "dont": "Ship a flow that needs a mouse, or set outline:none without a replacement.", "why": "Keyboard parity is a floor requirement. A flow that requires a mouse is the wireframe being wrong, not the keyboard." }
+      ]
+    },
+    {
+      "type": "gotchas",
+      "items": [
+        { "title": "Elevation is borders, not shadows", "detail": "This is a wireframe system — depth comes from border weight, not blur. --wf-elevation-1 is `1px solid var(--wf-color-border)`, --wf-elevation-3 (modals, focus) is `2px solid var(--wf-color-primary)`. Don't add box-shadows to fake polish; the flat, bordered look is intentional." },
+        { "title": "The focus ring is layered for contrast on any background", "detail": "--wf-focus-ring is two stacked rings: `0 0 0 2px var(--wf-color-surface)` then `0 0 0 4px var(--wf-color-primary)`. The inner surface ring is what keeps the blue visible against busy or colored backgrounds — don't simplify it to a single ring." },
+        { "title": "Color is never the only signal", "detail": "A red border alone is not an error. Validation pairs --wf-border-input-error with an inline message and an icon — two of three is not enough. This sits at the keyboard/AT/visual intersection and is non-negotiable." },
+        { "title": "Six scaffolds, not a blank canvas", "detail": "If the page doesn't fit DashboardLayout, MasterDetailLayout, FormWizard, SettingsPage, DataTablePage, or ComparisonMatrix, pause. Most 'new' layouts are variants of an existing one — building from a blank page is how drift starts." }
+      ]
+    }
+  ]
+}

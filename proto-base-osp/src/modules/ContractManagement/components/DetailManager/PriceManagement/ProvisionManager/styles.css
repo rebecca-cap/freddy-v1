@@ -1,0 +1,21 @@
+.provision-drawer .ant-drawer-body {
+  padding: 0;
+}
+
+.provision-editor-form {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.provision-editor-header {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: white;
+}
+
+.provision-editor-body {
+  overflow-y: auto;
+}

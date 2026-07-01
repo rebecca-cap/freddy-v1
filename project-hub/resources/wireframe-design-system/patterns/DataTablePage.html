@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Table Page - Gravitate Wireframe Design System</title>
+
+  <!-- Design System CSS -->
+  <link rel="stylesheet" href="../tokens/index.css">
+  <link rel="stylesheet" href="../components/layout/layout.css">
+  <link rel="stylesheet" href="../components/controls/controls.css">
+  <link rel="stylesheet" href="../components/data-display/data-display.css">
+  <link rel="stylesheet" href="../components/navigation/navigation.css">
+  <link rel="stylesheet" href="../components/feedback/feedback.css">
+  <link rel="stylesheet" href="../components/status/status.css">
+
+  <style>
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 24px;
+      background-color: var(--wf-color-surface, #ffffff);
+      border-bottom: 1px solid var(--wf-color-border, #d1d5db);
+      flex-wrap: wrap;
+    }
+
+    .search-wrapper {
+      position: relative;
+      flex: 1;
+      min-width: 200px;
+      max-width: 300px;
+    }
+
+    .search-wrapper .wf-input {
+      padding-left: 36px;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--wf-color-text-muted, #64748b);
+    }
+
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .filter-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      background-color: var(--wf-color-primary, #2563eb);
+      color: white;
+      border-radius: 16px;
+      font-size: 13px;
+    }
+
+    .filter-tag-remove {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 16px;
+      height: 16px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .table-container {
+      flex: 1;
+      overflow-x: auto;
+    }
+
+    .bulk-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 24px;
+      background-color: #eff6ff;
+      border-bottom: 1px solid #bfdbfe;
+    }
+
+    .bulk-actions-count {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--wf-color-primary, #2563eb);
+    }
+
+    /* Action button styles for grid */
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border: none;
+      background: transparent;
+      color: var(--wf-color-text-muted, #64748b);
+      cursor: pointer;
+      border-radius: 4px;
+      transition: all 150ms ease;
+    }
+
+    .action-btn:hover {
+      background-color: var(--wf-color-bg-hover, #f8fafc);
+      color: var(--wf-color-text, #1e293b);
+    }
+  </style>
+</head>
+<body>
+  <div class="wf-page">
+    <!-- Page Header with Breadcrumb -->
+    <header class="wf-page-header">
+      <div class="wf-page-title">
+        <!-- Breadcrumb -->
+        <nav class="wf-breadcrumb" style="margin-bottom: 8px;">
+          <a href="#" class="wf-breadcrumb-item">Home</a>
+          <span class="wf-breadcrumb-separator">/</span>
+          <a href="#" class="wf-breadcrumb-item">Procurement</a>
+          <span class="wf-breadcrumb-separator">/</span>
+          <span class="wf-breadcrumb-current">Contracts</span>
+        </nav>
+        <h1 class="wf-text-h2">Contracts</h1>
+        <p class="wf-text-helper">247 total contracts in your organization</p>
+      </div>
+      <div class="wf-page-actions">
+        <button class="wf-button wf-button-secondary">
+          <span class="wf-icon">&#x1F4E5;</span>
+          Export
+        </button>
+        <button class="wf-button wf-button-primary">
+          <span class="wf-icon">&#x2795;</span>
+          Add Contract
+        </button>
+      </div>
+    </header>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+      <div class="search-wrapper">
+        <span class="search-icon">&#x1F50D;</span>
+        <input type="text" class="wf-input" placeholder="Search contracts...">
+      </div>
+
+      <select class="wf-select" style="width: 140px;">
+        <option>All Status</option>
+        <option>Active</option>
+        <option>Pending</option>
+        <option>Expired</option>
+        <option>Draft</option>
+      </select>
+
+      <select class="wf-select" style="width: 150px;">
+        <option>All Categories</option>
+        <option>Technology</option>
+        <option>Marketing</option>
+        <option>Operations</option>
+        <option>Legal</option>
+      </select>
+
+      <select class="wf-select" style="width: 150px;">
+        <option>All Suppliers</option>
+        <option>TechCorp Inc.</option>
+        <option>SupplyMax</option>
+        <option>BrandPro Agency</option>
+      </select>
+
+      <select class="wf-select" style="width: 140px;">
+        <option>Any Value</option>
+        <option>Under $50K</option>
+        <option>$50K - $100K</option>
+        <option>$100K - $500K</option>
+        <option>Over $500K</option>
+      </select>
+
+      <button class="wf-button wf-button-ghost">
+        <span class="wf-icon">&#x1F50D;</span>
+        More Filters
+      </button>
+
+      <!-- Active Filters -->
+      <div class="filter-group" style="margin-left: 8px;">
+        <span class="filter-tag">
+          Status: Active
+          <span class="filter-tag-remove">&#x2715;</span>
+        </span>
+        <span class="filter-tag">
+          Category: Technology
+          <span class="filter-tag-remove">&#x2715;</span>
+        </span>
+        <button class="wf-button wf-button-link wf-button-sm">Clear All</button>
+      </div>
+    </div>
+
+    <!-- Bulk Actions Bar (shown when items selected) -->
+    <div class="bulk-actions">
+      <span class="bulk-actions-count">3 items selected</span>
+      <button class="wf-button wf-button-sm wf-button-secondary">
+        <span class="wf-icon">&#x1F4E5;</span>
+        Export Selected
+      </button>
+      <button class="wf-button wf-button-sm wf-button-secondary">
+        <span class="wf-icon">&#x1F4C1;</span>
+        Move to Folder
+      </button>
+      <button class="wf-button wf-button-sm wf-button-secondary">
+        <span class="wf-icon">&#x1F3F7;</span>
+        Add Tags
+      </button>
+      <button class="wf-button wf-button-sm wf-button-danger wf-button-ghost">
+        <span class="wf-icon">&#x1F5D1;</span>
+        Delete
+      </button>
+    </div>
+
+    <!-- Data Table -->
+    <div class="table-container">
+      <div class="wf-datagrid wf-datagrid-borderless" style="border-radius: 0;">
+        <div class="wf-datagrid-header">
+          <div class="wf-datagrid-cell wf-datagrid-cell-checkbox" style="flex: 0 0 48px;">
+            <input type="checkbox" class="wf-checkbox-input">
+          </div>
+          <div class="wf-datagrid-cell wf-datagrid-cell-sortable wf-sorted" style="flex: 2;">
+            Contract Name
+            <span class="wf-datagrid-sort-icon">&#x25B2;</span>
+          </div>
+          <div class="wf-datagrid-cell wf-datagrid-cell-sortable" style="flex: 1.2;">
+            Supplier
+            <span class="wf-datagrid-sort-icon">&#x25B2;</span>
+          </div>
+          <div class="wf-datagrid-cell" style="flex: 0 0 100px;">Status</div>
+          <div class="wf-datagrid-cell wf-datagrid-cell-sortable" style="flex: 0 0 100px;">Category</div>
+          <div class="wf-datagrid-cell wf-datagrid-cell-number wf-datagrid-cell-sortable" style="flex: 0 0 120px;">
+            Value
+            <span class="wf-datagrid-sort-icon">&#x25B2;</span>
+          </div>
+          <div class="wf-datagrid-cell wf-datagrid-cell-sortable" style="flex: 0 0 110px;">
+            Expiry
+            <span class="wf-datagrid-sort-icon">&#x25B2;</span>
+          </div>
+          <div class="wf-datagrid-cell wf-datagrid-cell-actions" style="flex: 0 0 100px;">Actions</div>
+        </div>
+        <div class="wf-datagrid-body">
+          <!-- Selected Rows -->
+          <div class="wf-datagrid-row wf-datagrid-row-selected">
+            <div class="wf-datagrid-cell wf-datagrid-cell-checkbox" style="flex: 0 0 48px;">
+              <input type="checkbox" class="wf-checkbox-input" checked>
+            </div>
+            <div class="wf-datagrid-cell" style="flex: 2;">
+              <span class="wf-truncate">IT Infrastructure Services Agreement</span>
+            </div>
+            <div class="wf-datagrid-cell" style="flex: 1.2;">
+              <div class="wf-row wf-align-center wf-gap-2">
+                <div class="wf-avatar wf-avatar-sm">
+                  <span class="wf-avatar-initials">TC</span>
+                </div>
+                TechCorp Inc.
+              </div>
+            </div>
+            <div class="wf-datagrid-cell" style="flex: 0 0 100px;">
+              <span class="wf-badge wf-badge-success">Active</span>
+            </div>
+            <div class="wf-datagrid-cell" style="flex: 0 0 100px;">Technology</div>
+            <div class="wf-datagrid-cell wf-datagrid-cell-number wf-mono" style="flex: 0 0 120px;">$450,000</div>
+            <div class="wf-datagrid-cell" style="flex: 0 0 110px;">Dec 31, 2025</div>
+            <div class="wf-datagrid-cell wf-datagrid-cell-actions" style="flex: 0 0 100px;">
+              <button class="action-btn" title="View">&#x1F441;</button>
+              <button class="action-btn" title="Edit">&#x270F;</button>
+              <button class="action-btn" title="More">&#x22EE;</button>
+            </div>
+          </div>
+
+          <div class="wf-datagrid-row wf-datagrid-row-selected">
+            <div class="wf-datagrid-cell wf-datagrid-cell-checkbox" style="flex: 0 0 48px;">
+              <input type="checkbox" class="wf-checkbox-input" checked>
+            </div>
+            <div class="wf-datagrid-cell" style="flex: 2;">
+              <span class="wf-truncate">Cloud Hosting Services</span>
+            </div>
+            <div class="wf-datagrid-cell" style="flex: 1.2;">
+              <div class="wf-row wf-align-center wf-gap-2">
+                <div class="wf-avatar wf-avatar-sm">
+                  <span class="wf-avatar-initials">CN</span>
+                </div>
+                CloudNine
+              </div>
+            </div>
+            <div class="wf-datagrid-cell" style="flex: 0 0 100px;">
+              <span class="wf-badge wf-badge-success">Active</span>
+            </div>
+            <div class="wf-datagrid-cell" style="flex: 0 0 100px;">Technology</div>
+            <div class="wf-datagrid-cell wf-datagrid-cell-number wf-mono" style="flex: 0 0 120px;">$180,000</div>
+            <div class="wf-datagrid-cell" style="flex: 0 0 110px;">Sep 30, 2025</div>
+            <div class="wf-datagrid-cell wf-datagrid-cell-actions" style="flex: 0 0 100px;">
+              <button class="action-btn" title="View">&#x1F441;</button>
+              <button class="action-btn" title="Edit">&#x270F;</button>
+              <button class="action-btn" title="More">&#x22EE;</button>
+            </div>
+          </div>
+
+          <div class="wf-datagrid-row wf-datagrid-row-selected">
+            <div class="wf-datagrid-cell wf-datagrid-cell-checkbox" style="flex: 0 0 48px;">
+              <input type="checkbox" class="wf-checkbox-input" checked>
+            </div>
+            <div class="wf-datagrid-cell" style="flex: 2;">
+              <span class="wf-truncate">Data Analytics Platform</span>
+            </div>
+            <div class="wf-datagrid-cell" style="flex: 1.2;">
+              <div class="wf-row wf-align-center wf-gap-2">
+                <div class="wf-avatar wf-avatar-sm">
+                  <span class="wf-avatar-initials">DI</span>
+                </div>
+                DataInsight
+              </div>
+            </div>
+            <div class="wf-datagrid-cell" style="flex: 0 0 100px;">
+              <span class="wf-badge wf-badge-success">Active</span>
+            </div>
+            <div class="wf-datagrid-cell" style="flex: 0 0 100px;">Technology</div>
+            <div class="wf-datagrid-cell wf-datagrid-cell-number wf-mono" style="flex: 0 0 120px;">$190,000</div>
+            <div class="wf-datagrid-cell" style="flex: 0 0 110px;">Nov 15, 2025</div>
+            <div class="wf-datagrid-cell wf-datagrid-cell-actions" style="flex: 0 0 100px;">
+              <button class="action-btn" title="View">&#x1F441;</button>
+              <button class="action-btn" title="Edit">&#x270F;</button>
+              <button class="action-btn" title="More">&#x22EE;</button>
+            </div>
+          </div>
+
+          <!-- Regular Rows -->
+          <div class="wf-datagrid-row">
+            <div class="wf-datagrid-cell wf-datagrid-cell-checkbox" style="flex: 0 0 48px;">
+              <input type="checkbox" class="wf-checkbox-input">
+            </div>
+            <div class="wf-datagrid-cell" style="flex: 2;">
+              <span class="wf-truncate">Office Supplies Contract</span>
+            </div>
+            <div class="wf-datagrid-cell" style="flex: 1.2;">
+              <div class="wf-row wf-align-center wf-gap-2">
+                <div class="wf-avatar wf-avatar-sm">
+                  <span class="wf-avatar-initials">SM</span>
+                </div>
+                SupplyMax
+              </div>
+            </div>
+            <div class="wf-datagrid-cell" style="flex: 0 0 100px;">
+              <span class="wf-badge wf-badge-success">Active</span>
+            </div>
+            <div class="wf-datagrid-cell" style="flex: 0 0 100px;">Operations</div>
+            <div class="wf-datagrid-cell wf-datagrid-cell-number wf-mono" style="flex: 0 0 120px;">$85,000</div>
+            <div class="wf-datagrid-cell" style="flex: 0 0 110px;">Jun 30, 2025</div>
+            <div class="wf-datagrid-cell wf-datagrid-cell-actions" style="flex: 0 0 100px;">
+              <button class="action-btn" title="View">&#x1F441;</button>
+              <button class="action-btn" title="Edit">&#x270F;</button>
+              <button class="action-btn" title="More">&#x22EE;</button>
+            </div>
+          </div>
+
+          <div class="wf-datagrid-row">
+            <div class="wf-datagrid-cell wf-datagrid-cell-checkbox" style="flex: 0 0 48px;">
+              <input type="checkbox" class="wf-checkbox-input">
+            </div>
+            <div class="wf-datagrid-cell" style="flex: 2;">
+              <span class="wf-truncate">Marketing Services Agreement</span>
+            </div>
+            <div class="wf-datagrid-cell" style="flex: 1.2;">
+              <div class="wf-row wf-align-center wf-gap-2">
+                <div class="wf-avatar wf-avatar-sm">
+                  <span class="wf-avatar-initials">BP</span>
+                </div>
+                BrandPro Agency
+              </div>
+            </div>
+            <div class="wf-datagrid-cell" style="flex: 0 0 100px;">
+              <span class="wf-badge wf-badge-warning">Expiring</span>
+            </div>
+            <div class="wf-datagrid-cell" style="flex: 0 0 100px;">Marketing</div>
+            <div class="wf-datagrid-cell wf-datagrid-cell-number wf-mono" style="flex: 0 0 120px;">$220,000</div>
+            <div class="wf-datagrid-cell" style="flex: 0 0 110px;">Feb 15, 2025</div>
+            <div class="wf-datagrid-cell wf-datagrid-cell-actions" style="flex: 0 0 100px;">
+              <button class="action-btn" title="View">&#x1F441;</button>
+              <button class="action-btn" title="Edit">&#x270F;</button>
+              <button class="action-btn" title="More">&#x22EE;</button>
+            </div>
+          </div>
+
+          <div class="wf-datagrid-row">
+            <div class="wf-datagrid-cell wf-datagrid-cell-checkbox" style="flex: 0 0 48px;">
+              <input type="checkbox" class="wf-checkbox-input">
+            </div>
+            <div class="wf-datagrid-cell" style="flex: 2;">
+              <span class="wf-truncate">Facilities Management Contract</span>
+            </div>
+            <div class="wf-datagrid-cell" style="flex: 1.2;">
+              <div class="wf-row wf-align-center wf-gap-2">
+                <div class="wf-avatar wf-avatar-sm">
+                  <span class="wf-avatar-initials">FP</span>
+                </div>
+                FacilityPro
+              </div>
+            </div>
+            <div class="wf-datagrid-cell" style="flex: 0 0 100px;">
+              <span class="wf-badge wf-badge-error">Expired</span>
+            </div>
+            <div class="wf-datagrid-cell" style="flex: 0 0 100px;">Operations</div>
+            <div class="wf-datagrid-cell wf-datagrid-cell-number wf-mono" style="flex: 0 0 120px;">$320,000</div>
+            <div class="wf-datagrid-cell" style="flex: 0 0 110px;">Jan 01, 2025</div>
+            <div class="wf-datagrid-cell wf-datagrid-cell-actions" style="flex: 0 0 100px;">
+              <button class="action-btn" title="View">&#x1F441;</button>
+              <button class="action-btn" title="Edit">&#x270F;</button>
+              <button class="action-btn" title="More">&#x22EE;</button>
+            </div>
+          </div>
+
+          <div class="wf-datagrid-row">
+            <div class="wf-datagrid-cell wf-datagrid-cell-checkbox" style="flex: 0 0 48px;">
+              <input type="checkbox" class="wf-checkbox-input">
+            </div>
+            <div class="wf-datagrid-cell" style="flex: 2;">
+              <span class="wf-truncate">Security Services Agreement</span>
+            </div>
+            <div class="wf-datagrid-cell" style="flex: 1.2;">
+              <div class="wf-row wf-align-center wf-gap-2">
+                <div class="wf-avatar wf-avatar-sm">
+                  <span class="wf-avatar-initials">SG</span>
+                </div>
+                SecureGuard
+              </div>
+            </div>
+            <div class="wf-datagrid-cell" style="flex: 0 0 100px;">
+              <span class="wf-badge">Pending</span>
+            </div>
+            <div class="wf-datagrid-cell" style="flex: 0 0 100px;">Operations</div>
+            <div class="wf-datagrid-cell wf-datagrid-cell-number wf-mono" style="flex: 0 0 120px;">$150,000</div>
+            <div class="wf-datagrid-cell" style="flex: 0 0 110px;">Mar 01, 2025</div>
+            <div class="wf-datagrid-cell wf-datagrid-cell-actions" style="flex: 0 0 100px;">
+              <button class="action-btn" title="View">&#x1F441;</button>
+              <button class="action-btn" title="Edit">&#x270F;</button>
+              <button class="action-btn" title="More">&#x22EE;</button>
+            </div>
+          </div>
+
+          <div class="wf-datagrid-row">
+            <div class="wf-datagrid-cell wf-datagrid-cell-checkbox" style="flex: 0 0 48px;">
+              <input type="checkbox" class="wf-checkbox-input">
+            </div>
+            <div class="wf-datagrid-cell" style="flex: 2;">
+              <span class="wf-truncate">Consulting Services Contract</span>
+            </div>
+            <div class="wf-datagrid-cell" style="flex: 1.2;">
+              <div class="wf-row wf-align-center wf-gap-2">
+                <div class="wf-avatar wf-avatar-sm">
+                  <span class="wf-avatar-initials">CP</span>
+                </div>
+                ConsultPro
+              </div>
+            </div>
+            <div class="wf-datagrid-cell" style="flex: 0 0 100px;">
+              <span class="wf-badge wf-badge-success">Active</span>
+            </div>
+            <div class="wf-datagrid-cell" style="flex: 0 0 100px;">Legal</div>
+            <div class="wf-datagrid-cell wf-datagrid-cell-number wf-mono" style="flex: 0 0 120px;">$275,000</div>
+            <div class="wf-datagrid-cell" style="flex: 0 0 110px;">Aug 31, 2025</div>
+            <div class="wf-datagrid-cell wf-datagrid-cell-actions" style="flex: 0 0 100px;">
+              <button class="action-btn" title="View">&#x1F441;</button>
+              <button class="action-btn" title="Edit">&#x270F;</button>
+              <button class="action-btn" title="More">&#x22EE;</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="wf-datagrid-pagination">
+          <div class="wf-datagrid-pagination-info">
+            <span>Showing 1-10 of 247 results</span>
+            <select class="wf-select" style="width: 80px; padding: 4px 8px; font-size: 13px;">
+              <option>10</option>
+              <option>25</option>
+              <option>50</option>
+              <option>100</option>
+            </select>
+            <span>per page</span>
+          </div>
+          <div class="wf-datagrid-pagination-controls">
+            <button class="wf-datagrid-pagination-btn" disabled>&#x2190;</button>
+            <button class="wf-datagrid-pagination-btn wf-datagrid-pagination-btn-active">1</button>
+            <button class="wf-datagrid-pagination-btn">2</button>
+            <button class="wf-datagrid-pagination-btn">3</button>
+            <span class="wf-pagination-ellipsis">...</span>
+            <button class="wf-datagrid-pagination-btn">25</button>
+            <button class="wf-datagrid-pagination-btn">&#x2192;</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty State Alternative (commented out for reference) -->
+  <!--
+  <div class="table-container" style="display: flex; justify-content: center; align-items: center; padding: 48px;">
+    <div class="wf-empty-state">
+      <div class="wf-empty-state-icon-container">
+        <span style="font-size: 32px;">&#x1F4C4;</span>
+      </div>
+      <h3 class="wf-empty-state-title">No contracts found</h3>
+      <p class="wf-empty-state-description">
+        We couldn't find any contracts matching your filters.
+        Try adjusting your search criteria or create a new contract.
+      </p>
+      <div class="wf-empty-state-actions">
+        <button class="wf-button wf-button-secondary">Clear Filters</button>
+        <button class="wf-button wf-button-primary">Add Contract</button>
+      </div>
+    </div>
+  </div>
+  -->
+
+  <!-- Show Empty State Section -->
+  <div style="padding: 24px; margin: 24px; background: white; border: 1px solid #d1d5db; border-radius: 8px;">
+    <h3 style="margin: 0 0 16px 0; font-size: 14px; font-weight: 600; color: #6b7280;">Alternative: Empty State</h3>
+    <div class="wf-empty-state wf-empty-state-bordered">
+      <div class="wf-empty-state-icon-container">
+        <span style="font-size: 32px;">&#x1F4C4;</span>
+      </div>
+      <h3 class="wf-empty-state-title">No contracts found</h3>
+      <p class="wf-empty-state-description">
+        We couldn't find any contracts matching your filters.
+        Try adjusting your search criteria or create a new contract.
+      </p>
+      <div class="wf-empty-state-actions">
+        <button class="wf-button wf-button-secondary">Clear Filters</button>
+        <button class="wf-button wf-button-primary">Add Contract</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

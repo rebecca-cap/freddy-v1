@@ -1,0 +1,31 @@
+# Dependencies / caches
+node_modules/
+.yarn/
+.pnp.*
+
+# Build output
+build/
+dist/
+.vite/
+coverage/
+playwright-report/
+test-results/
+
+# Logs
+.logs/
+*.log
+
+# OS / editor
+.DS_Store
+
+# Secrets / local env
+.env
+.env.*
+!.env.example
+
+# Nested repo .git dirs/files set aside during flat-snapshot push (temporary)
+.git__setaside
+
+# Drone CI config (contains Slack webhooks; not needed in snapshot)
+.drone.jsonnet
+*.drone.jsonnet

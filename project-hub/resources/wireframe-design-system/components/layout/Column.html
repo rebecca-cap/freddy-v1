@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Column Component - Gravitate Wireframe Design System</title>
+  <link rel="stylesheet" href="../../tokens/index.css">
+  <link rel="stylesheet" href="layout.css">
+  <style>
+    /* Demo-specific styles */
+    body {
+      font-family: var(--wf-font-family-sans);
+      padding: var(--wf-space-6);
+      background-color: var(--wf-color-background-alt);
+    }
+    .demo-section {
+      margin-bottom: var(--wf-space-8);
+    }
+    .demo-title {
+      font-size: var(--wf-font-size-lg);
+      font-weight: var(--wf-font-weight-semibold);
+      margin-bottom: var(--wf-space-4);
+      color: var(--wf-color-text-primary);
+    }
+    .demo-subtitle {
+      font-size: var(--wf-font-size-sm);
+      color: var(--wf-color-text-secondary);
+      margin-bottom: var(--wf-space-3);
+    }
+    .demo-box {
+      background-color: var(--wf-color-gray-200);
+      border: 1px solid var(--wf-color-gray-300);
+      border-radius: var(--wf-border-radius-md);
+      padding: var(--wf-space-4);
+      text-align: center;
+      font-size: var(--wf-font-size-sm);
+      color: var(--wf-color-text-secondary);
+    }
+    .demo-box-accent {
+      background-color: var(--wf-color-accent-blue);
+      color: white;
+    }
+    .demo-container {
+      background-color: var(--wf-color-background);
+      border: 1px solid var(--wf-color-border);
+      border-radius: var(--wf-border-radius-lg);
+      padding: var(--wf-space-4);
+      margin-bottom: var(--wf-space-4);
+    }
+    .demo-examples-row {
+      display: flex;
+      gap: var(--wf-space-6);
+      flex-wrap: wrap;
+    }
+    .demo-examples-row > * {
+      flex: 1;
+      min-width: 200px;
+    }
+    code {
+      background-color: var(--wf-color-gray-100);
+      padding: var(--wf-space-1) var(--wf-space-2);
+      border-radius: var(--wf-border-radius-sm);
+      font-family: var(--wf-font-family-mono);
+      font-size: var(--wf-font-size-sm);
+    }
+    pre {
+      background-color: var(--wf-color-gray-800);
+      color: var(--wf-color-gray-100);
+      padding: var(--wf-space-4);
+      border-radius: var(--wf-border-radius-md);
+      overflow-x: auto;
+      font-family: var(--wf-font-family-mono);
+      font-size: var(--wf-font-size-sm);
+      margin-bottom: var(--wf-space-4);
+    }
+  </style>
+</head>
+<body>
+
+  <h1 class="wf-text-h1" style="margin-bottom: var(--wf-space-6);">Column Component</h1>
+  <p class="wf-text-body" style="margin-bottom: var(--wf-space-8); max-width: 600px;">
+    The Column component creates a vertical flexbox container for stacking items vertically.
+    Uses the same alignment utilities as Row but with axes swapped.
+  </p>
+
+  <!-- =====================================================
+       BASIC COLUMN
+       ===================================================== -->
+  <div class="demo-section">
+    <h2 class="demo-title">Basic Column</h2>
+    <p class="demo-subtitle">Items stacked vertically with default alignment</p>
+
+    <pre>&lt;div class="wf-column"&gt;
+  &lt;div&gt;Item 1&lt;/div&gt;
+  &lt;div&gt;Item 2&lt;/div&gt;
+  &lt;div&gt;Item 3&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+    <div class="demo-container" style="max-width: 300px;">
+      <div class="wf-column">
+        <div class="demo-box">Item 1</div>
+        <div class="demo-box">Item 2</div>
+        <div class="demo-box">Item 3</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================
+       COLUMN WITH GAP
+       ===================================================== -->
+  <div class="demo-section">
+    <h2 class="demo-title">Column with Gap</h2>
+    <p class="demo-subtitle">Use <code>.wf-gap-*</code> classes to add spacing between items</p>
+
+    <pre>&lt;div class="wf-column wf-gap-4"&gt;
+  &lt;div&gt;Item 1&lt;/div&gt;
+  &lt;div&gt;Item 2&lt;/div&gt;
+  &lt;div&gt;Item 3&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+    <div class="demo-examples-row">
+      <div class="demo-container">
+        <p class="wf-text-label" style="margin-bottom: var(--wf-space-2);">.wf-gap-2</p>
+        <div class="wf-column wf-gap-2">
+          <div class="demo-box">A</div>
+          <div class="demo-box">B</div>
+          <div class="demo-box">C</div>
+        </div>
+      </div>
+
+      <div class="demo-container">
+        <p class="wf-text-label" style="margin-bottom: var(--wf-space-2);">.wf-gap-4</p>
+        <div class="wf-column wf-gap-4">
+          <div class="demo-box">A</div>
+          <div class="demo-box">B</div>
+          <div class="demo-box">C</div>
+        </div>
+      </div>
+
+      <div class="demo-container">
+        <p class="wf-text-label" style="margin-bottom: var(--wf-space-2);">.wf-gap-6</p>
+        <div class="wf-column wf-gap-6">
+          <div class="demo-box">A</div>
+          <div class="demo-box">B</div>
+          <div class="demo-box">C</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================
+       ALIGN ITEMS (Horizontal in Column context)
+       ===================================================== -->
+  <div class="demo-section">
+    <h2 class="demo-title">Align Items (Horizontal)</h2>
+    <p class="demo-subtitle">In a column, <code>.wf-align-*</code> controls horizontal alignment</p>
+
+    <pre>&lt;div class="wf-column wf-align-center wf-gap-4"&gt;
+  &lt;div&gt;Centered&lt;/div&gt;
+  &lt;div&gt;Items&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+    <div class="demo-examples-row">
+      <div class="demo-container">
+        <p class="wf-text-label" style="margin-bottom: var(--wf-space-2);">.wf-align-start</p>
+        <div class="wf-column wf-align-start wf-gap-2" style="min-height: 200px; background: var(--wf-color-gray-50); padding: var(--wf-space-2); border-radius: var(--wf-border-radius-md);">
+          <div class="demo-box demo-box-accent">Short</div>
+          <div class="demo-box demo-box-accent">Medium length</div>
+          <div class="demo-box demo-box-accent">Longer content here</div>
+        </div>
+      </div>
+
+      <div class="demo-container">
+        <p class="wf-text-label" style="margin-bottom: var(--wf-space-2);">.wf-align-center</p>
+        <div class="wf-column wf-align-center wf-gap-2" style="min-height: 200px; background: var(--wf-color-gray-50); padding: var(--wf-space-2); border-radius: var(--wf-border-radius-md);">
+          <div class="demo-box demo-box-accent">Short</div>
+          <div class="demo-box demo-box-accent">Medium length</div>
+          <div class="demo-box demo-box-accent">Longer content here</div>
+        </div>
+      </div>
+
+      <div class="demo-container">
+        <p class="wf-text-label" style="margin-bottom: var(--wf-space-2);">.wf-align-end</p>
+        <div class="wf-column wf-align-end wf-gap-2" style="min-height: 200px; background: var(--wf-color-gray-50); padding: var(--wf-space-2); border-radius: var(--wf-border-radius-md);">
+          <div class="demo-box demo-box-accent">Short</div>
+          <div class="demo-box demo-box-accent">Medium length</div>
+          <div class="demo-box demo-box-accent">Longer content here</div>
+        </div>
+      </div>
+
+      <div class="demo-container">
+        <p class="wf-text-label" style="margin-bottom: var(--wf-space-2);">.wf-align-stretch</p>
+        <div class="wf-column wf-align-stretch wf-gap-2" style="min-height: 200px; background: var(--wf-color-gray-50); padding: var(--wf-space-2); border-radius: var(--wf-border-radius-md);">
+          <div class="demo-box demo-box-accent">Stretched</div>
+          <div class="demo-box demo-box-accent">Full width</div>
+          <div class="demo-box demo-box-accent">Items</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================
+       JUSTIFY CONTENT (Vertical in Column context)
+       ===================================================== -->
+  <div class="demo-section">
+    <h2 class="demo-title">Justify Content (Vertical)</h2>
+    <p class="demo-subtitle">In a column, <code>.wf-justify-*</code> controls vertical distribution</p>
+
+    <pre>&lt;div class="wf-column wf-justify-between wf-gap-4" style="height: 300px;"&gt;
+  &lt;div&gt;Top&lt;/div&gt;
+  &lt;div&gt;Middle&lt;/div&gt;
+  &lt;div&gt;Bottom&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+    <div class="demo-examples-row">
+      <div class="demo-container">
+        <p class="wf-text-label" style="margin-bottom: var(--wf-space-2);">.wf-justify-start</p>
+        <div class="wf-column wf-justify-start wf-gap-2" style="height: 250px; background: var(--wf-color-gray-50); padding: var(--wf-space-2); border-radius: var(--wf-border-radius-md);">
+          <div class="demo-box demo-box-accent">1</div>
+          <div class="demo-box demo-box-accent">2</div>
+          <div class="demo-box demo-box-accent">3</div>
+        </div>
+      </div>
+
+      <div class="demo-container">
+        <p class="wf-text-label" style="margin-bottom: var(--wf-space-2);">.wf-justify-center</p>
+        <div class="wf-column wf-justify-center wf-gap-2" style="height: 250px; background: var(--wf-color-gray-50); padding: var(--wf-space-2); border-radius: var(--wf-border-radius-md);">
+          <div class="demo-box demo-box-accent">1</div>
+          <div class="demo-box demo-box-accent">2</div>
+          <div class="demo-box demo-box-accent">3</div>
+        </div>
+      </div>
+
+      <div class="demo-container">
+        <p class="wf-text-label" style="margin-bottom: var(--wf-space-2);">.wf-justify-end</p>
+        <div class="wf-column wf-justify-end wf-gap-2" style="height: 250px; background: var(--wf-color-gray-50); padding: var(--wf-space-2); border-radius: var(--wf-border-radius-md);">
+          <div class="demo-box demo-box-accent">1</div>
+          <div class="demo-box demo-box-accent">2</div>
+          <div class="demo-box demo-box-accent">3</div>
+        </div>
+      </div>
+
+      <div class="demo-container">
+        <p class="wf-text-label" style="margin-bottom: var(--wf-space-2);">.wf-justify-between</p>
+        <div class="wf-column wf-justify-between" style="height: 250px; background: var(--wf-color-gray-50); padding: var(--wf-space-2); border-radius: var(--wf-border-radius-md);">
+          <div class="demo-box demo-box-accent">1</div>
+          <div class="demo-box demo-box-accent">2</div>
+          <div class="demo-box demo-box-accent">3</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================
+       FLEX GROW
+       ===================================================== -->
+  <div class="demo-section">
+    <h2 class="demo-title">Flex Grow</h2>
+    <p class="demo-subtitle">Use <code>.wf-flex-1</code> or <code>.wf-grow</code> to make items fill available space</p>
+
+    <pre>&lt;div class="wf-column" style="height: 400px;"&gt;
+  &lt;header&gt;Header (fixed)&lt;/header&gt;
+  &lt;main class="wf-flex-1"&gt;Content (grows)&lt;/main&gt;
+  &lt;footer&gt;Footer (fixed)&lt;/footer&gt;
+&lt;/div&gt;</pre>
+
+    <div class="demo-container" style="max-width: 400px;">
+      <div class="wf-column" style="height: 300px; background: var(--wf-color-gray-50); border-radius: var(--wf-border-radius-md); overflow: hidden;">
+        <div class="demo-box" style="border-radius: 0;">Header (fixed height)</div>
+        <div class="demo-box demo-box-accent wf-flex-1" style="border-radius: 0; display: flex; align-items: center; justify-content: center;">
+          Main Content (grows to fill)
+        </div>
+        <div class="demo-box" style="border-radius: 0;">Footer (fixed height)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================
+       COMBINED EXAMPLE: FORM LAYOUT
+       ===================================================== -->
+  <div class="demo-section">
+    <h2 class="demo-title">Combined Example: Form Layout</h2>
+    <p class="demo-subtitle">Common pattern: stacked form fields with labels</p>
+
+    <pre>&lt;div class="wf-column wf-gap-4"&gt;
+  &lt;div class="wf-column wf-gap-1"&gt;
+    &lt;label class="wf-text-label"&gt;Email&lt;/label&gt;
+    &lt;input type="email" /&gt;
+  &lt;/div&gt;
+  &lt;div class="wf-column wf-gap-1"&gt;
+    &lt;label class="wf-text-label"&gt;Password&lt;/label&gt;
+    &lt;input type="password" /&gt;
+  &lt;/div&gt;
+  &lt;button&gt;Submit&lt;/button&gt;
+&lt;/div&gt;</pre>
+
+    <div class="demo-container" style="max-width: 400px;">
+      <div class="wf-column wf-gap-4" style="padding: var(--wf-space-4);">
+        <div class="wf-column wf-gap-1">
+          <label class="wf-text-label">Email Address</label>
+          <div class="demo-box wf-align-stretch" style="text-align: left; padding: var(--wf-space-3);">user@example.com</div>
+        </div>
+        <div class="wf-column wf-gap-1">
+          <label class="wf-text-label">Password</label>
+          <div class="demo-box wf-align-stretch" style="text-align: left; padding: var(--wf-space-3);">********</div>
+        </div>
+        <div class="wf-column wf-gap-1">
+          <label class="wf-text-label">Company</label>
+          <div class="demo-box wf-align-stretch" style="text-align: left; padding: var(--wf-space-3);">Acme Inc.</div>
+        </div>
+        <div class="wf-row wf-gap-2 wf-justify-end" style="margin-top: var(--wf-space-2);">
+          <div class="demo-box" style="padding: var(--wf-space-2) var(--wf-space-4);">Cancel</div>
+          <div class="demo-box demo-box-accent" style="padding: var(--wf-space-2) var(--wf-space-4);">Submit</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================
+       COMBINED EXAMPLE: SIDEBAR NAVIGATION
+       ===================================================== -->
+  <div class="demo-section">
+    <h2 class="demo-title">Combined Example: Sidebar Navigation</h2>
+    <p class="demo-subtitle">Full-height column with header, scrollable nav, and footer</p>
+
+    <pre>&lt;aside class="wf-column" style="height: 100vh;"&gt;
+  &lt;header class="wf-sidebar-header"&gt;Logo&lt;/header&gt;
+  &lt;nav class="wf-column wf-gap-2 wf-flex-1"&gt;
+    &lt;a href="#"&gt;Dashboard&lt;/a&gt;
+    &lt;a href="#"&gt;Projects&lt;/a&gt;
+    &lt;a href="#"&gt;Settings&lt;/a&gt;
+  &lt;/nav&gt;
+  &lt;footer class="wf-sidebar-footer"&gt;User&lt;/footer&gt;
+&lt;/aside&gt;</pre>
+
+    <div class="demo-container" style="max-width: 260px;">
+      <div class="wf-column" style="height: 400px; background: var(--wf-color-background); border: 1px solid var(--wf-color-border); border-radius: var(--wf-border-radius-lg); overflow: hidden;">
+        <div class="wf-row wf-align-center wf-gap-2" style="padding: var(--wf-space-4); border-bottom: 1px solid var(--wf-color-border);">
+          <div class="demo-box demo-box-accent" style="width: 32px; height: 32px; padding: 0; display: flex; align-items: center; justify-content: center; border-radius: var(--wf-border-radius-md);">G</div>
+          <span style="font-weight: var(--wf-font-weight-semibold);">Gravitate</span>
+        </div>
+        <nav class="wf-column wf-gap-1 wf-flex-1" style="padding: var(--wf-space-3); overflow-y: auto;">
+          <div class="demo-box demo-box-accent" style="text-align: left;">Dashboard</div>
+          <div class="demo-box" style="text-align: left;">Projects</div>
+          <div class="demo-box" style="text-align: left;">Team</div>
+          <div class="demo-box" style="text-align: left;">Reports</div>
+          <div class="demo-box" style="text-align: left;">Settings</div>
+        </nav>
+        <div class="wf-row wf-align-center wf-gap-2" style="padding: var(--wf-space-3); border-top: 1px solid var(--wf-color-border); background: var(--wf-color-background-alt);">
+          <div class="demo-box" style="width: 32px; height: 32px; padding: 0; display: flex; align-items: center; justify-content: center; border-radius: var(--wf-border-radius-full);">JD</div>
+          <span class="wf-text-body">John Doe</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================
+       CSS CLASS REFERENCE
+       ===================================================== -->
+  <div class="demo-section">
+    <h2 class="demo-title">CSS Class Reference</h2>
+
+    <div class="demo-container">
+      <table style="width: 100%; border-collapse: collapse;">
+        <thead>
+          <tr style="border-bottom: 2px solid var(--wf-color-border);">
+            <th style="text-align: left; padding: var(--wf-space-2);">Class</th>
+            <th style="text-align: left; padding: var(--wf-space-2);">CSS Property</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid var(--wf-color-border);">
+            <td style="padding: var(--wf-space-2);"><code>.wf-column</code></td>
+            <td style="padding: var(--wf-space-2);">display: flex; flex-direction: column;</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--wf-color-border);">
+            <td style="padding: var(--wf-space-2);"><code>.wf-flex-1</code></td>
+            <td style="padding: var(--wf-space-2);">flex: 1 1 0%;</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--wf-color-border);">
+            <td style="padding: var(--wf-space-2);"><code>.wf-grow</code></td>
+            <td style="padding: var(--wf-space-2);">flex-grow: 1;</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--wf-color-border);">
+            <td style="padding: var(--wf-space-2);"><code>.wf-shrink-0</code></td>
+            <td style="padding: var(--wf-space-2);">flex-shrink: 0;</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--wf-color-border);">
+            <td style="padding: var(--wf-space-2);"><code>.wf-justify-*</code></td>
+            <td style="padding: var(--wf-space-2);">justify-content (vertical in column)</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--wf-color-border);">
+            <td style="padding: var(--wf-space-2);"><code>.wf-align-*</code></td>
+            <td style="padding: var(--wf-space-2);">align-items (horizontal in column)</td>
+          </tr>
+          <tr>
+            <td style="padding: var(--wf-space-2);"><code>.wf-gap-{0-12}</code></td>
+            <td style="padding: var(--wf-space-2);">gap: var(--wf-space-*);</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</body>
+</html>

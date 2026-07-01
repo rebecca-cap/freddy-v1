@@ -1,0 +1,12 @@
+{
+  "path": "/Admin/Publishers",
+  "title": "Price Publishers",
+  "finalUrl": "http://localhost:3001/Admin/Publishers",
+  "rootLen": 77738,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 10
+}

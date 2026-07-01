@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create New Offer — empty state · Round 2</title>
+  <link rel="stylesheet" href="assets/wireframe.css">
+  <link rel="stylesheet" href="assets/lofi-chrome.css">
+</head>
+<body>
+
+  <div class="lf-topbar">
+    <a class="lf-topbar-x" href="01-launchpad.html" title="Close">&times;</a>
+    <span class="lf-topbar-title">Create New Offer</span>
+    <a class="lf-backlink" href="../index.html">Round 2 index</a>
+  </div>
+
+  <div class="lf-offer-page">
+    <a class="lf-backtolist" href="01-launchpad.html">&#8592; Back to Offers</a>
+
+    <div class="lf-offer-grid">
+
+      <!-- ============ LEFT: content card (empty / starting state) ============ -->
+      <div class="lf-offer-main">
+        <div class="wf-card">
+          <div class="wf-card-header">
+            <div>
+              <h1 class="wf-text-h1">Create New Offer</h1>
+              <p class="wf-text-helper">Index Special &middot; <strong>New</strong> · nothing added yet — fill each section below</p>
+            </div>
+            <span class="wf-badge wf-badge-primary">Index Special</span>
+          </div>
+
+          <div class="wf-card-body">
+
+            <!-- top collective area: preset + switch to full. No save actions yet — nothing changed. -->
+            <div class="lf-presetbar">
+              <div class="wf-field" style="min-width: 200px;">
+                <label class="wf-field-label">Preset</label>
+                <select class="wf-select">
+                  <option>No preset selected</option>
+                  <option>G3 Suboctane fast-fill</option>
+                  <option>Premium — KC daily</option>
+                </select>
+              </div>
+              <div class="wf-flex-1">
+                <span class="wf-text wf-text-helper">Save options appear once you make a change.</span>
+              </div>
+              <a class="wf-button wf-button-ghost wf-button-sm lf-presetbar-end" href="#">Switch to full setup</a>
+            </div>
+
+            <!-- 1. Product & location (empty selects → populate) -->
+            <div class="lf-group">
+              <h3 class="wf-text wf-text-h3 lf-group-title">Product &amp; location</h3>
+              <div class="wf-form-grid wf-form-grid-3">
+                <div class="wf-field">
+                  <label class="wf-field-label">Product</label>
+                  <select class="wf-select">
+                    <option value="">Select product…</option>
+                    <option>Group 3 Suboctane (87)</option>
+                    <option>Group 3 Premium (91)</option>
+                    <option>ULSD</option>
+                  </select>
+                </div>
+                <div class="wf-field">
+                  <label class="wf-field-label">Terminal / location</label>
+                  <select class="wf-select">
+                    <option value="">Select terminal…</option>
+                    <option>Tulsa — Magellan</option>
+                    <option>Kansas City</option>
+                    <option>Wichita</option>
+                  </select>
+                </div>
+                <div class="wf-field">
+                  <label class="wf-field-label">Volume (gal)</label>
+                  <input type="text" class="wf-input" value="" placeholder="e.g. 42,000">
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. Price formula (empty → add) -->
+            <div class="lf-group">
+              <h3 class="wf-text wf-text-h3 lf-group-title">Price formula <span class="wf-text wf-text-helper" style="font-weight:var(--wf-font-normal);">· invoiced at lift</span></h3>
+              <div class="wf-empty-state wf-empty-state-compact wf-empty-state-bordered">
+                <div class="wf-empty-state-icon">&#931;</div>
+                <h3 class="wf-empty-state-title">No price formula yet</h3>
+                <p class="wf-empty-state-description">Pick a saved formula template (recommended), or build one from scratch. Choosing a product first filters the list.</p>
+                <div class="wf-empty-state-actions">
+                  <a class="wf-button wf-button-primary wf-button-sm" href="03-price-formula.html">Choose a formula template</a>
+                  <button class="wf-button wf-button-secondary wf-button-sm">Build from scratch</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. Timing (empty → quick-pick or set) -->
+            <div class="lf-group">
+              <h3 class="wf-text wf-text-h3 lf-group-title">Timing</h3>
+              <div class="wf-form-grid wf-form-grid-2">
+                <div class="wf-field">
+                  <label class="wf-field-label">Visible for</label>
+                  <input type="text" class="wf-input" value="" placeholder="Click to pick or set a duration" aria-label="Visible for">
+                  <div class="lf-timelist">
+                    <div class="lf-timelist-quick">
+                      <span class="lf-quick-label">Quick</span>
+                      <button class="wf-button wf-button-secondary wf-button-sm">1h <span class="kbd">1</span></button>
+                      <button class="wf-button wf-button-secondary wf-button-sm">2h <span class="kbd">2</span></button>
+                      <button class="wf-button wf-button-secondary wf-button-sm">6h <span class="kbd">6</span></button>
+                    </div>
+                    <div class="lf-timelist-item">0h 30m</div>
+                    <div class="lf-timelist-item">1h 00m</div>
+                    <div class="lf-timelist-item">2h 00m</div>
+                    <div class="lf-timelist-item">6h 00m</div>
+                  </div>
+                </div>
+                <div class="wf-field">
+                  <label class="wf-field-label">Lifting window</label>
+                  <input type="text" class="wf-input" value="" placeholder="Click to pick or set a window" aria-label="Lifting window">
+                  <div class="lf-timelist">
+                    <div class="lf-timelist-quick">
+                      <span class="lf-quick-label">Quick</span>
+                      <button class="wf-button wf-button-secondary wf-button-sm">24h <span class="kbd">1</span></button>
+                      <button class="wf-button wf-button-secondary wf-button-sm">48h <span class="kbd">2</span></button>
+                      <button class="wf-button wf-button-secondary wf-button-sm">3d <span class="kbd">3</span></button>
+                    </div>
+                    <div class="lf-timelist-item">24h</div>
+                    <div class="lf-timelist-item">48h</div>
+                    <div class="lf-timelist-item">72h</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4. Invite (empty → add recipients) -->
+            <div class="lf-group">
+              <h3 class="wf-text wf-text-h3 lf-group-title">Invite</h3>
+              <div class="wf-empty-state wf-empty-state-compact wf-empty-state-bordered">
+                <div class="wf-empty-state-icon">&#128101;</div>
+                <h3 class="wf-empty-state-title">No recipients yet</h3>
+                <p class="wf-empty-state-description">Add customers by group, who's authorized to lift, by credit, or search all customers.</p>
+                <div class="wf-empty-state-actions">
+                  <a class="wf-button wf-button-primary wf-button-sm" href="04-invite-modes.html">Add recipients</a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- footer action bar -->
+        <div class="lf-offer-footer">
+          <a class="wf-button wf-button-secondary" href="01-launchpad.html">Cancel</a>
+          <button class="wf-button wf-button-primary lf-presetbar-end" disabled>Send offer <span class="kbd">&#8984;&#8629;</span></button>
+        </div>
+      </div>
+
+      <!-- ============ RIGHT: customer preview (all Not configured) ============ -->
+      <div class="lf-offer-side">
+        <div class="wf-card">
+          <div class="wf-card-header">
+            <div>
+              <h3 class="wf-card-title">Index Special</h3>
+              <p class="wf-card-subtitle">What customers will see</p>
+            </div>
+          </div>
+          <div class="wf-card-body">
+            <div class="lf-preview">
+              <div class="lf-preview-sec is-empty">
+                <div class="lf-preview-label">Product &amp; Location</div>
+                <div class="lf-preview-value is-empty">Not configured</div>
+              </div>
+              <div class="lf-preview-sec is-empty">
+                <div class="lf-preview-label">Pricing Strategy</div>
+                <div class="lf-preview-value is-empty">Not configured</div>
+              </div>
+              <div class="lf-preview-sec is-empty">
+                <div class="lf-preview-label">Timing Windows</div>
+                <div class="lf-preview-value is-empty">Not configured</div>
+              </div>
+              <div class="lf-preview-sec is-empty">
+                <div class="lf-preview-label">Target Customers</div>
+                <div class="lf-preview-value is-empty">Not configured</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

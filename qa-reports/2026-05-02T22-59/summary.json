@@ -1,0 +1,10 @@
+{
+  "stamp": "2026-05-02T22-59",
+  "base": "http://localhost:3001",
+  "routes": 2,
+  "totalCrashes": 0,
+  "totalPageErrors": 2,
+  "totalConsoleErrors": 1,
+  "distinctMissingFixtures": 0,
+  "missingFixtures": []
+}

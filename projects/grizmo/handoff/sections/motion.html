@@ -1,0 +1,22 @@
+<h2>Motion &amp; micro-interactions</h2>
+<p class="lead">Motion is present but restrained — it signals a calm "thinking machine," never bounces or distracts. Every effect is slow, low-contrast, and purposeful; together they make the empty state feel alive, the work-in-progress feel legible, and view changes feel spatially grounded.</p>
+
+<p>The signature effect is the <span class="tok">shimmer border</span> that rings the panel: a multi-color ring sweeping indigo into violet into magenta, with two glints orbiting the edge at different rates and directions so the panel reads as actively reasoning. At rest it stays a crisp 2px ring with no heavy glow. The same restraint governs the thinking state inside the body: live thinking steps and the inter-message <span class="tok">thinking…</span> divider play a gentle gradient sweep only while a turn is active, settling to static once the answer resolves.</p>
+
+<p>Spatial transitions reinforce the panel's information architecture. The panel enters with a short upward translate plus fade. Switching between views animates as a horizontal push/pop whose direction matches the nav direction, so moving deeper and backing out feel like physical movement. Two small ambient touches add warmth: the welcome mascot drifts in a slow idle sway, and suggestion chips fire a one-shot diagonal gradient glimmer on hover.</p>
+
+<table>
+  <thead>
+    <tr><th>Motion</th><th>Where</th><th>Purpose</th><th>Approx timing</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Shimmer border</td><td>Panel edge (always while open)</td><td>Conveys "a thinking machine"; two glints orbit at differing rates/directions</td><td>Continuous loop; 2px ring at rest</td></tr>
+    <tr><td>Thinking shimmer / divider</td><td>Live thinking steps + inter-message "thinking…" divider</td><td>Marks an active, in-progress turn</td><td>Continuous while thinking; stops on resolve</td></tr>
+    <tr><td>Panel slide-in</td><td>Panel on open</td><td>Establishes arrival without a jolt</td><td>~200ms translate-up + fade</td></tr>
+    <tr><td>View push / pop</td><td>Switching between views in the body</td><td>Spatial mapping; direction matches nav</td><td>Short horizontal slide</td></tr>
+    <tr><td>Idle mascot sway</td><td>Welcome mascot, empty state</td><td>Keeps the zero state feeling alive</td><td>~4.5s slow sway, looping</td></tr>
+    <tr><td>Chip glimmer</td><td>Suggestion chips on hover</td><td>Invites interaction</td><td>One-shot diagonal gradient sweep</td></tr>
+  </tbody>
+</table>
+
+<div class="callout callout--note"><b>Reduced motion</b> Every effect above must honor the user's reduced-motion preference. When reduced motion is requested, the shimmer border, thinking sweep, slide-in, push/pop, idle sway, and chip glimmer all fall back to static states — the surfaces stay fully functional and legible without any animation.</div>

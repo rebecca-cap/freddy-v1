@@ -1,0 +1,236 @@
+{
+  "slug": "cards",
+  "title": "Cards",
+  "order": 4,
+  "group": "Page anatomy",
+  "intro": "Three card types cover every container need: Section for titled groups, MetricCard for single KPIs, and the multi-counter recipe for 2-4 related metrics. One shared shell — 1px border, 8px radius, token padding — replaces the ad-hoc Ant Cards, styled divs, and custom wrappers that used to coexist on every screen.",
+  "demoPath": "/DesignSystem/Cards",
+  "searchTerms": ["Section", "MetricCard", "stat card", "metric card", "KPI", "counter", "multi-counter", "dashboard tile", "card", "StatusBadge"],
+  "blocks": [
+    {
+      "type": "rules",
+      "title": "The rules",
+      "items": [
+        {
+          "rule": "Pick the card type by content purpose, not visual preference — Section for titled groups, MetricCard for one number, multi-counter for 2-4 facets of one whole.",
+          "why": "When type follows purpose a dashboard explains itself; decorative card choices force readers to re-learn every screen."
+        },
+        {
+          "rule": "Build cards from the shared components — `Section` and `MetricCard` — never hand-rolled border+header+body divs.",
+          "why": "ContractHeaderSidebar, ExampleDashboard, and SellerRFP each shipped near-identical card CSS before these components existed; hand-rolled copies drift apart immediately."
+        },
+        {
+          "rule": "Every card wears the same shell: `--bg-1` background, 1px `--border-default` border, 8px radius.",
+          "why": "One shell makes cards read as one system — any deviation reads as a bug, not a choice."
+        },
+        {
+          "rule": "Cards are bordered, never shadowed — elevation is reserved for overlays (modals, popovers, drawers).",
+          "why": "A shadow says the surface floats above the page; a card is part of the page."
+        },
+        {
+          "rule": "Card padding comes off the spacing scale — header `--space-3`/`--space-4` (12/16px), body `--space-4`/`--space-5` (16/24px) — never arbitrary values.",
+          "why": "Token padding is what keeps side-by-side cards and their content aligned to the page grid."
+        },
+        {
+          "rule": "Stat cards in a row are structurally identical: same padding, same 12px/500 label, same value size and weight.",
+          "why": "One inconsistent card makes the whole row read as four unrelated components."
+        },
+        {
+          "rule": "Apply `highlight` to at most one card per metric row.",
+          "why": "Highlight marks the active filter or the page's primary metric; worn by every card it marks nothing."
+        },
+        {
+          "rule": "Give `bodyPadding='flush'` to any Section whose child owns its own padding — grids, tables, nested Sections.",
+          "why": "Default body padding double-insets a GraviGrid and knocks its columns out of alignment with the page."
+        }
+      ]
+    },
+    {
+      "type": "variants",
+      "title": "Card types",
+      "intro": "Three types, chosen by what the content is — not by how you want the page to look.",
+      "rows": [
+        {
+          "name": "Section Card",
+          "when": "Content has a clear title and belongs to a named group — forms, detail panels, settings groups.",
+          "code": "<Section title='Contract Details'>…</Section>"
+        },
+        {
+          "name": "Stat / Metric Card",
+          "when": "One key number needs to read at a glance — KPIs, counters, summary headers.",
+          "code": "<MetricCard label='Active Deals' value='142' />"
+        },
+        {
+          "name": "Multi-Counter Card",
+          "when": "2-4 related metrics that are facets of one whole — pipeline totals, status breakdowns. One shell, flex columns, 1px dividers.",
+          "code": "see multi-counter recipe below"
+        }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "Three card types",
+      "image": "specimens/cards/01-card-types.png",
+      "caption": "Section Card, Stat/Metric Card, and Multi-Counter Card — each with its when-to-use. The choice is driven by content purpose."
+    },
+    {
+      "type": "specimen",
+      "title": "Section Card — default",
+      "image": "specimens/cards/02-section-card-default.png",
+      "caption": "Title on the left, muted subtitle next to it, action slot on the right. Header bar on --surface-muted with a bottom border; body padding 16/24px."
+    },
+    {
+      "type": "specimen",
+      "title": "Section Card — compact density",
+      "image": "specimens/cards/03-section-card-compact.png",
+      "caption": "density='compact' + bodyPadding='compact' for sidebars and drawers: 8/12px header, 12/16px body that auto-stacks children with an 8px gap."
+    },
+    {
+      "type": "specimen",
+      "title": "Section Card — flush body",
+      "image": "specimens/cards/04-section-card-flush.png",
+      "caption": "bodyPadding='flush' removes body padding entirely so a list, table, or GraviGrid runs edge-to-edge inside the card shell."
+    },
+    {
+      "type": "props",
+      "title": "Section props",
+      "intro": "Import from `@components/shared/Section`. Omit `title` to get a plain bordered container with no header bar.",
+      "rows": [
+        { "prop": "title", "type": "ReactNode", "notes": "Header bar title. Omit it and the component is just a bordered, rounded container — useful around a grid or chart that needs no redundant title." },
+        { "prop": "icon", "type": "ReactNode", "notes": "Rendered before the title in --theme-color-1 (brand teal), matching the ActionFooter accent." },
+        { "prop": "subtitle", "type": "ReactNode", "notes": "Short muted text next to the title — \"3 fields\", \"updated 2m ago\", a row count." },
+        { "prop": "actions", "type": "ReactNode", "notes": "Right-side header slot: Edit/Expand buttons, filter toggles, or a StatusBadge describing section state." },
+        { "prop": "density", "type": "'standard' | 'compact'", "default": "'standard'", "notes": "Header padding 12/16px vs 8/12px. Compact for sidebars, drawers, and stacked dashboard sections." },
+        { "prop": "bodyPadding", "type": "'standard' | 'compact' | 'flush'", "default": "'standard'", "notes": "standard = 16/24px. compact = 12/16px plus a flex column with 8px gap between children. flush = 0 — for grids, tables, nested Sections." },
+        { "prop": "scrollBody", "type": "boolean", "notes": "Body scrolls independently when it overflows. Use inside fixed-height flex columns." },
+        { "prop": "flush", "type": "boolean", "notes": "Strips the outer border and radius. Use when the Section is embedded inside another bordered container and only the header bar is wanted." }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "MetricCard — default row",
+      "image": "specimens/cards/05-metric-cards-default.png",
+      "caption": "valueFirst, left-aligned — the dashboard default. Tabular-numeric digits keep stacked values vertically aligned across the row."
+    },
+    {
+      "type": "specimen",
+      "title": "MetricCard — sub and trend slots",
+      "image": "specimens/cards/06-metric-sub-trend.png",
+      "caption": "sub carries denominator context (\"of 254 scheduled\"); trend carries a quiet StatusBadge or delta chip. A metric card that tries to say four things says none of them."
+    },
+    {
+      "type": "specimen",
+      "title": "MetricCard — highlight",
+      "image": "specimens/cards/07-metric-highlight.png",
+      "caption": "highlight adds a --theme-color-1 border to mark the active filter or the page's primary metric — exactly one per row."
+    },
+    {
+      "type": "props",
+      "title": "MetricCard props",
+      "intro": "Import from `@components/shared/MetricCard`. Value sizes: sm 20px, md 28px, lg 36px — label and sub stay constant so the number is the focal point.",
+      "rows": [
+        { "prop": "label", "type": "ReactNode", "notes": "Required. Keep to a phrase — \"Active Deals\", not \"Number of active deals in the pipeline\"." },
+        { "prop": "value", "type": "ReactNode", "notes": "Required. The headline number; rendered with tabular-nums at 600 weight." },
+        { "prop": "sub", "type": "ReactNode", "notes": "Supporting line below the value/label pair — denominators (\"of 240\"), recency (\"last 30 days\")." },
+        { "prop": "trend", "type": "ReactNode", "notes": "Slot for a quiet StatusBadge, delta chip, or sparkline. Keep it quiet." },
+        { "prop": "align", "type": "'left' | 'center'", "default": "'left'", "notes": "Left scans better in rows. Center only when a single metric is the hero of a section." },
+        { "prop": "order", "type": "'valueFirst' | 'labelFirst'", "default": "'valueFirst'", "notes": "valueFirst = big number on top (dashboard style). labelFirst = denser, better for many stats in a row." },
+        { "prop": "size", "type": "'sm' | 'md' | 'lg'", "default": "'md'", "notes": "sm for inline summary strips, md for page dashboards, lg when one metric headlines the view." },
+        { "prop": "highlight", "type": "boolean", "notes": "Brand-colored border marking the selected or primary metric. At most one per row." },
+        { "prop": "onClick", "type": "() => void", "notes": "Makes the card a real <button> with hover accent and focus-visible ring — use for drill-through." },
+        { "prop": "ariaLabel", "type": "string", "notes": "Pass when the visible label alone is ambiguous, especially on clickable cards." }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "Multi-Counter Card",
+      "image": "specimens/cards/08-multi-counter.png",
+      "caption": "One bordered shell, equal flex columns, 1px vertical dividers, no gap — the divider provides the separation."
+    },
+    {
+      "type": "code",
+      "title": "Canonical skeleton",
+      "code": "import { useMemo } from 'react'\nimport { Vertical, GraviButton, GraviGrid } from '@gravitate-js/excalibrr'\nimport { Section } from '@components/shared/Section'\nimport { MetricCard } from '@components/shared/MetricCard'\nimport { StatusBadge } from '@components/shared/StatusBadge'\n\nconst columnDefs = useMemo(() => getColumnDefs(), [])\n\n<Vertical gap={24}>\n  {/* Metric row — identical cards, one token gap */}\n  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 'var(--space-3)' }}>\n    <MetricCard label='Active Quotes' value='142' />\n    <MetricCard\n      label='Awarded'\n      value='89'\n      highlight\n      trend={<StatusBadge tone='success' variant='quiet' label='+4 vs last week' />}\n    />\n    <MetricCard label='Avg Margin' value='$0.0425/gal' sub='last 30 days' />\n  </div>\n\n  {/* Section card — header bar + token-padded body */}\n  <Section\n    title='Contract Details'\n    subtitle='3 fields'\n    actions={<GraviButton buttonText='Edit' appearance='outlined' />}\n  >\n    <Vertical gap={12}>{/* fields */}</Vertical>\n  </Section>\n\n  {/* Grid wrapper — flush body so the grid owns its own chrome */}\n  <Section title='Recent Activity' bodyPadding='flush'>\n    <GraviGrid columnDefs={columnDefs} rowData={rows} agPropOverrides={{}} />\n  </Section>\n</Vertical>",
+      "note": "GraviButton takes buttonText, never children. GraviGrid always takes agPropOverrides (even empty) and memoized columnDefs. Money copy is decimal dollars — $0.0425/gal, never cents symbols."
+    },
+    {
+      "type": "code",
+      "title": "Multi-counter recipe",
+      "code": "import { Fragment } from 'react'\nimport { Texto } from '@gravitate-js/excalibrr'\n\n<div style={{ display: 'flex', overflow: 'hidden', border: '1px solid var(--border-default)', borderRadius: 8 }}>\n  {counters.map((c, i) => (\n    <Fragment key={c.label}>\n      {i > 0 && <div style={{ width: 1, background: 'var(--border-default)' }} />}\n      <div style={{ flex: 1, padding: 'var(--space-5)', textAlign: 'center' }}>\n        <Texto category='p2' weight='500'>{c.label}</Texto>\n        <Texto category='h2' weight='700' style={{ marginTop: 'var(--space-1)' }}>{c.value}</Texto>\n      </div>\n    </Fragment>\n  ))}\n</div>",
+      "note": "No gap between columns — the 1px divider is the separation. overflow: hidden clips the dividers to the 8px radius. Cap at 4 counters; past that, switch to a MetricCard grid."
+    },
+    {
+      "type": "tokens",
+      "title": "Card tokens",
+      "intro": "The shell and spacing values every card type shares. No raw hex, no off-scale padding.",
+      "rows": [
+        { "token": "--bg-1", "value": "#fff (theme surface)", "use": "Card background — all types" },
+        { "token": "--border-default", "value": "#e8e8e8", "use": "1px card border and internal dividers" },
+        { "token": "--surface-muted", "value": "#fafafa", "use": "Section header bar background" },
+        { "token": "border-radius", "value": "8px", "use": "Corner radius on every card type (literal — no token yet)" },
+        { "token": "--space-3", "value": "12px", "use": "Section header vertical padding; compact body padding; gap between metric cards in a row" },
+        { "token": "--space-4", "value": "16px", "use": "Section header horizontal padding; standard body vertical padding; MetricCard md vertical padding" },
+        { "token": "--space-5", "value": "24px", "use": "Standard body horizontal padding; MetricCard md horizontal padding; stacking gap between cards on a page" },
+        { "token": "--theme-color-1", "value": "brand teal (#0C5A58 default theme)", "use": "highlight border, interactive hover accent, Section header icon" },
+        { "token": "--status-*-text", "value": "per tone (success/warning/danger)", "use": "Trend deltas composed at the call site — never raw hex" }
+      ]
+    },
+    {
+      "type": "dosdonts",
+      "title": "Do / Don't",
+      "items": [
+        {
+          "do": "Build cards from Section and MetricCard with token-based spacing.",
+          "dont": "Hand-roll a card div with an arbitrary shadow, hard-coded font sizes, and off-scale padding.",
+          "why": "Hand-rolled cards break theming and drift from the system the moment they're copied."
+        },
+        {
+          "do": "Keep every stat card in a row identical — 16/24px padding, 12px/500 label, one value size.",
+          "dont": "Tweak padding, border weight, or value weight per card.",
+          "why": "The row only reads as one summary when the cards are interchangeable."
+        },
+        {
+          "do": "Highlight exactly one card — the active filter or the headline metric.",
+          "dont": "Spread highlight across the row for decoration.",
+          "why": "Highlight is a pointer, not a paint job."
+        },
+        {
+          "do": "Write money values in decimal dollars — $0.0425/gal.",
+          "dont": "Use cents symbols or mixed units (4.25¢/gal).",
+          "why": "Gravitate copy standard: decimal dollars everywhere — values, axes, inputs."
+        }
+      ]
+    },
+    {
+      "type": "gotchas",
+      "title": "Gotchas",
+      "items": [
+        {
+          "title": "Muted card labels use appearance='medium', not 'secondary'",
+          "detail": "Texto appearance='secondary' is BLUE in Excalibrr, not gray. For the muted gray of card labels and sublines, use appearance='medium'."
+        },
+        {
+          "title": "Clickable MetricCard is a real <button>",
+          "detail": "Passing onClick renders the card as a button element. Never put another interactive control (button, link) inside its trend slot — nested interactive elements are invalid HTML and break keyboard navigation. Pair drill-through cards with ariaLabel."
+        },
+        {
+          "title": "Accent comes from --theme-color-1 only",
+          "detail": "highlight, hover, and header icons all use --theme-color-1. Do not reach for --theme-color-2 — it swings green↔blue across themes and will desync the card accent from the rest of the page."
+        },
+        {
+          "title": "There is no built-in negative style",
+          "detail": "MetricCard ships no 'danger' variant. Compose negative or alert states at the call site with --status-danger-text or a quiet StatusBadge in the trend slot, so the severity decision stays with the page."
+        },
+        {
+          "title": "Body horizontal padding is 24px, not 20px",
+          "detail": "The demo caption visible in the Section default specimen reads \"Body default padding is 16/20px\", and the Section.tsx doc comment repeats it. Both are stale. The shipped CSS is padding: var(--space-4) var(--space-5), and tokens.css sets --space-5 to 24px — so the rendered body is 16/24px. Trust the CSS, not the demo caption."
+        }
+      ]
+    },
+    {
+      "type": "usage",
+      "title": "Composing cards on a page",
+      "body": "Lay metric rows out with CSS grid — `repeat(auto-fit, minmax(160px, 1fr))` and a `--space-3` gap — so cards stay equal-width and wrap cleanly at narrow widths. Stack cards and sections down the page with `--space-5` (24px).\n\nReach for the multi-counter when the numbers are facets of one whole (a pipeline's quoted/awarded/pending/rejected); reach for a MetricCard grid when each number stands alone or needs sub, trend, or drill-through. The multi-counter is deliberately minimal — no per-column highlight or click behavior.\n\nOmit the Section title to wrap a chart or embedded widget in a plain bordered container without a redundant title bar. When Sections nest, only the outermost carries the border — give inner ones `flush` so borders never stack."
+    }
+  ]
+}

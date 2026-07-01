@@ -1,0 +1,12 @@
+{
+  "path": "/Admin/Locations",
+  "title": "Locations",
+  "finalUrl": "http://localhost:3001/Admin/Locations",
+  "rootLen": 111153,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 10
+}

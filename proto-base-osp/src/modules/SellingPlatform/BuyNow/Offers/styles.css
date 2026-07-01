@@ -1,0 +1,72 @@
+.offers-grid-icon { font-size: 1.2em; }
+.offers-grid-tooltip-wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.bid-tooltip .ant-tooltip-inner {
+    color: #fff;                   /* white text */
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 10px;         /* pill shape */
+    font-weight: 500;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+    width: 80px;
+    text-align: center;
+}
+
+
+.time-remaining--urgent {
+    color: var(--theme-warning);
+    font-weight: 500;
+}
+.time-remaining--ok {
+
+    font-weight: 500;
+}
+
+.offers-grid-action-btn {
+    background-color: var(--theme-success) !important;
+    border: var(--theme-success) 1px solid !important;
+    border-radius: 10px !important;
+    width: 100%;
+}
+.offers-grid-action-btn:hover {
+    background-color: var(--theme-success) !important;
+    border: var(--theme-success) 1px solid !important;
+    filter: brightness(1.3);
+}
+.offers-grid-action-btn:disabled {
+    opacity: 0.5;
+}
+
+.offers-grid-pending-action-btn {
+    border: var(--theme-warning) 1px solid !important;
+    background-color: var(--theme-warning-dim) !important;
+    border-radius: 10px !important;
+    pointer-events: none;
+    width: 100%;
+}
+
+
+.offers-grid-drawer .ant-drawer-body {
+    padding: 0
+}
+
+.order-quantity .ant-form-item,
+.order-quantity .ant-form-item * {
+    margin-bottom: 0;
+}
+
+
+.additional-options-collapse,
+.ant-collapse-header,
+.ant-collapse-header-collapsible-only {
+    padding: 0 0 0 0 !important;
+}
+.additional-options-collapse-panel-container,
+.ant-collapse-content,
+.ant-collapse-content-box {
+    background-color: var(--bg-2);
+    padding: 0;
+    margin: 0 0 0 0;
+}

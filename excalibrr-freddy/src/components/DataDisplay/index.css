@@ -1,0 +1,166 @@
+/* NothingMessage */
+.nothing-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  height: 100%;
+}
+
+.nothing-title {
+  font-size: 1.4em;
+  font-weight: bold;
+  margin-top: 0.75em;
+  color: var(--gray-600);
+  text-align: center;
+  text-transform: capitalize;
+}
+.nothing-image {
+  display: block;
+  margin-bottom: 2em;
+}
+.nothing-message {
+  text-align: center;
+  margin-top: 0.5em;
+}
+
+
+/*BBD Tag*/
+
+.ant-tag.theme-1-tag {
+  background-color: var(--theme-color-1-dim);
+  color: var(--theme-color-1);
+  border: none;
+  font-weight: 600;
+}
+.ant-tag.theme-1-gray-tag {
+  background-color: var(--gray-200);
+  color: var(--theme-color-1);
+  border: none;
+  font-weight: 600;
+}
+.ant-tag.theme-2-tag {
+  background-color: var(--theme-color-2-dim);
+  color: var(--theme-color-2);
+  border: none;
+  font-weight: 600;
+}
+.ant-tag.theme-3-tag {
+  background-color: var(--theme-color-3-dim);
+  color: var(--theme-color-3);
+  border: none;
+  font-weight: 600;
+}
+.ant-tag.theme-4-tag {
+  background-color: var(--theme-color-4-dim);
+  color: var(--theme-color-4);
+  border: none;
+  font-weight: 600;
+}
+.ant-tag.bbd-success-tag {
+  background-color: var(--theme-success-dim);
+  color: var(--theme-success);
+  border: none;
+  font-weight: 600;
+}
+.ant-tag.bbd-warning-tag {
+  background-color: var(--theme-warning-dim);
+  color: var(--theme-warning);
+  border: none;
+  font-weight: 600;
+}
+.ant-tag.bbd-error-tag {
+  background-color: var(--theme-error-dim);
+  color: var(--theme-error);
+  border: none;
+  font-weight: 600;
+}
+/**************** TEXTO **********************/
+.texto {
+  margin-bottom: 0;
+}
+p.p1 {
+  font-size: 1em;
+}
+p.p2 {
+  font-size: 1.1em;
+}
+p.label {
+  font-size: 0.9em;
+}
+p.heading {
+  letter-spacing: 5px;
+  font-weight: bold;
+  font-size: 1.2em;
+  text-transform: uppercase;
+}
+p.heading-small {
+  letter-spacing: 5px;
+  font-weight: bold;
+  font-size: 1em;
+  text-transform: uppercase;
+}
+
+h1.texto {
+  font-size: 3.5em;
+  font-weight: 600;
+}
+
+h2.texto {
+  font-size: 3em;
+  font-weight: 600;
+}
+h3.texto {
+  font-size: 2em;
+  font-weight: 600;
+}
+h4.texto {
+  font-size: 1.5em;
+  font-weight: 600;
+}
+h5.texto {
+  font-size: 1.3em;
+  font-weight: 600;
+}
+h6.texto {
+  font-size: 1.15em;
+  font-weight: 600;
+}
+
+.text-default {
+  color: var(--gray-700);
+}
+.text-secondary {
+  color: var(--theme-color-2);
+}
+.text-theme3 {
+  color: var(--theme-color-3);
+}
+.text-hint {
+  color: var(--gray-400);
+}
+.text-medium {
+  color: var(--gray-500);
+}
+.text-white {
+  color: var(--gray-100);
+}
+.text-light {
+  color: var(--gray-200);
+}
+.text-primary {
+  color: var(--gray-800);
+}
+.text-success {
+  color: var(--theme-success);
+}
+.text-warning {
+  color: var(--theme-warning);
+}
+.text-error {
+  color: var(--theme-error);
+}
+.text-optimal {
+  color: var(--theme-optimal);
+}

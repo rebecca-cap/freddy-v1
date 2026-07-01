@@ -1,0 +1,14 @@
+{
+  "path": "/",
+  "title": "Home",
+  "finalUrl": "http://localhost:5173/OrderDashboard",
+  "rootLen": 259306,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 16,
+  "stuckLoaders": [],
+  "emptyGrids": []
+}

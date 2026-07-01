@@ -1,0 +1,195 @@
+{
+  "slug": "form-controls",
+  "title": "Form Controls",
+  "order": 5,
+  "group": "Controls",
+  "intro": "Text entry, selection, toggles, and dates. Everything here is stock antd v5 except CheckCard and CheckCardGroup — Excalibrr's card-style option pick. Wire all of it through antd Form with vertical labels.",
+  "demoPath": "/DesignSystem/FormControls",
+  "searchTerms": [
+    "CheckCard",
+    "CheckCardGroup",
+    "Input",
+    "TextArea",
+    "InputNumber",
+    "Password",
+    "Select",
+    "multi-select",
+    "Radio",
+    "Radio.Group",
+    "Switch",
+    "Checkbox",
+    "DatePicker",
+    "RangePicker",
+    "MomentDatePicker",
+    "Form",
+    "useWatch"
+  ],
+  "blocks": [
+    {
+      "type": "usage",
+      "body": "Reach for this entry whenever a prototype takes data in: filter bars, drawers, settings panels, create/edit forms. The control set is stock antd v5 — `Input`, `InputNumber`, `Select`, `Radio.Group`, `Switch`, `Checkbox`, `DatePicker` — plus Excalibrr's `CheckCard`/`CheckCardGroup` for large tap-target option picks inside option drawers.\n\nWrap controls in antd `Form` with `layout=\"vertical\"` — labels sit above inputs; horizontal label columns break at drawer widths. Give every text-like control `style={{ width: '100%' }}` and let the grid column size it. Anything that must react to another field's value reads it with `Form.useWatch('field', form)`, never `form.getFieldValue` in render.\n\nDates: antd v5 pickers are dayjs-based. Excalibrr also exports `MomentDatePicker`, `MomentTimePicker`, and a moment-bound `RangePicker` for legacy moment code — pick one time library per page and stay with it."
+    },
+    {
+      "type": "specimen",
+      "title": "CheckCard & CheckCardGroup",
+      "image": "specimens/form-controls/01-checkcard.png",
+      "caption": "As the showcase currently renders them: one unchecked CheckCard, and a CheckCardGroup whose three cards collapse to bare checked checkboxes. Two causes: the demo passes the retired title/checked/onChange API so labels never render, and published 5.2.x ships no .option-check card CSS. The real API is label/value/onToggle (props and code below)."
+    },
+    {
+      "type": "props",
+      "title": "CheckCard props",
+      "intro": "Fully controlled. Verified against @gravitate-js/excalibrr 5.2.10.",
+      "rows": [
+        { "prop": "label", "type": "React.ReactNode", "notes": "Card label, rendered bold and centered through Texto. Required." },
+        { "prop": "value", "type": "boolean", "notes": "Checked state. The card never manages its own state — you flip it. Required." },
+        { "prop": "onToggle", "type": "() => void", "notes": "Fires on card click and on the inner checkbox. Required." },
+        { "prop": "span", "type": "number", "default": "8", "notes": "antd Col span inside the group row — 8 yields three cards per row." },
+        { "prop": "boxHeight", "type": "number", "default": "80", "notes": "Height in px of the checkbox zone above the label." },
+        { "prop": "boxWidth", "type": "number | string", "default": "'auto'", "notes": "Width of the clickable card surface." },
+        { "prop": "labelCategory", "type": "Texto category", "default": "'h5'", "notes": "Texto category for the label. Valid categories: p1, p2, label, heading, heading-small, h1–h5 — h6 does not exist." }
+      ]
+    },
+    {
+      "type": "props",
+      "title": "CheckCardGroup props",
+      "intro": "Layout-only wrapper — it holds no selection state and exposes no value/onChange.",
+      "rows": [
+        { "prop": "header", "type": "React.ReactNode", "notes": "Band above the options. Renders as plain text in published 5.2.x — the band treatment (--theme-color-2-dim wash, bold) exists only in legacy 4.x library CSS, scoped to an .option-drawer container — see gotchas. Required." },
+        { "prop": "children", "type": "React.ReactNode", "notes": "CheckCard elements. Each card carries its own value/onToggle; the group just arranges them in a Row. Required." }
+      ]
+    },
+    {
+      "type": "code",
+      "title": "CheckCard — canonical usage",
+      "code": "const [billing, setBilling] = useState({ monthly: true, quarterly: false, annual: false })\n\n<CheckCardGroup header=\"Billing cadence\">\n  {(['monthly', 'quarterly', 'annual'] as const).map((key) => (\n    <CheckCard\n      key={key}\n      label={key[0].toUpperCase() + key.slice(1)}\n      value={billing[key]}\n      onToggle={() => setBilling((b) => ({ ...b, [key]: !b[key] }))}\n    />\n  ))}\n</CheckCardGroup>",
+      "note": "CheckCard is fully controlled: value in, onToggle out. Selection state lives in your component, not in the group."
+    },
+    {
+      "type": "tokens",
+      "title": "CheckCard surfaces",
+      "intro": "From the legacy 4.x Grid/index.css — published 5.2.x ships none of these .option-check rules, so CheckCard renders unstyled (specimen 01). Port the rules into your own CSS to get the card treatment. The variables themselves are defined by the app theme files and remain available.",
+      "rows": [
+        { "token": "--gray-100", "value": "near-white surface (gray scale runs light→dark)", "use": "Resting card background; also the checked label text color." },
+        { "token": "--theme-color-2", "value": "secondary brand — green in some themes, blue in others", "use": "Checked card fill. Use --theme-color-1 when you need stable brand color." },
+        { "token": "--theme-option", "value": "theme option text color", "use": "Card label at rest." },
+        { "token": "--theme-color-2-dim", "value": "dim wash of --theme-color-2", "use": "Group header band — the legacy rule is scoped to .option-drawer." }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "Text inputs",
+      "image": "specimens/form-controls/02-text-inputs.png",
+      "caption": "Resting states: Input with placeholder, three-row Input.TextArea, InputNumber clamped 0–100 holding 42, and Input.Password with its visibility toggle. All stretched to width: '100%'."
+    },
+    {
+      "type": "specimen",
+      "title": "Selection controls",
+      "image": "specimens/form-controls/03-selection.png",
+      "caption": "Single Select at placeholder; multiple-mode Select focused with Northeast and West chosen as removable tags; Radio.Group with Fixed selected."
+    },
+    {
+      "type": "specimen",
+      "title": "Select — open options list",
+      "image": "specimens/form-controls/04-select-open.png",
+      "caption": "Open single Select: the options list portals under the focused control with the active option highlighted."
+    },
+    {
+      "type": "variants",
+      "title": "Select modes",
+      "intro": "Mode is the one real variant axis on Select.",
+      "rows": [
+        { "name": "Single (default)", "when": "One value from a closed list. Omit the mode prop.", "code": "<Select options={opts} placeholder=\"Choose...\" />" },
+        { "name": "Multiple", "when": "Several values from a closed list — selections render as removable tags (specimen above).", "code": "<Select mode=\"multiple\" options={opts} />" },
+        { "name": "Tags", "when": "Free text plus suggestions — users can mint values that are not in options.", "code": "<Select mode=\"tags\" options={opts} />" }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "Toggle & check",
+      "image": "specimens/form-controls/05-toggle-check.png",
+      "caption": "Switch in the on state; Checkbox checked with inline label — the label text is part of the click target."
+    },
+    {
+      "type": "specimen",
+      "title": "Date pickers — resting",
+      "image": "specimens/form-controls/06-date-pickers.png",
+      "caption": "DatePicker and DatePicker.RangePicker placeholder states with calendar suffix icons; the range picker shows its start → end slots."
+    },
+    {
+      "type": "specimen",
+      "title": "DatePicker — open calendar",
+      "image": "specimens/form-controls/07-datepicker-open.png",
+      "caption": "Open DatePicker: dayjs calendar with today outlined and the Today shortcut in the footer. The panel flips above the input when viewport space below runs out."
+    },
+    {
+      "type": "code",
+      "title": "Form wiring — canonical pattern",
+      "code": "const [form] = Form.useForm()\n// Reactive dependency: useWatch subscribes; getFieldValue in render does NOT re-render.\nconst priceType = Form.useWatch('priceType', form)\n\n<Form form={form} layout=\"vertical\" onFinish={handleSave}>\n  <Form.Item name=\"priceType\" label=\"Price Type\" rules={[{ required: true }]}>\n    <Radio.Group\n      options={[\n        { value: 'fixed', label: 'Fixed' },\n        { value: 'index', label: 'Index' },\n      ]}\n    />\n  </Form.Item>\n  {priceType === 'fixed' && (\n    <Form.Item name=\"markup\" label=\"Markup ($/gal)\">\n      <InputNumber min={0} step={0.0025} precision={4} prefix=\"$\" style={{ width: '100%' }} />\n    </Form.Item>\n  )}\n  <GraviButton theme1 buttonText=\"Save\" onClick={() => form.submit()} />\n</Form>",
+      "note": "Folds in the house rules: vertical labels, useWatch for conditional fields, decimal-dollar money at four decimals, and GraviButton submitting via form.submit() with buttonText (it does not render children)."
+    },
+    {
+      "type": "dosdonts",
+      "items": [
+        {
+          "do": "Use Form layout=\"vertical\" — labels above inputs",
+          "dont": "Horizontal label columns",
+          "why": "Side labels break at drawer and panel widths and misalign mixed control heights."
+        },
+        {
+          "do": "Give controls style={{ width: '100%' }} and let the grid column size them",
+          "dont": "Fixed pixel widths on Input/Select/DatePicker",
+          "why": "Fixed widths fight the two-column form grids used across the demos."
+        },
+        {
+          "do": "Read dependent fields with Form.useWatch('x', form)",
+          "dont": "Call form.getFieldValue('x') during render",
+          "why": "getFieldValue does not subscribe — conditional fields and previews go stale."
+        },
+        {
+          "do": "Write money as decimal dollars: $0.0100/gal, InputNumber precision={4}",
+          "dont": "Cents copy or two-decimal fuel prices",
+          "why": "Gravitate money is decimal dollars everywhere; fuel margins live at the fourth decimal."
+        },
+        {
+          "do": "Submit with GraviButton onClick={() => form.submit()}",
+          "dont": "htmlType=\"submit\" on GraviButton",
+          "why": "Footer buttons usually sit outside the form element, so the native submit never reaches it. form.submit() always works."
+        },
+        {
+          "do": "Build CheckCard with label/value/onToggle",
+          "dont": "Copy title/checked/onChange from the showcase",
+          "why": "Those props were retired — the published component drops them and renders empty cards."
+        }
+      ]
+    },
+    {
+      "type": "gotchas",
+      "items": [
+        {
+          "title": "Reactive form deps need Form.useWatch",
+          "detail": "form.getFieldValue('x') read during render returns the value but never subscribes — the component will not re-render when the field changes. Use const x = Form.useWatch('x', form) for anything driving conditional rendering, disabled states, or live previews."
+        },
+        {
+          "title": "antd v5 renamed the overlay props your forms live in",
+          "detail": "Modal and Drawer take open, not visible, and destroyOnHidden, not destroyOnClose. Popups (Tooltip, Popover, Dropdown) take onOpenChange, not onVisibleChange. The old names are ignored silently — the overlay just never opens and the form inside never mounts."
+        },
+        {
+          "title": "The showcase CheckCard demo uses a retired API",
+          "detail": "FormControlsShowcase passes title/description/checked/onChange and a value/onChange pair on the group. The published component (5.2.10) accepts label/value/onToggle, and CheckCardGroup accepts header/children only — the demo's props are dropped, which is why specimen 01 shows empty cards. Build with the real API."
+        },
+        {
+          "title": "CheckCard's card styling is doubly broken in 5.2.x",
+          "detail": "Two failures stack. Published 5.2.x dist/index.css ships no .option-check rules at all, so the card surface renders unstyled. And the component emits className vertical-flex-centerchecked — a missing space joins the state class to the layout class — so even a port of the legacy 4.x CSS never matches the .option-check.checked rule (checked fill --theme-color-2, label flip to --gray-100). Only the inner checkbox tick reflects state. Do not design around the colored-card checked treatment."
+        },
+        {
+          "title": "CheckCardGroup's header band has no published styling",
+          "detail": "Published 5.2.x CSS ships no .option-header rule — the header renders as plain text everywhere. The band treatment exists only in legacy 4.x Grid/index.css, scoped as .option-drawer .option-header, so even a ported rule activates only inside a container carrying the option-drawer class."
+        },
+        {
+          "title": "antd v5 DatePicker speaks dayjs, not Date or Moment",
+          "detail": "value/defaultValue must be dayjs objects — passing a JS Date or a moment throws at render. For moment-based code use Excalibrr's MomentDatePicker / MomentTimePicker / RangePicker exports instead of mixing libraries."
+        }
+      ]
+    }
+  ]
+}

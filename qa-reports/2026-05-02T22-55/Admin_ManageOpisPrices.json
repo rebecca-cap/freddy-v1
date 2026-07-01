@@ -1,0 +1,14 @@
+{
+  "path": "/Admin/ManageOpisPrices",
+  "title": "Manage OPIS Curves",
+  "finalUrl": "http://localhost:3001/Admin/ManageOpisPrices",
+  "rootLen": 199755,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 11,
+  "stuckLoaders": [],
+  "emptyGrids": []
+}

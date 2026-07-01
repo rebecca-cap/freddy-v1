@@ -1,0 +1,24 @@
+/*
+ * ScoutHistoryFilter — compact row/all toggle pinned above the message list.
+ * Sits flush in the message region header; quiet chrome, tight padding.
+ */
+
+.scout-history-filter {
+  display: flex;
+  justify-content: flex-end;
+  padding: 8px 16px 0;
+}
+
+/* Keep the antd Segmented small + restrained to match Scout chrome. */
+.scout-history-filter .scout-history-filter__control.ant-segmented {
+  font-size: var(--scout-font-size-sm);
+  background: var(--scout-surface-3);
+}
+
+.scout-history-filter
+  .scout-history-filter__control.ant-segmented
+  .ant-segmented-item-label {
+  padding: 0 10px;
+  min-height: 22px;
+  line-height: 22px;
+}

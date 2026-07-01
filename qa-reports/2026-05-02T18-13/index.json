@@ -1,0 +1,12 @@
+{
+  "path": "/",
+  "title": "Home",
+  "finalUrl": "http://localhost:3001/",
+  "rootLen": 0,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 7
+}

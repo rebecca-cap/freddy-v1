@@ -1,0 +1,125 @@
+{
+  "slug": "color",
+  "title": "Color & Status Intent",
+  "order": 2,
+  "group": "Foundations",
+  "intro": "The page reads as neutral gray with one accent. Color is a signal, not decoration: `--wf-color-primary` carries interactive intent, three status colors carry status, and the neutral scale carries everything else. Every color decision in this system traces back to a `--wf-color-*` token in `tokens/colors.css`.",
+  "searchTerms": ["color", "palette", "status", "primary", "success", "warning", "error", "neutral", "gray", "wf-color-primary", "wf-color-success", "wf-color-warning", "wf-color-error", "wf-color-neutral-900", "wf-color-text-primary", "wf-color-surface", "wf-color-border", "wf-color-border-focus", "semantic alias", "contrast", "WCAG"],
+  "blocks": [
+    {
+      "type": "usage",
+      "body": "There are only three roles a color can play in a wireframe. **Interactive intent** is `--wf-color-primary` (#2563eb) — primary CTAs, links, the focus ring, selected state, and current location. **Status** is the three semantic colors — `--wf-color-success`, `--wf-color-warning`, `--wf-color-error` — and they appear only when there is real status to report. **Everything else is neutral**, drawn from the gray scale through its semantic aliases.\n\nThis split is the whole discipline. If a color isn't marking an interactive surface or reporting status, it should be neutral. The library reaches for the alias (`--wf-color-text-secondary`, `--wf-color-border`, `--wf-color-surface`), never the raw `--wf-color-neutral-*` value, even though they resolve to the same hex — the alias says *why*, the raw token only says *what*."
+    },
+    {
+      "type": "specimen",
+      "title": "The full --wf-color-* palette",
+      "image": "specimens/color/01-color-palette.png",
+      "caption": "Primary plus its dim hover variant, the three status colors, and the neutral scale from neutral-900 (#111827, text-primary) down through surface (#ffffff). Primary is the only accent on an otherwise gray page; status colors sit out until there is status to report.",
+      "wide": true
+    },
+    {
+      "type": "tokens",
+      "title": "Primary — interactive intent",
+      "intro": "The single accent on the page. Reserved for interactive surfaces and current location; never for decorative emphasis.",
+      "rows": [
+        { "token": "--wf-color-primary", "value": "#2563eb", "use": "Buttons, links, focus states, selected tab, active row — interactive intent and current location." },
+        { "token": "--wf-color-primary-dim", "value": "#1e40af", "use": "Darker variant for hover and active states on primary surfaces." }
+      ]
+    },
+    {
+      "type": "tokens",
+      "title": "Status — reserved for status only",
+      "intro": "Each token has a `-dim` darker partner for hover/active. These appear only when there is actual status to report — never as accents, highlights, or brand color (DESIGN.md §3.1).",
+      "rows": [
+        { "token": "--wf-color-success", "value": "#16a34a", "use": "Confirmation of a completed positive action; healthy / passing status." },
+        { "token": "--wf-color-success-dim", "value": "#15803d", "use": "Darker success variant for hover / active states." },
+        { "token": "--wf-color-warning", "value": "#d97706", "use": "Pending state, attention required, soft-fail." },
+        { "token": "--wf-color-warning-dim", "value": "#b45309", "use": "Darker warning variant for hover / active states." },
+        { "token": "--wf-color-error", "value": "#dc2626", "use": "Validation failure, destructive action affordance, hard-fail status." },
+        { "token": "--wf-color-error-dim", "value": "#b91c1c", "use": "Darker error variant for hover / active states." }
+      ]
+    },
+    {
+      "type": "tokens",
+      "title": "Neutral scale — carries everything else",
+      "intro": "Higher numbers are darker. These are the raw values; in components reach for the semantic alias below, not these directly.",
+      "rows": [
+        { "token": "--wf-color-neutral-900", "value": "#111827", "use": "Darkest — primary text, headings." },
+        { "token": "--wf-color-neutral-700", "value": "#374151", "use": "Dark — secondary text, labels." },
+        { "token": "--wf-color-neutral-500", "value": "#6b7280", "use": "Medium — placeholder text, icons." },
+        { "token": "--wf-color-neutral-300", "value": "#d1d5db", "use": "Light — borders, dividers." },
+        { "token": "--wf-color-neutral-100", "value": "#f3f4f6", "use": "Lighter — subtle backgrounds, hover states." },
+        { "token": "--wf-color-neutral-50", "value": "#f9fafb", "use": "Lightest — page backgrounds, cards." }
+      ]
+    },
+    {
+      "type": "tokens",
+      "title": "Semantic aliases — what to actually type",
+      "intro": "Purpose-driven names that resolve to the scale above. Use these in component code so the intent is legible. The aliases are designed to pair at WCAG 2.1 AA out of the box — `text-primary on surface` passes; `text-tertiary on surface-sunken` passes (DESIGN.md §3.2, §3.4).",
+      "rows": [
+        { "token": "--wf-color-text-primary", "value": "var(--wf-color-neutral-900)", "use": "Main content, headings." },
+        { "token": "--wf-color-text-secondary", "value": "var(--wf-color-neutral-700)", "use": "Supporting text, labels." },
+        { "token": "--wf-color-text-tertiary", "value": "var(--wf-color-neutral-500)", "use": "Hints, placeholders, timestamps." },
+        { "token": "--wf-color-text-inverse", "value": "#ffffff", "use": "Text on dark / colored backgrounds." },
+        { "token": "--wf-color-surface", "value": "#ffffff", "use": "Default surface — cards, modals, inputs." },
+        { "token": "--wf-color-surface-raised", "value": "var(--wf-color-neutral-50)", "use": "Elevated panels." },
+        { "token": "--wf-color-surface-sunken", "value": "var(--wf-color-neutral-100)", "use": "Inset surfaces, disabled states, code blocks." },
+        { "token": "--wf-color-background", "value": "var(--wf-color-neutral-50)", "use": "Page background." },
+        { "token": "--wf-color-background-overlay", "value": "rgba(17, 24, 39, 0.5)", "use": "Modal scrim." },
+        { "token": "--wf-color-border", "value": "var(--wf-color-neutral-300)", "use": "Default border / divider." },
+        { "token": "--wf-color-border-light", "value": "var(--wf-color-neutral-100)", "use": "Subtle border between related rows." },
+        { "token": "--wf-color-border-focus", "value": "var(--wf-color-primary)", "use": "Focus ring." }
+      ]
+    },
+    {
+      "type": "variants",
+      "title": "Applying color tokens",
+      "intro": "Color enters a wireframe only through these tokens, set on the CSS properties below. Always reference the variable by name — never a hex literal (DESIGN.md §2.7).",
+      "rows": [
+        { "name": "--wf-color-primary", "when": "An interactive surface — primary CTA, link, or the user's current location.", "code": "<button class=\"wf-button\" style=\"background: var(--wf-color-primary); color: var(--wf-color-text-inverse);\">Publish Prices</button>" },
+        { "name": "--wf-color-error", "when": "A hard-fail or destructive affordance — paired with an icon and a message, never color alone.", "code": "<input class=\"wf-input\" style=\"border-color: var(--wf-color-error);\" aria-invalid=\"true\">\n<span class=\"wf-text wf-text-helper\" style=\"color: var(--wf-color-error);\">Volume must be greater than 0</span>" },
+        { "name": "--wf-color-text-secondary", "when": "Supporting text and labels — the alias, not --wf-color-neutral-700.", "code": "<label class=\"wf-text wf-text-label\" style=\"color: var(--wf-color-text-secondary);\">Counterparty</label>" },
+        { "name": "--wf-color-surface", "when": "A card, modal, or input sitting on the page background.", "code": "<div class=\"wf-card\" style=\"background: var(--wf-color-surface); border: 1px solid var(--wf-color-border);\">...</div>" },
+        { "name": "--wf-color-border-focus", "when": "The keyboard focus ring on any focusable element.", "code": "<button class=\"wf-button\" style=\"outline: 2px solid var(--wf-color-border-focus);\">Save</button>" }
+      ]
+    },
+    {
+      "type": "code",
+      "title": "The three roles in one block",
+      "lang": "css",
+      "code": ":root {\n  /* Interactive intent — the one accent */\n  --wf-color-primary: #2563eb;\n  --wf-color-primary-dim: #1e40af;\n\n  /* Status — reserved for status only */\n  --wf-color-success: #16a34a;\n  --wf-color-warning: #d97706;\n  --wf-color-error: #dc2626;\n\n  /* Neutral carries everything else — reach for the alias */\n  --wf-color-text-primary: var(--wf-color-neutral-900);\n  --wf-color-surface: #ffffff;\n  --wf-color-border: var(--wf-color-neutral-300);\n  --wf-color-border-focus: var(--wf-color-primary);\n}",
+      "note": "Source of truth is tokens/colors.css. Components reference these by name; a hex literal in component code means the design isn't ready."
+    },
+    {
+      "type": "rules",
+      "title": "Semantic color intent (DESIGN.md §3)",
+      "intro": "These are hard rules, not preferences. There are no \"but it looked nice\" exceptions.",
+      "items": [
+        { "rule": "Status colors are reserved for status. No exceptions.", "why": "Success green is a completed positive action, warning orange is a pending / attention state, error red is a hard-fail or destructive affordance. Diluting them as accents teaches users to stop reading them." },
+        { "rule": "Primary is for interactive intent only — CTAs, links, focus ring, selected state, current location.", "why": "Primary marks where the user can act or where they are. Used decoratively, it stops meaning either." },
+        { "rule": "The neutral scale carries everything that isn't status or interactive intent.", "why": "The page should read as neutral gray with one accent; anything else competes with the signal colors." },
+        { "rule": "Color is never the only signal — pair it with an icon, label, or shape.", "why": "A red border alone is invisible to many users and on many displays; the meaning must survive without the hue (DESIGN.md §3.3, §6.3)." },
+        { "rule": "WCAG 2.1 AA is the contrast floor on every text/background pair.", "why": "The aliases are tuned to pair correctly out of the box; if a pairing is ambiguous, run a contrast check before shipping (DESIGN.md §3.4)." }
+      ]
+    },
+    {
+      "type": "dosdonts",
+      "items": [
+        { "do": "color: var(--wf-color-text-secondary)", "dont": "color: var(--wf-color-neutral-700)", "why": "The alias says why; the raw token only says what. They resolve to the same value, but the alias keeps intent legible (DESIGN.md §7.2)." },
+        { "do": "Use weight or size for non-interactive emphasis", "dont": "Use --wf-color-primary to make a static heading stand out", "why": "Primary is interactive intent only. For emphasis reach for --wf-font-semibold, size, or hierarchy — not the accent color (DESIGN.md §7.2)." },
+        { "do": "Reserve success / warning / error for actual status", "dont": "Use success green as an approval accent or warning orange as a \"notable\" highlight", "why": "Status colors stop working the moment they're decorative. A green static label trains the eye to ignore real green status." },
+        { "do": "border-color: var(--wf-color-error) + icon + message", "dont": "border-color: var(--wf-color-error) on its own", "why": "Color is never the only signal. An error needs the red border, an inline message, and an icon — two of three is not enough (DESIGN.md §6.4)." },
+        { "do": "background: var(--wf-color-primary)", "dont": "background: #2563eb", "why": "The token is the source of truth. A hex literal in component code means the design isn't ready (DESIGN.md §2.7)." }
+      ]
+    },
+    {
+      "type": "gotchas",
+      "items": [
+        { "title": "Use the alias, not the raw neutral", "detail": "--wf-color-text-secondary and --wf-color-neutral-700 are the exact same value, so swapping them changes nothing visually — which is precisely why it's a trap. Reaching for the raw scale strips the intent out of the code and is called out as an anti-pattern in DESIGN.md §7.2." },
+        { "title": "Required-field markers are neutral, not error red", "detail": "Error red is reserved for validation failure and destructive affordances. A required-field asterisk is a neutral marker, not a status — using --wf-color-error for it dilutes the one color that means \"something is wrong\" (DESIGN.md §3.1)." },
+        { "title": "The focus ring layers primary over surface", "detail": "--wf-color-border-focus resolves to --wf-color-primary, but a visible focus state pairs it with --wf-color-surface in a layered ring so focus stays visible against any background. Never outline: none without a replacement (DESIGN.md §6.2)." },
+        { "title": "The reference-guide.html swatches drift from the token source", "detail": "The Colors section of reference-guide.html shows older hex values (success #22c55e, warning #f59e0b, error #ef4444) and the legacy names --wf-gray-* / --wf-white. The canonical values live in tokens/colors.css (success #16a34a, warning #d97706, error #dc2626, neutral scale via --wf-color-neutral-*). Trust the token file, not the guide swatches." }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+.tag {
+  min-width: fit-content;
+}
+
+.icon {
+  color: var(--bg-1);
+  padding-right: 5px;
+  font-size: 15px;
+}
+
+.label {
+  color: var(--bg-1);
+  font-size: 14px !important;
+}

@@ -1,0 +1,189 @@
+/*
+ * ScoutViewNav — top-level tabs (Chat / Library / Activity).
+ *
+ * Mirrors the round-4 wireframe `.tab-strip` treatment but sized to fit
+ * inside the panel header: thinner underline, smaller icon + label combo.
+ */
+
+.scout-view-nav {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  height: 48px;
+  padding: 0 4px;
+  border-bottom: 0.5px solid var(--scout-border);
+}
+
+/* Tab group — a flex row holding the real tabs. Wrapping the tabs lets them
+   drift as a unit when the back control appears/disappears. */
+.scout-view-nav__tabs {
+  display: flex;
+  align-items: stretch;
+  height: 100%;
+}
+
+/* Top-left "All chats" back control (shown only inside a thread). margin-right:
+   auto pins it left and pushes the tabs to the right. Deliberately styled UNLIKE
+   a tab — no bottom-border underline — so it doesn't read as a current location. */
+.scout-view-nav__back {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  margin-right: auto;
+  padding: 8px 10px;
+  height: 100%;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  font-family: var(--scout-font-family);
+  font-size: var(--scout-font-size-base);
+  font-weight: var(--scout-font-weight-medium);
+  color: var(--scout-text-muted);
+  cursor: pointer;
+  border-radius: var(--scout-radius-sm, 4px);
+  transition: color 100ms ease, background 100ms ease;
+}
+
+.scout-view-nav__back:hover {
+  color: var(--scout-brand);
+  background: var(--scout-surface-2);
+}
+
+.scout-view-nav__back:focus,
+.scout-view-nav__back:focus-visible {
+  outline: 2px solid var(--scout-brand);
+  outline-offset: -2px;
+}
+
+.scout-view-nav__back-icon {
+  font-size: 13px;
+  line-height: 1;
+}
+
+.scout-view-nav__back-label {
+  line-height: 1;
+}
+
+.scout-view-nav__tab {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  padding: 8px 14px;
+  height: 100%;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  font-family: var(--scout-font-family);
+  font-size: var(--scout-font-size-base);
+  font-weight: var(--scout-font-weight-medium);
+  color: var(--scout-text-muted);
+  cursor: pointer;
+  transition: color 100ms ease, border-color 100ms ease, background 100ms ease;
+}
+
+.scout-view-nav__tab:hover {
+  color: var(--scout-text);
+  background: var(--scout-surface-2);
+}
+
+.scout-view-nav__tab.is-active {
+  color: var(--scout-brand);
+  border-bottom-color: var(--scout-brand);
+  font-weight: var(--scout-font-weight-semibold);
+}
+
+.scout-view-nav__tab:focus,
+.scout-view-nav__tab:focus-visible {
+  outline: 2px solid var(--scout-brand);
+  outline-offset: -2px;
+  background: transparent;
+}
+
+/* Icon wrapper anchors the unseen badge to the tab icon (THR-6). */
+.scout-view-nav__icon-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scout-view-nav__icon {
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* THR-6 — unseen/ready indicator on the Chats tab. A small brand pill with the
+   count, floated over the icon's top-right corner. */
+.scout-view-nav__unseen {
+  position: absolute;
+  top: -6px;
+  right: -9px;
+  min-width: 15px;
+  height: 15px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: var(--scout-brand);
+  color: #fff;
+  font-size: 9px;
+  font-weight: var(--scout-font-weight-semibold);
+  line-height: 15px;
+  text-align: center;
+  box-shadow: 0 0 0 1.5px var(--scout-surface);
+}
+
+.scout-view-nav__label {
+  line-height: 1;
+}
+
+/* ---------------------------------------------------------------------------
+   Push / pop motion — mirrors the panel-body slide (ScoutPanel.css). The back
+   control fades + slides in whenever it mounts (entering a thread); the tab
+   group drifts right on push and left on pop. Disabled under reduced-motion.
+   --------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  .scout-view-nav__back {
+    animation: scout-nav-back-in 280ms cubic-bezier(0.32, 0.72, 0, 1) both;
+  }
+  .scout-view-nav__tabs--push {
+    animation: scout-nav-tabs-push 300ms cubic-bezier(0.32, 0.72, 0, 1) both;
+  }
+  .scout-view-nav__tabs--pop {
+    animation: scout-nav-tabs-pop 300ms cubic-bezier(0.32, 0.72, 0, 1) both;
+  }
+}
+
+@keyframes scout-nav-back-in {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scout-nav-tabs-push {
+  from {
+    opacity: 0.5;
+    transform: translateX(-32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scout-nav-tabs-pop {
+  from {
+    opacity: 0.5;
+    transform: translateX(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "path": "/Admin/AppliedAllocationReport",
+  "title": "Applied Allocation Report",
+  "finalUrl": "http://localhost:3001/Admin/AppliedAllocationReport",
+  "rootLen": 133338,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [
+    "MarketPlatform/Admin/OrderAllocationStatus/GetOrderAllocationData"
+  ],
+  "consoleEventCount": 11
+}

@@ -1,0 +1,18 @@
+/*
+ * ScoutFollowUps — tail "Try a follow-up" block.
+ *
+ * Sits at the bottom of the message list as a direct child, so it inherits the
+ * list's 10px gap above and 16px side gutters. Chip + label styling come from
+ * ScoutChips.css; this file only owns the separator that sets the block apart
+ * from the answer above it.
+ */
+
+.scout-followups {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+  padding-top: 10px;
+  margin-top: 2px;
+  border-top: 0.5px solid var(--scout-border);
+}

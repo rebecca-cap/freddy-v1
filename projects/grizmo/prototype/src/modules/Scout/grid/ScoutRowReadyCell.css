@@ -1,0 +1,83 @@
+/*
+ * Scout — per-row ready indicator (ROW-1..3).
+ *
+ * Renders inside an AG Grid cell, OUTSIDE the panel's .scout-scope subtree, so
+ * the renderer root carries `.scout-scope` itself to resolve --scout-* tokens
+ * (see memory gotcha on token scoping for grid cells).
+ *
+ * The three dots LIGHT UP (ready) or shimmer faintly (in-progress); the column
+ * is otherwise empty, so a lit row pops when scanning the book.
+ */
+
+/* Zero the cell's own padding so the indicator can center in the narrow gutter. */
+.ag-cell.scout-row-ready-cell {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.scout-row-ready {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 120ms ease-out;
+  outline: none;
+}
+
+/* Re-enable clicks: scout-grid.css disables pointer-events on in-cell
+   [role="button"] while the panel is open (.scout-active). The indicator MUST
+   stay clickable so it can switch threads (ROW-2). This selector outranks that
+   lockdown rule (two ancestor classes + the element class beat
+   `.scout-active .ag-cell :where([role='button'])`, where :where() adds 0). */
+.scout-active .ag-cell .scout-row-ready,
+.ag-cell .scout-row-ready {
+  pointer-events: auto !important;
+}
+
+.scout-row-ready:hover {
+  background-color: var(--scout-brand-soft);
+}
+
+.scout-row-ready:focus-visible {
+  box-shadow: 0 0 0 2px var(--scout-brand-soft-2);
+}
+
+.scout-row-ready__dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--scout-border-strong);
+  transition: background-color 120ms ease-out, transform 120ms ease-out;
+}
+
+/* ROW-1 — Ready/unseen: solid brand-colored dots that read as "answer waiting". */
+.scout-row-ready--ready .scout-row-ready__dot {
+  background-color: var(--scout-brand);
+  box-shadow: 0 0 0 0 var(--scout-brand-soft-2);
+  animation: scout-row-ready-pulse 1.8s ease-in-out infinite;
+}
+.scout-row-ready--ready .scout-row-ready__dot:nth-child(2) { animation-delay: 0.15s; }
+.scout-row-ready--ready .scout-row-ready__dot:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes scout-row-ready-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.85; }
+  50% { transform: scale(1.25); opacity: 1; }
+}
+
+/* ROW-3 — In-progress: a quiet, low-contrast "thinking" treatment. Muted dots
+   that gently fade in sequence, clearly distinct from the lit Ready state. */
+.scout-row-ready--progress .scout-row-ready__dot {
+  background-color: var(--scout-text-subtle);
+  animation: scout-row-ready-think 1.2s ease-in-out infinite;
+}
+.scout-row-ready--progress .scout-row-ready__dot:nth-child(2) { animation-delay: 0.2s; }
+.scout-row-ready--progress .scout-row-ready__dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes scout-row-ready-think {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}

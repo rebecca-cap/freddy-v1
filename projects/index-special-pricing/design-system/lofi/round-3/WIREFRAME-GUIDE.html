@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Index Special Offers — Round 3 Wireframe Guide</title>
+  <link rel="stylesheet" href="wireframes/assets/wireframe.css">
+  <style>
+    :root { --iso-accent: var(--wf-color-primary); --iso-sidebar-bg: #0f172a; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--wf-color-background); color: var(--wf-color-text-primary); font-family: var(--wf-font-family); line-height: 1.5; }
+
+    .toc { position: fixed; top: 0; left: 0; width: 260px; height: 100vh; background: var(--iso-sidebar-bg); color: #cbd5e1; overflow-y: auto; padding: 28px 22px 60px; }
+    .toc .toc-brand { color: #fff; font-size: var(--wf-text-base); font-weight: var(--wf-font-bold); letter-spacing: .02em; margin-bottom: 4px; }
+    .toc .toc-sub { color: #64748b; font-size: var(--wf-text-xs); margin-bottom: 26px; }
+    .toc h4 { color: #64748b; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; margin: 22px 0 8px; }
+    .toc a { display: block; color: #cbd5e1; text-decoration: none; font-size: var(--wf-text-sm); padding: 4px 0; }
+    .toc a:hover { color: #fff; }
+    .toc a.mono { font-family: var(--wf-font-mono, ui-monospace, monospace); font-size: var(--wf-text-xs); color: #94a3b8; }
+    .toc a.mono:hover { color: var(--iso-accent); }
+
+    main { margin-left: 260px; max-width: 1040px; padding: 56px 72px 120px; }
+    .eyebrow { text-transform: uppercase; letter-spacing: .1em; font-size: 12px; font-weight: var(--wf-font-bold); color: var(--iso-accent); }
+    h1.doc-title { font-size: 34px; line-height: 1.15; margin: 10px 0 14px; }
+    .lead { font-size: 15px; color: var(--wf-color-text-secondary); max-width: 720px; }
+    .meta { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin: 28px 0 6px; padding-bottom: 26px; border-bottom: 3px solid #111; }
+    .meta .k { font-size: 11px; text-transform: uppercase; letter-spacing: .07em; color: var(--wf-color-text-tertiary); }
+    .meta .v { font-size: var(--wf-text-sm); font-weight: var(--wf-font-medium); margin-top: 3px; }
+
+    h2 { font-size: 22px; margin: 52px 0 16px; padding-bottom: 8px; border-bottom: 2px solid var(--wf-color-border); scroll-margin-top: 24px; }
+    h3 { scroll-margin-top: 24px; }
+    p { margin: 10px 0; }
+    main a { color: var(--iso-accent); }
+
+    .file-card { border: 1px solid var(--wf-color-border); border-radius: 8px; background: var(--wf-color-surface); padding: 20px 22px; margin: 18px 0; scroll-margin-top: 24px; }
+    .file-card-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+    .file-card-head h3 { font-family: var(--wf-font-mono, ui-monospace, monospace); font-size: 15px; color: var(--iso-accent); margin: 0; }
+    .file-card-head .scr { color: var(--wf-color-text-tertiary); font-size: var(--wf-text-sm); }
+    .file-card-head .open { margin-left: auto; font-size: 12px; text-decoration: none; color: var(--iso-accent); border: 1px solid var(--iso-accent); border-radius: 5px; padding: 4px 10px; }
+    .file-card-head .open:hover { background: var(--iso-accent); color: #fff; }
+    .file-card h4 { margin: 14px 0 4px; font-size: var(--wf-text-sm); }
+
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; border: 1px solid var(--wf-color-border); border-radius: 8px; overflow: hidden; font-size: var(--wf-text-sm); }
+    thead th { background: var(--wf-color-neutral-100, #f1f5f9); text-align: left; text-transform: uppercase; letter-spacing: .05em; font-size: 11px; color: var(--wf-color-text-secondary); padding: 9px 12px; }
+    td { padding: 9px 12px; border-top: 1px solid var(--wf-color-border); vertical-align: top; }
+    tbody tr:hover { background: var(--wf-color-surface-sunken); }
+    code { font-family: var(--wf-font-mono, ui-monospace, monospace); font-size: .92em; background: var(--wf-color-surface-sunken); padding: 1px 5px; border-radius: 4px; }
+
+    .callout { border-left: 4px solid var(--iso-accent); background: #f0f9ff; border-radius: 0 6px 6px 0; padding: 12px 16px; margin: 16px 0; }
+    .callout.decision { border-left-color: #16a34a; background: #ecfdf5; }
+    .callout.warn { border-left-color: #d97706; background: #fffbeb; }
+    .callout-label { text-transform: uppercase; letter-spacing: .07em; font-size: 11px; font-weight: var(--wf-font-bold); color: var(--iso-accent); }
+    .callout.decision .callout-label { color: #16a34a; }
+    .callout.warn .callout-label { color: #d97706; }
+    .callout p { margin: 4px 0 0; font-size: var(--wf-text-sm); }
+
+    ol.decisions { padding-left: 20px; }
+    ol.decisions li { margin: 12px 0; line-height: 1.55; }
+    ol.open-questions { list-style: none; padding: 0; }
+    ol.open-questions li { background: #fffbeb; border-left: 3px solid #d97706; border-radius: 0 6px 6px 0; padding: 10px 14px; margin: 10px 0; font-size: var(--wf-text-sm); }
+    ol.open-questions li b { color: #92400e; }
+
+    ul.changes { list-style: none; padding: 0; }
+    ul.changes li { border: 1px solid var(--wf-color-border); border-left: 3px solid #16a34a; border-radius: 0 6px 6px 0; padding: 10px 14px; margin: 10px 0; font-size: var(--wf-text-sm); }
+    ul.changes li b { color: var(--wf-color-text-primary); }
+
+    @media (max-width: 900px) {
+      .toc { display: none; }
+      main { margin-left: 0; padding: 32px 24px 80px; }
+      .meta { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="toc">
+    <div class="toc-brand">Index Special Offers</div>
+    <div class="toc-sub">Lo-fi · Round 3 guide</div>
+
+    <h4>Introduction</h4>
+    <a href="#overview">Overview</a>
+    <a href="#changes">Changes from Round 2</a>
+    <a href="#flow">The user flow</a>
+    <a href="#layout">Shared layout</a>
+    <a href="#language">Color &amp; status language</a>
+    <a href="#inventory">File inventory</a>
+
+    <h4>Per-screen docs</h4>
+    <a href="#s01">01 · Offers launchpad</a>
+    <a href="#s02">02 · Create New Offer (A / B)</a>
+    <a href="#s03">03 · Price formula</a>
+    <a href="#s04">04 · Customers</a>
+    <a href="#s05">05 · Offer sent</a>
+
+    <h4>Rationale</h4>
+    <a href="#decisions">Design decisions</a>
+    <a href="#open">Open for R4</a>
+    <a href="#view">How to view</a>
+
+    <h4>Wireframes</h4>
+    <a class="mono" href="wireframes/01-launchpad.html" target="_blank">01-launchpad.html</a>
+    <a class="mono" href="wireframes/02-create-offer.html" target="_blank">02-create-offer.html</a>
+    <a class="mono" href="wireframes/03-price-formula.html" target="_blank">03-price-formula.html</a>
+    <a class="mono" href="wireframes/04-invite.html" target="_blank">04-invite.html</a>
+    <a class="mono" href="wireframes/05-offer-sent.html" target="_blank">05-offer-sent.html</a>
+    <a class="mono" href="../round-2/WIREFRAME-GUIDE.html" target="_blank">← Round 2 guide</a>
+  </nav>
+
+  <main>
+    <div class="eyebrow">Wireframe Index &amp; Guide · Round 3</div>
+    <h1 class="doc-title">Index Special Offers — Two-section Create</h1>
+    <p class="lead">Round 3 reworks round 2's one-page <strong>Create New Offer</strong> into a <strong>two-step flow</strong> — <strong>Step 1 · Offer details</strong> and <strong>Step 2 · Time frame</strong>. The preset <strong>starts blank</strong> with two save-back paths (Update / Save as new, the name disclosed progressively), the offer-type dropdown is gone (everything is Index Special), the differential moves <strong>below</strong> the variable grid, customer chips are <strong>readable and visible across every invite tab</strong>, and timing is rebuilt to mirror the <strong>proto-base-osp</strong> component: <strong>Visibility</strong> and <strong>Pickup</strong> windows with absolute start/end date·time·timezone, real-clock dropdowns (15-min) whose quick-starts do the math, and a <strong>Calendar View that visualizes both windows</strong>. Reflects the second review pass on Jun 23; the screens are interactive end-to-end.</p>
+
+    <div class="meta">
+      <div><div class="k">Project</div><div class="v">Index Special Offers (OSP)</div></div>
+      <div><div class="k">Round</div><div class="v">3 · post round-2 review (Reece, Jun 23)</div></div>
+      <div><div class="k">Designer</div><div class="v">Frank Overland</div></div>
+      <div><div class="k">Date</div><div class="v">June 2026</div></div>
+    </div>
+
+    <!-- OVERVIEW -->
+    <h2 id="overview">Overview</h2>
+    <p>Five static-but-interactive HTML wireframes continuing the Index Special Offers quick-create flow, built from the vendored Gravitate <code>WireframeDesignSystem</code> (<code>wf-</code> components, <code>--wf-</code> tokens; lo-fi scaffolding isolated under <code>lf-</code>). Round 2 settled the real price-formula model and a progressive invite; the round-2 review accepted both and turned to <em>form shape and field interactions</em> — the page had gotten long as fields accumulated, the preset wrongly assumed a default, and timing couldn't express a future start.</p>
+    <div class="callout">
+      <div class="callout-label">The review in one line</div>
+      <p>"We'll go from four to two… and then if we can find ways to make it shorter then maybe it gets moved in and it's one page." Make the <em>interactions</em> with the fields really good, don't strip the fields.</p>
+    </div>
+
+    <!-- CHANGES -->
+    <h2 id="changes">Changes from Round 2</h2>
+    <p>Round 3 ran through two review passes. The first pass split the page into Sections A/B; the second pass (Jun 23) refined that into a true <strong>two-step stepper</strong> and rebuilt timing against the production prototype. The list below reflects the current, shipped state.</p>
+    <ul class="changes">
+      <li><b>Two-step stepper (edit 1).</b> Product/formula, timing and invite were four stacked groups. R3 splits the flow into <b>Step 1 · Offer details</b> (product + price formula + customers) and <b>Step 2 · Time frame</b> (timing), with a step indicator and Previous / Next · "Step N of 2" footer — mirroring the production create wizard. See <a href="#s02">screen 02</a>.</li>
+      <li><b>No offer-type dropdown.</b> Everything here is an Index Special deal, so the offer-type selector was removed; Step 1 opens straight into Product / Terminal / Volume.</li>
+      <li><b>Preset starts blank, with two save paths (edit 2).</b> Default = <b>no preset, everything empty</b>. Selecting a preset <b>populates</b> every field; editing a populated preset reveals just two paths — <b>Update preset</b> and <b>Save as new preset</b>. The "you changed this" label and the "continue as one-off" path were dropped; choosing <b>Save as new</b> <em>progressively discloses</em> the new-preset name field.</li>
+      <li><b>Differential moved below the grid; display label fixed (edit 3).</b> Build the formula, then basis (Argus/rack), then the differential <b>last</b>, so it sits <b>beneath</b> the grid. The read-only result is labelled <b>"Price formula (display)"</b> (was "resulting price").</li>
+      <li><b>Consolidated, tab-agnostic customer chips (edit 4).</b> A <b>running chip bar</b> stacks every selected customer with its source tag and persists across tab switches. Selected chips were re-styled to a <b>white surface with a blue border and dark text</b> (previously blue-fill + black text, unreadable). See <a href="#s04">screen 04</a>.</li>
+      <li><b>Timing rebuilt to match the prototype + Calendar View (edits 5, 6).</b> Replaces the R2 duration model with the <code>proto-base-osp</code> <code>SelectTimingWindows</code> pattern: a <b>Visibility Window</b> and a <b>Pickup Window</b>, each with a <b>Start Now</b> checkbox and absolute <b>Start</b> / <b>End</b> rows (date <em>at</em> time + <code>America/Chicago</code> tag). Time pickers list <b>real clock times at 15-minute intervals</b>; the <b>quick-starts</b> (Now / +1h / +6h / 6 PM / Midnight) live in that dropdown and compute the clock time for you. A <b>Calendar View</b> below visualizes both windows (Visibility blue, Pickup green, overlap split), supports month nav, and "click any date to fill the next empty field." Inline validation enforces <em>Pickup start ≥ Visibility start</em>. The offset case is expressed naturally by giving each window its own start.</li>
+      <li><b>Files renamed for the new shape.</b> <code>02-quick-create-index → 02-create-offer</code>, <code>04-invite-modes → 04-invite</code>, <code>05-review-send → 05-offer-sent</code>. Launchpad (01) and price-formula chooser (03) carry forward largely unchanged.</li>
+    </ul>
+
+    <!-- FLOW -->
+    <h2 id="flow">The user flow</h2>
+    <table>
+      <thead><tr><th>Step</th><th>Screen</th><th>What happens</th></tr></thead>
+      <tbody>
+        <tr><td>Launch</td><td>01 · Launchpad</td><td>New → Fast / Full; or reuse via Preset / Create from prior.</td></tr>
+        <tr><td>Author</td><td>02 · Create New Offer</td><td>Two steps: Step 1 (product, price formula, customers) then Step 2 (time frame). Starts blank; pick a preset to populate.</td></tr>
+        <tr><td>Price</td><td>03 · Price formula</td><td>Bottom-sheet formula chooser; loads the variable grid into Side A.</td></tr>
+        <tr><td>Reach customers</td><td>04 · Customers</td><td>Groups / Authorized / Credit / All — picks stack into one tab-agnostic chip list.</td></tr>
+        <tr><td>Payoff</td><td>05 · Offer sent</td><td>Confirmation; reuse via Save as Preset vs Create from prior.</td></tr>
+      </tbody>
+    </table>
+
+    <!-- LAYOUT -->
+    <h2 id="layout">Shared layout structure</h2>
+    <p>Carried forward from round 2. The create surface (02, 03, 04) uses the production <strong>Create New Offer</strong> takeover — no app sidebar:</p>
+    <ul>
+      <li><strong>Top app bar</strong> (<code>lf-topbar</code>) — <code>&times;</code> close + bold "Create New Offer" title; a dashed "Round 3 index" reviewer link at the right.</li>
+      <li><strong>"Back to Offers"</strong> link (<code>lf-backtolist</code>) above the content.</li>
+      <li><strong>Two-step stepper</strong> (<code>lf-stepper</code> + <code>lf-steppanel</code>) on the hero — a numbered indicator (1 Offer details · 2 Time frame) with clickable steps; one panel shows at a time.</li>
+      <li><strong>Wizard footer</strong> (<code>lf-wizfoot</code>) — Previous · "Step N of 2" · Next (Next becomes <em>Send offer</em> on step 2). Full-width single column, matching the production create wizard (no preview rail this round).</li>
+      <li><strong>Bottom-sheet template chooser</strong> — the Formula Template Selector (<code>lf-bottomsheet</code>, ≈85vh) over a dimmed page for the "choose formula" state.</li>
+    </ul>
+    <p>Screens 01 (offers list) and 05 (sent) keep the app shell (<code>wf-page-with-sidebar</code>) since they aren't the create surface.</p>
+
+    <!-- LANGUAGE -->
+    <h2 id="language">Color &amp; status language</h2>
+    <p>Unchanged in intent from round 2 — status colors mean status, primary blue means interactive intent / current selection / current location, everything else neutral.</p>
+    <ul>
+      <li><strong>Primary blue</strong> — Send CTA, selected chip / tab (<code>wf-tab-active</code>), the active step circle, and the border on selected customer chips. Note the calendar uses its own pair — <strong>Visibility blue</strong> (<code>#dbeafe</code> fill / <code>#4386f6</code> edge) and <strong>Pickup green</strong> (<code>#dcfce7</code> / <code>#32ae5e</code>) — carried verbatim from the prototype to keep parity.</li>
+      <li><strong>Success green</strong> — real status only: the <strong>"Populated from preset"</strong> / "Preset updated" badge and the per-window completion check.</li>
+      <li><strong>Warning amber</strong> — the <strong>"Edited · unsaved"</strong> preset badge, a stretched credit utilization (86%).</li>
+      <li><strong>Error red</strong> — validation: "Pickup start must be at or after Visibility start."</li>
+      <li><strong>Monospace</strong> (<code>wf-mono</code>) — formula variable cells, differential, volume, the price-formula display string, credit figures.</li>
+    </ul>
+
+    <!-- INVENTORY -->
+    <h2 id="inventory">File inventory</h2>
+    <table>
+      <thead><tr><th>File</th><th>Screen</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td><code>wireframes/assets/wireframe.css</code></td><td>—</td><td>Vendored design-system bundle (carried forward).</td></tr>
+        <tr><td><code>wireframes/assets/lofi-chrome.css</code></td><td>—</td><td>Lo-fi chrome; extended this round with the two-section, save-paths, consolidated-chip and start-time/day-deal helpers.</td></tr>
+        <tr><td><code>wireframes/01-launchpad.html</code></td><td>Offers launchpad</td><td>New → Fast / Full entry; Presets + Create from prior (carried forward).</td></tr>
+        <tr><td><code>wireframes/02-create-offer.html</code></td><td>Create New Offer — A / B <strong>(hero)</strong></td><td>Two-section interactive create; preset model, differential-below-grid, inline chips, rebuilt timing.</td></tr>
+        <tr><td><code>wireframes/03-price-formula.html</code></td><td>Price formula</td><td>Bottom-sheet formula chooser → variable grid in Side A.</td></tr>
+        <tr><td><code>wireframes/04-invite.html</code></td><td>Customers</td><td>Full picker; consolidated chips across all four tabs.</td></tr>
+        <tr><td><code>wireframes/05-offer-sent.html</code></td><td>Offer sent</td><td>Confirmation + Preset-vs-prior reuse (carried forward).</td></tr>
+        <tr><td><code>index.html</code></td><td>Round gallery</td><td>Launcher for the round.</td></tr>
+      </tbody>
+    </table>
+
+    <!-- PER-SCREEN -->
+    <h2 id="s01">Per-screen documentation</h2>
+
+    <div class="file-card" id="card01">
+      <div class="file-card-head"><h3>01-launchpad.html</h3><span class="scr">— Offers launchpad</span><a class="open" href="wireframes/01-launchpad.html" target="_blank">Open wireframe →</a></div>
+      <h4>Screen purpose</h4>
+      <p>The offers list and entry point, in the app shell, carried forward from round 2. The "+ New offer" menu lists <strong>New — Fast</strong> / <strong>New — Full</strong>, then <strong>Start from a Preset</strong> and <strong>Create from prior</strong>. The "New — Fast" path now opens <code>02-create-offer.html</code>.</p>
+    </div>
+
+    <div class="file-card" id="s02">
+      <div class="file-card-head"><h3>02-create-offer.html</h3><span class="scr">— Create New Offer, two-step (hero)</span><a class="open" href="wireframes/02-create-offer.html" target="_blank">Open wireframe →</a></div>
+      <h4>Screen purpose</h4>
+      <p>The whole offer as a two-step flow. This is where edits 1–6 land. The screen is interactive: a preset dropdown that populates/clears, a stepper, customer chips that stack across tabs, real-clock time pickers, and a calendar that fills and visualizes the windows.</p>
+      <h4>Preset row + initial state (edit 2)</h4>
+      <p>On load <strong>no preset is selected</strong> and everything is blank: the price-formula shows its empty state, the customer chip bar reads "Nobody selected yet," and a helper line states "<em>Nothing is assumed</em>." Choosing a preset populates the formula grid and shows a green <strong>"Populated from preset"</strong> badge; editing any field then reveals <strong>two</strong> save paths — <strong>Update preset</strong> and <strong>Save as new preset</strong> — with an amber <strong>"Edited · unsaved"</strong> badge. Clicking <strong>Save as new preset</strong> progressively discloses the new-preset name field.</p>
+      <h4>Step 1 · Offer details (edits 3, 4)</h4>
+      <p><strong>Product</strong>: Product, Terminal/location, Volume — no offer-type dropdown (all Index Special).<br>
+      <strong>Price formula</strong>: a chosen-formula line + the <strong>editable variable grid</strong> (%, Publisher, Instrument, Type, Date Rule, Display, row options); then <strong>Basis (Argus/rack)</strong> and the <strong>Differential</strong> on their own row <em>below</em> the grid (the last formula decision); then the read-only <strong>"Price formula (display)"</strong> string.<br>
+      <strong>Customers</strong>: the consolidated chip bar on top, then the four-tab picker (Groups / Authorized / Credit / All). Selecting from any tab adds a white, blue-bordered chip with a source tag; chips persist across tab switches; the <code>&times;</code> removes the chip and unchecks its row everywhere it appears.</p>
+      <h4>Step 2 · Time frame (edits 5, 6)</h4>
+      <p>Mirrors the production <code>SelectTimingWindows</code>. Two window cards — <strong>Visibility Window</strong> ("when customers can see and bid on your deal") and <strong>Pickup Window</strong> ("when customers can pickup their product") — each with a <strong>Start Now</strong> checkbox and <strong>Start</strong> / <strong>End</strong> rows of <em>date</em> <strong>at</strong> <em>time</em> + an <code>America/Chicago</code> tag. Checking Start Now greys the start fields and sets them to "Now." The time field opens a dropdown of <strong>real clock times at 15-minute intervals</strong>, with <strong>quick-starts</strong> (Now / +1h / +6h / 6 PM / Midnight) pinned on top that compute the clock time. Below, a <strong>Calendar View</strong> visualizes both windows (Visibility blue, Pickup green, overlap a diagonal split), navigates by month, and "clicking any date fills the next empty field" in sequence (Visibility start → end → Pickup start → end → reset). Inline red text enforces <em>Pickup start must be at or after Visibility start</em>.</p>
+      <div class="callout decision"><div class="callout-label">Offset, expressed naturally</div><p>Because each window owns its own start, the offset case (take orders today, lift next week) needs no special mode — set Visibility Start Now and pick a later Pickup start. The calendar shows the gap between the two ranges directly.</p></div>
+      <div class="callout warn"><div class="callout-label">Still open</div><p>The preset save-path button treatment, and the calendar's fat-finger "go back" recovery, aren't final — the interactions are what's being validated here.</p></div>
+    </div>
+
+    <div class="file-card" id="s03">
+      <div class="file-card-head"><h3>03-price-formula.html</h3><span class="scr">— Formula Template Selector (bottom sheet)</span><a class="open" href="wireframes/03-price-formula.html" target="_blank">Open wireframe →</a></div>
+      <h4>Screen purpose</h4>
+      <p>The <strong>formula chooser</strong>, modelled on the production <code>FormulaTemplateSelector</code>, carried forward from round 2. Opens as a bottom-sheet drawer (≈85vh) over the dimmed create surface; choosing a template loads its variable lines into the editable grid in <strong>Side A</strong>. Header, filters bar (Cards/List + Search/Category/Products/Locations/Price Type), and a horizontal scroll of template cards ending in "+ Build a new formula."</p>
+    </div>
+
+    <div class="file-card" id="s04">
+      <div class="file-card-head"><h3>04-invite.html</h3><span class="scr">— Customers: consolidated picker</span><a class="open" href="wireframes/04-invite.html" target="_blank">Open wireframe →</a></div>
+      <h4>Screen purpose</h4>
+      <p>The full-room version of Side A's customer step, demonstrating edit 4 at scale. The mode tab changes <em>what you're picking from</em>; the running selection stays visible regardless of tab.</p>
+      <h4>The consolidated chip bar</h4>
+      <p>A <strong>sticky</strong> chip bar pins below the header. Each pick — a favorite group chip, or a checked row in any tab — adds a <code>lf-selchip</code> with a source tag (<em>Group</em> / <em>Authorized</em> / <em>Credit</em> / <em>All</em>) and a remove control. Switching tabs swaps the table beneath but leaves the chip list intact, so picks made under "Authorized" and "Credit" are visible together without bouncing between tabs. The same customer appearing in two tabs stays in sync (check one, the other reflects it).</p>
+      <div class="callout decision"><div class="callout-label">Reece's hardest requirement</div><p>"I need to see the output selection of people agnostic of tabs." The chip bar is the single source of truth for who's on the offer; tabs are just routes to find them. Group CRUD is intentionally out — groups are managed in an external group manager; this screen only consumes and selects them.</p></div>
+    </div>
+
+    <div class="file-card" id="s05">
+      <div class="file-card-head"><h3>05-offer-sent.html</h3><span class="scr">— Offer sent</span><a class="open" href="wireframes/05-offer-sent.html" target="_blank">Open wireframe →</a></div>
+      <h4>Screen purpose</h4>
+      <p>The payoff, carried forward from round 2. A success toast, the created offer's detail card (real formula name + differential, invoices at lift, the invite method used), and a "Reuse this" panel — <strong>Save as Preset</strong> (primary) above <strong>Create from prior</strong>, keeping the deliberate-vs-recall distinction concrete.</p>
+    </div>
+
+    <!-- DECISIONS -->
+    <h2 id="decisions">Design decisions reflected</h2>
+    <ol class="decisions">
+      <li><strong>A two-step flow, not four groups or a long page.</strong> Step 1 "Offer details," Step 2 "Time frame." The single page was right mentally but too heavy; two steps keep each surface focused and match the production create wizard's shape.</li>
+      <li><strong>No offer-type choice.</strong> Every deal here is an Index Special, so the selector is removed — Step 1 starts at the product.</li>
+      <li><strong>Nothing is assumed — the preset starts blank.</strong> Default selects no preset and leaves every field empty; you opt into a preset rather than having one presumed for you.</li>
+      <li><strong>Two preset save paths, disclosed progressively.</strong> Editing a populated preset offers just <em>Update preset</em> or <em>Save as new preset</em> — no "continue one-off," no "you changed this" preamble; the new-preset name appears only after you choose Save as new. "Update" is the verb for the resave path.</li>
+      <li><strong>The differential is the last formula decision.</strong> Build the variable grid, choose Argus vs rack basis, then set the differential — so it sits below the grid, mentally subordinate to the formula it adjusts.</li>
+      <li><strong>The result field is a display, not an input.</strong> Labelled "Price formula (display)" and read-only — it reflects the grid + differential; it's the string customers see, not a place to author.</li>
+      <li><strong>Selected customers are tab-agnostic, and the chips are readable.</strong> One running chip list is the source of truth for who's invited; chips use a white surface + blue border + dark text so they read clearly (the blue-fill + black text was illegible).</li>
+      <li><strong>Timing matches the production prototype.</strong> Visibility and Pickup windows with absolute start/end date·time·timezone, real-clock pickers at 15-min intervals, and quick-starts that compute the clock time — adopting <code>proto-base-osp</code>'s <code>SelectTimingWindows</code> rather than inventing a duration model.</li>
+      <li><strong>A calendar visualizes the windows.</strong> The two windows are easy to mis-read as numbers; the calendar shows Visibility (blue) and Pickup (green) ranges, their overlap, and fills the next empty field on click — fast once learned, and it makes the offset gap visible.</li>
+      <li><strong>Two windows, each with its own start, expresses the offset case for free.</strong> Visibility = how long you're taking orders; Pickup = the date-time range to lift once confirmed. Decoupled starts cover live-now, scheduled, and offset without a separate mode.</li>
+    </ol>
+
+    <!-- OPEN -->
+    <h2 id="open">Open for round 4</h2>
+    <ol class="open-questions">
+      <li><b>Preset save-path buttons:</b> final labels and arrangement for Update / Save as new (interaction validated; treatment still open).</li>
+      <li><b>Calendar fat-finger recovery:</b> the calendar is kept (fast once learned) but there's no clean way to go back after a mis-tap; the current click sequence resets after all four dates are set — confirm that's the recovery, or add an explicit undo.</li>
+      <li><b>Quick-starts set:</b> confirm the in-dropdown quick-starts (Now / +1h / +6h / 6 PM / Midnight) and whether midnight should be the default start.</li>
+      <li><b>Step count:</b> two steps now; if Step 1 gets heavy do we split product/formula from customers into a third step, or hold at two?</li>
+      <li><b>Hi-fi + customer testing:</b> timing-related customer testing is on hold until this is in hi-fi (customers are still on the original version).</li>
+    </ol>
+
+    <!-- VIEW -->
+    <h2 id="view">How to view</h2>
+    <p>Open any file in <code>wireframes/</code> directly in a browser — self-contained static HTML with in-page JavaScript, no build step. Start from <code>index.html</code>.</p>
+    <ol>
+      <li><code>02-create-offer.html</code> — the hero. It loads <strong>empty</strong>; pick a preset to populate, then edit any field to reveal the two save paths (and click <em>Save as new preset</em> to see the name appear). Note the differential below the grid in Step 1.</li>
+      <li>In Step 1's <strong>Customers</strong> block, pick from different tabs and watch the chips stack and persist; remove one with its <code>&times;</code>.</li>
+      <li>Click <strong>Next</strong> (or the step indicator) to Step 2. Open a <strong>time</strong> field for the quick-starts + 15-min clock list; tick <strong>Start Now</strong> to grey a start; then <strong>click dates in the calendar</strong> to fill Visibility start → end → Pickup start → end and watch the blue/green ranges render. Try a Pickup start before the Visibility start to trip the validation.</li>
+      <li><code>04-invite.html</code> — the same consolidated chips with more room; pick across all four tabs.</li>
+      <li><code>01</code> / <code>03</code> / <code>05</code> — entry, formula chooser, and payoff, carried forward.</li>
+    </ol>
+    <div class="callout"><div class="callout-label">Provenance</div><p>Rationale mined from the Jun 23 2026 review action items (<code>context/2026-06-23-frank-round3-edits.md</code>) and the same-day second-pass edits (<code>context/2026-06-23-round3-review-edits.md</code>), distilled in <code>brief.md</code>. Timing mirrors the production prototype at <code>~/freddy/proto-base-osp/SpecialOffers</code> (<code>SelectTimingWindows.tsx</code>). Round 2 guide: <a href="../round-2/WIREFRAME-GUIDE.html">../round-2/WIREFRAME-GUIDE.html</a>. Interactions verified headlessly (47/47 checks) prior to publishing.</p></div>
+
+  </main>
+</body>
+</html>

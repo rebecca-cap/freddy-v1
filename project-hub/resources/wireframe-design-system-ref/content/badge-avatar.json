@@ -1,0 +1,159 @@
+{
+  "slug": "badge-avatar",
+  "title": "Badge & Avatar",
+  "order": 10,
+  "group": "Data Display",
+  "intro": "Two small identity primitives. `wf-badge` is a pill-shaped status label whose color variant must map to a real semantic intent — never decoration. `wf-avatar` is a circular initials-or-image chip with four sizes, a stacked group, and a corner presence dot.",
+  "searchTerms": ["wf-badge", "wf-badge-primary", "wf-badge-success", "wf-badge-warning", "wf-badge-error", "wf-badge-dot", "wf-badge-with-dot", "wf-avatar", "wf-avatar-initials", "wf-avatar-image", "wf-avatar-sm", "wf-avatar-lg", "wf-avatar-xl", "wf-avatar-group", "wf-avatar-count", "wf-avatar-wrapper", "wf-avatar-status", "badge", "avatar", "status pill", "tag", "chip", "presence", "initials"],
+  "blocks": [
+    {
+      "type": "usage",
+      "title": "Badge",
+      "body": "`wf-badge` is a fully-rounded (`border-radius: 9999px`) inline pill at 12px / weight 500. Bare, it's the neutral default — gray fill, gray text — for categories, tags, and inactive states. Four color modifiers layer on a tinted background plus a darker text color: `wf-badge-primary` (blue, informational / in-progress), `wf-badge-success` (green, healthy / active / completed), `wf-badge-warning` (amber, pending / attention-needed), and `wf-badge-error` (red, failed / expired / cancelled).\n\nEach color is a status signal, not a paint job — the same rule the rest of the system lives by (`DESIGN.md §3.1`): status colors are reserved for status, no exceptions. Sizes are `wf-badge-sm` and `wf-badge-lg` around the default; the badge also happily holds a count (`12`, `99+`) instead of a word."
+    },
+    {
+      "type": "specimen",
+      "title": "Status color variants",
+      "image": "specimens/badge-avatar/01-badge-basic-variants.png",
+      "caption": "The five intents: bare default (neutral gray), primary (blue/informational), success (green), warning (amber), error (red). The fill is a light tint, the text a darker shade of the same hue."
+    },
+    {
+      "type": "variants",
+      "title": "Badge variants",
+      "intro": "One color modifier per badge, layered on the base `wf-badge` class. Size modifiers (`wf-badge-sm`, `wf-badge-lg`) compose with any color.",
+      "rows": [
+        { "name": "wf-badge", "when": "Neutral default — categories, tags, inactive or draft states. Gray fill, gray text.", "code": "<span class=\"wf-badge\">Draft</span>" },
+        { "name": "wf-badge-primary", "when": "Informational / in-progress states — In Review, In Progress, Medium priority.", "code": "<span class=\"wf-badge wf-badge-primary\">In Review</span>" },
+        { "name": "wf-badge-success", "when": "Healthy / completed / positive status — Active, Executed, Approved, Online.", "code": "<span class=\"wf-badge wf-badge-success\">Active</span>" },
+        { "name": "wf-badge-warning", "when": "Pending / attention-needed status — Pending, Pending Signature, High priority.", "code": "<span class=\"wf-badge wf-badge-warning\">Pending</span>" },
+        { "name": "wf-badge-error", "when": "Hard-fail / negative status — Expired, Cancelled, Failed, Critical.", "code": "<span class=\"wf-badge wf-badge-error\">Expired</span>" },
+        { "name": "wf-badge-sm", "when": "Compact contexts — inside dense list rows, card meta, profile chips.", "code": "<span class=\"wf-badge wf-badge-success wf-badge-sm\">Admin</span>" },
+        { "name": "wf-badge-lg", "when": "Standalone emphasis where the badge is the headline, not a footnote.", "code": "<span class=\"wf-badge wf-badge-warning wf-badge-lg\">Pending</span>" }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "Dot variants",
+      "image": "specimens/badge-avatar/02-badge-dot.png",
+      "caption": "`wf-badge-dot` indicators across the same intents, shown bare (top) and paired with a text label via `wf-badge-with-dot` (bottom). Inside a labelled wrapper the dot shrinks from 8px to 6px."
+    },
+    {
+      "type": "variants",
+      "title": "Dot badge variants",
+      "intro": "A `wf-badge-dot` is a tiny round status indicator (8px) for presence and at-a-glance status without a pill. Wrap it in `wf-badge-with-dot` to attach a text label — which you almost always should, since the dot alone is color-only.",
+      "rows": [
+        { "name": "wf-badge-dot", "when": "Bare neutral dot — gray (`--wf-color-neutral-400`), used for offline / unset.", "code": "<span class=\"wf-badge-dot\"></span>" },
+        { "name": "wf-badge-dot-success", "when": "Green dot for online / healthy presence.", "code": "<span class=\"wf-badge-dot wf-badge-dot-success\"></span>" },
+        { "name": "wf-badge-dot-warning", "when": "Amber dot for away / attention.", "code": "<span class=\"wf-badge-dot wf-badge-dot-warning\"></span>" },
+        { "name": "wf-badge-dot-error", "when": "Red dot for busy / error.", "code": "<span class=\"wf-badge-dot wf-badge-dot-error\"></span>" },
+        { "name": "wf-badge-dot-primary", "when": "Blue dot for an informational / active marker.", "code": "<span class=\"wf-badge-dot wf-badge-dot-primary\"></span>" },
+        { "name": "wf-badge-with-dot", "when": "The accessible pairing — dot + readable label so color isn't the only signal.", "code": "<span class=\"wf-badge-with-dot\"><span class=\"wf-badge-dot wf-badge-dot-success\"></span> Online</span>" }
+      ]
+    },
+    {
+      "type": "tokens",
+      "title": "Badge color tokens",
+      "intro": "Each color variant is a fill/text pair defined at `:root` in `data-display.css`. The default pair references the neutral scale; the four status pairs are literal tinted backgrounds with a darker same-hue text.",
+      "rows": [
+        { "token": "--wf-badge-default-bg / -text", "value": "#f3f4f6 / #374151", "use": "Bare `wf-badge` — neutral gray pill (via `--wf-color-neutral-100` / `-700`)." },
+        { "token": "--wf-badge-primary-bg / -text", "value": "#dbeafe / #1e40af", "use": "`wf-badge-primary` — informational blue." },
+        { "token": "--wf-badge-success-bg / -text", "value": "#dcfce7 / #166534", "use": "`wf-badge-success` — healthy / positive green." },
+        { "token": "--wf-badge-warning-bg / -text", "value": "#fef3c7 / #92400e", "use": "`wf-badge-warning` — pending amber." },
+        { "token": "--wf-badge-error-bg / -text", "value": "#fee2e2 / #991b1b", "use": "`wf-badge-error` — hard-fail red." }
+      ]
+    },
+    {
+      "type": "usage",
+      "title": "Avatar",
+      "body": "`wf-avatar` is a 40px circle that holds either `wf-avatar-initials` (uppercase, weight 600, neutral-gray text on a neutral-gray fill) or an image via `wf-avatar-image` (object-fit: cover). Initials are the fallback when no photo exists — the markup is designed so the same circle works either way.\n\nFour sizes: `wf-avatar-sm` (32px), default (40px), `wf-avatar-lg` (56px), `wf-avatar-xl` (80px) — and the initials font scales with each. Stack several with `wf-avatar-group` (each child gets a 2px white ring and a -12px overlap; the first child resets its margin), and cap the stack with a `wf-avatar-count` chip (`+5`). For presence, wrap the avatar in `wf-avatar-wrapper` and drop a `wf-avatar-status` dot in the bottom-right corner."
+    },
+    {
+      "type": "specimen",
+      "title": "Avatar sizes",
+      "image": "specimens/badge-avatar/03-avatar-sizes.png",
+      "caption": "Small (32px), Medium (40px / default), Large (56px), X-Large (80px). The `wf-avatar-initials` font scales 12 / 14 / 20 / 28px to match."
+    },
+    {
+      "type": "variants",
+      "title": "Avatar variants",
+      "intro": "The base `wf-avatar` is the medium (40px) circle. Size, group, count, and status classes compose onto it.",
+      "rows": [
+        { "name": "wf-avatar", "when": "Default 40px circle with initials fallback.", "code": "<div class=\"wf-avatar\"><span class=\"wf-avatar-initials\">JD</span></div>" },
+        { "name": "wf-avatar-image", "when": "Photo avatar — image fills and crops to the circle (object-fit: cover).", "code": "<div class=\"wf-avatar\"><img class=\"wf-avatar-image\" src=\"/u/jd.jpg\" alt=\"John Doe\"></div>" },
+        { "name": "wf-avatar-sm", "when": "32px — list rows, activity feeds, inline name chips.", "code": "<div class=\"wf-avatar wf-avatar-sm\"><span class=\"wf-avatar-initials\">JD</span></div>" },
+        { "name": "wf-avatar-lg", "when": "56px — section headers, prominent assignees.", "code": "<div class=\"wf-avatar wf-avatar-lg\"><span class=\"wf-avatar-initials\">JD</span></div>" },
+        { "name": "wf-avatar-xl", "when": "80px — profile cards and hero identity blocks.", "code": "<div class=\"wf-avatar wf-avatar-xl\"><span class=\"wf-avatar-initials\">JD</span></div>" },
+        { "name": "wf-avatar-group", "when": "Stack of overlapping avatars (-12px overlap, 2px white ring) for shared assignment.", "code": "<div class=\"wf-avatar-group\"><div class=\"wf-avatar\"><span class=\"wf-avatar-initials\">JD</span></div><div class=\"wf-avatar\"><span class=\"wf-avatar-initials\">AS</span></div></div>" },
+        { "name": "wf-avatar-count", "when": "Overflow chip closing a group — gray fill, `+N` instead of initials.", "code": "<div class=\"wf-avatar wf-avatar-count\"><span class=\"wf-avatar-initials\">+5</span></div>" }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "Status indicator",
+      "image": "specimens/badge-avatar/04-avatar-status-indicator.png",
+      "caption": "`wf-avatar-wrapper` positions a `wf-avatar-status` dot in the corner: online (green), away (amber), busy (red), offline (gray). The 2px white border keeps the dot legible against any avatar fill."
+    },
+    {
+      "type": "variants",
+      "title": "Presence (status dot)",
+      "intro": "Presence is a separate concern from the avatar: wrap the avatar in `wf-avatar-wrapper` (position: relative) so the absolutely-positioned `wf-avatar-status` dot anchors to its bottom-right corner.",
+      "rows": [
+        { "name": "wf-avatar-status-online", "when": "Green — user is active. Maps to `--wf-color-success`.", "code": "<span class=\"wf-avatar-status wf-avatar-status-online\"></span>" },
+        { "name": "wf-avatar-status-away", "when": "Amber — idle / away. Maps to `--wf-color-warning`.", "code": "<span class=\"wf-avatar-status wf-avatar-status-away\"></span>" },
+        { "name": "wf-avatar-status-busy", "when": "Red — do-not-disturb / busy. Maps to `--wf-color-error`.", "code": "<span class=\"wf-avatar-status wf-avatar-status-busy\"></span>" },
+        { "name": "wf-avatar-status-offline", "when": "Gray — offline / unknown. Maps to `--wf-color-neutral-400`.", "code": "<span class=\"wf-avatar-status wf-avatar-status-offline\"></span>" }
+      ]
+    },
+    {
+      "type": "tokens",
+      "title": "Avatar & dot tokens",
+      "intro": "Avatar fills come from the neutral scale; status dots reuse the same semantic status colors as the badge so presence reads consistently with the rest of the system.",
+      "rows": [
+        { "token": "--wf-avatar-bg", "value": "#e5e7eb", "use": "Default avatar fill — `--wf-color-neutral-200`." },
+        { "token": "--wf-avatar-text", "value": "#374151", "use": "Initials color — `--wf-color-neutral-700`." },
+        { "token": "--wf-color-success", "value": "#16a34a", "use": "online dot / success dot." },
+        { "token": "--wf-color-warning", "value": "#d97706", "use": "away dot / warning dot." },
+        { "token": "--wf-color-error", "value": "#dc2626", "use": "busy dot / error dot." },
+        { "token": "--wf-color-neutral-400", "value": "#9ca3af", "use": "offline dot / bare default dot." }
+      ]
+    },
+    {
+      "type": "code",
+      "title": "Canonical usage",
+      "lang": "html",
+      "code": "<!-- Status badge — color carries intent, text carries the meaning -->\n<span class=\"wf-badge wf-badge-success\">Active</span>\n<span class=\"wf-badge wf-badge-warning\">Pending Signature</span>\n<span class=\"wf-badge wf-badge-error\">Expired</span>\n\n<!-- Dot + label so the signal survives without color -->\n<span class=\"wf-badge-with-dot\">\n  <span class=\"wf-badge-dot wf-badge-dot-success\"></span>\n  Online\n</span>\n\n<!-- Avatar with initials fallback -->\n<div class=\"wf-avatar\">\n  <span class=\"wf-avatar-initials\">JD</span>\n</div>\n\n<!-- Avatar with presence dot -->\n<div class=\"wf-avatar-wrapper\">\n  <div class=\"wf-avatar wf-avatar-sm\">\n    <span class=\"wf-avatar-initials\">JD</span>\n  </div>\n  <span class=\"wf-avatar-status wf-avatar-status-online\"></span>\n</div>\n\n<!-- Stacked group with overflow count -->\n<div class=\"wf-avatar-group\">\n  <div class=\"wf-avatar\"><span class=\"wf-avatar-initials\">JD</span></div>\n  <div class=\"wf-avatar\"><span class=\"wf-avatar-initials\">AS</span></div>\n  <div class=\"wf-avatar wf-avatar-count\"><span class=\"wf-avatar-initials\">+5</span></div>\n</div>",
+      "note": "The status dot lives in `wf-avatar-wrapper`, not inside `wf-avatar` — the avatar circle has `overflow: hidden`, so a dot placed inside would be clipped."
+    },
+    {
+      "type": "rules",
+      "title": "Color is a signal, not decoration",
+      "intro": "These are the system's hard rules (`DESIGN.md §3.1`, §3.3) applied to badges and dots.",
+      "items": [
+        { "rule": "A status color only appears when there is real status to report.", "why": "Success green means healthy/done; warning amber means pending; error red means failed. Painting a category tag green to make it 'pop' is a §3.1 violation." },
+        { "rule": "Categories, tags, and counts stay on the bare neutral `wf-badge`.", "why": "If a tag isn't reporting status, it has no business borrowing a status color — reserve the palette so the colored badges still mean something." },
+        { "rule": "Color is never the only signal — pair every status color with its label.", "why": "DESIGN.md §3.3 / §6.3: red alone isn't an error. The badge text or the `wf-badge-with-dot` label is the non-color signal that carries to colorblind and AT users." },
+        { "rule": "Don't recolor presence dots for emphasis.", "why": "online/away/busy/offline map 1:1 to success/warning/error/neutral. Reusing those hues for a 'new' or 'featured' marker collides with their reserved meaning." }
+      ]
+    },
+    {
+      "type": "dosdonts",
+      "title": "Badge color do's and don'ts",
+      "items": [
+        { "do": "<span class=\"wf-badge wf-badge-error\">Expired</span>", "dont": "<span class=\"wf-badge wf-badge-error\">Premium</span>", "why": "Error red is reserved for hard-fail status (DESIGN.md §3.1). A premium/marketing label borrowing red trains users to ignore the color where it actually warns." },
+        { "do": "<span class=\"wf-badge\">Natural Gas</span>", "dont": "<span class=\"wf-badge wf-badge-success\">Natural Gas</span>", "why": "A product category is neutral, not status — it stays on the bare gray badge. Green here dilutes the meaning of 'healthy/active' everywhere else." },
+        { "do": "<span class=\"wf-badge-with-dot\"><span class=\"wf-badge-dot wf-badge-dot-error\"></span> Busy</span>", "dont": "<span class=\"wf-badge-dot wf-badge-dot-error\"></span>", "why": "A lone red dot communicates nothing to a colorblind user. §3.3: pair the dot with a text label so the signal isn't color-only." },
+        { "do": "wf-badge-warning for Pending", "dont": "wf-badge-warning as a 'tip'/highlight accent", "why": "Warning amber is reserved for attention-needed status (§3.1 'Never used for: highlighting, tip callouts'). Use weight or hierarchy for emphasis, not the status palette." }
+      ]
+    },
+    {
+      "type": "gotchas",
+      "items": [
+        { "title": "Default badge has no modifier class", "detail": "The neutral pill is just `wf-badge` — there is no `wf-badge-default`. The color modifiers (`-primary`, `-success`, `-warning`, `-error`) override the default fill/text pair that ships on the base class." },
+        { "title": "Status dot must live outside the avatar circle", "detail": "`wf-avatar` sets `overflow: hidden` so images crop cleanly — a `wf-avatar-status` dot placed inside the circle gets clipped. Put the dot as a sibling inside `wf-avatar-wrapper` (which is `position: relative`); the dot is absolutely positioned to the corner." },
+        { "title": "Group children need the group as parent to overlap", "detail": "The -12px overlap, 2px white ring, and first-child margin reset are all scoped to `.wf-avatar-group .wf-avatar`. A bare `wf-avatar` outside the group won't overlap — and `wf-avatar-count` only gets its gray fill inside the group context." },
+        { "title": "Dot shrinks inside a labelled wrapper", "detail": "A standalone `wf-badge-dot` is 8px, but `.wf-badge-with-dot .wf-badge-dot` narrows it to 6px so it sits proportionally beside text. Same class, two sizes depending on context." },
+        { "title": "Badge color tokens are literal hex, not aliases", "detail": "The four status fills (`#dbeafe`, `#dcfce7`, `#fef3c7`, `#fee2e2`) and their text colors are defined directly in `data-display.css`, not pulled from `tokens.css`. The badge tints are intentionally lighter than the solid `--wf-color-success`/`-warning`/`-error` used for dots — don't expect a colored badge and a status dot of the 'same' intent to be the identical hue." }
+      ]
+    }
+  ]
+}

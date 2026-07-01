@@ -1,0 +1,174 @@
+{
+  "slug": "colors",
+  "title": "Colors",
+  "order": 2,
+  "group": "Foundations",
+  "intro": "Every Excalibrr color is a tenant-themed CSS variable. Each portal theme (PE, OSP, Sunoco, BP, …) defines the same semantic variable set in LESS, so one prototype reskins across all eleven tenants — provided it never hardcodes a hex.",
+  "demoPath": "/DesignSystem/Colors",
+  "searchTerms": ["colors", "palette", "theme", "tokens", "css variables", "gray scale", "status colors", "tenant themes", "brand", "theme-color", "success", "error", "warning", "bg"],
+  "blocks": [
+    {
+      "type": "usage",
+      "title": "How theming works",
+      "body": "Each tenant theme is a LESS file that sets ten core variables — `@theme-color-1` through `@theme-color-4`, `@theme-optimal`, and five control colors (`@theme-error`, `@theme-success`, `@theme-warning`, `@theme-info`, `@theme-option`) — plus three surface backgrounds (`@bg-1`–`@bg-3`), then imports `ThemeBase/light.less` or `dark.less`, which compiles them into `:root` CSS custom properties and derives the rest: `-dim` tints, `-trans` 15%-alpha washes, gradients, the gray ramp, and the fixed `--site-bg` page canvas.\n\nPrototypes consume only the CSS variables: `var(--theme-color-1)`, `var(--theme-success-dim)`, `var(--gray-500)`. A hardcoded hex looks right in one tenant and wrong in ten. Reach for this entry whenever you pick any color — brand, action, status, text, or surface."
+    },
+    {
+      "type": "specimen",
+      "title": "Pricing Engine (PE Light) palette",
+      "image": "specimens/colors/01-pe-palette.png",
+      "caption": "The five theme slots in the default PE Light theme: --theme-color-1 teal (nav, headers, primary actions), --theme-color-2 green (Save/Create/Select), --theme-color-3 light green (positive indicators), --theme-color-4 purple (highlights), --theme-optimal gold (recommended indicators) — each with a live button/tag example."
+    },
+    {
+      "type": "specimen",
+      "title": "Online Selling Platform (OSP) palette",
+      "image": "specimens/colors/02-osp-palette.png",
+      "caption": "Same five slots, OSP values: near-black navy primary #0F1121, sky-blue actions #4BADE9, slate tertiary #466185, amber accent #F1AF0F. The roles are identical to PE; only the hues change."
+    },
+    {
+      "type": "specimen",
+      "title": "PE vs OSP side by side",
+      "image": "specimens/colors/03-pe-vs-osp.png",
+      "caption": "The same role resolves to different hues per tenant. Secondary is the trap: green #51B073 in PE, blue #4BADE9 in OSP. Code that assumes --theme-color-2 'is green' breaks the moment the theme switches."
+    },
+    {
+      "type": "tokens",
+      "title": "Brand & theme slots",
+      "intro": "Defined per tenant; values shown are PE Light / OSP. The four theme slots ship `-dim` (light tint) and `-trans` (15% alpha) derivatives; `--theme-optimal` ships `-dim` only.",
+      "rows": [
+        { "token": "--theme-color-1", "value": "#0C5A58 (PE) · #0F1121 (OSP)", "use": "Brand: navigation, headers, primary actions, grid selection accents. The only variable guaranteed to read as 'the brand' in every tenant." },
+        { "token": "--theme-color-2", "value": "#51B073 (PE) · #4BADE9 (OSP)", "use": "Affirmative actions — Save, Create, Select. Also antd @primary-color, so default antd focus/active states inherit it." },
+        { "token": "--theme-color-3", "value": "#64D28D (PE) · #466185 (OSP)", "use": "Tertiary/supporting accents; dark-theme nav highlight." },
+        { "token": "--theme-color-4", "value": "#725ac1 (PE) · #F1AF0F (OSP)", "use": "Highlights and special callouts. Its -trans wash marks dirty-edited grid cells." },
+        { "token": "--theme-optimal", "value": "#c79c02 (most tenants)", "use": "Optimal / recommended indicators only — never decoration." },
+        { "token": "--theme-color-1-trans", "value": "fade(theme-color-1, 15%)", "use": "Row hover, selected-row, and range-selection backgrounds in GraviGrid." }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "Action colors",
+      "image": "specimens/colors/04-action-colors.png",
+      "caption": "Action semantics across both portals: --theme-color-2 for Save/Create/Select, --theme-error for Cancel/Exit/Delete, --theme-warning for caution actions, --theme-info badges, and the shared neutral --theme-option #8dabc4."
+    },
+    {
+      "type": "specimen",
+      "title": "Status & feedback",
+      "image": "specimens/colors/05-status-feedback.png",
+      "caption": "Full-strength status tokens (success #64d28d, error #f22939 PE / #E42A11 OSP, warning #f26e29 PE / #FF9900 OSP) plus the fixed pastel -dim backgrounds: success-dim #DBF4E4, warning-dim #FCE0D1, error-dim #FCD1D5."
+    },
+    {
+      "type": "tokens",
+      "title": "Status & semantic palette",
+      "intro": "Status communication uses these and nothing else. Light themes define `-dim` as fixed pastels; dark themes compute `-dim` as 15% alpha of the parent — pair, don't hardcode.",
+      "rows": [
+        { "token": "--theme-success", "value": "#64d28d (PE/OSP)", "use": "Completion, positive outcomes, Active tags, success text and borders." },
+        { "token": "--theme-error", "value": "#f22939 (PE) · #E42A11 (OSP)", "use": "Validation errors, destructive actions (Cancel/Delete), error text." },
+        { "token": "--theme-warning", "value": "#f26e29 (PE) · #FF9900 (OSP)", "use": "Caution states, at-risk indicators, warning actions." },
+        { "token": "--theme-info", "value": "#cce5ff (PE) · #74CDD7 (OSP)", "use": "Informational badges. Pale tint in PE, saturated teal in OSP — never rely on it carrying white text." },
+        { "token": "--theme-option", "value": "#8dabc4 (all tenants)", "use": "Neutral option-selection chips; the one status hue shared verbatim by every theme." },
+        { "token": "--theme-success-dim", "value": "#DBF4E4 (light themes)", "use": "Subtle success background; pair with --theme-success text or border." },
+        { "token": "--theme-warning-dim", "value": "#FCE0D1 (light themes)", "use": "Subtle warning background; pair with --theme-warning accents." },
+        { "token": "--theme-error-dim", "value": "#FCD1D5 (light themes)", "use": "Subtle error background; pair with --theme-error accents." },
+        { "token": "--theme-success-trans / -warning-trans / -error-trans", "value": "fade(parent, 15%)", "use": "Hover and selection washes where the surface underneath must show through." }
+      ]
+    },
+    {
+      "type": "tokens",
+      "title": "Grays & surfaces",
+      "intro": "The gray ramp is generated from `--dark-gray: #303030` via LESS lighten(); resolved PE Light values below. The number tracks contrast against the page background, not absolute darkness — see gotchas for dark-theme behavior.",
+      "rows": [
+        { "token": "--gray-100", "value": "≈#fcfcfc — near-WHITE", "use": "Lightest neutral: hover fills on colored buttons, text on dark fills. Not a dark gray." },
+        { "token": "--gray-200", "value": "≈#e8e8e8", "use": "Hairline borders (.bordered, .border-bottom), default button fill, control hover." },
+        { "token": "--gray-300", "value": "≈#dddddd", "use": "antd @border-color-base, grid borders, checkbox outlines." },
+        { "token": "--gray-400", "value": "≈#c4c4c4", "use": "Hint/placeholder text (Texto appearance='hint')." },
+        { "token": "--gray-500", "value": "≈#a3a3a3", "use": "Secondary text (Texto appearance='medium')." },
+        { "token": "--gray-600", "value": "≈#777777", "use": "Toolbar links, muted icon buttons." },
+        { "token": "--gray-700", "value": "≈#595959", "use": "Default body text — antd @text-color and Texto appearance='default'." },
+        { "token": "--gray-800", "value": "≈#3d3d3d", "use": "Strong text (Texto appearance='primary'). Highest gray that exists in every theme." },
+        { "token": "--gray-900", "value": "≈#353535 — light themes only", "use": "Maximum-contrast text, grid foreground. Undefined in dark themes." },
+        { "token": "--bg-1", "value": "#ffffff", "use": "Card and component backgrounds (antd @component-background)." },
+        { "token": "--bg-2", "value": "#f8f9fa", "use": "Panels, toolbars, default button background." },
+        { "token": "--bg-3", "value": "#eef0f8", "use": "Inset wells, hover on static range pickers." },
+        { "token": "--site-bg", "value": "#f5f6fa", "use": "Page canvas behind everything." }
+      ]
+    },
+    {
+      "type": "specimen",
+      "title": "Tenant themes",
+      "image": "specimens/colors/06-tenant-themes.png",
+      "caption": "All eleven tenant palettes — Sunoco expanded to show the full ten-variable set (four theme slots, optimal, and five control colors). Every tenant fills the same slots; this is why prototypes must stay on var(--…)."
+    },
+    {
+      "type": "rules",
+      "title": "Choosing a color",
+      "intro": "Work top-down: brand, action, status, text, surface.",
+      "items": [
+        { "rule": "Brand chrome — nav, headers, primary buttons — uses --theme-color-1.", "why": "It is the only slot that reads as 'the brand' in all eleven tenants; --theme-color-2 swings hue." },
+        { "rule": "Affirmative actions (Save, Create, Select) use --theme-color-2 via <GraviButton theme2>; destructive actions use --theme-error via <GraviButton error>.", "why": "The role is stable across tenants even though the hue is not." },
+        { "rule": "Status surfaces pair the -dim tint as background with the full-strength token for text, icon, or border.", "why": "Full-strength status colors as large fills overwhelm the grid-dense layouts these portals live in." },
+        { "rule": "Neutral text comes off the gray ramp: --gray-700 body, --gray-500 secondary, --gray-400 hints.", "why": "These are the values antd and Texto already resolve to — matching them keeps custom markup indistinguishable from library output." },
+        { "rule": "Surfaces stack --bg-1 cards on --bg-2 panels on --bg-3 wells over --site-bg.", "why": "The three-step background scale is how depth is communicated without shadows." },
+        { "rule": "Reserve --theme-optimal for optimal/recommended indicators and --theme-color-4 for highlights.", "why": "Both lose meaning the moment they decorate anything else." },
+        { "rule": "Money copy is decimal dollars — $0.0100/gal, never cents symbols.", "why": "Gravitate-wide convention; seed data, axes, and inputs all follow it." }
+      ]
+    },
+    {
+      "type": "props",
+      "title": "GraviButton color props",
+      "intro": "Color on GraviButton is boolean flags plus an appearance axis — never antd `type`. Verified against Controls/Buttons/GraviButton.tsx.",
+      "rows": [
+        { "prop": "theme1", "type": "boolean", "notes": "Brand fill --theme-color-1. The replacement for antd type='primary'." },
+        { "prop": "theme2", "type": "boolean", "notes": "Action fill --theme-color-2 — Save, Create, Select." },
+        { "prop": "theme3", "type": "boolean", "notes": "Tertiary fill --theme-color-3." },
+        { "prop": "success / warning / error", "type": "boolean", "notes": "Status fills. Set exactly one color flag — when several are truthy the last assignment in source wins (success beats warning beats error beats theme3…)." },
+        { "prop": "appearance", "type": "'filled' | 'outlined'", "default": "'filled'", "notes": "Outlined renders the token's -dim background, 1px token border, and token-colored text. The value is 'outlined', not 'outline'." },
+        { "prop": "buttonText", "type": "string | JSX.Element", "notes": "The label. GraviButton renders buttonText, not React children — self-close the tag." },
+        { "prop": "theme4", "type": "boolean", "notes": "Accepted by the type but never mapped to a class — renders the gray default. Do not use." }
+      ]
+    },
+    {
+      "type": "variants",
+      "title": "Texto appearance → color token",
+      "intro": "Text color goes through Texto's appearance prop, which maps to the gray ramp and status tokens.",
+      "rows": [
+        { "name": "default", "when": "Body copy — resolves to --gray-700.", "code": "<Texto category='p1'>…</Texto>" },
+        { "name": "primary", "when": "Strongest neutral emphasis — --gray-800.", "code": "<Texto appearance='primary'>…</Texto>" },
+        { "name": "medium", "when": "Gray secondary text — --gray-500. This is the 'muted' you usually want.", "code": "<Texto appearance='medium'>…</Texto>" },
+        { "name": "hint", "when": "Placeholders and de-emphasized hints — --gray-400.", "code": "<Texto appearance='hint'>…</Texto>" },
+        { "name": "secondary", "when": "Theme accent text — --theme-color-2. NOT gray: green in PE, blue in OSP.", "code": "<Texto appearance='secondary'>…</Texto>" },
+        { "name": "success / warning / error", "when": "Status text — the matching --theme-* token.", "code": "<Texto appearance='success'>…</Texto>" },
+        { "name": "optimal", "when": "Optimal/recommended callout text — --theme-optimal.", "code": "<Texto appearance='optimal'>…</Texto>" },
+        { "name": "white", "when": "Text on dark or colored fills — --gray-100." }
+      ]
+    },
+    {
+      "type": "code",
+      "title": "Canonical status surface + actions",
+      "code": "// Status surface: -dim background, full-strength accent, gray-ramp text — all via vars\n<Vertical gap={8} style={{ background: 'var(--theme-success-dim)', borderLeft: '3px solid var(--theme-success)', padding: 12 }}>\n  <Texto category='label' appearance='success'>Published</Texto>\n  <Texto category='p2' appearance='medium'>Margin moved $0.0250/gal since the last quote.</Texto>\n</Vertical>\n\n<Horizontal gap={12} justifyContent='flex-end'>\n  <GraviButton error appearance='outlined' buttonText='Cancel' onClick={onCancel} />\n  <GraviButton theme2 buttonText='Save Quote' onClick={onSave} />\n</Horizontal>",
+      "note": "Layout props on Vertical/Horizontal (gap, justifyContent), boolean color flags and buttonText on GraviButton, decimal-dollar money copy. No hex anywhere."
+    },
+    {
+      "type": "dosdonts",
+      "title": "Do / Don't",
+      "items": [
+        { "do": "Reference var(--theme-success), var(--gray-500), var(--bg-2) in custom styles.", "dont": "Copy a hex out of one tenant's palette into a component.", "why": "Hardcoded hex survives exactly one theme; eleven tenants share these slots." },
+        { "do": "Use --theme-color-1 for brand chrome.", "dont": "Use --theme-color-2 to mean 'the brand color'.", "why": "--theme-color-2 swings green (PE) to blue (OSP) to red (Sunoco) across tenants." },
+        { "do": "<GraviButton theme1 buttonText='Publish' /> and <GraviButton theme2 buttonText='Save' />.", "dont": "<GraviButton type='primary'> or <GraviButton theme='success'>.", "why": "Color is boolean flags (theme1, theme2, success, error…), not antd type or a theme string." },
+        { "do": "<Texto appearance='medium'> for gray secondary text.", "dont": "<Texto appearance='secondary'> for gray.", "why": "secondary maps to --theme-color-2 — it is BLUE in OSP, green in PE, never gray." },
+        { "do": "Pair -dim backgrounds with the full-strength token for text and borders.", "dont": "Flood large surfaces with full-strength status color.", "why": "The -dim/-strong pairing keeps status legible inside dense grids without shouting." },
+        { "do": "appearance='outlined' for the outline button style.", "dont": "appearance='outline'.", "why": "The prop value is 'outlined'; 'outline' silently falls through to no appearance class." }
+      ]
+    },
+    {
+      "type": "gotchas",
+      "title": "Gotchas",
+      "items": [
+        { "title": "--gray-100 is near-WHITE", "detail": "The ramp runs light to dark: --gray-100 ≈ #fcfcfc, --gray-900 ≈ #353535 (PE Light). Sessions trained on inverted scales reach for gray-100 expecting near-black and ship invisible text. Strong text is --gray-700/800/900; light fills are --gray-100/200." },
+        { "title": "--theme-color-2 swings hue across themes", "detail": "Green #51B073 in PE, blue #4BADE9 in OSP, red #F04B34 in Sunoco. Use it for the Save/Create/Select role only; use --theme-color-1 whenever you mean 'brand color'." },
+        { "title": "Dark themes flip the gray ramp and drop --gray-900", "detail": "In dark.less the ramp inverts (--gray-100 ≈ #3d3d3d near-black, --gray-800 ≈ #fcfcfc near-white) and --gray-900 is not defined at all — var(--gray-900) resolves to nothing. Read the index as 'contrast against the page background' and cap theme-proof styles at --gray-800." },
+        { "title": "Texto appearance='theme3' is broken", "detail": "The component emits class text-theme-3 but the stylesheet defines .text-theme3 — the appearance silently renders default gray. Use an explicit style with var(--theme-color-3) if you need that hue." },
+        { "title": "GraviButton theme4 does nothing", "detail": "The prop exists in the type but is never mapped to a CSS class; the button renders the gray default. There is no button variant for --theme-color-4 — apply it via custom styles when needed." },
+        { "title": "-dim means different things in light and dark themes", "detail": "Light themes define --theme-success-dim etc. as fixed opaque pastels (#DBF4E4); dark themes compute them as 15% alpha of the parent. Never assume -dim is opaque — content behind it can show through in dark themes." }
+      ]
+    }
+  ]
+}

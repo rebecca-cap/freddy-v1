@@ -1,0 +1,14 @@
+{
+  "path": "/PricingEngine/QuoteBookMidday",
+  "title": "Midday",
+  "finalUrl": "http://localhost:5173/PricingEngine/QuoteBookMidday",
+  "rootLen": 175763,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 10,
+  "stuckLoaders": [],
+  "emptyGrids": []
+}

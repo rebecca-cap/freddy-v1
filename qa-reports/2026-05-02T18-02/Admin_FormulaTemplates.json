@@ -1,0 +1,17 @@
+{
+  "path": "/Admin/FormulaTemplates",
+  "title": "Formula Templates",
+  "finalUrl": "http://localhost:3001/Admin/FormulaTemplates",
+  "rootLen": 86388,
+  "crashed": false,
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 429 ()"
+  ],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [
+    "MarketPlatform/ContractTemplates/GetAll",
+    "MarketPlatform/ContractTemplates/Metadata"
+  ],
+  "consoleEventCount": 15
+}

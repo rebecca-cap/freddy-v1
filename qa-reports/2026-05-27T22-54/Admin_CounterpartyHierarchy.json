@@ -1,0 +1,14 @@
+{
+  "path": "/Admin/CounterpartyHierarchy",
+  "title": "Counterparty Hierarchy",
+  "finalUrl": "http://localhost:5173/Admin/CounterpartyHierarchy",
+  "rootLen": 86422,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 10,
+  "stuckLoaders": [],
+  "emptyGrids": []
+}

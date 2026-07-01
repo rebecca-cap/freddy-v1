@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>05 · The Capture Loop — Concept Wireframe</title>
+<link rel="stylesheet" href="wf-base.css" />
+</head>
+<body>
+<div class="wfp wfp-wide">
+  <div class="wf-banner">Concept wireframe · <b>05 / Capture loop</b> · rough &amp; low-fi — layout and idea, not final visuals. Obsidian-purple = the vault; Hub-green/blue = the app.</div>
+
+  <p class="scr-eyebrow">Move 4 · Stay populated</p>
+  <h1 class="scr-title">The vault fills itself</h1>
+  <p class="scr-sub">A second brain only works if it stays fed. This move makes capture a <b>side effect of work you already do</b> — promoting a project, running a PD sync, letting Claude Code build something. Notes get created and updated automatically, so the vault doesn't depend on anyone remembering to write things down. Then the captured knowledge loops back into the Hub and informs the next project.</p>
+
+  <!-- ===== the main flow ===== -->
+  <div class="frame-label">◇ Capture → vault → surfaced → informs next project</div>
+  <div class="d-wrap" style="margin-bottom:var(--wf-space-6);">
+    <div class="d-row" style="align-items:stretch;">
+
+      <!-- COLUMN 1 — Triggers -->
+      <div style="flex:1.05;">
+        <div class="frame-label" style="margin-bottom:8px;">1 · Triggers</div>
+        <div class="d-col">
+          <div class="d-node d-node-primary" style="text-align:left;min-width:0;">
+            <h4>🗂️ Hub events</h4>
+            <p>New project · phase change (lo-fi→hi-fi→handoff) · decision logged.</p>
+            <span class="d-tag">in-app</span>
+          </div>
+          <div class="d-node" style="text-align:left;min-width:0;">
+            <h4>🎙️ PD-sync skill</h4>
+            <p>Meeting notes from Drive → a Syncs note.</p>
+            <span class="d-tag">/pd-syncs</span>
+          </div>
+          <div class="d-node d-node-obsidian" style="text-align:left;min-width:0;">
+            <h4>🤖 Claude Code</h4>
+            <p>Writes notes directly — plain files on disk while it works.</p>
+            <span class="d-tag">file write</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-arrow d-arrow-r" title="feeds" style="align-self:center;"></div>
+
+      <!-- COLUMN 2 — Write path -->
+      <div style="flex:1.15;">
+        <div class="frame-label" style="margin-bottom:8px;">2 · Write path</div>
+        <div class="d-col">
+          <div class="d-node" style="text-align:left;min-width:0;">
+            <h4>📄 Scaffold from Templates</h4>
+            <p>New project → <span class="wf-mono" style="font-size:11px;">Projects/&lt;name&gt;.md</span> from the Project template (Templates folder, 7 notes).</p>
+          </div>
+          <div class="d-node" style="text-align:left;min-width:0;">
+            <h4>✏️ Patch frontmatter</h4>
+            <p>gray-matter stringify flips <span class="wf-mono" style="font-size:11px;">status:</span> lofi → hifi → handoff. Body untouched.</p>
+          </div>
+          <div class="d-node" style="text-align:left;min-width:0;">
+            <h4>🌱 Seed a note</h4>
+            <p><span class="wf-mono" style="font-size:11px;">obsidian://new</span> or a file write creates a Decision / Retro stub.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-arrow d-arrow-r" title="writes into" style="align-self:center;"></div>
+
+      <!-- COLUMN 3 — Vault -->
+      <div style="flex:1;display:flex;">
+        <div style="flex:1;display:flex;flex-direction:column;">
+          <div class="frame-label" style="margin-bottom:8px;">3 · Vault</div>
+          <div class="d-node d-node-obsidian" style="text-align:left;flex:1;display:flex;flex-direction:column;justify-content:center;min-width:0;">
+            <h4>🧠 The /vault</h4>
+            <p style="margin-bottom:8px;">Decisions (6) · Projects (5) · Learnings (7) · Syncs (2) — and the rest, all bound together by <span class="wf-mono" style="font-size:11px;">[[wikilinks]]</span>.</p>
+            <div class="stack" style="gap:5px;">
+              <div><span class="wl">Use Excalibrr Over Raw Antd</span></div>
+              <div><span class="wl">Tailwind Merge Class Conflicts</span></div>
+              <div><span class="wl">Grizmo</span></div>
+            </div>
+            <span class="d-tag">markdown + YAML on disk</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- loop back -->
+    <div class="row" style="justify-content:center;margin:var(--wf-space-5) 0 var(--wf-space-3);">
+      <span class="muted-box" style="border-style:solid;border-color:var(--wf-obsidian);background:var(--wf-obsidian-bg);color:var(--wf-obsidian-text);">
+        <span class="d-arrow d-arrow-d" style="font-size:16px;vertical-align:middle;color:var(--wf-obsidian);"></span>
+        &nbsp;surfaced back into the Hub — read-only, no manual copy
+      </span>
+    </div>
+
+    <!-- Back in the Hub -->
+    <div class="frame-label" style="margin-bottom:8px;">4 · Back in the Hub</div>
+    <div class="d-row" style="align-items:stretch;">
+      <div class="d-node d-node-primary" style="text-align:left;">
+        <h4>📚 Obsidian KB page <span class="wf-badge wf-badge-primary wf-badge-sm">03</span></h4>
+        <p style="margin-top:6px;">The whole vault, browsable read-only inside the Hub — fresh on every load.</p>
+      </div>
+      <div class="d-arrow d-arrow-r" style="align-self:center;"></div>
+      <div class="d-node d-node-primary" style="text-align:left;">
+        <h4>🔗 Project → Knowledge <span class="wf-badge wf-badge-primary wf-badge-sm">04</span></h4>
+        <p style="margin-top:6px;">Each project shows its linked Decisions / Patterns / Learnings — which inform the next project.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout callout-obsidian"><b>Single write-path rule (research).</b> Write to files on disk when Obsidian may be closed; use the Local REST API only when it's <i>guaranteed</i> open. Never both at once, or Obsidian's in-memory copy clobbers the disk edits.</div>
+
+  <div class="callout callout-why"><b>Why this matters.</b> Obsidian's #1 failure mode is silent rot — notes nobody maintains. Making capture a side effect of work you already do is the antidote: the vault stays current without anyone treating it as a chore.</div>
+
+  <!-- ===== worked example ===== -->
+  <h2 class="scr-section-h">Worked example — Grizmo moves to hi-fi</h2>
+  <div class="wf-card">
+    <div class="wf-card-header">
+      <div>
+        <h3 class="wf-card-title" style="font-size:var(--wf-text-base);">One promotion, zero manual edits</h3>
+        <p class="wf-card-subtitle">A phase change in the Hub flows all the way to the vault and back, hands-off.</p>
+      </div>
+      <span class="wf-badge wf-badge-obsidian"><span class="wf-dot wf-dot-obsidian"></span> Projects/Grizmo.md</span>
+    </div>
+    <div class="wf-card-body stack" style="gap:var(--wf-space-4);">
+
+      <div class="row" style="align-items:flex-start;flex-wrap:nowrap;">
+        <span class="anno">1</span>
+        <div style="font-size:var(--wf-text-sm);">
+          Frank promotes <b>Grizmo</b> from lo-fi to hi-fi in the Hub — the same phase action he already uses. No vault step.
+        </div>
+      </div>
+      <hr class="soft" style="margin:0;" />
+
+      <div class="row" style="align-items:flex-start;flex-wrap:nowrap;">
+        <span class="anno">2</span>
+        <div style="font-size:var(--wf-text-sm);flex:1;">
+          The Hub patches <span class="wf-mono" style="font-size:11px;">Projects/Grizmo.md</span> with gray-matter — it rewrites only the frontmatter, the note body is untouched.
+          <div class="fm" style="margin-top:8px;"><span class="k">type:</span> <span class="v">project</span>
+<span class="k">status:</span> <span class="v">hifi</span>   <span class="k"># ← was: lofi</span>
+<span class="k">tags:</span> <span class="v">[grizmo, ai, pricing]</span>
+<span class="k">project:</span> <span class="vl">"[[Grizmo]]"</span>
+<span class="k">date:</span> <span class="v">2026-06-15</span></div>
+        </div>
+      </div>
+      <hr class="soft" style="margin:0;" />
+
+      <div class="row" style="align-items:flex-start;flex-wrap:nowrap;">
+        <span class="anno">3</span>
+        <div style="font-size:var(--wf-text-sm);">
+          The <b>Obsidian KB page</b> (03) and the <b>Grizmo → Knowledge</b> tab (04) reflect <span class="wf-mono" style="font-size:11px;">hifi</span> instantly on next read — no one re-types anything. The vault and the Hub never disagree.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <p class="wf-tert" style="font-size:var(--wf-text-xs);margin-top:var(--wf-space-3);">Triggers shown are the real ones already in play: Hub phase actions, the <span class="wf-mono">/pd-syncs</span> skill, and Claude Code file writes. Folder counts match the live vault (Decisions 6 · Projects 5 · Learnings 7 · Syncs 2).</p>
+</div>
+</body>
+</html>

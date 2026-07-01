@@ -1,0 +1,14 @@
+{
+  "path": "/Admin/PriceConfiguration",
+  "title": "Price Configurations",
+  "finalUrl": "http://localhost:5173/Admin/PriceConfiguration",
+  "rootLen": 72736,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 8,
+  "stuckLoaders": [],
+  "emptyGrids": []
+}

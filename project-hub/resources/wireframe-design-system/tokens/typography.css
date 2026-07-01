@@ -1,0 +1,69 @@
+/**
+ * Gravitate Wireframe Design System - Typography Tokens
+ *
+ * System font stack for optimal performance and native feel.
+ * Type scale follows a modular approach for visual hierarchy.
+ *
+ * Usage:
+ *   font-family: var(--wf-font-family);
+ *   font-size: var(--wf-text-base);
+ *   font-weight: var(--wf-font-medium);
+ *   line-height: var(--wf-leading-normal);
+ */
+
+:root {
+  /* ==========================================================================
+     Font Family
+     System font stack provides native look and fast loading
+     ========================================================================== */
+
+  --wf-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+                    'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
+                    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+                    'Noto Color Emoji';
+
+  /* Monospace for code, data, and technical content */
+  --wf-font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas,
+                  'Liberation Mono', monospace;
+
+  /* ==========================================================================
+     Type Scale
+     7-level scale for establishing clear visual hierarchy
+     ========================================================================== */
+
+  --wf-text-xs: 0.6875rem;    /* 11px - Fine print, badges, timestamps */
+  --wf-text-sm: 0.75rem;      /* 12px - Captions, helper text, table cells */
+  --wf-text-base: 0.875rem;   /* 14px - Body text, default size */
+  --wf-text-md: 1rem;         /* 16px - Emphasized body, large inputs */
+  --wf-text-lg: 1.125rem;     /* 18px - Section headings, card titles */
+  --wf-text-xl: 1.5rem;       /* 24px - Page headings, modal titles */
+  --wf-text-2xl: 2rem;        /* 32px - Hero text, major headings */
+
+  /* ==========================================================================
+     Font Weights
+     Consistent weight scale for emphasis and hierarchy
+     ========================================================================== */
+
+  --wf-font-normal: 400;      /* Regular body text */
+  --wf-font-medium: 500;      /* Subtle emphasis, labels */
+  --wf-font-semibold: 600;    /* Strong emphasis, buttons, headings */
+  --wf-font-bold: 700;        /* Maximum emphasis, critical text */
+
+  /* ==========================================================================
+     Line Heights
+     Optimize readability based on content density
+     ========================================================================== */
+
+  --wf-leading-tight: 1.25;   /* Headings, single-line elements */
+  --wf-leading-normal: 1.5;   /* Body text, default */
+  --wf-leading-relaxed: 1.75; /* Long-form content, improved readability */
+
+  /* ==========================================================================
+     Letter Spacing
+     Fine-tune character spacing for different contexts
+     ========================================================================== */
+
+  --wf-tracking-tight: -0.025em;  /* Large headings */
+  --wf-tracking-normal: 0;        /* Body text */
+  --wf-tracking-wide: 0.025em;    /* All caps, labels */
+}

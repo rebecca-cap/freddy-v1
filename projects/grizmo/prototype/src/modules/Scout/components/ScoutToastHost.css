@@ -1,0 +1,54 @@
+/*
+ * ScoutToastHost — Phase 7.4 toast pill.
+ *
+ * Mirrors `.toast` at gizmo-demo.html ~line 1738: bottom-center fixed pill,
+ * dark background, light text, rounded, soft shadow. Slides in on mount,
+ * fades out when the upstream auto-dismiss removes it.
+ */
+
+.scout-toast-host {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  z-index: 1100; /* above the panel + close-confirm modal */
+  pointer-events: none;
+  font-family: var(--scout-font-family);
+}
+
+.scout-toast {
+  background: var(--scout-text);
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: var(--scout-radius-pill);
+  font-size: var(--scout-font-size-body);
+  line-height: 1.4;
+  box-shadow: var(--scout-shadow-lg);
+  pointer-events: auto;
+  max-width: min(80vw, 420px);
+  text-align: center;
+  animation: scout-toast-in 220ms ease-out;
+}
+
+.scout-toast--success {
+  background: var(--scout-accent);
+}
+
+.scout-toast--warn {
+  background: var(--scout-warn);
+}
+
+.scout-toast--error {
+  background: var(--scout-danger);
+}
+
+@keyframes scout-toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

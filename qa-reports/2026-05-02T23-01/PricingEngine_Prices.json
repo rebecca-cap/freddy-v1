@@ -1,0 +1,14 @@
+{
+  "path": "/PricingEngine/Prices",
+  "title": "Prices",
+  "finalUrl": "http://localhost:3001/PricingEngine/Prices",
+  "rootLen": 26440,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 12,
+  "stuckLoaders": [],
+  "emptyGrids": []
+}

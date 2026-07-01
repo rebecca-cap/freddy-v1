@@ -1,0 +1,10 @@
+{
+  "name": "scout-handoff-capture",
+  "private": true,
+  "type": "module",
+  "version": "0.0.0",
+  "description": "Playwright capture harness for the Scout dev handoff doc",
+  "dependencies": {
+    "playwright": "^1.60.0"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "path": "/Analytics/ByCustomer",
+  "title": "By Customer",
+  "finalUrl": "http://localhost:3001/Analytics/ByCustomer",
+  "rootLen": 118473,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 10,
+  "stuckLoaders": [],
+  "emptyGrids": []
+}

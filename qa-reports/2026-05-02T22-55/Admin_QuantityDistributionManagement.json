@@ -1,0 +1,14 @@
+{
+  "path": "/Admin/QuantityDistributionManagement",
+  "title": "Quantity Distribution",
+  "finalUrl": "http://localhost:3001/Admin/QuantityDistributionManagement",
+  "rootLen": 111799,
+  "crashed": false,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "missingFixtures": [],
+  "consoleEventCount": 10,
+  "stuckLoaders": [],
+  "emptyGrids": []
+}

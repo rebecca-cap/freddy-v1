@@ -1,0 +1,54 @@
+Question 2
+
+@KITT Dev given this data, what is the price difference that I should keep denver at to not lose volume to N platte?
+
+The practical break point is around $0.25/gal — keep Denver no more than ~$0.20–$0.25 above N Platte to hold ~90% of the substitutable volume. Above $0.40 the floor falls out and Denver share collapses to ~45%.
+
+The empirical spread → share curve (46 dual-active days)Spread Rangen daysMean DEN ShareMedian DEN ShareInterpretation< $0.10 (incl. negative)691.9%92.5%Denver dominates — no meaningful substitution$0.10 – $0.25590.0%90.1%🟢 Still safe — share intact$0.25 – $0.401775.0%88.5%🟡 Erosion begins — high day-to-day variance$0.40 – $0.551744.6%48.4%🔴 Major substitution — share roughly halved> $0.55154.0%—Single observation; insufficient signalInterpretation: there's a clean step-down between the $0.10–$0.25 band and the $0.40–$0.55 band — share goes from ~90% to ~45%. The midpoint band ($0.25–$0.40) is the contested zone with wide variance (median 88.5% but mean only 75.0% — so a handful of bad days drag down a mostly-OK band).
+
+Linear regression (approximate)
+
+Using r = -0.509, mean spread +$0.33, mean share ~67% on dual days:
+
+DenverShare ≈ 90% − 70% × Spread($/gal)
+
+
+| Target spread | Expected Denver share |
+|---|---|
+| $0.00 | ~90% |
+| $0.10 | ~83% |
+| $0.20 | ~76% |
+| $0.30 | ~69% |
+| $0.40 | ~62% (curve flattens here in reality) |
+| $0.50 | ~55% |
+
+Per-customer perspective: Brad Hall is the most price-sensitive
+
+Brad Hall's 4 same-day observations:Brad Hall's personal break point looks to be ~$0.30–$0.35. Below that he gives Denver the majority; above $0.45 he gives N Platte the majority. The aggregate signal from this customer alone implies you lose ~50% of his Denver volume between a $0.31 and $0.51 spread.
+
+Recommended pricing posture :bulb:
+
+• Safe zone: spread ≤ $0.20 — historically held 90%+ Denver share with low volatility.
+• Watch zone: spread $0.20–$0.35 — Denver still gets most of the volume but starting to bleed to N Platte (esp. Brad Hall, Musket). Acceptable if Denver's incremental margin per gallon exceeds the lost-volume cost.
+• Danger zone: spread  $0.40 — substitution kicks in hard. Realized 17 days at this level over the window and Denver took only 44.6% share. Pricing here only makes sense if you actively want the volume to move to N Platte (e.g., capacity constraints at Denver).
+
+Caveats :warning:
+
+• Asymmetric data: only 3 of 46 dual days had Denver cheaper than N Platte. The curve above is only well-anchored for positive spreads (Denver costing more). I can't tell you with confidence what happens if you flip the sign — there's almost no precedent in the window.
+• Sample size in the danger zone: the $0.40+ band's average is dragged down by May 2–May 8, when N Platte ran a sustained 5-day high-volume burst. If that was driven by a specific event (large customer order, supply constraint at a competitor terminal, etc.) rather than pure price response, the true substitution slope may be gentler than $0.40 → 45% suggests.
+• Behavioral switching is concentrated: the elasticity above is largely Brad Hall + Musket + a handful of Maverik allocations. If those two customers' purchasing patterns change (volume, contract terms, ownership), the curve shifts.
+• N Platte capacity: N Platte ran ~21% of combined volume and had 35 zero-lift days. Even with a $0.50+ spread, NPL may not be able to absorb a large Denver-share migration if customers don't already have logistics set up there.
+
+Bottom line: hold the Denver-vs-N Platte spread at ≤ $0.25/gal to preserve ~90% share. Anything you charge above $0.25 should be a deliberate trade of share for margin, and above $0.40 you should expect to lose roughly half the substitutable volume to N Platte.
+
+Sources:
+• env: sinclair-pe-prod — QuoteConfiguration 2 (Sinclair Unbranded Rack Prices)
+• QuoteConfigurationMapping 1278 (Denver) & 1983 (N Platte), Product 67 (#2 ULSD - 0032)
+• 46 dual-active days from vQuoteToBillOfLadingDetail (bol-volume --include-quote), window 2026-02-28 → 2026-05-29
+• Per-customer drill on top 5 dual CPs (--counterparty-id filter)
+
+Used: /query-database
+
+[Session: 3da1e7a2... | Model: opus | Env: DEV | Time: 182.5s][9:13 AM]:bar_chart: Brad Hall — Switching Threshold (4 dual-lift days) (too large for inline display)Brad Hall — Switching Threshold (4 dual-lift days) 
+
+DateSpreadDEN galNPL galDEN%Behavior2026-05-11+$0.30539‚4443‚75271.6%🟢 Still buys at Denver2026-05-22+$0.31152‚3792‚50248.7%🟡 Splits 50/502026-05-01+$0.51263‚0987‚51529.2%🔴 Mostly N Platte2026-05-06+$0.51641‚7385‚03125.7%🔴 Mostly N Platte
