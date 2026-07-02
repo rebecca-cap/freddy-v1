@@ -29,3 +29,16 @@ test-results/
 # Drone CI config (contains Slack webhooks; not needed in snapshot)
 .drone.jsonnet
 *.drone.jsonnet
+
+
+# Editors / IDEs
+.idea/
+.vscode/
+*.swp
+*~
+
+
+# Yarn (Berry) — keep .yarn/releases, ignore the rest
+.yarn/cache/
+.yarn/install-state.gz
+.yarn/unplugged/
