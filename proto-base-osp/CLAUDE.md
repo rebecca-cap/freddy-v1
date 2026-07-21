@@ -4,7 +4,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Important Rules
 
-- **Do NOT run `yarn build`** - The user will always handle build verification manually. Skip any verification steps that involve running the build.
+- **Never fork or hot-edit `@gravitate-js/excalibrr`, and never propose a `file:` dependency on a local/personal excalibrr branch as a standing workflow.** Excalibrr is a shared design-system library consumed by other products across the company, not something this project owns — a real change to it ships to every consumer and needs those teams' buy-in. Prototypes must depend on the real, published excalibrr version.
+  - If a prototype needs a visual change, implement it as a **local, scoped override** in this app (antd `ConfigProvider` theme tokens, scoped CSS, `!important` as a last resort) — do not touch the library.
+  - If something genuinely belongs in the shared design system, that's an occasional, deliberate PR into the real excalibrr repo with cross-product sign-off — not a per-prototype habit, and not something to set up tooling to make "easy" or routine.
+  - If asked to build a mechanism for hot-editing/live-patching excalibrr from a prototype, push back and ask what the specific visual need is instead of building it.
 
 ## Development Commands
 

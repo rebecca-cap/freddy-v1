@@ -1,6 +1,6 @@
 # Freddy: Current State & Roadmap
 
-*Last updated: July 2, 2026*
+*Last updated: July 21, 2026*
 
 **Goal:** a designer or PM creates a prototype in the hub, picks which product it's for (PE or OSP), pushes a branch, and the team automatically gets a shareable URL to the live prototype, with no manual steps.
 
@@ -14,22 +14,23 @@ Freddy is two pieces:
 Progress so far:
 
 - **Runs without a backend.** It intercepts network calls to serve built-in fixtures and seeds mock auth before React mounts, so it can ship as a static site in a small Docker image. The current mechanism (a `window.fetch` monkey-patch in `bootstrap.ts`) is a stopgap and will be replaced with the standard mock seam we use in excalibrr and the prototypes repo.
-- **Excalibrr npm migration is underway, not finished.** `master` is on the published `@gravitate-js/excalibrr` at the production version. That's one branch: prototype branches and the OSP config still reference the stale local fork and need the same migration. The fork itself gets discarded once everything is off it.
+- **Excalibrr npm migration is done on `master`.** `master` is on the published `@gravitate-js/excalibrr` at the production version (antd 5.23, excalibrr `^5.2.10`). **Decision (2026-07-21): this does not get force-propagated to every branch.** Two tracks instead — new prototypes are cut from `master` as-is (born current); existing prototypes stay on their antd-4 base and pull individual fixes via cherry-pick, not a full merge across the antd 4→5 boundary. See "Decisions made" below.
+- **The deploy pipeline works, end to end, for `master`.** `master` now builds and deploys automatically to **https://proto-base.pe.gravitate.energy/** — that's Phases 0-2 proven out for the base branch. What's left for the full vision is the per-branch/per-prototype path: `prototype-<slug>.pe/osp.gravitate.energy` URLs for individual project branches (Phase 3), and the hub driving product choice + push (Phase 4).
 
-What's left: finish the migration everywhere, replace the fetch patch, and build the delivery pipeline that turns a pushed branch into a running URL. The deploy infrastructure already exists (it's what our PR-preview system does for the main product) and needs adapting for Freddy. One security cleanup comes first: the build config has committed secrets that must be rotated. The hub also needs to drive this: a product picker at creation, and the config/instructions each prototype needs to deploy.
+What's left: extend the working pipeline from the single `master` URL to per-branch prototype URLs, and have the hub drive branch creation/push end to end. One security item is still open: the build config has committed secrets (npm token, Slack webhook) that must be rotated — confirm this happened as part of standing up the live pipeline; if not, it's still the first thing to close out.
 
 ## Roadmap at a glance
 
 | Phase | Goal | Depends on | Status |
 |---|---|---|---|
-| **0: Secure & verify** | Rotate leaked secrets; confirm clean build + run from a clean checkout | Repo only | Not started |
-| **1: Finish migration & align branches** | Excalibrr npm everywhere, replace the fetch patch, rebase prototype branches onto the base | Phase 0 | In progress (master done) |
-| **2: Build pipeline** | Auto-build a deployable image per branch | Phase 0; infra creds | Not started |
-| **3: Auto-deploy (the URL)** | Push a branch → live URL behind a login, on the PE or OSP subdomain | Phase 2; infra team | Not started |
+| **0: Secure & verify** | Rotate leaked secrets; confirm clean build + run from a clean checkout | Repo only | Confirm secret rotation happened |
+| **1: Align branches (two-track)** | Master stays canonical + current; existing prototype branches stay on antd 4 and cherry-pick fixes on demand — no forced migration | Phase 0 | Master done; two-track decision made 2026-07-21 |
+| **2: Build pipeline** | Auto-build a deployable image per branch | Phase 0; infra creds | **Working for `master`** |
+| **3: Auto-deploy (the URL)** | Push a branch → live URL behind a login, on the PE or OSP subdomain | Phase 2; infra team | Proven for `master` (proto-base.pe.gravitate.energy); per-branch/per-slug URLs not started |
 | **4: Hub workflow** | Product picker at creation + the config/instructions that make a prototype deployable; portable to any machine | Phase 3 | Not started |
 | **5: Polish** | Shared index page of live demos, refreshed base | Phase 3 | Later |
 
-Critical path to the first URL: 0 → 1 → 2 → 3.
+Critical path to the first per-project URL: 0 → 1 → 2 → 3 (2 and 3 already proven for `master`; remaining work is making them per-branch).
 
 ---
 
@@ -49,9 +50,10 @@ Critical path to the first URL: 0 → 1 → 2 → 3.
 
 - Reuse the pr-preview infrastructure; don't build new.
 - **OSP is the same app**, selected via the product toggle (backend/pages/theme), no second repo. A prototype declares its product; that picks the subdomain.
-- Excalibrr = straight npm dependency; propagate the `master` migration everywhere.
+- **Excalibrr = straight npm dependency on `master`, never a fork/hot-edit branch (decided 2026-07-21).** Excalibrr is a shared design-system library other products depend on; Freddy doesn't own it, and a real change ships to every consumer. New prototypes consume the real, published version as-is. Visual needs get a local, scoped override inside proto-base first (antd `ConfigProvider` tokens, scoped CSS); an actual excalibrr-repo PR is reserved for changes that genuinely belong in the shared library, with cross-product sign-off, and should stay rare. No "freddy" fork/branch of excalibrr gets blessed for live-editing, on any antd line.
+- **No forced migration of existing prototype branches (decided 2026-07-21).** Two tracks: new prototypes are cut from `master` (born current, antd 5 + published excalibrr); existing prototypes stay on their antd-4 base and get individual fixes via cherry-pick, not a full merge across the antd 4→5 boundary. Superseded the earlier "propagate migration everywhere" plan.
 - Drop the `window.fetch` monkey-patch in favor of the standard excalibrr / prototypes-repo mock seam.
-- URLs under the existing `*.pe` / `*.osp` wildcards: `prototype-<slug>.pe.gravitate.energy` (PE) / `prototype-<slug>.osp.gravitate.energy` (OSP), subdomain chosen by the product picked at creation. *(Open: confirm the exact prefix/slug scheme.)*
+- URLs under the existing `*.pe` / `*.osp` wildcards: `prototype-<slug>.pe.gravitate.energy` (PE) / `prototype-<slug>.osp.gravitate.energy` (OSP), subdomain chosen by the product picked at creation. *(Open: confirm the exact prefix/slug scheme.)* Proven separately: `master` itself now deploys to `proto-base.pe.gravitate.energy`.
 - Order: proto-base deploy → hub product picker → hub portability → index page → proto-base freshness.
 
 ## Phase 0: Secure & verify master *(repo-only)*
@@ -65,16 +67,16 @@ Critical path to the first URL: 0 → 1 → 2 → 3.
 4. **Align the Dockerfile with the working prototypes-repo build** (`Gravitate.SellingSolutions.Prototypes/dockerfiles/demo.Dockerfile`, which is what runs today, so model it rather than reinvent): `node:20-alpine` both stages, `yarn install --immutable`, static `serve -s build -l 3000`. The current proto-base Dockerfile is `node:16-alpine`, plain `yarn install`, serves on 5000, and injects env at runtime via `entrypoint.sh`; since the app is fully mocked there's nothing to inject at runtime, so drop the entrypoint, go fully static, and standardize on port 3000. Only the per-branch bits (image name/tag/trigger, handled in Phase 2) should differ. Re-verify the build after.
 5. **Canonicalize:** keep `master` (origin/HEAD); fast-forward or delete `main`; delete the merged `freddy/qa-pass-3-zero-noise` worktree/branch.
 
-## Phase 1: Finish migration & align prototype branches
+## Phase 1: Align branches (two-track, no forced migration)
 
-1. **Replace the fetch monkey-patch.** Swap the `window.fetch` patch in `bootstrap.ts` for the standard mock seam used in excalibrr and the prototypes repo. Keep the 55 fixtures and mock-auth seeding behavior; change the mechanism.
-2. **Propagate the excalibrr npm migration off `master`** to every prototype branch still on the `file:../excalibrr-freddy` fork (grizmo branches, and the stale `freddy/qa-pass-3-zero-noise` before deletion).
-3. **Rebase `project/grizmo` (22 commits) onto `master`.** Conflict hotspots: `src/freddy/fixtures/*` (esp. `quoteBook.ts`, `fixtures/index.ts`), `src/modules/PricingEngine/QuoteBook/*`. Commits don't touch `package.json` / lockfile / Dockerfile. Grizmo commits were authored against antd4, watch for visual/prop drift.
-4. **Rebase `variant/grizmo/growmark` (grizmo + 1) onto rebased grizmo;** same conflict surface.
-5. **Verify each:** boot + QA crawl (`BASE_URL=http://localhost:3000 node ~/repos/freddy-v1/qa/crawl.cjs`) vs the zero-noise baseline in `~/repos/freddy-v1/qa-reports/`.
-6. **Push missing local-only branches:** `project/test-2`, `project/test-3`, `project/quote-filter-bar` (PE); `project/index-special-pricing` (OSP-targeted). Includes promoting the demo that currently lives only in a worktree (not on a real branch) to a proper pushed branch.
+1. **Replace the fetch monkey-patch.** Swap the `window.fetch` patch in `bootstrap.ts` for the standard mock seam used in excalibrr and the prototypes repo. Keep the 55 fixtures and mock-auth seeding behavior; change the mechanism. (Applies to `master` / new-track prototypes.)
+2. **Do not propagate the excalibrr npm migration to existing antd-4 branches.** Superseded: the old plan ("migrate everywhere") is replaced by the two-track decision above. `project/grizmo` and other in-flight antd-4 branches (and the stale `freddy/qa-pass-3-zero-noise` before deletion) stay on their base; pull individual upstream fixes via `git cherry-pick` on demand instead of rebasing/merging across the antd 4→5 boundary.
+3. **New prototypes are cut from `master` directly**, already on antd 5 + published excalibrr — no migration step needed for them.
+4. **Verify each active branch:** boot + QA crawl (`BASE_URL=http://localhost:3000 node ~/repos/freddy-v1/qa/crawl.cjs`) vs the zero-noise baseline in `~/repos/freddy-v1/qa-reports/`.
+5. **Push missing local-only branches:** `project/test-2`, `project/test-3`, `project/quote-filter-bar` (PE); `project/index-special-pricing` (OSP-targeted). Includes promoting the demo that currently lives only in a worktree (not on a real branch) to a proper pushed branch.
+6. **Reconcile local-only work with `master`:** any local QA commits sitting ahead of `master` (e.g. a `freddy/qa-pass-*` line) should go up as a PR so the fork and `master` stop diverging in both directions.
 
-## Phase 2: Drone pipeline for deployable images
+## Phase 2: Drone pipeline for deployable images *(working for `master`)*
 
 Edit `.drone.jsonnet`:
 
@@ -84,7 +86,7 @@ Edit `.drone.jsonnet`:
 4. **Trigger:** replace the exclude-list with `include: [master, project/, variant/]`.
 5. **Drone admin:** activate repo; add secrets `npm_token`, `slack_webhook`, `acr_*`.
 
-## Phase 3: proto-preview (ArgoCD ApplicationSet + Helm chart)
+## Phase 3: proto-preview (ArgoCD ApplicationSet + Helm chart) *(`master` proven at proto-base.pe.gravitate.energy; per-branch/per-slug URLs below still to build)*
 
 New `proto-preview/` tree in `Gravitate.Dotnet.DeploymentConfigs` (trimmed copy of `pr-preview/`):
 

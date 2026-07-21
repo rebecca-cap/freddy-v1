@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Freddy Proto-Base — Sync &amp; Update Plan</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --panel: #ffffff; --ink: #1f2733; --ink-2: #5b6572; --ink-3: #8a93a0;
+    --line: #e3e7ec; --accent: #1e7a52; --accent-dim: #e2f2ea;
+    --warn: #b25e09; --warn-dim: #fdf1e3; --risk: #b0312f; --risk-dim: #fceaea;
+    --info-dim: #e8eef8; --info: #2b5eb5; --code-bg: #f0f2f5; --mono: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14181d; --panel: #1c2229; --ink: #e8ecf1; --ink-2: #a8b2bd; --ink-3: #6e7883;
+      --line: #2c343d; --accent: #4cc38a; --accent-dim: #17352a;
+      --warn: #e0a458; --warn-dim: #33291a; --risk: #e5716f; --risk-dim: #38201f;
+      --info-dim: #1d2a3d; --info: #7aa5e8; --code-bg: #232b34;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: var(--bg); color: var(--ink); font: 15px/1.55 -apple-system, "Segoe UI", Roboto, sans-serif; padding: 40px 20px 80px; }
+  .wrap { max-width: 880px; margin: 0 auto; }
+  h1 { font-size: 26px; letter-spacing: -0.02em; }
+  h2 { font-size: 19px; margin: 44px 0 14px; padding-bottom: 8px; border-bottom: 1px solid var(--line); letter-spacing: -0.01em; }
+  h3 { font-size: 15px; margin: 22px 0 8px; }
+  p { margin: 0 0 12px; color: var(--ink-2); }
+  p strong, li strong { color: var(--ink); }
+  .meta { color: var(--ink-3); font-size: 13px; margin: 6px 0 30px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 18px 20px; margin: 14px 0; }
+  .tldr { background: var(--accent-dim); border-color: transparent; }
+  .tldr h3 { margin-top: 0; }
+  ul, ol { margin: 0 0 12px; padding-left: 22px; color: var(--ink-2); }
+  li { margin: 5px 0; }
+  code { font-family: var(--mono); font-size: 12.5px; background: var(--code-bg); padding: 1.5px 6px; border-radius: 4px; }
+  pre { font-family: var(--mono); font-size: 12.5px; background: var(--code-bg); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; overflow-x: auto; margin: 10px 0 14px; line-height: 1.6; }
+  pre code { background: none; padding: 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin: 10px 0 16px; }
+  th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-3); padding: 8px 10px; border-bottom: 2px solid var(--line); }
+  td { padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; color: var(--ink-2); }
+  td:first-child { color: var(--ink); font-weight: 500; }
+  .table-scroll { overflow-x: auto; }
+  .pill { display: inline-block; font-size: 11px; font-weight: 600; padding: 2px 9px; border-radius: 20px; white-space: nowrap; }
+  .pill.ok   { background: var(--accent-dim); color: var(--accent); }
+  .pill.warn { background: var(--warn-dim);   color: var(--warn); }
+  .pill.risk { background: var(--risk-dim);   color: var(--risk); }
+  .pill.info { background: var(--info-dim);   color: var(--info); }
+  /* diagram */
+  .diagram { display: flex; flex-direction: column; gap: 0; align-items: center; margin: 18px 0; }
+  .d-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; width: 100%; }
+  .d-box { background: var(--panel); border: 1.5px solid var(--line); border-radius: 8px; padding: 10px 14px; min-width: 190px; text-align: center; }
+  .d-box .t { font-weight: 600; font-size: 13.5px; }
+  .d-box .s { font-size: 11.5px; color: var(--ink-3); font-family: var(--mono); margin-top: 2px; }
+  .d-box.new  { border-color: var(--accent); }
+  .d-box.old  { border-color: var(--warn); }
+  .d-arrow { color: var(--ink-3); font-size: 15px; line-height: 1; padding: 6px 0; text-align: center; }
+  .ask { display: flex; gap: 12px; align-items: flex-start; padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .ask:last-child { border-bottom: none; }
+  .ask .n { flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--accent-dim); color: var(--accent); font-weight: 700; font-size: 13px; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+  .ask p { margin: 0; }
+  .footnote { font-size: 12.5px; color: var(--ink-3); margin-top: 40px; border-top: 1px solid var(--line); padding-top: 14px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Freddy Proto-Base — Sync &amp; Update Plan</h1>
+  <div class="meta">Frank Overland · July 21, 2026 · For dev team review: please read “What I need from you” and unblock the four asks.<br>
+  <strong>Dev team response · July 21, 2026:</strong> all four asks answered inline below. #1 confirmed and now proven live (master deploys to proto-base.pe.gravitate.energy). #3 is a firm no on the hot-edit fork/branch, on any antd line — use local overrides instead. #2 is a directional yes pending you verifying registry access in practice. #4 is accepted — send the PR.</div>
+
+  <div class="card tldr">
+    <h3>TL;DR</h3>
+    <p>My prototyping base (<code>~/freddy/proto-base</code>) is a clone of <code>Freddy-Proto-Base</code> taken before the big upgrades. Remote <code>master</code> has since moved to <strong>antd 5.23</strong> and the <strong>published</strong> <code>@gravitate-js/excalibrr@^5.2.10</code>, plus CI/CD, mock-auth fixes, and merged prototype features. My local world is <strong>antd 4.24</strong> with a <strong>local excalibrr 4.0.34-osp fork</strong> consumed as a <code>file:</code> dependency. That's a major-version boundary, not a routine pull.</p>
+    <p style="margin-bottom:0"><strong>Plan:</strong> new projects get cut from <code>origin/master</code> (born current, antd 5 + published excalibrr); existing prototypes stay on the antd 4 base and cherry-pick fixes on demand, with no forced migration. Four small asks below make this safe.</p>
+  </div>
+
+  <h2>1 · The ecosystem today</h2>
+  <p>The Project Hub spawns each prototype as a <strong>git worktree</strong> of proto-base on a <code>project/&lt;name&gt;</code> branch, symlinks the shared excalibrr library into the project, and repoints its <code>package.json</code> to the local library at install time.</p>
+
+  <div class="diagram">
+    <div class="d-row">
+      <div class="d-box new"><div class="t">GitHub · Freddy-Proto-Base</div><div class="s">origin/master · v0.29.43 · antd 5.23 · excalibrr ^5.2.10 (published)</div></div>
+    </div>
+    <div class="d-arrow">↓ clone (taken at v0.29.41; now 17 commits behind)</div>
+    <div class="d-row">
+      <div class="d-box old"><div class="t">~/freddy/proto-base</div><div class="s">antd 4.24 · excalibrr file:../excalibrr-freddy</div></div>
+      <div class="d-box old"><div class="t">~/freddy/excalibrr-freddy</div><div class="s">fork 4.0.34-osp · branch freddy/base</div></div>
+    </div>
+    <div class="d-arrow">↓ git worktrees (Project Hub) · symlink + file: dep</div>
+    <div class="d-row">
+      <div class="d-box"><div class="t">projects/*/prototype</div><div class="s">8 worktrees + 3 variants, project/* branches</div></div>
+    </div>
+  </div>
+
+  <p>There is also a <strong>second full clone</strong> at <code>~/freddy/Freddy-Proto-Base</code> (v0.29.43, branch <code>project/mobile-responsive-quotebook</code>). It was created off the newer master for the mobile QuoteBook work, using the published excalibrr. It's the proof that the “new world” installs and runs locally.</p>
+
+  <h2>2 · What has diverged</h2>
+  <div class="table-scroll"><table>
+    <tr><th>Where</th><th>Local</th><th>Remote / upstream</th><th>Gap</th></tr>
+    <tr><td>proto-base vs origin/master</td><td>v0.29.41, antd 4.24</td><td>v0.29.43, antd 5.23</td><td><span class="pill warn">17 behind</span></td></tr>
+    <tr><td>Excalibrr consumption</td><td><code>file:../excalibrr-freddy</code> (hot-editable source)</td><td>published <code>^5.2.10</code> from npm</td><td><span class="pill risk">major 4→5</span></td></tr>
+    <tr><td>excalibrr-freddy fork</td><td>4.0.34-osp (antd 4.19 peer)</td><td>upstream main: antd v5 upgrade, mobile UX, biome, ContentTabs</td><td><span class="pill warn">10 behind</span></td></tr>
+    <tr><td>Local <code>main</code> branch</td><td>7 commits of QA work not upstream</td><td>—</td><td><span class="pill info">7 ahead</span></td></tr>
+    <tr><td>Local excalibrr <code>dist/</code> build</td><td>built May 2 (stale)</td><td>—</td><td><span class="pill warn">rebuild</span></td></tr>
+  </table></div>
+
+  <h3>What the 17 upstream commits contain</h3>
+  <ul>
+    <li><strong>The dependency flip:</strong> excalibrr <code>file:</code> → published <code>^5.2.10</code>, antd 4→5 (drives ~2,265 lines of yarn.lock churn).</li>
+    <li><strong>CI/CD:</strong> GitHub Actions pipeline, Docker build, GitHub Deployments, NPM_TOKEN as build secret.</li>
+    <li><strong>Fixes I want:</strong> mock-auth fix, mock write-permissions, Contracts routes without permission checks.</li>
+    <li><strong>Prototype work flowing back:</strong> my Tomorrow Forecast merge, a Free Form price provision port, contract fixtures — master is absorbing prototype output, which is exactly why staying connected to it matters.</li>
+  </ul>
+
+  <h2>3 · Why a plain “pull” is the wrong move</h2>
+  <p>Merging <code>origin/master</code> into proto-base or any existing project branch drags the <strong>antd 4→5 + excalibrr 4→5 migration</strong> into prototypes that were styled and built against antd 4. Every in-flight prototype would need component-level rework, and my excalibrr fork's customizations (the <code>-osp</code> line) don't exist in the published 5.x package. For throwaway-speed prototypes, that cost is not worth it.</p>
+  <p><strong>So: two tracks, split at the version boundary.</strong></p>
+
+  <h2>4 · The plan</h2>
+
+  <h3>Track A — New projects are born current</h3>
+  <ul>
+    <li>Hub cuts new worktrees from <code>origin/master</code> instead of the local stale branch (one-line change at the <code>git worktree add</code> start point, <code>server/projects.ts:172</code>).</li>
+    <li>Because master's dep is a registry version, the Hub's excalibrr repoint/symlink becomes a no-op for these projects; <code>yarn install</code> just works (my npm token already authenticates to registry.npmjs.org). Repoint logic (<code>server/node-modules.ts:83-88</code>) becomes conditional: only rewrite when the dep starts with <code>file:</code>.</li>
+    <li>New projects are antd 5 + excalibrr 5 from day one, matching what you ship.</li>
+  </ul>
+
+  <h3>Track B — Existing projects update on demand, selectively</h3>
+  <ul>
+    <li>Existing antd-4 prototypes <strong>stay on the antd-4 base</strong>. No forced migration; they age out naturally as projects finish.</li>
+    <li>When one needs an upstream fix (e.g. the mock-auth fix), I <code>git cherry-pick</code> that commit into the project branch rather than merging all of master.</li>
+    <li>The Hub grows a small “Base updates” feature: <code>git fetch</code> + a per-project “N commits behind master” badge + a cherry-pick/merge action. It slots directly beside the existing local variant-sync (<code>server/projects.ts:570-595</code>, <code>mergeInto</code> in <code>server/git.ts:94-127</code>); the only missing primitive is a <code>fetch</code> wrapper in <code>git.ts</code>.</li>
+  </ul>
+
+  <h3>One-time reconciliation (I'll do this)</h3>
+  <ol>
+    <li><code>git fetch origin</code> in proto-base (already done; the counts above come from it).</li>
+    <li>PR my local <code>main</code>'s 7 QA commits up to master so nothing is stranded (ask #4).</li>
+    <li>Commit or stash the two dirty worktrees (<code>index-special-pricing</code>, <code>tommorow-forecast</code>) before any branch operations.</li>
+    <li>Keep <code>~/freddy/excalibrr-freddy</code> pinned at the 4.x line for the antd-4 projects. Do <strong>not</strong> pull its upstream main (that's the antd 5 upgrade). Rebuild <code>dist/</code> only after intentional edits.</li>
+    <li>Fold the duplicate <code>~/freddy/Freddy-Proto-Base</code> clone in: once proto-base is fetch-current, the mobile-quotebook branch can live as a normal Hub worktree and the extra clone gets deleted.</li>
+  </ol>
+
+  <h2>5 · What I need from you</h2>
+  <div class="card">
+    <div class="ask"><div class="n">1</div><p><strong>Confirm <code>origin/master</code> is the canonical base. <span class="pill ok">Resolved: yes</span></strong> Confirmed — and now proven, not just asserted: <code>master</code> builds and deploys automatically to <a href="https://proto-base.pe.gravitate.energy/">https://proto-base.pe.gravitate.energy/</a>. Cut new prototypes from <code>master</code>.</p></div>
+    <div class="ask"><div class="n">2</div><p><strong>Confirm npm access to <code>@gravitate-js/excalibrr</code>. <span class="pill warn">Directionally yes — verify in practice</span></strong> Yes, releases keep publishing to the registry as normal (<code>master</code> pinning <code>^5.2.10</code> is the intended long-term shape). We haven't independently checked your specific token's scope against the private package. Action: try <code>yarn install</code> on a fresh antd-5 project and report back immediately if it fails — that's an npm-org permissions fix, not a design/process question, so it shouldn't block you for long.</p></div>
+    <div class="ask"><div class="n">3</div><p><strong>A home for my excalibrr customizations. <span class="pill risk">Resolved: no</span></strong> Decision from the dev team: there is no blessed <code>freddy</code> tag/branch to hot-edit against, on antd 5. Excalibrr is a shared design-system library other products at the company also depend on — Freddy doesn't own it, and a real change ships to every consumer, so it can't be driven by one prototype's needs on a live/hot-edit basis. New projects consume the real, published excalibrr as-is. For a visual tweak: first try a local, scoped override inside proto-base (antd <code>ConfigProvider</code> theme tokens, scoped CSS, <code>!important</code> as a last resort). If something genuinely belongs in the shared library, that's an occasional, deliberate PR into the real excalibrr repo with cross-product sign-off — not a per-prototype workflow. If a specific antd-4 fork tweak doesn't have an obvious local-override path, bring the concrete case and we'll figure out the right home for it individually — but the fork/hot-edit workflow itself is off the table.</p></div>
+    <div class="ask"><div class="n">4</div><p><strong>Review a small PR of my 7 local QA commits. <span class="pill ok">Accepted — send it</span></strong> Open the PR for the <code>freddy/qa-pass-*</code> work against <code>master</code> and the dev team will review it promptly so your base and master stop diverging in both directions.</p></div>
+  </div>
+
+  <h2>6 · Risks &amp; blockers</h2>
+  <div class="table-scroll"><table>
+    <tr><th>Risk</th><th>Impact</th><th>Mitigation</th></tr>
+    <tr><td>antd 4→5 boundary</td><td>Merging master into old projects breaks styling/APIs everywhere</td><td>Two-track plan; never merge across the boundary, cherry-pick instead</td></tr>
+    <tr><td>Excalibrr fork orphaned</td><td>New (antd 5) projects can't hot-edit the design system</td><td><span class="pill ok">Resolved</span> — by design, not a fixable risk. No hot-edit branch on any antd line; use local overrides in proto-base, escalate to a real cross-product excalibrr PR only when genuinely warranted</td></tr>
+    <tr><td>yarn.lock conflicts</td><td>Any cross-boundary merge conflicts on ~2.3k lock lines</td><td>Cherry-picks only touch source; lockfile stays per-track</td></tr>
+    <tr><td>npm token scope</td><td>New projects fail at <code>yarn install</code> if the token can't read the scoped package</td><td><span class="pill warn">Action item</span> — Frank verifies with a real <code>yarn install</code> on the first antd-5 project; report back fast if it fails so it can be fixed as an npm-org permissions issue</td></tr>
+    <tr><td>Dirty worktrees</td><td>Sync operations on top of uncommitted work lose changes</td><td>Hub sync refuses to run unless the worktree is clean (same guard the variant-sync already uses)</td></tr>
+  </table></div>
+
+  <h2>Appendix · Current worktree inventory</h2>
+  <div class="table-scroll"><table>
+    <tr><th>Project</th><th>Branch</th><th>State</th></tr>
+    <tr><td>proto-base (main checkout)</td><td><code>freddy/qa-pass-3-zero-noise</code></td><td><span class="pill ok">clean</span></td></tr>
+    <tr><td>freefrom-contract-entry</td><td><code>project/freefrom-contract-entry</code></td><td><span class="pill ok">pushed to origin</span></td></tr>
+    <tr><td>grizmo (+ growmark, hf-sinclair variants)</td><td><code>project/grizmo</code>, <code>variant/…</code></td><td><span class="pill ok">clean</span></td></tr>
+    <tr><td>quote-filter-bar (+ compact-bar variant)</td><td><code>project/quote-filter-bar</code>, <code>variant/…</code></td><td><span class="pill ok">clean</span></td></tr>
+    <tr><td>index-special-pricing</td><td><code>project/index-special-pricing</code></td><td><span class="pill warn">4 modified src files + untracked screenshots</span></td></tr>
+    <tr><td>tommorow-forecast</td><td><code>project/tommorow-forecast</code></td><td><span class="pill warn">1 modified src file</span></td></tr>
+    <tr><td>test-1 / test-3</td><td><code>project/test-*</code></td><td><span class="pill ok">clean</span></td></tr>
+    <tr><td>~/freddy/Freddy-Proto-Base (extra clone)</td><td><code>project/mobile-responsive-quotebook</code></td><td><span class="pill info">fold into Hub, then delete</span></td></tr>
+  </table></div>
+
+  <div class="footnote">
+    Facts gathered July 21, 2026 from live git state (fetched) across proto-base, excalibrr-freddy, all project worktrees, and the Project Hub source. File/line references point into <code>~/freddy/project-hub/server/</code>.
+  </div>
+
+</div>
+</body>
+</html>
